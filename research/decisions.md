@@ -19,3 +19,6 @@ Ahmed (from his phone): "your searches are great. Follow it." The first main-que
 
 ## 2026-10-19 ~17:05 UTC: Scheduled runners failed; research continues in the main session
 Runners 1-2 fired on time but froze ~10 s in, on a permission prompt (scheduled tasks start in default mode). Stopped them; runners 3-5 disabled. The app also refuses start_session on turns that come from Ahmed's phone. Waves now run inline in the main session (Auto mode).
+
+## 2026-10-19 18:48 UTC: Delete big cutouts, keep what we extract from them
+Ahmed: "yes delete cutouts". This changes the "keep raw data" rule for **TESScut cutouts only**. After we extract a light curve from a cutout, we keep the light curve plus the settings used (sector, size, aperture), then delete the cutout. Any cutout can be downloaded again from MAST. All other raw data (SPOC/QLP/TESS-SPOC light curves, catalogues) is still kept. The two wave-2 test cutouts (153 MB) were deleted the same night.

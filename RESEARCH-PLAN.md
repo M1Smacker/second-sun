@@ -84,7 +84,7 @@ All decided 2026-10-19 by Ahmed. **Superseded** answers are marked so nobody re-
 - Licenses: **MIT** (code) + **CC BY** (text). Later: a guide others can follow (maybe Urdu).
 
 **Operations**
-- Project and data on **D:** (`D:\second-sun`). **Keep raw data.** Downloads over **20 GB** need Ahmed's OK; every download is logged with its size.
+- Project and data on **D:** (`D:\second-sun`). **Keep raw data**, except TESScut cutouts: extract the light curve, keep it + settings, delete the cutout (decision 2026-10-19 18:48 UTC). Downloads over **20 GB** need Ahmed's OK; every download is logged with its size.
 - Internet: fast, but **no unnecessary downloads or uploads**.
 - **Zero budget.** Accounts: Ahmed creates **all of them** when Claude says so, with the reason and a walkthrough.
 - PC can run **overnight often**; jobs must be **resumable**.
