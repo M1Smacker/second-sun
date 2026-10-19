@@ -1,0 +1,10 @@
+product,target,sector,ok,seconds,bytes,path,note
+SPOC 2-min LC,TIC 260128333,98,True,11.6,4164480,D:\second-sun\data\wave-2\lk\mastDownload\TESS\tess2025312202959-s0098-0000000260128333-0298-s\tess2025312202959-s0098-0000000260128333-0298-s_lc.fits,1 result(s); n_cadences=40157
+SPOC 20-s LC,TIC 260128333,98,True,7.6,24828480,D:\second-sun\data\wave-2\lk\mastDownload\TESS\tess2025312202959-s0098-0000000260128333-0298-a_fast\tess2025312202959-s0098-0000000260128333-0298-a_fast-lc.fits,1 result(s); n_cadences=241046
+SPOC 2-min TPF,TIC 260128333,98,True,19.9,101220480,D:\second-sun\data\wave-2\lk\mastDownload\TESS\tess2025312202959-s0098-0000000260128333-0298-s\tess2025312202959-s0098-0000000260128333-0298-s_tp.fits,1 result(s); n_cadences=40157
+TESScut 15x15 FFI,TIC 260128333,98,True,70.9,110378880,D:\second-sun\data\wave-2\lk\tesscut\tess-s0098-4-1_92.133200_-59.541133_15x15_astrocut.fits,1 result(s); n_cadences=24068
+SPOC 2-min LC,TIC 299096355,82,True,6.3,1892160,D:\second-sun\data\wave-2\lk\mastDownload\TESS\tess2024223182411-s0082-0000000299096355-0278-s\tess2024223182411-s0082-0000000299096355-0278-s_lc.fits,1 result(s); n_cadences=18137
+TESS-SPOC FFI LC,TIC 299096355,82,True,4.6,1146240,D:\second-sun\data\wave-2\lk\mastDownload\HLSP\hlsp_tess-spoc_tess_phot_0000000299096355-s0082_tess_v1_tp\hlsp_tess-spoc_tess_phot_0000000299096355-s0082_tess_v1_lc.fits,1 result(s); n_cadences=10873
+QLP FFI LC,TIC 299096355,82,True,8.9,656640,D:\second-sun\data\wave-2\lk\mastDownload\HLSP\hlsp_qlp_tess_ffi_s0082-0000000299096355_tess_v01_llc\hlsp_qlp_tess_ffi_s0082-0000000299096355_tess_v01_llc.fits,1 result(s); n_cadences=10766
+TGLC FFI LC,TIC 260128333,10,True,7.5,54720,D:\second-sun\data\wave-2\lk\mastDownload\HLSP\hlsp_tglc_tess_ffi_gaiaid-5494443978353833088-s0010-cam4-ccd3_tess_v1_llc\hlsp_tglc_tess_ffi_gaiaid-5494443978353833088-s0010-cam4-ccd3_tess_v1_llc.fits,1 result(s); n_cadences=1150
+TESScut 15x15 FFI,TIC 299096355,82,True,33.1,49800960,D:\second-sun\data\wave-2\lk\tesscut\tess-s0082-3-4_289.075733_51.757438_15x15_astrocut.fits,1 result(s); n_cadences=10872

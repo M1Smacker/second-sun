@@ -1,0 +1,6 @@
+== C: cache check BEFORE (17:05Z) ==
+absent C:\Users\hanzl/.lightkurve
+absent C:\Users\hanzl/.lightkurve-cache
+absent C:\Users\hanzl/.astropy
+EXISTS C:\Users\hanzl\AppData\Local/pip/Cache 4.1G
+C:              447G  425G   22G  96% /c
