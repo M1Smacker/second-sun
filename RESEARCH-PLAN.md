@@ -54,7 +54,7 @@ All decided 2026-10-19 by Ahmed. **Superseded** answers are marked so nobody re-
 - Dream ending: all four (NASA announces it, name on a big paper, recognised citizen scientist, new path), and **NASA announcing it** is the top one.
 - Horizon: **as long as it's fun**, so fun is a design requirement, not decoration.
 - People: **just Ahmed and Claude.** Open to formal collaboration with a university or research group if it goes big ("yes, gladly"). Telescope: maybe later.
-- Identity: **Ahmed Hanzala, Pakistani, living in Kuwait as an expat.** Credit line: *"Ahmed Hanzala, independent citizen scientist (Pakistan), based in Kuwait"*. AI use disclosed plainly; Ahmed is the discoverer.
+- Identity: **Ahmed Hanzala, Pakistani, living in Kuwait as an expat.** Credit line: *"Ahmed Hanzala, independent citizen scientist (Pakistan), based in Kuwait"*. AI use disclosed plainly; Ahmed is the discoverer. ORCID iD: **0009-0009-1075-2365** (https://orcid.org/0009-0009-1075-2365). NASA ADS account active; its API key lives only in the user environment variable `ADS_DEV_KEY`, never in the repo.
 - Success: **the ladder**: clean CTOIs → a paper with your name → the headline circumbinary find. Side rungs: new variable stars to AAVSO VSX; a possible method paper ("an amateur + AI searched X stars").
 
 **Quests**
