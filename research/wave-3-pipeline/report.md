@@ -52,12 +52,12 @@ The known two-sun planets are 3-12 × Earth, so this is the right size range. Th
 | **stanley_cbp** | 0.2.8 | ✅ (separate venv) | 183 s | Tufts' CBP pipeline; MIT | MIT |
 | **mono-cbp** | 0.1.9 | ❌ | 106 s | "Compiler cython cannot transpile": its `scipy<1.13` pin forces a source build; Windows has no compiler | GPL-3.0 |
 | **ellc** | 1.8.15 | ✅ (separate venv) | 62 s | EB light-curve model | GPL-3.0 |
-| PHOEBE 2 | | ⏳ testing | | | GPL-3.0 |
-| LEO-Vetter | git | ⏳ testing | | | GPL-3.0 |
+| PHOEBE 2 | (PyPI latest) | ✅ (separate venv) | 511 s | Claude's memory said Linux/Mac-only: WRONG, it installs on Windows | GPL-3.0 (not metadata-checked) |
+| LEO-Vetter | git | ❌ | 55 s | build error installing from GitHub (subprocess error in the build hooks); revisit | GPL-3.0 |
 
 All tools import together in `D:\second-sun\.venv` (VERIFIED: one import line with all of them succeeded, MAST reachable).
 
-**WSL verdict (provisional): not needed.** STANLEY (CBP search) and ellc (EB modelling) run natively. Revisit only if PHOEBE is needed *and* fails.
+**WSL verdict: not needed** (STANLEY, ellc and PHOEBE 2 all install natively on Windows). STANLEY (CBP search) and ellc (EB modelling) run natively. Revisit only if PHOEBE is needed *and* fails.
 
 **Licence note:** batman, rebound, ellc, PyTransit and mono-cbp are GPL. Using them as installed tools is fine; never copy their code into our MIT repo.
 

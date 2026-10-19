@@ -8,3 +8,14 @@ PASS | 183s | .venv-tests/stanley_cbp | stanley_cbp |
 FAIL | 106s | .venv-tests/mono-cbp | mono-cbp |   error: subprocess-exited-with-error   ..\..\meson.build:1:0: ERROR: Compiler cython cannot transpile programs. 
 PASS | 62s | .venv-tests/ellc | ellc | 
 PASS | 511s | .venv-tests/phoebe | phoebe | 
+FAIL | 55s | .venv-tests/LEO-Vetter | git+https://github.com/mkunimoto/LEO-Vetter.git |   error: subprocess-exited-with-error     File "D:\second-sun\.venv-tests\LEO-Vetter\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 143, in get_requires_for_build_wheel 
+astropy             7.2.3
+exovetter           0.0.16
+lightkurve          2.6.0
+numpy               1.26.4
+rebound             5.2.2
+scipy               1.13.1
+transitleastsquares 2.0.1
+triceratops         1.1.0
+wotan               2.0
+DONE
