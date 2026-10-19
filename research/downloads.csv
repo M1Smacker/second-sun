@@ -37,3 +37,5 @@ utc_time,what,source_url,size_bytes,dest_path,why,wave
 2026-10-19T17:13Z,QLP FFI LC TIC 299096355 S82,MAST via lightkurve,656640,data\wave-2\lk\mastDownload\HLSP\hlsp_qlp_tess_ffi_s0082-0000000299096355_tess_v01_llc\hlsp_qlp_tess_ffi_s0082-0000000299096355_tess_v01_llc.fits,wave 2 size/time measurement,2
 2026-10-19T17:13Z,TGLC FFI LC TIC 260128333 S10,MAST via lightkurve,54720,data\wave-2\lk\mastDownload\HLSP\hlsp_tglc_tess_ffi_gaiaid-5494443978353833088-s0010-cam4-ccd3_tess_v1_llc\hlsp_tglc_tess_ffi_gaiaid-5494443978353833088-s0010-cam4-ccd3_tess_v1_llc.fits,wave 2 size/time measurement,2
 2026-10-19T17:13Z,TESScut 15x15 FFI TIC 299096355 S82,MAST via lightkurve,49800960,data\wave-2\lk\tesscut\tess-s0082-3-4_289.075733_51.757438_15x15_astrocut.fits,wave 2 size/time measurement,2
+2026-10-19T17:28Z,G1 noise sample: 6 FFI light curves (one sector each),MAST via lightkurve,15819840,data/wave-3/lk,G1 feasibility: noise vs Tmag,3
+2026-10-19T17:30Z,G1 noise sample: 6 FFI light curves (one sector each),MAST via lightkurve,42108480,data/wave-3/lk,G1 feasibility: noise vs Tmag,3

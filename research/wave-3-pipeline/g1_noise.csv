@@ -1,0 +1,7 @@
+kic,tic,tmag,tic_rad,p_bin,product,sector,cdpp_1h_ppm,min_rp_re_sunlike,note
+2697935,121277143,10.0,3.18678,21.5133595,SPOC,TESS Sector 81,120,2.0,"cadence 2.0 min, n=16037"
+10274244,63071165,11.0,0.82926,13.6836897,SPOC,TESS Sector 82,267,3.0,"cadence 2.0 min, n=15704"
+7887124,159443078,12.0,2.1653,32.4864272,SPOC,TESS Sector 15,412,3.7,"cadence 2.0 min, n=13552"
+6762188,158278417,13.0,12.4858,7.155502,SPOC,TESS Sector 81,716,4.9,"cadence 2.0 min, n=13832"
+9164836,271882431,14.0,1.19117,48.1188189,,,,,no LC product
+4940438,184296488,15.0,1.55567,9.085907,,,,,no LC product

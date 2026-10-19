@@ -1,6 +1,6 @@
 # Wave 4: vetting and false positives
 
-*Second Sun research, wave 4. Run inline by the main session (Claude, Opus 5.5) on 2026-10-19, ~17:20-17:40 UTC. Claims are numbered V1… in `claims.md`. Reading-only wave.*
+*Second Sun research, wave 4. Run inline by the main session (Claude, Opus 5.5) on 2026-10-19, ~17:05-17:20 UTC. Claims are numbered V1… in `claims.md`. Reading-only wave.*
 
 ---
 

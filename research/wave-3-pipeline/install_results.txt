@@ -1,0 +1,9 @@
+FAIL | 3s | .venv | wotan | ERROR: Exception: RecursionError: maximum recursion depth exceeded 
+FAIL | 2s | .venv | transitleastsquares | ERROR: Exception: RecursionError: maximum recursion depth exceeded 
+FAIL | 1s | .venv | batman-package | ERROR: Exception: RecursionError: maximum recursion depth exceeded 
+FAIL | 1s | .venv | rebound | ERROR: Exception: RecursionError: maximum recursion depth exceeded 
+FAIL | 2s | .venv | triceratops | ERROR: Exception: RecursionError: maximum recursion depth exceeded 
+FAIL | 1s | .venv | exovetter | ERROR: Exception: RecursionError: maximum recursion depth exceeded 
+PASS | 183s | .venv-tests/stanley_cbp | stanley_cbp | 
+FAIL | 106s | .venv-tests/mono-cbp | mono-cbp |   error: subprocess-exited-with-error   ..\..\meson.build:1:0: ERROR: Compiler cython cannot transpile programs. 
+PASS | 62s | .venv-tests/ellc | ellc | 

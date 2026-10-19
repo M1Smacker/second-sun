@@ -1,4 +1,4 @@
-Finished 2026-10-19 ~17:40 UTC: complete (reading wave)
+Finished 2026-10-19 ~17:20 UTC (corrected; first written as ~17:40): complete (reading wave)
 
 - Catalogue of fakes, with the test that catches each, from the TOI catalogue, Davies+ 2026 and the TOI-1338 b paper.
 - Professional thresholds verified (MES 7.1; QLP SNR 9; TRICERATOPS FPP < 0.015 & NFPP < 0.001; Davies 18/21 detrendings, ΔAIC ≤ −2).
