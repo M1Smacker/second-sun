@@ -77,7 +77,7 @@ All decided 2026-10-19 by Ahmed. **Superseded** answers are marked so nobody re-
 **The book (the bible)**
 - **MkDocs Material** website on **GitHub Pages**, built from markdown files in `D:\second-sun` (markdown is the master copy).
 - ~~Private repo~~ / ~~private work split~~ → **superseded: one public repo; EVERYTHING goes in the book** (phases, batches, candidates, where we left off). Only Ahmed reads it until we publish. Search engines blocked (noindex). Claude flags scooping risk **once**, when the first real candidate appears.
-- "A whole book": **chapters + index**, **medium-length chapters**, **English**, tone = **friendly mentor with some bro-to-bro seasoning**, **night-observatory** look, **diagrams + a few interactive demos**, **full gamification** (levels, XP, achievements, sky-coverage map, cool-finds gallery).
+- "A whole book": **chapters + index**, **medium-length chapters**, **English**, tone = **friendly mentor with some bro-to-bro seasoning**, **night-observatory** look, **diagrams + a few interactive demos**, **quiet progress tracking, not a gamey look** (changed 2026-10-19 20:59 UTC: professional, clean, explains everything plainly, personalised to Ahmed; keeps levels, milestones, sky-coverage map, cool-finds gallery; no XP banners, badges or flashy effects).
 - **Offline-capable on iPhone**, added to the home screen.
 - **Living book**: updated every session; comeback kit = **2-minute recap + what-changed log + refresher quiz**; **every decision logged with a date**; **journey/story thread**; **fully portable** (any future AI or person can continue from the book + repo alone).
 - Learning track **built into the book**, learned **side by side** with the hunt.
@@ -237,7 +237,7 @@ Outputs: learning-track outline with chapter list.
 Questions:
 1. **MkDocs Material status** (I have an unverified memory of maintenance mode / a successor project) → pick the engine.
 2. Offline + home-screen install on **iPhone** (service worker options; iOS storage rules).
-3. Night-observatory theme; interactive demos in a static site; **gamification** (XP, levels, achievements, sky map) on a static site; quizzes.
+3. Night-observatory theme; interactive demos in a static site; **quiet progress tracking** (levels, milestones, sky map; professional look, not gamey) on a static site; quizzes.
 4. GitHub Pages deploy via Actions; noindex; licence files; repo layout; a repo `CLAUDE.md` so every session loads the rules.
 5. **Phone alerts** (ntfy or alternative: free, iPhone support, no account).
 6. **Scheduled sessions** mechanics + Windows Task Scheduler for scripts; resumable batch runner; logs; disk monitor.
@@ -271,6 +271,7 @@ D:\second-sun\
     wave-1-gap-check\       notes + extracts per sub-topic
     wave-2-data\ ... wave-9-tech\
     claims.md               claim register (claim | source | label | date checked)
+    SITE-BLUEPRINT.md       ADOPTED plan for the book website (2026-10-19), building waits for Ahmed's go
     sources.md              bibliography (verified IDs, read depth: full/abstract)
     decisions.md            dated decision log (seeded from section 2)
     mistakes.md             mistakes register (what, cost, rule)
