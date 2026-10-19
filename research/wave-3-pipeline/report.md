@@ -106,7 +106,7 @@ Scripts: `toi1338_s97_98.py` (search) and `toi1338_event_check.py` (vetting). Pi
 | C8 | Independent products | SPOC SAP 2,635 ppm; SPOC 20-s 2,216 ppm; **QLP 2,192 ppm**; TESS-SPOC not available for S98 |
 | C5 | Not an eclipse | 0.76 d after the primary eclipse at 4024.795; outside the eclipse mask |
 | C9 | Physical size | 0.22-0.25% on a ~1.3 R☉ primary ≈ 6-7 R⊕, matching TOI-1338 b (6.85 R⊕) |
-| C6 | Neighbours (centroid, pixels) | **not yet done** |
+| C6 | Neighbours (centroid, pixels) | **PASS**: difference image shows the dimming on the target's core pixels inside the SPOC aperture; a neighbour star (px 1,8) shows none; centroid shift 0.0-0.2σ (`toi1338_pixel_check.py/.png`) |
 
 - **Calendar date:** BTJD 4025.6 = JD 2461025.6 ≈ **2025-12-16**.
 - **Interpretation (Claude, logged in predictions.md): ~70% this is a TOI-1338 b transit.** Alternatives: another body, or a blend (pixel check pending).
@@ -117,5 +117,5 @@ Scripts: `toi1338_s97_98.py` (search) and `toi1338_event_check.py` (vetting). Pi
 2. Recovery of TOI-1338 b's *published* transits (S3, S6, S10): the formal ground-truth test.
 3. Injection-recovery smoke test.
 4. Processing time per star → batch sizes.
-5. Pixel/centroid check of the S98 event; comparison with the published ephemeris.
+5. Comparison of the S98 event with the published TOI-1338 b ephemeris (the pixel/centroid check is done: PASS).
 6. Reading for plan questions 1-6: the detrending literature, EB-removal methods, CBP algorithms (wave 1b covers most), anomaly methods.
