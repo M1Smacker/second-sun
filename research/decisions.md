@@ -13,3 +13,9 @@ Claude recommends **G1 (Kepler-field binaries re-observed by TESS: "switched-on"
 
 ## 2026-10-19: Tonight's remaining waves run on scheduled queue runners
 The app refuses to start sessions from an automated turn, so waves 2, 4, 3, 5, 9, 6, 7 run on one-off scheduled tasks (`second-sun-runner-1..5`) that claim waves from `research/WAVE-QUEUE.md`. Authorised by Ahmed's instruction to use all of this week's leftover usage and his round-16 approval of scheduled sessions spending leftover usage near the reset. Hard stop 21:50 UTC.
+
+## 2026-10-19 ~17:05 UTC: G1 approved as the first campaign
+Ahmed (from his phone): "your searches are great. Follow it." The first main-quest campaign is **G1: Kepler-field eclipsing binaries re-observed by TESS ("switched-on" circumbinary planets)**, with G4 built into the pipeline and G7 as the side-wins stream. It still depends on wave 2/3 confirming TESS precision on Kepler-field stars; if precision fails, fall back to G2 (bright end) per GAP-REPORT section 3.
+
+## 2026-10-19 ~17:05 UTC: Scheduled runners failed; research continues in the main session
+Runners 1-2 fired on time but froze ~10 s in, on a permission prompt (scheduled tasks start in default mode). Stopped them; runners 3-5 disabled. The app also refuses start_session on turns that come from Ahmed's phone. Waves now run inline in the main session (Auto mode).
