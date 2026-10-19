@@ -1,4 +1,4 @@
-Finished 2026-10-19 ~17:45 UTC: partial
+Finished 2026-10-19 17:34 UTC (clock-checked; first written as ~17:45): partial
 
 - Single-transit CTOIs are accepted and have been promoted (168 CTOI-origin TOIs by 2021).
 - RNAAS publishes for free; AJ/ApJ cost $1,425+ with no waiver listed.

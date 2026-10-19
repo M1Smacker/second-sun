@@ -1,6 +1,6 @@
 # Wave 5: credit, submission, publishing (PARTIAL)
 
-*Second Sun research, wave 5. Run inline by the main session (Claude, Opus 5.5) on 2026-10-19, ~17:38-17:45 UTC. Reading wave. Claims K1… in `claims.md`.*
+*Second Sun research, wave 5. Run inline by the main session (Claude, Opus 5.5) on 2026-10-19, ~17:29-17:34 UTC. Reading wave. Claims K1… in `claims.md`.*
 
 ---
 

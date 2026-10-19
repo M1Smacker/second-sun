@@ -1,0 +1,11 @@
+site_name: Second Sun (test)
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: amber
+  features: [navigation.instant, search.highlight]
+plugins: [search, offline]
+extra:
+  generator: false

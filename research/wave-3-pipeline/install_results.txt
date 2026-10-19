@@ -7,3 +7,4 @@ FAIL | 1s | .venv | exovetter | ERROR: Exception: RecursionError: maximum recurs
 PASS | 183s | .venv-tests/stanley_cbp | stanley_cbp | 
 FAIL | 106s | .venv-tests/mono-cbp | mono-cbp |   error: subprocess-exited-with-error   ..\..\meson.build:1:0: ERROR: Compiler cython cannot transpile programs. 
 PASS | 62s | .venv-tests/ellc | ellc | 
+PASS | 511s | .venv-tests/phoebe | phoebe | 
