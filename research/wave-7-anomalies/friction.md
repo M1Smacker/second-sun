@@ -1,0 +1,1 @@
+- 17:39 UTC: one arXiv search print crashed (cp1252 console can't encode β); result for the β Pic query partly lost. Use PYTHONIOENCODING=utf-8 next time.

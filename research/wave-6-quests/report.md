@@ -13,7 +13,7 @@
   - A June 2026 paper found that **minute-long eclipses around white dwarfs are a "previously underexplored regime"**: standard TESS pipelines miss them, and a custom search in fast (20-s) data found 10 new white-dwarf binaries (Q4).
 
   **So:** white-dwarf work suits a *custom short-dip search on 20-second data*. That's a possible future side quest; keep it opportunistic.
-- **Training quest (hidden siblings):** TOI-700 itself is the ideal practice target: a long-stare-zone star with three known small planets (1-2.6 Earth radii, 10-37 days). My memory says a **fourth planet, TOI-700 e, was found later using extra sectors**. That would be exactly a "hidden sibling" precedent, so it's the first thing to verify next session (UNVERIFIED).
+- **Training quest (hidden siblings):** TOI-700 itself is the ideal practice target: a long-stare-zone star with three known small planets (1-2.6 Earth radii, 10-37 days). A **fourth planet, TOI-700 e (0.95 Earth radii, in the habitable zone), was found in 2023 thanks to "multiple years of monitoring"** (Q6, VERIFIED). That is exactly the "hidden sibling" precedent for our training quest.
 
 ## 1. Habitable zone
 - Kopparapu+ 2013 (arXiv:1301.6674): updated 1-D climate-model HZ limits for F/G/K/M stars; the conservative Solar-System HZ in the older Kasting model is 0.95-1.67 AU (abstract; Q5). Use Kopparapu's online calculator / fits for our stars (next session).
