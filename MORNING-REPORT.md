@@ -17,7 +17,8 @@ Ahmed, three things happened overnight:
 7. **STANLEY** (the professionals' stacked circumbinary search) now runs on your PC after two fixes. Its first stage was still working at the time of writing (see B).
 8. **The G1 list is frozen and traceable:** 552 rows = **549 different stars**, with the source files' fingerprints recorded. Every one has at least one TESS light curve; half have NASA's best (2-minute) data. All their ready-made light curves together are only **~6.3 GB**.
 9. **QLP data, half-fixed:** half the G1 stars only have MIT's QLP light curves. At first our search failed on them: scattered light made fake dips up to 44 times the noise, and QLP's own cleaning ate most of a long dip. I found the cause: QLP keeps stretches of time that NASA's SPOC pipeline throws away. Keeping only SPOC's good stretches, the QLP data shows **just one event: the planet**, at the same time as in SPOC data. Then I tested the real G1 case, a star with **no** SPOC file of its own: borrowing the good stretches from 4 neighbouring stars on the same camera, the planet still comes out clearly (10.9 times the noise).
-10. **The pipeline can now handle a binary nobody hand-tuned:** an automatic eclipse finder locates both eclipses from the catalogue period alone, and on TOI-1338 leaves only the planet.
+10. **First dry run on a real G1 star (Kepler-16, 17 sectors): nothing survives.** The pipeline flagged one dip; I vetted it like a real candidate, and it was the classic fake: the telescope wobbling just before a thruster firing. That's the very impostor our vetting rules were written for. It slipped past the code because the code didn't match the written rule; fixed. With all sectors folded together, every remaining event carries a warning flag.
+11. **The pipeline can now handle a binary nobody hand-tuned:** an automatic eclipse finder locates both eclipses from the catalogue period alone, and on TOI-1338 leaves only the planet.
 
 **No new planet. Nothing was submitted anywhere.** Everything is pushed to GitHub.
 
@@ -40,6 +41,8 @@ Ahmed, three things happened overnight:
 | Detector on QLP data | raw flux: fakes up to SNR 38.7; QLP-cleaned flux: ~70% of a 6 h dip lost; **fix: sys_rm_flux + SPOC good-time windows → only the planet (SNR 10.1), fakes max 9.7** | CONFIRMED (one sector); borrowing windows for QLP-only stars NOT TESTED |
 | QLP for stars without SPOC (windows borrowed from 4 neighbours, intersected, starts trimmed) | planet SNR 10.9; 1 edge event; fakes max 8.2 | CONFIRMED (one star, one sector) |
 | Automatic eclipse mask (`eclipse_mask_auto`) | both TOI-1338 eclipses found from the period alone; 96% agreement with hand mask; only the planet remains (SNR 8.5) | CONFIRMED (one star) |
+| G1 dry run: Kepler-16, 17 SPOC sectors | 1 event (per-sector fold) = pre-dump pointing jitter, QLP flat: impostor (C7/C8). Global fold: 4.9% masked, 3 events all flagged, 0 unflagged, 4 fakes | CONFIRMED |
+| Rivals: Spalding & Orosz 2024 | TESS + Kepler eclipse-timing modelling of Kepler-16/34/1647 (abstracts) | LIKELY |
 | STANLEY stage 1 on TOI-1338 | runs after 2 fixes (setuptools for Py3.12; downloads forced to D:); 40 sectors downloaded (78 MB); slow eclipse fitting | NOT TESTED (result pending) |
 
 This is reproduction of a known planet, **not a discovery**. Details: `research/overnight-science/report.md`.

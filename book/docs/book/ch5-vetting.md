@@ -67,6 +67,16 @@ When TOI-1338 b was being confirmed, some dips in sector 3 looked like transits.
 
 That's exactly why rule C7 exists, and why our own veto test (Chapter 4) found fakes clustered near gaps and dumps. The lesson: even professionals meet fakes, and the way out is a **specific test for each impostor**, not a gut feeling.
 
+### Worked example 2: the same impostor in our own data
+
+On 20 October 2026 our pipeline ran on Kepler-16 (a real G1 binary) and flagged one dip in sector 54: about 0.2% deep, 15 hours, SNR 7.8. Treated like a real candidate:
+
+- **C5 (not an eclipse):** the real primary eclipse was at BTJD 2771.73, 13% deep, exactly where the catalogue said; the dip was 4 days later. Pass.
+- **C7 (not the spacecraft):** a momentum dump at BTJD 2776.07, **0.41 days after** the dip, with quality flags set around it. **Fail.** This is pointing jitter before a dump, the same impostor as in the TOI-1338 b story.
+- **C8 (second product):** QLP shows nothing there. **Fail.**
+
+Verdict: impostor. The lesson for us: the rule was right, but our code checked "within 0.25 days either side" instead of the rule's "up to 0.5 days **before**". The code now follows the rule. Writing the rule down first, then checking the code against it, is how this got caught.
+
 ## 5.6 What this lets us conclude, and what it doesn't
 
 - **Passing vetting does not make a planet.** It makes a **candidate**: a dip with no known innocent explanation. Confirmation needs more data, usually from other telescopes.
