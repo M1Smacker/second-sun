@@ -37,3 +37,4 @@
 - 01:18 UTC: task 8 done. Strict veto lost 2/4 real transits; loosened once: gap/dump = flags, flipped-match = reject. 4/4 planets kept, 4/6 fakes flagged. Next: task 9 (STANLEY).
 - 01:25 UTC: stability calculator added (pipeline/stability.py, self-check vs TOI-1338 passes; ch1 updated). Ch4 gets the veto test. STANLEY: attempt 1 failed (distutils missing under Py3.12 -> installed setuptools in its venv); found it downloads to C: -> stopped before any file landed, wrapper forces D:. Attempt 2 running.
 - 01:26 UTC: book ch5 (vetting) added with facts F-019..F-023; strict build passes. STANLEY attempt 2: 40 sectors downloaded to D: (78 MB, logged), detrending running.
+- 01:28 UTC: queue item H.3 done: S98 timing +56 +- 5 min (red noise) vs prediction +- 23 min = 2.4 sigma, shape-dependent (report section 7). STANLEY detrending still running (BLS over 40 sectors).

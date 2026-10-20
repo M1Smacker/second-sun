@@ -87,3 +87,17 @@ v1 and v2 each found 4 of these 8; v2 swaps S6 for S10. CONFIRMED (ran).
 Measured distances (days) to the nearest gap edge / dump: planet S10 2.75 / 0.17, S65 2.66 / 1.71, S68 0.09 / 3.07, S98 3.18 / 1.11; fakes S6 0.35 / 0.24, S30 0.16 / 0.16, S34 0.06 / 0.47, S68 2.03 / 0.38, S98 2.08 / 0.20 and 2.79 / 0.72. CONFIRMED (`pipeline/veto_test.py`, `veto_dist.py`, `veto_results.json`).
 
 **Conclusion:** on one star with 4 real and 6 fake events, single-event cuts can't clean the data without losing planets. That points again to requiring **several dips that fit one circumbinary orbit** (stacking) rather than judging dips alone. The flags still help: 4 of 6 fakes carry a warning a human will see.
+
+## 7. How late was the 16 December 2025 transit, really? (queue item 3)
+
+**In plain words:** with the planet's crossing shape held to the 2024 paper's prediction, our measured crossing time is **56 minutes late, give or take 5 minutes** from our own data. The prediction itself is only good to about ±23 minutes, so overall the difference is **2.4 times the combined error**: a mild tension, interesting but not proof of anything. The answer also depends on the shape we assume: letting the shape float gives 34 minutes late (burn 1), forcing the paper's exact impact parameter in a different way gave about 2 hours. So: "roughly an hour late, shape-dependent, mildly outside the prediction's error bar." UNCERTAIN.
+
+| Method | Mid-time (BTJD) | Offset vs prediction | Our error | Significance |
+|---|---|---|---|---|
+| Shape = predicted (T14 6.31 h, b 0.428), t0 + depth + baseline free; prayer-bead error (158 shifts) | 4025.6316 | **+56 min** | ±4.2 min (white) / **±5.1 min (red-noise)** | **2.4σ** including the prediction's ±23 min |
+| burn 1, shape free | 4025.6165 | +34 min | ±8 min (white) | 1.4σ |
+| burn 1, b fixed, a/R* free | 4025.6740 | +117 min | ±6 min (white) | 4.9σ, but its fitted duration (8.8 h) disagrees with the prediction |
+
+Code: `pipeline/timing_s98.py` → `timing_s98_results.json`. CONFIRMED that these numbers come out of the fits; the physical meaning is UNCERTAIN.
+
+**Why it might matter:** this is a TESS crossing of a known planet that, as far as we know, nobody has published. A precise new transit time helps the people who model TOI-1338's orbit. If Ahmed wants, Claude can draft a short note to the TOI-1338 modelers for Ahmed to send (contact rule: Claude drafts, Ahmed sends). Not urgent.
