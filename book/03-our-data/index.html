@@ -16,7 +16,7 @@
         <link rel="prev" href="../02-light-curves/">
       
       
-        <link rel="next" href="../04-two-suns/">
+        <link rel="next" href="../../labs/lab3-plot-and-read/">
       
       
         
@@ -885,10 +885,32 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#from-pixels-to-a-light-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From pixels to a light curve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#who-makes-the-light-curves" class="md-nav__link">
     <span class="md-ellipsis">
       
         Who makes the light curves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-they-land-on-your-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where they land on your PC
       
     </span>
   </a>
@@ -981,6 +1003,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab3-plot-and-read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3: plot and measure noise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1165,6 +1215,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../07-noise-and-statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Noise and statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../08-our-detector/" class="md-nav__link">
         
   
@@ -1173,6 +1251,34 @@
     
   
     8. Our detector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab4-find-a-dip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4: find a dip
   
 
     
@@ -1942,10 +2048,32 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#from-pixels-to-a-light-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From pixels to a light curve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#who-makes-the-light-curves" class="md-nav__link">
     <span class="md-ellipsis">
       
         Who makes the light curves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-they-land-on-your-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where they land on your PC
       
     </span>
   </a>
@@ -2097,15 +2225,60 @@
 </table>
 <p>Your rule from 19 October: we keep light curves, but cutouts are deleted after we extract what we need, because NASA keeps the originals.</p>
 <h2 id="33-the-technical-explanation">3.3 The technical explanation<a class="headerlink" href="#33-the-technical-explanation" title="Permanent link">&para;</a></h2>
+<h3 id="from-pixels-to-a-light-curve">From pixels to a light curve<a class="headerlink" href="#from-pixels-to-a-light-curve" title="Permanent link">&para;</a></h3>
+<p>TESS doesn't send home "light curves". It sends <strong>pictures</strong>, and teams on the ground turn them into brightness lists:</p>
+<ol>
+<li><strong>Postage stamps.</strong> For a limited set of chosen stars, TESS keeps a small square of pixels every 2 minutes (some every 20 seconds). These are <strong>target pixel files</strong>.</li>
+<li><strong>Full-frame images (FFIs).</strong> The whole camera view, saved every 30 minutes in the first two years, every 10 minutes later, and every 200 seconds now <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-041" title="VERIFIED · Second Sun: time steps measured in QLP, TESS-SPOC, TGLC and eleanor files on D:, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. Every star in view is in them, but at a slower rhythm.</li>
+<li><strong>Photometry.</strong> A team picks which pixels belong to a star (the <strong>aperture</strong>), adds up their light every cadence, subtracts the background sky, and cleans out spacecraft effects. The result is the light curve you downloaded in Lab 2.</li>
+</ol>
 <h3 id="who-makes-the-light-curves">Who makes the light curves<a class="headerlink" href="#who-makes-the-light-curves" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>SPOC</strong> (NASA Ames): for stars given 2-minute "VIP" pixels; the cleanest, used for most of our tests.</li>
-<li><strong>QLP</strong> (MIT Quick-Look Pipeline): for many more stars, from the full-frame images.</li>
-<li><strong>TESS-SPOC</strong>: SPOC's version made from full-frame images.</li>
-</ul>
-<p>They are made independently, which is why rule C8 asks for a dip in at least two of them.</p>
+<p>All of it lives at <strong>MAST</strong> (the Mikulski Archive for Space Telescopes), NASA's public archive. For Kepler-16 alone, MAST holds 94 light curves from six teams <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-036" title="VERIFIED · Second Sun Lab 1 run, lightkurve search, 2026-10-20 · checked 2026-10-20">VERIFIED</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Made from</th>
+<th>Rhythm</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SPOC</strong> (NASA Ames)</td>
+<td>postage stamps</td>
+<td>2 min (some 20 s)</td>
+<td>the cleanest; our first choice</td>
+</tr>
+<tr>
+<td><strong>TESS-SPOC</strong></td>
+<td>FFIs</td>
+<td>FFI rhythm</td>
+<td>SPOC's method on many more stars</td>
+</tr>
+<tr>
+<td><strong>QLP</strong> (MIT Quick-Look Pipeline)</td>
+<td>FFIs</td>
+<td>FFI rhythm</td>
+<td>the widest coverage: every G1 star has it</td>
+</tr>
+<tr>
+<td><strong>TARS, CDIPS, TASOC</strong></td>
+<td>FFIs</td>
+<td>FFI rhythm</td>
+<td>other science teams' versions; useful for second opinions</td>
+</tr>
+</tbody>
+</table>
+<p>In our G1 list, QLP covers all 549 stars, SPOC 275 and TESS-SPOC 312 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-043" title="VERIFIED · Second Sun pipeline/coverage_g1.py (targets/g1_coverage.csv), recounted 2026-10-20 · checked 2026-10-20">VERIFIED</a>. They're made independently, which is why rule C8 (Chapter 10) asks for a dip in at least two of them.</p>
+<h3 id="where-they-land-on-your-pc">Where they land on your PC<a class="headerlink" href="#where-they-land-on-your-pc" title="Permanent link">&para;</a></h3>
+<p>Every download goes under <code>D:\second-sun\data\</code> (never C:), into a <code>mastDownload</code> folder that copies MAST's own layout, and gets a line in <code>research/downloads.csv</code>. You did this yourself in <a href="../../labs/lab2-get-the-data/">Lab 2</a>.</p>
 <h3 id="how-good-is-the-data">How good is the data?<a class="headerlink" href="#how-good-is-the-data" title="Permanent link">&para;</a></h3>
-<p>On Kepler-16, a fairly bright star in our G1 field (TESS magnitude 10.94), one hour of data scatters by <strong>236 ppm</strong> (SPOC), <strong>279 ppm</strong> (TESS-SPOC) or <strong>293 ppm</strong> (QLP) <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-027" title="VERIFIED · Second Sun wave 2 hands-on (wave 2 D34) · checked 2026-10-19">VERIFIED</a>. Fainter stars are noisier. In Chapter 8 we measured ~420-540 ppm per hour for TOI-1338 with our own method.</p>
+<p>On Kepler-16, a fairly bright star in our G1 field (TESS magnitude 10.94), a quick estimate of one hour's scatter gives <strong>236 ppm</strong> (SPOC), <strong>279 ppm</strong> (TESS-SPOC) or <strong>293 ppm</strong> (QLP) <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-027" title="VERIFIED · Second Sun wave 2 hands-on (D34); corrected 2026-10-20 · checked 2026-10-20">VERIFIED</a>. Those three numbers are good for <strong>comparing</strong> the products: SPOC is the quietest.</p>
+<div class="admonition warning">
+<p class="admonition-title">Correction, 20 October 2026</p>
+<p>That quick estimate flattens the light curve with a window only 3.4 hours long, which removes the slow wobble that matters for our multi-hour transits. Measured the way our detector sees the data, the same hour scatters by about <strong>900 ppm</strong>; NASA's own estimate is 542 ppm <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-039" title="VERIFIED · Second Sun Lab 3 and noise comparison, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. The optimistic number was one reason for an early overstatement of how small a planet we could find. Chapter 7 explains why the method changes the answer.</p>
+</div>
 <h3 id="known-troublemakers-in-the-data">Known troublemakers in the data<a class="headerlink" href="#known-troublemakers-in-the-data" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Momentum dumps:</strong> every 2-6 days TESS fires thrusters; the cadences are flagged (quality bit 32) <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-028" title="LIKELY · TESSILATOR paper (wave 2 D17); lightkurve flags (D16) · checked 2026-10-19">LIKELY</a>. Chapter 8 showed fakes cluster near them.</li>
