@@ -32,7 +32,7 @@ DURS_H = (3, 4, 5, 6.5, 8, 10, 12, 15)
 def load(path):
     """Quality-masked, normalized time and flux.
     SPOC: PDCSAP, with gaps filled from locally scaled SAP. QLP / other FFI products (no PDCSAP column):
-    the product's own detrended flux (det_flux / kspsap_flux). Raw QLP SAP was tried first and is dominated by
+    QLP's sys_rm_flux (keeps long-transit depth; det_flux lost ~70% of a 6 h dip), to be paired with good_windows() from a SPOC file. Raw QLP SAP was tried first and is dominated by
     scattered light (fake bumps up to SNR 38.7 on TOI-1338 S98), see research/overnight-science/report.md §9."""
     lc = lk.read(path, quality_bitmask="hard")
     t = lc.time.value
@@ -43,7 +43,7 @@ def load(path):
     t, pdc, sap = t[ok_t], pdc[ok_t], sap[ok_t]
     s = sap / np.nanmedian(sap)
     if not np.isfinite(pdc).any():           # QLP-style file: its detrended flux (lightkurve's lc.flux = raw SAP here)
-        col = next((c for c in ("det_flux", "kspsap_flux", "sys_rm_flux") if c in cols), "flux")
+        col = next((c for c in ("sys_rm_flux", "det_flux", "kspsap_flux") if c in cols), "flux")  # sys_rm keeps long-dip depth; pair with good_windows()
         q = np.asarray(lc[col].value, float)[ok_t]
         q = q / np.nanmedian(q)
         good = np.isfinite(q)
@@ -55,6 +55,25 @@ def load(path):
         f[i] = s[i] * (np.median(f[near] / s[near]) if near.sum() > 20 else 1.0)
     good = np.isfinite(f)
     return t[good], f[good], int(fill.sum())
+
+
+def good_windows(spoc_path, min_gap_d=0.25):
+    """Time windows a SPOC 2-min file keeps after the HARD quality mask, as [(start, end), ...].
+    QLP keeps stretches that SPOC drops (scattered light recurring each TESS orbit). On TOI-1338 S98,
+    restricting QLP to these windows removed every strong fake and recovered the planet at SNR 10.1
+    (research/overnight-science/report.md §9c). The windows are instrument-level, so for a QLP-only star
+    they should come from a SPOC star on the same sector/camera/CCD (NOT TESTED yet)."""
+    ts = lk.read(spoc_path, quality_bitmask="hard").time.value
+    ts = ts[np.isfinite(ts)]
+    gi = np.where(np.diff(ts) > min_gap_d)[0]
+    return list(zip(np.r_[ts[0], ts[gi + 1]], np.r_[ts[gi], ts[-1]]))
+
+
+def in_windows(t, windows):
+    m = np.zeros_like(t, bool)
+    for a, b in windows:
+        m |= (t >= a) & (t <= b)
+    return m
 
 
 def eclipse_mask(t, f, P, dur1_h, dur2_h, sec_phase, pad=1.5):
