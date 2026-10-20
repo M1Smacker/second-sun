@@ -76,6 +76,23 @@ def in_windows(t, windows):
     return m
 
 
+def intersect_windows(window_lists, trim_start_d=0.5):
+    """Most conservative good-time windows from several SPOC stars on the same sector/camera/CCD:
+    keep only times inside a window for EVERY star, then drop the first trim_start_d of each window
+    (scattered light and thermal settling are worst right after a gap). A star whose SPOC data has no
+    gaps (seen on TIC 260266504) simply doesn't narrow the result."""
+    out = [tuple(w) for w in window_lists[0]]
+    for wl in window_lists[1:]:
+        nxt = []
+        for a, b in out:
+            for c, d in wl:
+                lo, hi = max(a, c), min(b, d)
+                if hi > lo:
+                    nxt.append((lo, hi))
+        out = nxt
+    return [(a + trim_start_d, b) for a, b in out if b - a > trim_start_d]
+
+
 def eclipse_mask(t, f, P, dur1_h, dur2_h, sec_phase, pad=1.5):
     """True = keep (out of eclipse). Primary phase is re-found per sector at fixed period P."""
     grid = np.linspace(0, P, 2000, endpoint=False)

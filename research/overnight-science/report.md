@@ -187,3 +187,14 @@ Four SPOC 2-min neighbours of TOI-1338 within 1.5° in S98, all on camera 4, CCD
 QLP TOI-1338 with windows **borrowed** from TIC 350861689: planet found (SNR 10.2), plus 2 extra events just after two borrowed window starts (BTJD 4022.93, 3994.16), where the borrowed edges sit a few hours earlier than TOI-1338's own. Fakes on flipped data: 3, max 9.6.
 
 **Conclusion:** borrowing mostly works, but window edges matter. Next: take the **intersection** of several neighbours' windows (most conservative) and trim ~0.5 d after each window start; re-test. CONFIRMED (`pipeline/borrow_windows_check.py`); general fix NOT TESTED.
+
+**Fix tried (1 of 2):** `intersect_windows()`: keep only times inside the SPOC windows of **all** neighbours, then trim 0.5 d after each window start. Using the 4 neighbours only (TOI-1338's own SPOC file not used, as for a QLP-only star):
+
+| QLP TOI-1338 S98 | Planet | Other real events | Fakes (flipped) | Data kept |
+|---|---|---|---|---|
+| no windows | missed | 7 (to SNR 18.6) | 9, max 43.8 | 100% |
+| own SPOC windows | SNR 10.1 | 0 | 2, max 9.7 | 59% |
+| borrowed from 1 neighbour | SNR 10.2 | 2 (window edges) | 3, max 9.6 | ~59% |
+| **intersection of 4 neighbours, starts trimmed 0.5 d** | **SNR 10.9** | 1 (BTJD 3994.43, 0.1 d into the sector's first window; the gap-edge flag marks it) | 2, max 8.2 | 54% |
+
+CONFIRMED (`pipeline/borrow_windows_check2.py`). This is the recipe for QLP-only G1 stars: find SPOC stars on the same sector/camera/CCD, intersect their windows, trim starts, use QLP `sys_rm_flux`. Tested on one star and one sector only.
