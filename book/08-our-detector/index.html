@@ -1262,6 +1262,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: does the quality filter, or the kind of flux, matter?
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2496,6 +2507,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: does the quality filter, or the kind of flux, matter?
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2623,7 +2645,7 @@
 </tr>
 </tbody>
 </table>
-<p>Running <code>python detect_v2.py</code> runs a <strong>self-check</strong>: 27 days of pure random noise must give no event, and a hidden 6-hour, 700 ppm dip must be found at the right time. Both pass (CONFIRMED, ran on 2026-10-20).</p>
+<p>Running <code>python detect_v2.py</code> runs a <strong>self-check</strong>: 27 days of pure random noise must give no event, and a hidden 6-hour, 700 ppm dip must be found at the right time. Both pass (VERIFIED, ran on 2026-10-20).</p>
 <h2 id="85-worked-example-toi-1338-sector-98">8.5 Worked example: TOI-1338, sector 98<a class="headerlink" href="#85-worked-example-toi-1338-sector-98" title="Permanent link">&para;</a></h2>
 <figure>
 <p><img alt="TOI-1338 sector 98 light curve: deep eclipses every 14.6 days, and the planet transit marked near day 4025.6" loading="lazy" src="../img/fig4-1-s98-raw.png" width="100%" /></p>
@@ -2644,7 +2666,7 @@
 <p><strong>3. False alarms.</strong> Turn the light curve upside down (2 − flux). Now any real dip becomes a bump, so anything the search finds is <strong>noise or spacecraft effects</strong>. At SNR 7, v2 still finds <strong>6 fake events in 10 sectors</strong>, some as strong as SNR 12.6 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-016" title="VERIFIED · Second Sun overnight false-alarm test · checked 2026-10-20">VERIFIED</a>. That's why we can't just lower the bar.</p>
 <h3 id="a-fourth-test-can-we-clean-up-the-fakes-automatically">A fourth test: can we clean up the fakes automatically?<a class="headerlink" href="#a-fourth-test-can-we-clean-up-the-fakes-automatically" title="Permanent link">&para;</a></h3>
 <p>Many fake dips sit next to a <strong>data gap</strong> (where the spacecraft paused) or a <strong>momentum dump</strong> (a short thruster firing that jolts the pointing). So I tried rejecting any dip close to one. It removed 4 of the 6 fakes, but it also threw away <strong>2 of the 4 real crossings</strong> of TOI-1338 b: one sat 0.17 days from a thruster firing, the other 0.09 days from a gap. On this star, real and fake dips sit at the same kinds of distances, so no cut-off separates them.</p>
-<p>So the rule became gentler. Closeness to a gap or a firing is now a <strong>warning flag</strong> shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (<code>pipeline/veto_test.py</code>, CONFIRMED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit <strong>one orbit</strong>.</p>
+<p>So the rule became gentler. Closeness to a gap or a firing is now a <strong>warning flag</strong> shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (<code>pipeline/veto_test.py</code>, VERIFIED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit <strong>one orbit</strong>.</p>
 <h3 id="a-fifth-test-the-same-dip-in-a-second-independent-product">A fifth test: the same dip in a second, independent product<a class="headerlink" href="#a-fifth-test-the-same-dip-in-a-second-independent-product" title="Permanent link">&para;</a></h3>
 <p>Half of your G1 stars only have <strong>QLP</strong> light curves (made by MIT from TESS's full-frame pictures, Chapter 3). So I ran the search on QLP's version of sector 98.</p>
 <ul>
@@ -2652,7 +2674,7 @@
 <li><strong>The clue:</strong> every strong fake sat inside stretches of time that NASA's SPOC pipeline <strong>throws away</strong> (scattered light that comes back at the same point in each TESS orbit). QLP keeps those stretches.</li>
 <li><strong>The fix:</strong> use QLP's flux that keeps long dips (<code>sys_rm_flux</code>) and keep only SPOC's good stretches. Result: <strong>one event, the planet</strong>, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.</li>
 </ul>
-<p>That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. CONFIRMED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.</p>
+<p>That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.</p>
 <h3 id="a-sixth-test-fake-planets-that-move-like-real-ones">A sixth test: fake planets that move like real ones<a class="headerlink" href="#a-sixth-test-fake-planets-that-move-like-real-ones" title="Permanent link">&para;</a></h3>
 <p>Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 5). So I used <strong>STANLEY</strong>'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:</p>
 <ul>
@@ -2692,11 +2714,55 @@
 <li><strong>Same floor as before:</strong> about 6 Earth radii, now measured with realistic crossings. No false alarms appeared.</li>
 </ul>
 <p>Limits (honest): only 33 crossings, one star, one orbit angle per planet, and STANLEY never makes crossings of the <strong>smaller</strong> star. A proper sensitivity map needs hundreds of fake planets.</p>
+<h3 id="a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter">A seventh test: does the quality filter, or the kind of flux, matter?<a class="headerlink" href="#a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter" title="Permanent link">&para;</a></h3>
+<p>Our search throws away every measurement NASA flags as possibly bad (the <strong>HARD</strong> filter). Two published crossings of TOI-1338 b, in sectors 30 and 62, fall where that leaves <strong>no data at all</strong>. So we asked: would a milder filter (<strong>DEFAULT</strong>) let us see them?</p>
+<p>There was a catch, found by reading the files first: in every one of those restored stretches NASA's cleaned flux (PDCSAP) is blank, and only the raw flux (SAP) exists. So the test needed three versions, changing one thing at a time:</p>
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th>Flux</th>
+<th>Filter</th>
+<th>Compares</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A0</td>
+<td>cleaned (PDCSAP)</td>
+<td>HARD</td>
+<td>our baseline, rerun and matched exactly to the saved results</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>raw (SAP)</td>
+<td>HARD</td>
+<td>A0 vs A1: the flux alone</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>raw (SAP)</td>
+<td>DEFAULT</td>
+<td>A1 vs A2: the filter alone</td>
+</tr>
+</tbody>
+</table>
+<p>The rules for reading the result were written down before anything ran (<code>experiments/quality_mask/SPEC.md</code>). Results, all on this one star:</p>
+<ul>
+<li><strong>The milder filter finds both missing crossings.</strong> In sectors 62 (a measured time) and 30 (only a prediction), an event appears within 0.3 days of the published time, at 12.1 and 10.5 times the noise <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-056" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b · checked 2026-10-20">VERIFIED</a>.</li>
+<li><strong>But it costs sensitivity everywhere else.</strong> Transits that don't touch the restored data got weaker by a median of 0.5 noise units, up to 2.2. Fake 6-Earth-radius planets went from 2 found of 7 to 0 of 7, and 7-Earth-radius ones from 7 of 7 to 3 of 7 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-057" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (A1 vs A2) · checked 2026-10-20">VERIFIED</a>. Restored data is noisier and has up to 8 times the background light.</li>
+<li><strong>False alarms: undecided.</strong> In upside-down data, events containing restored data came at about 6.8 per 100 days against about 1 per 100 days without, but with so few events the ranges overlap, so the rule we set in advance was not triggered. "Not triggered" is <strong>not</strong> the same as "safe" <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-058" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b · checked 2026-10-20">VERIFIED</a>.</li>
+<li><strong>A surprise about the flux, not the filter.</strong> With the same cadences, raw SAP flux found the published crossing in 7 of 8 sectors; our cleaned PDCSAP baseline found 4 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-054" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (arm A1 vs A0) · checked 2026-10-20">VERIFIED</a>. A follow-up check (not planned in advance, so weaker evidence) showed the transit depth is the same in both. What differs is the detector's noise estimate: in sectors 6, 34 and 37 it is 2 to 3 times larger in the cleaned flux <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-055" title="VERIFIED · Second Sun post-hoc diagnostics, experiments/quality_mask/post_hoc/, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. <strong>Why is not known.</strong></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">What this does to earlier numbers</p>
+<p>The "mostly the data" conclusion below was drawn from the cleaned flux only. On this star, part of the limit comes from how noisy the cleaned flux looks to our detector. Nothing is changed in the production detector: this is one star, two new crossings (one of them a prediction), and a few injections. The next steps are in <code>RESUME.md</code>.</p>
+</div>
 <h2 id="86-what-this-lets-us-conclude-and-what-it-doesnt">8.6 What this lets us conclude, and what it doesn't<a class="headerlink" href="#86-what-this-lets-us-conclude-and-what-it-doesnt" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>We can conclude:</strong> the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about <strong>6 Earth radii</strong>.</li>
 <li><strong>We can't conclude:</strong> that "nothing found" means "no planet". It means "nothing bigger than about 6 Earths crossed in this sector", and only for stars this bright or brighter.</li>
-<li><strong>The limit is mostly the data.</strong> The planet's missed dips are genuinely weak in those sectors, and spacecraft effects make bumps as strong as real dips. Better code alone won't fix that.</li>
+<li><strong>The limit is partly the data.</strong> The planet's missed dips are weak in the cleaned flux, and spacecraft effects make bumps as strong as real dips. But the seventh test shows that, for the same cadences, the raw flux gave the detector a quieter noise estimate in several sectors, so "mostly the data" was too strong.</li>
 <li><strong>What came next:</strong> the gap and thruster rules became warning flags (test 4); fake planets that move like real ones were tested (test 6, and <a href="../09-fake-planets/">Chapter 9</a>); and the stacked search, STANLEY, was run on TOI-1338 (<a href="../12-stanley/">Chapter 12</a>). Smarter quality flags and a pixel tool are still to build.</li>
 </ul>
 <div class="admonition warning">

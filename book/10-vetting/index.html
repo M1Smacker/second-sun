@@ -2670,7 +2670,7 @@
 <h2 id="104-our-implementation">10.4 Our implementation<a class="headerlink" href="#104-our-implementation" title="Permanent link">&para;</a></h2>
 <p>Today's pipeline covers C1 (<code>find_events</code> in <code>pipeline/detect_v2.py</code>), part of C5 (the eclipse mask), part of C7 (the warning flags from <code>veto</code>, Chapter 8) and C4's orbit range (<code>pipeline/stability.py</code>). The rest is research, not code yet:</p>
 <ul>
-<li>C2 (21 detrendings), C3 (model comparison), C6 (pixel checks), C8 (second product), C9 (size for both stars), C10 (orbit fit): NOT TESTED in code.</li>
+<li>C2 (21 detrendings), C3 (model comparison), C6 (pixel checks), C8 (second product), C9 (size for both stars), C10 (orbit fit): not tested in code.</li>
 <li>The planned output is a one-page <strong>vetting sheet</strong> per event, readable on your phone, with every rule as a pass/fail line.</li>
 </ul>
 <p>We ran C6 by hand once, on the TOI-1338 dip of 16 December 2025: the dimming came from the target's own pixels and the light's centre didn't move (0.0 to 0.2σ). That is a manual check, recorded in <code>research/wave-3-pipeline/</code>.</p>

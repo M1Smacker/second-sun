@@ -1996,6 +1996,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#evening-the-quality-filter-experiment-you-approved-it-i-ran-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evening: the quality-filter experiment (you approved it, I ran it)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2386,6 +2397,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#evening-the-quality-filter-experiment-you-approved-it-i-ran-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evening: the quality-filter experiment (you approved it, I ran it)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2428,8 +2450,8 @@
 <p><strong>Debugging by stepping through:</strong> the STANLEY bug was found by calling its pieces one at a time. Did the orbit calculation give transit times? Yes, 13 to 29. Did they survive the next step? No. The fault sat between those two calls.</p>
 <h2 id="how-you-could-do-it-yourself">How you could do it yourself<a class="headerlink" href="#how-you-could-do-it-yourself" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Lab 4 (coming in this overhaul) runs our box search on TOI-1338.</li>
-<li>Lab 6 (coming) injects one fake planet and asks the search to find it.</li>
+<li><a href="../../labs/lab4-find-a-dip/">Lab 4</a> runs our box search on TOI-1338.</li>
+<li><a href="../../labs/lab6-fake-planets/">Lab 6</a> hides fake planets of several sizes and asks the search to find them.</li>
 </ul>
 <h2 id="what-we-found-and-what-we-didnt">What we found, and what we didn't<a class="headerlink" href="#what-we-found-and-what-we-didnt" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2460,6 +2482,26 @@
 <p><strong>Batch 4:</strong> <a href="../../book/09-fake-planets/">Chapter 9</a> (fake planets) and <a href="../../book/11-pixels-and-neighbours/">Chapter 11</a> (pixels and neighbours), with Labs 6 and 7. Two things worth knowing: three different fake-planet tests now agree on a floor of about 6 Earth radii <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-048" title="VERIFIED · Second Sun Lab 6 run, 2026-10-20 · checked 2026-10-20">VERIFIED</a>; and TOI-1338's pixels show the 16 December dip on the right star, with the light's centre steady to about a thousandth of an arcsecond <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. The pixel lab uses a better error bar than our first pixel script (Compass's point): the chance spread of the same measurement at quiet times.</p>
 <p><strong>Batch 5:</strong> <a href="../../book/13-your-workshop/">Chapter 13</a> (a tour of the project), <a href="../../book/15-mistakes-as-lessons/">Chapter 15</a> (our 15 mistakes, as five lessons), <a href="../../labs/lab9-your-star/">Lab 9</a> (the whole route on a G1 star of your choice), a rebuilt <a href="../../learn/">learning track</a> and a <a href="../../reference/reading-list/">reading list</a>. Writing Lab 9 found a real problem in the G1 list: our rule "morph &lt; 0.5" also lets in stars whose shape was <strong>never measured</strong> (morph = −1): <strong>136 of 552 rows</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-052" title="VERIFIED · Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. The first star I tried was one of them, and it showed no eclipse at all. Not fixed (the hunt is paused); it's a decision for you in the decision log, explained in <a href="../../book/01-stars-names-missions/">Chapter 1</a>.</p>
 <p><strong>Batch 6, the stress test (overhaul complete):</strong> every one of the 10 lab scripts was run again from scratch and reproduced its page's "what you should see" output exactly. The built site: 40 pages, 3,743 internal links and anchors checked, <strong>0 broken</strong>; no long dashes in visible text; no sideways scrolling on any page at phone width (375 px) or desktop width; all 11 lab and chapter pictures load; all 39 pages are in the offline cache; the "Next" links lead through all 25 chapters and labs in one line, with no loops. Your progress page now shows TOI-1338 b's recovery (19 October) and this overhaul as milestones.</p>
+<h2 id="evening-the-quality-filter-experiment-you-approved-it-i-ran-it">Evening: the quality-filter experiment (you approved it, I ran it)<a class="headerlink" href="#evening-the-quality-filter-experiment-you-approved-it-i-ran-it" title="Permanent link">&para;</a></h2>
+<div class="admonition plain">
+<p class="admonition-title">In plain words</p>
+<p>Our search throws away data that NASA flags as possibly bad. Two known crossings of TOI-1338 b fall in thrown-away data, so we couldn't see them. I tested whether keeping that data helps. The honest answer: it finds those two crossings, but it makes the search worse everywhere else, and it might add false alarms. Separately, the test turned up a surprise about <em>which flux</em> the search reads.</p>
+</div>
+<p><strong>What we did and why.</strong> First I read the files (no experiment yet) and found the catch: in every piece of restored data, NASA's cleaned flux (PDCSAP) is blank; only the raw flux (SAP) exists. So "same flux, looser filter" was impossible. I wrote the plan down <strong>before running anything</strong> (<code>experiments/quality_mask/SPEC.md</code>): three versions, changing one thing at a time (cleaned + strict filter = our baseline; raw + strict; raw + milder). I rebuilt the baseline from scratch and checked it matched our saved results exactly. Only then did I run the other two.</p>
+<p><strong>The idea behind it</strong> (<a href="../../book/08-our-detector/">Chapter 8, seventh test</a>): <em>change one thing at a time</em>, and <em>decide how you'll read the result before you see it</em>, so you can't talk yourself into the answer you like. This is called pre-registration.</p>
+<p><strong>What we found</strong> (one star, so treat it as a hint):
+- The milder filter finds both missing crossings, sectors 62 and 30, at about 12 and 10 times the noise <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-056" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b · checked 2026-10-20">VERIFIED</a>.
+- It lowers the strength of transits elsewhere and hurts fake-planet recovery <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-057" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (A1 vs A2) · checked 2026-10-20">VERIFIED</a>; false alarms: undecided <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-058" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b · checked 2026-10-20">VERIFIED</a>.
+- Surprise: raw flux alone, with the <em>same</em> data points, found the published crossing in 7 sectors of 8; the cleaned flux found 4 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-054" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (arm A1 vs A0) · checked 2026-10-20">VERIFIED</a>. The transits are equally deep in both. What differs is the detector's noise estimate, 2 to 3 times larger in the cleaned flux in some sectors <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-055" title="VERIFIED · Second Sun post-hoc diagnostics, experiments/quality_mask/post_hoc/, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. We don't know why.</p>
+<p><strong>What we didn't find:</strong> whether any of this carries over to the G1 stars, or whether the extra false alarms are real (too few events). Nothing in the production detector or the target list was changed. All results, the spec and the code are in <code>experiments/quality_mask/</code>; the Compass review is in <code>research/compass-reviews/2026-10-20-quality-mask.md</code>.</p>
+<details class="quiz">
+<summary>4. Why write the plan down before running the experiment?</summary>
+<p>So the result can't be bent to fit what we hoped. Rules chosen after seeing the data are too easy to set just below the signal.</p>
+</details>
+<details class="quiz">
+<summary>5. Raw and cleaned flux show the same transit depth, yet the detector finds the transit only in one. What differs?</summary>
+<p>The noise estimate. SNR is depth divided by noise; with a larger noise estimate the same depth gives a smaller SNR.</p>
+</details>
 
 
 

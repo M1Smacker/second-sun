@@ -2600,7 +2600,7 @@
 <li>Compute the critical period from the formula above.</li>
 <li>Treat planets from about 1 to 10 times that period as the most likely, without throwing away anything outside it.</li>
 </ol>
-<p>The formula is coded in <code>pipeline/stability.py</code> (about 30 lines). Its function <code>critical(e, mu)</code> returns the critical distance ratio, the critical period ratio, and whether <em>e</em> and μ are inside the range the fit was made for; <code>search_window(p_bin, e, m1, m2)</code> turns that into a range of planet periods to search. Running <code>python stability.py</code> checks it against TOI-1338 (next section). Status: CONFIRMED (self-check passes).</p>
+<p>The formula is coded in <code>pipeline/stability.py</code> (about 30 lines). Its function <code>critical(e, mu)</code> returns the critical distance ratio, the critical period ratio, and whether <em>e</em> and μ are inside the range the fit was made for; <code>search_window(p_bin, e, m1, m2)</code> turns that into a range of planet periods to search. Running <code>python stability.py</code> checks it against TOI-1338 (next section). Status: VERIFIED (self-check passes).</p>
 <h2 id="45-worked-example-toi-1338">4.5 Worked example: TOI-1338<a class="headerlink" href="#45-worked-example-toi-1338" title="Permanent link">&para;</a></h2>
 <p>TOI-1338 is a pair of stars (about 1.1 and 0.3 times the Sun's mass) that orbit each other every <strong>14.6 days</strong> with eccentricity 0.16. Its planet, TOI-1338 b, goes around both every <strong>95.2 days</strong> and is about 6.9 times Earth's size <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-003" title="VERIFIED · Kostov et al. 2020, full text (wave 1a A7) · checked 2026-10-19">VERIFIED</a>.</p>
 <ul>
