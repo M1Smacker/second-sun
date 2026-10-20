@@ -159,3 +159,16 @@ The eclipse mask was checked (first primary at BTJD 3995.62, same as SPOC), so t
 **In plain words:** all four strong QLP fakes sat inside stretches that SPOC throws away (SPOC kept 3993.64-4002.79, 4008.33-4017.47, 4022.46-4031.59, 4036.97-4045.87; QLP kept everything). Keeping only SPOC's windows in the QLP data, and using QLP's `sys_rm_flux` so long dips keep their depth, **the only event left is the planet**: BTJD 4025.632, SNR 10.1, depth 2,275 ppm. That's within ~9 minutes of the SPOC detection (4025.638) and the timing fit (4025.6316). Fakes on flipped data: 2, max SNR 9.7 (was 9, max 43.8). 59% of the QLP data is kept. This is the planet seen in **two independent products** (rule C8). CONFIRMED (`pipeline/qlp_check.py`, asserts the planet is found).
 
 **Limits:** tested on one sector of one star, and the windows came from that same star's SPOC file. For the ~274 G1 stars with QLP only, the windows must be borrowed from a SPOC star on the same sector, camera and CCD. That's the next test (NOT TESTED). Code: `good_windows()` and `in_windows()` in `pipeline/detect_v2.py`; QLP loader now prefers `sys_rm_flux`.
+
+## 10. Automatic eclipse mask (needed for 549 stars without hand-tuned widths)
+
+`eclipse_mask_auto(t, f, P)` in `pipeline/detect_v2.py`: flatten (2-day biweight), fold at the catalogue period, flag phase bins more than 4 robust sigmas low, grow each flagged run by 1.5 × its width. First version folded **before** flattening: the star's slow drift (bin scatter 1,700 ppm) hid the 0.4% secondary eclipse (3.2σ), which then showed up as three fake events one binary period apart. Flattening first fixed it.
+
+| Check on TOI-1338 S98 | Hand mask (widths 4.7/6.1 h) | Auto mask |
+|---|---|---|
+| Eclipses found | given | primary (phase 0.505-0.520) + secondary (0.958-0.973) |
+| Data masked | 11.4% | 15.2% |
+| Agreement | | 96.3% of points |
+| Events found | planet only (SNR 9.0) | **planet only (SNR 8.5)** |
+
+CONFIRMED (`pipeline/auto_mask_check.py`, asserts the planet stays findable). One star, one sector; untested on very eccentric binaries and on QLP's 10/30-minute cadences.

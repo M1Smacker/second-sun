@@ -91,6 +91,41 @@ def eclipse_mask(t, f, P, dur1_h, dur2_h, sec_phase, pad=1.5):
     return keep, T1
 
 
+def eclipse_mask_auto(t, f, P, nbins=600, nsig=4.0, pad=1.5):
+    """Eclipse mask for a binary with known period P but unknown eclipse widths (the G1 case).
+    Fold at P, take the median flux in nbins phase bins, flag bins more than nsig robust sigmas
+    below the median, grow each flagged run by `pad` times its own width on both sides, and mask
+    those phases. Returns (keep, flagged_phase_runs). Self-check: compared with the hand-tuned
+    TOI-1338 mask in auto_mask_check.py."""
+    ph = (t % P) / P
+    flat = flatten(t, f, method="biweight", window_length=2.0)   # remove slow drifts first (else they swamp shallow eclipses)
+    ok = np.isfinite(flat)
+    edges = np.linspace(0, 1, nbins + 1)
+    k = np.clip(np.digitize(ph, edges) - 1, 0, nbins - 1)
+    med = np.array([np.median(flat[ok & (k == i)]) if np.any(ok & (k == i)) else np.nan for i in range(nbins)])
+    m0 = np.nanmedian(med)
+    sig = 1.4826 * np.nanmedian(np.abs(med - m0))
+    low = np.nan_to_num(med < m0 - nsig * sig)
+    runs, i = [], 0
+    while i < nbins:                       # contiguous low runs (phase wraps at 1)
+        if low[i]:
+            j = i
+            while j + 1 < nbins and low[j + 1]:
+                j += 1
+            runs.append([edges[i], edges[j + 1]]); i = j + 1
+        else:
+            i += 1
+    if len(runs) > 1 and runs[0][0] == 0 and runs[-1][1] == 1:   # merge a run split by the wrap
+        runs[0][0] = runs[-1][0] - 1; runs.pop()
+    keep = np.ones_like(t, bool)
+    for a, b in runs:
+        w = b - a
+        lo, hi = a - pad * w, b + pad * w
+        for sh in (-1, 0, 1):
+            keep &= ~((ph >= lo + sh) & (ph <= hi + sh))
+    return keep, runs
+
+
 def detrend(t, f, window_d=2.0):
     flat = flatten(t, f, method="biweight", window_length=window_d)
     ok = np.isfinite(flat)

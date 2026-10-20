@@ -44,3 +44,4 @@
 - 01:56 UTC: QLP test: raw SAP swamped by scattered light (fakes to SNR 38.7); det_flux suppresses long transits (~70% depth lost). 2 bounded tries used; QLP support marked NOT READY (report section 9).
 - 01:58 UTC: QLP task (2 tries): sys_rm_flux keeps depth (2038 ppm, SNR 6.4) but recurring ~14-d fakes (SNR to 43.8) remain; no gaps to trim. BLOCKED tonight; next steps in report 9b.
 - 02:00 UTC: QLP partly fixed: sys_rm_flux + SPOC good-time windows -> only the planet (SNR 10.1), fakes 2 (max 9.7). Report 9c. Next: borrowed windows for QLP-only stars (not done).
+- 02:07 UTC: eclipse_mask_auto added (flatten -> fold -> flag). TOI-1338: both eclipses found, 96% agreement with hand mask, only the planet remains (SNR 8.5). Report section 10.
