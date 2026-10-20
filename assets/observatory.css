@@ -1,0 +1,125 @@
+/* Second Sun: "observatory log" layer, loaded after extra.css.
+   Direction (Ahmed, 2026-10-20 brief): a scientific research environment crossed with mission control,
+   still professional and calm (blueprint §4: one amber accent, nothing that glows).
+   Type system: Source Serif 4 for reading, IBM Plex Sans for headings and UI, IBM Plex Mono for labels and data.
+   All fonts are self-hosted (OFL 1.1, licences in assets/fonts/), so they work offline. */
+
+@font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: italic; font-display: swap; src: url("fonts/source-serif-4-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
+
+:root {
+  --ss-read: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --ss-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ss-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+[data-md-color-scheme] { --md-text-font-family: var(--ss-ui); --md-code-font-family: var(--ss-data); }
+
+/* ---------- Reading: serif body, sans headings, mono labels ---------- */
+.md-typeset { font-family: var(--ss-read); font-size: 18px; line-height: 1.7; }
+@media (min-width: 60em) { .md-typeset { font-size: 19px; } }
+.md-typeset :is(h1, h2, h3, h4) { font-family: var(--ss-ui); font-weight: 600; letter-spacing: -0.005em; }
+.md-typeset h1 { font-weight: 600; letter-spacing: -0.015em; }
+.md-typeset h2 { padding-top: 16px; border-top: 1px solid var(--ss-line); }
+.md-typeset :is(table, .ss-demo, .ss-update, dl.ss-facts, .admonition-title, summary) { font-family: var(--ss-ui); }
+.md-typeset table:not([class]) th { font: 500 12px/1.3 var(--ss-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ss-text-2); }
+.md-typeset code { font-size: .82em; }
+
+/* The meta line under each title reads like an instrument label */
+.md-typeset p.ss-meta:first-of-type, .md-typeset h1 + p.ss-meta {
+  font: 500 12px/1.5 var(--ss-data); letter-spacing: .08em; text-transform: uppercase; color: var(--ss-text-2);
+  margin: -12px 0 24px; padding-left: 12px; border-left: 2px solid var(--ss-accent);
+}
+.md-typeset h1 + p.ss-meta code { text-transform: none; letter-spacing: 0; background: none; padding: 0; }
+
+/* ---------- Header: a quiet nameplate ---------- */
+.md-header__topic:first-child .md-ellipsis { font-family: var(--ss-data); font-weight: 600; font-size: 14px; letter-spacing: .22em; text-transform: uppercase; }
+.md-tabs__link { font: 500 12px/1 var(--ss-data); letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+.md-tabs__item--active .md-tabs__link { opacity: 1; color: var(--ss-accent); }
+
+/* ---------- Sidebar: a mission timeline ---------- */
+/* One vertical track; each page is a station on it. Hollow ring = not opened yet, filled = opened on this
+   device, amber ring = where you are now. */
+@media (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav__title,
+  .md-sidebar--primary .md-nav__item--section > .md-nav__link {
+    font: 500 11px/1 var(--ss-data) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--ss-text-2) !important;
+  }
+  /* the track: one line through the pages of the open section (Material "lifted" nav, level 1) */
+  .md-sidebar--primary .md-nav[data-md-level="1"] > .md-nav__list { position: relative; margin-left: 4px; }
+  .md-sidebar--primary .md-nav[data-md-level="1"] > .md-nav__list::before {
+    content: ""; position: absolute; left: 3px; top: 22px; bottom: 22px; width: 1px; background: var(--ss-line);
+  }
+  .md-sidebar--primary .md-nav__item:not(.md-nav__item--section) > a.md-nav__link {
+    position: relative; padding-left: 22px; font: 500 14px/1.35 var(--ss-ui); color: var(--ss-text-2);
+  }
+  /* stations: hollow = not opened yet, filled grey = opened on this device, amber = you are here */
+  .md-sidebar--primary .md-nav__item:not(.md-nav__item--section) > a.md-nav__link::before {
+    content: ""; position: absolute; left: 0; top: 50%; width: 7px; height: 7px; margin-top: -4.5px;
+    border-radius: 50%; border: 1px solid var(--ss-text-3); background: var(--ss-bg);
+  }
+  .md-sidebar--primary a.md-nav__link.ss-opened::before { background: var(--ss-text-3) !important; }
+  .md-sidebar--primary a.md-nav__link--active { color: var(--ss-text) !important; }
+  .md-sidebar--primary a.md-nav__link--active::before {
+    border-color: var(--ss-accent) !important; background: var(--ss-accent) !important;
+    box-shadow: 0 0 0 3px var(--ss-bg), 0 0 0 4px var(--ss-accent);
+  }
+  .md-sidebar--primary a.md-nav__link:hover { color: var(--ss-text); }
+}
+
+/* Right-hand table of contents: mono section labels, a thin rule for the current section */
+.md-sidebar--secondary .md-nav__title { font: 500 11px/1 var(--ss-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ss-text-2); }
+.md-sidebar--secondary .md-nav__link { font: 400 13px/1.4 var(--ss-ui); color: var(--ss-text-2); border-left: 1px solid transparent; padding-left: 10px; margin-left: -1px; }
+.md-sidebar--secondary .md-nav__link--active { color: var(--ss-text); border-left-color: var(--ss-accent); }
+.md-sidebar--secondary .md-nav__list { border-left: 1px solid var(--ss-line); }
+
+/* ---------- Figures: plates with a numbered caption ---------- */
+.md-typeset figure { margin: 32px 0; max-width: 100%; }
+.md-typeset figure img { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: #fff; display: block; }
+.md-typeset figcaption { font: 400 13px/1.55 var(--ss-ui); color: var(--ss-text-2); text-align: left; max-width: 66ch; margin-top: 10px; }
+
+/* ---------- Mission status panel (home) ---------- */
+.ss-status-panel { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: var(--ss-surface); margin: 24px 0 40px; max-width: 66ch; }
+.ss-status-panel header { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--ss-line);
+  font: 500 11px/1.4 var(--ss-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ss-text-2); }
+.ss-status-panel header b { color: var(--ss-accent); font-weight: 500; }
+.ss-status-panel dl { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
+.ss-status-panel dl > div { padding: 12px 16px; border-bottom: 1px solid var(--ss-line); }
+.ss-status-panel dl > div:nth-child(odd) { border-right: 1px solid var(--ss-line); }
+.ss-status-panel dt { font: 500 11px/1.4 var(--ss-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ss-text-2); margin: 0 0 4px; }
+.md-typeset .ss-status-panel dd, [dir] .md-typeset .ss-status-panel dd { margin: 0; font: 500 16px/1.35 var(--ss-ui); color: var(--ss-text); margin: 0; font-variant-numeric: tabular-nums; }
+.ss-status-panel dd small { display: block; font: 400 13px/1.4 var(--ss-ui); color: var(--ss-text-2); margin-top: 2px; }
+.ss-status-panel p { font: 400 14px/1.5 var(--ss-ui); color: var(--ss-text-2); margin: 0; padding: 10px 16px; }
+@media (max-width: 30em) {
+  .ss-status-panel dl { grid-template-columns: 1fr; }
+  .ss-status-panel dl > div:nth-child(odd) { border-right: 0; }
+}
+
+/* ---------- Chapter index cards (home): a numbered list, not a card grid ---------- */
+.md-typeset ol.ss-chapters { list-style: none; margin: 8px 0 32px; padding: 0; max-width: 66ch; counter-reset: ch; }
+.md-typeset ol.ss-chapters li { counter-increment: ch; display: grid; grid-template-columns: 3.2rem 1fr; gap: 0 12px; padding: 14px 0; margin: 0; border-bottom: 1px solid var(--ss-line); }
+.md-typeset ol.ss-chapters li::before { content: counter(ch, decimal-leading-zero); font: 500 13px/1.9 var(--ss-data); color: var(--ss-accent); letter-spacing: .08em; }
+.md-typeset ol.ss-chapters a { font: 600 17px/1.4 var(--ss-ui); text-decoration: none; color: var(--ss-text); }
+.md-typeset ol.ss-chapters a:hover { color: var(--ss-accent); }
+.md-typeset ol.ss-chapters span { grid-column: 2; font: 400 15px/1.5 var(--ss-read); color: var(--ss-text-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .md-sidebar--primary .md-nav__link::before { transition: none !important; }
+}
+.ss-ready .md-sidebar--primary .md-nav__link::before { transition: background-color var(--ss-dur) var(--ss-ease), border-color var(--ss-dur) var(--ss-ease); }
+
+/* ---------- Equations: their own numbered block, never a sentence in disguise ---------- */
+.md-typeset .ss-eq {
+  position: relative; max-width: 66ch; margin: 20px 0 24px; padding: 30px 16px 14px;
+  background: var(--ss-surface); border-left: 2px solid var(--ss-accent); border-radius: 0 var(--ss-radius) var(--ss-radius) 0;
+  font: 400 1.05em/1.6 var(--ss-read); overflow-x: auto;
+}
+.md-typeset .ss-eq::before {
+  content: attr(data-eq); position: absolute; top: 10px; left: 16px;
+  font: 500 11px/1 var(--ss-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ss-text-2);
+}
+.md-typeset .ss-eq > p { margin: 0; }

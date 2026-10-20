@@ -1,0 +1,1489 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/book/ch1-two-suns/">
+      
+      
+        <link rel="prev" href="../../learn/l1-dip-depth/">
+      
+      
+        <link rel="next" href="../ch2-light-curves/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1. Two suns - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/observatory.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <meta name="theme-color" content="#0c1018">
+  <link rel="apple-touch-icon" href="../../assets/icon-180.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-two-suns-binary-stars-and-the-planets-around-them" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.9 8.9-1.7 1-4-6.9 1.7-1zm-12.1-1 3 5.2 6.1-3.5-3-5.2zm1.6 4.8-2-3.5-4.3 2.5 2 3.5zm-9.3 1.9 1 1.7 2.6-1.5-1-1.7zm10-.6-.3-.4-4.3 2.5.3.4c.2.3.5.6.8.8L7 22h2l1.4-4.3h.1L12 22h2l-1.9-5.6c.5-.7.5-1.6 0-2.4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Two suns
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../progress/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Progress
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../quests/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quests
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../candidates/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Candidates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../learn/" class="md-tabs__link">
+          
+  
+  
+  Learn
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Book
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../glossary/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.9 8.9-1.7 1-4-6.9 1.7-1zm-12.1-1 3 5.2 6.1-3.5-3-5.2zm1.6 4.8-2-3.5-4.3 2.5 2 3.5zm-9.3 1.9 1 1.7 2.6-1.5-1-1.7zm10-.6-.3-.4-4.3 2.5.3.4c.2.3.5.6.8.8L7 22h2l1.4-4.3h.1L12 22h2l-1.9-5.6c.5-.7.5-1.6 0-2.4"/></svg>
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Learn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/l1-dip-depth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L1 How big is the dip?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Book
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Book
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Two suns
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Two suns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-the-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-the-scientific-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The scientific meaning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-the-technical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 The technical explanation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 The technical explanation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-close-can-a-planet-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How close can a planet get?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-distance-to-time-keplers-third-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From distance to time: Kepler's third law
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pile-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pile-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-our-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Our implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-worked-example-toi-1338" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Worked example: TOI-1338
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-what-this-lets-us-conclude-and-what-it-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 What this lets us conclude, and what it doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Check your understanding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2-light-curves/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Light curves
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3-wandering-transits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Wandering transits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4-our-detector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Our detector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-vetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Vetting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6-our-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Our data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credit-and-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credit and publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims register
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-the-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-the-scientific-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The scientific meaning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-the-technical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 The technical explanation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 The technical explanation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-close-can-a-planet-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How close can a planet get?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-distance-to-time-keplers-third-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From distance to time: Kepler's third law
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pile-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pile-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-our-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Our implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-worked-example-toi-1338" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Worked example: TOI-1338
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-what-this-lets-us-conclude-and-what-it-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 What this lets us conclude, and what it doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Check your understanding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1-two-suns-binary-stars-and-the-planets-around-them">1. Two suns: binary stars and the planets around them<a class="headerlink" href="#1-two-suns-binary-stars-and-the-planets-around-them" title="Permanent link">&para;</a></h1>
+<p class="ss-meta">Chapter 1 · about 20 min · Maths: ratios, powers (squares, cubes, square roots)</p>
+
+<div class="admonition plain">
+<p class="admonition-title">In plain words</p>
+<p>Ahmed, most stars you see aren't alone. Many come in pairs that circle each other. A planet can orbit <strong>both stars at once</strong>, in a wide loop around the pair. These are <strong>circumbinary planets</strong> ("circum" = around, "binary" = pair). Only 14 have ever been caught crossing in front of their stars, so every new one matters. This chapter explains what they are, where they can live, and why we hunt them.</p>
+</div>
+<p><strong>What this chapter answers:</strong> what is a circumbinary planet, and where around a pair of stars can one survive?</p>
+<h2 id="11-the-intuition">1.1 The intuition<a class="headerlink" href="#11-the-intuition" title="Permanent link">&para;</a></h2>
+<p>Picture two dancers spinning around each other in the middle of a room, holding hands. Now picture a child running in a big circle around both of them. If the child runs too close, the dancers' swinging arms knock them off course. If the child stays far enough out, the dancers just feel like one big blur in the middle, and the child can run in circles forever.</p>
+<p>That's a circumbinary planet. The two dancers are the stars. The child is the planet. "Too close" is a real, measurable distance, and the known planets sit just outside it.</p>
+<h2 id="12-the-scientific-meaning">1.2 The scientific meaning<a class="headerlink" href="#12-the-scientific-meaning" title="Permanent link">&para;</a></h2>
+<p>A <strong><a href="../../glossary/#binary-star">binary star</a></strong> is two stars bound by gravity, each orbiting their shared centre of mass. Astronomers describe a binary with:</p>
+<ul>
+<li>its <strong>period</strong>: how long the stars take to go around each other once (days for the pairs we study);</li>
+<li>its <strong>separation</strong>: how far apart they are (written <em>a</em><sub>bin</sub>);</li>
+<li>its <strong>eccentricity</strong> <em>e</em>: how stretched the orbit is (0 = a circle, closer to 1 = a long thin oval);</li>
+<li>its <strong>mass ratio</strong> μ: the smaller star's share of the total mass.</li>
+</ul>
+<p>A planet can orbit in two ways:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Orbits</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S-type</strong> (circumstellar)</td>
+<td>one of the two stars, with the other far away</td>
+<td>many planets in wide binaries</td>
+</tr>
+<tr>
+<td><strong>P-type</strong> (circumbinary)</td>
+<td>both stars together</td>
+<td>Kepler-16 b, TOI-1338 b</td>
+</tr>
+</tbody>
+</table>
+<p>We hunt the P-type. The first one caught transiting was <strong>Kepler-16 b</strong> in 2011, a Saturn-like planet on a ~229-day orbit around a pair of stars that circle each other every 41 days <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-002" title="LIKELY · Doyle et al. 2011, abstract (wave 1a A4) · checked 2026-10-19">LIKELY</a>. Since then, only <strong>14 transiting circumbinary planets</strong> are known: 12 from Kepler and 2 from TESS <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-001" title="VERIFIED · NASA Exoplanet Archive; Davies et al. 2026 Table 2 (wave 1a A2, A3) · checked 2026-10-19">VERIFIED</a>.</p>
+<h2 id="13-the-technical-explanation">1.3 The technical explanation<a class="headerlink" href="#13-the-technical-explanation" title="Permanent link">&para;</a></h2>
+<h3 id="how-close-can-a-planet-get">How close can a planet get?<a class="headerlink" href="#how-close-can-a-planet-get" title="Permanent link">&para;</a></h3>
+<p>Too close to the pair, the stars' changing pull throws the planet out. Holman and Wiegert ran thousands of simulated orbits and fitted a formula for the closest stable distance, <em>a</em><sub>c</sub> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-004" title="VERIFIED · Holman &amp; Wiegert 1999, Eq. 3 (wave 1a C1) · checked 2026-10-19">VERIFIED</a>:</p>
+<div class="ss-eq" data-eq="Eq. 1.1 · Holman and Wiegert">
+<p><em>a</em><sub>c</sub> / <em>a</em><sub>bin</sub> = 1.60 + 5.10 <em>e</em> − 2.22 <em>e</em>² + 4.12 μ − 4.27 <em>e</em> μ − 5.09 μ² + 4.61 <em>e</em>² μ²</p>
+</div>
+<p>Every symbol, one by one:</p>
+<ul>
+<li><em>a</em><sub>c</sub>: the critical (closest stable) distance of the planet from the pair's centre.</li>
+<li><em>a</em><sub>bin</sub>: the separation of the two stars.</li>
+<li><em>e</em>: the binary's eccentricity (0 to about 0.7 for this formula).</li>
+<li>μ = <em>m</em><sub>2</sub> / (<em>m</em><sub>1</sub> + <em>m</em><sub>2</sub>): the mass ratio, the small star's mass <em>m</em><sub>2</sub> divided by the total (0.1 to 0.5 for this formula).</li>
+</ul>
+<p>You don't need to memorise it. The lesson is in the result: for the known systems, <em>a</em><sub>c</sub> comes out at <strong>2.5 to 3.5 times</strong> the stars' separation <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-005" title="VERIFIED · derived from Holman &amp; Wiegert 1999 (wave 1a C2) · checked 2026-10-19">VERIFIED</a>.</p>
+<h3 id="from-distance-to-time-keplers-third-law">From distance to time: Kepler's third law<a class="headerlink" href="#from-distance-to-time-keplers-third-law" title="Permanent link">&para;</a></h3>
+<p>We measure <strong>periods</strong> (time), not distances. Kepler's third law links them: for orbits around the same mass, <strong>period² ∝ distance³</strong>. So the ratio of two periods is the ratio of two distances raised to the power 3/2:</p>
+<div class="ss-eq" data-eq="Eq. 1.2 · Kepler's third law">
+<p><em>P</em><sub>c</sub> / <em>P</em><sub>bin</sub> ≈ (<em>a</em><sub>c</sub> / <em>a</em><sub>bin</sub>)<sup>3/2</sup></p>
+</div>
+<p>"Raised to the power 3/2" means: cube it, then take the square root. For a distance ratio of 3: 3³ = 27, and √27 ≈ 5.2. So a planet at 3 times the separation takes about <strong>5 times as long</strong> as the binary to go round. Across the known systems the critical period is <strong>4 to 7 times the binary period</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-005" title="VERIFIED · derived from Holman &amp; Wiegert 1999 (wave 1a C2) · checked 2026-10-19">VERIFIED</a>.</p>
+<h3 id="the-pile-up">The pile-up<a class="headerlink" href="#the-pile-up" title="Permanent link">&para;</a></h3>
+<p>The innermost known planets sit just outside the danger zone, at only <strong>1.3 to 1.6 times</strong> the critical period <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-006" title="VERIFIED · derived (wave 1a C3); Martin 2018 · checked 2026-10-19">VERIFIED</a>. Nature seems to park them right at the edge. That's useful: when we see a pair of stars with a 15-day period, we know roughly where to expect a planet (around 60 to 120 days).</p>
+<h2 id="14-our-implementation">1.4 Our implementation<a class="headerlink" href="#14-our-implementation" title="Permanent link">&para;</a></h2>
+<p>This chapter's ideas become a <strong>search window</strong> in the pipeline. For each G1 binary:</p>
+<ol>
+<li>Read its period and eccentricity from the Kepler eclipsing-binary catalogue (wave 1c).</li>
+<li>Compute the critical period from the formula above.</li>
+<li>Treat planets from about 1 to 10 times that period as the most likely, without throwing away anything outside it.</li>
+</ol>
+<p>The formula is coded in <code>pipeline/stability.py</code> (about 30 lines). Its function <code>critical(e, mu)</code> returns the critical distance ratio, the critical period ratio, and whether <em>e</em> and μ are inside the range the fit was made for; <code>search_window(p_bin, e, m1, m2)</code> turns that into a range of planet periods to search. Running <code>python stability.py</code> checks it against TOI-1338 (next section). Status: CONFIRMED (self-check passes).</p>
+<h2 id="15-worked-example-toi-1338">1.5 Worked example: TOI-1338<a class="headerlink" href="#15-worked-example-toi-1338" title="Permanent link">&para;</a></h2>
+<p>TOI-1338 is a pair of stars (about 1.1 and 0.3 times the Sun's mass) that orbit each other every <strong>14.6 days</strong> with eccentricity 0.16. Its planet, TOI-1338 b, goes around both every <strong>95.2 days</strong> and is about 6.9 times Earth's size <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-003" title="VERIFIED · Kostov et al. 2020, full text (wave 1a A7) · checked 2026-10-19">VERIFIED</a>.</p>
+<ul>
+<li>Critical period: about 4.9 × 14.6 days ≈ <strong>72 days</strong> (the 4.9 comes from the Holman-Wiegert formula with this star's <em>e</em> and μ; wave 1a, claim C2).</li>
+<li>Planet's period: 95.2 days.</li>
+<li>Ratio: 95.2 ÷ 72 ≈ <strong>1.3</strong>. Just outside the edge, exactly like the pile-up says <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-006" title="VERIFIED · derived (wave 1a C3); Martin 2018 · checked 2026-10-19">VERIFIED</a>.</li>
+</ul>
+<p>This is the star our tools have practised on. In Chapter 4 you'll see our search find one of its crossings in December 2025.</p>
+<h2 id="16-what-this-lets-us-conclude-and-what-it-doesnt">1.6 What this lets us conclude, and what it doesn't<a class="headerlink" href="#16-what-this-lets-us-conclude-and-what-it-doesnt" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>It lets us</strong> predict where planets are most likely, and recognise that a "planet" closer than the critical period is suspicious.</li>
+<li><strong>It doesn't</strong> tell us whether a planet exists. Most pairs may have none, and the formula is a fit to simulations with limits (<em>e</em> up to ~0.7, μ from 0.1 to 0.5).</li>
+<li><strong>Fourteen planets is a tiny sample.</strong> Patterns like the pile-up could partly reflect how we search. Papers argue it's real (Martin 2018), but keep the doubt in mind.</li>
+</ul>
+<h2 id="17-check-your-understanding">1.7 Check your understanding<a class="headerlink" href="#17-check-your-understanding" title="Permanent link">&para;</a></h2>
+<details class="quiz">
+<summary>1. What's the difference between an S-type and a P-type planet?</summary>
+<p>S-type orbits <strong>one</strong> star of the pair. P-type (circumbinary) orbits <strong>both</strong>. We hunt P-type.</p>
+</details>
+<details class="quiz">
+<summary>2. A binary has a period of 10 days. Roughly where would you expect its innermost stable planet?</summary>
+<p>The critical period is 4 to 7 times the binary period: <strong>40 to 70 days</strong>. Known planets pile up at 1.3 to 1.6 times that, so roughly <strong>50 to 110 days</strong>.</p>
+</details>
+<details class="quiz">
+<summary>3. A planet sits at 4 times the stars' separation. About how many binary periods does it take to orbit once?</summary>
+<p>4<sup>3/2</sup> = √(4³) = √64 = <strong>8</strong> binary periods.</p>
+</details>
+<p><strong>Next:</strong> <a href="../ch2-light-curves/">Chapter 2</a> shows how we "see" these planets at all, through a star's brightness.</p>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>Facts on this page are listed with their sources in the <a href="../../claims/">claims register</a>: F-001 to F-006. Background: Martin 2018, "Populations of planets in multiple star systems", <a href="https://arxiv.org/abs/1802.08693">arXiv:1802.08693</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/demos.js"></script>
+      
+    
+  <script src="../../assets/book.js" data-sw="../../sw.js"></script>
+
+  </body>
+</html>

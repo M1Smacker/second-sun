@@ -1,0 +1,212 @@
+/* Second Sun book theme. Tokens, type scale and components from research/SITE-BLUEPRINT.md §4.
+   A textbook at night: calm surfaces, one accent (starlight amber), nothing that glows.
+   Design rule (Ahmed, 2026-10-19): professional and clean, quiet progress, personalised. */
+
+/* ---------- Tokens ---------- */
+:root {
+  --ss-dur: 200ms;
+  --ss-dur-fast: 150ms;
+  --ss-ease: cubic-bezier(.2, .8, .2, 1);   /* ease-out, no overshoot */
+  --ss-radius: 6px;
+  --ss-tap: 44px;
+  /* header bar stays dark in both schemes */
+  --md-primary-fg-color: #131a27;
+  --md-primary-fg-color--light: #1a2233;
+  --md-primary-fg-color--dark: #0c1018;
+  --md-primary-bg-color: #e6e8ee;
+  --md-primary-bg-color--light: #aab1c0;
+}
+
+[data-md-color-scheme="slate"] {
+  --ss-bg: #0c1018; --ss-surface: #131a27; --ss-raised: #1a2233; --ss-line: #2a3448;
+  --ss-text: #e6e8ee; --ss-text-2: #aab1c0; --ss-text-3: #7d8597;
+  --ss-accent: #e2b45f; --ss-on-accent: #0c1018;
+  --md-hue: 222;
+}
+[data-md-color-scheme="default"] {
+  --ss-bg: #faf9f6; --ss-surface: #f1efe9; --ss-raised: #ffffff; --ss-line: #d9d5cb;
+  --ss-text: #1a1e26; --ss-text-2: #495160; --ss-text-3: #6a7282;
+  --ss-accent: #8a5a12; --ss-on-accent: #ffffff;
+}
+[data-md-color-scheme] {
+  --md-default-bg-color: var(--ss-bg);
+  --md-default-fg-color: var(--ss-text);
+  --md-default-fg-color--light: var(--ss-text-2);
+  --md-default-fg-color--lighter: var(--ss-text-3);
+  --md-default-fg-color--lightest: var(--ss-line);
+  --md-code-bg-color: var(--ss-surface);
+  --md-code-fg-color: var(--ss-text);
+  --md-typeset-color: var(--ss-text);
+  --md-typeset-a-color: var(--ss-accent);
+  --md-accent-fg-color: var(--ss-accent);
+  --md-accent-bg-color: var(--ss-on-accent);
+  --md-footer-bg-color: var(--ss-surface);
+  --md-footer-bg-color--dark: var(--ss-bg);
+  --md-footer-fg-color: var(--ss-text);
+  --md-footer-fg-color--light: var(--ss-text-2);
+  --md-footer-fg-color--lighter: var(--ss-text-2);
+  --md-typeset-table-color: var(--ss-line);
+  --md-text-font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --md-code-font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+body, input { font-family: var(--md-text-font-family); }
+code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant-numeric: tabular-nums; }
+
+.md-header { border-bottom: 1px solid var(--ss-line); box-shadow: none; }
+.md-tabs { border-bottom: 1px solid var(--ss-line); }
+
+/* ---------- Type scale (phone / PC): caption 13/14 · body 17/18 · h4 19/20 · h3 21/23 · h2 26/29 · h1 32/38 ---------- */
+.md-typeset { font-size: 17px; line-height: 1.65; }
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 { line-height: 1.25; color: var(--ss-text); letter-spacing: 0; }
+.md-typeset h1 { font-size: 32px; font-weight: 600; margin: 0 0 24px; }
+.md-typeset h2 { font-size: 26px; font-weight: 600; margin: 48px 0 16px; }
+.md-typeset h3 { font-size: 21px; font-weight: 600; margin: 32px 0 12px; }
+.md-typeset h4 { font-size: 19px; font-weight: 600; margin: 24px 0 8px; }
+.md-typeset small, .md-typeset figcaption, .ss-meta, .ss-caption { font-size: 13px; color: var(--ss-text-2); }
+@media (min-width: 60em) {
+  .md-typeset { font-size: 18px; }
+  .md-typeset h1 { font-size: 38px; }
+  .md-typeset h2 { font-size: 29px; margin-top: 64px; }
+  .md-typeset h3 { font-size: 23px; }
+  .md-typeset h4 { font-size: 20px; }
+  .md-typeset small, .md-typeset figcaption, .ss-meta, .ss-caption { font-size: 14px; }
+}
+/* measure: 66 characters for running text */
+.md-typeset > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4, .admonition, details, .ss-progress) { max-width: 66ch; }
+
+/* ---------- Links, focus ---------- */
+.md-typeset a { color: var(--ss-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.md-typeset a:hover { text-decoration-thickness: 2px; color: var(--ss-accent); }
+:focus-visible { outline: 2px solid var(--ss-accent) !important; outline-offset: 2px; }
+
+/* ---------- Callouts (admonitions): 3 px left rule + label, surface background only ---------- */
+.md-typeset :is(.admonition, details) {
+  border: 0 !important; border-left: 3px solid var(--ss-line) !important; border-radius: var(--ss-radius);
+  background: var(--ss-surface); box-shadow: none; font-size: inherit; padding: 0 16px;
+}
+.md-typeset :is(.admonition.plain, .admonition.abstract, .admonition.exercise) { border-left-color: var(--ss-accent) !important; }
+.md-typeset :is(.admonition-title, summary) {
+  background: transparent !important; border: 0 !important; font-weight: 600; font-size: 15px;
+  margin: 0 -16px; padding: 12px 16px 12px 44px; min-height: var(--ss-tap); color: var(--ss-text);
+}
+.md-typeset :is(.admonition-title, summary)::before { background-color: var(--ss-accent) !important; left: 16px; top: 50%; transform: translateY(-50%); }
+.md-typeset details > summary::after { color: var(--ss-text-2); top: 50%; transform: translateY(-50%) rotate(0deg); }
+.md-typeset details[open] > summary::after { transform: translateY(-50%) rotate(90deg); }
+.md-typeset .admonition > :last-child, .md-typeset details > :last-child { margin-bottom: 12px; }
+.md-typeset :is(.plain, .exercise) > .admonition-title::before { -webkit-mask-image: var(--md-admonition-icon--abstract); mask-image: var(--md-admonition-icon--abstract); }
+.md-typeset .exercise > .admonition-title::before { -webkit-mask-image: var(--md-admonition-icon--example); mask-image: var(--md-admonition-icon--example); }
+.md-typeset .quiz > summary::before { -webkit-mask-image: var(--md-admonition-icon--question); mask-image: var(--md-admonition-icon--question); }
+
+/* ---------- Confidence chips: meaning by SHAPE, label always spelled out, no traffic-light colours ---------- */
+.md-typeset a.ss-chip {
+  display: inline-flex; align-items: center; gap: 4px; position: relative;
+  font: 600 12px/1 var(--md-code-font-family); letter-spacing: .04em;
+  padding: 3px 6px; border: 1.5px solid currentColor; border-radius: 4px;
+  color: var(--ss-text-2); text-decoration: none; vertical-align: .1em; white-space: nowrap;
+}
+.md-typeset a.ss-chip::after { content: ""; position: absolute; inset: -12px -4px; } /* 44 px tall hit area, no layout change */
+.md-typeset a.ss-chip--verified { border-style: solid; color: var(--ss-text); }
+.md-typeset a.ss-chip--verified::before { content: "✓"; }
+.md-typeset a.ss-chip--likely { border-style: dashed; }
+.md-typeset a.ss-chip--unverified { border-style: dotted; }
+.md-typeset a.ss-chip:hover { border-width: 2px; padding: 2.5px 5.5px; }
+
+/* ---------- Quiet progress ---------- */
+.md-typeset .ss-progress { font-size: 15px; color: var(--ss-text-2); margin: 4px 0 16px; }
+.ss-bar { display: block; height: 4px; background: var(--ss-line); border-radius: 2px; overflow: hidden; margin-top: 8px; max-width: 24rem; }
+.ss-bar span { display: block; height: 100%; background: var(--ss-accent); }
+
+/* ---------- Checklists, cards, facts ---------- */
+.md-typeset ul.ss-list { list-style: none; margin: 0 0 24px; padding: 0; max-width: 66ch; }
+.md-typeset ul.ss-list li { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--ss-line); display: flex; gap: 12px; align-items: baseline; }
+.ss-check { width: 1rem; flex: none; color: var(--ss-accent); }
+.ss-list small { margin-left: auto; font-variant-numeric: tabular-nums; }
+.ss-list li:not(.done) { color: var(--ss-text-2); }
+.md-typeset .ss-card { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); padding: 12px 16px; margin: 0 0 16px; max-width: 66ch; }
+.md-typeset .ss-card h3 { margin: 4px 0 8px; }
+.md-typeset .ss-meta { margin: 0; }
+.md-typeset .ss-card li.done { color: var(--ss-text-2); }
+.md-typeset .ss-card li.done::after { content: " (done)"; }
+.md-typeset dl.ss-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: 8px 0; }
+.md-typeset dl.ss-facts dt { color: var(--ss-text-2); font-weight: 400; margin: 0; }
+.md-typeset dl.ss-facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+.ss-status { font-size: 13px; border: 1px solid var(--ss-text-3); border-radius: 4px; padding: 1px 6px; }
+
+/* ---------- Tables: scroll inside their own box, never the page ---------- */
+.md-typeset__scrollwrap { max-width: 100%; }
+.md-typeset table:not([class]) { font-size: 15px; font-variant-numeric: tabular-nums; }
+
+/* ---------- Depth demo (progressive enhancement: static figure without JS) ---------- */
+.ss-demo { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); padding: 16px; background: var(--ss-raised); max-width: 66ch; }
+.ss-demo label { display: grid; gap: 4px; margin-bottom: 12px; }
+.ss-demo input[type=range] { width: 100%; min-height: var(--ss-tap); accent-color: var(--ss-accent); margin: 0; }
+.ss-demo__lc { height: 64px; border-top: 2px solid var(--ss-accent); position: relative; }
+.ss-demo__lc span { position: absolute; left: 40%; width: 20%; top: 0; background: var(--ss-accent); opacity: .3; }
+.ss-fallback svg { display: block; max-width: 100%; height: auto; }
+.ss-fallback .ss-svg-line { stroke: var(--ss-accent); }
+.ss-fallback .ss-svg-text { fill: var(--ss-text-2); font: 13px var(--md-text-font-family); }
+.no-js .ss-demo { display: none; }
+.js .ss-fallback { display: none; }
+
+/* ---------- "Updated. Reload" line ---------- */
+.ss-update {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 10;
+  display: flex; align-items: center; gap: 12px; padding: 4px 4px 4px 16px; max-width: calc(100vw - 32px);
+  background: var(--ss-raised); color: var(--ss-text); border: 1px solid var(--ss-line); border-radius: var(--ss-radius);
+  font-size: 15px; box-shadow: 0 4px 16px rgb(0 0 0 / .25);
+}
+.ss-update button {
+  min-height: var(--ss-tap); min-width: var(--ss-tap); padding: 0 16px; border: 0; border-radius: 4px; cursor: pointer;
+  background: var(--ss-accent); color: var(--ss-on-accent); font: 600 15px var(--md-text-font-family);
+}
+
+/* ---------- Tap targets >= 44 px (Material defaults are smaller) ---------- */
+/* Material hides inactive controls with the hidden attribute; the display rules below must never override it
+   (bug found in screenshots: both theme icons showed at once). */
+[hidden] { display: none !important; }
+.md-header__button { min-width: var(--ss-tap); min-height: var(--ss-tap); display: inline-flex; align-items: center; justify-content: center; }
+.md-tabs__item { height: auto; }
+.md-tabs__link { display: flex; align-items: center; min-height: var(--ss-tap); margin-top: 0; }
+.md-nav__link { min-height: var(--ss-tap); display: flex; align-items: center; margin-top: 0; }
+.md-search__input { min-height: var(--ss-tap); }
+.md-top { min-height: var(--ss-tap); }
+.md-typeset .md-button { min-height: var(--ss-tap); display: inline-flex; align-items: center; }
+
+/* ---------- Transitions: 150-250 ms, ease-out, only where they explain a change ---------- */
+/* theme toggle: colours ease, but only after first paint (html.ss-ready), so loading never flickers */
+.ss-ready :is(body, .md-header, .md-tabs, .md-main, .md-footer, .md-sidebar, .md-typeset :is(.admonition, details, .ss-card, .ss-demo)) {
+  transition: background-color var(--ss-dur) var(--ss-ease), color var(--ss-dur) var(--ss-ease), border-color var(--ss-dur) var(--ss-ease);
+}
+.md-typeset a, .md-nav__link, .md-tabs__link, .md-header__button {
+  transition: color var(--ss-dur-fast) var(--ss-ease), text-decoration-color var(--ss-dur-fast) var(--ss-ease), opacity var(--ss-dur-fast) var(--ss-ease);
+}
+:focus-visible { transition: outline-offset var(--ss-dur-fast) var(--ss-ease); }
+.ss-update button { transition: filter var(--ss-dur-fast) var(--ss-ease); }
+.ss-update button:hover { filter: brightness(1.08); }
+.md-typeset details > summary::after { transition: transform var(--ss-dur) var(--ss-ease); }
+.md-typeset details[open] > :not(summary) { animation: ss-reveal var(--ss-dur) var(--ss-ease); }
+.md-content__inner { animation: ss-fade var(--ss-dur) var(--ss-ease); }   /* signals an instant-navigation page swap */
+.ss-update { animation: ss-rise var(--ss-dur) var(--ss-ease); }
+.ss-demo__lc span { transition: height var(--ss-dur-fast) var(--ss-ease); }
+@keyframes ss-reveal { from { opacity: 0; transform: translateY(-4px); } }
+@keyframes ss-fade { from { opacity: 0; } }
+@keyframes ss-rise { from { opacity: 0; transform: translate(-50%, 8px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Tap-target fixes found by tools/site_check.mjs (layout mode) ---------- */
+.md-tabs__item { padding: 0; }
+.md-tabs__link { padding: 0 12px; min-width: var(--ss-tap); justify-content: center; }
+.md-nav__title { min-height: var(--ss-tap); display: flex; align-items: center; }
+@media (min-width: 60em) {
+  .md-search__form { height: var(--ss-tap); }
+  .md-search__input { padding-left: var(--ss-tap); }
+}
+.md-search__form > .md-search__icon[for="__search"] { width: var(--ss-tap); height: var(--ss-tap); top: 0; left: 0; display: flex; align-items: center; justify-content: center; }
+.md-search__form > .md-search__icon[for="__search"] svg { width: 24px; height: 24px; }
+.md-search__options { top: 0; right: 0; }
+.md-search__options > .md-icon { width: var(--ss-tap); height: var(--ss-tap); display: inline-flex; align-items: center; justify-content: center; }
+.md-search__options > .md-icon svg { width: 20px; height: 20px; }
+.md-typeset .headerlink { transition: color var(--ss-dur-fast) var(--ss-ease), opacity var(--ss-dur-fast) var(--ss-ease); }
