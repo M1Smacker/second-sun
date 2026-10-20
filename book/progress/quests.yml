@@ -5,7 +5,7 @@
   why: "Planets orbiting two stars dip at irregular times, so NASA's regular clock-based search misses them. First campaign: G1, Kepler-field binaries that TESS has watched again."
   steps:
     - {step: "Plan and gap check", done: true}
-    - {step: "Recover TOI-1338 b in our own pipeline"}
+    - {step: "Recover TOI-1338 b in our own pipeline", done: true}
     - {step: "First G1 batch of Kepler-field binaries searched"}
     - {step: "First candidate (SS-0001) through two-key vetting"}
 - title: "Training quest: hidden siblings"

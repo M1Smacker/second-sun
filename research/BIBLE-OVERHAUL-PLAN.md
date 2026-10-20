@@ -1,6 +1,8 @@
 # Bible Overhaul: plan
 
-*Written 2026-10-20 11:35 UTC by Claude (Sonnet 5.5). **Plan only: nothing in the book has been changed.** Named by Ahmed: "an overhaul of the Bible".*
+*Written 2026-10-20 11:35 UTC by Claude (Sonnet 5.5). Named by Ahmed: "an overhaul of the Bible".*
+
+**Status: COMPLETE, 2026-10-20 (batches 1 to 6, commits cff5111 to the batch 6 commit).** Built as planned, with one deliberate change: the L2 to L6 lessons are one learning-track page (each level: what to read, which lab, a 3-question level check) instead of five separate pages, because the chapters and labs now carry the lesson content and separate pages would have duplicated them. The overhaul's labs caught three errors in our own records (noise number F-027, STANLEY peak period, G1 morph = -1 hole); all logged in research/mistakes.md.
 
 ## Why (Ahmed's words, 2026-10-20)
 "I gotta catch up on the learning. I can't let an AI do all the work while I just sit and say yes or no." He wants (1) the core material the book does not have yet, (2) lessons on finding stars and reading data himself, the way Claude does, and (3) the rule that **every day's work is saved into the book, in teaching format, straight away.** For this overhaul the usual "core first, grow later" order is deliberately set aside: the book is the project's main product today.

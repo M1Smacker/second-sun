@@ -7,12 +7,12 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 <section class="ss-status-panel" aria-label="Mission status">
 <header><span>Mission status</span><span>Updated <b>2026-10-20</b></span></header>
 <dl>
-<div><dt>Phase</dt><dd>Testing our tools<small>on known planets, before the real hunt</small></dd></div>
-<div><dt>First campaign</dt><dd>G1: Kepler's binaries<small>549 stars, list frozen</small></dd></div>
-<div><dt>Detector</dt><dd>v2 (box search)<small>floor ~6 Earth radii at TESS mag 11.5</small></dd></div>
-<div><dt>Known-planet test</dt><dd>4 of 8 sectors<small>TOI-1338 b re-found</small></dd></div>
+<div><dt>Phase</dt><dd>Hunt paused<small>the Bible Overhaul: learning first</small></dd></div>
+<div><dt>First campaign</dt><dd>G1: Kepler's binaries<small>549 stars; 136 need a decision (Chapter 1)</small></dd></div>
+<div><dt>Detector</dt><dd>v2 (box search)<small>floor ~6 Earth radii; three tests agree</small></dd></div>
+<div><dt>Known-planet test</dt><dd>4 of 8 sectors<small>TOI-1338 b; STANLEY peak 96.1 d</small></dd></div>
 <div><dt>Candidates</dt><dd>0<small>the first will be SS-0001</small></dd></div>
-<div><dt>Next milestone</dt><dd>Stacked search<small>add each planet's crossings together</small></dd></div>
+<div><dt>Next milestone</dt><dd>Your labs<small>then smarter quality flags</small></dd></div>
 </dl>
 <p>Nothing here is a discovery yet. Every number links back to a test in <a href="book/08-our-detector/">Chapter 8</a>.</p>
 </section>
