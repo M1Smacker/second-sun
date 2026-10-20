@@ -10,6 +10,12 @@ Ahmed, three things happened overnight:
 2. **Your study book has its first four real chapters.** They cover two suns, light curves, wandering transits and our detector. Each one goes: intuition, meaning, technical, our code, worked example, what it proves, quiz. They're built on our own data and figures, and every fact links to its source.
 3. **The book now looks like a research observatory, not a template.** It has proper reading type, an instrument-style status panel, a "mission timeline" sidebar that marks the chapters you've opened, and numbered equations. I checked it at phone and PC sizes, in dark and light mode, with zero errors.
 
+**After that, I kept going** (budget allowed it):
+4. **Automatic clean-up of fake dips doesn't work on its own.** Rejecting dips near data gaps or thruster firings removed fakes but also threw out half the real planet crossings, so those became warning flags for a human instead.
+5. **The 16 December crossing really is about an hour late:** 56 ± 5 minutes after the 2024 prediction, which is 2.4 times the combined error. That's a mild, interesting tension, not proof of anything.
+6. **Chapter 5 (vetting)** is written, a **stability calculator** is in the code, and the **learning track** now points each level to the chapter that teaches it.
+7. **STANLEY** (the professionals' stacked circumbinary search) now runs on your PC after two fixes. Its first stage was still working at the time of writing (see B).
+
 **No new planet. Nothing was submitted anywhere.** Everything is pushed to GitHub.
 
 ## B. Scientific progress
@@ -23,6 +29,10 @@ Ahmed, three things happened overnight:
 | Injection test (S98) | 6 R⊕: 5 of 7 found; 7-8 R⊕: all; 5 R⊕ and below: none | CONFIRMED |
 | S98 transit timing | +1.08 h vs Wang & Liu's prediction (burn 1 got +57 min); real error bar not measured yet | UNCERTAIN |
 | G1 feasibility | the earlier "2-5 R⊕" estimate was too optimistic for single sectors; ~6 R⊕ at Tmag 11.5 measured | LIKELY (one star) |
+| Systematics veto (gap/dump/flipped) | strict version kept only 2 of 4 real crossings; loosened once: gap/dump = flags, flipped-match = reject; 4/4 kept, 4 of 6 fakes flagged | CONFIRMED |
+| S98 timing with red-noise error | +56 ± 5 min vs prediction ± 23 min → 2.4σ; +34 min if the shape floats | CONFIRMED (numbers) / UNCERTAIN (meaning) |
+| Stability calculator (`pipeline/stability.py`) | TOI-1338: critical period 71 d, planet at 1.34× (matches the literature) | CONFIRMED |
+| STANLEY stage 1 on TOI-1338 | runs after 2 fixes (setuptools for Py3.12; downloads forced to D:); 40 sectors downloaded (78 MB); slow eclipse fitting | NOT TESTED (result pending) |
 
 This is reproduction of a known planet, **not a discovery**. Details: `research/overnight-science/report.md`.
 
@@ -35,9 +45,10 @@ New in `book/docs/book/`:
 | 1. Two suns | binaries, S- vs P-type planets, Holman-Wiegert stability limit, Kepler's third law, the pile-up; TOI-1338 worked example | every symbol explained; powers and ratios |
 | 2. Light curves | transits, depth = (Rp/R★)², ppm, TESS sectors and cadences, SAP vs PDCSAP, noise, BTJD; TOI-1338's three dip types | squares and square roots |
 | 3. Wandering transits | timing shifts, duration changes, precession switching transits on/off, why NASA's pipeline misses them, the G1 idea; TOI-1338 b timeline | conceptual + one worked timeline |
-| 4. Our detector | matched filter, SNR, detrending, our code function by function, three honest tests with real figures | code-level |
+| 4. Our detector | matched filter, SNR, detrending, our code function by function, four honest tests with real figures | code-level |
+| 5. Vetting | every impostor and its test, NASA's bar vs ours (C1-C11), the circumbinary smoking gun, ExoFOP publish-first | rules + one worked example |
 
-Also: 18 new sourced facts (F-001 to F-018) in the claims register, 10 new glossary terms, 3 figures made from real TESS data.
+Also: 23 new sourced facts (F-001 to F-023) in the claims register, 10 new glossary terms, 3 figures made from real TESS data.
 
 **Read first:** Chapter 1, then Chapter 4's "In plain words" box. Chapter 1 gives you the picture; Chapter 4 tells you where we honestly stand.
 
