@@ -45,3 +45,4 @@
 - 01:58 UTC: QLP task (2 tries): sys_rm_flux keeps depth (2038 ppm, SNR 6.4) but recurring ~14-d fakes (SNR to 43.8) remain; no gaps to trim. BLOCKED tonight; next steps in report 9b.
 - 02:00 UTC: QLP partly fixed: sys_rm_flux + SPOC good-time windows -> only the planet (SNR 10.1), fakes 2 (max 9.7). Report 9c. Next: borrowed windows for QLP-only stars (not done).
 - 02:07 UTC: eclipse_mask_auto added (flatten -> fold -> flag). TOI-1338: both eclipses found, 96% agreement with hand mask, only the planet remains (SNR 8.5). Report section 10.
+- 02:09 UTC: borrowed windows (camera 4/CCD 1 neighbours): 3 of 4 match within 5-8 h, 1 has no gaps; QLP with borrowed windows finds the planet (SNR 10.2) + 2 edge events. Next: intersect several neighbours + trim starts. Report 9d.

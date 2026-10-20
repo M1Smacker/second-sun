@@ -172,3 +172,18 @@ The eclipse mask was checked (first primary at BTJD 3995.62, same as SPOC), so t
 | Events found | planet only (SNR 9.0) | **planet only (SNR 8.5)** |
 
 CONFIRMED (`pipeline/auto_mask_check.py`, asserts the planet stays findable). One star, one sector; untested on very eccentric binaries and on QLP's 10/30-minute cadences.
+
+### 9d. Borrowing windows from neighbour stars (for QLP-only stars)
+
+Four SPOC 2-min neighbours of TOI-1338 within 1.5° in S98, all on camera 4, CCD 1 (downloaded ~2 MB each, logged):
+
+| Neighbour | Windows vs TOI-1338's | |
+|---|---|---|
+| TIC 350861689 | same 4 windows, edges differ by up to 7.9 h | |
+| TIC 350933091 | same 4 windows, edges differ by up to 4.8 h | |
+| TIC 150145337 | same 4 windows + a short extra stretch at the start | |
+| TIC 260266504 | **one continuous window**, no gaps | SPOC's cuts are partly per-star |
+
+QLP TOI-1338 with windows **borrowed** from TIC 350861689: planet found (SNR 10.2), plus 2 extra events just after two borrowed window starts (BTJD 4022.93, 3994.16), where the borrowed edges sit a few hours earlier than TOI-1338's own. Fakes on flipped data: 3, max 9.6.
+
+**Conclusion:** borrowing mostly works, but window edges matter. Next: take the **intersection** of several neighbours' windows (most conservative) and trim ~0.5 d after each window start; re-test. CONFIRMED (`pipeline/borrow_windows_check.py`); general fix NOT TESTED.

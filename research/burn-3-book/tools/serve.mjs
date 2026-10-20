@@ -13,6 +13,7 @@ const args = process.argv.slice(2);
 const get = (k, d) => (args.find((a) => a.startsWith(`--${k}=`)) || `=${d}`).split("=").slice(1).join("=");
 const root = path.resolve(get("dir", "."));
 const port = Number(get("port", 8471));
+const host = get("host", "127.0.0.1");   // use --host=<LAN ip> to open the site on a phone on the same Wi-Fi
 const fail = new Set(args.filter((a) => a.startsWith("--fail=")).map((a) => a.slice(7)));
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".json": "application/json",
   ".png": "image/png", ".svg": "image/svg+xml", ".xml": "application/xml", ".webmanifest": "application/manifest+json", ".gz": "application/gzip" };
@@ -39,4 +40,4 @@ http.createServer((req, res) => {
     if (!err && st.isFile()) return send(res, 200, file);
     send(res, 404, path.join(root, "404.html"));
   });
-}).listen(port, "127.0.0.1", () => console.log(`serving ${root} on http://127.0.0.1:${port}/ fail=${[...fail]}`));
+}).listen(port, host, () => console.log(`serving ${root} on http://${host}:${port}/ fail=${[...fail]}`));
