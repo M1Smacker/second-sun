@@ -59,3 +59,4 @@ utc_time,what,source_url,size_bytes,dest_path,why,wave
 2026-10-20T01:10:14Z,source-serif-4-latin-400-italic.woff2 (book font),https://cdn.jsdelivr.net/fontsource/fonts/,20092,book/docs/assets/fonts/source-serif-4-latin-400-italic.woff2,self-hosted book font (offline),overnight-6
 2026-10-20T01:10:14Z,source-serif-4-latin-400-normal.woff2 (book font),https://cdn.jsdelivr.net/fontsource/fonts/,20088,book/docs/assets/fonts/source-serif-4-latin-400-normal.woff2,self-hosted book font (offline),overnight-6
 2026-10-20T01:10:14Z,source-serif-4-latin-600-normal.woff2 (book font),https://cdn.jsdelivr.net/fontsource/fonts/,21532,book/docs/assets/fonts/source-serif-4-latin-600-normal.woff2,self-hosted book font (offline),overnight-6
+2026-10-20T01:26:57Z,TOI-1338 SPOC 2-min LCs (40 sectors) via STANLEY,https://mast.stsci.edu (lightkurve download_all),81017280,.cache/lightkurve/,STANLEY stacked-search trial on a known planet,overnight-9
