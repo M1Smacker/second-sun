@@ -50,3 +50,12 @@
 - 02:13 UTC: Kepler-16 dry run: 17 sectors, 1 event = pre-dump jitter impostor (C7), QLP flat; veto fixed to match C7 (0.5 d before dump). No surviving event. Report section 12.
 - 02:14 UTC: Kepler-16 global fold: 4.9% masked, 3 events all flagged, 0 unflagged, 4 fakes / 17 sectors. Report 12.
 - 02:19 UTC: STANLEY stage 1 done (40 sectors; P 14.608642, sec phase 0.455, agree with ours). Stage 2 recovery search (circular, 90-100 d) running, 1-h cap.
+
+## Queue, part 3 (for the next session or when STANLEY finishes)
+| # | Task | Done when | Status |
+|---|---|---|---|
+| 11 | Read STANLEY stage 2 output (`data/stanley/search_log.txt`, `data/stanley/PlanetSearchOutput/ss_toi1338_rec/`); run its analysis module (`stanley_cbp.Stanley_Analysis_InterpN`, via the same numpy shim) | report says whether STANLEY recovers TOI-1338 b near 95 d, with its significance | running (started 02:19 UTC, 1-h cap; command in pipeline/stanley/run_search.py) |
+| 12 | Automate the QLP recipe: find SPOC stars on the same sector/camera/CCD for each QLP-only G1 star; intersect windows | works on 3 QLP-only G1 stars | pending |
+| 13 | Global eclipse fold in the main pipeline for binaries with P > ~10 d | Kepler-16 run reproduces 4.9% masked | pending |
+| 14 | Book: chapter on STANLEY / stacked search once 11 is done | strict build | pending |
+- 02:39 UTC: CHECKPOINT. Window 68%, weekly 10%. STANLEY stage 2 running in background (np.product shim). Main session idles to save window; resumes on STANLEY completion or the 08:55 Kuwait timer.

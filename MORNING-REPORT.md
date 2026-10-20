@@ -98,9 +98,11 @@ Commands run: `python detect_v2.py` (pass), `python accept_v2.py` (ran), `python
 
 ## G. Usage and session status
 
-- Weekly limit: **2%** at the start (00:51 UTC), **4%** at 01:16 UTC. Ceiling you set: 30%; I stop new work at 25%.
-- 5-hour window: 22% at 01:16 UTC, resets 05:50 UTC (08:50 Kuwait).
-- One session (this one), no helpers. A one-time timer, "Second Sun: resume overnight run", fires at 08:55 Kuwait to continue from `OVERNIGHT.md`. **It may pause on permission prompts**, because the app wouldn't save Auto mode for a task created from a phone message.
+- Weekly limit: **2%** at the start (00:51 UTC), **10%** at 02:40 UTC. Ceiling you set: 30%; I stop new work at 25%. Well inside.
+- 5-hour window: 68% at 02:40 UTC; resets 05:50 UTC (08:50 Kuwait).
+- One session (this one), no helpers. Model: Opus 5.5 (this session; its effort level is the session's own setting, not changed).
+- At 02:40 UTC I stopped active polling to save window while STANLEY's search runs in the background; it wakes this session when it finishes. Backup: the timer "Second Sun: resume overnight run" at 08:55 Kuwait, which **may pause on permission prompts** unless you set it to Auto (see I).
+- These figures come from the app's usage meter, read during the night.
 
 ## H. Next-session task queue (ranked)
 
