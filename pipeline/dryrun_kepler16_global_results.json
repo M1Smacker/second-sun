@@ -1,0 +1,153 @@
+{
+ "runs": [
+  [
+   0.4716666666666667,
+   0.4783333333333334
+  ],
+  [
+   0.6383333333333334,
+   0.64
+  ],
+  [
+   0.9616666666666668,
+   0.9666666666666667
+  ]
+ ],
+ "rows": [
+  {
+   "file": "tess2019198215352-s0014-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2019226182529-s0015-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2020160202036-s0026-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2021175071901-s0040-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2021204101404-s0041-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2022164095748-s0053-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "file": "tess2022190063128-s0054-000000",
+   "events": [
+    [
+     2783.616,
+     3,
+     12.3,
+     [
+      "near data-gap edge",
+      "near momentum dump (C7: pointing jitter before dumps fakes transits)"
+     ]
+    ]
+   ],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2022217014003-s0055-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2022244194134-s0056-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2023341045131-s0073-000000",
+   "events": [
+    [
+     3298.812,
+     10,
+     7.6,
+     [
+      "near momentum dump (C7: pointing jitter before dumps fakes transits)"
+     ]
+    ]
+   ],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "file": "tess2024003055635-s0074-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2024030031500-s0075-000000",
+   "events": [
+    [
+     3355.474,
+     6.5,
+     7.6,
+     [
+      "near data-gap edge"
+     ]
+    ]
+   ],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "file": "tess2024058030222-s0076-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2024170053053-s0080-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2024196212429-s0081-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "file": "tess2024223182411-s0082-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "file": "tess2024249191853-s0083-000000",
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  }
+ ],
+ "totals": {
+  "events": 3,
+  "unflagged": 0,
+  "fakes": 4
+ }
+}

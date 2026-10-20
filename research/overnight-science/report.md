@@ -222,3 +222,5 @@ Does not change the G1 gap: still no published TESS transit search of the Kepler
 | Weakness found | Kepler-16's 41-day period is longer than a sector, so the per-sector fold flags noise runs as "eclipses" (up to 5 runs, 13% of data masked). Fix next: fold all sectors together. |
 
 Figures: `research/overnight-science/kepler16_s54_event.png`, `kepler16_s54_sector.png`. Code: `pipeline/dryrun_kepler16.py`, `pipeline/look_event.py`.
+
+**Global fold (all 17 sectors together), same files:** eclipse runs at phases 0.472-0.478 (the primary), 0.638-0.640 and 0.962-0.967; only **4.9%** of data masked (per-sector fold: up to 13%). Events: **3, all flagged** (S54 BTJD 2783.62: gap edge + C7; S73 3298.81: C7; S75 3355.47: gap edge). **0 unflagged events**, 4 fakes in 17 sectors. Whether the two smaller phase runs are the secondary eclipse or noise is UNCERTAIN (not checked against Kepler-16's published secondary phase). CONFIRMED (`pipeline/dryrun_kepler16_global.py`). For long-period binaries the pipeline should fold all sectors together.

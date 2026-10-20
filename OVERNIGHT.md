@@ -48,3 +48,4 @@
 - 02:09 UTC: borrowed windows (camera 4/CCD 1 neighbours): 3 of 4 match within 5-8 h, 1 has no gaps; QLP with borrowed windows finds the planet (SNR 10.2) + 2 edge events. Next: intersect several neighbours + trim starts. Report 9d.
 - 02:10 UTC: intersect_windows() (4 neighbours, trim 0.5 d): QLP planet SNR 10.9, 1 edge event, fakes max 8.2. Recipe for QLP-only stars. Report 9d.
 - 02:13 UTC: Kepler-16 dry run: 17 sectors, 1 event = pre-dump jitter impostor (C7), QLP flat; veto fixed to match C7 (0.5 d before dump). No surviving event. Report section 12.
+- 02:14 UTC: Kepler-16 global fold: 4.9% masked, 3 events all flagged, 0 unflagged, 4 fakes / 17 sectors. Report 12.
