@@ -44,3 +44,6 @@ New files only, under `experiments/quality_mask/results/<UTC time>_<commit>/`; t
 
 ## Amendments
 *(none yet)*
+
+### Amendment 1 (2026-10-20, before the official run)
+`qmask.py` was added and smoke-tested on sectors 62 and 98 only (its output folder was deleted afterwards). The smoke run reproduced the frozen baseline for those two sectors (events, SNRs and all 49 injection trials) and showed the code runs end to end. Its A1 and A2 tables were glanced at, which is a small step away from strict pre-registration: S62 and S98 are 2 of the 10 sectors. No decision rule or metric above was changed after seeing them. The official run is the full 10-sector run with the same code (commit e4b1eb0).
