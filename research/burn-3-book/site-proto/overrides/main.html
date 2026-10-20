@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {# Unannounced book: ask search engines not to index. robots.txt can't do this on a project site (RFC 9309 §2.3). #}
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="{{ 'manifest.webmanifest' | url }}">
+  <meta name="theme-color" content="#0c1018">
+  <link rel="apple-touch-icon" href="{{ 'assets/icon-180.png' | url }}">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'assets/book.js' | url }}" data-sw="{{ 'sw.js' | url }}"></script>
+{% endblock %}

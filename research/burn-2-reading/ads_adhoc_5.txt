@@ -1,0 +1,9 @@
+
+## author:"Haghighipour, N" abs:"circumbinary" year:2023-2026  ->  4 new
+  2025-09  inproceedings Haghighipour, Nader | On the effects of secular resonances on the dynamical evolution and orbital architecture of planetary systems  | https://ui.adsabs.harvard.edu/abs/2025epsc.conf.1121H 
+  2025-08  article   Haghighipour, Nader et al. | Secular Resonances in Planet-hosting Binary Stars. II. Application to Terrestrial Planet Formation | https://ui.adsabs.harvard.edu/abs/2025ApJ...988..231H arXiv:2507.17098
+  2025-08  article   Haghighipour, Nader et al. | Secular Resonances in Planet-hosting Binary Stars. I. General Theory | https://ui.adsabs.harvard.edu/abs/2025AJ....170..117H arXiv:2507.17092
+  2024-00  inproceedings Andrews, Michael et al. | Secular Resonances and Terrestrial Planet Formation in Planetary Systems with Multiple Stars | https://ui.adsabs.harvard.edu/abs/2024IAUS..382..116A 
+
+## abs:("TOI-1338" OR "TOI 1338" OR "TIC 172900988" OR "BEBOP-1") year:2025-2026  ->  1 new
+  2025-07  phdthesis Baycroft, Thomas | Tools to Detect and Characterise Circumbinary Exoplanets | https://ui.adsabs.harvard.edu/abs/2025PhDT.........9B 

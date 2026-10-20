@@ -1,0 +1,46 @@
+# Deploys the book to GitHub Pages. NOT ENABLED: to turn on, move this file to
+# .github/workflows/ at the repo root, fix the paths below, and in the repo
+# Settings > Pages set "Source" to "GitHub Actions" (Ahmed does this).
+# Action versions checked against GitHub releases on 2026-10-19.
+name: Deploy book
+on:
+  push:
+    branches: [main]
+    paths: ["docs/**", "progress/**", "data/**", "mkdocs.yml", "hooks.py", "overrides/**", "sw-template.js", "requirements-docs.txt"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-docs.txt
+      - run: pip install -r requirements-docs.txt
+      - run: python hooks.py          # data self-check
+      - run: mkdocs build --strict
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

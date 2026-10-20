@@ -1,0 +1,8 @@
+# Ahmed's learning track. L0 is a warm-up; progress counts L1-L6 ("Level 2 of 6"). Set done: to the date a level is finished.
+- {level: L0, title: "What a light curve is",           done: null}
+- {level: L1, title: "How big is the dip?",             done: null}
+- {level: L2, title: "From dip depth back to size",     done: null}
+- {level: L3, title: "Bright stars, faint stars, noise", done: null}
+- {level: L4, title: "Orbits, and why our dips wander", done: null}
+- {level: L5, title: "The fakes",                       done: null}
+- {level: L6, title: "Two-key vetting",                 done: null}

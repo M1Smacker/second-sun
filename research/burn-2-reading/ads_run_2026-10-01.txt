@@ -1,0 +1,75 @@
+
+## abs:"circumbinary" abs:"TESS"  ->  50 new
+  2026-11  article   Wongsriya, Supattra et al. | Starspot Activity and Third-body Perturbations in the Eclipsing Binary KIC 9451096 | https://ui.adsabs.harvard.edu/abs/2026AJ....172..256W 
+  2026-11  article   Jeong, Min-Ji et al. | BS Cassiopeiae: A Contact Binary with Starspot-driven Variability and Evidence for Additional Components | https://ui.adsabs.harvard.edu/abs/2026AJ....172..264J 
+  2026-11  article   Maryeva, Olga et al. | Central stars of newly discovered infrared nebulae: eruptive Be stars PY Gem and HD 253659 | https://ui.adsabs.harvard.edu/abs/2026MNRAS.552g1823M 
+  2026-10  article   Cavalier, T. et al. | A Previously Underexplored Regime in TESS: Minute-scale Eclipses Reveal 10 White Dwarf-Cool M-dwarf Binaries | https://ui.adsabs.harvard.edu/abs/2026ApJ..1009L..39C 
+  2026-10  article   Lai, Youmo et al. | Extremely Low Mass Ratio Contact Binaries. III. Photometric and Spectroscopic Investigations of 11 Systems | https://ui.adsabs.harvard.edu/abs/2026ApJ..1010..183L 
+  2026-10  article   Borkovits, T. et al. | TIC 433545934: The first 2+2-type doubly eclipsing binary with extra, mutual eclipses | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.106B 
+  2026-10  article   Pauli, D. et al. | First measurement of wind line formation regions in an early O-type star: The eclipsing binary system AzV 75 i | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.222P 
+  2026-10  article   Zasche, P. et al. | Eight new eclipsing binary systems with the light-time effect | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.182Z 
+  2026-10  article   Szewczuk, W. et al. | Asteroseismology of the multiperiodic field SX Phe pulsator BL Camelopardalis | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.170S 
+  2026-10  article   Camino Mesa, C. C. et al. | A catalogue of A-F variable stars within PLATO's first field of view, LOPS2 | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.318C 
+  2026-10  article   Zhang, Maohan et al. | Detection of a SU UMa-type Dwarf Nova with Long-lived Stage A Superhumps near the Lower Edge of the Period Gap | https://ui.adsabs.harvard.edu/abs/2026ApJ..1010...92Z 
+  2026-10  article   Wu, S.-Y. et al. | Ellipsoidal modulation and multi-wavelength activity in the pre-cataclysmic binary RX J1553.0+4457 | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.105W 
+  2026-10  article   Worters, H. L. et al. | Spectroscopy of TESS selected hot variable stars | https://ui.adsabs.harvard.edu/abs/2026MNRAS.tmp.1813W 
+  2026-10  eprint    Lv, Chenglong et al. | TESS Pulsation Timing Reveals the JWST Calibration Star HD 158485 as a Double-pulsator Binary | https://ui.adsabs.harvard.edu/abs/2026arXiv261014371L arXiv:2610.14371
+  2026-10  eprint    Vrancken, Jasmine et al. | Probing Massive Star Formation with Intrinsic Multiplicity Constraints from TESS Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv261011762V arXiv:2610.11762
+  2026-10  eprint    Rodriguez, Antonio C. et al. | Discovery of a Nearby Ultra-fast Magnetic White Dwarf Propeller: Common Pathways to Magnetic Cataclysmic Varia | https://ui.adsabs.harvard.edu/abs/2026arXiv261010689R arXiv:2610.10689
+  2026-10  eprint    Liu, Zijun et al. | What does self-supervision add to engineered features for stellar light curves? | https://ui.adsabs.harvard.edu/abs/2026arXiv261014283L arXiv:2610.14283
+  2026-10  eprint    Kára, Jan et al. | A Distinct Type of Standstill in Ultra-Compact White Dwarf Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv261019105K arXiv:2610.19105
+  2026-10  eprint    Davis, Yasmin T. et al. | The EBLM Project - XIX. The absence of radius inflation in a homogeneous analysis of 66 Northern low-mass ecli | https://ui.adsabs.harvard.edu/abs/2026arXiv261018338D arXiv:2610.18338
+  2026-10  article   Narusawa, Shin-ya et al. | What happened with the sudden orbital-period change?: TESS light curves of the short-period Algol-type system  | https://ui.adsabs.harvard.edu/abs/2026PASJ...78.1945N 
+  2026-10  article   Çelik, Eda et al. | Investigating potential relationships between mass transfer indicators and δ Scuti pulsations in oEA systems | https://ui.adsabs.harvard.edu/abs/2026PASJ..tmp..213C 
+  2026-10  article   Lund, M. N. et al. | The Stellar Observations Network Group (SONG): A legacy archive of stellar time-domain spectroscopy | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.277L 
+  2026-10  article   Southworth, John | Rediscussion of Eclipsing Binaries. Paper 32: The Eccentric F-type System EY Cephei | https://ui.adsabs.harvard.edu/abs/2026Obs...146..243S 
+  2026-10  eprint    Heidari, N. et al. | SOPHIE and TESS characterization of fourteen TESS Objects of Interest: nine planetary systems and five low-mas | https://ui.adsabs.harvard.edu/abs/2026arXiv261008584H arXiv:2610.08584
+  2026-10  eprint    Eze, C. I. et al. | Ensemble pulsational characteristics of eclipsing binaries containing $β$ Cep stars observed by the TESS missi | https://ui.adsabs.harvard.edu/abs/2026arXiv261001679E arXiv:2610.01679
+  2026-10  eprint    Klement, R. et al. | Full orbital solution and dynamical masses for a new shell-Be + sdOB binary AN Col | https://ui.adsabs.harvard.edu/abs/2026arXiv261002367K arXiv:2610.02367
+  2026-10  article   Dai, Zhibin et al. | Stage-dependent Superhump Waveform Evolution and Nonstationary Positive-superhump Timing in the Near-period-ga | https://ui.adsabs.harvard.edu/abs/2026ApJ..1010..132D 
+  2026-10  article   Liu, Wei et al. | Discovery of Three Period-bouncer Candidates from TESS Data | https://ui.adsabs.harvard.edu/abs/2026ApJ..1009..141L 
+  2026-10  eprint    Oddo, Dominic et al. | The Occurrence of Circumbinary Planets Around TESS M-dwarf Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv261022625O arXiv:2610.22625
+  2026-10  article   Chen, Yu-Fei et al. | Large-sample Statistics of Flares in Eclipsing Binaries Based on TESS and Gaia Data | https://ui.adsabs.harvard.edu/abs/2026ApJS..286...68C 
+  2026-09  inproceedings Fernández-Schlosser, P. et al. | Reevaluating eclipse timing variations in HS 0705+6700: Insights from TESS observations | https://ui.adsabs.harvard.edu/abs/2026RMxAC..61...78F 
+  2026-09  article   Merc, Jaroslav et al. | K 1-6 is a photoionised interstellar medium nebula shaped by a fast-moving hot white dwarf in a triple system | https://ui.adsabs.harvard.edu/abs/2026A&A...713A.283M 
+  2026-09  article   Cidale, Lydia S. et al. | Gravity modes and potential evidence for Rossby Waves in late O-type supergiants | https://ui.adsabs.harvard.edu/abs/2026A&A...713A.329C 
+  2026-09  article   Lillo-Box, J. et al. | CAFE follow-up of TESS hot Jupiter candidates left behind: I. Five newly confirmed planets and a false positiv | https://ui.adsabs.harvard.edu/abs/2026A&A...713A.272L 
+  2026-09  article   Namekata, Kosuke | Coronal mass ejections from young Suns: an observational view through the solar-stellar connection | https://ui.adsabs.harvard.edu/abs/2026Ap&SS.371..110N 
+  2026-09  dataset   Wang, K. et al. | VizieR Online Data Catalog: Hot subdwarf B stars periodic properties from ZTF (Wang+, 2023) | https://ui.adsabs.harvard.edu/abs/2026yCat..75243769W 
+  2026-08  inproceedings Horstman, Katelyn et al. | NIR astrocomb integration with Keck Planet Imager and Characterizer (KPIC) | https://ui.adsabs.harvard.edu/abs/2026SPIE14149E..4SH 
+  2026-08  inproceedings Moharana, Ayush et al. | Triple stars on planetary scales: Formation of compact hierarchical triples | https://ui.adsabs.harvard.edu/abs/2026csss.confE.212M 
+  2026-08  article   Božić, H. et al. | Refined reduction and standardisation of 53 years of UBV photometry at Hvar: I. Hot emission-line stars and bi | https://ui.adsabs.harvard.edu/abs/2026A&A...712A.226B arXiv:2607.06104
+  2026-07  article   Bulut, Ahmet et al. | First Apsidal Motion Analysis of Four Eccentric Eclipsing Binary Systems with Eccentric Orbits | https://ui.adsabs.harvard.edu/abs/2026RMxAA..62..166B 
+  2026-06  inproceedings Beyer, Alexa et al. | Asteroseismology of Red Giants: Discovering the Origins of Li-rich Giants | https://ui.adsabs.harvard.edu/abs/2026csss.confE.228B 
+  2026-06  inproceedings Ogawa, Ryo et al. | Investigating the Deterministic Relationship Between Stellar Rotation and Age In Old Sun-like Stars | https://ui.adsabs.harvard.edu/abs/2026csss.confE.139O 
+  2026-06  inproceedings Namekata, Kosuke | Coronal Mass Ejections from Superflares on Solar-Type Stars | https://ui.adsabs.harvard.edu/abs/2026csss.confE.224N 
+  2026-06  inproceedings Rowan, Dominick et al. | Measuring masses and radii of metal-poor eclipsing binaries | https://ui.adsabs.harvard.edu/abs/2026csss.confE.344R 
+  2026-06  inproceedings Miller, Nicola | Solar-type eclipsing binaries as benchmark stars | https://ui.adsabs.harvard.edu/abs/2026csss.confE..68M 
+  2026-06  dataset   Shi, A. et al. | VizieR Online Data Catalog: Eclipsing binaries from LAMOST DR10, TESS and VSX (Shi+, 2025) | https://ui.adsabs.harvard.edu/abs/2026yCat..22800026S 
+  2026-06  inproceedings Boneva, D. B. et al. | Sources and Mechanisms of Activity of the Solar-Type Dwarf Star 61 Cyg A | https://ui.adsabs.harvard.edu/abs/2026simi.conf...10B 
+  2026-06  inproceedings Pawar, Ganesh N. et al. | Stability of Light-Curve Solutions of Detached Eclipsing Binaries for Benchmark Candidates in PLATO's LOPS2 Fi | https://ui.adsabs.harvard.edu/abs/2026csss.confE.288P 
+  2026-06  inproceedings Zhao, Zhanhao et al. | Detection of fine-structured radio bursts during a superflare on EQ Peg | https://ui.adsabs.harvard.edu/abs/2026csss.confE.291Z 
+  2026-06  inproceedings Pawar, Ganesh N. et al. | Stability of light curve solutions of DEBs for benchmark candidates in PLATO's LOPS2 field | https://ui.adsabs.harvard.edu/abs/2026csss.confE.293P 
+
+## abs:"circumbinary planet" abs:("transit" OR "transiting")  ->  1 new
+  2026-05  inproceedings Thornton, Margo et al. | Detecting Circumbinary Planets via Apsidal Precession in Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026csss.confE..77T 
+
+## abs:"circumbinary" abs:"Kepler" abs:"TESS"  ->  1 new
+  2025-00  article   Overall, Stephen et al. | EBOP MAVEN: a machine learning model to estimate the input parameters for analytic fitting of detached eclipsi | https://ui.adsabs.harvard.edu/abs/2025RASTI...4af051O arXiv:2510.21465
+
+## author:"Kostov, V" abs:"circumbinary"  ->  0 new
+
+## author:"Martin, D" abs:"circumbinary"  ->  1 new
+  2026-10  eprint    Stevenson, Adam T. et al. | The EBLM project - XX. Absolute dynamical masses of five low-mass eclipsing binaries, and an evaluation of mas | https://ui.adsabs.harvard.edu/abs/2026arXiv261018339S arXiv:2610.18339
+
+## author:"Davies, B" abs:"circumbinary"  ->  0 new
+
+## author:"Oddo, D" abs:"circumbinary"  ->  0 new
+
+## abs:"STANLEY" abs:"circumbinary"  ->  0 new
+
+## abs:"exocomet" abs:"TESS"  ->  0 new
+
+## author:"Norazman, A"  ->  0 new
+
+## abs:("Kepler eclipsing binaries" OR "Kepler field" OR "Kepler binaries") abs:"TESS" abs:"circumbinary"  ->  0 new

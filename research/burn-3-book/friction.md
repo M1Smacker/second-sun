@@ -1,0 +1,28 @@
+# Burn 3 friction
+
+- `preview_start` reads launch configs only from C:\CLaudeCode\.claude\launch.json, and writing to C: is forbidden. So I ran `_devserver.py` with Bash in the background and opened the page by URL.
+- `_devserver.py` serves its own folder, so a copy went into the built `site/` (deleted along with `site/` at the end).
+- Claude desktop browser pane: service-worker registration failed 3/3 (the server never got the request); intermittent ERR_CONNECTION_RESET on other localhost files (main CSS once). Worked around with headless Chrome over CDP (`tools/sw_check.mjs`).
+- A hidden browser pane throttles timers: a JS check with `setTimeout` + `serviceWorker.ready` timed out after 45 s; split into timer-free calls.
+- An early desktop "185 px overflow" reading came from the hidden pane; headless Chrome measured 0 px at 1280 and 375.
+- The first `sw_check.mjs` run hung (no timeout on `serviceWorker.ready`) → exit 124; added a 3 s race and logging. One later run failed because the dev server wasn't listening yet, and its width numbers were measured on offline error pages, so I discarded them and reran.
+- `npx --no-install playwright` refused (package missing) and wrote a debug log to C:\Users\hanzl\AppData\Local\npm-cache\_logs\ (a few KB on C:).
+- `/usr/bin/time` and `bc` don't exist in Git Bash; the first timing loop silently didn't build. Re-timed with bash `time`.
+- WebFetch of ExoFOP `ctoi_help.php` returned an empty body (162 bytes); `help.php` via curl has the content.
+- aanda.org returns 403 to WebFetch and curl, so A&A claims are LIKELY only.
+- The contrast check failed once (daylight amber on card 4.32 < 4.5); fixed by darkening the colour.
+- The Bash working directory reset to C:\CLaudeCode after one command; nothing was written there (all later paths absolute).
+- One multi-file Bash heredoc script failed to parse (quote mismatch), so nothing ran; rewrote the files with the Write tool.
+- Material prints a long MkDocs-2.0 warning banner on every build (information only).
+- (After the design rule.) A second Bash heredoc script (report rewrite) failed to parse, so nothing was applied; I rewrote report.md with the Write tool.
+- Rebuilding the site while `_devserver.py` was serving from that folder made the server serve nothing: one false "no registration" run. Piping the check into `head` crashed the Node script (EPIPE) and briefly left a Chrome profile locked.
+- One check reused an old Chrome profile, so it showed the previous cached build (cache-first). Caught by comparing the cache name with `sw.js`'s VERSION; reran with a clean profile.
+- The Write tool refused to overwrite learning-track.md after my own Python edit ("modified since read"); re-read, then wrote.
+- (Stress-test session.) The Browser pane again showed random ERR_CONNECTION_RESET and an iframe stuck "loading". Measured cause: Chrome vs Python's http.server on this PC (5-21 of 120 requests hang > 5 s; curl 0; Node 0). My earlier "Avast" guess was never proven and looks wrong. Switched test serving to `tools/serve.mjs` (Node). Updated the shared dev-server memory note.
+- Git Bash rewrites arguments that look like Unix paths: `--asset=/assets/...` became `C:/Program Files/Git/assets/...`, so a probe failed 300/300 for a reason unrelated to the site. With `MSYS_NO_PATHCONV=1`, `/d/...` script paths and `curl -o /dev/null` (exit 23) break instead; used `D:/` paths and ran curl without the variable.
+- The Browser pane can't register service workers (logs one console error per page load); offline/update tests ran in headless Chrome.
+- The iframe-based measurement in the pane timed out (45 s tool limit); moved measurement to headless Chrome.
+- My layout measurement skipped `[hidden]` elements, so it missed the double theme-icon bug; a screenshot caught it. Added a regression assertion.
+- The offline test first checked the demo on the wrong page (test-order bug), and an early run raced the server start; both fixed in the harness.
+- `rm -rf _stress` failed while the shell's working folder was inside it; removed from outside.
+- npm/npx was not used for anything that touches C: in this session.

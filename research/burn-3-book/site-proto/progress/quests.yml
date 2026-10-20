@@ -1,0 +1,24 @@
+# Ahmed's quests. Mark a step `done: true` in a commit when it is really done.
+- title: "Main quest: planets around two stars"
+  kind: main
+  status: active
+  why: "Planets orbiting two stars dip at irregular times, so NASA's regular clock-based search misses them. First campaign: G1, Kepler-field binaries that TESS has watched again."
+  steps:
+    - {step: "Plan and gap check", done: true}
+    - {step: "Recover TOI-1338 b in our own pipeline"}
+    - {step: "First G1 batch of Kepler-field binaries searched"}
+    - {step: "First candidate (SS-0001) through two-key vetting"}
+- title: "Training quest: hidden siblings"
+  kind: training
+  status: open
+  why: "Known planet hosts sometimes hide one more planet. TOI-700 e was found that way in 2023."
+  steps:
+    - {step: "Recover TOI-700 b, c and d"}
+    - {step: "Search the leftovers for a fourth dip"}
+- title: "Side quest: strange dips"
+  kind: side
+  status: open
+  why: "Comet tails, crumbling planets and the next Tabby's Star."
+  steps:
+    - {step: "Read the anomaly chapter"}
+    - {step: "Flag 5 odd light curves for a second look"}

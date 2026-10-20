@@ -1,0 +1,212 @@
+{
+ "rows": [
+  {
+   "sector": 3,
+   "pub": 1391.2516,
+   "status": "no SPOC 2-min LC"
+  },
+  {
+   "sector": 6,
+   "pub": 1483.9048,
+   "n_cad": 14452,
+   "covered_after_mask": true,
+   "mad_ppm": 715.7247717203177,
+   "eclipse_depth": 0.050404467516083094,
+   "n_events": 2,
+   "recovered": true,
+   "found_center": 1483.8845722127282,
+   "dt_h": -0.48546689452268765,
+   "found_dur_h": 2.0000004944995453,
+   "found_depth_ppm": 3032.466438972703,
+   "found_snr": 8.473833961856203,
+   "others": [
+    [
+     1471.562,
+     3754,
+     11.7
+    ]
+   ]
+  },
+  {
+   "sector": 10,
+   "pub": 1579.0423,
+   "n_cad": 12623,
+   "covered_after_mask": true,
+   "mad_ppm": 521.9944582753059,
+   "eclipse_depth": 0.0037496326811064964,
+   "n_events": 0,
+   "recovered": false,
+   "found_center": null,
+   "dt_h": null,
+   "found_dur_h": null,
+   "found_depth_ppm": null,
+   "found_snr": null,
+   "others": []
+  },
+  {
+   "sector": 27,
+   "pub": 2049.9515,
+   "n_cad": 16569,
+   "covered_after_mask": true,
+   "mad_ppm": 776.407917962861,
+   "eclipse_depth": 0.05031006614349751,
+   "n_events": 0,
+   "recovered": false,
+   "found_center": null,
+   "dt_h": null,
+   "found_dur_h": null,
+   "found_depth_ppm": null,
+   "found_snr": null,
+   "others": []
+  },
+  {
+   "sector": 30,
+   "pub": 2142.3991,
+   "n_cad": 15167,
+   "covered_after_mask": false,
+   "mad_ppm": 609.597651683869,
+   "eclipse_depth": 0.049859707794590834,
+   "n_events": 0,
+   "recovered": false,
+   "found_center": null,
+   "dt_h": null,
+   "found_dur_h": null,
+   "found_depth_ppm": null,
+   "found_snr": null,
+   "others": []
+  },
+  {
+   "sector": 34,
+   "pub": 2238.2258,
+   "n_cad": 16746,
+   "covered_after_mask": true,
+   "mad_ppm": 749.7325654521607,
+   "eclipse_depth": 0.04186162846058433,
+   "n_events": 0,
+   "recovered": false,
+   "found_center": null,
+   "dt_h": null,
+   "found_dur_h": null,
+   "found_depth_ppm": null,
+   "found_snr": null,
+   "others": []
+  },
+  {
+   "sector": 37,
+   "pub": 2331.0148,
+   "n_cad": 13324,
+   "covered_after_mask": true,
+   "mad_ppm": 677.8628508448974,
+   "eclipse_depth": 0.05202128564530177,
+   "n_events": 0,
+   "recovered": false,
+   "found_center": null,
+   "dt_h": null,
+   "found_dur_h": null,
+   "found_depth_ppm": null,
+   "found_snr": null,
+   "others": []
+  },
+  {
+   "sector": 62,
+   "pub": 2989.6356,
+   "n_cad": 15525,
+   "covered_after_mask": false,
+   "mad_ppm": 567.1018754790991,
+   "eclipse_depth": 0.0036333097513020093,
+   "n_events": 0,
+   "recovered": false,
+   "found_center": null,
+   "dt_h": null,
+   "found_dur_h": null,
+   "found_depth_ppm": null,
+   "found_snr": null,
+   "others": []
+  },
+  {
+   "sector": 65,
+   "pub": 3085.4243,
+   "n_cad": 10598,
+   "covered_after_mask": true,
+   "mad_ppm": 702.1726387953892,
+   "eclipse_depth": 0.052110788564392184,
+   "n_events": 2,
+   "recovered": true,
+   "found_center": 3085.444399480806,
+   "dt_h": 0.48238753934492706,
+   "found_dur_h": 2.4999889319624344,
+   "found_depth_ppm": 2489.9579698326456,
+   "found_snr": 7.929268350892809,
+   "others": [
+    [
+     3090.201,
+     4200,
+     14.7
+    ]
+   ]
+  },
+  {
+   "sector": 68,
+   "pub": 3178.2853,
+   "n_cad": 13556,
+   "covered_after_mask": true,
+   "mad_ppm": 585.326864618691,
+   "eclipse_depth": 0.05049976186044904,
+   "n_events": 1,
+   "recovered": true,
+   "found_center": 3178.2166650209865,
+   "dt_h": -1.6472394963238912,
+   "found_dur_h": 1.5000065908570832,
+   "found_depth_ppm": 2278.0895789101805,
+   "found_snr": 6.741134113904163,
+   "others": []
+  }
+ ],
+ "sizes": [
+  [
+   6,
+   1598400,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2018349182500-s0006-0000000260128333-0126-s\\tess2018349182500-s0006-0000000260128333-0126-s_lc.fits"
+  ],
+  [
+   10,
+   1920960,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2019085135100-s0010-0000000260128333-0140-s\\tess2019085135100-s0010-0000000260128333-0140-s_lc.fits"
+  ],
+  [
+   27,
+   1785600,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2020186164531-s0027-0000000260128333-0189-s\\tess2020186164531-s0027-0000000260128333-0189-s_lc.fits"
+  ],
+  [
+   30,
+   1998720,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2020266004630-s0030-0000000260128333-0195-s\\tess2020266004630-s0030-0000000260128333-0195-s_lc.fits"
+  ],
+  [
+   34,
+   1854720,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2021014023720-s0034-0000000260128333-0204-s\\tess2021014023720-s0034-0000000260128333-0204-s_lc.fits"
+  ],
+  [
+   37,
+   1854720,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2021091135823-s0037-0000000260128333-0208-s\\tess2021091135823-s0037-0000000260128333-0208-s_lc.fits"
+  ],
+  [
+   62,
+   1880640,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2023043185947-s0062-0000000260128333-0254-s\\tess2023043185947-s0062-0000000260128333-0254-s_lc.fits"
+  ],
+  [
+   65,
+   2039040,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2023124020739-s0065-0000000260128333-0259-s\\tess2023124020739-s0065-0000000260128333-0259-s_lc.fits"
+  ],
+  [
+   68,
+   2013120,
+   "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2023209231226-s0068-0000000260128333-0262-s\\tess2023209231226-s0068-0000000260128333-0262-s_lc.fits"
+  ]
+ ]
+}

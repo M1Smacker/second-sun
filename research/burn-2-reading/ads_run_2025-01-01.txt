@@ -1,0 +1,213 @@
+﻿
+## abs:"circumbinary" abs:"TESS"  ->  40 new
+  2027-01  article   Yıldırım, M. F. | ST Aqr: Photometric and orbital period analysis of a near-contact binary with a secularly decreasing period | https://ui.adsabs.harvard.edu/abs/2027NewA..13002644Y 
+  2027-01  article   Putri, Pretty Oktianti Menur Kusuma et al. | Stellar flare activity in detached eclipsing binary systems observed by TESS | https://ui.adsabs.harvard.edu/abs/2027NewA..13002652P 
+  2026-11  article   Wongsriya, Supattra et al. | Starspot Activity and Third-body Perturbations in the Eclipsing Binary KIC 9451096 | https://ui.adsabs.harvard.edu/abs/2026AJ....172..256W 
+  2026-11  article   Jeong, Min-Ji et al. | BS Cassiopeiae: A Contact Binary with Starspot-driven Variability and Evidence for Additional Components | https://ui.adsabs.harvard.edu/abs/2026AJ....172..264J 
+  2026-11  article   Yaqup, Shahidin et al. | TIC 197757000: An Eclipsing Binary System Containing a δ Scuti-type Pulsating Star with Tidal Synchronization | https://ui.adsabs.harvard.edu/abs/2026RAA....26k5001Y 
+  2026-11  article   Wolf, Marek et al. | TESS light curves and surface activity in two low-mass eclipsing binaries: NSVS 01031772 and 2MASS J04100497+2 | https://ui.adsabs.harvard.edu/abs/2026NewA..12802617W 
+  2026-11  article   Boneva, Daniela et al. | The nova-like V592 Cas: Photometric variability in different time-scales and disc temperature | https://ui.adsabs.harvard.edu/abs/2026NewA..12802595B 
+  2026-11  article   Maryeva, Olga et al. | Central stars of newly discovered infrared nebulae: eruptive Be stars PY Gem and HD 253659 | https://ui.adsabs.harvard.edu/abs/2026MNRAS.552g1823M 
+  2026-10  article   Cavalier, T. et al. | A Previously Underexplored Regime in TESS: Minute-scale Eclipses Reveal 10 White Dwarf-Cool M-dwarf Binaries | https://ui.adsabs.harvard.edu/abs/2026ApJ..1009L..39C 
+  2026-10  article   Lai, Youmo et al. | Extremely Low Mass Ratio Contact Binaries. III. Photometric and Spectroscopic Investigations of 11 Systems | https://ui.adsabs.harvard.edu/abs/2026ApJ..1010..183L 
+  2026-10  article   Borkovits, T. et al. | TIC 433545934: The first 2+2-type doubly eclipsing binary with extra, mutual eclipses | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.106B 
+  2026-10  article   Pauli, D. et al. | First measurement of wind line formation regions in an early O-type star: The eclipsing binary system AzV 75 i | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.222P 
+  2026-10  article   Zasche, P. et al. | Eight new eclipsing binary systems with the light-time effect | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.182Z 
+  2026-10  article   Szewczuk, W. et al. | Asteroseismology of the multiperiodic field SX Phe pulsator BL Camelopardalis | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.170S 
+  2026-10  article   Camino Mesa, C. C. et al. | A catalogue of A-F variable stars within PLATO's first field of view, LOPS2 | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.318C 
+  2026-10  article   Zhang, Maohan et al. | Detection of a SU UMa-type Dwarf Nova with Long-lived Stage A Superhumps near the Lower Edge of the Period Gap | https://ui.adsabs.harvard.edu/abs/2026ApJ..1010...92Z 
+  2026-10  article   Wu, S.-Y. et al. | Ellipsoidal modulation and multi-wavelength activity in the pre-cataclysmic binary RX J1553.0+4457 | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.105W 
+  2026-10  article   Jeffery, C. Simon et al. | Surface brightness inhomogeneity on the helium-rich hot subdwarf in the X-ray binary HD 49798 | https://ui.adsabs.harvard.edu/abs/2026MNRAS.552g1667J arXiv:2609.02314
+  2026-10  article   Vaňko, Martin et al. | Photometric Solutions for 83 Neglected Eclipsing Binaries Using TESS Data | https://ui.adsabs.harvard.edu/abs/2026AJ....172..209V 
+  2026-10  article   Worters, H. L. et al. | Spectroscopy of TESS selected hot variable stars | https://ui.adsabs.harvard.edu/abs/2026MNRAS.tmp.1813W 
+  2026-10  article   Huang, Xiumin et al. | Dynamical Mass Demography of Single S-type Planets Shaped by Stellar Companions | https://ui.adsabs.harvard.edu/abs/2026ApJS..286...48H arXiv:2608.29140
+  2026-10  eprint    Lv, Chenglong et al. | TESS Pulsation Timing Reveals the JWST Calibration Star HD 158485 as a Double-pulsator Binary | https://ui.adsabs.harvard.edu/abs/2026arXiv261014371L arXiv:2610.14371
+  2026-10  eprint    Vrancken, Jasmine et al. | Probing Massive Star Formation with Intrinsic Multiplicity Constraints from TESS Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv261011762V arXiv:2610.11762
+  2026-10  eprint    Rodriguez, Antonio C. et al. | Discovery of a Nearby Ultra-fast Magnetic White Dwarf Propeller: Common Pathways to Magnetic Cataclysmic Varia | https://ui.adsabs.harvard.edu/abs/2026arXiv261010689R arXiv:2610.10689
+  2026-10  eprint    Liu, Zijun et al. | What does self-supervision add to engineered features for stellar light curves? | https://ui.adsabs.harvard.edu/abs/2026arXiv261014283L arXiv:2610.14283
+  2026-10  eprint    Kára, Jan et al. | A Distinct Type of Standstill in Ultra-Compact White Dwarf Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv261019105K arXiv:2610.19105
+  2026-10  eprint    Davis, Yasmin T. et al. | The EBLM Project - XIX. The absence of radius inflation in a homogeneous analysis of 66 Northern low-mass ecli | https://ui.adsabs.harvard.edu/abs/2026arXiv261018338D arXiv:2610.18338
+  2026-10  article   Narusawa, Shin-ya et al. | What happened with the sudden orbital-period change?: TESS light curves of the short-period Algol-type system  | https://ui.adsabs.harvard.edu/abs/2026PASJ...78.1945N 
+  2026-10  article   Çelik, Eda et al. | Investigating potential relationships between mass transfer indicators and δ Scuti pulsations in oEA systems | https://ui.adsabs.harvard.edu/abs/2026PASJ..tmp..213C 
+  2026-10  article   Hahlin, Axel et al. | Fundamental effective temperature measurements for eclipsing binary stars - IX. Characterization of five solar | https://ui.adsabs.harvard.edu/abs/2026MNRAS.552g1658H arXiv:2609.01033
+  2026-10  article   Lund, M. N. et al. | The Stellar Observations Network Group (SONG): A legacy archive of stellar time-domain spectroscopy | https://ui.adsabs.harvard.edu/abs/2026A&A...714A.277L 
+  2026-10  article   Yıldırım, M. F. et al. | First TESS-based photometric analysis of the solar-like contact binaries EI Sge and U Ret | https://ui.adsabs.harvard.edu/abs/2026AdSpR..78.8595Y 
+  2026-10  article   Alenazi, Moqbil S. et al. | An extensive photometric analysis of the eclipsing binaries V995 Mon and V1127 Per using multi-band ground-bas | https://ui.adsabs.harvard.edu/abs/2026NewA..12702576A 
+  2026-10  article   Southworth, John | Rediscussion of Eclipsing Binaries. Paper 32: The Eccentric F-type System EY Cephei | https://ui.adsabs.harvard.edu/abs/2026Obs...146..243S 
+  2026-10  eprint    Heidari, N. et al. | SOPHIE and TESS characterization of fourteen TESS Objects of Interest: nine planetary systems and five low-mas | https://ui.adsabs.harvard.edu/abs/2026arXiv261008584H arXiv:2610.08584
+  2026-10  eprint    Eze, C. I. et al. | Ensemble pulsational characteristics of eclipsing binaries containing $β$ Cep stars observed by the TESS missi | https://ui.adsabs.harvard.edu/abs/2026arXiv261001679E arXiv:2610.01679
+  2026-10  eprint    Klement, R. et al. | Full orbital solution and dynamical masses for a new shell-Be + sdOB binary AN Col | https://ui.adsabs.harvard.edu/abs/2026arXiv261002367K arXiv:2610.02367
+  2026-10  article   Dai, Zhibin et al. | Stage-dependent Superhump Waveform Evolution and Nonstationary Positive-superhump Timing in the Near-period-ga | https://ui.adsabs.harvard.edu/abs/2026ApJ..1010..132D 
+  2026-10  article   Liu, Wei et al. | Discovery of Three Period-bouncer Candidates from TESS Data | https://ui.adsabs.harvard.edu/abs/2026ApJ..1009..141L 
+  2026-10  eprint    Oddo, Dominic et al. | The Occurrence of Circumbinary Planets Around TESS M-dwarf Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv261022625O arXiv:2610.22625
+
+## abs:"circumbinary planet" abs:("transit" OR "transiting")  ->  39 new
+  2026-09  eprint    Sucerquia, Mario et al. | Binary tidal evolution as a sculptor of circumbinary planet architectures | https://ui.adsabs.harvard.edu/abs/2026arXiv260936112S arXiv:2609.36112
+  2026-09  eprint    Luque, Rafael et al. | Exoplanet Detection Techniques: Radial Velocity | https://ui.adsabs.harvard.edu/abs/2026arXiv260929378L arXiv:2609.29378
+  2026-08  eprint    Jiang, Qunfeng | Stellar tidal systematics in apsidal-motion searches for circumbinary planets: CH Ind and SW CMa | https://ui.adsabs.harvard.edu/abs/2026arXiv260813269J arXiv:2608.13269
+  2026-08  eprint    Littlefield, Colin et al. | The sensitivity of TESS to transiting planets in TOIs with close-in stellar companions | https://ui.adsabs.harvard.edu/abs/2026arXiv260813527L arXiv:2608.13527
+  2026-06  article   Davies, Benjamin D. R. et al. | Finding circumbinary planets: a semi-automated transit search of TESS eclipsing binaries | https://ui.adsabs.harvard.edu/abs/2026MNRAS.548ag743D arXiv:2604.09435
+  2026-06  article   Liu, Bin et al. | Planetary Desert around Compact Binaries: Dynamical Instability Triggered by Resonance-induced Eccentricity Ex | https://ui.adsabs.harvard.edu/abs/2026ApJ..1003L..29L arXiv:2603.00547
+  2026-05  article   Thornton, Margo et al. | Detection of 27 candidate circumbinary planets through apsidal precession of eclipsing binaries observed by TE | https://ui.adsabs.harvard.edu/abs/2026MNRAS.548ag515T arXiv:2512.07934
+  2026-05  inproceedings Thornton, Margo et al. | Detecting Circumbinary Planets via Apsidal Precession in Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026csss.confE..77T 
+  2026-02  abstract  Esmer, Ekrem et al. | A TESS Survey for Circumbinary Planets and Brown Dwarfs | https://ui.adsabs.harvard.edu/abs/2026AAS...24713506E 
+  2026-02  inproceedings Quirrenbach, Andreas | Astrophysics at high spectral and spatial resolution with the VLTI | https://ui.adsabs.harvard.edu/abs/2026vltb.confE..22Q 
+  2025-12  article   Farhat, Mohammad et al. | Capture into Apsidal Resonance and the Decimation of Planets around Inspiraling Binaries | https://ui.adsabs.harvard.edu/abs/2025ApJ...995L..23F arXiv:2512.03940
+  2025-11  article   Millward, Seb T. et al. | A new photometric ephemeris for the 2M1510 AB double brown dwarf eclipsing binary system | https://ui.adsabs.harvard.edu/abs/2025MNRAS.544L.126M arXiv:2510.14801
+  2025-10  article   Chance, Quadry et al. | paired: A Statistical Framework for Detecting Stellar Binarity with Gaia RVs. I. Sensitivity to Unresolved Bin | https://ui.adsabs.harvard.edu/abs/2025ApJ...992..131C arXiv:2206.11275
+  2025-10  article   Zúñiga-Fernández, S. et al. | Two warm Earth-sized exoplanets and an Earth-sized candidate in the M5V-M6V binary system TOI-2267 | https://ui.adsabs.harvard.edu/abs/2025A&A...702A..85Z arXiv:2508.14176
+  2025-09  inproceedings Grziwa, Sascha et al. | SINGLETRANS a new pipeline to detect mono transits in stellar light curves | https://ui.adsabs.harvard.edu/abs/2025epsc.conf.1460G 
+  2025-08  article   Mogan, Saahit et al. | Concealing Circumbinary Planets with Tidal Shrinkage | https://ui.adsabs.harvard.edu/abs/2025ApJ...988..150M arXiv:2412.01616
+  2025-07  phdthesis Baycroft, Thomas | Tools to Detect and Characterise Circumbinary Exoplanets | https://ui.adsabs.harvard.edu/abs/2025PhDT.........9B 
+  2025-06  abstract  Thornton, Margo et al. | Searching for Circumbinary Planets via Apsidal Precession | https://ui.adsabs.harvard.edu/abs/2025AAS...24613702T 
+  2025-06  abstract  Zhang, Elizabeth | A Blind Search for Circumbinary Planets Using a Novel Deep Learning Framework | https://ui.adsabs.harvard.edu/abs/2025AAS...24614414Z 
+  2025-01  abstract  Martin, Christopher et al. | KIC-8610483b: The Discovery of a New Non-transiting Circumbinary Planet | https://ui.adsabs.harvard.edu/abs/2025AAS...24524910M 
+  2025-01  abstract  Dunning, Erika et al. | Searching for New Circumbinary Exoplanets in TESS Data | https://ui.adsabs.harvard.edu/abs/2025AAS...24516010D 
+  2024-07  inproceedings Shaikhislamov, Ildar et al. | Characterization of upper atmospheres of hot exoplanets by multi-line observations and complex numerical simul | https://ui.adsabs.harvard.edu/abs/2024cosp...45..501S 
+  2024-00  proposal  Martin, David Vance | Hidden treasure - using the latest tools and techniques to uncover small circumbinary planets | https://ui.adsabs.harvard.edu/abs/2024xrp..prop..113M 
+  2023-07  inproceedings Columba, Gabriele et al. | Statistics of Magrathea exoplanets beyond the Main sequence. Simulating the long-term evolution of circumbinar | https://ui.adsabs.harvard.edu/abs/2023eas..conf.2030C 
+  2022-09  proposal  Horch, Elliott P et al. | Collaborative Research: RUI: Integral Field Unit Speckle Imager | https://ui.adsabs.harvard.edu/abs/2022nsf....2206099H 
+  2022-09  proposal  Wolf, Marsha J | Collaborative Research: RUI: Integral Field Unit Speckle Imager | https://ui.adsabs.harvard.edu/abs/2022nsf....2206100W 
+  2022-09  proposal  Kostov, Veselin et al. | Comprehensive Analysis of Period Changes in Eclipsing Binaries as a Probe of Stellar Astrophysics | https://ui.adsabs.harvard.edu/abs/2022nsf....2206814K 
+  2022-07  inproceedings Deeg, Hans-Jörg | Circumbinary planet detection with the PLATO mission | https://ui.adsabs.harvard.edu/abs/2022eas..conf.1081D 
+  2022-07  inproceedings Standing, Matthew et al. | Circumbinary planets in the 2020s | https://ui.adsabs.harvard.edu/abs/2022eas..conf..353S 
+  2022-00  proposal  Dragomir, Diana | Finding the Frequency of Tatooines: a Probe of the Limits of Planet Formation | https://ui.adsabs.harvard.edu/abs/2022fine.prop..258D 
+  2022-00  proposal  Haghighipour, Nader | Detection and Characterization of Circumbinary Planets Around TESS Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2022xrp..prop..190H 
+  2021-05  phdthesis Chen, Cheng | Orbital Dynamics and Stability of Circumbinary Planetary Systems and Small Bodies in The Solar System | https://ui.adsabs.harvard.edu/abs/2021PhDT.......221C 
+  2021-00  proposal  Quinn, Samuel N. | Planet Formation Revealed by a Uniform Analysis of all Giant Planets | https://ui.adsabs.harvard.edu/abs/2021xrp..prop..135Q 
+  2021-00  proposal  Kraus, Adam L. | Gaia Unveils the Perilous Lives of Planets in Binary Star Systems | https://ui.adsabs.harvard.edu/abs/2021xrp..prop...93K 
+  2020-12  article   Demircan, Osman et al. | Could Contact Binary Stars Host Planets? | https://ui.adsabs.harvard.edu/abs/2020TJAA....1S..17D 
+  2020-00  proposal  Ballard, Sarah | Probing the Role of Binarity in Exoplanetary System Architecture with Kepler and GAIA | https://ui.adsabs.harvard.edu/abs/2020fine.prop...30B 
+  2019-11  software  Luger, Rodrigo et al. | planetplanet: General photodynamical code for exoplanet light curves | https://ui.adsabs.harvard.edu/abs/2019ascl.soft11007L 
+  2019-08  abstract  Kraus, Adam | The Perilous Lives of Planets in Binary Star Systems | https://ui.adsabs.harvard.edu/abs/2019ESS.....431607K 
+  2019-08  abstract  Sutherland, Adam P. et al. | Instabilities in Multi-Planet Circumbinary Systems | https://ui.adsabs.harvard.edu/abs/2019ESS.....431605S 
+
+## abs:"circumbinary" abs:"Kepler" abs:"TESS"  ->  36 new
+  2026-09  eprint    Namekata, Kosuke | Coronal Mass Ejections from Young Suns: An Observational View through the Solar-Stellar Connection | https://ui.adsabs.harvard.edu/abs/2026arXiv260919278N arXiv:2609.19278
+  2026-09  article   Howell, Madeline et al. | TESS Asteroseismology of Red Giants in the Old Supersolar-metallicity Open Clusters NGC 188 and NGC 6791 | https://ui.adsabs.harvard.edu/abs/2026ApJ..1008...76H arXiv:2604.27828
+  2026-09  eprint    Pawar, Ganesh N. et al. | UX Men: Detached Eclipsing Binary as a Benchmark Candidate | https://ui.adsabs.harvard.edu/abs/2026arXiv260910786P arXiv:2609.10786
+  2026-09  article   Sun, Tiancheng et al. | A chemo-dynamical search for planet-candidate hosts of possible extragalactic origin | https://ui.adsabs.harvard.edu/abs/2026MNRAS.551g1502S arXiv:2608.13895
+  2026-09  article   Namekata, Kosuke | Coronal mass ejections from young Suns: an observational view through the solar-stellar connection | https://ui.adsabs.harvard.edu/abs/2026Ap&SS.371..110N 
+  2026-08  inproceedings Namekata, Kosuke | Stellar Coronal Mass Ejections Driving Exo-Space Weather | https://ui.adsabs.harvard.edu/abs/2026cosp...46.1197N 
+  2026-08  inproceedings Moharana, Ayush et al. | Triple stars on planetary scales: Formation of compact hierarchical triples | https://ui.adsabs.harvard.edu/abs/2026csss.confE.212M 
+  2026-08  article   Southworth, John | Rediscussion of Eclipsing Binaries. Paper 31: The Slowly-Pulsating B-Star System CV Velorum in the PLATO South | https://ui.adsabs.harvard.edu/abs/2026Obs...146..192S 
+  2026-08  article   Antoci, V. et al. | Wildly oscillating stars: Unexplained dense ridge-like frequency agglomerations in A- and F-type pulsators | https://ui.adsabs.harvard.edu/abs/2026A&A...712A.220A arXiv:2606.17207
+  2026-08  article   Huber, Daniel | The Space-Based Time-Domain Revolution in Astrophysics | https://ui.adsabs.harvard.edu/abs/2026ARA&A..64..321H arXiv:2512.10002
+  2026-07  article   Temelci, A. et al. | Multiplicity of UZ Lyr revisited: Two-companion model and its dynamical stability | https://ui.adsabs.harvard.edu/abs/2026NewA..12502533T 
+  2026-07  article   Mantovan, G. et al. | TOI-159 b: An eccentric hot-Jupiter planet around a young, pulsating γ Doradus star | https://ui.adsabs.harvard.edu/abs/2026A&A...711A.107M arXiv:2605.04149
+  2026-06  inproceedings Ogawa, Ryo et al. | Investigating the Deterministic Relationship Between Stellar Rotation and Age In Old Sun-like Stars | https://ui.adsabs.harvard.edu/abs/2026csss.confE.139O 
+  2026-06  inproceedings Namekata, Kosuke | Coronal Mass Ejections from Superflares on Solar-Type Stars | https://ui.adsabs.harvard.edu/abs/2026csss.confE.224N 
+  2026-06  inproceedings Miller, Nicola | Solar-type eclipsing binaries as benchmark stars | https://ui.adsabs.harvard.edu/abs/2026csss.confE..68M 
+  2026-06  article   Wicker, M. et al. | Gaia20fnr: A binary-lens microlensing event with full orbital motion revealed by four space telescopes | https://ui.adsabs.harvard.edu/abs/2026A&A...710A.294W 
+  2026-06  article   Meng, Fang-Bin et al. | KIC 6464285: A Solar-type Eclipsing Binary in a Hierarchical Triple System with Quasiperiodic Out-of-eclipse M | https://ui.adsabs.harvard.edu/abs/2026ApJ..1003..133M arXiv:2607.18811
+  2026-06  article   Yang, Daoye et al. | Fundamental Stellar and Accretion-disk Parameters of the Eclipsing Algol-type Binary 2MASS J06281154+164439.3 | https://ui.adsabs.harvard.edu/abs/2026AJ....171..372Y 
+  2026-05  article   Ferreira, Rafael R. et al. | Automating the classification of stellar activity: an unsupervised machine learning pipeline for large-scale s | https://ui.adsabs.harvard.edu/abs/2026PhyS..101u5006F 
+  2026-05  article   Yoldaș, Ezgi | Magnetic activity and rotational modulation of the secondary star in the V471 Tau eclipsing binary system obse | https://ui.adsabs.harvard.edu/abs/2026NewA..12402513Y 
+  2026-04  article   Nanglae, Suruswadee et al. | Predicting physical parameters of close eclipsing binaries from light-curve morphology: Implications for pre-c | https://ui.adsabs.harvard.edu/abs/2026A&C....5501084N 
+  2026-03  article   Jadhav, Vikrant V. et al. | A rotation-based census of blue lurker candidates in open clusters | https://ui.adsabs.harvard.edu/abs/2026A&A...707A.275J arXiv:2601.21059
+  2026-03  article   NegmEldin, M. A. et al. | Exploring central star variability of planetary nebulae using gaia photometry | https://ui.adsabs.harvard.edu/abs/2026NatSR..16.9830N 
+  2026-02  article   Leitzinger, M. et al. | Flares and superflares on the southern active binary CC Eri | https://ui.adsabs.harvard.edu/abs/2026MNRAS.545f1993L arXiv:2511.07036
+  2026-02  eprint    Nogami, Daisaku | Superhumps and their Relation to the Disk Instability Model | https://ui.adsabs.harvard.edu/abs/2026arXiv260213996N arXiv:2602.13996
+  2026-02  abstract  Lodhi, Areeb et al. | Time Evolution of Light Curve Asymmetries in Kepler and TESS Eclipsing Binaries | https://ui.adsabs.harvard.edu/abs/2026AAS...24721501L 
+  2026-02  abstract  Gupta, Aarush | Self-Supervised Embeddings and Physics-Informed Detection for Rare Exoplanetary Events | https://ui.adsabs.harvard.edu/abs/2026AAS...24743115G 
+  2026-02  abstract  Moquin, Julie et al. | One Man's TraSHDUMP is Another Man's Treasure: Automated Exoplanet Transit Detection and Vetting to Build Unbi | https://ui.adsabs.harvard.edu/abs/2026AAS...24730701M 
+  2026-01  article   Rocha, Danilo F. et al. | The Triple System V1371 Tau: An Eclipsing Binary with an Outer Be Star | https://ui.adsabs.harvard.edu/abs/2026ApJ...996...61R arXiv:2511.05761
+  2026-00  inbook    Curiel, Salvador et al. | Ultra-Precise Astrometric Search for Exoplanets with SKA-VLBI | https://ui.adsabs.harvard.edu/abs/2026aask.bookE..34C arXiv:2606.24862
+  2026-01  article   Chen, Y. H. et al. | Multi-band Photometric and Spectroscopic Analysis of the Dwarf Nova IU Leo | https://ui.adsabs.harvard.edu/abs/2026RAA....26a5001C arXiv:2510.18505
+  2026-01  eprint    Wicker, M. et al. | Gaia20fnr: A binary-lens microlensing event with full orbital motion revealed by four space telescopes | https://ui.adsabs.harvard.edu/abs/2026arXiv260115969W arXiv:2601.15969
+  2026-01  article   Dewberry, Janosz W. | Tidally Driven Inertial Waves Enhance Eccentricity Damping and Spin Evolution in Planets and Stars | https://ui.adsabs.harvard.edu/abs/2026ApJ...997...27D arXiv:2510.25812
+  2025-12  article   He, Tongyu et al. | A new Algol-type binary with an accretion disc | https://ui.adsabs.harvard.edu/abs/2025MNRAS.544.1361H arXiv:2510.07734
+  2025-12  article   Xu, FuKun et al. | Active Young Stars in the LAMOST─Kepler Survey | https://ui.adsabs.harvard.edu/abs/2025ApJS..281...39X 
+  2025-11  article   Maben, Sunayana et al. | Asteroseismology of Carbon-deficient Red Giants: Merger Products of Hierarchical Triple Systems? | https://ui.adsabs.harvard.edu/abs/2025ApJ...994...19M arXiv:2508.19509
+
+## author:"Kostov, V" abs:"circumbinary"  ->  29 new
+  2026-09  eprint    Rappaport, S. A. et al. | TIC 366240660 - A Dynamically Active Triple With a Very Short Outer Period of 30.5 Days | https://ui.adsabs.harvard.edu/abs/2026arXiv260925332R arXiv:2609.25332
+  2026-08  eprint    Borkovits, Tamás et al. | TIC 433545934: The first 2+2 type doubly eclipsing binary with extra, mutual eclipses | https://ui.adsabs.harvard.edu/abs/2026arXiv260813034B arXiv:2608.13034
+  2026-07  erratum   Oddo, Dominic et al. | Erratum: "A Catalog of M&M Eclipsing Binaries with TESS" (2026, ApJ, 996, 82) | https://ui.adsabs.harvard.edu/abs/2026ApJ..1006..112O 
+  2026-06  article   Powell, Brian P. et al. | TIC 295741342: A Triply Eclipsing Triple Star System with a Giant Tertiary | https://ui.adsabs.harvard.edu/abs/2026ApJ..1004..205P arXiv:2605.20080
+  2026-06  article   Rappaport, S. A. et al. | Discovery of the first octupole pulsation mode in a δ Scuti star: A stationary ℓ= 3 sectoral mode | https://ui.adsabs.harvard.edu/abs/2026A&A...710A.325R 
+  2026-04  eprint    Rappaport, S. A. et al. | Discovery of the First Octupole Pulsation Mode in a delta Scuti Star: A Stationary l = 3 Sectoral Mode | https://ui.adsabs.harvard.edu/abs/2026arXiv260418836R arXiv:2604.18836
+  2026-04  article   Oláh, K. et al. | Starspots on eclipsing giant stars: I. The sample and eclipse mapping examples (Corrigendum) | https://ui.adsabs.harvard.edu/abs/2026A&A...708C...4O 
+  2026-03  article   Borkovits, Tamás et al. | Discovery of the most compact 3+1-type quadruple star system TIC 120362137 | https://ui.adsabs.harvard.edu/abs/2026NatCo..17.1859B 
+  2026-03  article   Mihaylov, Deyan P. et al. | A Warm Massive Pair of Planets around TOI-1232 Revealed with Transit-timing Variations and Doppler Spectroscop | https://ui.adsabs.harvard.edu/abs/2026AJ....171..173M arXiv:2603.18395
+  2026-02  dataset   Kostov, V. B. et al. | VizieR Online Data Catalog: TESS Ten Thousand Catalog: Eclipsing Binaries (Kostov+, 2025) | https://ui.adsabs.harvard.edu/abs/2026yCat..22790050K 
+  2026-01  article   Oddo, Dominic et al. | A Catalog of M&M Eclipsing Binaries with TESS | https://ui.adsabs.harvard.edu/abs/2026ApJ...996...82O arXiv:2508.13941
+  2026-01  article   Kostov, V. B. et al. | 52 Eclipsing Quadruple Star Candidates Discovered in TESS Full Frame Images | https://ui.adsabs.harvard.edu/abs/2026AJ....171...29K arXiv:2510.27470
+  2025-12  article   Bittencourt, Mariana S. et al. | TIC 318249571.01: A New Hot-Jupiter Transiting Planet Candidate from TESS Data | https://ui.adsabs.harvard.edu/abs/2025RNAAS...9..345B 
+  2025-11  article   Yakut, Kadri et al. | A deep look into the intermediate-age open cluster NGC 2506: what binary systems reveal about cluster distance | https://ui.adsabs.harvard.edu/abs/2025MNRAS.544..271Y arXiv:2510.06320
+  2025-11  article   Majewski, Steven R. et al. | Characterizing TESS-identified Quadruple- and Higher-order Eclipsing Binaries. I. Speckle Imaging with DSSI an | https://ui.adsabs.harvard.edu/abs/2025ApJ...994..133M arXiv:2511.07554
+  2025-11  article   Borkovits, T. et al. | Ten new, ultracompact triply eclipsing triple star systems | https://ui.adsabs.harvard.edu/abs/2025A&A...703A.153B arXiv:2510.04565
+  2025-10  article   Handler, G. et al. | EL CMi: Confirmation of triaxial pulsation theory | https://ui.adsabs.harvard.edu/abs/2025A&A...702A.104H arXiv:2507.21255
+  2025-10  dataset   Borkovits, T. et al. | VizieR Online Data Catalog: Ten new triply eclipsing triple star systems (Borkovits+, 2025) | https://ui.adsabs.harvard.edu/abs/2025yCat..37030153B 
+  2025-10  dataset   Solanki, S. et al. | VizieR Online Data Catalog: Short-period heartbeat binaries from TESS (Solanki+, 2025) | https://ui.adsabs.harvard.edu/abs/2025yCat..22760017S 
+  2025-08  article   Kostov, Veselin B. et al. | The TESS Ten Thousand Catalog: 10,001 Uniformly Vetted and Validated Eclipsing Binary Stars Detected in Full-f | https://ui.adsabs.harvard.edu/abs/2025ApJS..279...50K arXiv:2506.05631
+  2025-06  abstract  Majewski, Steven et al. | Characterizing TESS-Identified Quadruple and Higher Order Eclipsing Binaries with Speckle Imaging | https://ui.adsabs.harvard.edu/abs/2025AAS...24610303M 
+  2025-06  article   Oláh, K. et al. | Starspots on eclipsing giant stars: I. The sample and eclipse mapping examples | https://ui.adsabs.harvard.edu/abs/2025A&A...698A.150O arXiv:2504.15389
+  2025-06  article   Powell, Brian P. et al. | The Discovery of Two Quadruple Star Systems with the Second and Third Shortest Outer Periods | https://ui.adsabs.harvard.edu/abs/2025ApJ...985..213P arXiv:2504.12239
+  2025-01  article   Solanki, Siddhant et al. | Short-period Heartbeat Binaries from TESS Full-frame Images | https://ui.adsabs.harvard.edu/abs/2025ApJS..276...17S arXiv:2407.14421
+  2025-01  abstract  Hartwell, Gabriel et al. | Characterizing Quadruple Eclipsing Binary Systems Through Combined TESS Photometry and High-Resolution Speckle | https://ui.adsabs.harvard.edu/abs/2025AAS...24535312H 
+  2025-01  abstract  Jayaraman, Rahul et al. | Time-Domain Astrophysics with the Transiting Exoplanet Survey Satellite | https://ui.adsabs.harvard.edu/abs/2025AAS...24532306J 
+  2022-07  inproceedings Kostov, Veselin | Planets orbiting main sequence binary stars | https://ui.adsabs.harvard.edu/abs/2022eas..conf.1745K 
+  2019-08  abstract  Kostov, Veselin | A transiting circumbinary planet from TESS | https://ui.adsabs.harvard.edu/abs/2019ESS.....430221K 
+  2019-06  abstract  Kostov, Veselin et al. | Using orbital dynamics to detect circumbinary planets: A novel approach | https://ui.adsabs.harvard.edu/abs/2019DDA....5010103K 
+
+## author:"Martin, D" abs:"circumbinary"  ->  35 new
+  2026-10  eprint    Stevenson, Adam T. et al. | The EBLM project - XX. Absolute dynamical masses of five low-mass eclipsing binaries, and an evaluation of mas | https://ui.adsabs.harvard.edu/abs/2026arXiv261018339S arXiv:2610.18339
+  2026-09  eprint    Rowan, D. M. et al. | Precise and Accurate Mass and Radius Measurements of Thirty Galactic Metal-Poor Stars in Detached Eclipsing Bi | https://ui.adsabs.harvard.edu/abs/2026arXiv260919248R arXiv:2609.19248
+  2026-09  abstract  Buschermöhle, Helena et al. | Exomoons of Circumbinary Planets | https://ui.adsabs.harvard.edu/abs/2026DDA....5720104B 
+  2026-09  article   Martin, David et al. | Type I X-Ray Burst Models with Rotation | https://ui.adsabs.harvard.edu/abs/2026ApJ..1008..183M arXiv:2608.04617
+  2026-08  article   Abe, K. et al. | Constraints on the VHE Counterpart of Two Binary Black Hole Mergers Observed by the MAGIC and CTAO LST-1 Teles | https://ui.adsabs.harvard.edu/abs/2026PASP..138h4101A arXiv:2607.19972
+  2026-08  article   Spejcher, Becca et al. | The EBLM project ─ XVIII. 3D obliquities of five low-mass eclipsing binaries | https://ui.adsabs.harvard.edu/abs/2026MNRAS.550g1334S arXiv:2511.23430
+  2026-08  eprint    Majumder, Tuhin et al. | Large Sample Properties of Higher Order Markov Models | https://ui.adsabs.harvard.edu/abs/2026arXiv260820321M arXiv:2608.20321
+  2026-06  article   Schneider, Adam C. et al. | Three Thousand Motion-confirmed L and T Dwarf Candidates from the Backyard Worlds: Planet 9 Citizen Science Pr | https://ui.adsabs.harvard.edu/abs/2026AJ....171..341S arXiv:2604.01323
+  2026-04  article   Blanco, José Antonio et al. | The Role of Central Sensitization and Emotional Comorbidities in Temporomandibular Involvement Among Patients  | https://ui.adsabs.harvard.edu/abs/2026Life...16..697B 
+  2026-04  article   Veldhuis, Hugo et al. | TOI-1259Ab: A warm Jupiter orbiting a K-dwarf white-dwarf binary on a low-obliquity orbit | https://ui.adsabs.harvard.edu/abs/2026A&A...708A.272V arXiv:2507.07737
+  2026-04  article   Sethi, Ritika et al. | EBLM XVII ─ tidal synchronization and circularization in tight stellar binaries | https://ui.adsabs.harvard.edu/abs/2026MNRAS.547ag454S 
+  2026-04  article   Gordon, Ben R. et al. | Exomoons of Circumbinary Planets | https://ui.adsabs.harvard.edu/abs/2026ApJ..1000..202G arXiv:2412.02847
+  2026-03  eprint    Epping, Gunnar P. et al. | Managing Cognitive Bias in Human Labeling Operations for Rare-Event AI: Evidence from a Field Experiment | https://ui.adsabs.harvard.edu/abs/2026arXiv260311511E arXiv:2603.11511
+  2026-03  eprint    Sethi, Ritika et al. | EBLM XVII - Tidal Synchronization and Circularization in Tight Stellar Binaries | https://ui.adsabs.harvard.edu/abs/2026arXiv260304554S arXiv:2603.04554
+  2026-02  article   Spejcher, Becca et al. | The EBLM project ─ XVI. Moderate spin─orbit misalignment of the low-mass eclipsing binary EBLM J0021-16 | https://ui.adsabs.harvard.edu/abs/2026MNRAS.545f2236S arXiv:2509.21517
+  2026-00  dataset   Veldhuis, Hugo et al. | TOI-1259Ab: A Warm Jupiter Orbiting a K-dwarf White-Dwarf Binary is on a Well-aligned Orbit | https://ui.adsabs.harvard.edu/abs/2026jpl..data..980V 
+  2025-12  article   Triaud, Amaury H. M. J. et al. | BEBOP VIII. SOPHIE radial velocities reveal an eccentric, circumbinary brown dwarf | https://ui.adsabs.harvard.edu/abs/2025MNRAS.544.2180T arXiv:2510.25329
+  2025-12  article   Maxted, P. F. L. et al. | Fundamental effective temperature measurements for eclipsing binary stars ─ VI. Improved methodology and appli | https://ui.adsabs.harvard.edu/abs/2025MNRAS.544.4611M arXiv:2510.23218
+  2025-08  article   Baycroft, Thomas A. et al. | BEBOP VII. SOPHIE discovery of BEBOP-3b, a circumbinary giant planet on an eccentric orbit | https://ui.adsabs.harvard.edu/abs/2025MNRAS.541.2801B arXiv:2506.14615
+  2025-07  article   Sebastian, D. et al. | EBLM XV - revised dynamical masses for the circumbinary planet host Kepler-16 AB, using the SOPHIE spectrograp | https://ui.adsabs.harvard.edu/abs/2025MNRAS.540.2914S arXiv:2505.19718
+  2025-05  article   Ruiz de Miras, Juan et al. | Fractal Dimension-Based Methodology for Discriminating Original Paintings from Replicas | https://ui.adsabs.harvard.edu/abs/2025Symm...17..703R 
+  2025-04  article   Armitage, Tayt et al. | Identifying flare locations through exoplanet transit occultations | https://ui.adsabs.harvard.edu/abs/2025MNRAS.538.2937A arXiv:2501.04866
+  2025-03  article   Fitzpatrick, Jay et al. | The EBLM project - XIV. TESS light curves for eclipsing binaries with very low mass companions | https://ui.adsabs.harvard.edu/abs/2025MNRAS.537.3943F arXiv:2502.09267
+  2025-02  article   Rowan, Dominick M. et al. | Precise and Accurate Mass and Radius Measurements of Fifteen Galactic Red Giants in Detached Eclipsing Binarie | https://ui.adsabs.harvard.edu/abs/2025OJAp....8E..18R arXiv:2409.02983
+  2024-12  article   Martin, David V. et al. | Revised temperatures for two benchmark M-dwarfs ─ outliers no more | https://ui.adsabs.harvard.edu/abs/2024MNRAS.535.3343M arXiv:2208.10510
+  2024-06  dataset   Kirkpatrick, J. D. et al. | VizieR Online Data Catalog: A full-sky 20pc census of stars &amp; BDs (Kirkpatrick+, 2024) | https://ui.adsabs.harvard.edu/abs/2024yCat..22710055K 
+  2024-00  article   Seraj, Esmaeil et al. | Heterogeneous Policy Networks for Composite Robot Team Communication and Coordination | https://ui.adsabs.harvard.edu/abs/2024ITRob..40.3833S arXiv:2606.20962
+  2015-09  article   Alahmadi, Mohammed et al. | Fine spatial resolution residential land-use data for small-area population mapping: a case study in Riyadh, S | https://ui.adsabs.harvard.edu/abs/2015IJRS...36.4315A 
+  2014-00  article   Martin, Daniel et al. | Autotuning of Digital Deadbeat Current Controllers for Grid-Tie Inverters Using Wide Bandwidth Impedance Ident | https://ui.adsabs.harvard.edu/abs/2014IOJIA..50..441M 
+  2013-03  inproceedings Martin, Daniel et al. | Wide bandwidth three-phase impedance identification using existing power electronics inverter | https://ui.adsabs.harvard.edu/abs/2013apec.conf...62M 
+  2012-09  inproceedings Martin, Daniel et al. | Auto tuning of digital deadbeat controllers for high performance AC voltage sources using wide bandwidth imped | https://ui.adsabs.harvard.edu/abs/2012ecce.conf..581M 
+  2012-02  inproceedings Martin, Daniel et al. | Auto tuning of digital deadbeat current controller for grid tied inverters using wide bandwidth impedance iden | https://ui.adsabs.harvard.edu/abs/2012apec.conf...51M 
+  2011-09  inproceedings Martin, Daniel et al. | Wide bandwidth system identification of AC system impedances by applying pertubations to an existing converter | https://ui.adsabs.harvard.edu/abs/2011ecce.conf..376M 
+  2000-10  article   Martin, D. P. et al. | Improved Efficiency of Zea mays Agroinoculation with Maize streak virus | https://ui.adsabs.harvard.edu/abs/2000PlDis..84.1096M 
+  1957-05  article   Doelz, M. L. et al. | Binary Data Transmission Techniques for Linear Systems | https://ui.adsabs.harvard.edu/abs/1957PIRE...45..656D 
+
+## author:"Davies, M" abs:"circumbinary"  ->  12 new
+  2026-03  inproceedings Khacef, Lyes et al. | Privacy-Preserving Fall Detection at the Edge Using Sony IMX636 Event-Based Vision Sensor and Intel Loihi 2 Ne | https://ui.adsabs.harvard.edu/abs/2026nice.conf67444K 
+  2025-12  article   Bobrick, Alexey et al. | Gas in globular clusters ─ I. Gas retention and its possible consequences | https://ui.adsabs.harvard.edu/abs/2025MNRAS.544.3601B arXiv:2509.02677
+  2025-11  article   Pavlík, Václav et al. | Spatial mixing of stellar populations in globular clusters via binary─single star scattering | https://ui.adsabs.harvard.edu/abs/2025A&A...703A.157P arXiv:2508.03322
+  2025-11  eprint    Khacef, Lyes et al. | Privacy-preserving fall detection at the edge using Sony IMX636 event-based vision sensor and Intel Loihi 2 ne | https://ui.adsabs.harvard.edu/abs/2025arXiv251122554K arXiv:2511.22554
+  2025-09  inproceedings Pavlík, Václav et al. | Insights into spatial mixing of multiple populations in dynamically-young globular clusters | https://ui.adsabs.harvard.edu/abs/2026IAUS..398...63P 
+  2025-08  eprint    Pavlík, Václav et al. | Insights into spatial mixing of multiple populations in dynamically-young globular clusters | https://ui.adsabs.harvard.edu/abs/2025arXiv250819747P arXiv:2508.19747
+  2024-04  inproceedings Henkel, Florian et al. | Tempo Estimation as Fully Self-Supervised Binary Classification | https://ui.adsabs.harvard.edu/abs/2024spsi.conf..280H 
+  2018-00  article   Grieve, Alex et al. | ARMOR: A Recompilation and Instrumentation-Free Monitoring Architecture for Detecting Memory Exploits | https://ui.adsabs.harvard.edu/abs/2018ITCmp..67.1092G 
+  2009-08  article   Shard, Alexander G. et al. | Organic Depth Profiling of a Binary System: the Compositional Effect on Secondary Ion Yield and a Model for Ch | https://ui.adsabs.harvard.edu/abs/2009JPCB..11311574S 
+  2008-03  inproceedings Zhao, Xu et al. | A feasible Blind Equalization scheme in large constellation MIMO systems | https://ui.adsabs.harvard.edu/abs/2008spsi.conf..471Z 
+  2006-09  inproceedings Nesbit, Andrew et al. | Source extraction from two-channel mixtures by joint cosine packet analysis | https://ui.adsabs.harvard.edu/abs/2006eusi.conf..507N 
+  2006-09  inproceedings Chetry, Nicolas et al. | Embedding side information into a speech codec residual | https://ui.adsabs.harvard.edu/abs/2006eusi.conf..302C 
+
+## author:"Oddo, D" abs:"circumbinary"  ->  0 new
+
+## abs:"STANLEY" abs:"circumbinary"  ->  0 new
+
+## abs:"exocomet" abs:"TESS"  ->  4 new
+  2025-11  article   Gibson, Adalyn et al. | TESS Discovers a Second System of Transiting Exocomets in the Extreme Debris Disk of RZ Psc | https://ui.adsabs.harvard.edu/abs/2025ApJ...993L..29G arXiv:2510.09920
+  2025-09  article   Norazman, Azib et al. | A search for transiting exocomets in TESS sectors 1─26 | https://ui.adsabs.harvard.edu/abs/2025MNRAS.542.1486N arXiv:2508.04673
+  2025-00  article   Dobrycheva, D. V. et al. | Visual inspection of potential exocomet transits identified through machine learning and statistical methods | https://ui.adsabs.harvard.edu/abs/2025KosNT..31f..80D arXiv:2602.02701
+  2020-00  proposal  Cody, Ann Marie | From exocomets to technosignatures: hidden occulters in planetary systems | https://ui.adsabs.harvard.edu/abs/2020xrp..prop..135C 

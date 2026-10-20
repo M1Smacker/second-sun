@@ -1,0 +1,10 @@
+# Real project milestones only. `done:` = date reached, or null.
+- {what: "Plan locked (25 rounds of decisions)",                 done: 2026-10-19}
+- {what: "G1 chosen as the first campaign",                      done: 2026-10-19}
+- {what: "First TESS light curve plotted by Ahmed",              done: null}
+- {what: "TOI-1338 b recovered in our own pipeline",             done: null}
+- {what: "First G1 batch of Kepler-field binaries searched",     done: null}
+- {what: "First candidate through two-key vetting (SS-0001)",    done: null}
+- {what: "First write-up published (RNAAS or paper)",            done: null}
+- {what: "Candidate on ExoFOP",                                  done: null}
+- {what: "TOI number assigned by the TESS team",                 done: null}

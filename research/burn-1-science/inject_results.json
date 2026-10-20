@@ -1,0 +1,130 @@
+{
+ "mad_ppm": 565.9281574547537,
+ "times": [
+  3997.637608746541,
+  3997.687608746541,
+  4014.2876087466016,
+  4014.437608746602,
+  4028.0876087466518,
+  4029.3876087466565,
+  4037.2876087466852,
+  4040.8876087466983
+ ],
+ "n_candidates": 522,
+ "ars": 108.08704530046724,
+ "false_events_no_injection": [],
+ "rows": [
+  {
+   "R_earth": 2,
+   "depth_ppm": 195,
+   "recovered": 0,
+   "n": 8,
+   "per_time": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "R_earth": 3,
+   "depth_ppm": 439,
+   "recovered": 0,
+   "n": 8,
+   "per_time": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "R_earth": 4,
+   "depth_ppm": 780,
+   "recovered": 0,
+   "n": 8,
+   "per_time": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "R_earth": 5,
+   "depth_ppm": 1219,
+   "recovered": 0,
+   "n": 8,
+   "per_time": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "R_earth": 6,
+   "depth_ppm": 1755,
+   "recovered": 0,
+   "n": 8,
+   "per_time": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "R_earth": 7,
+   "depth_ppm": 2389,
+   "recovered": 7,
+   "n": 8,
+   "per_time": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+   ]
+  },
+  {
+   "R_earth": 8,
+   "depth_ppm": 3120,
+   "recovered": 8,
+   "n": 8,
+   "per_time": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ ]
+}

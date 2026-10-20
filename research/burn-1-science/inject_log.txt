@@ -1,0 +1,12 @@
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+Warning: 37% (14957/40278) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+injection check: a/R* = 108.1, duration = 6.40 h
+522 usable mid-times; chosen [3997.64 3997.69 4014.29 4014.44 4028.09 4029.39 4037.29 4040.89]; MAD 566 ppm; events with no injection: []
+{'R_earth': 2, 'depth_ppm': 195, 'recovered': 0, 'n': 8, 'per_time': [False, False, False, False, False, False, False, False]}
+{'R_earth': 3, 'depth_ppm': 439, 'recovered': 0, 'n': 8, 'per_time': [False, False, False, False, False, False, False, False]}
+{'R_earth': 4, 'depth_ppm': 780, 'recovered': 0, 'n': 8, 'per_time': [False, False, False, False, False, False, False, False]}
+{'R_earth': 5, 'depth_ppm': 1219, 'recovered': 0, 'n': 8, 'per_time': [False, False, False, False, False, False, False, False]}
+{'R_earth': 6, 'depth_ppm': 1755, 'recovered': 0, 'n': 8, 'per_time': [False, False, False, False, False, False, False, False]}
+{'R_earth': 7, 'depth_ppm': 2389, 'recovered': 7, 'n': 8, 'per_time': [True, True, True, True, True, True, False, True]}
+{'R_earth': 8, 'depth_ppm': 3120, 'recovered': 8, 'n': 8, 'per_time': [True, True, True, True, True, True, True, True]}
