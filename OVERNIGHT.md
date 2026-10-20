@@ -18,10 +18,11 @@
 | 3 | **Second known system** (Kepler-16 or TIC 172900988) recovery with v2 | Published transits recovered or misses explained | No TESS data covering a transit | DEFERRED: STANLEY + systematics veto first (report §5) |
 | 4 | **Bible chapters 1-3** (stars + two-sun orbits; light curves + transits; why two-sun transits wander), each in the 7-step structure, on real project data/figures | Pages build strict; every claim labelled and sourced | — | DONE |
 | 5 | **Bible chapter 4**: our detector, from intuition to code (uses tasks 1-2) | Same | — | DONE |
-| 6 | **Website build** phase 1-3 of research/SITE-BLUEPRINT.md at `book/` (repo layout, design tokens, typography, sidebar with chapter progress, mission-control/observatory feel, still professional; not gamey), chapters from 4-5 moved in | `mkdocs build --strict` passes; checked at 390/1280 dark+light in a browser; no overflow; 0 console errors except the known service-worker one in the pane | — | pending |
+| 6 | **Website build** phase 1-3 of research/SITE-BLUEPRINT.md at `book/` (repo layout, design tokens, typography, sidebar with chapter progress, mission-control/observatory feel, still professional; not gamey), chapters from 4-5 moved in | `mkdocs build --strict` passes; checked at 390/1280 dark+light in a browser; no overflow; 0 console errors except the known service-worker one in the pane | — | DONE (design layer + chapters live in book/; deploy not enabled) |
 | 7 | MORNING-REPORT.md, commit, push | Report has A-I | — | pending |
 
 ## Checkpoint log
 - ~00:58 UTC: queue written. Burns 1-3 committed (200176c). Next: task 1.
 - 01:03 UTC: tasks 1-2 done. v2 = small gain (4/8 sectors, floor ~6 R_E); limit is data noise + systematics (flipped-data bumps up to SNR 12.6). Task 3 deferred. Next: task 4 (bible chapters).
 - 01:08 UTC: tasks 4-5 done: book/docs/book/ch1-ch4 (7-step structure), 18 new facts F-001..F-018 in book/data/claims.csv, glossary +10 terms, 3 real-data figures; mkdocs build --strict passes (2.45 s). Next: task 6 (website).
+- 01:14 UTC: task 6 done. book/ = prototype + observatory.css (Source Serif 4 / IBM Plex Sans / Plex Mono, self-hosted OFL), sidebar mission-timeline with per-device read marks, mission status panel, chapter index, numbered equation blocks, figure plates. Verified in browser: 13 pages 0 overflow at 390 px, dark+light, 0 console errors, strict build passes. Next: task 7 (morning report).

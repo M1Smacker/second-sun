@@ -37,7 +37,9 @@ We hunt the P-type. The first one caught transiting was **Kepler-16 b** in 2011,
 
 Too close to the pair, the stars' changing pull throws the planet out. Holman and Wiegert ran thousands of simulated orbits and fitted a formula for the closest stable distance, *a*<sub>c</sub> {{claim:F-004}}:
 
+<div class="ss-eq" data-eq="Eq. 1.1 · Holman and Wiegert" markdown="1">
 *a*<sub>c</sub> / *a*<sub>bin</sub> = 1.60 + 5.10 *e* − 2.22 *e*² + 4.12 μ − 4.27 *e* μ − 5.09 μ² + 4.61 *e*² μ²
+</div>
 
 Every symbol, one by one:
 
@@ -52,7 +54,9 @@ You don't need to memorise it. The lesson is in the result: for the known system
 
 We measure **periods** (time), not distances. Kepler's third law links them: for orbits around the same mass, **period² ∝ distance³**. So the ratio of two periods is the ratio of two distances raised to the power 3/2:
 
+<div class="ss-eq" data-eq="Eq. 1.2 · Kepler's third law" markdown="1">
 *P*<sub>c</sub> / *P*<sub>bin</sub> ≈ (*a*<sub>c</sub> / *a*<sub>bin</sub>)<sup>3/2</sup>
+</div>
 
 "Raised to the power 3/2" means: cube it, then take the square root. For a distance ratio of 3: 3³ = 27, and √27 ≈ 5.2. So a planet at 3 times the separation takes about **5 times as long** as the binary to go round. Across the known systems the critical period is **4 to 7 times the binary period** {{claim:F-005}}.
 

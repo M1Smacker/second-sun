@@ -17,7 +17,9 @@ A transit is that steady change: a small dip lasting hours. Our detector average
 
 The method is a **matched filter** with a **box** shape: we slide a box-shaped template of a given length along the data and measure how dim each stretch is. The key number is the **signal-to-noise ratio (SNR)**:
 
-**SNR = (how much dimmer this stretch is) ÷ (how much stretches of this length normally vary)**
+<div class="ss-eq" data-eq="Eq. 4.1 · signal-to-noise ratio" markdown="1">
+SNR = (how much dimmer this stretch is) ÷ (how much stretches of this length normally vary)
+</div>
 
 An SNR of 7 means "seven times bigger than a normal wobble". We use 7 as the bar, close to NASA's 7.1 {{claim:F-017}}. But a bar only means something if we **measure** how often noise alone crosses it. That's why we also run the search on flipped data (section 4.5).
 

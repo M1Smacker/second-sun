@@ -31,7 +31,9 @@ Three numbers describe a transit:
 
 The planet blocks a disc of light. The fraction blocked is the planet's disc area divided by the star's disc area. Area grows with radius squared, so {{claim:F-013}}:
 
-**depth ≈ (*R*<sub>p</sub> / *R*<sub>★</sub>)²**
+<div class="ss-eq" data-eq="Eq. 2.1 · transit depth" markdown="1">
+depth ≈ (*R*<sub>p</sub> / *R*<sub>★</sub>)²
+</div>
 
 - *R*<sub>p</sub>: the planet's radius (centre to edge).
 - *R*<sub>★</sub>: the star's radius.
