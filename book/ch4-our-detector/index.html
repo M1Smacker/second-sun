@@ -897,6 +897,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A sixth test: fake planets that move like real ones
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1263,6 +1274,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A sixth test: fake planets that move like real ones
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1420,6 +1442,45 @@
 <li><strong>The fix:</strong> use QLP's flux that keeps long dips (<code>sys_rm_flux</code>) and keep only SPOC's good stretches. Result: <strong>one event, the planet</strong>, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.</li>
 </ul>
 <p>That's rule C8 from Chapter 5 in action: the same dip, at the same time, in two products made by different teams. CONFIRMED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.</p>
+<h3 id="a-sixth-test-fake-planets-that-move-like-real-ones">A sixth test: fake planets that move like real ones<a class="headerlink" href="#a-sixth-test-fake-planets-that-move-like-real-ones" title="Permanent link">&para;</a></h3>
+<p>Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 3). So I used <strong>STANLEY</strong>'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:</p>
+<ul>
+<li>It checked its planned crossings against the data <strong>before</strong> adding them, and kept only the ones that already showed a dip. With no dip there yet, it kept none. So for hours it made "fake planets" with zero crossings.</li>
+<li>A number was passed as a list of one item, which newer Python maths libraries refuse.</li>
+</ul>
+<p>Then 6 fake planets (4, 6 and 8 Earth radii, orbits of 130 and 200 days) went into all 40 sectors of TOI-1338, giving <strong>33 crossings</strong> that last anywhere from 6.8 to 15.3 hours <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-029" title="VERIFIED · Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py) · checked 2026-10-20">VERIFIED</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Planet size</th>
+<th>Dip depth</th>
+<th>Crossings found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 Earth radii</td>
+<td>850 ppm</td>
+<td>0 of 10</td>
+</tr>
+<tr>
+<td>6 Earth radii</td>
+<td>1,900 ppm</td>
+<td>8 of 10</td>
+</tr>
+<tr>
+<td>8 Earth radii</td>
+<td>3,400 ppm</td>
+<td>10 of 10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Good news:</strong> our 2-day flattening kept about <strong>90 to 100%</strong> of every dip's depth, even the 15-hour ones. So the cleaning step isn't eating realistic, long, irregular crossings.</li>
+<li><strong>Hidden loss:</strong> 3 of the 33 crossings landed <strong>inside the binary's eclipses</strong>, which we cut out before searching. Those planets were lost before the search even looked. That's about 1 crossing in 11.</li>
+<li><strong>Same floor as before:</strong> about 6 Earth radii, now measured with realistic crossings. No false alarms appeared.</li>
+</ul>
+<p>Limits (honest): only 33 crossings, one star, one orbit angle per planet, and STANLEY never makes crossings of the <strong>smaller</strong> star. A proper sensitivity map needs hundreds of fake planets.</p>
 <h2 id="46-what-this-lets-us-conclude-and-what-it-doesnt">4.6 What this lets us conclude, and what it doesn't<a class="headerlink" href="#46-what-this-lets-us-conclude-and-what-it-doesnt" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>We can conclude:</strong> the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about <strong>6 Earth radii</strong>.</li>
