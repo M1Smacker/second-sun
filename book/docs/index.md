@@ -47,11 +47,13 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 <ol class="ss-chapters">
 <li data-n="07"><a href="book/07-noise-and-statistics/">Noise and statistics</a><span>Why averaging doesn't always help, what SNR means, and how often noise fakes a dip.</span></li>
 <li data-n="08"><a href="book/08-our-detector/">Our detector</a><span>How our search finds dips, and six honest tests of how good it is.</span></li>
+<li data-n="09"><a href="book/09-fake-planets/">Fake planets</a><span>Hiding planets of known size in real data to measure what the search can see.</span></li>
 </ol>
 
 ### Part 4 · Is it real?
 <ol class="ss-chapters">
 <li data-n="10"><a href="book/10-vetting/">Vetting</a><span>Every impostor that fakes a planet, the test that catches each one, and our strict bar.</span></li>
+<li data-n="11"><a href="book/11-pixels-and-neighbours/">Pixels and neighbours</a><span>Checking a dip is on our star, not a faint neighbour, using the pixels themselves.</span></li>
 </ol>
 
 ### Part 5 · The professionals' tool
