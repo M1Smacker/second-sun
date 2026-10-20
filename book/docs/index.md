@@ -14,27 +14,52 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 <div><dt>Candidates</dt><dd>0<small>the first will be SS-0001</small></dd></div>
 <div><dt>Next milestone</dt><dd>Stacked search<small>add each planet's crossings together</small></dd></div>
 </dl>
-<p>Nothing here is a discovery yet. Every number links back to a test in <a href="book/ch4-our-detector/">Chapter 4</a>.</p>
+<p>Nothing here is a discovery yet. Every number links back to a test in <a href="book/08-our-detector/">Chapter 8</a>.</p>
 </section>
 
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (20 Oct 2026):** we rebuilt the planet search and tested it honestly on a known two-sun planet. It works, but in a single sector it only sees planets about 6 times Earth's size or bigger. The next step is a search that stacks a planet's crossings together. Start with Chapter 1 below.
+    **Two-minute recap (20 Oct 2026):** the planet hunt is **paused** while the book catches up (the Bible Overhaul). Our search works on a known two-sun planet and sees planets down to about 6 Earth sizes in one sector. No new planet yet. Start with [The story so far](start/story-so-far.md).
+
+## Start here
+- **Coming back, or new?** Read [The story so far](start/story-so-far.md), then [How to read this book](start/how-to-read.md).
+- **Want to do it yourself?** Begin at [Lab 0: your workbench](labs/lab0-workbench.md) on your PC.
+- **What happened today?** The [field notes](field-notes/index.md) hold one lesson per working day.
 
 ## The book
 
+### Part 1 · The sky and the data
 <ol class="ss-chapters">
-<li><a href="book/ch1-two-suns/">Two suns</a><span>Binary stars, the planets that orbit both, and where those planets can survive.</span></li>
-<li><a href="book/ch2-light-curves/">Light curves</a><span>How a star's brightness graph reveals a planet, and how TESS collects it.</span></li>
-<li><a href="book/ch3-wandering-transits/">Wandering transits</a><span>Why two-sun planets' dips arrive early, late, or not at all, and why that's our chance.</span></li>
-<li><a href="book/ch4-our-detector/">Our detector</a><span>How our search finds dips, and three honest tests of how good it is.</span></li>
-<li><a href="book/ch5-vetting/">Vetting</a><span>Every impostor that fakes a planet, the test that catches each one, and our strict bar.</span></li>
-<li><a href="book/ch6-our-data/">Our data</a><span>From a NASA camera to your D: drive: what our data is, how big, and how good.</span></li>
+<li data-n="01"><a href="book/01-stars-names-missions/">Stars, names and missions</a><span>Kepler and TESS, how stars are named, and how to read brightness, distance and time.</span></li>
+<li data-n="02"><a href="book/02-light-curves/">Light curves</a><span>How a star's brightness graph reveals a planet, and how TESS collects it.</span></li>
+<li data-n="03"><a href="book/03-our-data/">Our data</a><span>From a NASA camera to your D: drive: what our data is, how big, and how good.</span></li>
 </ol>
 
-## Start here
-- **New to all this?** Read [Chapter 1](book/ch1-two-suns.md), then start the [learning track](learn/index.md).
+### Part 2 · Two suns
+<ol class="ss-chapters">
+<li data-n="04"><a href="book/04-two-suns/">Two suns</a><span>Binary stars, the planets that orbit both, and where those planets can survive.</span></li>
+<li data-n="05"><a href="book/05-wandering-transits/">Wandering transits</a><span>Why two-sun planets' dips arrive early, late, or not at all, and why that's our chance.</span></li>
+</ol>
+
+### Part 3 · Finding dips
+<ol class="ss-chapters">
+<li data-n="08"><a href="book/08-our-detector/">Our detector</a><span>How our search finds dips, and six honest tests of how good it is.</span></li>
+</ol>
+
+### Part 4 · Is it real?
+<ol class="ss-chapters">
+<li data-n="10"><a href="book/10-vetting/">Vetting</a><span>Every impostor that fakes a planet, the test that catches each one, and our strict bar.</span></li>
+</ol>
+
+### Part 6 · How the project runs
+<ol class="ss-chapters">
+<li data-n="14"><a href="book/14-credit-and-publishing/">Credit and publishing</a><span>How a find becomes a named result, and what journals say about AI.</span></li>
+</ol>
+
+Chapters still being written in the overhaul appear here when they're finished.
+
+## More
 - **What are we hunting?** The [quests](quests.md) page shows the plan and what's done.
 - **Found anything yet?** [Candidates](candidates.md) lists every signal that passed first checks. None yet.
 - **Lost on a word?** The [glossary](glossary.md) explains every term in plain words.

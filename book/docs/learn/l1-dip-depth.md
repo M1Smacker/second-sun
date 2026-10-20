@@ -29,7 +29,7 @@ The fraction of light blocked is the **[depth](../glossary.md#depth)**:
 <polyline class="ss-svg-line" fill="none" stroke-width="2" points="10,30 120,30 128,70 192,70 200,30 310,30"/>
 <text class="ss-svg-text" x="10" y="100">Earth and Sun: 84 ppm · Jupiter and Sun: about 1.05%</text>
 </svg>
-<figcaption>Figure 1.1. A transit is a box-shaped dip. The slider version works when JavaScript is on.</figcaption>
+<figcaption>Figure 4.1. A transit is a box-shaped dip. The slider version works when JavaScript is on.</figcaption>
 </figure>
 
 ## Your exercise (on real data)

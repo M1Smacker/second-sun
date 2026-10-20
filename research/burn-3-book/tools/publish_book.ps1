@@ -75,6 +75,9 @@ if ($Test) {
     finally { Stop-Process -Id $srv.Id -Force -ErrorAction SilentlyContinue }
 }
 
+Step "4c. Same-day lesson rule: is the book behind the work? (reminder, never blocks)"
+& "$live\.venv-docs\Scripts\python.exe" "$live\book\tools\teach_check.py"
+
 if ($DryRun) { Write-Host "`nDry run: nothing pushed." -ForegroundColor Yellow; exit 0 }
 
 Step "5. Publish to gh-pages"

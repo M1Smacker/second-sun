@@ -1,4 +1,4 @@
-# Credit and publishing
+# 14. Credit and publishing
 
 *What this chapter answers: once we find something, how does it become a recognised discovery with your name on it?*
 

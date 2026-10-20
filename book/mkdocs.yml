@@ -42,20 +42,37 @@ extra:
 
 nav:
   - Home: index.md
-  - Progress: progress.md
-  - Quests: quests.md
-  - Candidates: candidates.md
+  - Start here:
+      - "The story so far": start/story-so-far.md
+      - "How to read this book": start/how-to-read.md
+      - "Lab 0: your workbench": labs/lab0-workbench.md
+  - Book:
+      - "Part 1 · The sky and the data":
+          - "1. Stars, names and missions": book/01-stars-names-missions.md
+          - "Lab 1: from a name to a number": labs/lab1-name-to-number.md
+          - "Lab 2: get the data": labs/lab2-get-the-data.md
+          - "2. Light curves": book/02-light-curves.md
+          - "3. Our data": book/03-our-data.md
+      - "Part 2 · Two suns":
+          - "4. Two suns": book/04-two-suns.md
+          - "5. Wandering transits": book/05-wandering-transits.md
+      - "Part 3 · Finding dips":
+          - "8. Our detector": book/08-our-detector.md
+      - "Part 4 · Is it real?":
+          - "10. Vetting": book/10-vetting.md
+      - "Part 6 · How the project runs":
+          - "14. Credit and publishing": book/14-credit-and-publishing.md
   - Learn:
       - learn/index.md
       - "L1 How big is the dip?": learn/l1-dip-depth.md
-  - Book:
-      - "1. Two suns": book/ch1-two-suns.md
-      - "2. Light curves": book/ch2-light-curves.md
-      - "3. Wandering transits": book/ch3-wandering-transits.md
-      - "4. Our detector": book/ch4-our-detector.md
-      - "5. Vetting": book/ch5-vetting.md
-      - "6. Our data": book/ch6-our-data.md
-      - book/credit-and-publishing.md
+  - Field notes:
+      - field-notes/index.md
+      - "19 Oct 2026": field-notes/2026-10-19.md
+      - "20 Oct 2026": field-notes/2026-10-20.md
+  - The hunt:
+      - Progress: progress.md
+      - Quests: quests.md
+      - Candidates: candidates.md
   - Reference:
       - Glossary: glossary.md
       - Claims register: claims.md

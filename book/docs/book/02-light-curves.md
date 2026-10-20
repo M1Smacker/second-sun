@@ -23,7 +23,7 @@ Three numbers describe a transit:
 |---|---|---|
 | **Depth** | how much dimmer the star gets | the planet's size compared with the star |
 | **Duration** | how long the dip lasts | how fast the planet moves across, and the path it takes |
-| **Time** (mid-point) | when it happens | for single-star planets, the period; for two-sun planets, a timing pattern (Chapter 3) |
+| **Time** (mid-point) | when it happens | for single-star planets, the period; for two-sun planets, a timing pattern (Chapter 5) |
 
 ## 2.3 The technical explanation
 
@@ -52,11 +52,11 @@ TESS is a NASA space telescope that stares at one big patch of sky for about **2
 The SPOC light curves come in two versions you'll meet in our code:
 
 - **SAP** (simple aperture photometry): the raw sum of light in the star's pixels.
-- **PDCSAP**: SAP with known spacecraft effects removed. Cleaner, but occasionally missing data where SAP is fine. Detector v2 fills those gaps from SAP (Chapter 4).
+- **PDCSAP**: SAP with known spacecraft effects removed. Cleaner, but occasionally missing data where SAP is fine. Detector v2 fills those gaps from SAP (Chapter 8).
 
 ### Noise
 
-Every measurement jitters. For a star like TOI-1338 (TESS magnitude about 11.5), one hour of 2-minute data scatters by roughly **400 to 550 ppm** in our measurements (overnight test, `pipeline/diag_v2_results.json`). A planet's dip has to stand clearly above that, which is the subject of Chapter 4.
+Every measurement jitters. For a star like TOI-1338 (TESS magnitude about 11.5), one hour of 2-minute data scatters by roughly **400 to 550 ppm** in our measurements (overnight test, `pipeline/diag_v2_results.json`). A planet's dip has to stand clearly above that, which is the subject of Chapter 8.
 
 ## 2.4 Our implementation
 
@@ -83,7 +83,7 @@ Check the planet with the formula: TOI-1338 b is about 6.9 Earth radii {{claim:F
 
 ## 2.6 What this lets us conclude, and what it doesn't
 
-- **A dip is not a planet.** Spacecraft effects, star spots, the other star, or a faint background binary can all make dips. Chapter 4 and the vetting chapter deal with that.
+- **A dip is not a planet.** Spacecraft effects, star spots, the other star, or a faint background binary can all make dips. Chapter 8 and the vetting chapter deal with that.
 - **Depth gives a size only relative to the star.** If the star's size is wrong, or another star's light dilutes the dip, the planet size is wrong too.
 - **One sector is a short window.** Two-sun planets often cross only once per sector or not at all, which is why the next chapter matters.
 
@@ -98,7 +98,7 @@ Check the planet with the formula: TOI-1338 b is about 6.9 Earth radii {{claim:F
 ??? quiz "3. TOI-1338's 5% dips repeat every 14.6 days. Planet or star?"
     **Star.** 5% means an object about √0.05 ≈ 0.22 of the big star's radius: the small companion star, eclipsing on the binary's 14.6-day orbit.
 
-**Next:** [Chapter 3](ch3-wandering-transits.md): why a two-sun planet's dips don't arrive on a clock.
+**Next:** [Chapter 5](05-wandering-transits.md): why a two-sun planet's dips don't arrive on a clock.
 
 ## Sources
 In the [claims register](../claims.md): F-003, F-011 to F-013. Background: Winn 2010, "Transits and Occultations", [arXiv:1001.2010](https://arxiv.org/abs/1001.2010).
