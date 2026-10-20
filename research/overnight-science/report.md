@@ -228,3 +228,13 @@ Figures: `research/overnight-science/kepler16_s54_event.png`, `kepler16_s54_sect
 ## 13. STANLEY on TOI-1338: stage 1 done
 
 STANLEY's detrending (stage 1) completed on all **40 SPOC sectors** of TOI-1338 (93,690 cadences after its cuts), after two fixes (setuptools for Python 3.12's missing distutils; a wrapper forcing downloads onto D:) and one restart from saved data (the first run hit a 25-minute cap mid-fit). Its independent binary fit agrees with ours: period **14.608642 d** (ours 14.6084), secondary eclipse at **0.455** of the orbit after the primary (ours 0.454), masses 1.2 + 0.325 M☉ (published ~1.1 + 0.3). Outputs in `data/stanley/LightCurves/Processed/ss_toi1338/` (data folder, not in git). Stage 2 (the orbit-grid search), as a bounded recovery test (circular orbits, 90-100 d), started 02:19 UTC with a 1-hour cap.
+
+## 14. STANLEY stage 2 result + first try at physically realistic injection (Compass priority 1)
+
+**STANLEY search (circular orbits, 90-100 d, 33 min on this PC):** strongest cell 18.4σ at a trial period of ~93.8 d (grid index 107 of 173, 100.03 → 90.05 d), close to TOI-1338 b's ~95 d. But the median cell is 4.2σ and 27% of cells exceed 5σ, so the σ scale is **not calibrated** here; STANLEY's analysis module is needed before calling this a recovery. UNCERTAIN.
+
+**Injection with STANLEY's N-body injector (`pipeline/stanley/inject_cbp.py`):** 6 planets (4/6/8 R⊕ at 130 and 200 d) into the 40-sector raw light curve. **All injected zero transits.** Two bounded debugging tries:
+1. Found a real STANLEY issue: `Search_CreateTransitMask` defaults to `maxCompTime=1` s and `InjectTransits` never raises it, so long integrations time out silently. Raised to 600 s in our wrapper (no package edit). Still zero.
+2. Direct call: returns in 0.2 s with no transit times, not the timeout sentinel. Its N-body transit finder finds no crossings with our inputs. Cause not found (candidates: viewing-geometry convention, time origin). BLOCKED.
+
+**Next (smallest step):** run STANLEY's injector on its own tutorial target (Kepler-64) to learn whether the problem is our TESS inputs or the injector; if it can't be made to work quickly, fall back to a small rebound three-body transit-time model (rebound is installed; importing GPL code is fine, copying it into the repo is not).

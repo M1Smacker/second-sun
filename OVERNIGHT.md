@@ -59,3 +59,4 @@
 | 13 | Global eclipse fold in the main pipeline for binaries with P > ~10 d | Kepler-16 run reproduces 4.9% masked | pending |
 | 14 | Book: chapter on STANLEY / stacked search once 11 is done | strict build | pending |
 - 02:39 UTC: CHECKPOINT. Window 68%, weekly 10%. STANLEY stage 2 running in background (np.product shim). Main session idles to save window; resumes on STANLEY completion or the 08:55 Kuwait timer.
+- 03:08 UTC: STANLEY stage 2 done (18.4 sigma near 93.8 d, uncalibrated). Compass review written (REVISE). claims.csv now tracked (.gitignore /data/). Book republish: nothing changed (already current). STANLEY injector: 0 transits after 2 tries (maxCompTime fix + direct call) -> BLOCKED; next = test on Kepler-64 tutorial target.
