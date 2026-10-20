@@ -35,6 +35,7 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 - **Realistic fake planets** finally worked after I found a bug in STANLEY. Our cleaning keeps 90 to 100% of each dip. We find 6-Earth-size planets 8 times in 10, and about 1 crossing in 11 is lost inside the stars' eclipses {{claim:F-029}}.
 - **NASA's candidate site now wants papers first** {{claim:B9}}. That's a decision for you, later.
 - **Afternoon: the Bible Overhaul.** Writing the labs caught three of our own errors (a noise number, STANLEY's best period, and a hole in the G1 list), all corrected and logged. The [field note](../field-notes/2026-10-20.md) has the details.
+- **Evening: the quality-filter test** (a seventh test in [Chapter 8](../book/08-our-detector.md)). A milder data filter finds the two crossings we couldn't see before, but costs sensitivity elsewhere; and the raw flux gave a quieter noise estimate than the cleaned flux in several sectors. One star only; nothing in the detector changed. [Field note](../field-notes/2026-10-20.md).
 - **You paused the hunt** to start this overhaul: "I can't let an AI do all the work while I just sit and say yes or no."
 
 ## The honest scoreboard

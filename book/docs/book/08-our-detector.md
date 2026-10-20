@@ -114,11 +114,33 @@ Then 6 fake planets (4, 6 and 8 Earth radii, orbits of 130 and 200 days) went in
 
 Limits (honest): only 33 crossings, one star, one orbit angle per planet, and STANLEY never makes crossings of the **smaller** star. A proper sensitivity map needs hundreds of fake planets.
 
+### A seventh test: does the quality filter, or the kind of flux, matter?
+
+Our search throws away every measurement NASA flags as possibly bad (the **HARD** filter). Two published crossings of TOI-1338 b, in sectors 30 and 62, fall where that leaves **no data at all**. So we asked: would a milder filter (**DEFAULT**) let us see them?
+
+There was a catch, found by reading the files first: in every one of those restored stretches NASA's cleaned flux (PDCSAP) is blank, and only the raw flux (SAP) exists. So the test needed three versions, changing one thing at a time:
+
+| Arm | Flux | Filter | Compares |
+|---|---|---|---|
+| A0 | cleaned (PDCSAP) | HARD | our baseline, rerun and matched exactly to the saved results |
+| A1 | raw (SAP) | HARD | A0 vs A1: the flux alone |
+| A2 | raw (SAP) | DEFAULT | A1 vs A2: the filter alone |
+
+The rules for reading the result were written down before anything ran (`experiments/quality_mask/SPEC.md`). Results, all on this one star:
+
+- **The milder filter finds both missing crossings.** In sectors 62 (a measured time) and 30 (only a prediction), an event appears within 0.3 days of the published time, at 12.1 and 10.5 times the noise {{claim:F-056}}.
+- **But it costs sensitivity everywhere else.** Transits that don't touch the restored data got weaker by a median of 0.5 noise units, up to 2.2. Fake 6-Earth-radius planets went from 2 found of 7 to 0 of 7, and 7-Earth-radius ones from 7 of 7 to 3 of 7 {{claim:F-057}}. Restored data is noisier and has up to 8 times the background light.
+- **False alarms: undecided.** In upside-down data, events containing restored data came at about 6.8 per 100 days against about 1 per 100 days without, but with so few events the ranges overlap, so the rule we set in advance was not triggered. "Not triggered" is **not** the same as "safe" {{claim:F-058}}.
+- **A surprise about the flux, not the filter.** With the same cadences, raw SAP flux found the published crossing in 7 of 8 sectors; our cleaned PDCSAP baseline found 4 {{claim:F-054}}. A follow-up check (not planned in advance, so weaker evidence) showed the transit depth is the same in both. What differs is the detector's noise estimate: in sectors 6, 34 and 37 it is 2 to 3 times larger in the cleaned flux {{claim:F-055}}. **Why is not known.**
+
+!!! warning "What this does to earlier numbers"
+    The "mostly the data" conclusion below was drawn from the cleaned flux only. On this star, part of the limit comes from how noisy the cleaned flux looks to our detector. Nothing is changed in the production detector: this is one star, two new crossings (one of them a prediction), and a few injections. The next steps are in `RESUME.md`.
+
 ## 8.6 What this lets us conclude, and what it doesn't
 
 - **We can conclude:** the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about **6 Earth radii**.
 - **We can't conclude:** that "nothing found" means "no planet". It means "nothing bigger than about 6 Earths crossed in this sector", and only for stars this bright or brighter.
-- **The limit is mostly the data.** The planet's missed dips are genuinely weak in those sectors, and spacecraft effects make bumps as strong as real dips. Better code alone won't fix that.
+- **The limit is partly the data.** The planet's missed dips are weak in the cleaned flux, and spacecraft effects make bumps as strong as real dips. But the seventh test shows that, for the same cadences, the raw flux gave the detector a quieter noise estimate in several sectors, so "mostly the data" was too strong.
 - **What came next:** the gap and thruster rules became warning flags (test 4); fake planets that move like real ones were tested (test 6, and [Chapter 9](09-fake-planets.md)); and the stacked search, STANLEY, was run on TOI-1338 ([Chapter 12](12-stanley.md)). Smarter quality flags and a pixel tool are still to build.
 
 !!! warning "Not a discovery"
