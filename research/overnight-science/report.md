@@ -73,3 +73,17 @@ v1 and v2 each found 4 of these 8; v2 swaps S6 for S10. CONFIRMED (ran).
 2. **STANLEY trial on TOI-1338** (`.venv-tests`, MIT): does a circumbinary-aware stacked search recover TOI-1338 b from S1-S98 together? This is the real test of G1 feasibility.
 3. Second known system (Kepler-16, TIC 299096355?: verify the TIC before use) once 1-2 work.
 4. Red-noise error bar on the S98 timing offset (+1.08 h v2, +57 min burn 1) before calling it meaningful.
+
+## 6. Systematics veto (task 8): tested, then loosened once
+
+**In plain words:** I tried to throw out fake dips automatically when they sit next to a data gap or a thruster firing ("momentum dump"). It removed 4 of the 6 fakes, but it also threw out **2 of the 4 real planet crossings**. Real and fake ones sit at the same kinds of distances from gaps and dumps on this star, so no cut-off separates them. Following the stop rule, I loosened it once: gap and dump closeness are now **warning flags** for the human vetting sheet, not automatic rejection. Only "the same wiggle also appears in the flipped data" is rejected automatically.
+
+| Version | Real crossings kept (of 4 found) | Fakes on flipped data | Other real events |
+|---|---|---|---|
+| No veto | 4 | 6 | 2 |
+| Strict veto (gap 0.5 d, dump 0.25 d, flipped match) | **2** (lost S10: dump 0.17 d away; S68: gap edge 0.09 d away) | 2 | 1 |
+| Loosened (flags only + flipped match) | **4** | 6, of which **4 flagged** | 2 |
+
+Measured distances (days) to the nearest gap edge / dump: planet S10 2.75 / 0.17, S65 2.66 / 1.71, S68 0.09 / 3.07, S98 3.18 / 1.11; fakes S6 0.35 / 0.24, S30 0.16 / 0.16, S34 0.06 / 0.47, S68 2.03 / 0.38, S98 2.08 / 0.20 and 2.79 / 0.72. CONFIRMED (`pipeline/veto_test.py`, `veto_dist.py`, `veto_results.json`).
+
+**Conclusion:** on one star with 4 real and 6 fake events, single-event cuts can't clean the data without losing planets. That points again to requiring **several dips that fit one circumbinary orbit** (stacking) rather than judging dips alone. The flags still help: 4 of 6 fakes carry a warning a human will see.

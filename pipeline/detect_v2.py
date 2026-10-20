@@ -117,6 +117,44 @@ def find_events(t, f, thr=7.0, durs_h=DURS_H, window_d=2.0):
     return events
 
 
+# ---------------------------------------------------------------------------------------------
+# Systematics veto (overnight task 8, loosened once after testing; see research/overnight-science/report.md §6).
+# On TOI-1338, gap-edge and momentum-dump distances did NOT separate real transits from fakes (real ones sat
+# 0.09 d from a gap and 0.17 d from a dump; fakes 0.06-0.35 d and 0.16-0.24 d). So:
+#   - AUTO-REJECT only events matched within FLIP_D by an event in the flipped light curve (symmetric wiggles);
+#   - FLAG (for the human vetting sheet, never auto-reject) events within GAP_D of a data-gap edge or within
+#     DUMP_D of a momentum dump (TESS quality bit 32, "Desat").
+GAP_D, DUMP_D, FLIP_D = 0.5, 0.25, 0.3
+
+
+def systematics(path):
+    """Gap edges and momentum-dump times for one SPOC light-curve file."""
+    lc = lk.read(path, quality_bitmask="none")
+    t = lc.time.value
+    q = np.asarray(lc.quality.value, int)
+    good = lk.read(path, quality_bitmask="hard").time.value
+    good = good[np.isfinite(good)]
+    dt = np.diff(good)
+    edges = np.concatenate([good[:-1][dt > 0.25], good[1:][dt > 0.25], [good.min(), good.max()]])
+    dumps = t[(q & 32) > 0]
+    return edges, dumps[np.isfinite(dumps)]
+
+
+def veto(events, edges, dumps, flipped_events):
+    """Returns (kept, rejected). Kept events carry a 'flags' list for the vetting sheet."""
+    kept, rejected = [], []
+    for e in events:
+        c = e["center"]
+        if any(abs(fe["center"] - c) < FLIP_D for fe in flipped_events):
+            rejected.append({**e, "veto": "matched in flipped data"}); continue
+        flags = []
+        if edges.size and np.min(np.abs(edges - c)) < GAP_D:
+            flags.append("near data-gap edge")
+        if dumps.size and np.min(np.abs(dumps - c)) < DUMP_D:
+            flags.append("near momentum dump")
+        kept.append({**e, "flags": flags})
+    return kept, rejected
+
 def _selfcheck():
     rng = np.random.default_rng(1)
     t = np.arange(0, 27, 2 / 1440)

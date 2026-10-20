@@ -1,0 +1,183 @@
+{
+ "rows": [
+  {
+   "sector": 6,
+   "planet_before": false,
+   "planet_after": false,
+   "other_real_before": 0,
+   "other_real_after": 0,
+   "flipped": 1,
+   "flipped_flagged": 1,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": [
+    [
+     1468.63,
+     [
+      "near data-gap edge",
+      "near momentum dump"
+     ]
+    ]
+   ]
+  },
+  {
+   "sector": 10,
+   "planet_before": true,
+   "planet_after": true,
+   "other_real_before": 0.0,
+   "other_real_after": 0.0,
+   "flipped": 0,
+   "flipped_flagged": 0,
+   "rejected": [],
+   "flags_real": [
+    [
+     1579.04,
+     [
+      "near momentum dump"
+     ]
+    ]
+   ],
+   "flags_flipped": []
+  },
+  {
+   "sector": 27,
+   "planet_before": false,
+   "planet_after": false,
+   "other_real_before": 1.0,
+   "other_real_after": 1.0,
+   "flipped": 0,
+   "flipped_flagged": 0,
+   "rejected": [],
+   "flags_real": [
+    [
+     2047.86,
+     [
+      "near data-gap edge"
+     ]
+    ]
+   ],
+   "flags_flipped": []
+  },
+  {
+   "sector": 30,
+   "planet_before": false,
+   "planet_after": false,
+   "other_real_before": 0,
+   "other_real_after": 0,
+   "flipped": 1,
+   "flipped_flagged": 1,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": [
+    [
+     2116.05,
+     [
+      "near data-gap edge",
+      "near momentum dump"
+     ]
+    ]
+   ]
+  },
+  {
+   "sector": 34,
+   "planet_before": false,
+   "planet_after": false,
+   "other_real_before": 0,
+   "other_real_after": 0,
+   "flipped": 1,
+   "flipped_flagged": 1,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": [
+    [
+     2229.22,
+     [
+      "near data-gap edge"
+     ]
+    ]
+   ]
+  },
+  {
+   "sector": 37,
+   "planet_before": false,
+   "planet_after": false,
+   "other_real_before": 0,
+   "other_real_after": 0,
+   "flipped": 0,
+   "flipped_flagged": 0,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": []
+  },
+  {
+   "sector": 62,
+   "planet_before": false,
+   "planet_after": false,
+   "other_real_before": 0,
+   "other_real_after": 0,
+   "flipped": 0,
+   "flipped_flagged": 0,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": []
+  },
+  {
+   "sector": 65,
+   "planet_before": true,
+   "planet_after": true,
+   "other_real_before": 0.0,
+   "other_real_after": 0.0,
+   "flipped": 0,
+   "flipped_flagged": 0,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": []
+  },
+  {
+   "sector": 68,
+   "planet_before": true,
+   "planet_after": true,
+   "other_real_before": 0.0,
+   "other_real_after": 0.0,
+   "flipped": 1,
+   "flipped_flagged": 0,
+   "rejected": [],
+   "flags_real": [
+    [
+     3178.26,
+     [
+      "near data-gap edge"
+     ]
+    ]
+   ],
+   "flags_flipped": []
+  },
+  {
+   "sector": 98,
+   "planet_before": true,
+   "planet_after": true,
+   "other_real_before": 1.0,
+   "other_real_after": 1.0,
+   "flipped": 2,
+   "flipped_flagged": 1,
+   "rejected": [],
+   "flags_real": [],
+   "flags_flipped": [
+    [
+     4039.05,
+     [
+      "near momentum dump"
+     ]
+    ]
+   ]
+  }
+ ],
+ "totals": {
+  "planet_before": 4,
+  "planet_after": 4,
+  "other_real_before": 2.0,
+  "other_real_after": 2.0,
+  "flipped": 6,
+  "flipped_flagged": 4
+ }
+}

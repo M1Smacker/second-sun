@@ -30,7 +30,8 @@
 ## Queue, part 2 (added after tasks 1-7; budget still well under 25%)
 | # | Task | Done when | Skip/stop if | Status |
 |---|---|---|---|---|
-| 8 | **Systematics veto** in `pipeline/`: reject events within 0.5 d of a data gap edge, near quality-flagged cadences / momentum dumps, or matched by a flipped-data event; re-run accept_v2 false-alarm + recovery with the veto | false alarms per sector re-measured; recovery of TOI-1338 b not reduced | veto kills real transits → loosen once, then record | pending |
+| 8 | **Systematics veto** in `pipeline/`: reject events within 0.5 d of a data gap edge, near quality-flagged cadences / momentum dumps, or matched by a flipped-data event; re-run accept_v2 false-alarm + recovery with the veto | false alarms per sector re-measured; recovery of TOI-1338 b not reduced | veto kills real transits → loosen once, then record | DONE (loosened once to flags; report §6) |
 | 9 | **STANLEY trial** on TOI-1338 (`.venv-tests`, MIT, imports only) | runs on cached sectors; recovers TOI-1338 b or failure explained | install/API blocks after 2 bounded tries → BLOCKED, record | pending |
 | 10 | Update chapter 4 + MORNING-REPORT with 8-9 | build strict passes | — | pending |
 - 01:15 UTC: task 7 done (MORNING-REPORT.md). Queue part 2 added (8-10). Next: task 8.
+- 01:18 UTC: task 8 done. Strict veto lost 2/4 real transits; loosened once: gap/dump = flags, flipped-match = reject. 4/4 planets kept, 4/6 fakes flagged. Next: task 9 (STANLEY).
