@@ -93,6 +93,27 @@ Half of your G1 stars only have **QLP** light curves (made by MIT from TESS's fu
 
 That's rule C8 from Chapter 5 in action: the same dip, at the same time, in two products made by different teams. CONFIRMED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.
 
+### A sixth test: fake planets that move like real ones
+
+Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 3). So I used **STANLEY**'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:
+
+- It checked its planned crossings against the data **before** adding them, and kept only the ones that already showed a dip. With no dip there yet, it kept none. So for hours it made "fake planets" with zero crossings.
+- A number was passed as a list of one item, which newer Python maths libraries refuse.
+
+Then 6 fake planets (4, 6 and 8 Earth radii, orbits of 130 and 200 days) went into all 40 sectors of TOI-1338, giving **33 crossings** that last anywhere from 6.8 to 15.3 hours {{claim:F-029}}:
+
+| Planet size | Dip depth | Crossings found |
+|---|---|---|
+| 4 Earth radii | 850 ppm | 0 of 10 |
+| 6 Earth radii | 1,900 ppm | 8 of 10 |
+| 8 Earth radii | 3,400 ppm | 10 of 10 |
+
+- **Good news:** our 2-day flattening kept about **90 to 100%** of every dip's depth, even the 15-hour ones. So the cleaning step isn't eating realistic, long, irregular crossings.
+- **Hidden loss:** 3 of the 33 crossings landed **inside the binary's eclipses**, which we cut out before searching. Those planets were lost before the search even looked. That's about 1 crossing in 11.
+- **Same floor as before:** about 6 Earth radii, now measured with realistic crossings. No false alarms appeared.
+
+Limits (honest): only 33 crossings, one star, one orbit angle per planet, and STANLEY never makes crossings of the **smaller** star. A proper sensitivity map needs hundreds of fake planets.
+
 ## 4.6 What this lets us conclude, and what it doesn't
 
 - **We can conclude:** the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about **6 Earth radii**.

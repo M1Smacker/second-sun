@@ -19,6 +19,7 @@ Ahmed, three things happened overnight:
 9. **QLP data, half-fixed:** half the G1 stars only have MIT's QLP light curves. At first our search failed on them: scattered light made fake dips up to 44 times the noise, and QLP's own cleaning ate most of a long dip. I found the cause: QLP keeps stretches of time that NASA's SPOC pipeline throws away. Keeping only SPOC's good stretches, the QLP data shows **just one event: the planet**, at the same time as in SPOC data. Then I tested the real G1 case, a star with **no** SPOC file of its own: borrowing the good stretches from 4 neighbouring stars on the same camera, the planet still comes out clearly (10.9 times the noise).
 10. **First dry run on a real G1 star (Kepler-16, 17 sectors): nothing survives.** The pipeline flagged one dip; I vetted it like a real candidate, and it was the classic fake: the telescope wobbling just before a thruster firing. That's the very impostor our vetting rules were written for. It slipped past the code because the code didn't match the written rule; fixed. With all sectors folded together, every remaining event carries a warning flag.
 11. **The pipeline can now handle a binary nobody hand-tuned:** an automatic eclipse finder locates both eclipses from the catalogue period alone, and on TOI-1338 leaves only the planet.
+12. **Realistic fake planets now work** (morning, after Compass). STANLEY's fake-planet maker had a bug that threw away every crossing; found and worked around. With 33 crossings that move and change length like real ones: our cleaning keeps 90-100% of each dip, we find 6-Earth-size planets 8 times in 10 and 8-Earth-size every time, 4-Earth-size never, and about 1 crossing in 11 is lost inside the binary's eclipses. Book Chapter 4 has it as "a sixth test".
 
 **No new planet. Nothing was submitted anywhere.** Everything is pushed to GitHub.
 
@@ -106,6 +107,8 @@ Commands run: `python detect_v2.py` (pass), `python accept_v2.py` (ran), `python
 
 ## H. Next-session task queue (ranked)
 
+*Updated after Compass (2026-10-20 morning); items 1, 3 and 4 below are done, 2 has run (uncalibrated).* Current order: (a) contextual quality flags + eclipse-phase check (C5) + odd-even on the binary; (b) pixel tool for survivors; then scale the injection test to ~200 planets.
+
 0. **Automate the QLP recipe** for all QLP-only G1 stars (find SPOC neighbours on the same sector/camera/CCD automatically), then re-run injection on QLP. *Why:* half of G1 depends on it.
 1. **Systematics veto**: drop events near data gaps, momentum dumps and flagged cadences, and events that also appear in flipped data. Re-measure false alarms. *Why:* without it, 550 stars would flood us with fakes.
 2. **STANLEY trial on TOI-1338** (all sectors together). *Why:* stacking crossings is the real test of whether G1 can reach small planets.
@@ -118,4 +121,4 @@ Commands run: `python detect_v2.py` (pass), `python accept_v2.py` (ran), `python
 1. **Read** the book's Chapter 1 (20 min), then the "In plain words" box of Chapter 4.
 2. **One setting, 2 minutes, at your PC:** in the Claude app, open **Scheduled → "Second Sun: resume overnight run" → set it to Auto**, so timed runs don't freeze.
 3. **Decision waiting for you:** NASA's candidate site now requires **publishing first, then uploading** (we confirmed it at the source). That changes our path from "CTOI first" to "write-up first". Nothing is needed until we have a candidate, but think about it.
-4. **Optional:** to put the book online (still hidden from Google), switch on GitHub Pages for the repo. I'll walk you through it.
+4. The book is online (hidden from Google): https://m1smacker.github.io/second-sun/

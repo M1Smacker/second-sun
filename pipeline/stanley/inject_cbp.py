@@ -6,18 +6,36 @@ into TOI-1338's raw 40-sector SPOC light curve (saved by STANLEY stage 1), and s
   data/stanley/inj/<name>.npz  -> injected flux (float32) + STANLEY's injected transit list (BTJD, duration h)
 Run with the STANLEY venv python. Step B (recovery) runs in the main venv: pipeline/recover_cbp.py.
 
-Known simplification in STANLEY's injector (read from its code): every transit gets a central-crossing batman
-shape scaled to the N-body duration, with depth (Rp/R_A)^2 / (1 + flux ratio), i.e. crossings of the SMALL star
-get the big star's depth. Assumption here: flux ratio fB/fA = 0.01 (an M dwarf next to a ~1.1 M_sun star).
+Known simplifications in STANLEY's injector (read from its code): its N-body timing records crossings of the BIG
+star only (body 2 across body 0), so crossings of the small star are never injected; every transit gets a
+central-crossing batman shape scaled to the N-body duration, depth (Rp/R_A)^2 / (1 + fB/fA). fB/fA = 0.01 assumed.
+Result 2026-10-20 (6 planets, 33 transits): see research/overnight-science/report.md section 15.
 """
 import os, pathlib, numpy as np
 if not hasattr(np, "product"):
     np.product = np.prod
-from stanley_cbp import Stanley_Functions as AC
-# STANLEY's Search_CreateTransitMask defaults to maxCompTime=1 s and InjectTransits never raises it, so a
-# 7-year N-body integration silently times out and injects ZERO transits (found 2026-10-20). Raise it here.
-_orig_mask = AC.Search_CreateTransitMask
-AC.Search_CreateTransitMask = lambda *a, **k: _orig_mask(*a, **{**k, "maxCompTime": 600})
+import rebound
+from stanley_cbp import Stanley_Functions as AC, Stanley_TransitTiming as SSTT
+# STANLEY bug (found 2026-10-20): InjectTransits gets its transit times from Search_CreateTransitMask, which
+# (1) has a 1 s maxCompTime and (2) passes the N-body times through the SEARCH scorer (Search_FitTransitMask),
+# which keeps only transits that already show a dip in the data. Before injection there is none, so ZERO
+# transits are injected. Replace it with the same N-body setup, returning the raw N-body times and durations.
+def _nbody_times(z, RA, RB, timeArray, fluxArray, **_):
+    mA, mB, Pbin, ebin, omb, thb, Pp, ep, omp, thp = z
+    t = np.asarray(timeArray, float)
+    sim = rebound.Simulation(); sim.units = ("s", "m", "kg")
+    a = AC.PeriodToSemiMajorAxis([mA, mB, 0.0], np.array([Pbin, Pp], float))
+    sim.add(m=mA, r=RA); sim.add(m=mB, r=RB, a=a[0], e=ebin, omega=omb, theta=thb)
+    sim.add(a=a[1], e=ep, omega=omp, theta=thp)
+    sim.t = t[0]; sim.move_to_com()
+    d = SSTT.TransitTiming_nbody_lite(sim, t[-1], float(np.min(np.diff(np.sort(t))[np.diff(np.sort(t)) > 0])), maxCompTime=600)
+    assert not d["exceedMaxCompTime"], "N-body timing timed out"
+    return [np.asarray(d["transitTimes"]), np.asarray(d["transitDurations"]), 0.0, 0.0, 0.0]
+AC.Search_CreateTransitMask = _nbody_times
+# Second numpy-2 issue: InjectTransits feeds batman a 1-element array for the planet's semi-major axis;
+# numpy 2 refuses float(array). Return a plain number when there is only one period.
+_p2a = AC.PeriodToSemiMajorAxis
+AC.PeriodToSemiMajorAxis = lambda m, P: (lambda r: r.item() if np.size(r) == 1 else r)(_p2a(m, P))
 
 BASE = pathlib.Path(os.environ["STANLEY_WORKDIR"])          # D:\second-sun\data\stanley
 DB = BASE / ".." / "stanley_cbp" / "Databases"              # where InjectTransits looks for parameter files

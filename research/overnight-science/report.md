@@ -238,3 +238,22 @@ STANLEY's detrending (stage 1) completed on all **40 SPOC sectors** of TOI-1338 
 2. Direct call: returns in 0.2 s with no transit times, not the timeout sentinel. Its N-body transit finder finds no crossings with our inputs. Cause not found (candidates: viewing-geometry convention, time origin). BLOCKED.
 
 **Next (smallest step):** run STANLEY's injector on its own tutorial target (Kepler-64) to learn whether the problem is our TESS inputs or the injector; if it can't be made to work quickly, fall back to a small rebound three-body transit-time model (rebound is installed; importing GPL code is fine, copying it into the repo is not).
+
+## 15. Injection unblocked: realistic circumbinary injection-recovery on TOI-1338 (Compass priority 1, step 1)
+
+**Root cause of "zero transits" (section 14), found 2026-10-20 05:50 UTC:** STANLEY's N-body timing works (direct test: 13-29 transits for 95/130/200 d planets). `InjectTransits` takes its times from `Search_CreateTransitMask`, which passes them through the **search scorer** `Search_FitTransitMask`; that keeps only transits already showing a dip in the data (consistency and fraction-hit cuts). Before injection there is no dip, so every transit is dropped. Fixed in our wrapper by returning the raw N-body times and durations (no package edit). A second numpy-2 issue (a 1-element array passed to batman as a float) is also wrapped. CONFIRMED.
+
+**Run** (`pipeline/stanley/inject_cbp.py` then `pipeline/recover_cbp.py`): 6 planets (4/6/8 R⊕ × 130/200 d, circular, coplanar, fB/fA = 0.01), 33 transits with data, durations 6.8-15.3 h. Search = auto eclipse mask (removes 14.6% of cadences) + `detect_v2.find_events` (SNR 7) on the full 40-sector light curve; events already present before injection (TOI-1338 b, systematics) excluded.
+
+| Planet | Depth | Transits | In eclipse mask | Found | Depth retained (median) |
+|---|---|---|---|---|---|
+| 4 R⊕, 130 d | 850 ppm | 8 | 0 | 0/8 | 1.10 (noise-dominated) |
+| 4 R⊕, 200 d | 850 ppm | 3 | 1 | 0/2 | 0.80 |
+| 6 R⊕, 130 d | 1913 ppm | 8 | 0 | 7/8 | 1.01 |
+| 6 R⊕, 200 d | 1913 ppm | 3 | 1 | 1/2 | 0.90 |
+| 8 R⊕, 130 d | 3401 ppm | 8 | 0 | 8/8 | 0.98 |
+| 8 R⊕, 200 d | 3401 ppm | 3 | 1 | 2/2 | 0.97 |
+
+No new non-injected events. **Conclusions:** the 2-day biweight detrend keeps ~90-100% of realistic 7-15 h transit depths (CONFIRMED for this star); 3/33 transits (9%) are lost inside the eclipse mask before searching (CONFIRMED, small sample); per-transit floor ~6 R⊕, agreeing with the periodic test (section 3). **Limits:** 33 transits, one star, one orbital phase per period (same transit times across sizes), STANLEY injects crossings of the primary only, central-crossing shape. Earlier docstring claim that secondary crossings get the primary's depth was wrong (they are never injected); corrected.
+
+**Next:** scale up (random phases, ~200 planets) only after contextual flags (priority 2), since the sensitivity map should be measured with the final vetting in place.
