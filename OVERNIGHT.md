@@ -40,3 +40,4 @@
 - 01:28 UTC: queue item H.3 done: S98 timing +56 +- 5 min (red noise) vs prediction +- 23 min = 2.4 sigma, shape-dependent (report section 7). STANLEY detrending still running (BLS over 40 sectors).
 - 01:51 UTC: book ch6 (our data) added, facts F-024..F-028, strict build passes. STANLEY attempt 2 hit the 25-min cap mid eclipse-fit (exit 124, still progressing, no errors); restarted from saved raw data with a 2-h cap (CPU only, little usage).
 - 01:53 UTC: G1 targets frozen: targets/g1_targets.csv (552 rows = 549 stars, provenance + checksums; self-check vs wave 3). Report section 8.
+- 01:54 UTC: G1 coverage: all 549 stars have QLP (median 9 sectors), 275 SPOC 2-min, 312 TESS-SPOC; full ready-made G1 data ~6.3 GB. Report 8b.

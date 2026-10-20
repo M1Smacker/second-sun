@@ -113,3 +113,15 @@ Code: `pipeline/timing_s98.py` → `timing_s98_results.json`. CONFIRMED that the
 | Detached (morph < 0.5), P_bin > 5 d, Tmag ≤ 13.5 | `pipeline/targets_g1.py` | **552 rows = 549 stars** |
 
 Self-check: the script asserts 552 (claim P6). CONFIRMED. A bug in my first version gave the second period of a double-listed star the wrong eclipse time; fixed by matching on star and period. Not yet checked: which of the 549 have SPOC 2-minute data versus only full-frame-image light curves (needs ~550 archive queries; next session).
+
+### 8b. What TESS data exists for the 549 G1 stars (metadata only, no downloads)
+
+| Product | Stars with it | Median sectors per star | Stars with ≥ 10 sectors | Total files | Est. size |
+|---|---|---|---|---|---|
+| QLP (full-frame images) | **549 / 549** | 9 | 176 | 5,081 | ~3.3 GB (0.66 MB each, wave 2) |
+| SPOC 2-min | 275 / 549 | 1 | 51 | 1,629 | ~3.0 GB (1.9 MB each) |
+| TESS-SPOC (FFI) | 312 / 549 | 2 | 28 | not totalled | small |
+
+Sanity check: Kepler-16 (TIC 299096355) shows 22 SPOC sectors including S82, which wave 2 downloaded. CONFIRMED (`pipeline/coverage_g1.py` → `targets/g1_coverage.csv`, MAST queries 2026-10-20).
+
+**What it means:** every G1 star has at least one ready-made light curve, half have the best (SPOC 2-min) data, and the whole campaign's ready-made data is about **6.3 GB**, under the 20 GB line that needs Ahmed's OK. Because QLP is the only product for half the stars, the pipeline must handle QLP as a first-class input (our detector so far was tested on SPOC only).
