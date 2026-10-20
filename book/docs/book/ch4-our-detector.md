@@ -83,6 +83,16 @@ Many fake dips sit next to a **data gap** (where the spacecraft paused) or a **m
 
 So the rule became gentler. Closeness to a gap or a firing is now a **warning flag** shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (`pipeline/veto_test.py`, CONFIRMED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit **one orbit**.
 
+### A fifth test: the same dip in a second, independent product
+
+Half of your G1 stars only have **QLP** light curves (made by MIT from TESS's full-frame pictures, Chapter 6). So I ran the search on QLP's version of sector 98.
+
+- **First try: a mess.** QLP's raw light had fake dips up to **44 times the noise**, and QLP's own cleaned version shrank the planet's 2,400 ppm dip to about 700 ppm (its cleaning eats long dips). The planet was missed both ways.
+- **The clue:** every strong fake sat inside stretches of time that NASA's SPOC pipeline **throws away** (scattered light that comes back at the same point in each TESS orbit). QLP keeps those stretches.
+- **The fix:** use QLP's flux that keeps long dips (`sys_rm_flux`) and keep only SPOC's good stretches. Result: **one event, the planet**, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.
+
+That's rule C8 from Chapter 5 in action: the same dip, at the same time, in two products made by different teams. CONFIRMED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.
+
 ## 4.6 What this lets us conclude, and what it doesn't
 
 - **We can conclude:** the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about **6 Earth radii**.
