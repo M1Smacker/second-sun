@@ -198,3 +198,11 @@ QLP TOI-1338 with windows **borrowed** from TIC 350861689: planet found (SNR 10.
 | **intersection of 4 neighbours, starts trimmed 0.5 d** | **SNR 10.9** | 1 (BTJD 3994.43, 0.1 d into the sector's first window; the gap-edge flag marks it) | 2, max 8.2 | 54% |
 
 CONFIRMED (`pipeline/borrow_windows_check2.py`). This is the recipe for QLP-only G1 stars: find SPOC stars on the same sector/camera/CCD, intersect their windows, trim starts, use QLP `sys_rm_flux`. Tested on one star and one sector only.
+
+## 11. Rivals watch addition (found tonight via ADS)
+
+| Who | What | Data | Overlap with G1 | Source |
+|---|---|---|---|---|
+| Spalding & Orosz (San Diego State) | updated photodynamical (ELC) models of Kepler-16, Kepler-34, Kepler-1647 using Kepler + **TESS**; search for a second planet through **eclipse timing variations**; mass limits vs period | TESS + Kepler, 3 known hosts | Partial: same 3 stars, but timing method, not a transit search of the ~550 binaries | AAS 243 (2024AAS...24310526S) and DPS 56 (2024DPS....5640203S) abstracts, LIKELY (abstracts only) |
+
+Does not change the G1 gap: still no published TESS transit search of the Kepler EB sample (burn 2, R1-R2). Worth a full read when their paper appears; `ads_watch.py` should get a query for "Spalding Orosz circumbinary".
