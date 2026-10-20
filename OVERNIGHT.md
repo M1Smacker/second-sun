@@ -35,3 +35,4 @@
 | 10 | Update chapter 4 + MORNING-REPORT with 8-9 | build strict passes | — | pending |
 - 01:15 UTC: task 7 done (MORNING-REPORT.md). Queue part 2 added (8-10). Next: task 8.
 - 01:18 UTC: task 8 done. Strict veto lost 2/4 real transits; loosened once: gap/dump = flags, flipped-match = reject. 4/4 planets kept, 4/6 fakes flagged. Next: task 9 (STANLEY).
+- 01:25 UTC: stability calculator added (pipeline/stability.py, self-check vs TOI-1338 passes; ch1 updated). Ch4 gets the veto test. STANLEY: attempt 1 failed (distutils missing under Py3.12 -> installed setuptools in its venv); found it downloads to C: -> stopped before any file landed, wrapper forces D:. Attempt 2 running.

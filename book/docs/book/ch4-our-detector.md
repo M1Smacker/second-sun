@@ -77,6 +77,12 @@ The search finds the transit with SNR **9.0**, depth about **2,100 ppm**, about 
 
 **3. False alarms.** Turn the light curve upside down (2 − flux). Now any real dip becomes a bump, so anything the search finds is **noise or spacecraft effects**. At SNR 7, v2 still finds **6 fake events in 10 sectors**, some as strong as SNR 12.6 {{claim:F-016}}. That's why we can't just lower the bar.
 
+### A fourth test: can we clean up the fakes automatically?
+
+Many fake dips sit next to a **data gap** (where the spacecraft paused) or a **momentum dump** (a short thruster firing that jolts the pointing). So I tried rejecting any dip close to one. It removed 4 of the 6 fakes, but it also threw away **2 of the 4 real crossings** of TOI-1338 b: one sat 0.17 days from a thruster firing, the other 0.09 days from a gap. On this star, real and fake dips sit at the same kinds of distances, so no cut-off separates them.
+
+So the rule became gentler. Closeness to a gap or a firing is now a **warning flag** shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (`pipeline/veto_test.py`, CONFIRMED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit **one orbit**.
+
 ## 4.6 What this lets us conclude, and what it doesn't
 
 - **We can conclude:** the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about **6 Earth radii**.
