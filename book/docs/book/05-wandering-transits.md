@@ -71,7 +71,7 @@ That one-hour difference is bigger than the paper's stated error (±23 min). It 
 ??? quiz "3. In one sentence, what is G1?"
     Searching Kepler's eclipsing binaries in newer TESS data for planets that weren't crossing during Kepler but have **switched on** since, because their orbits precessed.
 
-**Next:** [Chapter 8](08-our-detector.md): how our search actually finds dips, and how good it is.
+**Next:** [Chapter 6](06-orbits-three-body.md): the orbits behind the wandering.
 
 ## Sources
 In the [claims register](../claims.md): F-007 to F-011, F-017, F-018.

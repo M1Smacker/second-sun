@@ -24,3 +24,5 @@ Plan the write-up as part of vetting, not after it. The first candidate's timeli
 - Does citing published tools we use count as "a previously published method" for an RNAAS route? Only ExoFOP support can say.
 
 *Sources: see the [claims register](../claims.md). Last reviewed 2026-10-19.*
+
+**Next:** [Lab 9: your own star](../labs/lab9-your-star.md), then [Chapter 15](15-mistakes-as-lessons.md): our mistakes, as lessons.

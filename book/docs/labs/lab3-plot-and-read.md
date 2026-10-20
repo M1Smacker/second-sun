@@ -76,4 +76,4 @@ Run it on the sector you downloaded in Lab 2's "Your turn" (2019). Give the path
 
 **Tell me:** your 1-hour "measured" and "if white" numbers. Is the 2019 sector quieter or noisier than 2024? Does the picture show an eclipse?
 
-**Next:** [Chapter 7: noise and statistics](../book/07-noise-and-statistics.md), then [Lab 4](lab4-find-a-dip.md).
+**Next:** Part 2, [Chapter 4: two suns](../book/04-two-suns.md). (Chapter 7 explains this lab's noise table in depth.)

@@ -34,6 +34,7 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 - **Compass** was born: your review system that checks every big idea before we build it. Its first verdict on our upgrade plans was **REVISE**.
 - **Realistic fake planets** finally worked after I found a bug in STANLEY. Our cleaning keeps 90 to 100% of each dip. We find 6-Earth-size planets 8 times in 10, and about 1 crossing in 11 is lost inside the stars' eclipses {{claim:F-029}}.
 - **NASA's candidate site now wants papers first** {{claim:B9}}. That's a decision for you, later.
+- **Afternoon: the Bible Overhaul.** Writing the labs caught three of our own errors (a noise number, STANLEY's best period, and a hole in the G1 list), all corrected and logged. The [field note](../field-notes/2026-10-20.md) has the details.
 - **You paused the hunt** to start this overhaul: "I can't let an AI do all the work while I just sit and say yes or no."
 
 ## The honest scoreboard
@@ -51,7 +52,8 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 1. **Smarter quality flags:** warn about scattered light instead of deleting it.
 2. **A pixel check:** is the dip on our star, or on a neighbour? (Chapter 11)
 3. **A bigger fake-planet test** (hundreds of planets), so "nothing found" has a measured meaning.
-4. **Run G1:** 549 stars, about 6.3 GB of light curves.
+4. **Decide the 136 unmeasured stars:** a quarter of the G1 list has no measured binary shape {{claim:F-052}}. Your call (decision log).
+5. **Run G1:** 549 stars, about 6.3 GB of light curves.
 
 ## Where to go next
 

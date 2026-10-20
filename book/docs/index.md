@@ -63,10 +63,11 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 
 ### Part 6 · How the project runs
 <ol class="ss-chapters">
+<li data-n="13"><a href="book/13-your-workshop/">Your workshop</a><span>Where everything lives, how a day of work becomes a page, and the safety rules.</span></li>
 <li data-n="14"><a href="book/14-credit-and-publishing/">Credit and publishing</a><span>How a find becomes a named result, and what journals say about AI.</span></li>
+<li data-n="15"><a href="book/15-mistakes-as-lessons/">Our mistakes, as lessons</a><span>Fifteen logged mistakes, five patterns, and the rule each one left.</span></li>
 </ol>
 
-Chapters still being written in the overhaul appear here when they're finished.
 
 ## More
 - **What are we hunting?** The [quests](quests.md) page shows the plan and what's done.

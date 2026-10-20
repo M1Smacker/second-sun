@@ -101,7 +101,7 @@ This is the star our tools have practised on. In Chapter 8 you'll see our search
 ??? quiz "3. A planet sits at 4 times the stars' separation. About how many binary periods does it take to orbit once?"
     4<sup>3/2</sup> = √(4³) = √64 = **8** binary periods.
 
-**Next:** [Chapter 2](02-light-curves.md) shows how we "see" these planets at all, through a star's brightness.
+**Next:** [Chapter 5](05-wandering-transits.md): why a two-sun planet's dips don't arrive on a clock.
 
 ## Sources
 Facts on this page are listed with their sources in the [claims register](../claims.md): F-001 to F-006. Background: Martin 2018, "Populations of planets in multiple star systems", [arXiv:1802.08693](https://arxiv.org/abs/1802.08693).

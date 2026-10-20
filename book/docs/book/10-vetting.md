@@ -94,7 +94,7 @@ Verdict: impostor. The lesson for us: the rule was right, but our code checked "
 ??? quiz "3. What's the circumbinary smoking gun?"
     Transit **durations** that change with the binary's phase (shorter near primary eclipse) plus irregular timing that a three-body model predicts. Fakes don't do that.
 
-**Next:** the hunt itself, once the stacked search works.
+**Next:** [Chapter 11](11-pixels-and-neighbours.md): is the dip on our star?
 
 ## Sources
 In the [claims register](../claims.md): F-019 to F-023, B9. Full research: `research/wave-4-vetting/report.md`.

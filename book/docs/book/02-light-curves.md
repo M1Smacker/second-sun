@@ -98,7 +98,7 @@ Check the planet with the formula: TOI-1338 b is about 6.9 Earth radii {{claim:F
 ??? quiz "3. TOI-1338's 5% dips repeat every 14.6 days. Planet or star?"
     **Star.** 5% means an object about √0.05 ≈ 0.22 of the big star's radius: the small companion star, eclipsing on the binary's 14.6-day orbit.
 
-**Next:** [Chapter 5](05-wandering-transits.md): why a two-sun planet's dips don't arrive on a clock.
+**Next:** [Chapter 3](03-our-data.md): where our data comes from and how good it is.
 
 ## Sources
 In the [claims register](../claims.md): F-003, F-011 to F-013. Background: Winn 2010, "Transits and Occultations", [arXiv:1001.2010](https://arxiv.org/abs/1001.2010).

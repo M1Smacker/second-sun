@@ -65,4 +65,4 @@ Picture saved: D:\second-sun\labs\out\lab8_stanley_toi1338.png
 
 **Tell me:** "Lab 8 done" and your two sentences. (There's no single right answer; Chapter 12's section 12.6 has mine.)
 
-**Next:** [Part 6, Chapter 14: credit and publishing](../book/14-credit-and-publishing.md).
+**Next:** Part 6, [Chapter 13: your workshop](../book/13-your-workshop.md).

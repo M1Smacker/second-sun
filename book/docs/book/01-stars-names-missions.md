@@ -96,6 +96,9 @@ The G1 list, `targets/g1_targets.csv`, is the catalogue work done once and froze
 
 The selection rule keeps `morph < 0.5` (stars clearly separate), `p_bin_d > 5` days (room for a stable planet, Chapter 4) and `tmag ≤ 13.5` (bright enough to see a planet). That leaves 552 rows: 549 stars, because 3 stars have two binary periods each {{claim:F-038}}.
 
+!!! warning "Found on 20 October: a hole in the rule"
+    Kepler's catalogue writes **morph = −1** when it couldn't measure a binary's shape. "−1 < 0.5" is true, so our rule let those stars in: **136 of the 552 rows** {{claim:F-052}}. One of them showed no eclipse at all in TESS data. Lesson: a "missing value" code inside a number column must be handled on purpose. The fix is your decision when the hunt resumes; it's in the decision log.
+
 The top of the file records the fingerprints (sha256) of the source files, so anyone can check the list wasn't changed.
 
 ## 1.5 Worked example: Kepler-16's identity card

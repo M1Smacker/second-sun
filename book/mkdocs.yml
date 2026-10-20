@@ -73,7 +73,10 @@ nav:
           - "12. STANLEY": book/12-stanley.md
           - "Lab 8: read STANLEY's output": labs/lab8-read-stanley.md
       - "Part 6 · How the project runs":
+          - "13. Your workshop": book/13-your-workshop.md
           - "14. Credit and publishing": book/14-credit-and-publishing.md
+          - "Lab 9: your own star": labs/lab9-your-star.md
+          - "15. Our mistakes, as lessons": book/15-mistakes-as-lessons.md
   - Learn:
       - learn/index.md
       - "L1 How big is the dip?": learn/l1-dip-depth.md
@@ -87,4 +90,5 @@ nav:
       - Candidates: candidates.md
   - Reference:
       - Glossary: glossary.md
+      - Reading list: reference/reading-list.md
       - Claims register: claims.md

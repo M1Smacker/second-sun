@@ -95,5 +95,7 @@ TOI-1338 sits near the south ecliptic pole, so TESS has watched it a lot: **40 s
 ??? quiz "3. Why are TESS's big pixels a problem for planet hunters?"
     A faint eclipsing binary next to our star can sit in the same pixel and leak its dips into our light curve, faking a small planet.
 
+**Next:** [Lab 3](../labs/lab3-plot-and-read.md) on your PC, then Part 2, [Chapter 4](04-two-suns.md).
+
 ## Sources
 In the [claims register](../claims.md): F-024 to F-028. Full research: `research/wave-2-data/report.md`.

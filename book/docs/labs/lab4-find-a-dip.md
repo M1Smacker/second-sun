@@ -59,4 +59,4 @@ Picture saved: D:\second-sun\labs\out\lab4_toi1338_s98.png
 
 **Tell me:** "Lab 4 done", your guess from the picture, and how many events appeared at SNR 5.
 
-**Next:** [Chapter 8: our detector](../book/08-our-detector.md) (if you haven't read it).
+**Next:** [Chapter 9: fake planets](../book/09-fake-planets.md).

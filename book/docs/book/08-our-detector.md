@@ -119,7 +119,7 @@ Limits (honest): only 33 crossings, one star, one orbit angle per planet, and ST
 - **We can conclude:** the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about **6 Earth radii**.
 - **We can't conclude:** that "nothing found" means "no planet". It means "nothing bigger than about 6 Earths crossed in this sector", and only for stars this bright or brighter.
 - **The limit is mostly the data.** The planet's missed dips are genuinely weak in those sectors, and spacecraft effects make bumps as strong as real dips. Better code alone won't fix that.
-- **What would help** (the next steps): reject events near gaps, momentum dumps and flagged data (a "systematics veto"); and **stack** a planet's crossings using the binary's known orbit, the way the STANLEY tool does, instead of judging each dip alone.
+- **What came next:** the gap and thruster rules became warning flags (test 4); fake planets that move like real ones were tested (test 6, and [Chapter 9](09-fake-planets.md)); and the stacked search, STANLEY, was run on TOI-1338 ([Chapter 12](12-stanley.md)). Smarter quality flags and a pixel tool are still to build.
 
 !!! warning "Not a discovery"
     TOI-1338 b has been known since 2020. Everything in this chapter is a test of our tools on a known planet.
@@ -134,6 +134,8 @@ Limits (honest): only 33 crossings, one star, one orbit angle per planet, and ST
 
 ??? quiz "3. The search finds nothing in a star. What can you say?"
     Only that no transit stronger than our bar happened in that data: roughly nothing bigger than ~6 Earth radii for a TOI-1338-like star. Smaller planets, or planets not crossing during that sector, could still be there.
+
+**Next:** [Lab 4](../labs/lab4-find-a-dip.md) on your PC, then [Chapter 9](09-fake-planets.md): measuring what the search can see.
 
 ## Sources
 In the [claims register](../claims.md): F-011, F-014 to F-017. Full test report: `research/overnight-science/report.md`. Code: `pipeline/detect_v2.py`, `pipeline/accept_v2.py`, `pipeline/diag_v2.py`, `pipeline/book_figures.py`.
