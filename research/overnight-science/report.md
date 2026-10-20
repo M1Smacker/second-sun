@@ -101,3 +101,15 @@ Measured distances (days) to the nearest gap edge / dump: planet S10 2.75 / 0.17
 Code: `pipeline/timing_s98.py` → `timing_s98_results.json`. CONFIRMED that these numbers come out of the fits; the physical meaning is UNCERTAIN.
 
 **Why it might matter:** this is a TESS crossing of a known planet that, as far as we know, nobody has published. A precise new transit time helps the people who model TOI-1338's orbit. If Ahmed wants, Claude can draft a short note to the TOI-1338 modelers for Ahmed to send (contact rule: Claude drafts, Ahmed sends). Not urgent.
+
+## 8. The G1 target list, frozen and traceable
+
+**In plain words:** our first-campaign list now lives in one file, `targets/g1_targets.csv`. Its header records exactly where it came from (with checksums of the source files) and the selection rule. It reproduces wave 3's count: **552 rows**. But those 552 rows are **549 different stars**: 3 stars appear twice because the Kepler catalogue lists two binary periods for them (likely triple or more complex systems, which is interesting for two-sun planets).
+
+| Step | Source | Count |
+|---|---|---|
+| Kepler EB Catalog rev 3 (Villanova, 2019-08-08), logged download | `data/wave-1/villanova_kepler-ebs_live/keplerebs_live.csv` | 2,920 rows = 2,907 stars (13 listed twice) |
+| KIC to TIC match via MAST (wave 3) | `research/wave-3-pipeline/g1_tmag.csv` | 2,901 matched; 19 with no TIC |
+| Detached (morph < 0.5), P_bin > 5 d, Tmag ≤ 13.5 | `pipeline/targets_g1.py` | **552 rows = 549 stars** |
+
+Self-check: the script asserts 552 (claim P6). CONFIRMED. A bug in my first version gave the second period of a double-listed star the wrong eclipse time; fixed by matching on star and period. Not yet checked: which of the 549 have SPOC 2-minute data versus only full-frame-image light curves (needs ~550 archive queries; next session).
