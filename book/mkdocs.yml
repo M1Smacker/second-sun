@@ -57,12 +57,17 @@ nav:
       - "Part 2 · Two suns":
           - "4. Two suns": book/04-two-suns.md
           - "5. Wandering transits": book/05-wandering-transits.md
+          - "6. Orbits and the three-body problem": book/06-orbits-three-body.md
+          - "Lab 5: two suns up close": labs/lab5-two-suns.md
       - "Part 3 · Finding dips":
           - "7. Noise and statistics": book/07-noise-and-statistics.md
           - "8. Our detector": book/08-our-detector.md
           - "Lab 4: find a dip": labs/lab4-find-a-dip.md
       - "Part 4 · Is it real?":
           - "10. Vetting": book/10-vetting.md
+      - "Part 5 · The professionals' tool":
+          - "12. STANLEY": book/12-stanley.md
+          - "Lab 8: read STANLEY's output": labs/lab8-read-stanley.md
       - "Part 6 · How the project runs":
           - "14. Credit and publishing": book/14-credit-and-publishing.md
   - Learn:

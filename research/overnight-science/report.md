@@ -231,7 +231,7 @@ STANLEY's detrending (stage 1) completed on all **40 SPOC sectors** of TOI-1338 
 
 ## 14. STANLEY stage 2 result + first try at physically realistic injection (Compass priority 1)
 
-**STANLEY search (circular orbits, 90-100 d, 33 min on this PC):** strongest cell 18.4σ at a trial period of ~93.8 d (grid index 107 of 173, 100.03 → 90.05 d), close to TOI-1338 b's ~95 d. But the median cell is 4.2σ and 27% of cells exceed 5σ, so the σ scale is **not calibrated** here; STANLEY's analysis module is needed before calling this a recovery. UNCERTAIN.
+**STANLEY search (circular orbits, 90-100 d, 33 min on this PC):** strongest cell 18.4σ at a trial period of **~96.1 d** (grid index 107 of 173; *corrected 2026-10-20 afternoon: first written as ~93.8 d by reading the grid as 100.03 → 90.05 d, but the results rows follow the parameter file, 90.05 → 100.03 d, shown by the phase-cell counts 114 → 123 matching row by row*), close to TOI-1338 b's ~95 d. But the median cell is 4.2σ and 27% of cells exceed 5σ, so the σ scale is **not calibrated** here; STANLEY's analysis module is needed before calling this a recovery. UNCERTAIN.
 
 **Injection with STANLEY's N-body injector (`pipeline/stanley/inject_cbp.py`):** 6 planets (4/6/8 R⊕ at 130 and 200 d) into the 40-sector raw light curve. **All injected zero transits.** Two bounded debugging tries:
 1. Found a real STANLEY issue: `Search_CreateTransitMask` defaults to `maxCompTime=1` s and `InjectTransits` never raises it, so long integrations time out silently. Raised to 600 s in our wrapper (no package edit). Still zero.

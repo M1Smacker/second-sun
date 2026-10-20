@@ -40,6 +40,7 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 <ol class="ss-chapters">
 <li data-n="04"><a href="book/04-two-suns/">Two suns</a><span>Binary stars, the planets that orbit both, and where those planets can survive.</span></li>
 <li data-n="05"><a href="book/05-wandering-transits/">Wandering transits</a><span>Why two-sun planets' dips arrive early, late, or not at all, and why that's our chance.</span></li>
+<li data-n="06"><a href="book/06-orbits-three-body/">Orbits and the three-body problem</a><span>Kepler's law, the closest safe orbit, and why crossings change time and length.</span></li>
 </ol>
 
 ### Part 3 · Finding dips
@@ -51,6 +52,11 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 ### Part 4 · Is it real?
 <ol class="ss-chapters">
 <li data-n="10"><a href="book/10-vetting/">Vetting</a><span>Every impostor that fakes a planet, the test that catches each one, and our strict bar.</span></li>
+</ol>
+
+### Part 5 · The professionals' tool
+<ol class="ss-chapters">
+<li data-n="12"><a href="book/12-stanley/">STANLEY</a><span>How guessing whole orbits lets a search stack crossings that don't keep time, and what it said about TOI-1338.</span></li>
 </ol>
 
 ### Part 6 · How the project runs
