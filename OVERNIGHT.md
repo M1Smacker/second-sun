@@ -4,7 +4,7 @@
 
 ## Rules for this run
 - **Budget:** hard ceiling 30% of the weekly limit (Ahmed). Stop new work at **25% weekly**. The week started 2026-10-19 22:00 UTC at 0%; it was 2% at 00:51 UTC. Check with `get_usage` between tasks. If the 5-hour window is at 90%+, checkpoint and stop.
-- **No helpers/subagents** without Ahmed's OK. No outward-facing actions (no ExoFOP, no emails, no posts). Auto-push to github.com/M1Smacker/second-sun is allowed.
+- **Same-day lessons:** every block ends with a teaching-format Field Note in the book (rule of 2026-10-20). **No helpers/subagents** without Ahmed's OK. No outward-facing actions (no ExoFOP, no emails, no posts). Auto-push to github.com/M1Smacker/second-sun is allowed.
 - Order: **science first**, then the study bible, then the website.
 - Python: `D:\second-sun\.venv\Scripts\python.exe` with cache env vars on D: (see research/WAVE-BRIEF-COMMON.md). Docs: `.venv-docs`. Never write to C:.
 - Run `date -u` before every timestamp. Labels: CONFIRMED / LIKELY / UNCERTAIN / NOT TESTED / BLOCKED.

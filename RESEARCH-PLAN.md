@@ -112,6 +112,7 @@ All decided 2026-10-19 by Ahmed. **Superseded** answers are marked so nobody re-
 6. **Narrate friction:** every failed command, workaround or surprise gets one line in the wave report and the log.
 7. **No hype words:** "candidate" until promoted; "planet" only after confirmation.
 8. **Checkpoint constantly:** findings are written to files as they happen, so a usage limit or crash never loses work.
+9. **Same-day lessons (2026-10-20):** every work block that changes code, data, results, decisions or mistakes writes a teaching-format Field Note into the book in that same block, before it is called finished or before a usage pause (research/BIBLE-OVERHAUL-PLAN.md).
 
 ---
 
