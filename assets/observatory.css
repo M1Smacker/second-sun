@@ -123,3 +123,4 @@
   font: 500 11px/1 var(--ss-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ss-text-2);
 }
 .md-typeset .ss-eq > p { margin: 0; }
+.md-typeset ol.ss-chapters li[data-n]::before { content: attr(data-n); }
