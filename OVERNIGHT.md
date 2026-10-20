@@ -49,3 +49,4 @@
 - 02:10 UTC: intersect_windows() (4 neighbours, trim 0.5 d): QLP planet SNR 10.9, 1 edge event, fakes max 8.2. Recipe for QLP-only stars. Report 9d.
 - 02:13 UTC: Kepler-16 dry run: 17 sectors, 1 event = pre-dump jitter impostor (C7), QLP flat; veto fixed to match C7 (0.5 d before dump). No surviving event. Report section 12.
 - 02:14 UTC: Kepler-16 global fold: 4.9% masked, 3 events all flagged, 0 unflagged, 4 fakes / 17 sectors. Report 12.
+- 02:19 UTC: STANLEY stage 1 done (40 sectors; P 14.608642, sec phase 0.455, agree with ours). Stage 2 recovery search (circular, 90-100 d) running, 1-h cap.
