@@ -1,0 +1,154 @@
+{
+ "rows": [
+  {
+   "sector": 14,
+   "n_eclipse_runs": 1,
+   "masked_pct": 4.3,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 15,
+   "n_eclipse_runs": 0,
+   "masked_pct": 0.0,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 26,
+   "n_eclipse_runs": 4,
+   "masked_pct": 9.8,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 40,
+   "n_eclipse_runs": 2,
+   "masked_pct": 5.8,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 41,
+   "n_eclipse_runs": 2,
+   "masked_pct": 6.5,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 53,
+   "n_eclipse_runs": 1,
+   "masked_pct": 4.3,
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "sector": 54,
+   "n_eclipse_runs": 5,
+   "masked_pct": 13.1,
+   "events": [
+    [
+     2775.659,
+     15,
+     7.8,
+     2042,
+     []
+    ]
+   ],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 55,
+   "n_eclipse_runs": 1,
+   "masked_pct": 4.0,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 56,
+   "n_eclipse_runs": 1,
+   "masked_pct": 3.0,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 73,
+   "n_eclipse_runs": 2,
+   "masked_pct": 1.8,
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "sector": 74,
+   "n_eclipse_runs": 1,
+   "masked_pct": 1.7,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 75,
+   "n_eclipse_runs": 5,
+   "masked_pct": 10.3,
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "sector": 76,
+   "n_eclipse_runs": 3,
+   "masked_pct": 5.6,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 80,
+   "n_eclipse_runs": 1,
+   "masked_pct": 0.6,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 81,
+   "n_eclipse_runs": 2,
+   "masked_pct": 5.2,
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  },
+  {
+   "sector": 82,
+   "n_eclipse_runs": 1,
+   "masked_pct": 1.3,
+   "events": [],
+   "rejected": [],
+   "fakes": 0
+  },
+  {
+   "sector": 83,
+   "n_eclipse_runs": 1,
+   "masked_pct": 2.3,
+   "events": [],
+   "rejected": [],
+   "fakes": 1
+  }
+ ],
+ "totals": {
+  "sectors": 17,
+  "events": 1,
+  "unflagged": 1,
+  "fakes": 5
+ }
+}

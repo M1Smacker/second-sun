@@ -207,6 +207,7 @@ def find_events(t, f, thr=7.0, durs_h=DURS_H, window_d=2.0):
 #   - FLAG (for the human vetting sheet, never auto-reject) events within GAP_D of a data-gap edge or within
 #     DUMP_D of a momentum dump (TESS quality bit 32, "Desat").
 GAP_D, DUMP_D, FLIP_D = 0.5, 0.25, 0.3
+PRE_DUMP_D = 0.5   # rule C7: flag events up to 0.5 d BEFORE a dump (Kepler-16 S54 dry-run event sat 0.41 d before one)
 
 
 def systematics(path):
@@ -232,8 +233,8 @@ def veto(events, edges, dumps, flipped_events):
         flags = []
         if edges.size and np.min(np.abs(edges - c)) < GAP_D:
             flags.append("near data-gap edge")
-        if dumps.size and np.min(np.abs(dumps - c)) < DUMP_D:
-            flags.append("near momentum dump")
+        if dumps.size and np.any((dumps - c > -DUMP_D) & (dumps - c < PRE_DUMP_D)):
+            flags.append("near momentum dump (C7: pointing jitter before dumps fakes transits)")
         kept.append({**e, "flags": flags})
     return kept, rejected
 

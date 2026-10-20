@@ -206,3 +206,19 @@ CONFIRMED (`pipeline/borrow_windows_check2.py`). This is the recipe for QLP-only
 | Spalding & Orosz (San Diego State) | updated photodynamical (ELC) models of Kepler-16, Kepler-34, Kepler-1647 using Kepler + **TESS**; search for a second planet through **eclipse timing variations**; mass limits vs period | TESS + Kepler, 3 known hosts | Partial: same 3 stars, but timing method, not a transit search of the ~550 binaries | AAS 243 (2024AAS...24310526S) and DPS 56 (2024DPS....5640203S) abstracts, LIKELY (abstracts only) |
 
 Does not change the G1 gap: still no published TESS transit search of the Kepler EB sample (burn 2, R1-R2). Worth a full read when their paper appears; `ads_watch.py` should get a query for "Spalding Orosz circumbinary".
+
+## 12. First G1 dry run: Kepler-16 (17 SPOC sectors)
+
+**In plain words:** I ran the whole pipeline on Kepler-16, a real Kepler-field binary with a known two-sun planet, using only the catalogue period (no hand-tuning). Across 17 sectors it flagged **one** event and found 5 fakes in flipped data (about 0.3 per sector, better than on TOI-1338). I then vetted that one event like a real candidate. It's a **known impostor**: a dip 0.41 days before a spacecraft thruster firing (momentum dump at BTJD 2776.07), the same pointing jitter that fooled people during TOI-1338 b's confirmation. QLP shows nothing there either (fails C8). Our written rule C7 would have caught it, but the code used a different window, so the code was fixed to match the rule. **Result: no surviving event on Kepler-16.** This is a test, not a search result about Kepler-16 b.
+
+| Item | Result |
+|---|---|
+| Sectors searched | 17 (SPOC 2-min) |
+| Events | 1: S54, BTJD 2775.659, 15 h box, SNR 7.8, ~2,040 ppm |
+| Fakes (flipped data) | 5 in 17 sectors |
+| Primary eclipse check | real primary at BTJD 2771.734 (13% deep); catalogue ephemeris predicts 2771.74. CONFIRMED |
+| Event vetting | momentum dump at 2776.07 (quality bit 32), flags 128/164 around it; dip shape is pre-dump jitter; QLP flat at that time. **Impostor (C7, C8 fail)** |
+| Code fix | dump flag now covers 0.5 d **before** a dump (rule C7), not ±0.25 d; re-run raises the C7 flag on this event. CONFIRMED |
+| Weakness found | Kepler-16's 41-day period is longer than a sector, so the per-sector fold flags noise runs as "eclipses" (up to 5 runs, 13% of data masked). Fix next: fold all sectors together. |
+
+Figures: `research/overnight-science/kepler16_s54_event.png`, `kepler16_s54_sector.png`. Code: `pipeline/dryrun_kepler16.py`, `pipeline/look_event.py`.
