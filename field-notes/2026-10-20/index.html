@@ -945,6 +945,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../book/06-orbits-three-body/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Orbits and the three-body problem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab5-two-suns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: two suns up close
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1209,7 +1265,7 @@
   <span class="md-ellipsis">
     
   
-    Part 6 · How the project runs
+    Part 5 · The professionals' tool
   
 
     
@@ -1222,6 +1278,120 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 · The professionals' tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../book/12-stanley/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. STANLEY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab8-read-stanley/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 8: read STANLEY's output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 · How the project runs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2024,7 +2194,7 @@
 <li><strong>A failed clean-up.</strong> Throwing out dips near spacecraft events removed fakes but also half the real crossings. So those became <strong>warning flags</strong> for a human (Chapter 10).</li>
 <li><strong>A timing check.</strong> A 2024 paper predicted a TOI-1338 b crossing on 16 December 2025. We found it <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-011" title="VERIFIED · Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test · checked 2026-10-20">VERIFIED</a>, 56 ± 5 minutes after the predicted time.</li>
 <li><strong>G1 frozen, QLP fixed, auto eclipse finder, Kepler-16 dry run.</strong> The one dip on Kepler-16 was the telescope wobbling before a thruster firing. Nothing survived.</li>
-<li><strong>STANLEY</strong> installed and run (Chapter 12). Its strongest signal was near 94 days, close to the real planet's 95, but its scores aren't calibrated yet.</li>
+<li><strong>STANLEY</strong> installed and run (Chapter 12). Its strongest signal was near 96 days (first misread as 94; corrected in the afternoon), close to the real planet's 95.2, but its scores aren't calibrated yet.</li>
 <li><strong>Compass</strong> reviewed our upgrade plans: <strong>REVISE</strong>. Its three points: use STANLEY's fake-planet maker instead of building one; odd and even depths only mean something for planets that repeat; centroid checks must predict the expected shift.</li>
 <li><strong>The STANLEY bug.</strong> Its fake-planet maker placed <strong>zero</strong> transits. Cause: before adding the transits it ran them through its <strong>search scorer</strong>, which keeps only transits already showing a dip. Before injection there's no dip, so it kept none. Our wrapper now takes the transit times straight from its orbit simulation.</li>
 <li><strong>The realistic test.</strong> 6 fake planets, 33 crossings lasting 6.8 to 15.3 hours <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-029" title="VERIFIED · Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py) · checked 2026-10-20">VERIFIED</a>. Our cleaning kept 90 to 100% of each dip. 6 Earth radii: 8 of 10 found. 8: 10 of 10. 4: none. <strong>3 of 33 crossings were lost inside the stars' eclipses</strong> before the search even looked.</li>
@@ -2062,6 +2232,7 @@
 <summary>3. Why did one star's one-hour noise come out anywhere from 229 to 908 ppm?</summary>
 <p>Each method flattens the light curve differently first. The harder you flatten, the more slow wobble you remove, and the smaller the noise looks. Quote the number that matches how your search treats the data.</p>
 </details>
+<p><strong>Later, batch 3 of the overhaul:</strong> writing <a href="../../labs/lab8-read-stanley/">Lab 8</a> caught a second slip. STANLEY's strongest orbit is at <strong>96.1 days</strong>, not the 93.8 reported overnight. The search log prints the period range high to low, but the results file runs low to high. The real planet's period is 95.2 days, so the conclusion ("close") survives, but the number was wrong for half a day. Lesson: read an array's order from the data file, and check one known feature lines up. <a href="../../book/12-stanley/">Chapter 12</a> and <a href="../../book/06-orbits-three-body/">Chapter 6</a> are new.</p>
 
 
 
