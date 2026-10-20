@@ -54,6 +54,7 @@ nav:
       - "3. Wandering transits": book/ch3-wandering-transits.md
       - "4. Our detector": book/ch4-our-detector.md
       - "5. Vetting": book/ch5-vetting.md
+      - "6. Our data": book/ch6-our-data.md
       - book/credit-and-publishing.md
   - Reference:
       - Glossary: glossary.md

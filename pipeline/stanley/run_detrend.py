@@ -10,4 +10,4 @@ assert str(lk.config.get_cache_dir()).lower().startswith("d:"), lk.config.get_ca
 print("lightkurve cache:", lk.config.get_cache_dir(), flush=True)
 if len(sys.argv) > 1:
     from stanley_cbp import Stanley_Detrending as D
-    D.runDetrendingModule(SystemName=sys.argv[1], DetrendingName=sys.argv[2], UseSavedData=0)
+    D.runDetrendingModule(SystemName=sys.argv[1], DetrendingName=sys.argv[2], UseSavedData=int(sys.argv[3]) if len(sys.argv) > 3 else 0)

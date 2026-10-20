@@ -30,6 +30,7 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 <li><a href="book/ch3-wandering-transits/">Wandering transits</a><span>Why two-sun planets' dips arrive early, late, or not at all, and why that's our chance.</span></li>
 <li><a href="book/ch4-our-detector/">Our detector</a><span>How our search finds dips, and three honest tests of how good it is.</span></li>
 <li><a href="book/ch5-vetting/">Vetting</a><span>Every impostor that fakes a planet, the test that catches each one, and our strict bar.</span></li>
+<li><a href="book/ch6-our-data/">Our data</a><span>From a NASA camera to your D: drive: what our data is, how big, and how good.</span></li>
 </ol>
 
 ## Start here
