@@ -42,3 +42,4 @@
 - 01:53 UTC: G1 targets frozen: targets/g1_targets.csv (552 rows = 549 stars, provenance + checksums; self-check vs wave 3). Report section 8.
 - 01:54 UTC: G1 coverage: all 549 stars have QLP (median 9 sectors), 275 SPOC 2-min, 312 TESS-SPOC; full ready-made G1 data ~6.3 GB. Report 8b.
 - 01:56 UTC: QLP test: raw SAP swamped by scattered light (fakes to SNR 38.7); det_flux suppresses long transits (~70% depth lost). 2 bounded tries used; QLP support marked NOT READY (report section 9).
+- 01:58 UTC: QLP task (2 tries): sys_rm_flux keeps depth (2038 ppm, SNR 6.4) but recurring ~14-d fakes (SNR to 43.8) remain; no gaps to trim. BLOCKED tonight; next steps in report 9b.

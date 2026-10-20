@@ -142,3 +142,12 @@ Two-sun planets have long transits (hours to most of a day), so a cleaning step 
 The eclipse mask was checked (first primary at BTJD 3995.62, same as SPOC), so the problem is the flux, not the mask. Loader now uses `det_flux` for QLP files (cleaner, but with the depth-loss caveat above). CONFIRMED (`pipeline/qlp_check.py`).
 
 **Next ideas (not done):** start from QLP's raw flux and remove scattered light with a background or co-trending model, or use TESS-SPOC (312 of 549 stars) where QLP is the only alternative; then re-run the injection test on QLP data.
+
+### 9b. Two more QLP tries (new task, own 2-try budget)
+
+| Try | Input | Planet (6.5 h box) | Fakes (flipped) | Strong real-data events |
+|---|---|---|---|---|
+| 1 | QLP `sys_rm_flux` (instrument systematics removed, no long detrend) + our 2-day detrend | **depth kept: 2,038 ppm**, SNR 6.4 (just under 7) | 9, max SNR 43.8 | BTJD 3991.9, 4004.99, 4020.0, 4033.9 (spacing ~13-15 d) |
+| 2 | same + trim 0.75 or 1.0 d from each data-stretch edge | SNR 6.3-6.4 | 9, max 43.6 | unchanged: S98 QLP has **no gap > 0.5 d**, so there are no edges to trim |
+
+**What we learned:** `sys_rm_flux` is the right starting point for long transits (it keeps the depth). The remaining fakes recur roughly every 14 days and are absent from SPOC. Candidate causes, not yet tested: spacecraft downlink/momentum-dump times, or a neighbouring variable star inside QLP's larger aperture. Next: compare the fake times with SPOC quality flags and with QLP's background flux, and check neighbours in Gaia. Loader unchanged (`det_flux`) until this is fixed. Status: BLOCKED for tonight, cause identified as "QLP systematics at ~14-day spacing".
