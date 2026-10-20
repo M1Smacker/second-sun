@@ -4,6 +4,6 @@
 .venv-*/
 .venv/
 __pycache__/
-data/
+/data/
 book/site/
 site/

@@ -99,7 +99,7 @@ async function layout() {
   try {
     for (const [scheme, val] of [["slate", 0], ["default", 1]]) {
       const pal = JSON.stringify({ index: val, color: { media: "", scheme, primary: "custom", accent: "custom" } });
-      const { result } = await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `localStorage.setItem("/.__palette", ${JSON.stringify(pal)})` });
+      const { result } = await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `localStorage.setItem(${JSON.stringify(new URL(base).pathname + ".__palette")}, ${JSON.stringify(pal)})` });
       for (const w of [390, 1280]) {
         await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: w < 768 ? 844 : 900, deviceScaleFactor: 1, mobile: w < 768 });
         for (const p of PAGES) {
@@ -318,7 +318,7 @@ async function shots() {
   try {
     for (const [name, w, scheme, page, action] of list) {
       const pal = JSON.stringify({ index: scheme === "slate" ? 0 : 1, color: { media: "", scheme, primary: "custom", accent: "custom" } });
-      const { result } = await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `localStorage.setItem("/.__palette", ${JSON.stringify(pal)})` });
+      const { result } = await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `localStorage.setItem(${JSON.stringify(new URL(base).pathname + ".__palette")}, ${JSON.stringify(pal)})` });
       await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: w < 768 ? 844 : 900, deviceScaleFactor: 1, mobile: w < 768 });
       await goto(b, base + page);
       await sleep(400);

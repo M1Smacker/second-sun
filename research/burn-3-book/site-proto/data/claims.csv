@@ -1,0 +1,9 @@
+id,claim,label,source,url,checked
+B4,"An iPhone home-screen web app keeps its offline cache; Safari tabs may lose storage after 7 days unused",UNVERIFIED,memory (test on Ahmed's iPhone),https://webkit.org/tracking-prevention/,2026-10-19
+B5,"robots.txt must sit at the top-level path of a host, so it cannot work for a GitHub project site",VERIFIED,RFC 9309 §2.3,https://www.rfc-editor.org/rfc/rfc9309.html,2026-10-19
+B6,"A page blocked by robots.txt never has its noindex tag read",VERIFIED,Google Search Central,https://developers.google.com/search/docs/crawling-indexing/block-indexing,2026-10-19
+B9,"ExoFOP accepts community planet candidates only after peer-reviewed publication (or an RNAAS note citing a previously published method)",VERIFIED,ExoFOP help,https://exofop.ipac.caltech.edu/tess/help.php,2026-10-19
+B10,"ExoFOP paused candidate uploads on 2026-03-31 and reopened them on 2026-08-19 with publish-first and upload approval",VERIFIED,ExoFOP news,https://exofop.ipac.caltech.edu/tess/news.php,2026-10-19
+B14,"MNRAS: AI tools cannot be authors; AI use, including code and data processing, is disclosed in the cover letter and in Methods or Acknowledgements",VERIFIED,OUP MNRAS General instructions §3.2,https://academic.oup.com/mnras/pages/general_instructions,2026-10-19
+B15,"MNRAS has no restriction on institutional affiliation; each author gives a full address",VERIFIED,OUP MNRAS General instructions §1,https://academic.oup.com/mnras/pages/general_instructions,2026-10-19
+B17,"A&A: no AI authors; language, coding and search help under human oversight needs no disclosure; other uses are declared",LIKELY,A&A statement of 18 June 2026 (search summary; site blocks our tools),https://www.aanda.org/news/3200-a-a-publishes-statement-on-the-use-of-ai-assisted-technologies,2026-10-19

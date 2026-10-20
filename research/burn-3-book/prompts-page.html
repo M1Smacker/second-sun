@@ -1,0 +1,106 @@
+<title>Second Sun Prompts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one column, two copy boxes. Tokens: ground, ink, quiet ink, line, accent (amber, same as the book). */
+:root { --bg:#faf9f6; --surface:#f1efe9; --fg:#1a1e26; --fg2:#495160; --line:#d9d5cb; --accent:#8a5a12; --on-accent:#ffffff;
+  --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --mono: ui-monospace,"Cascadia Mono",Consolas,monospace; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0c1018; --surface:#131a27; --fg:#e6e8ee; --fg2:#aab1c0; --line:#2a3448; --accent:#e2b45f; --on-accent:#0c1018; color-scheme: dark } }
+:root[data-theme="dark"] { --bg:#0c1018; --surface:#131a27; --fg:#e6e8ee; --fg2:#aab1c0; --line:#2a3448; --accent:#e2b45f; --on-accent:#0c1018; color-scheme: dark }
+body { background:var(--bg); color:var(--fg); font-family:var(--sans); font-size:17px; line-height:1.6;
+  padding-block:24px 48px; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); margin:0 }
+main { max-width:42rem; margin:0 auto; display:flex; flex-direction:column; gap:32px; min-width:0 }
+h1 { font-size:28px; line-height:1.2; margin:0 0 8px; text-wrap:balance }
+h2 { font-size:21px; line-height:1.25; margin:0 0 4px; text-wrap:balance }
+p { margin:0 0 8px }
+.lede, .hint { color:var(--fg2) }
+.hint { font-size:14px }
+section { display:flex; flex-direction:column; gap:12px; min-width:0 }
+textarea { width:100%; box-sizing:border-box; min-height:18rem; resize:vertical; padding:12px; border:1px solid var(--line); border-radius:6px;
+  background:var(--surface); color:var(--fg); font:15px/1.5 var(--mono) }
+button { min-height:44px; padding:0 20px; border:0; border-radius:6px; background:var(--accent); color:var(--on-accent); font:600 16px var(--sans); cursor:pointer; align-self:flex-start }
+button:focus-visible, textarea:focus-visible { outline:2px solid var(--accent); outline-offset:2px }
+.status { min-height:1.6em; color:var(--fg2); font-size:15px }
+</style>
+<main>
+<header>
+  <h1>Second Sun prompts</h1>
+  <p class="lede">Two prompts for the main session, written 20 October 2026. Tap Copy, then paste into the main chat.</p>
+  <p class="hint">If Copy does nothing: tap inside the box, press and hold, choose Select All, then Copy.</p>
+</header>
+<section aria-labelledby="h-a">
+  <h2 id="h-a">1. Phone-first rule</h2>
+  <p class="lede">Tells the main session how to hand you things you can read on your phone. Give it this one first.</p>
+  <textarea id="box-a" readonly spellcheck="false">New standing rule from Ahmed for every message you send him.
+
+Ahmed often reads and steers this session from the Claude iPhone app over Remote Control, in bed, with the PC monitor off. The phone is a window into this session, not into the PC. From the phone he CANNOT open files or folders on the PC, cannot render a local markdown file, and does not see the wrap_up next-step box or its buttons. He CAN read chat messages (headings, lists, bold, short tables render; wide tables do not), tap links, view images you send, answer permission prompts and AskUserQuestion questions, and attach photos or files to a message. So:
+
+1. NEVER say &quot;open the file at &lt;path&gt;&quot;. Put what he needs to read INSIDE the chat message. Summary first, in plain words, under about 300 words. Say what the decision or next step is in the first two lines.
+
+2. If there is more than that (a report, a plan, a long prompt he must copy), you may still write the file on the PC for reference, but ALSO deliver it to the phone, in this order of preference:
+   a. A tappable GitHub link, after the file is committed AND pushed: https://github.com/M1Smacker/second-sun/blob/main/&lt;repo-relative path&gt;  (the repo is public and GitHub renders markdown on iPhone). If it is not pushed yet, say so and do not give a dead link.
+   b. A private Artifact page (a claude.ai link he can open from the phone) for anything formatted, long, or meant to be copied. For a prompt, put it in a read-only text box he can select and copy.
+   c. SendUserFile for images, PDFs and short files (display &quot;render&quot; for images and HTML, &quot;attach&quot; for the rest).
+   d. For book chapters: republish the book (research\burn-3-book\tools\publish_book.ps1) and give the live page link under https://m1smacker.github.io/second-sun/.
+
+3. When he must copy something into another session, give the prompt inline in a fenced code block AND in an Artifact copy box. Never only as a file path.
+
+4. Questions and approvals: permission prompts and AskUserQuestion reach his phone and wait for him. The wrap_up box does not. Open the closing message with the recap, then put any question and the options in the message text (&quot;reply A, B or C&quot;). Keep options short enough to type on a phone. Other pop-up dialogs expire after about 5 minutes, so do not rely on them.
+
+5. Do not ask him to do anything that needs the PC (typing commands, opening folders, clicking in the desktop app). If something truly needs the PC, say &quot;needs the PC, I will wait for it&quot; and carry on with other work. Never leave a task blocked on a PC-only step without saying so.
+
+6. Phone-friendly slash commands that work from the app: /compact, /clear, /context, /usage, /recap, /model, /effort, /fast, /rename, /mcp (text summary), /config key=value. Local-only commands such as /plugin and /resume do not.
+
+7. Do not change power or sleep settings and do not restart Windows. The PC must stay awake with the lid open and the Claude desktop app running. If the machine or the app restarts, the session goes offline until it is resumed.
+
+8. Keep alerts rare: one push when a long task finishes or a decision is needed, not progress chatter.</textarea>
+  <button type="button" data-copy="box-a" data-status="st-a">Copy prompt 1</button>
+  <div class="status" id="st-a" role="status"></div>
+</section>
+<section aria-labelledby="h-b">
+  <h2 id="h-b">2. Book is live: hand-over</h2>
+  <p class="lede">What the side session built and published while the main session worked. Give it this second.</p>
+  <textarea id="box-b" readonly spellcheck="false">You are the main Second Sun session. While you were running STANLEY, a side session (Claude Sonnet 5.5, started by &quot;Unknown mysteries and problems to solve&quot;) built and published the book. Read this, take over the book&#x27;s publishing, and change nothing else. Do not stop STANLEY.
+
+**1. The book is live (Ahmed&#x27;s request: &quot;read the Bible on my phone, anywhere&quot;)**
+- URL: https://m1smacker.github.io/second-sun/
+- Hosted by GitHub Pages from a separate branch `gh-pages` (Pages source: branch `gh-pages`, path `/`). `main` was never touched, so your pushes are not affected. Never edit `gh-pages` by hand and never force-push it.
+- It is the committed `main` at 6547df2 (6 chapters, observatory design, glossary, claims register, quests, candidates, L1) built with `mkdocs build --strict`. noindex is on every page (16 of 16), there is no robots.txt (it cannot work on a project site), and there is a sitemap.xml (harmless while the site is unlinked). No secrets or personal data were found in the tracked files or the built site. The repo itself was already public.
+- Verified on the live address, not only locally: the live service-worker version equals the tested build (766c0bdcf620); offline works (54/54 pages cached, search, the demo, 404 page); layout at 390 and 1280 px in dark and light (36 checks, 0 overflow, 0 tap targets under 44 px, 0 console errors); JavaScript off; redirects (one hop). Not tested: real iPhone Safari. Ahmed should open the link, use Share &gt; Add to Home Screen, open it once online, then try airplane mode (the blueprint section 6 checklist).
+
+**2. How to update the live book (after you change anything under `book/`)**
+1. Commit your changes to `main` first. The script builds the committed `main`, not your working tree.
+2. Run in PowerShell: `D:\second-sun\research\burn-3-book\tools\publish_book.ps1` (add `-Test` to run the browser checks on a spare port first; `-DryRun` builds and checks without pushing).
+3. It takes about a minute. GitHub then needs 1 to 2 minutes to go live. A run with no changes says &quot;Nothing changed&quot; and publishes nothing.
+- What it does: fresh clone of committed `main` into the scratch folder `D:\ss-pages-work` (outside the repo), strict build, safety checks (noindex on every page, size, secret patterns, `sw.js` present), commit to `gh-pages` from a separate clone, push `gh-pages` only. It never touches your working tree, your git state, port 8471, `pipeline/` or `data/`. Do not delete `D:\ss-pages-work`.
+
+**3. Two problems I found in your tree (I did not change them)**
+- **The build only works because of an ignored file.** `.gitignore` has `data/`, which also ignores `book/data/claims.csv`, so a clean clone of GitHub cannot build the book (`mkdocs` fails: &quot;The path ... book\data isn&#x27;t an existing file or directory&quot;). The publish script works around it by copying the file from your working tree and prints a warning. Fix it at the source: add `!book/data/` and `!book/data/**` after the `data/` line in `.gitignore`, then commit `book/data/claims.csv`. This also matters for the blueprint&#x27;s future GitHub Actions workflow.
+- **Minor accessibility item.** `book/ch6-our-data/` has a &quot;VERIFIED&quot; confidence chip that is not inside a paragraph, list item or table cell (probably in a heading or a box), so it is 87 x 20 px as a stand-alone tap target. Chips inside text are fine.
+
+**4. What else I built while you worked (all under `research/burn-3-book/`, summarised in `report.md`, `DONE.md`, `claims.md` B1-B28, `friction.md`, `open-questions.md`)**
+- The book prototype, now folded into your `book/`: design tokens and type scale from SITE-BLUEPRINT.md, one amber accent, confidence chips by outline shape, quiet &quot;Level n of 6&quot; progress (no XP, ranks, badges or streaks), 150-250 ms transitions that switch off under reduced motion, the 3-cache service worker (batched install that skips failures, capped image cache, &quot;Updated. Reload&quot; line with loop guards), claims register and `{{claim:ID}}` chips, noindex.
+- A stress test with evidence (7 of 7 modes pass), 11 bugs found and fixed, the update flow A to B proven (one line, one reload), 300 extra pages plus 50 images (build 3.6 s, precache 14 MB, search index 4.1 MB, install survives a 404), JS off, offline, no loops. Test tools: `tools/site_check.mjs`, `tools/serve.mjs`, `tools/make_stress.py`.
+- **Test-server finding:** on this PC Chrome left 4-17% of requests to Python&#x27;s `http.server` hanging (curl: 0%, Node: 0%). Use `tools/serve.mjs` (Node) for browser tests.
+- A learning track written to Ahmed (L0 warm-up plus L1-L6, blueprint lesson template), `learning-track.md`.
+- Research: **ExoFOP has been publish-first since 2026-08-19** (a candidate must be published in a peer-reviewed journal, or an RNAAS note citing a previously published method, before upload, plus an approved upload request; uploads were paused 2026-03-31). MNRAS: AI use disclosed in the cover letter and the paper, no affiliation requirement, APC 2,356 GBP (VERIFIED). A&amp;A: no AI authors, coding help needs no disclosure (LIKELY; their site blocks our tools). 13 conflicts with SITE-BLUEPRINT.md are listed in `report.md` (for example the candidate statuses and the scoop switch should follow publish-first).
+
+**5. Uncommitted files I left in your working tree** (yours to commit or not): `research/burn-3-book/tools/publish_book.ps1` (new) and `research/burn-3-book/tools/site_check.mjs` (modified: theme test now works under a base path such as /second-sun/). `pipeline/stanley/run_search.py` is not mine.
+
+**6. Decisions still waiting for Ahmed**
+- The ExoFOP publish-first rule breaks &quot;two keys, then CTOI&quot; (C11): see `open-questions.md` #1.
+- Later, optionally: move deployment into a GitHub Actions workflow on `main` (the blueprint&#x27;s design). It needs a commit on `main`, so do it at a calm moment, then switch the Pages source to &quot;GitHub Actions&quot;. Until then the script above is the deploy.</textarea>
+  <button type="button" data-copy="box-b" data-status="st-b">Copy prompt 2</button>
+  <div class="status" id="st-b" role="status"></div>
+</section>
+</main>
+<script>
+document.querySelectorAll("button[data-copy]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var box = document.getElementById(btn.dataset.copy), out = document.getElementById(btn.dataset.status);
+    function fallback() { box.focus(); box.select(); box.setSelectionRange(0, box.value.length); out.textContent = "Selected. Press and hold, then tap Copy."; }
+    try {
+      navigator.clipboard.writeText(box.value).then(function () { out.textContent = "Copied."; }, fallback);
+    } catch (e) { fallback(); }
+  });
+});
+</script>
