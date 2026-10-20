@@ -2,6 +2,9 @@
 
 *Created 2026-10-20 21:55 UTC by Claude. Keep the "Status" table below current; it is the single source of truth for what is done and what is next. If the weekly limit stops work, anyone (including a fresh session a week later) can continue from here.*
 
+## STANDING INSTRUCTION FROM AHMED (2026-10-21, newest, overrides the queue below)
+**The star hunt and all science follow-ups are on hold until Ahmed says to start them** ("I will only come to you and tell you to start this star hunt when I tell you to do"). That includes the next science step (task 10) and the `accept_v2.py` / `recover_cbp.py` safety fix (task 7): do NOT run them on your own, even if an earlier "go" seems to cover them. Allowed meanwhile, only when Ahmed asks: the mission progress bar for the book (plan first, with him), reviews of the research tools, the noise filtering and the book. He wants to save weekly usage for his other projects: keep every block small and check usage first.
+
 ## When can work continue?
 - **Ahmed's weekly cap: 35%** of the weekly limit (his words, 2026-10-20: "Weekly limit cap is 35% and that's it"). Work stops at 35%, finished or not.
 - The weekly window resets **2026-10-26 22:00 UTC** (27 October, 01:00 Kuwait). After that, say **"resume Second Sun"** in a new session. Nothing restarts by itself (timed tasks froze before: they need the PC and Auto mode).
@@ -23,10 +26,10 @@
 | 4 | Reproduce the baseline (arm A0) against `pipeline/accept_v2_results.json`; stop if it does not match | done 2026-10-20: matched exactly |
 | 5 | Run the SAP arms A1 (SAP + HARD) and A2 (SAP + DEFAULT) | done 2026-10-20: results in `experiments/quality_mask/results/20261020T215121Z_e40982b/` (summary.md); post-hoc diagnostics in `post_hoc/` |
 | 6 | Field Note, publish book, update this file | done 2026-10-20 (Field Note evening section; Chapter 8 seventh test; claims F-054 to F-058) |
-| 7 | Later: guard `accept_v2.py` (`__main__` guard, never overwrite tracked results); make `recover_cbp.py` save timestamped output | not started |
+| 7 | **ON HOLD (Ahmed, 2026-10-21):** later: guard `accept_v2.py` (`__main__` guard, never overwrite tracked results); make `recover_cbp.py` save timestamped output | not started |
 | 8 | Later: QLP recipe automation (OVERNIGHT.md task 12), then scale-up injection tests (about 200 trials per size, random timings, SPOC vs QLP, real fainter stars) | not started |
 | 9 | Later, Ahmed's decisions: the 136 morph = -1 rows; ExoFOP publish-first path; STANLEY calibration | pending Ahmed |
-| 10 | **Next scientific question (my recommendation, needs Ahmed's go because it changes the plan):** the experiment says (a) restored SAP cadences find S62 and S30 but add noise and maybe false alarms; (b) SAP gave a quieter noise estimate than PDCSAP in several sectors. Smallest follow-ups: (i) search restored stretches separately with their own noise estimate instead of pooling; (ii) run PDCSAP and SAP both and require agreement (rule C8) instead of choosing; (iii) replicate on a second star (Kepler-16, 94 light curves) before any production change; (iv) find out why PDCSAP's noise estimate is higher (e.g. S6) | proposed |
+| 10 | **Next scientific question (my recommendation, needs Ahmed's go because it changes the plan):** the experiment says (a) restored SAP cadences find S62 and S30 but add noise and maybe false alarms; (b) SAP gave a quieter noise estimate than PDCSAP in several sectors. Smallest follow-ups: (i) search restored stretches separately with their own noise estimate instead of pooling; (ii) run PDCSAP and SAP both and require agreement (rule C8) instead of choosing; (iii) replicate on a second star (Kepler-16, 94 light curves) before any production change; (iv) find out why PDCSAP's noise estimate is higher (e.g. S6) | **ON HOLD (Ahmed, 2026-10-21)** |
 
 ## Result of the experiment (2026-10-20, one star; read `experiments/quality_mask/results/20261020T215121Z_e40982b/summary.md`)
 Baseline reproduced exactly. Milder filter (SAP + DEFAULT) found both missing crossings (S62 SNR 12.1, S30 SNR 10.5) but lowered SNR elsewhere (median -0.54) and 6 R_earth injections went 2/7 to 0/7; flipped-data events inconclusive (restored 6.8 vs 1.0 per 100 d, intervals overlap). Separately, SAP + HARD found 7 of 8 published transits vs PDCSAP's 4, because PDCSAP's noise estimate is larger (depths equal; cause unknown). Nothing in production changed.
