@@ -1,0 +1,104 @@
+{
+ "utc": "2026-10-20T21:51:20.947730+00:00",
+ "commit": "e40982b8e9c82368ce12de37f2f3a07bacff45ac",
+ "tracked_files_modified": [],
+ "python": "3.12.10",
+ "numpy": "1.26.4",
+ "lightkurve": "2.6.0",
+ "batman": "2.5.1",
+ "sectors": [
+  6,
+  10,
+  27,
+  30,
+  34,
+  37,
+  62,
+  65,
+  68,
+  98
+ ],
+ "smoke": false,
+ "constants": {
+  "P": 14.6084,
+  "D1": 4.7,
+  "D2": 6.1,
+  "SEC": 0.454,
+  "HARD": 24319,
+  "DEFAULT": 17087,
+  "PUB": {
+   "6": 1483.9048,
+   "10": 1579.0423,
+   "27": 2049.9515,
+   "30": 2142.3991,
+   "34": 2238.2258,
+   "37": 2331.0148,
+   "62": 2989.6356,
+   "65": 3085.4243,
+   "68": 3178.2853,
+   "98": 4025.5927
+  }
+ },
+ "inputs": {
+  "S6": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2018349182500-s0006-0000000260128333-0126-s\\tess2018349182500-s0006-0000000260128333-0126-s_lc.fits",
+   "sha256": "38fdf794ba34525b51247925636dfe3e40478b07f2408b9423bf5587296f6755"
+  },
+  "S10": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2019085135100-s0010-0000000260128333-0140-s\\tess2019085135100-s0010-0000000260128333-0140-s_lc.fits",
+   "sha256": "0ac714eddbfc79c7cdeea1ca3944a86ddfc9b3157faafba60c1b1f4eedf0241f"
+  },
+  "S27": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2020186164531-s0027-0000000260128333-0189-s\\tess2020186164531-s0027-0000000260128333-0189-s_lc.fits",
+   "sha256": "167b2a9386d7c17a3698b4ae73010d5cb872b4d10285b3aed86065f712fdbf68"
+  },
+  "S30": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2020266004630-s0030-0000000260128333-0195-s\\tess2020266004630-s0030-0000000260128333-0195-s_lc.fits",
+   "sha256": "f63e367215f00021912b9df898b8392c100024f2a2998e6e0a88c4e9f0ed3235"
+  },
+  "S34": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2021014023720-s0034-0000000260128333-0204-s\\tess2021014023720-s0034-0000000260128333-0204-s_lc.fits",
+   "sha256": "cbb26b5683fba70aa9cb7689c91055da3881bd7eb3d71cbf89f8bceede076629"
+  },
+  "S37": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2021091135823-s0037-0000000260128333-0208-s\\tess2021091135823-s0037-0000000260128333-0208-s_lc.fits",
+   "sha256": "26627f4150cfcbec12096b0e0b46359d95991a5a7a328d7cb8b972961746cfcd"
+  },
+  "S62": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2023043185947-s0062-0000000260128333-0254-s\\tess2023043185947-s0062-0000000260128333-0254-s_lc.fits",
+   "sha256": "201374ee3a79ac3b4b2bc453d44d97caf3059a930febb1e4af6ac9ffd88a3137"
+  },
+  "S65": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2023124020739-s0065-0000000260128333-0259-s\\tess2023124020739-s0065-0000000260128333-0259-s_lc.fits",
+   "sha256": "0537f054f94939eb8e845c5f8a5c3a053efcb4f7b508cac96b004f56e2799ab6"
+  },
+  "S68": {
+   "path": "D:\\second-sun\\data\\burn-1\\lk\\mastDownload\\TESS\\tess2023209231226-s0068-0000000260128333-0262-s\\tess2023209231226-s0068-0000000260128333-0262-s_lc.fits",
+   "sha256": "d31271a04abef294f9df4138c46897f54bb3f5a0e4543f80955436392f017761"
+  },
+  "S98": {
+   "path": "D:\\second-sun\\data\\wave-2\\lk\\mastDownload\\TESS\\tess2025312202959-s0098-0000000260128333-0298-s\\tess2025312202959-s0098-0000000260128333-0298-s_lc.fits",
+   "sha256": "d23d3c35f070293ba2406f6e6c7e1c215b24ff42a8156054464cec395b2b804d"
+  },
+  "detect_v2.py": {
+   "path": "D:\\second-sun\\pipeline\\detect_v2.py",
+   "sha256": "6806b039e72b1ea867ba8e78ad1476a6428aa05e38682b043297bfe2ea805a91"
+  },
+  "accept_v2.py": {
+   "path": "D:\\second-sun\\pipeline\\accept_v2.py",
+   "sha256": "f7b02c396288fe42a7afdc39d9015e291f62a2ca78f11f52da4bb56218ea604e"
+  },
+  "baseline_json": {
+   "path": "D:\\second-sun\\pipeline\\accept_v2_results.json",
+   "sha256": "cde30c8ed7bcc492c5cffedb6204fc2ee7484311a431d6178183ed4d467da7d4"
+  },
+  "SPEC.md": {
+   "path": "D:\\second-sun\\experiments\\quality_mask\\SPEC.md",
+   "sha256": "478654ea141d97b11113e292bd7ad7f6471a23212fc9d3c6ec1a6c43ebba1bd8"
+  },
+  "qmask.py": {
+   "path": "D:\\second-sun\\experiments\\quality_mask\\qmask.py",
+   "sha256": "00fb1272e039397e1f5c30b4aab250e99e434bed46429c33b113cec7c8ce8649"
+  }
+ }
+}

@@ -1,0 +1,28 @@
+A1 / A2 events matched to published times (centre offset h, box length h, depth ppm):
+  A1 S6 dt=-0.04 h dur 5 depth 2881 SNR 13.08
+  A1 S10 dt=+0.57 h dur 12 depth 1929 SNR 10.77
+  A1 S27 dt=-0.08 h dur 6.5 depth 2283 SNR 7.17
+  A1 S34 dt=-0.09 h dur 8 depth 2290 SNR 10.77
+  A1 S37 dt=-0.16 h dur 5 depth 2251 SNR 7.39
+  A1 S65 dt=-0.44 h dur 8 depth 2578 SNR 12.49
+  A1 S98 dt=+0.58 h dur 5 depth 2510 SNR 10.01
+  A2 S6 dt=-0.04 h dur 5 depth 2884 SNR 12.99
+  A2 S10 dt=+0.04 h dur 10 depth 2207 SNR 8.89
+  A2 S27 dt=-0.08 h dur 6.5 depth 2283 SNR 7.32
+  A2 S30 dt=+1.34 h dur 10 depth 2035 SNR 10.45
+  A2 S34 dt=-0.14 h dur 8 depth 2303 SNR 10.23
+  A2 S37 dt=-0.09 h dur 5 depth 2289 SNR 7.3
+  A2 S62 dt=-0.25 h dur 6.5 depth 2564 SNR 12.11
+  A2 S65 dt=-0.44 h dur 8 depth 2567 SNR 11.8
+  A2 S98 dt=+0.49 h dur 5 depth 2541 SNR 7.81
+
+Local depth by simple line fit, same HARD cadences (published durations in h):
+sector  SAP_depth  PDCSAP_depth  ratio  SAP_noise  PDC_noise   (ppm; noise = scatter of 2-min residual outside transit)
+S6          3479          3850    0.90       2160       2162   dur 6.0
+S10         2831          2805    1.01       2169       2179   dur 11.6
+S27         2410          2317    1.04       2183       2213   dur 7.2
+S34         2417          2298    1.05       2084       2106   dur 9.6
+S37         2687          2093    1.28       2375       2356   dur 5.9
+S65         3169          3222    0.98       2173       2183   dur 10.2
+S68         1933          2054    0.94       1875       1886   dur 6.2
+S98         1661          1931    0.86       2228       2180   dur nan

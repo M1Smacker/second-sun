@@ -1,0 +1,9 @@
+sector dur | PDCSAP: sigma_D  depth  SNR  | SAP: sigma_D  depth  SNR   (ppm; box of the published duration, centred on the published time)
+S6     6.5 |      599   2421   4.0 |      204   2287  11.2   n kept 12767 / 12767
+S10   10.0 |      184   2105  11.4 |      205   2201  10.7   n kept 11777 / 11777
+S27    6.5 |      360   2360   6.5 |      318   2283   7.2   n kept 14672 / 14672
+S34    8.0 |      423   2150   5.1 |      213   2290  10.8   n kept 15430 / 15430
+S37    5.0 |      564   1990   3.5 |      305   2233   7.3   n kept 12478 / 12478
+S65   10.0 |      267   2285   8.6 |      181   2252  12.4   n kept 9771 / 9771
+S68    6.5 |      244   1518   6.2 |      170    902   5.3   n kept 11943 / 11943
+S98    5.0 |      237   1867   7.9 |      251   2282   9.1   n kept 22428 / 22428
