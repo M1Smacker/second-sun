@@ -124,3 +124,21 @@
 }
 .md-typeset .ss-eq > p { margin: 0; }
 .md-typeset ol.ss-chapters li[data-n]::before { content: attr(data-n); }
+
+/* Mission readiness bar (home page). Quiet instrument gauge: no points, badges or confetti. */
+.ss-mission { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: var(--ss-surface); margin: 0 0 40px; max-width: 66ch; padding: 0 16px 14px; }
+.ss-mission header { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--ss-line); font: 500 11px/1.4 var(--ss-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ss-text-2); }
+.ss-mission header b { color: var(--ss-accent); font-weight: 500; }
+.md-typeset .ss-mission-num { margin: 14px 0 8px; font: 500 40px/1 var(--ss-data); color: var(--ss-text); }
+.md-typeset .ss-mission-num b { font-weight: 500; }
+.md-typeset .ss-mission-num small { font-size: 15px; color: var(--ss-text-2); margin-left: 6px; }
+.ss-mission-bar { display: flex; gap: 3px; height: 14px; }
+.ss-seg { display: block; background: var(--ss-line); border-radius: 2px; overflow: hidden; min-width: 6px; }
+.ss-seg i { display: block; height: 100%; background: var(--ss-accent); animation: ss-fill .7s ease-out both; }
+@keyframes ss-fill { from { width: 0; } }
+@media (prefers-reduced-motion: reduce) { .ss-seg i { animation: none; } }
+[dir] .md-typeset .ss-mission-legend { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; margin: 14px 0 10px; padding: 0; font: 400 13px/1.5 var(--ss-ui); max-width: none; }
+[dir] .md-typeset .ss-mission-legend li { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--ss-line); padding: 0 0 2px; margin: 0; }
+[dir] .md-typeset .ss-mission-legend b { font: 500 13px var(--ss-data); }
+@media (max-width: 480px) { [dir] .md-typeset .ss-mission-legend { grid-template-columns: 1fr; } }
+.md-typeset .ss-mission-note { font-size: 14px; color: var(--ss-text-2); margin: 8px 0 0; max-width: none; }
