@@ -44,6 +44,10 @@ How far a test has got is written in plain words inside sentences: "not tested y
 
 Tap any label to open the [claims register](../claims.md), which lists every fact, its source and the date it was checked.
 
+## The readiness bar
+
+The home page shows **Mission readiness**, 0 to 100: how complete and how well built *our plan* is. It is **not** the chance of finding a planet. Every point has proof, some points are counted by the program, and the number can go down. The full list, with the proof for each point, is on the [Progress page](../progress.md).
+
 ## Labs
 
 Labs are where you do the work yourself. Each one has commands to copy, the output you should see (from a real run on your PC), what can go wrong, and a **Your turn** box. When you finish one, tell me "Lab 2 done" plus your result, and I'll check it.

@@ -48,6 +48,9 @@ else {
     Write-Host "WARNING: copied claims.csv from the working tree. Fix at the source: add '!book/data/' to .gitignore and commit book/data/claims.csv." -ForegroundColor Yellow
 }
 
+Step "2b. Mission readiness rules still hold (negative and positive tests, run on the committed copy)"
+Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_mission.py"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build

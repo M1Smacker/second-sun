@@ -20,6 +20,8 @@ import hashlib
 import json
 import logging
 import re
+import sys
+from collections import Counter
 from html import escape
 from pathlib import Path
 
@@ -27,6 +29,10 @@ import yaml
 from mkdocs.exceptions import PluginError
 
 ROOT = Path(__file__).parent
+REPO = ROOT.parent
+sys.path.insert(0, str(ROOT))
+import mission   # the 0-100 readiness score (book/mission.py)
+
 DATA = {}
 LOG = logging.getLogger("mkdocs.hooks.second_sun")
 LABELS = {"VERIFIED", "LIKELY", "UNVERIFIED"}
@@ -36,7 +42,7 @@ PRECACHE_BUDGET = 25 * 1024 * 1024
 
 def load(root=ROOT):
     d = {n: yaml.safe_load((root / "progress" / f"{n}.yml").read_text(encoding="utf-8"))
-         for n in ("levels", "milestones", "quests", "candidates")}
+         for n in ("levels", "milestones", "quests", "candidates", "mission")}
     with open(root / "data" / "claims.csv", encoding="utf-8", newline="") as f:
         d["claims"] = list(csv.DictReader(f))
     return d
@@ -58,6 +64,84 @@ def validate(d):
     for c in d["claims"]:
         if c["label"] not in LABELS:
             raise ValueError(f"data/claims.csv: {c['id']} has label {c['label']!r}; use one of {sorted(LABELS)}")
+    real = [c for c in d["candidates"] if not c.get("example")]
+    d["score"] = mission.score(d["mission"], REPO, set(claim_ids), len(real))
+    for st in d["mission"].get("status", []):
+        if not all(isinstance(st.get(k), str) and st[k].strip() for k in ("label", "value", "note")):
+            raise ValueError(f"progress/mission.yml: status cell needs label, value and note: {st}")
+    if len(d["mission"].get("status", [])) != 6:
+        raise ValueError("progress/mission.yml: the status panel needs exactly 6 cells")
+    d["health"] = health(d)
+    d["n_candidates"] = len(real)
+
+
+STALE = re.compile(r"coming soon|still being written|not yet written|\bTODO\b|\bTBD\b|\(coming\)", re.I)
+DASH = re.compile("[\u2013\u2014]")   # book rule (Ahmed): no en or em dashes in book text
+
+
+def health(d, docs=ROOT / "docs"):
+    """Cheap, honest book checks from the sources. A dash fails the build; stale phrases are counted and shown."""
+    pages = sorted(docs.rglob("*.md"))
+    texts = {p: p.read_text(encoding="utf-8") for p in pages}
+    dashes = [p.relative_to(docs).as_posix() for p, t in texts.items() if DASH.search(t)]
+    if dashes:
+        raise ValueError(f"en or em dash in book text (rule: none) in: {dashes[:6]}")
+    n = Counter(c["label"] for c in d["claims"])
+    return dict(pages=len(pages), chapters=len(list((docs / "book").glob("[0-9]*.md"))), labs=len(list((docs / "labs").glob("lab*.md"))),
+                claims=len(d["claims"]), verified=n["VERIFIED"], likely=n["LIKELY"], unverified=n["UNVERIFIED"],
+                stale=sum(len(STALE.findall(t)) for t in texts.values()))
+
+
+def status_panel(d):
+    cells = "".join(f'<div><dt>{escape(c["label"])}</dt><dd>{escape(c["value"])}<small>{escape(c["note"])}</small></dd></div>' for c in d["mission"]["status"])
+    return (f'<section class="ss-status-panel" aria-label="Mission status"><header><span>Mission status</span>'
+            f'<span>Updated <b>{d["score"]["updated"]}</b></span></header><dl>{cells}</dl>'
+            f'<p>Nothing here is a discovery yet. Every number links back to a test in <a href="book/08-our-detector/">Chapter 8</a>.</p></section>')
+
+
+def mission_bar(d):
+    """Home page only (its links are relative to the site root)."""
+    s, h = d["score"], d["health"]; pct = round(s["total"])
+    segs = "".join(f'<span class="ss-seg" style="flex:{st["weight"]} 1 0" title="{escape(st["name"])}: {st["points"]:.1f} of {st["weight"]}">'
+                   f'<i style="width:{100 * st["points"] / st["weight"]:.1f}%"></i></span>' for st in s["stages"])
+    legend = "".join(f'<li><span>{escape(st["name"])}</span><b>{st["points"]:.0f} / {st["weight"]}</b></li>' for st in s["stages"])
+    return (f'<section class="ss-mission" aria-label="Mission readiness"><header><span>Mission readiness</span><span>Updated <b>{s["updated"]}</b></span></header>'
+            f'<p class="ss-mission-num"><b>{pct}</b><small>/ 100</small></p>'
+            f'<div class="ss-mission-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{pct}" '
+            f'aria-label="Mission readiness, {pct} out of 100">{segs}</div><ul class="ss-mission-legend">{legend}</ul>'
+            f'<p class="ss-mission-note">How complete and how well built <em>our plan</em> is. It is <b>not</b> the chance of finding a planet. '
+            f'Candidates found: <b>{d["n_candidates"]}</b>.</p>'
+            f'<p class="ss-mission-note"><a href="progress/#mission-readiness">What is counted, and why</a> · Book: {h["pages"]} pages, {h["labs"]} labs, '
+            f'{h["claims"]} facts ({h["verified"]} verified, {h["likely"]} likely, {h["unverified"]} unverified), {h["stale"]} stale phrases</p></section>')
+
+
+def _ev(e):
+    kind, _, ref = e.partition(":")
+    if kind == "claim":
+        return f'<a href="../claims/#claim-{escape(ref.lower())}">{escape(ref)}</a>'
+    if kind == "file":
+        return f'<a href="https://github.com/M1Smacker/second-sun/blob/main/{escape(ref)}"><code>{escape(ref)}</code></a>'
+    return f'<a href="{escape(ref)}">link</a>'
+
+
+def mission_detail(d):
+    s, h = d["score"], d["health"]
+    parts = [f'<p><b>{s["total"]:.1f} / 100.</b> Typed by us with proof: {s["typed"]:.1f}. Counted by the program from files: {s["auto"]:.1f}.</p>']
+    for st in s["stages"]:
+        rows = ""
+        for i in st["items"]:
+            note = "<br><small>" + escape(i["note"]) + "</small>" if i["note"] else ""
+            credit = "auto" if i["auto"] else format(i["credit"], ".2f")
+            proof = " ".join(_ev(e) for e in i["evidence"]) or ("counted by the program" if i["auto"] else "")
+            rows += f'<tr><td>{escape(i["what"])}{note}</td><td>{i["weight"]}</td><td>{credit}</td><td>{i["points"]:.2f}</td><td>{proof}</td></tr>'
+        parts.append(f'<section class="ss-card"><h3>{escape(st["name"])} · {st["points"]:.1f} / {st["weight"]}</h3><p>{escape(st["blurb"])}</p>'
+                     f'<table><thead><tr><th>What</th><th>Weight</th><th>Credit</th><th>Points</th><th>Proof</th></tr></thead><tbody>{rows}</tbody></table></section>')
+    chg = "".join(f'<li><b>{c["date"]}</b> {c["delta"]:+.2f} points: {escape(str(c["why"]))}</li>' for c in s["changes"])
+    parts.append(f'<h3>Changes to the number</h3><ul>{chg}</ul>')
+    parts.append(f'<h3>Book health</h3><ul><li>{h["pages"]} pages, {h["chapters"]} chapters, {h["labs"]} labs</li>'
+                 f'<li>{h["claims"]} facts: {h["verified"]} verified, {h["likely"]} likely, {h["unverified"]} unverified</li>'
+                 f'<li>Stale phrases ("coming soon" and similar): {h["stale"]}</li><li>En or em dashes in book text: 0 (a dash fails the build)</li></ul>')
+    return "".join(parts)
 
 
 def progress_line(d):
@@ -125,7 +209,7 @@ def claims_table(d):
             f'<tbody>{rows}</tbody></table>')
 
 
-RENDER = {"progress-line": progress_line, "levels": levels, "milestones": milestones,
+RENDER = {"status-panel": status_panel, "mission-bar": mission_bar, "mission-detail": mission_detail, "progress-line": progress_line, "levels": levels, "milestones": milestones,
           "quests": quests, "candidates": candidates, "claims": claims_table}
 
 
@@ -238,4 +322,6 @@ if __name__ == "__main__":
         raise AssertionError("bad label not caught")
     except ValueError:
         pass
+    assert d["score"]["total"] > 0 and 'role="progressbar"' in mission_bar(d) and status_panel(d).count("<dt>") == 6
+    assert "ss-card" in mission_detail(d) and f'aria-valuenow="{round(d["score"]["total"])}"' in mission_bar(d)
     print("self-check ok")

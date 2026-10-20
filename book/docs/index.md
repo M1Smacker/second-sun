@@ -4,23 +4,14 @@
 
 Ahmed, this is your book. It holds everything we learn, decide and find while hunting for planets that orbit **two stars** in free public NASA [TESS](glossary.md#tess) data. It's written for you: a beginner who reads in short weeknight bursts.
 
-<section class="ss-status-panel" aria-label="Mission status">
-<header><span>Mission status</span><span>Updated <b>2026-10-20</b></span></header>
-<dl>
-<div><dt>Phase</dt><dd>Hunt paused<small>the Bible Overhaul: learning first</small></dd></div>
-<div><dt>First campaign</dt><dd>G1: Kepler's binaries<small>549 stars; 136 need a decision (Chapter 1)</small></dd></div>
-<div><dt>Detector</dt><dd>v2 (box search)<small>floor ~6 Earth radii in cleaned flux; raw flux differs (Ch 8)</small></dd></div>
-<div><dt>Known-planet test</dt><dd>4 of 8 sectors<small>TOI-1338 b; STANLEY peak 96.1 d</small></dd></div>
-<div><dt>Candidates</dt><dd>0<small>the first will be SS-0001</small></dd></div>
-<div><dt>Next milestone</dt><dd>Your labs<small>then smarter quality flags</small></dd></div>
-</dl>
-<p>Nothing here is a discovery yet. Every number links back to a test in <a href="book/08-our-detector/">Chapter 8</a>.</p>
-</section>
+<!-- ss:status-panel -->
+
+<!-- ss:mission-bar -->
 
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (20 Oct 2026):** the planet hunt is **paused** while the book catches up (the Bible Overhaul). Our search works on a known two-sun planet and sees planets down to about 6 Earth sizes in one sector. No new planet yet. Start with [The story so far](start/story-so-far.md).
+    **Two-minute recap (21 Oct 2026):** the planet hunt is **on hold** until Ahmed says start. The Bible Overhaul is finished, and the readiness bar above shows how complete and how well built our plan is. Our search works on a known two-sun planet; no new planet yet. Start with [The story so far](start/story-so-far.md).
 
 ## Start here
 - **Coming back, or new?** Read [The story so far](start/story-so-far.md), then [How to read this book](start/how-to-read.md).

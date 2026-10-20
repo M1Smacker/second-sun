@@ -1,0 +1,71 @@
+# Mission readiness: how complete and how well built OUR PLAN is (0 to 100). NOT the chance of finding a planet.
+# Rules (enforced at build, see mission.py): weights add up; credit 0..1; credit needs evidence (claim:ID, file:path, url:...);
+# `auto` items are computed from files; every change to a typed credit is logged in `changes` (the deltas must add up to the typed total).
+# To move the number: edit a credit, add the evidence, and add a line to `changes` saying why. It can go down.
+# Weights are Claude's first draft (2026-10-21), approved as the starting point by Ahmed; change them here any time.
+
+status:                                   # the six cells of the home-page status panel; edit them in the same commit as the credits
+  - {label: "Phase", value: "Hunt on hold", note: "Ahmed will say when to start"}
+  - {label: "First campaign", value: "G1: Kepler's binaries", note: "549 stars; 136 need a decision (Chapter 1)"}
+  - {label: "Detector", value: "v2 (box search)", note: "floor ~6 Earth radii; raw vs cleaned flux differs (Ch 8)"}
+  - {label: "Known-planet test", value: "7 of 8 sectors in raw flux", note: "4 of 8 in cleaned flux (the baseline)"}
+  - {label: "Filter test", value: "One star done", note: "finds S30 and S62 crossings, costs sensitivity"}
+  - {label: "Next milestone", value: "Your learning track", note: "then Ahmed decides the next science step"}
+
+stages:
+  - id: sky
+    name: Know the sky
+    weight: 10
+    blurb: Which stars, what data, and a known planet re-found.
+    items:
+      - {what: "G1 target list frozen, with source fingerprints", weight: 4, credit: 1.0, evidence: ["file:targets/g1_targets.csv", "claim:F-038"]}
+      - {what: "Data coverage mapped for all 549 stars", weight: 3, credit: 1.0, evidence: ["file:targets/g1_coverage.csv", "claim:F-043"]}
+      - {what: "Known-planet tests: TOI-1338 b re-found; Kepler-16 dry run", weight: 3, credit: 1.0, evidence: ["claim:F-014", "claim:F-040", "file:pipeline/dryrun_kepler16_results.json"]}
+  - id: detector
+    name: Detector
+    weight: 25
+    blurb: Can the search see a planet, and do we know how small?
+    items:
+      - {what: "Detector v2 built and self-checked", weight: 5, credit: 1.0, evidence: ["file:pipeline/detect_v2.py", "claim:F-040"]}
+      - {what: "Smallest visible planet measured with fake planets on a timetable", weight: 4, credit: 1.0, evidence: ["claim:F-015"]}
+      - {what: "Smallest visible planet measured with realistic wandering crossings", weight: 4, credit: 1.0, evidence: ["claim:F-029"]}
+      - {what: "Quality filter and flux choice settled", weight: 4, credit: 0.5, evidence: ["claim:F-054", "claim:F-056", "claim:F-057"], note: "tested on one star; the second-star test is on hold"}
+      - {what: "Sensitivity at other brightness levels, SPOC vs QLP", weight: 5, credit: 0}
+      - {what: "QLP recipe automated for QLP-only stars", weight: 3, credit: 0}
+  - id: vetting
+    name: Vetting
+    weight: 20
+    blurb: Telling a real dip from an impostor.
+    items:
+      - {what: "Vetting rules written (N1 to N12, C1 to C11)", weight: 3, credit: 1.0, evidence: ["file:research/wave-4-vetting"]}
+      - {what: "Gap and thruster warning flags in code (rule C7)", weight: 3, credit: 1.0, evidence: ["file:pipeline/veto_results.json", "file:pipeline/detect_v2.py"]}
+      - {what: "Eclipse-phase check (C5) and odd-even test on the binary", weight: 3, credit: 0}
+      - {what: "Pixel check as an automatic tool", weight: 4, credit: 0.25, evidence: ["claim:F-049"], note: "a hand-run lab exists (Lab 7), not an automatic tool"}
+      - {what: "Second-product check (rule C8) automatic", weight: 3, credit: 0.25, evidence: ["file:pipeline/borrow_windows_check2.py"], note: "worked by hand on one star"}
+      - {what: "Neighbour check with catalogue positions inside the tool", weight: 2, credit: 0}
+      - {what: "Two-key process written down", weight: 2, credit: 1.0, evidence: ["file:book/docs/book/14-credit-and-publishing.md"]}
+  - id: calibration
+    name: Calibration
+    weight: 10
+    blurb: Knowing how often noise fakes a signal.
+    items:
+      - {what: "False-alarm rate measured on upside-down data across many stars", weight: 5, credit: 0.2, evidence: ["claim:F-016", "claim:F-058"], note: "one star so far"}
+      - {what: "STANLEY scores calibrated against noise", weight: 5, credit: 0}
+  - id: search
+    name: The search
+    weight: 25
+    blurb: The G1 stars actually searched. Fills by itself as targets/g1_searched.csv grows.
+    items:
+      - {what: "G1 stars searched (out of 549)", weight: 25, auto: {rows_of: "targets/g1_searched.csv", of: 549}}
+  - id: paper
+    name: Candidate to paper
+    weight: 10
+    blurb: From a signal to a published result.
+    items:
+      - {what: "A candidate passes first vetting (SS-0001 exists)", weight: 2, auto: {candidates_at_least: 1}}
+      - {what: "A candidate passes both keys", weight: 3, credit: 0}
+      - {what: "Write-up submitted (RNAAS note or paper)", weight: 3, credit: 0}
+      - {what: "Published or confirmed", weight: 2, credit: 0}
+
+changes:                                  # date, delta (points), why. The deltas must add up to the typed credits.
+  - {date: 2026-10-21, delta: 35.75, why: "First rubric: everything done up to 21 October, scored with evidence (Ahmed: build it now)"}

@@ -13,3 +13,7 @@ behind = [l for l in git("log", "--format=%h %ad %s", "--date=short", *rng, "--"
 print(f"Book is {len(behind)} commit{'s' * (len(behind) != 1)} behind (last field note: {last_note[:7] or 'none'})")
 for l in behind:
     print("  ", l)
+# Readiness number: when was it last reviewed? (reminder only; edit book/progress/mission.yml and log the change)
+last_mission = next(iter(git("log", "-1", "--format=%H", "--", "book/progress/mission.yml")), "").strip()
+since = [l for l in git("log", "--format=%h %s", f"{last_mission}..HEAD", "--", "experiments", "pipeline", "targets", "labs") if l] if last_mission else []
+print(f"Readiness number: {len(since)} work commit{'s' * (len(since) != 1)} since book/progress/mission.yml was last edited" + (" (does any credit, evidence or status cell need updating?)" if since else ""))

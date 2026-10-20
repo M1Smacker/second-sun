@@ -11,3 +11,4 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 |---|---|
 | [19 October 2026](2026-10-19.md) | How a research project starts: what's known, where the gap is, and measuring before deciding |
 | [20 October 2026](2026-10-20.md) | Testing honestly: fake planets, false alarms, a bug in a professional tool, and Compass |
+| [21 October 2026](2026-10-21.md) | A progress bar that has to prove itself: evidence, auto-counting and logged changes |
