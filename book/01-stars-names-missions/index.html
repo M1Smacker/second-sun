@@ -1764,6 +1764,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../13-your-workshop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Your workshop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../14-credit-and-publishing/" class="md-nav__link">
         
   
@@ -1772,6 +1800,62 @@
     
   
     14. Credit and publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab9-your-star/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 9: your own star
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-mistakes-as-lessons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Our mistakes, as lessons
   
 
     
@@ -2280,6 +2364,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../claims/" class="md-nav__link">
         
   
@@ -2703,6 +2815,10 @@
 </tbody>
 </table>
 <p>The selection rule keeps <code>morph &lt; 0.5</code> (stars clearly separate), <code>p_bin_d &gt; 5</code> days (room for a stable planet, Chapter 4) and <code>tmag ≤ 13.5</code> (bright enough to see a planet). That leaves 552 rows: 549 stars, because 3 stars have two binary periods each <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-038" title="VERIFIED · Second Sun wave 1 download + pipeline/targets_g1.py · checked 2026-10-20">VERIFIED</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Found on 20 October: a hole in the rule</p>
+<p>Kepler's catalogue writes <strong>morph = −1</strong> when it couldn't measure a binary's shape. "−1 &lt; 0.5" is true, so our rule let those stars in: <strong>136 of the 552 rows</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-052" title="VERIFIED · Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20 · checked 2026-10-20">VERIFIED</a>. One of them showed no eclipse at all in TESS data. Lesson: a "missing value" code inside a number column must be handled on purpose. The fix is your decision when the hunt resumes; it's in the decision log.</p>
+</div>
 <p>The top of the file records the fingerprints (sha256) of the source files, so anyone can check the list wasn't changed.</p>
 <h2 id="15-worked-example-kepler-16s-identity-card">1.5 Worked example: Kepler-16's identity card<a class="headerlink" href="#15-worked-example-kepler-16s-identity-card" title="Permanent link">&para;</a></h2>
 <p>From <a href="../../labs/lab1-name-to-number/">Lab 1</a>, run on your PC <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-035" title="VERIFIED · Second Sun Lab 1 run, TIC via MAST, 2026-10-20 · checked 2026-10-20">VERIFIED</a> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-036" title="VERIFIED · Second Sun Lab 1 run, lightkurve search, 2026-10-20 · checked 2026-10-20">VERIFIED</a>:</p>
