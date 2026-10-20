@@ -2,14 +2,32 @@
 
 Every technical word in the book, in plain words. Pages link here the first time they use a term.
 
+### Aperture
+The group of pixels whose light is added up to make a star's light curve. Choosing it well keeps the star's light in and the neighbours' light out. See [Chapter 3](book/03-our-data.md).
+
+### Arcsecond
+A tiny angle: 1/3,600 of a degree. A TESS pixel covers 21 arcseconds. Written ″; an arcminute (′) is 60 of them. See [Chapter 1](book/01-stars-names-missions.md).
+
 ### Binary star
 Two stars held together by gravity, each circling their shared centre. Our hunting ground: pairs where a planet might orbit both. See [Chapter 4](book/04-two-suns.md).
+
+### Biweight filter
+A way to draw a smooth line through a light curve that ignores dips and outliers, so slow trends can be divided out without erasing a transit. Our detector uses a 2-day one. See [Chapter 7](book/07-noise-and-statistics.md).
 
 ### BTJD
 The TESS clock, in days: Barycentric Julian Date minus 2,457,000. BTJD 4025.6 is 16 December 2025.
 
+### Cadence
+One measurement in a light curve, or the time between measurements: 2 minutes for SPOC light curves, 200 seconds for today's full-frame images.
+
 ### Candidate
 A dip in a light curve that passed our first checks and might be a planet. Not a planet until professionals confirm it.
+
+### CDPP
+"Combined Differential Photometric Precision": NASA's estimate of how much a star's brightness wobbles over a given time (like 1 hour), stored in each light-curve file. See [Chapter 7](book/07-noise-and-statistics.md).
+
+### Centroid
+The centre of a star's light on the camera, like the balance point of its pixels. If it shifts during a dip, the dip may come from a neighbour. See [Chapter 10](book/10-vetting.md).
 
 ### Circumbinary planet
 A planet that orbits **both** stars of a pair. Its dips come at irregular times, which is why standard searches miss them. Our main quest.
@@ -17,8 +35,14 @@ A planet that orbits **both** stars of a pair. Its dips come at irregular times,
 ### Critical orbit
 The closest a planet can orbit a pair of stars and stay stable: usually 2.5 to 3.5 times the stars' separation. See [Chapter 4](book/04-two-suns.md).
 
+### CTOI
+Community TESS Object of Interest: a planet candidate found by a team outside NASA, posted on ExoFOP. See [Chapter 1](book/01-stars-names-missions.md).
+
 ### Depth
 How much of the star's light a dip blocks, as a fraction: depth = (planet radius ÷ star radius)². Usually given in % or [ppm](#ppm).
+
+### Detached binary
+Two stars far enough apart that they don't touch or distort each other; their eclipses look like clean, separate dips. Our G1 list keeps only these (Kepler's "morph" value below 0.5).
 
 ### Detrending
 Removing slow drifts (from the star or the spacecraft) so short dips stand out. We divide by a smooth fitted curve with a 2-day window. See [Chapter 8](book/08-our-detector.md).
@@ -26,20 +50,62 @@ Removing slow drifts (from the star or the spacecraft) so short dips stand out. 
 ### Eclipsing binary
 Two stars orbiting each other, lined up so that one passes in front of the other. Makes deep, regular dips.
 
+### ExoFOP
+The website where astronomers share follow-up information on TESS planet candidates. Since 2026 it asks for a published paper before accepting a community candidate. See [Chapter 14](book/14-credit-and-publishing.md).
+
 ### False alarm
 A "detection" caused by noise or spacecraft effects instead of a real dip. We count them by searching upside-down data.
+
+### FITS
+The standard file format of astronomy since 1981: a header of labels plus tables or images. Every TESS file is FITS. See [Lab 2](labs/lab2-get-the-data.md).
+
+### Full-frame image (FFI)
+A picture of a TESS camera's whole view, saved every 30 minutes, 10 minutes or 200 seconds depending on the year. Every star in view is in it. See [Chapter 3](book/03-our-data.md).
+
+### Gaia
+The European Space Agency's star-mapping spacecraft. Its catalogue gives positions, distances and colours for over a billion stars. See [Chapter 1](book/01-stars-names-missions.md).
 
 ### Injection test
 Hiding computer-made planet dips of known size in real data and checking how many the search finds. It measures what we can and can't detect.
 
+### Kepler
+NASA's space telescope that stared at one patch of sky from 2009 to 2013 and found thousands of planets and eclipsing binaries. Our G1 stars come from its binary catalogue. See [Chapter 1](book/01-stars-names-missions.md).
+
+### KIC
+Kepler Input Catalog number: Kepler's ID for a star, like KIC 12644769 for Kepler-16.
+
 ### Light curve
 A star's brightness measured again and again over time and drawn as a graph: time along the bottom, brightness up the side.
+
+### Look-elsewhere effect
+If you search in thousands of places, a few will show something unusual by chance. A search's false-alarm rate must count all its tries. See [Chapter 7](book/07-noise-and-statistics.md).
+
+### Magnitude
+Astronomy's brightness scale, where bigger numbers are fainter. 5 magnitudes is a factor of 100. See [Chapter 1](book/01-stars-names-missions.md).
+
+### MAST
+The Mikulski Archive for Space Telescopes: NASA's public archive holding all TESS and Kepler data. See [Lab 1](labs/lab1-name-to-number.md).
 
 ### Matched filter
 Sliding a template shaped like the signal you want (for us, a box-shaped dip) along the data and scoring how well each stretch matches.
 
+### Momentum dump
+A short thruster firing that TESS uses every few days to stay pointed. It jolts the camera and can fake a dip; it's flagged in the data (quality bit 32). See [Lab 2](labs/lab2-get-the-data.md).
+
+### N-body simulation
+A computer calculation that moves several objects (like two stars and a planet) step by step under each other's gravity. STANLEY uses one to predict when a two-star planet crosses.
+
+### Parsec
+A distance of about 3.26 light years, used by astronomers. Kepler-16 is 75 parsecs away.
+
 ### PDCSAP and SAP
 Two versions of NASA's light curves. SAP is the raw light summed in the star's pixels; PDCSAP has known spacecraft effects removed.
+
+### Phase fold
+Cutting a light curve into pieces one period long and stacking them, so repeating events (like eclipses) line up. Our eclipse mask finds eclipses this way.
+
+### Photon noise
+The natural wobble in counting particles of light: like raindrops in a bucket, a count of N varies by about √N. It's the floor no instrument can beat. See [Chapter 7](book/07-noise-and-statistics.md).
 
 ### ppm
 Parts per million. 1% = 10,000 ppm. Earth crossing the Sun blocks about 84 ppm.
@@ -47,8 +113,29 @@ Parts per million. 1% = 10,000 ppm. Earth crossing the Sun blocks about 84 ppm.
 ### Precession
 The slow turning of a planet's orbit around a pair of stars. It makes transits switch on and off over years. See [Chapter 5](book/05-wandering-transits.md).
 
+### QLP
+MIT's Quick-Look Pipeline: makes light curves from full-frame images for a huge number of stars. All 549 G1 stars have QLP data. See [Chapter 3](book/03-our-data.md).
+
+### Quality flag
+A number stored with each measurement that warns about problems (thruster firing, scattered light...). 0 means fine. See [Lab 2](labs/lab2-get-the-data.md).
+
+### RA and Dec
+The sky's longitude (Right Ascension) and latitude (Declination). Every star's address. See [Chapter 1](book/01-stars-names-missions.md).
+
 ### Radius
 Distance from the centre of a star or planet to its edge. We measure planets in Earth radii and stars in Sun radii (the Sun is about 109 Earths wide).
+
+### Red noise
+Slow wobbles where neighbouring measurements move together. Unlike random noise, it doesn't shrink much when you average, so it fakes planet-like dips. See [Chapter 7](book/07-noise-and-statistics.md).
+
+### Robust spread
+A measure of wobble that ignores a few wild points: 1.4826 times the median distance from the median. Our detector uses it everywhere. See [Chapter 7](book/07-noise-and-statistics.md).
+
+### Scattered light
+Sunlight bounced off Earth or the Moon into TESS's cameras, raising the background. It creates slow ramps and fake dips, usually near the ends of each orbit.
+
+### Secondary eclipse
+When the brighter star passes in front of the fainter one: a shallower dip than the primary eclipse, at another point in the binary's orbit.
 
 ### Sector
 One TESS stretch of about 27 days looking at the same patch of sky.
@@ -56,8 +143,26 @@ One TESS stretch of about 27 days looking at the same patch of sky.
 ### SNR
 Signal-to-noise ratio: how big a signal is compared with normal wobble. SNR 7 means seven times the normal wobble. Our detection bar is 7.
 
+### SPOC
+NASA's Science Processing Operations Center: makes the cleanest TESS light curves, from 2-minute postage stamps. See [Chapter 3](book/03-our-data.md).
+
+### STANLEY
+A search tool by David Martin's group (Martin et al. 2021) that looks for two-star planets by simulating orbits and stacking all their predicted crossings together. Installed on your PC.
+
 ### TESS
 NASA's Transiting Exoplanet Survey Satellite, launched in 2018. It photographs most of the sky, one sector at a time. All its data is free.
 
+### TIC
+TESS Input Catalog number: TESS's ID for a star, like TIC 299096355 for Kepler-16. See [Chapter 1](book/01-stars-names-missions.md).
+
+### TOI
+TESS Object of Interest: a signal NASA's team thinks might be a planet. TOI-1338 became TOI-1338 b once confirmed.
+
 ### Transit
 A planet passing in front of its star as seen from Earth, which makes a small dip in the light curve.
+
+### Virtual environment
+A private copy of Python with its own toolkits, kept inside a project folder so it doesn't clash with anything else. Ours is `D:\second-sun\.venv`. See [Lab 0](labs/lab0-workbench.md).
+
+### White noise
+Random wobble where each measurement is independent. Averaging N measurements shrinks it by √N. See [Chapter 7](book/07-noise-and-statistics.md).

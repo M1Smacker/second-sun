@@ -44,6 +44,7 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 
 ### Part 3 · Finding dips
 <ol class="ss-chapters">
+<li data-n="07"><a href="book/07-noise-and-statistics/">Noise and statistics</a><span>Why averaging doesn't always help, what SNR means, and how often noise fakes a dip.</span></li>
 <li data-n="08"><a href="book/08-our-detector/">Our detector</a><span>How our search finds dips, and six honest tests of how good it is.</span></li>
 </ol>
 

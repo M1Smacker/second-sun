@@ -29,17 +29,37 @@ Your rule from 19 October: we keep light curves, but cutouts are deleted after w
 
 ## 3.3 The technical explanation
 
+### From pixels to a light curve
+
+TESS doesn't send home "light curves". It sends **pictures**, and teams on the ground turn them into brightness lists:
+
+1. **Postage stamps.** For a limited set of chosen stars, TESS keeps a small square of pixels every 2 minutes (some every 20 seconds). These are **target pixel files**.
+2. **Full-frame images (FFIs).** The whole camera view, saved every 30 minutes in the first two years, every 10 minutes later, and every 200 seconds now {{claim:F-041}}. Every star in view is in them, but at a slower rhythm.
+3. **Photometry.** A team picks which pixels belong to a star (the **aperture**), adds up their light every cadence, subtracts the background sky, and cleans out spacecraft effects. The result is the light curve you downloaded in Lab 2.
+
 ### Who makes the light curves
 
-- **SPOC** (NASA Ames): for stars given 2-minute "VIP" pixels; the cleanest, used for most of our tests.
-- **QLP** (MIT Quick-Look Pipeline): for many more stars, from the full-frame images.
-- **TESS-SPOC**: SPOC's version made from full-frame images.
+All of it lives at **MAST** (the Mikulski Archive for Space Telescopes), NASA's public archive. For Kepler-16 alone, MAST holds 94 light curves from six teams {{claim:F-036}}:
 
-They are made independently, which is why rule C8 asks for a dip in at least two of them.
+| Team | Made from | Rhythm | Notes |
+|---|---|---|---|
+| **SPOC** (NASA Ames) | postage stamps | 2 min (some 20 s) | the cleanest; our first choice |
+| **TESS-SPOC** | FFIs | FFI rhythm | SPOC's method on many more stars |
+| **QLP** (MIT Quick-Look Pipeline) | FFIs | FFI rhythm | the widest coverage: every G1 star has it |
+| **TARS, CDIPS, TASOC** | FFIs | FFI rhythm | other science teams' versions; useful for second opinions |
+
+In our G1 list, QLP covers all 549 stars, SPOC 275 and TESS-SPOC 312 {{claim:F-043}}. They're made independently, which is why rule C8 (Chapter 10) asks for a dip in at least two of them.
+
+### Where they land on your PC
+
+Every download goes under `D:\second-sun\data\` (never C:), into a `mastDownload` folder that copies MAST's own layout, and gets a line in `research/downloads.csv`. You did this yourself in [Lab 2](../labs/lab2-get-the-data.md).
 
 ### How good is the data?
 
-On Kepler-16, a fairly bright star in our G1 field (TESS magnitude 10.94), one hour of data scatters by **236 ppm** (SPOC), **279 ppm** (TESS-SPOC) or **293 ppm** (QLP) {{claim:F-027}}. Fainter stars are noisier. In Chapter 8 we measured ~420-540 ppm per hour for TOI-1338 with our own method.
+On Kepler-16, a fairly bright star in our G1 field (TESS magnitude 10.94), a quick estimate of one hour's scatter gives **236 ppm** (SPOC), **279 ppm** (TESS-SPOC) or **293 ppm** (QLP) {{claim:F-027}}. Those three numbers are good for **comparing** the products: SPOC is the quietest.
+
+!!! warning "Correction, 20 October 2026"
+    That quick estimate flattens the light curve with a window only 3.4 hours long, which removes the slow wobble that matters for our multi-hour transits. Measured the way our detector sees the data, the same hour scatters by about **900 ppm**; NASA's own estimate is 542 ppm {{claim:F-039}}. The optimistic number was one reason for an early overstatement of how small a planet we could find. Chapter 7 explains why the method changes the answer.
 
 ### Known troublemakers in the data
 

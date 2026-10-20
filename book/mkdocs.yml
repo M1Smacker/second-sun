@@ -53,11 +53,14 @@ nav:
           - "Lab 2: get the data": labs/lab2-get-the-data.md
           - "2. Light curves": book/02-light-curves.md
           - "3. Our data": book/03-our-data.md
+          - "Lab 3: plot and measure noise": labs/lab3-plot-and-read.md
       - "Part 2 · Two suns":
           - "4. Two suns": book/04-two-suns.md
           - "5. Wandering transits": book/05-wandering-transits.md
       - "Part 3 · Finding dips":
+          - "7. Noise and statistics": book/07-noise-and-statistics.md
           - "8. Our detector": book/08-our-detector.md
+          - "Lab 4: find a dip": labs/lab4-find-a-dip.md
       - "Part 4 · Is it real?":
           - "10. Vetting": book/10-vetting.md
       - "Part 6 · How the project runs":
