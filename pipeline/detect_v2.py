@@ -30,15 +30,25 @@ DURS_H = (3, 4, 5, 6.5, 8, 10, 12, 15)
 
 
 def load(path):
-    """Quality-masked, normalized time and flux; PDCSAP gaps filled from locally scaled SAP."""
+    """Quality-masked, normalized time and flux.
+    SPOC: PDCSAP, with gaps filled from locally scaled SAP. QLP / other FFI products (no PDCSAP column):
+    the product's own detrended flux (det_flux / kspsap_flux). Raw QLP SAP was tried first and is dominated by
+    scattered light (fake bumps up to SNR 38.7 on TOI-1338 S98), see research/overnight-science/report.md §9."""
     lc = lk.read(path, quality_bitmask="hard")
     t = lc.time.value
-    pdc = np.asarray(lc.pdcsap_flux.value, float)
+    cols = {c.lower() for c in lc.columns}
     sap = np.asarray(lc.sap_flux.value, float)
+    pdc = np.asarray(lc.pdcsap_flux.value, float) if "pdcsap_flux" in cols else np.full_like(sap, np.nan)
     ok_t = np.isfinite(t)
     t, pdc, sap = t[ok_t], pdc[ok_t], sap[ok_t]
-    f = pdc / np.nanmedian(pdc)
     s = sap / np.nanmedian(sap)
+    if not np.isfinite(pdc).any():           # QLP-style file: its detrended flux (lightkurve's lc.flux = raw SAP here)
+        col = next((c for c in ("det_flux", "kspsap_flux", "sys_rm_flux") if c in cols), "flux")
+        q = np.asarray(lc[col].value, float)[ok_t]
+        q = q / np.nanmedian(q)
+        good = np.isfinite(q)
+        return t[good], q[good], 0
+    f = pdc / np.nanmedian(pdc)
     fill = ~np.isfinite(f) & np.isfinite(s)
     for i in np.where(fill)[0]:
         near = np.isfinite(f) & (np.abs(t - t[i]) < 1.0)
@@ -76,7 +86,8 @@ def bin10(t, f):
     with np.errstate(invalid="ignore", divide="ignore"):
         bf = s / n
     bt = edges + BIN_D / 2
-    good = n >= 2
+    cad = np.median(np.diff(t)) if len(t) > 1 else BIN_D
+    good = n >= (2 if cad < 5 / 1440 else 1)   # 2-min/200-s data: >=2 points per bin; 10-/30-min FFI: >=1
     bf[~good] = np.nan
     return bt, bf
 

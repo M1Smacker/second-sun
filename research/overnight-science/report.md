@@ -125,3 +125,20 @@ Self-check: the script asserts 552 (claim P6). CONFIRMED. A bug in my first vers
 Sanity check: Kepler-16 (TIC 299096355) shows 22 SPOC sectors including S82, which wave 2 downloaded. CONFIRMED (`pipeline/coverage_g1.py` → `targets/g1_coverage.csv`, MAST queries 2026-10-20).
 
 **What it means:** every G1 star has at least one ready-made light curve, half have the best (SPOC 2-min) data, and the whole campaign's ready-made data is about **6.3 GB**, under the 20 GB line that needs Ahmed's OK. Because QLP is the only product for half the stars, the pipeline must handle QLP as a first-class input (our detector so far was tested on SPOC only).
+
+## 9. QLP data: not ready yet (important for G1)
+
+**In plain words:** half of our G1 stars only have QLP light curves (made by MIT from TESS's full-frame pictures). I tested our search on QLP's version of the 16 December TOI-1338 transit. Neither QLP flux column works yet:
+- **QLP's raw flux** still contains the transit, but it's swamped by scattered sunlight and earthshine: 7 fake "events" and fake bumps up to **38.7** times the noise.
+- **QLP's cleaned flux** is calm, but its cleaning **eats most of a long dip**: the 2,400 ppm transit shrinks to about 700 ppm and drops below our bar (SNR 3.6-4.4).
+
+Two-sun planets have long transits (hours to most of a day), so a cleaning step that eats long dips is dangerous for us. This needs its own fix before G1 runs on QLP-only stars.
+
+| QLP column | Planet at BTJD 4025.63 | Depth seen | Events (real data) | Fakes (flipped data) |
+|---|---|---|---|---|
+| `sap_flux` (raw; lightkurve's default `flux` for QLP files) | missed | present (wave 3 measured ~2,190 ppm with a local fit) | 7 | 10 (up to SNR 38.7) |
+| `det_flux` (QLP-detrended) | missed (SNR 3.6-4.4) | **~700 ppm** (about 70% lost) | 2 | 1 |
+
+The eclipse mask was checked (first primary at BTJD 3995.62, same as SPOC), so the problem is the flux, not the mask. Loader now uses `det_flux` for QLP files (cleaner, but with the depth-loss caveat above). CONFIRMED (`pipeline/qlp_check.py`).
+
+**Next ideas (not done):** start from QLP's raw flux and remove scattered light with a background or co-trending model, or use TESS-SPOC (312 of 549 stars) where QLP is the only alternative; then re-run the injection test on QLP data.
