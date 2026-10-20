@@ -1,0 +1,26 @@
+# Overnight run 2026-10-20: queue + checkpoint
+
+*Started ~00:58 UTC (03:58 Kuwait; first written as "01:05", an unchecked estimate, corrected) by the main session (Claude Opus 5.5) on Ahmed's go. Any session that resumes this run reads this file first, continues from the first unchecked item, and updates it.*
+
+## Rules for this run
+- **Budget:** hard ceiling 30% of the weekly limit (Ahmed). Stop new work at **25% weekly**. The week started 2026-10-19 22:00 UTC at 0%; it was 2% at 00:51 UTC. Check with `get_usage` between tasks. If the 5-hour window is at 90%+, checkpoint and stop.
+- **No helpers/subagents** without Ahmed's OK. No outward-facing actions (no ExoFOP, no emails, no posts). Auto-push to github.com/M1Smacker/second-sun is allowed.
+- Order: **science first**, then the study bible, then the website.
+- Python: `D:\second-sun\.venv\Scripts\python.exe` with cache env vars on D: (see research/WAVE-BRIEF-COMMON.md). Docs: `.venv-docs`. Never write to C:.
+- Run `date -u` before every timestamp. Labels: CONFIRMED / LIKELY / UNCERTAIN / NOT TESTED / BLOCKED.
+- The morning report goes in `MORNING-REPORT.md` (sections A-I of Ahmed's overnight brief).
+
+## Queue
+| # | Task | Done when | Skip/stop if | Status |
+|---|---|---|---|---|
+| 1 | **Detector v2**: matched-filter single-transit search (box template, durations 3-15 h, SNR on detrended out-of-eclipse flux), eclipse mask from a global ephemeris, SAP fallback where PDCSAP is NaN. Code in `pipeline/` | Unit self-check passes; runs on TOI-1338 S98 and finds the 4025.6 event | Can't beat v1 after 2 bounded attempts → record and move on | DONE (modest gain; see research/overnight-science) |
+| 2 | **Acceptance test**: re-run burn 1's recovery (6 testable published TOI-1338 b transits) and injection (2-8 R_earth) with v2; also measure the false-alarm rate on transit-free stretches | Table v1 vs v2; detection floor and false alarms per star-sector stated | — | DONE |
+| 3 | **Second known system** (Kepler-16 or TIC 172900988) recovery with v2 | Published transits recovered or misses explained | No TESS data covering a transit | DEFERRED: STANLEY + systematics veto first (report §5) |
+| 4 | **Bible chapters 1-3** (stars + two-sun orbits; light curves + transits; why two-sun transits wander), each in the 7-step structure, on real project data/figures | Pages build strict; every claim labelled and sourced | — | pending |
+| 5 | **Bible chapter 4**: our detector, from intuition to code (uses tasks 1-2) | Same | — | pending |
+| 6 | **Website build** phase 1-3 of research/SITE-BLUEPRINT.md at `book/` (repo layout, design tokens, typography, sidebar with chapter progress, mission-control/observatory feel, still professional; not gamey), chapters from 4-5 moved in | `mkdocs build --strict` passes; checked at 390/1280 dark+light in a browser; no overflow; 0 console errors except the known service-worker one in the pane | — | pending |
+| 7 | MORNING-REPORT.md, commit, push | Report has A-I | — | pending |
+
+## Checkpoint log
+- 01:05 UTC: queue written. Burns 1-3 committed (200176c). Next: task 1.
+- 01:03 UTC: tasks 1-2 done. v2 = small gain (4/8 sectors, floor ~6 R_E); limit is data noise + systematics (flipped-data bumps up to SNR 12.6). Task 3 deferred. Next: task 4 (bible chapters).

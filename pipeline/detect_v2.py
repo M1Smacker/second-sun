@@ -1,0 +1,133 @@
+"""Second Sun single-transit detector, version 2.
+
+Why v2: burn 1 (research/burn-1-science) showed v1 (3 consecutive 30-min bins below 3 MAD, 1-day
+biweight) found only planets >= ~7 R_earth and 3 of 6 testable TOI-1338 b transits. Three causes:
+  1. a 1-day detrending window eats into 6-hour dips;
+  2. a "3 bins below 3 MAD" rule throws away most of a long, shallow dip's signal;
+  3. per-sector BLS sometimes mistook a planet transit or the secondary eclipse for the primary.
+
+v2, step by step:
+  1. Flux: PDCSAP, with gaps filled from SAP flux scaled to match locally (PDCSAP is sometimes NaN
+     where SAP is fine).
+  2. Eclipses: masked from a KNOWN binary period. Each sector only re-finds the primary's phase
+     (deepest point of the folded light curve), so a planet dip can't be mistaken for an eclipse.
+  3. Detrend: wotan biweight with a 2-day window (>= 3x the longest duration we search, 15 h).
+  4. Matched filter: bin to 10 min, slide boxes of 3-15 h, and score each box by
+     SNR = (median - box mean) / (robust scatter of ALL box means of that length).
+     Measuring the scatter from the box means themselves includes correlated ("red") noise,
+     which a white-noise formula would ignore.
+  5. Events: peaks above the threshold, merged across durations (keep the highest SNR).
+
+The threshold is not assumed: run the same search on the flipped light curve (1 - flux) to count
+false alarms (see accept_v2.py).
+"""
+import numpy as np
+import lightkurve as lk
+from wotan import flatten
+
+BIN_D = 10 / 1440
+DURS_H = (3, 4, 5, 6.5, 8, 10, 12, 15)
+
+
+def load(path):
+    """Quality-masked, normalized time and flux; PDCSAP gaps filled from locally scaled SAP."""
+    lc = lk.read(path, quality_bitmask="hard")
+    t = lc.time.value
+    pdc = np.asarray(lc.pdcsap_flux.value, float)
+    sap = np.asarray(lc.sap_flux.value, float)
+    ok_t = np.isfinite(t)
+    t, pdc, sap = t[ok_t], pdc[ok_t], sap[ok_t]
+    f = pdc / np.nanmedian(pdc)
+    s = sap / np.nanmedian(sap)
+    fill = ~np.isfinite(f) & np.isfinite(s)
+    for i in np.where(fill)[0]:
+        near = np.isfinite(f) & (np.abs(t - t[i]) < 1.0)
+        f[i] = s[i] * (np.median(f[near] / s[near]) if near.sum() > 20 else 1.0)
+    good = np.isfinite(f)
+    return t[good], f[good], int(fill.sum())
+
+
+def eclipse_mask(t, f, P, dur1_h, dur2_h, sec_phase, pad=1.5):
+    """True = keep (out of eclipse). Primary phase is re-found per sector at fixed period P."""
+    grid = np.linspace(0, P, 2000, endpoint=False)
+    w = dur1_h / 24 / 2
+    ph = t % P
+    score = [np.median(f[np.abs(((ph - g + P / 2) % P) - P / 2) < w]) if
+             np.any(np.abs(((ph - g + P / 2) % P) - P / 2) < w) else 9 for g in grid]
+    T1 = grid[int(np.argmin(score))]
+    d1 = np.abs(((t - T1 + P / 2) % P) - P / 2)
+    T2 = T1 + sec_phase * P
+    d2 = np.abs(((t - T2 + P / 2) % P) - P / 2)
+    keep = (d1 > pad * dur1_h / 24) & (d2 > pad * dur2_h / 24)
+    return keep, T1
+
+
+def detrend(t, f, window_d=2.0):
+    flat = flatten(t, f, method="biweight", window_length=window_d)
+    ok = np.isfinite(flat)
+    return t[ok], flat[ok]
+
+
+def bin10(t, f):
+    edges = np.arange(t.min(), t.max() + BIN_D, BIN_D)
+    k = np.digitize(t, edges) - 1
+    n = np.bincount(k, minlength=len(edges))
+    s = np.bincount(k, weights=f, minlength=len(edges))
+    with np.errstate(invalid="ignore", divide="ignore"):
+        bf = s / n
+    bt = edges + BIN_D / 2
+    good = n >= 2
+    bf[~good] = np.nan
+    return bt, bf
+
+
+def box_scores(bt, bf, dur_h, min_cover=0.8):
+    """Box mean and SNR at every bin centre for one duration; NaN where coverage < min_cover."""
+    w = max(int(round(dur_h * 60 / 10)), 1)
+    v = np.isfinite(bf)
+    c_n = np.concatenate([[0], np.cumsum(v)])
+    c_f = np.concatenate([[0], np.cumsum(np.where(v, bf, 0.0))])
+    n = c_n[w:] - c_n[:-w]
+    m = (c_f[w:] - c_f[:-w]) / np.maximum(n, 1)
+    m[n < min_cover * w] = np.nan
+    centre = bt[: len(m)] + (w - 1) * BIN_D / 2
+    med = np.nanmedian(bf)
+    good = np.isfinite(m)
+    if good.sum() < 20:
+        return centre, np.full_like(m, np.nan), m
+    sig = 1.4826 * np.nanmedian(np.abs(m[good] - np.nanmedian(m[good])))
+    return centre, (med - m) / sig, m
+
+
+def find_events(t, f, thr=7.0, durs_h=DURS_H, window_d=2.0):
+    """t, f = out-of-eclipse data. Returns events sorted by SNR (highest first)."""
+    tt, ff = detrend(t, f, window_d)
+    bt, bf = bin10(tt, ff)
+    med = np.nanmedian(bf)
+    cands = []
+    for d in durs_h:
+        c, snr, m = box_scores(bt, bf, d)
+        for i in np.where(np.nan_to_num(snr) >= thr)[0]:
+            cands.append((snr[i], c[i], d, (med - m[i]) * 1e6))
+    cands.sort(reverse=True)
+    events = []
+    for snr, c, d, depth in cands:  # greedy merge: one event per dip
+        if all(abs(c - e["center"]) > 0.5 * max(d, e["dur_h"]) / 24 + 0.1 for e in events):
+            events.append(dict(center=c, dur_h=d, snr=snr, depth_ppm=depth))
+    return events
+
+
+def _selfcheck():
+    rng = np.random.default_rng(1)
+    t = np.arange(0, 27, 2 / 1440)
+    f = 1 + rng.normal(0, 1000e-6, t.size)
+    assert find_events(t, f) == [], "pure white noise should give no event at SNR 7"
+    f2 = f.copy()
+    f2[np.abs(t - 13.3) < 3 / 24] -= 700e-6  # 6 h, 700 ppm: box noise = 1000/sqrt(5*36) = 75 ppm, SNR ~ 9
+    ev = find_events(t, f2)
+    assert ev and abs(ev[0]["center"] - 13.3) < 0.1 and 4 <= ev[0]["dur_h"] <= 8, ev[:2]
+    print("detect_v2 self-check passed:", {k: round(v, 2) for k, v in ev[0].items()})
+
+
+if __name__ == "__main__":
+    _selfcheck()

@@ -1,0 +1,18 @@
+{'sector': 6, 'pub': 1483.9048, 'sap_filled': 0, 'cad_near_transit': 180, 'kept_near_transit': 180, 'recovered': False, 'dt_h': None, 'dur_h': None, 'snr': None, 'depth_ppm': None, 'other_events': []} | flipped: 1
+{'sector': 10, 'pub': 1579.0423, 'sap_filled': 0, 'cad_near_transit': 179, 'kept_near_transit': 179, 'recovered': True, 'dt_h': -0.08667683450039476, 'dur_h': 10, 'snr': 11.451536215889004, 'depth_ppm': 2107.917009573579, 'other_events': []} | flipped: 0
+{'sector': 27, 'pub': 2049.9515, 'sap_filled': 0, 'cad_near_transit': 180, 'kept_near_transit': 180, 'recovered': False, 'dt_h': None, 'dur_h': None, 'snr': None, 'depth_ppm': None, 'other_events': [(2047.865, 6.5, 7.3)]} | flipped: 0
+{'sector': 30, 'pub': 2142.3991, 'sap_filled': 0, 'cad_near_transit': 0, 'kept_near_transit': 0, 'recovered': False, 'dt_h': None, 'dur_h': None, 'snr': None, 'depth_ppm': None, 'other_events': []} | flipped: 1
+{'sector': 34, 'pub': 2238.2258, 'sap_filled': 0, 'cad_near_transit': 180, 'kept_near_transit': 180, 'recovered': False, 'dt_h': None, 'dur_h': None, 'snr': None, 'depth_ppm': None, 'other_events': []} | flipped: 1
+{'sector': 37, 'pub': 2331.0148, 'sap_filled': 0, 'cad_near_transit': 180, 'kept_near_transit': 180, 'recovered': False, 'dt_h': None, 'dur_h': None, 'snr': None, 'depth_ppm': None, 'other_events': []} | flipped: 0
+{'sector': 62, 'pub': 2989.6356, 'sap_filled': 0, 'cad_near_transit': 0, 'kept_near_transit': 0, 'recovered': False, 'dt_h': None, 'dur_h': None, 'snr': None, 'depth_ppm': None, 'other_events': []} | flipped: 0
+{'sector': 65, 'pub': 3085.4243, 'sap_filled': 0, 'cad_near_transit': 180, 'kept_near_transit': 180, 'recovered': True, 'dt_h': -0.6973126051743748, 'dur_h': 6.5, 'snr': 9.048385923162737, 'depth_ppm': 2799.3248623727764, 'other_events': []} | flipped: 0
+{'sector': 68, 'pub': 3178.2853, 'sap_filled': 0, 'cad_near_transit': 140, 'kept_near_transit': 140, 'recovered': True, 'dt_h': -0.5179356493463274, 'dur_h': 5, 'snr': 7.539269552160216, 'depth_ppm': 2056.0851253728083, 'other_events': []} | flipped: 1
+{'sector': 98, 'pub': 4025.5927, 'sap_filled': 0, 'cad_near_transit': 180, 'kept_near_transit': 180, 'recovered': True, 'dt_h': 1.0778099055751227, 'dur_h': 5, 'snr': 8.973014479000051, 'depth_ppm': 2127.27663438228, 'other_events': [(4038.443, 15, 8.2)]} | flipped: 2
+{'R_earth': 2, 'depth_ppm': 195, 'recovered': 0, 'n': 7, 'snr': [None, None, None, None, None, None, None]}
+{'R_earth': 3, 'depth_ppm': 439, 'recovered': 0, 'n': 7, 'snr': [None, None, None, None, None, None, None]}
+{'R_earth': 4, 'depth_ppm': 780, 'recovered': 0, 'n': 7, 'snr': [None, None, None, None, None, None, None]}
+{'R_earth': 5, 'depth_ppm': 1219, 'recovered': 0, 'n': 7, 'snr': [None, None, None, None, None, None, None]}
+{'R_earth': 6, 'depth_ppm': 1755, 'recovered': 5, 'n': 7, 'snr': [7.4, 7.4, 7.9, 7.2, 7.6, None, None]}
+{'R_earth': 7, 'depth_ppm': 2389, 'recovered': 7, 'n': 7, 'snr': [9.7, 9.9, 10.4, 9.5, 9.7, 8.8, 9.0]}
+{'R_earth': 8, 'depth_ppm': 3120, 'recovered': 7, 'n': 7, 'snr': [12.2, 12.8, 13.4, 12.3, 12.2, 11.6, 11.7]}
+written D:\second-sun\pipeline\accept_v2_results.json

@@ -1,0 +1,15 @@
+# Real candidates get SS-0001, SS-0002, ... in the order they pass first vetting.
+# SS-0000 is a layout example that shows the layout. Delete it once SS-0001 exists.
+- id: SS-0000
+  example: true
+  nickname: null
+  status: layout example
+  facts:
+    TIC: "0000000000"
+    Quest: main
+    Events seen: 1
+    Depth: "0.4% (4 ppt)"
+    Duration: "6 h"
+    Found: "2026-10-19"
+  keys: {Claude: pending, Ahmed: pending}
+  note: "Layout example only. Every number on this card is made up."
