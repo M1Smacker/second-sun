@@ -15,6 +15,8 @@ Ahmed, three things happened overnight:
 5. **The 16 December crossing really is about an hour late:** 56 ± 5 minutes after the 2024 prediction, which is 2.4 times the combined error. That's a mild, interesting tension, not proof of anything.
 6. **Chapter 5 (vetting)** is written, a **stability calculator** is in the code, and the **learning track** now points each level to the chapter that teaches it.
 7. **STANLEY** (the professionals' stacked circumbinary search) now runs on your PC after two fixes. Its first stage was still working at the time of writing (see B).
+8. **The G1 list is frozen and traceable:** 552 rows = **549 different stars**, with the source files' fingerprints recorded. Every one has at least one TESS light curve; half have NASA's best (2-minute) data. All their ready-made light curves together are only **~6.3 GB**.
+9. **Warning for G1:** for the half that only have MIT's QLP data, our search **doesn't work yet**. QLP's raw data is full of scattered light, and its cleaned data eats most of a long dip. That needs fixing before the real hunt.
 
 **No new planet. Nothing was submitted anywhere.** Everything is pushed to GitHub.
 
@@ -32,6 +34,9 @@ Ahmed, three things happened overnight:
 | Systematics veto (gap/dump/flipped) | strict version kept only 2 of 4 real crossings; loosened once: gap/dump = flags, flipped-match = reject; 4/4 kept, 4 of 6 fakes flagged | CONFIRMED |
 | S98 timing with red-noise error | +56 ± 5 min vs prediction ± 23 min → 2.4σ; +34 min if the shape floats | CONFIRMED (numbers) / UNCERTAIN (meaning) |
 | Stability calculator (`pipeline/stability.py`) | TOI-1338: critical period 71 d, planet at 1.34× (matches the literature) | CONFIRMED |
+| G1 target list (`targets/g1_targets.csv`) | 552 rows = 549 stars; provenance + checksums; reproduces wave 3 | CONFIRMED |
+| G1 data coverage (`targets/g1_coverage.csv`) | QLP 549/549 (median 9 sectors), SPOC 2-min 275, TESS-SPOC 312; ~6.3 GB total | CONFIRMED |
+| Detector on QLP data | raw flux: fakes up to SNR 38.7; QLP-cleaned flux: ~70% of a 6 h dip lost; planet missed both ways | CONFIRMED (problem) |
 | STANLEY stage 1 on TOI-1338 | runs after 2 fixes (setuptools for Py3.12; downloads forced to D:); 40 sectors downloaded (78 MB); slow eclipse fitting | NOT TESTED (result pending) |
 
 This is reproduction of a known planet, **not a discovery**. Details: `research/overnight-science/report.md`.
@@ -93,6 +98,7 @@ Commands run: `python detect_v2.py` (pass), `python accept_v2.py` (ran), `python
 
 ## H. Next-session task queue (ranked)
 
+0. **Fix QLP handling** (scattered-light removal on raw QLP flux, or TESS-SPOC where available), then re-run the injection test on QLP. *Why:* half of G1 depends on it.
 1. **Systematics veto**: drop events near data gaps, momentum dumps and flagged cadences, and events that also appear in flipped data. Re-measure false alarms. *Why:* without it, 550 stars would flood us with fakes.
 2. **STANLEY trial on TOI-1338** (all sectors together). *Why:* stacking crossings is the real test of whether G1 can reach small planets.
 3. **Timing error bar** for the S98 transit (red-noise method). *Why:* decides whether the +1 h offset means anything.

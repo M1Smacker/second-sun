@@ -8,7 +8,7 @@ Ahmed, this is your book. It holds everything we learn, decide and find while hu
 <header><span>Mission status</span><span>Updated <b>2026-10-20</b></span></header>
 <dl>
 <div><dt>Phase</dt><dd>Testing our tools<small>on known planets, before the real hunt</small></dd></div>
-<div><dt>First campaign</dt><dd>G1: Kepler's binaries<small>~550 bright enough for TESS</small></dd></div>
+<div><dt>First campaign</dt><dd>G1: Kepler's binaries<small>549 stars, list frozen</small></dd></div>
 <div><dt>Detector</dt><dd>v2 (box search)<small>floor ~6 Earth radii at TESS mag 11.5</small></dd></div>
 <div><dt>Known-planet test</dt><dd>4 of 8 sectors<small>TOI-1338 b re-found</small></dd></div>
 <div><dt>Candidates</dt><dd>0<small>the first will be SS-0001</small></dd></div>
