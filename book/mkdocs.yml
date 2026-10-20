@@ -49,6 +49,10 @@ nav:
       - learn/index.md
       - "L1 How big is the dip?": learn/l1-dip-depth.md
   - Book:
+      - "1. Two suns": book/ch1-two-suns.md
+      - "2. Light curves": book/ch2-light-curves.md
+      - "3. Wandering transits": book/ch3-wandering-transits.md
+      - "4. Our detector": book/ch4-our-detector.md
       - book/credit-and-publishing.md
   - Reference:
       - Glossary: glossary.md
