@@ -105,7 +105,7 @@ The lesson: a noise number means nothing without the method. Quote the one that 
 
 - **We can:** measure the noise our search actually faces, and set a bar whose false-alarm rate we've measured (upside-down data).
 - **We can't** assume bell-curve maths. 7σ is not "one in 780 billion" in real TESS data.
-- **Not yet known (NOT TESTED):** how much of Kepler-16's extra hour-scale noise is the stars themselves and how much is the spacecraft. Comparing quiet and noisy sectors would tell us.
+- **Not yet known (not tested):** how much of Kepler-16's extra hour-scale noise is the stars themselves and how much is the spacecraft. Comparing quiet and noisy sectors would tell us.
 
 ## 7.7 Check your understanding
 

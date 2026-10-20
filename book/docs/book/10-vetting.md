@@ -56,7 +56,7 @@ One test is special to our quest. A real planet orbiting two stars crosses them 
 
 Today's pipeline covers C1 (`find_events` in `pipeline/detect_v2.py`), part of C5 (the eclipse mask), part of C7 (the warning flags from `veto`, Chapter 8) and C4's orbit range (`pipeline/stability.py`). The rest is research, not code yet:
 
-- C2 (21 detrendings), C3 (model comparison), C6 (pixel checks), C8 (second product), C9 (size for both stars), C10 (orbit fit): NOT TESTED in code.
+- C2 (21 detrendings), C3 (model comparison), C6 (pixel checks), C8 (second product), C9 (size for both stars), C10 (orbit fit): not tested in code.
 - The planned output is a one-page **vetting sheet** per event, readable on your phone, with every rule as a pass/fail line.
 
 We ran C6 by hand once, on the TOI-1338 dip of 16 December 2025: the dimming came from the target's own pixels and the light's centre didn't move (0.0 to 0.2σ). That is a manual check, recorded in `research/wave-3-pipeline/`.

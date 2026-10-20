@@ -72,7 +72,7 @@ This chapter's ideas become a **search window** in the pipeline. For each G1 bin
 2. Compute the critical period from the formula above.
 3. Treat planets from about 1 to 10 times that period as the most likely, without throwing away anything outside it.
 
-The formula is coded in `pipeline/stability.py` (about 30 lines). Its function `critical(e, mu)` returns the critical distance ratio, the critical period ratio, and whether *e* and μ are inside the range the fit was made for; `search_window(p_bin, e, m1, m2)` turns that into a range of planet periods to search. Running `python stability.py` checks it against TOI-1338 (next section). Status: CONFIRMED (self-check passes).
+The formula is coded in `pipeline/stability.py` (about 30 lines). Its function `critical(e, mu)` returns the critical distance ratio, the critical period ratio, and whether *e* and μ are inside the range the fit was made for; `search_window(p_bin, e, m1, m2)` turns that into a range of planet periods to search. Running `python stability.py` checks it against TOI-1338 (next section). Status: VERIFIED (self-check passes).
 
 ## 4.5 Worked example: TOI-1338
 

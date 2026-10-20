@@ -18,7 +18,7 @@
 | # | Task | Status |
 |---|---|---|
 | 1 | Save approvals and this file | done 2026-10-20 |
-| 2 | Fix stale text and label vocabulary in the book | pending |
+| 2 | Fix stale text and label vocabulary in the book | done 2026-10-20 (logged in mistakes.md) |
 | 3 | Experiment manifest tool and frozen spec (`experiments/quality_mask/`) | pending |
 | 4 | Reproduce the baseline (arm A0) against `pipeline/accept_v2_results.json`; stop if it does not match | pending |
 | 5 | Run the SAP arms A1 (SAP + HARD) and A2 (SAP + DEFAULT) | pending |

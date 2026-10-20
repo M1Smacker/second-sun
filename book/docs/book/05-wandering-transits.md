@@ -52,7 +52,7 @@ TESS has re-observed the Kepler field. G1 is the search of those binaries in the
 | 2024 | Wang and Liu predict a crossing on 16 Dec 2025, 02:13 UTC, 6.31 h | {{claim:F-011}} |
 | 16 Dec 2025 | our search finds a 0.24% dip that night, about 1 hour after the predicted time | {{claim:F-011}} |
 
-That one-hour difference is bigger than the paper's stated error (±23 min). It could be real wobble, or our timing error could be bigger than it looks. We haven't measured our error carefully yet (UNCERTAIN, on the task list). A known planet's crossing that nobody has published yet is a nice result for practice, but it is **not a discovery**.
+That one-hour difference is bigger than the paper's stated error (±23 min). It could be real wobble, or our timing error could be bigger than it looks. We haven't measured our error carefully yet (not measured yet; it's on the task list). A known planet's crossing that nobody has published yet is a nice result for practice, but it is **not a discovery**.
 
 ## 5.6 What this lets us conclude, and what it doesn't
 

@@ -58,7 +58,7 @@ The light centre wobbles all the time: pointing jitter, slow drifts. Dividing th
 |---|---|---|
 | `research/wave-3-pipeline/toi1338_pixel_check.py` | first manual check: difference image + centroid shift | error bar assumed white noise |
 | `labs/lab7_pixels.py` | difference image, centroid shift with chance-spread error, neighbours from the TIC placed on the pixels with the file's sky map (WCS) | **VERIFIED** on TOI-1338 |
-| automated pixel tool for G1 survivors, with the expected-shift model of Eq. 11.3 | Compass priority 3 | **NOT TESTED** (not built) |
+| automated pixel tool for G1 survivors, with the expected-shift model of Eq. 11.3 | Compass priority 3 | not tested (not built) |
 
 Pixel files are about 50 MB per sector {{claim:F-026}}, so we only fetch them for events that survive the earlier checks.
 

@@ -39,7 +39,7 @@ Picture saved: D:\second-sun\labs\out\lab8_stanley_toi1338.png
 
 - **Three of the top five sit within about 1 day of the real planet** (96.11, 96.16, 96.28). That clustering is a good sign: a real signal is strong over a small patch of guesses, not at one lucky point.
 - **93.84 and 99.41 days** score 11 to 12σ. Are those planets? Almost certainly not: they're how high noise and leftover wiggles can reach in 20,482 tries.
-- **The histogram's tall bar at 0:** about 3,400 orbits have a score of exactly 0. STANLEY's output doesn't say why (an orbit it skipped, or one with no crossings during the data are the likely reasons, **UNCERTAIN**). They're counted in the 28%, so the true share of noise orbits above 5σ is a little higher.
+- **The histogram's tall bar at 0:** about 3,400 orbits have a score of exactly 0. STANLEY's output doesn't say why (an orbit it skipped, or one with no crossings during the data are the likely reasons, but not confirmed). They're counted in the 28%, so the true share of noise orbits above 5σ is a little higher.
 - **The hump at 4 to 5σ:** that's what "nothing" looks like in this search. A score has to stand well clear of it.
 
 ## How the script works

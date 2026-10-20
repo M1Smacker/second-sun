@@ -80,8 +80,8 @@ From [Lab 8](../labs/lab8-read-stanley.md), run on your PC {{claim:F-045}}:
 ## 12.6 What this lets us conclude, and what it doesn't
 
 - **We can:** run STANLEY on your PC, and it points close to the real planet's period with a strong score.
-- **We can't yet:** say how significant 18.4σ is (no calibration), or claim a "recovery" (circular grid, uncalibrated) **(UNCERTAIN)**.
-- **Not done yet (NOT TESTED):** STANLEY's analysis stage, a calibrated run, and any G1 star.
+- **We can't yet:** say how significant 18.4σ is (no calibration), or claim a "recovery" (circular grid, uncalibrated): still uncertain.
+- **Not done yet (not tested):** STANLEY's analysis stage, a calibrated run, and any G1 star.
 - **Where it fits:** our fast detector screens all 549 G1 stars for single strong dips; STANLEY is the slow, deep search for small planets on the most promising binaries.
 
 ## 12.7 Check your understanding

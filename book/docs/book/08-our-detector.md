@@ -48,7 +48,7 @@ All of this is in `pipeline/detect_v2.py`, about 130 lines. The important functi
 | `box_scores(bt, bf, dur_h)` | 10-min bins, one length | box centres, SNR, box averages | too few bins → no score |
 | `find_events(t, f, thr=7)` | kept data | list of events (time, length, SNR, depth) | noise bumps above 7 (false alarms) |
 
-Running `python detect_v2.py` runs a **self-check**: 27 days of pure random noise must give no event, and a hidden 6-hour, 700 ppm dip must be found at the right time. Both pass (CONFIRMED, ran on 2026-10-20).
+Running `python detect_v2.py` runs a **self-check**: 27 days of pure random noise must give no event, and a hidden 6-hour, 700 ppm dip must be found at the right time. Both pass (VERIFIED, ran on 2026-10-20).
 
 ## 8.5 Worked example: TOI-1338, sector 98
 
@@ -81,7 +81,7 @@ The search finds the transit with SNR **9.0**, depth about **2,100 ppm**, about 
 
 Many fake dips sit next to a **data gap** (where the spacecraft paused) or a **momentum dump** (a short thruster firing that jolts the pointing). So I tried rejecting any dip close to one. It removed 4 of the 6 fakes, but it also threw away **2 of the 4 real crossings** of TOI-1338 b: one sat 0.17 days from a thruster firing, the other 0.09 days from a gap. On this star, real and fake dips sit at the same kinds of distances, so no cut-off separates them.
 
-So the rule became gentler. Closeness to a gap or a firing is now a **warning flag** shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (`pipeline/veto_test.py`, CONFIRMED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit **one orbit**.
+So the rule became gentler. Closeness to a gap or a firing is now a **warning flag** shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (`pipeline/veto_test.py`, VERIFIED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit **one orbit**.
 
 ### A fifth test: the same dip in a second, independent product
 
@@ -91,7 +91,7 @@ Half of your G1 stars only have **QLP** light curves (made by MIT from TESS's fu
 - **The clue:** every strong fake sat inside stretches of time that NASA's SPOC pipeline **throws away** (scattered light that comes back at the same point in each TESS orbit). QLP keeps those stretches.
 - **The fix:** use QLP's flux that keeps long dips (`sys_rm_flux`) and keep only SPOC's good stretches. Result: **one event, the planet**, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.
 
-That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. CONFIRMED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.
+That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.
 
 ### A sixth test: fake planets that move like real ones
 

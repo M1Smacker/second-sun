@@ -16,7 +16,7 @@
 | **5. The professionals' tool** | What does STANLEY do that we don't? | 12 | 8 |
 | **6. How the project runs** | Our workshop, credit, our mistakes | 13 to 15 | 9 |
 
-Some chapters are still being written during the overhaul. The menu only shows pages that are finished.
+The menu lists every page; all of them are finished. Later additions (more chapters, more labs) will say so in a [field note](../field-notes/index.md).
 
 ## Inside a chapter
 
@@ -32,12 +32,15 @@ Every chapter has the same seven steps, so you always know where you are:
 
 ## The labels
 
+Every fact in the book carries one of three **evidence labels**. They are the ones the [claims register](../claims.md) allows, and the page will not build with any other:
+
 | Label | Meaning |
 |---|---|
 | **VERIFIED** | Read in the original source, or measured by us on your PC |
 | **LIKELY** | From a summary or a paper's abstract, consistent with other sources |
-| **UNCERTAIN** | Plausible, still open |
-| **NOT TESTED** | Written but never run |
+| **UNVERIFIED** | From memory or one weak source: never used to make a decision |
+
+How far a test has got is written in plain words inside sentences: "not tested yet", "still uncertain", "blocked". Those are not labels. (In my reports to you, "CONFIRMED" means the same as VERIFIED.)
 
 Tap any label to open the [claims register](../claims.md), which lists every fact, its source and the date it was checked.
 
