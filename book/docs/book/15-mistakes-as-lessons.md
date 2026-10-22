@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 15 · about 15 min · no maths</p>
 
 !!! plain "In plain words"
-    In the first two days, I made 15 logged mistakes. None reached anyone outside the project, and each one left a rule behind. Most fall into five patterns. Knowing the patterns is useful well beyond this project: they're how careful people still get things wrong.
+    In the first two days we logged 15 mistakes. None reached anyone outside the project, and each one left a rule behind.
 
 **What this chapter answers:** what went wrong, why, and what each mistake taught us. The full list, with dates and costs, is in `research/mistakes.md`.
 
@@ -59,13 +59,4 @@
 
 ## Check your understanding
 
-??? quiz "1. Three of the number mistakes were caught while writing labs. Why do labs catch mistakes?"
-    A lab must print real output from real data. A wrong assumption in a report can sit unnoticed; in a lab it produces output that doesn't make sense (a period off the grid, a star with no eclipses), and someone has to explain it.
-
-??? quiz "2. Which lesson does the morph = −1 mistake belong to, and what's the general rule?"
-    Lesson 1. Catalogues use codes like −1, 0 or "nan" for "missing". Any cut like "less than 0.5" must decide on purpose what happens to them.
-
-??? quiz "3. Why log mistakes at all? It's embarrassing."
-    So the next person (or session) doesn't repeat them, so you can judge how much to trust the work, and because a hidden mistake keeps doing damage. A logged one turns into a rule.
-
-**Next:** back to [The story so far](../start/story-so-far.md), or your [learning track](../learn/index.md).
+The questions for this chapter are on the [Part 6 review page](../parts/part6/review.md).

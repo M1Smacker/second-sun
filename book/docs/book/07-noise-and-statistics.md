@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 7 · about 20 min · Maths: averages, square roots, one probability</p>
 
 !!! plain "In plain words"
-    Every measurement wobbles. A dip only counts if it's clearly bigger than the wobble, measured over the same length of time as the dip. Averaging many measurements shrinks random wobble, but not slow drifts, and slow drifts are exactly what fakes a planet. And if you look in thousands of places, a few will look like dips by pure chance. This chapter is about those three facts.
+    Every measurement wobbles, and a dip only counts if it is clearly bigger than the wobble. Look in thousands of places and a few will fake a dip by pure chance.
 
 **What this chapter answers:** how big is the noise, why doesn't averaging always help, and how do we set a bar that noise rarely crosses?
 
@@ -109,19 +109,7 @@ The lesson: a noise number means nothing without the method. Quote the one that 
 
 ## 7.7 Check your understanding
 
-??? quiz "1. One point wobbles by 1,000 ppm. With white noise, what does a 4-hour average (120 points) wobble by?"
-    1,000 / √120 ≈ **91 ppm**.
-
-??? quiz "2. You measure 400 ppm for that 4-hour average instead. What does that tell you?"
-    The noise is **red**: slow drifts that don't average away. A dip must be judged against 400 ppm, not 91.
-
-??? quiz "3. Why does running the search on upside-down data help?"
-    It makes the same number of tries on data with no real dips. Whatever it finds shows how often noise alone crosses the bar: the look-elsewhere effect, measured.
-
-??? quiz "4. Why not just flatten with a 3-hour window to get rid of red noise?"
-    It would also flatten the planet: a 6-to-15-hour two-star transit would be partly removed.
-
-**Next:** [Chapter 8: our detector](08-our-detector.md).
+The questions for this chapter are on the [Part 3 review page](../parts/part3/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-015, F-016, F-017, F-027, F-039, F-042. Background: Pont, Zucker and Queloz 2006 (red noise); Hippke et al. 2019 (wotan detrending), both checked on ADS.

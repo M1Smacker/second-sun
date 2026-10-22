@@ -7,15 +7,6 @@
 
 **Goal:** see a real light curve with your own eyes, and measure its noise the way our search does.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab3_plot_and_read.py
-```
-
-Then open the picture it saves: `D:\second-sun\labs\out\lab3_tic299096355.png`.
-
 ## What you should see
 
 ```text
@@ -35,6 +26,17 @@ Eclipses masked: 1.3% of the good data
 ![Two panels: Kepler-16's raw and cleaned brightness over 26 days, with a deep eclipse near day 3552 and red lines at thruster firings](img/lab3-kepler16-s82.png){ width="100%" loading="lazy" }
 <figcaption>Kepler-16, sector 82, from your PC. Top: raw (SAP). Bottom: cleaned (PDCSAP). Red lines: momentum dumps.</figcaption>
 </figure>
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab3_plot_and_read.py
+    ```
+
+    Then open the picture it saves: `D:\second-sun\labs\out\lab3_tic299096355.png`.
 
 ## Reading the picture
 
@@ -76,4 +78,4 @@ Run it on the sector you downloaded in Lab 2's "Your turn" (2019). Give the path
 
 **Tell me:** your 1-hour "measured" and "if white" numbers. Is the 2019 sector quieter or noisier than 2024? Does the picture show an eclipse?
 
-**Next:** Part 2, [Chapter 4: two suns](../book/04-two-suns.md). (Chapter 7 explains this lab's noise table in depth.)
+**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)

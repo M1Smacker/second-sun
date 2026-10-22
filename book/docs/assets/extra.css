@@ -2,7 +2,9 @@
    A textbook at night: calm surfaces, one accent (starlight amber), nothing that glows.
    Design rule (Ahmed, 2026-10-19): professional and clean, quiet progress, personalised. */
 
-/* ---------- Tokens ---------- */
+/* ---------- Tokens ----------
+   High contrast (Ahmed, 2026-10-23): text and secondary text are at least 7:1 on every surface, the accent 7:1,
+   tertiary text 4.5:1. tools/test_contrast.py checks these numbers and runs before every publish. */
 :root {
   --ss-dur: 200ms;
   --ss-dur-fast: 150ms;
@@ -19,14 +21,14 @@
 
 [data-md-color-scheme="slate"] {
   --ss-bg: #0c1018; --ss-surface: #131a27; --ss-raised: #1a2233; --ss-line: #2a3448;
-  --ss-text: #e6e8ee; --ss-text-2: #aab1c0; --ss-text-3: #7d8597;
-  --ss-accent: #e2b45f; --ss-on-accent: #0c1018;
+  --ss-text: #f2f4f9; --ss-text-2: #c3c9d6; --ss-text-3: #9aa3b6;
+  --ss-accent: #eebf6a; --ss-on-accent: #0c1018;
   --md-hue: 222;
 }
 [data-md-color-scheme="default"] {
   --ss-bg: #faf9f6; --ss-surface: #f1efe9; --ss-raised: #ffffff; --ss-line: #d9d5cb;
-  --ss-text: #1a1e26; --ss-text-2: #495160; --ss-text-3: #6a7282;
-  --ss-accent: #8a5a12; --ss-on-accent: #ffffff;
+  --ss-text: #10141b; --ss-text-2: #3a4251; --ss-text-3: #566070;
+  --ss-accent: #6f4608; --ss-on-accent: #ffffff;
 }
 [data-md-color-scheme] {
   --md-default-bg-color: var(--ss-bg);

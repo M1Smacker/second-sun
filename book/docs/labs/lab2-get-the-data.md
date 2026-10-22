@@ -7,15 +7,6 @@
 
 **Goal:** download a light curve yourself and know what every important column means.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab2_get_the_data.py "Kepler-16" 82
-```
-
-The `82` is the sector. Downloads go to `D:\second-sun\data\labs` (never C:). If the file is already there, it isn't downloaded again.
-
 ## What you should see
 
 From a real run on your PC (20 October 2026) {{claim:F-037}}:
@@ -35,6 +26,17 @@ Every 2.0 minutes
 Flagged by quality bits: 482 cadences; momentum dumps (bit 32): 16
 PDCSAP flux present on 18137 cadences; median 6832 electrons per second
 ```
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab2_get_the_data.py "Kepler-16" 82
+    ```
+
+    The `82` is the sector. Downloads go to `D:\second-sun\data\labs` (never C:). If the file is already there, it isn't downloaded again.
 
 ## Reading it
 
@@ -88,4 +90,4 @@ This file contains the values 8, 16, 32, 40, 128 and 160 (checked by script). A 
 
 **Tell me:** "Lab 2 done", the sector you picked, and your three numbers.
 
-**Next:** [Chapter 2: light curves](../book/02-light-curves.md).
+**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)

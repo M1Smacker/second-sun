@@ -1,0 +1,188 @@
+# The shape of the book: Parts, chapters, both reading orders, summaries and "why read this" lines.
+# hooks.py builds the home map, the chapter strip, the Next/Previous links and the Journey page from this file.
+# Rules: no en or em dashes (the build fails on them). Keep each summary line to one sentence.
+# `topic` order = the chapter numbers 1 to 15. `journey` order = the order the project needed them (see `journey:`).
+
+parts:
+  - {n: 1, name: "The sky and the data", short: "Sky and data", star: Deneb,
+     blurb: "Names, light curves and where our data comes from."}
+  - {n: 2, name: "Two suns", short: "Two suns", star: Albireo,
+     blurb: "Binary stars, wandering transits and the orbit maths."}
+  - {n: 3, name: "Finding dips", short: "Finding dips", star: Sadr,
+     blurb: "Noise, our detector and the fake-planet test."}
+  - {n: 4, name: "Is it real?", short: "Is it real?", star: "Eta Cygni",
+     blurb: "Vetting a dip, and the pixel check."}
+  - {n: 5, name: "The professionals' tool", short: "STANLEY", star: "Delta Cygni",
+     blurb: "How the pros stack crossings that do not keep time."}
+  - {n: 6, name: "How the project runs", short: "How we run", star: Gienah,
+     blurb: "The workshop, credit and our mistakes."}
+
+chapters:
+  - n: 1
+    slug: 01-stars-names-missions
+    part: 1
+    title: "Stars, names and missions"
+    hook: "how stars are named and where Kepler and TESS fit"
+    summary:
+      - "What: how stars get catalogue numbers, a position, a brightness and a distance, and which two telescopes matter."
+      - "Why: a number from one catalogue will not find a star in another, so every lookup needs the right name."
+      - "You will be able to: look up any star yourself and read its brightness, distance and TESS time."
+    plain: "Every star we study has several catalogue numbers, a position, a brightness and a distance. Two space telescopes matter to us: Kepler, which stared at one patch of sky, and TESS, which sweeps the whole sky."
+  - n: 2
+    slug: 02-light-curves
+    part: 1
+    title: "Light curves"
+    hook: "how a dip in brightness reveals a planet"
+    summary:
+      - "What: a light curve is brightness against time, and a planet crossing its star makes a small dip called a transit."
+      - "Why: we cannot photograph these planets, so dips are our only view of them."
+      - "You will be able to: tell a transit from an eclipse by its shape and size."
+    plain: "We cannot photograph these planets, so we watch a star's brightness over time. When a planet passes in front, the star dims a little: that is a transit."
+  - n: 3
+    slug: 03-our-data
+    part: 1
+    title: "Our data"
+    hook: "where our data comes from and how good it is"
+    summary:
+      - "What: the path from TESS's camera to a file on your D: drive, and what can go wrong on the way."
+      - "Why: every number in this book starts here, so the data's limits are our limits."
+      - "You will be able to: name the data products we use, how big they are and how good."
+    plain: "NASA turns TESS pictures into brightness records and puts them online for free, and our code downloads them to your D: drive. This chapter follows that path so you know what our data is and what can go wrong with it."
+  - n: 4
+    slug: 04-two-suns
+    part: 2
+    title: "Two suns"
+    hook: "what a planet around two stars is, and why we hunt them"
+    summary:
+      - "What: binary stars, and the planets that orbit both stars at once."
+      - "Why: only 14 have ever been seen crossing their stars, so each new one matters."
+      - "You will be able to: explain what a circumbinary planet is and why we hunt them."
+    plain: "Many stars come in pairs, and a planet can orbit both at once. Only 14 such planets have ever been caught crossing their stars, so every new one matters."
+  - n: 5
+    slug: 05-wandering-transits
+    part: 2
+    title: "Wandering transits"
+    hook: "why two-sun dips arrive at odd times"
+    summary:
+      - "What: why a two-sun planet's dips come early, late, longer or shorter."
+      - "Why: that wandering hides them from normal search tools, which is our chance."
+      - "You will be able to: say why a search that expects a steady clock misses them."
+    plain: "Around one star, a planet's dips arrive like a clock. Around two moving stars they do not, which makes these planets hard to find and gives our hunt its chance."
+  - n: 6
+    slug: 06-orbits-three-body
+    part: 2
+    title: "Orbits and the three-body problem"
+    hook: "the orbit maths behind the wandering"
+    summary:
+      - "What: Kepler's law, the closest safe orbit, and why three pulling bodies have no simple formula."
+      - "Why: a computer has to step through the motion, and that is what STANLEY does."
+      - "You will be able to: read a crossing's time and length as a clue to where the stars were."
+    plain: "Two stars circle their shared balance point and a planet circles both. Three bodies have no simple formula, so a computer moves them step by step."
+  - n: 7
+    slug: 07-noise-and-statistics
+    part: 3
+    title: "Noise and statistics"
+    hook: "why noise can fake a dip"
+    summary:
+      - "What: noise, signal to noise (SNR), and how chance alone makes fake dips."
+      - "Why: a dip only counts if it is clearly bigger than the wobble over the same length of time."
+      - "You will be able to: say how sure a dip is, and why averaging does not fix slow drifts."
+    plain: "Every measurement wobbles, and a dip only counts if it is clearly bigger than the wobble. Look in thousands of places and a few will fake a dip by pure chance."
+  - n: 8
+    slug: 08-our-detector
+    part: 3
+    title: "Our detector"
+    hook: "how our detector finds dips, and how well it works"
+    summary:
+      - "What: how our program scans a light curve and flags dips, with honest tests of how well it works."
+      - "Why: this is the heart of the hunt, and a search that finds nothing only means something if we know what it can see."
+      - "You will be able to: explain what the detector finds, what it misses, and why."
+    plain: "This program scans a light curve and points at dips that might be planets. It finds the known planet TOI-1338 b in half the sectors where it crossed, and it catches fake planets about 6 Earth sizes and up."
+  - n: 9
+    slug: 09-fake-planets
+    part: 3
+    title: "Fake planets"
+    hook: "how we measure what the search can see"
+    summary:
+      - "What: hiding fake planets of known size in real data and counting how many the search finds."
+      - "Why: it turns \"we found nothing\" into \"nothing bigger than a known size crossed here\"."
+      - "You will be able to: read the result of an injection and recovery test."
+    plain: "To know what your search can find, hide fake planets of known sizes in real data and count how many it finds. Without that, an empty result means nothing."
+  - n: 10
+    slug: 10-vetting
+    part: 4
+    title: "Vetting"
+    hook: "the tests every dip must survive"
+    summary:
+      - "What: the tests that try to kill a dip before anyone else has to."
+      - "Why: about one in four of NASA's own TESS planet candidates later turned out to be something else."
+      - "You will be able to: name the impostors and the test that catches each one."
+    plain: "Finding a dip is the easy part, because most dips are not planets. Vetting is the set of tests that tries to kill a dip, and only one that survives gets a name."
+  - n: 11
+    slug: 11-pixels-and-neighbours
+    part: 4
+    title: "Pixels and neighbours"
+    hook: "is the dip on our star or on a neighbour?"
+    summary:
+      - "What: checking the pixels to see whether a dip sits on our star or on a faint neighbour."
+      - "Why: TESS pixels are big, so several stars share them."
+      - "You will be able to: say what \"the centre of light moved\" means and why it matters."
+    plain: "TESS's pixels are big, so a dip in our star's light curve could really come from a faint neighbour. We look at the pixels themselves to see where the dimming sits."
+  - n: 12
+    slug: 12-stanley
+    part: 5
+    title: "STANLEY"
+    hook: "the professionals' way to stack crossings that do not keep time"
+    summary:
+      - "What: STANLEY, a professionals' tool that guesses a whole orbit and adds up the light at every predicted crossing."
+      - "Why: crossings that wander cannot be stacked on a timetable, but predicted ones can."
+      - "You will be able to: read STANLEY's output and say what it did on TOI-1338."
+    plain: "Each crossing of a small two-star planet is too faint to see alone, and they do not arrive on a timetable. STANLEY guesses a whole orbit, predicts every crossing, and adds up the light at those moments."
+  - n: 13
+    slug: 13-your-workshop
+    part: 6
+    title: "Your workshop"
+    hook: "where everything lives, and the safety rules"
+    summary:
+      - "What: a tour of the folders, the registers, the safety rules and how a working day becomes a page."
+      - "Why: so you can find anything yourself."
+      - "You will be able to: find where a decision, a mistake or a result is recorded."
+    plain: "Everything we do lives in one folder on your D: drive, with a public copy on GitHub. This chapter is the map of what is where and the rules that keep it safe."
+  - n: 14
+    slug: 14-credit-and-publishing
+    part: 6
+    title: "Credit and publishing"
+    hook: "how a find becomes a named result"
+    summary:
+      - "What: the order of steps from a dip to a credited result, and what journals say about AI."
+      - "Why: in 2026 NASA's candidate site started wanting the write-up published first."
+      - "You will be able to: describe the steps from a dip to credit."
+    plain: "A dip does not become ours when we see it. It becomes ours when it is written up and published, and then shared with the TESS team."
+  - n: 15
+    slug: 15-mistakes-as-lessons
+    part: 6
+    title: "Our mistakes, as lessons"
+    hook: "the mistakes we made and the rules they left"
+    summary:
+      - "What: fifteen logged mistakes, five patterns, and the rule each one left behind."
+      - "Why: the patterns are how careful people still get things wrong, anywhere."
+      - "You will be able to: spot the five patterns in your own work."
+    plain: "In the first two days we logged 15 mistakes. None reached anyone outside the project, and each one left a rule behind."
+
+# The Journey order: the order the project needed each chapter. One line per stop: what happened.
+journey:
+  - {ch: 4, line: "19 Oct: we chose the hunt. Planets that orbit two stars are rare: only 14 are known to cross.", note: "2026-10-19"}
+  - {ch: 5, line: "19 Oct: we saw why the usual tools miss them. Their dips arrive off the clock, and that is our opening.", note: "2026-10-19"}
+  - {ch: 1, line: "19 Oct: we chose G1, 549 Kepler two-star systems, and matched Kepler's names to TESS's.", note: "2026-10-19"}
+  - {ch: 2, line: "19 Oct: every search starts from a light curve, brightness against time, so this is the skill we use most."}
+  - {ch: 3, line: "19 Oct: we measured how big TESS files are on your PC and where they come from.", note: "2026-10-19"}
+  - {ch: 6, line: "20 Oct: the Bible Overhaul wrote down the orbit maths behind the wandering."}
+  - {ch: 7, line: "19 to 20 Oct: the overnight run showed that noise alone makes fake dips."}
+  - {ch: 8, line: "19 to 20 Oct: our detector re-found TOI-1338 b in 4 of 8 sectors, then we kept testing it.", note: "2026-10-20"}
+  - {ch: 9, line: "20 Oct: hiding fake planets in real data showed us how small a planet we can see.", note: "2026-10-20"}
+  - {ch: 12, line: "19 to 20 Oct: STANLEY, the professionals' tool, was installed and pointed near the right period."}
+  - {ch: 10, line: "19 to 20 Oct: our first G1 star, Kepler-16, flagged one dip. It was the telescope wobbling."}
+  - {ch: 11, line: "20 Oct: we wrote down how to check that a dip is on our star. The pixel check in our pipeline is still to do."}
+  - {ch: 13, line: "20 Oct: the Bible Overhaul wrote down where everything lives and the safety rules."}
+  - {ch: 14, line: "20 Oct: NASA's candidate site now wants a paper first, so we mapped how credit works."}
+  - {ch: 15, line: "20 to 21 Oct: fifteen logged mistakes became five patterns and a rule each."}

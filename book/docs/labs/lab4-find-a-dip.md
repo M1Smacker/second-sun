@@ -7,15 +7,6 @@
 
 **Goal:** find a real planet transit, by eye and with our detector.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab4_find_a_dip.py
-```
-
-**Before you read the output:** open `D:\second-sun\labs\out\lab4_toi1338_s98.png`, cover the bottom panel with your hand, and look at the middle panel. Where do you think the dip is? Write down your guess.
-
 ## What you should see
 
 ```text
@@ -30,6 +21,17 @@ Picture saved: D:\second-sun\labs\out\lab4_toi1338_s98.png
 ![Three panels: TOI-1338 sector 98 with eclipses in red; the flattened data; a two-day zoom showing a shallow dip near BTJD 4025.6](img/lab4-toi1338-s98.png){ width="100%" loading="lazy" }
 <figcaption>TOI-1338, sector 98, from your PC. Top: deep primary and shallow secondary eclipses of the two stars (red). Middle: eclipses removed and flattened. Bottom: the planet's dip.</figcaption>
 </figure>
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab4_find_a_dip.py
+    ```
+
+    **Before you read the output:** open `D:\second-sun\labs\out\lab4_toi1338_s98.png`, cover the bottom panel with your hand, and look at the middle panel. Where do you think the dip is? Write down your guess.
 
 ## Reading it
 
@@ -59,4 +61,4 @@ Picture saved: D:\second-sun\labs\out\lab4_toi1338_s98.png
 
 **Tell me:** "Lab 4 done", your guess from the picture, and how many events appeared at SNR 5.
 
-**Next:** [Chapter 9: fake planets](../book/09-fake-planets.md).
+**Back to:** [Try it yourself, Part 3](../parts/part3/labs.md)

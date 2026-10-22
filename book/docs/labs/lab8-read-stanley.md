@@ -7,15 +7,6 @@
 
 **Goal:** read a professional search result and decide how much to trust it.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab8_read_stanley.py
-```
-
-It only reads files, so it takes a few seconds. (Re-running the search itself takes about 33 minutes; that's optional, later.)
-
 ## What you should see
 
 ```text
@@ -34,6 +25,17 @@ Picture saved: D:\second-sun\labs\out\lab8_stanley_toi1338.png
 ![Best score per trial period with a peak at 96.1 days near the 95.2-day line, and a histogram of all scores](img/lab8-stanley-toi1338.png){ width="100%" loading="lazy" }
 <figcaption>STANLEY on TOI-1338, from your PC {{claim:F-045}}.</figcaption>
 </figure>
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab8_read_stanley.py
+    ```
+
+    It only reads files, so it takes a few seconds. (Re-running the search itself takes about 33 minutes; that's optional, later.)
 
 ## Reading it
 
@@ -65,4 +67,4 @@ Picture saved: D:\second-sun\labs\out\lab8_stanley_toi1338.png
 
 **Tell me:** "Lab 8 done" and your two sentences. (There's no single right answer; Chapter 12's section 12.6 has mine.)
 
-**Next:** Part 6, [Chapter 13: your workshop](../book/13-your-workshop.md).
+**Back to:** [Try it yourself, Part 5](../parts/part5/labs.md)

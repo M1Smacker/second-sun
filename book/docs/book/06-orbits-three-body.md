@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 6 · about 20 min · Maths: squares, cubes, cube roots, speeds</p>
 
 !!! plain "In plain words"
-    Two stars circle their shared balance point; a planet circles both. Because the stars keep moving, the planet finds them in a different place each time it comes round, so its crossings arrive early or late and last longer or shorter. Three bodies pulling on each other have no simple formula, so we let a computer move them step by step: an **N-body simulation**. That's what STANLEY does, and why it can predict crossings that look random.
+    Two stars circle their shared balance point and a planet circles both. Three bodies have no simple formula, so a computer moves them step by step.
 
 **What this chapter answers:** how do orbits work, why can't we just write down when a two-star planet will cross, and how far from the stars can a planet survive?
 
@@ -92,19 +92,7 @@ Real codes like **REBOUND** (Rein and Liu 2012) use clever stepping rules that s
 
 ## 6.7 Check your understanding
 
-??? quiz "1. A planet orbits a pair of 1-Sun-total stars at 1 AU. How long is its year?"
-    *P*² = 1³ / 1 = 1, so **1 year**. Same as Earth around the Sun: Kepler's law only cares about the total mass inside.
-
-??? quiz "2. Why are TOI-1338's two eclipses 0.453 of an orbit apart, not 0.5?"
-    The stars' orbit is **eccentric** (stretched). The stars move faster when close together, so the time from one eclipse to the next is shorter one way round.
-
-??? quiz "3. A binary has a critical period of 50 days. Should we search for planets with 30-day orbits?"
-    **No.** Planets that close would be unstable and wouldn't survive. Start at 50 days.
-
-??? quiz "4. Why might one crossing last 6 hours and the next 12?"
-    The star moves too. When it moves the same way as the planet, they pass each other slowly (long crossing); in opposite directions, quickly (short crossing).
-
-**Next:** [Lab 5: two suns up close](../labs/lab5-two-suns.md), then Part 3, starting with [Chapter 7](07-noise-and-statistics.md).
+The questions for this chapter are on the [Part 2 review page](../parts/part2/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-004 to F-009, F-046, F-047. Background: Holman and Wiegert 1999 (AJ 117, 621); Rein and Liu 2012 (REBOUND, A&A 537, A128); Kostov et al. 2020 (AJ 159, 253); all checked on ADS.

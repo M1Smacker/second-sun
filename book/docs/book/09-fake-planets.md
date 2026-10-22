@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 9 · about 20 min · Maths: fractions, one square root</p>
 
 !!! plain "In plain words"
-    How do you know what your search can find? You hide fake planets of known sizes in real data, run the search, and count how many it finds. That's **injection and recovery**. It turns "we found nothing" into "nothing bigger than about 6 Earth sizes crossed here". Without it, an empty result means nothing at all.
+    To know what your search can find, hide fake planets of known sizes in real data and count how many it finds. Without that, an empty result means nothing.
 
 **What this chapter answers:** how do we measure a search, what makes the test honest, and what have our tests shown so far?
 
@@ -83,19 +83,7 @@ And one new loss: **3 of 33** realistic crossings fell inside the stars' eclipse
 
 ## 9.7 Check your understanding
 
-??? quiz "1. Why must fakes go in before cleaning, not after?"
-    Cleaning can flatten part of a real dip. Injecting after cleaning would skip that damage, so the test would look better than reality.
-
-??? quiz "2. 3 of 4 fakes found. What's the uncertainty?"
-    √(0.75 × 0.25 / 4) ≈ 0.22: **75% ± 22%**. Four trials are far too few.
-
-??? quiz "3. Why count fakes inside the eclipse mask separately?"
-    They show a loss no detector improvement can fix. Mixing them into "missed" would blame the detector for what the mask did.
-
-??? quiz "4. A dip's centre is deeper than (radius ratio)². Why?"
-    **Limb darkening:** the star's edge is dimmer, so a planet over the bright middle blocks more light than the average.
-
-**Next:** [Lab 6: hide your own fake planets](../labs/lab6-fake-planets.md), then Part 4, [Chapter 10](10-vetting.md).
+The questions for this chapter are on the [Part 3 review page](../parts/part3/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-015, F-029, F-048, F-051. Background: Kreidberg 2015 (batman, PASP 127, 1161); Christiansen et al. 2013 (Kepler injection); both checked on ADS.

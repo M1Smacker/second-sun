@@ -7,13 +7,6 @@
 
 **Goal:** see both eclipses of a real binary, measure them, and see what gets masked.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab5_two_suns.py
-```
-
 ## What you should see
 
 ```text
@@ -29,6 +22,15 @@ Picture saved: D:\second-sun\labs\out\lab5_toi1338_fold.png
 ![Folded light curve of TOI-1338 with a deep eclipse near phase 0.51 and a shallow one near 0.96, plus zooms of each](img/lab5-toi1338-fold.png){ width="100%" loading="lazy" }
 <figcaption>TOI-1338, sector 98, folded at 14.6086 days, from your PC {{claim:F-046}}. Red: masked. Middle: the primary eclipse. Right: the secondary.</figcaption>
 </figure>
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab5_two_suns.py
+    ```
 
 ## Reading it
 
@@ -58,4 +60,4 @@ Picture saved: D:\second-sun\labs\out\lab5_toi1338_fold.png
 
 **Tell me:** "Lab 5 done", what the wrong period did, and the phase you calculated.
 
-**Next:** [Part 3, Chapter 7: noise and statistics](../book/07-noise-and-statistics.md).
+**Back to:** [Try it yourself, Part 2](../parts/part2/labs.md)

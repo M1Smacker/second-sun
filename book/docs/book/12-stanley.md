@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 12 · about 20 min · Maths: square roots, a grid of guesses</p>
 
 !!! plain "In plain words"
-    A small two-star planet's crossings are each too faint to see alone, and they don't arrive on a timetable, so you can't just stack them like a normal planet's. **STANLEY** solves this by guessing a planet's whole orbit, letting a computer predict exactly when and for how long it would cross, and adding up the light at all those moments. It tries thousands of orbits. If one of them gives a strong total, there may be a planet with that orbit. Our own detector judges one dip at a time; STANLEY judges a whole orbit at once.
+    Each crossing of a small two-star planet is too faint to see alone, and they do not arrive on a timetable. STANLEY guesses a whole orbit, predicts every crossing, and adds up the light at those moments.
 
 **What this chapter answers:** what is STANLEY, why does it need a real orbit calculation, what did it say about TOI-1338 on your PC, and why don't we trust its scores yet?
 
@@ -86,19 +86,7 @@ From [Lab 8](../labs/lab8-read-stanley.md), run on your PC {{claim:F-045}}:
 
 ## 12.7 Check your understanding
 
-??? quiz "1. Why can't a normal planet search stack a two-star planet's crossings?"
-    It assumes the crossings repeat on a fixed timetable with the same length. Two-star planets' crossings shift by hours to days and change length, so a timetable-based stack adds noise instead of signal.
-
-??? quiz "2. Nine crossings, each SNR 2.5 alone. Roughly what SNR does a perfect stack reach?"
-    2.5 × √9 = **7.5**: over our bar of 7, though no single crossing is.
-
-??? quiz "3. 28% of orbits scored above 5σ. What does that tell you?"
-    The σ scores aren't "chance" probabilities in this setup. Noise plus thousands of tries makes 5σ common. We need to measure how high noise alone scores before trusting any peak.
-
-??? quiz "4. Why did the peak land at 96.1 days, not 95.2?"
-    The grid only had circular orbits, and the stars' masses in the model differ from the published ones. Both shift the best-fitting period a little.
-
-**Next:** [Lab 8: read STANLEY's output](../labs/lab8-read-stanley.md).
+The questions for this chapter are on the [Part 5 review page](../parts/part5/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-044, F-045, F-047. Martin and Fabrycky 2021, "Searching for Small Circumbinary Planets. I." (AJ 162, 84); Rein and Liu 2012 (REBOUND); both checked on ADS.

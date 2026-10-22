@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 13 · about 15 min · no maths</p>
 
 !!! plain "In plain words"
-    Everything we do lives in one folder, `D:\second-sun`, and a public copy on GitHub. This chapter is the map: which folder holds what, which files record our decisions and mistakes, how a working day flows from an idea to this book, and the rules that keep it safe. If you ever want to find something yourself, start here.
+    Everything we do lives in one folder on your D: drive, with a public copy on GitHub. This chapter is the map of what is where and the rules that keep it safe.
 
 **What this chapter answers:** where is everything, and how does a day of work turn into a page you can read?
 
@@ -11,7 +11,7 @@
 
 | Folder | What's in it | In git? |
 |---|---|---|
-| `book/` | this book: chapters (`docs/`), the facts register (`data/claims.csv`), your progress (`progress/`), build tools | yes |
+| `book/` | this book: chapters (`docs/`), the facts register (`data/claims.csv`), the page order and summaries (`data/path.yml`), the home-page sky map (`shape.py`, `data/sky.json`), your progress (`progress/`), build tools | yes |
 | `labs/` | the lab scripts you run | yes (pictures in `labs/out/` are not) |
 | `pipeline/` | our search code: the detector (`detect_v2.py`), tests, timing, stability, the STANLEY wrappers | yes |
 | `targets/` | the frozen G1 list and its data coverage | yes |
@@ -73,13 +73,4 @@
 
 ## 13.7 Check your understanding
 
-??? quiz "1. Why isn't the data folder in git?"
-    It's large, and NASA's MAST keeps the originals, so anyone can download it again. Git holds the code, the lists and the records that say exactly which files we used.
-
-??? quiz "2. Where would you look to find out why we chose G1?"
-    `research/decisions.md` (dated, with your words), and the field note of [19 October](../field-notes/2026-10-19.md).
-
-??? quiz "3. What does 'Book is 3 commits behind' mean?"
-    Three changes to code or research were saved after the last field note. The same-day rule says a field note should be written before the work is called finished.
-
-**Next:** [Chapter 14: credit and publishing](14-credit-and-publishing.md).
+The questions for this chapter are on the [Part 6 review page](../parts/part6/review.md).

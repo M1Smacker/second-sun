@@ -10,17 +10,6 @@
 !!! warning "Practice, not a hunt"
     Anything this lab finds is a practice event, not a candidate. Real candidates go through the full vetting sheet (Chapter 10), the pixel check (Chapter 11) and both keys. If something looks exciting, tell me; don't post it anywhere.
 
-## Do it
-
-The example uses TIC 48507019 and 3 sectors:
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab9_your_star.py 48507019 3
-```
-
-The first number is a TIC from `targets\g1_targets.csv`; the second is how many SPOC sectors to use (about 2 MB each). Every download is written to `research\downloads.csv` automatically, as the project rules require.
-
 ## What you should see
 
 From a real run on your PC (20 October 2026) {{claim:F-053}}:
@@ -38,6 +27,19 @@ Sector 26: 0 events above SNR 7, 0 rejected (also in flipped data), 0 events in 
 
 Events to vet by hand: 0. Pictures in D:\second-sun\labs\out
 ```
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    The example uses TIC 48507019 and 3 sectors:
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab9_your_star.py 48507019 3
+    ```
+
+    The first number is a TIC from `targets\g1_targets.csv`; the second is how many SPOC sectors to use (about 2 MB each). Every download is written to `research\downloads.csv` automatically, as the project rules require.
 
 ## Reading it
 
@@ -72,4 +74,4 @@ Ask, in this order (the short version of Chapter 10):
 
 **Tell me:** "Lab 9 done", the TIC you chose, and your notes. This is the lab where I check your judgment, not just your numbers.
 
-**Next:** you've finished the labs. [Chapter 15](../book/15-mistakes-as-lessons.md) is a good last read.
+**Back to:** [Try it yourself, Part 6](../parts/part6/labs.md)

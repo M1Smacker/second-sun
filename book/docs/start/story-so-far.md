@@ -37,6 +37,7 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 - **Afternoon: the Bible Overhaul.** Writing the labs caught three of our own errors (a noise number, STANLEY's best period, and a hole in the G1 list), all corrected and logged. The [field note](../field-notes/2026-10-20.md) has the details.
 - **Evening: the quality-filter test** (a seventh test in [Chapter 8](../book/08-our-detector.md)). A milder data filter finds the two crossings we couldn't see before, but costs sensitivity elsewhere; and the raw flux gave a quieter noise estimate than the cleaned flux in several sectors. One star only; nothing in the detector changed. [Field note](../field-notes/2026-10-20.md).
 - **21 October: the readiness bar.** The home page now shows how complete our plan is (36 of 100), built so that every point needs proof. The hunt is on hold until you say start. [Field note](../field-notes/2026-10-21.md).
+- **23 October: the book was rebuilt** around a map of the real sky, with three tabs, optional labs and a review page for each Part. Nothing about the science changed. [Field note](../field-notes/2026-10-23.md).
 - **You paused the hunt** to start this overhaul: "I can't let an AI do all the work while I just sit and say yes or no."
 
 ## The honest scoreboard
@@ -59,4 +60,4 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 
 ## Where to go next
 
-Read [How to read this book](how-to-read.md), then set up your workbench in [Lab 0](../labs/lab0-workbench.md).
+Read [How to read this book](how-to-read.md), then pick the [journey](journey.md) or start at [Chapter 1](../book/01-stars-names-missions.md). The labs are optional.

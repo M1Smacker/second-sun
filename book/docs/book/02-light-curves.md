@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 2 · about 25 min · Maths: fractions, percentages, ppm, squares, averages</p>
 
 !!! plain "In plain words"
-    We can't photograph these planets. They're far too small and faint. Instead we watch a star's **brightness** over time. When a planet passes in front, the star dims a tiny bit for a few hours. That dimming is a **transit**. A graph of brightness against time is a **light curve**, and reading light curves is the main skill of this whole project.
+    We cannot photograph these planets, so we watch a star's brightness over time. When a planet passes in front, the star dims a little: that is a transit.
 
 **What this chapter answers:** how does a brightness graph reveal a planet, and how does the TESS telescope collect that graph?
 
@@ -89,16 +89,7 @@ Check the planet with the formula: TOI-1338 b is about 6.9 Earth radii {{claim:F
 
 ## 2.7 Check your understanding
 
-??? quiz "1. A dip is 1% deep. Roughly how big is the planet compared with its star?"
-    √0.01 = **0.1**, so about a tenth of the star's radius. Around a Sun-sized star, that's about Jupiter's size.
-
-??? quiz "2. What's the difference between SAP and PDCSAP?"
-    SAP is the raw summed light; PDCSAP has known spacecraft effects removed. We trust PDCSAP first and use SAP to fill its gaps.
-
-??? quiz "3. TOI-1338's 5% dips repeat every 14.6 days. Planet or star?"
-    **Star.** 5% means an object about √0.05 ≈ 0.22 of the big star's radius: the small companion star, eclipsing on the binary's 14.6-day orbit.
-
-**Next:** [Chapter 3](03-our-data.md): where our data comes from and how good it is.
+The questions for this chapter are on the [Part 1 review page](../parts/part1/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-003, F-011 to F-013. Background: Winn 2010, "Transits and Occultations", [arXiv:1001.2010](https://arxiv.org/abs/1001.2010).

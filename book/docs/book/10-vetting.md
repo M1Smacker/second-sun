@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 10 · about 25 min · Maths: percentages, comparing two numbers with an error bar</p>
 
 !!! plain "In plain words"
-    Ahmed, finding a dip is the easy part. Most dips are **not** planets: about one in four of NASA's own TESS planet candidates later turned out to be something else. **Vetting** is the set of tests that tries to kill a dip before anyone else has to. A dip only gets an SS-0001-style name after it survives all of them, and it only goes public after both of us agree. This chapter explains each test and why it exists.
+    Finding a dip is the easy part, because most dips are not planets. Vetting is the set of tests that tries to kill a dip, and only one that survives gets a name.
 
 **What this chapter answers:** how do we tell a planet's dip from all the things that imitate one?
 
@@ -85,16 +85,7 @@ Verdict: impostor. The lesson for us: the rule was right, but our code checked "
 
 ## 10.7 Check your understanding
 
-??? quiz "1. Why does a centroid shift during a dip worry us?"
-    It means the dimming light isn't centred on our star. The dip probably comes from a **different star** in the same big TESS pixel, often a background eclipsing binary.
-
-??? quiz "2. A dip looks perfect but sits 3 hours before a momentum dump. What do we do?"
-    Flag it, don't trust it yet. Check the pixels: spacecraft jitter before dumps faked transits during TOI-1338 b's confirmation. Only if the pixel-level check clears it can it pass C7.
-
-??? quiz "3. What's the circumbinary smoking gun?"
-    Transit **durations** that change with the binary's phase (shorter near primary eclipse) plus irregular timing that a three-body model predicts. Fakes don't do that.
-
-**Next:** [Chapter 11](11-pixels-and-neighbours.md): is the dip on our star?
+The questions for this chapter are on the [Part 4 review page](../parts/part4/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-019 to F-023, B9. Full research: `research/wave-4-vetting/report.md`.

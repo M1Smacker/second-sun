@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 3 · about 20 min · Maths: megabytes and gigabytes, ppm</p>
 
 !!! plain "In plain words"
-    Ahmed, every number in this book starts as light hitting a camera on NASA's TESS satellite. NASA turns those pictures into brightness records and puts them online for free. Our Python code downloads them to your D: drive, about 1-2 MB per star per month of watching. This chapter follows that path step by step, so you know exactly what our data is, where it comes from, and what can go wrong with it.
+    NASA turns TESS pictures into brightness records and puts them online for free, and our code downloads them to your D: drive. This chapter follows that path so you know what our data is and what can go wrong with it.
 
 **What this chapter answers:** what data do we use, how does it reach your PC, and how good is it?
 
@@ -86,16 +86,7 @@ TOI-1338 sits near the south ecliptic pole, so TESS has watched it a lot: **40 s
 
 ## 3.7 Check your understanding
 
-??? quiz "1. Why do we need a dip in two different light-curve products?"
-    Each pipeline cleans data differently. A dip in only one could be created by that pipeline's cleaning, not by the star.
-
-??? quiz "2. A light curve is 2 MB. Roughly how much space do 550 stars × 10 sectors take?"
-    550 × 10 × 2 MB = **11,000 MB ≈ 11 GB**. Easy for D:.
-
-??? quiz "3. Why are TESS's big pixels a problem for planet hunters?"
-    A faint eclipsing binary next to our star can sit in the same pixel and leak its dips into our light curve, faking a small planet.
-
-**Next:** [Lab 3](../labs/lab3-plot-and-read.md) on your PC, then Part 2, [Chapter 4](04-two-suns.md).
+The questions for this chapter are on the [Part 1 review page](../parts/part1/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-024 to F-028. Full research: `research/wave-2-data/report.md`.

@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 5 · about 25 min · Maths: averages, rough speeds, percentages</p>
 
 !!! plain "In plain words"
-    Around one star, a planet's dips arrive like a clock: same gap, same length, every time. Around two stars, they **don't**. The stars are moving, so the planet meets them at different places each time. Its dips come early or late, last longer or shorter, and can even stop for years and come back. This makes two-sun planets hard to find with normal tools, and it's exactly why our hunt has a chance.
+    Around one star, a planet's dips arrive like a clock. Around two moving stars they do not, which makes these planets hard to find and gives our hunt its chance.
 
 **What this chapter answers:** why are circumbinary transits irregular, and how does that create our G1 opportunity?
 
@@ -62,16 +62,7 @@ That one-hour difference is bigger than the paper's stated error (±23 min). It 
 
 ## 5.7 Check your understanding
 
-??? quiz "1. Why can't we fold a two-sun planet's light curve at one period?"
-    Its transit times shift by up to days, so the dips don't line up at any single period.
-
-??? quiz "2. TOI-1338 b's transits lasted 0.3, 0.4 and 0.6 days. What causes the difference?"
-    The crossed star's own motion. Moving with the planet makes a long transit; moving against it makes a short one.
-
-??? quiz "3. In one sentence, what is G1?"
-    Searching Kepler's eclipsing binaries in newer TESS data for planets that weren't crossing during Kepler but have **switched on** since, because their orbits precessed.
-
-**Next:** [Chapter 6](06-orbits-three-body.md): the orbits behind the wandering.
+The questions for this chapter are on the [Part 2 review page](../parts/part2/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-007 to F-011, F-017, F-018.

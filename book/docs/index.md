@@ -1,67 +1,27 @@
 # Second Sun
 
-<p class="ss-meta">Observatory log · Ahmed Hanzala with Claude · NASA TESS public data</p>
+<p class="ss-meta">Project diary · Ahmed Hanzala with Claude · NASA TESS public data</p>
 
-Ahmed, this is your book. It holds everything we learn, decide and find while hunting for planets that orbit **two stars** in free public NASA [TESS](glossary.md#tess) data. It's written for you: a beginner who reads in short weeknight bursts.
+<!-- ss:home-map -->
 
-<!-- ss:status-panel -->
-
-<!-- ss:mission-bar -->
+Ahmed, this is your book: the diary of everything we do while hunting for planets that orbit **two stars** in free public NASA [TESS](glossary.md#tess) data, and the lessons behind each step. Read it on your phone in short bursts. The hands-on labs are optional.
 
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (21 Oct 2026):** the planet hunt is **on hold** until Ahmed says start. The Bible Overhaul is finished, and the readiness bar above shows how complete and how well built our plan is. Our search works on a known two-sun planet; no new planet yet. Start with [The story so far](start/story-so-far.md).
+    **Two-minute recap (23 Oct 2026):** the planet hunt is **on hold** until you say start. This week the book was rebuilt around the map above, with three tabs, optional labs and a review page for each Part. Our search works on a known two-sun planet; no new planet yet. Begin with [Start here](start/index.md).
 
-## Start here
-- **Coming back, or new?** Read [The story so far](start/story-so-far.md), then [How to read this book](start/how-to-read.md).
-- **Want to do it yourself?** Begin at [Lab 0: your workbench](labs/lab0-workbench.md) on your PC.
-- **What happened today?** The [field notes](field-notes/index.md) hold one lesson per working day.
+<!-- ss:mission-bar -->
 
-## The book
+<!-- ss:status-panel -->
 
-### Part 1 · The sky and the data
-<ol class="ss-chapters">
-<li data-n="01"><a href="book/01-stars-names-missions/">Stars, names and missions</a><span>Kepler and TESS, how stars are named, and how to read brightness, distance and time.</span></li>
-<li data-n="02"><a href="book/02-light-curves/">Light curves</a><span>How a star's brightness graph reveals a planet, and how TESS collects it.</span></li>
-<li data-n="03"><a href="book/03-our-data/">Our data</a><span>From a NASA camera to your D: drive: what our data is, how big, and how good.</span></li>
-</ol>
+## The book, Part by Part
 
-### Part 2 · Two suns
-<ol class="ss-chapters">
-<li data-n="04"><a href="book/04-two-suns/">Two suns</a><span>Binary stars, the planets that orbit both, and where those planets can survive.</span></li>
-<li data-n="05"><a href="book/05-wandering-transits/">Wandering transits</a><span>Why two-sun planets' dips arrive early, late, or not at all, and why that's our chance.</span></li>
-<li data-n="06"><a href="book/06-orbits-three-body/">Orbits and the three-body problem</a><span>Kepler's law, the closest safe orbit, and why crossings change time and length.</span></li>
-</ol>
-
-### Part 3 · Finding dips
-<ol class="ss-chapters">
-<li data-n="07"><a href="book/07-noise-and-statistics/">Noise and statistics</a><span>Why averaging doesn't always help, what SNR means, and how often noise fakes a dip.</span></li>
-<li data-n="08"><a href="book/08-our-detector/">Our detector</a><span>How our search finds dips, and six honest tests of how good it is.</span></li>
-<li data-n="09"><a href="book/09-fake-planets/">Fake planets</a><span>Hiding planets of known size in real data to measure what the search can see.</span></li>
-</ol>
-
-### Part 4 · Is it real?
-<ol class="ss-chapters">
-<li data-n="10"><a href="book/10-vetting/">Vetting</a><span>Every impostor that fakes a planet, the test that catches each one, and our strict bar.</span></li>
-<li data-n="11"><a href="book/11-pixels-and-neighbours/">Pixels and neighbours</a><span>Checking a dip is on our star, not a faint neighbour, using the pixels themselves.</span></li>
-</ol>
-
-### Part 5 · The professionals' tool
-<ol class="ss-chapters">
-<li data-n="12"><a href="book/12-stanley/">STANLEY</a><span>How guessing whole orbits lets a search stack crossings that don't keep time, and what it said about TOI-1338.</span></li>
-</ol>
-
-### Part 6 · How the project runs
-<ol class="ss-chapters">
-<li data-n="13"><a href="book/13-your-workshop/">Your workshop</a><span>Where everything lives, how a day of work becomes a page, and the safety rules.</span></li>
-<li data-n="14"><a href="book/14-credit-and-publishing/">Credit and publishing</a><span>How a find becomes a named result, and what journals say about AI.</span></li>
-<li data-n="15"><a href="book/15-mistakes-as-lessons/">Our mistakes, as lessons</a><span>Fifteen logged mistakes, five patterns, and the rule each one left.</span></li>
-</ol>
-
+<!-- ss:contents -->
 
 ## More
-- **What are we hunting?** The [quests](quests.md) page shows the plan and what's done.
+- **What are we hunting?** The [quests](quests.md) page shows the plan and what is done.
 - **Found anything yet?** [Candidates](candidates.md) lists every signal that passed first checks. None yet.
-- **Lost on a word?** The [glossary](glossary.md) explains every term in plain words.
+- **What happened on a given day?** The [field notes](field-notes/index.md) hold one lesson per working day.
+- **Lost on a word?** Tap any underlined term for a short definition, or open the [glossary](glossary.md).
 - **How sure are we?** Every fact has a label; the [claims register](claims.md) shows its source.

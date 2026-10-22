@@ -32,6 +32,7 @@ ROOT = Path(__file__).parent
 REPO = ROOT.parent
 sys.path.insert(0, str(ROOT))
 import mission   # the 0-100 readiness score (book/mission.py)
+import shape     # Parts, chapters, reading orders, home sky map (book/shape.py, data/path.yml)
 
 DATA = {}
 LOG = logging.getLogger("mkdocs.hooks.second_sun")
@@ -209,6 +210,9 @@ def claims_table(d):
             f'<tbody>{rows}</tbody></table>')
 
 
+# placeholders that need the page's path back to the site root
+RENDER_AT = {"home-map": lambda d, r: shape.home(d["path"], d, r), "journey": lambda d, r: shape.journey(d["path"], r),
+             "contents": lambda d, r: shape.contents(d["path"], r)}
 RENDER = {"status-panel": status_panel, "mission-bar": mission_bar, "mission-detail": mission_detail, "progress-line": progress_line, "levels": levels, "milestones": milestones,
           "quests": quests, "candidates": candidates, "claims": claims_table}
 
@@ -224,6 +228,8 @@ def expand(markdown, page_url, d):
         return chip(by_id[m.group(1)], to_root)
 
     def block(m):
+        if m.group(1) in RENDER_AT:
+            return RENDER_AT[m.group(1)](d, to_root)
         if m.group(1) not in RENDER:
             raise PluginError(f"unknown placeholder ss:{m.group(1)} on page {page_url or 'index'}")
         return RENDER[m.group(1)](d)
@@ -236,14 +242,105 @@ def on_config(config):
     DATA.clear()
     DATA.update(load())
     try:
+        DATA["path"] = shape.load()
+        shape.validate(DATA["path"])
         validate(DATA)
     except ValueError as e:
         raise PluginError(str(e)) from e
     return config
 
 
+ALIAS = {"full-frame-image-ffi": [r"full-frame images?", r"FFIs?"], "pdcsap-and-sap": [r"PDCSAP", r"SAP"], "ra-and-dec": [], "radius": []}
+KEEP = re.compile(r"(\[[^\]]*\]\([^)]*\)|`[^`]*`|<[^>]+>|\{\{[^}]*\}\})")   # spans we never link inside
+
+
+def gloss_patterns():
+    """(slug, regex) for each glossary term: the first plain-text mention on a page becomes a link that opens a popup."""
+    from markdown.extensions.toc import slugify
+    if "gloss" not in DATA:
+        text = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
+        pats = []
+        for term in re.findall(r"^### ([^\n]+)", text, re.M):
+            slug = slugify(term.strip(), "-")
+            if slug in ALIAS:
+                alts = ALIAS[slug]
+            elif term.isupper() or term == "ppm":
+                alts = [re.escape(term)]
+            else:
+                alts = [re.escape(term.lower()).replace("\\ ", r"\s+") + r"(?:e?s)?"]
+            for a in alts:
+                flags = 0 if (a.isupper() or term == "ppm" or term.isupper()) else re.I
+                pats.append((slug, re.compile(r"(?<![\w-])(" + a + r")(?![\w-])", flags)))
+        DATA["gloss"] = pats
+    return DATA["gloss"]
+
+
+def autolink(md, to_root):
+    """Link the first mention of each glossary term on a page (skipping code, headings, tables, equations, titles and existing links)."""
+    done, out, fence, eq = set(), [], False, False
+    for line in md.split("\n"):
+        s = line.strip()
+        if s.startswith("```"):
+            fence = not fence
+        if s.startswith('<div class="ss-eq"'):
+            eq = True
+        if eq and s == "</div>":
+            eq = False
+            out.append(line)
+            continue
+        if fence or eq or not s or s[0] in "#<|" or s.startswith(("!!!", "???", "---", "$$", "[^")):
+            out.append(line)
+            continue
+        for slug, rx in gloss_patterns():
+            if slug in done:
+                continue
+            parts = KEEP.split(line)
+            for i in range(0, len(parts), 2):          # even parts are plain text
+                m = rx.search(parts[i])
+                if m:
+                    parts[i] = parts[i][:m.start()] + f"[{m.group(1)}]({to_root}glossary/#{slug})" + parts[i][m.end():]
+                    done.add(slug)
+                    break
+            line = "".join(parts)
+        out.append(line)
+    return "\n".join(out)
+
+
+def chapter_wrap(md, c, to_root):
+    """Chapter template: map strip above the title, 1-minute summary (and story) before the plain-words box,
+    mark-as-read and Next/Previous (with a reason) before Sources. The pages keep only their own content."""
+    P = DATA["path"]
+    box = "\n!!! plain"
+    md = md.replace(box, "\n" + shape.summary(c) + box, 1) if box in md else md.replace("\n", "\n\n" + shape.summary(c), 1)
+    end = "\n" + shape.chapter_end(P, c, to_root) + "\n\n"
+    head, sep, tail = md.partition("\n## Sources")
+    return shape.strip(P, c, to_root) + "\n\n" + head.rstrip("\n") + "\n" + end + (sep + tail if sep else "")
+
+
 def on_page_markdown(markdown, page, config, files):
+    P, to_root = DATA["path"], "../" * page.url.count("/")
+    c = shape.chapter_for(P, page.file.src_uri)
+    if c or page.file.src_uri == "start/story-so-far.md":
+        markdown = autolink(markdown, to_root)      # before the template adds its own text, so the first mention is the reader's first sight of the word
+    if c:
+        markdown = chapter_wrap(markdown, c, to_root)
+    part = shape.part_for(P, page.file.src_uri)
+    if part:
+        markdown = f"# Part {part['n']} · {part['name']}\n\n" + shape.part_page(P, part, to_root)
     return expand(markdown, page.url, DATA)
+
+
+def glossary_json(site):
+    """Term -> [name, plain definition], so a tap on a glossary link can show a small popup."""
+    from markdown.extensions.toc import slugify
+    text = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
+    out = {}
+    for m in re.finditer(r"^### ([^\n]+)\n+(.+?)(?=\n### |\Z)", text, re.S | re.M):
+        body = re.sub(r"\{\{claim:[^}]+\}\}", "", re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", m.group(2)))
+        out[slugify(m.group(1).strip(), "-")] = [m.group(1).strip(), " ".join(body.split()).replace("*", "").replace("`", "")]
+    if len(out) < 20:
+        raise PluginError(f"glossary.json has only {len(out)} terms; the glossary format changed?")
+    (site / "assets" / "glossary.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
 def precache_list(site_dir):
@@ -272,6 +369,7 @@ def content_images(site_dir):
 
 def on_post_build(config):
     site = Path(config["site_dir"])
+    glossary_json(site)
     files = precache_list(site)
     real = [f for f in files if not f.endswith("/")]
     size = sum((site / f).stat().st_size for f in real)

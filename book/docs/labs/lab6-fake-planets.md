@@ -7,15 +7,6 @@
 
 **Goal:** run an injection and recovery test yourself, and read its result.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab6_fake_planets.py
-```
-
-It runs the full search 20 times, so give it a few minutes.
-
 ## What you should see
 
 ```text
@@ -32,6 +23,17 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
 ![A two-day stretch of cleaned TOI-1338 data with a shallow dip at the red line](img/lab6-fake-5re.png){ width="100%" loading="lazy" }
 <figcaption>The one 5-Earth-radius fake that was found (BTJD 4013.0), after cleaning. From your PC {{claim:F-048}}.</figcaption>
 </figure>
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab6_fake_planets.py
+    ```
+
+    It runs the full search 20 times, so give it a few minutes.
 
 ## Reading it
 
@@ -63,4 +65,4 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
 
 **Tell me:** "Lab 6 done", the size where "usually found" begins, and what happened at 4010.18.
 
-**Next:** [Part 4, Chapter 10: vetting](../book/10-vetting.md).
+**Back to:** [Try it yourself, Part 3](../parts/part3/labs.md)

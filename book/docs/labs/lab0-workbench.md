@@ -25,21 +25,6 @@ The toolkits you'll meet:
 | `wotan` | flattens slow wiggles out of a light curve (Chapter 8) |
 | `batman` | draws a perfect planet transit, used to make fake planets (Chapter 9) |
 
-## Do it
-
-1. Press the Windows key, type **PowerShell**, press Enter. A dark window opens.
-2. Copy this, paste it into the window (right-click pastes), press Enter:
-
-```powershell
-cd D:\second-sun
-```
-
-3. Then this:
-
-```powershell
-.\.venv\Scripts\python.exe labs\lab0_check.py
-```
-
 ## What you should see
 
 From a real run on your PC (20 October 2026):
@@ -62,6 +47,23 @@ NASA's archive (MAST): reachable
 
 How to read it: every toolkit has a version number (wotan doesn't publish one, so it just says "installed"). D: has plenty of space. **MAST** is the archive where NASA keeps all TESS and Kepler data (Chapter 3), and your PC can reach it.
 
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    1. Press the Windows key, type **PowerShell**, press Enter. A dark window opens.
+    2. Copy this, paste it into the window (right-click pastes), press Enter:
+
+    ```powershell
+    cd D:\second-sun
+    ```
+
+    3. Then this:
+
+    ```powershell
+    .\.venv\Scripts\python.exe labs\lab0_check.py
+    ```
+
 ## What can go wrong
 
 | You see | Why | Fix |
@@ -77,4 +79,4 @@ Open the file `D:\second-sun\labs\lab0_check.py` in Notepad (right-click, Open w
 
 **Tell me:** "Lab 0 done" and your free space on C:.
 
-**Next:** [Chapter 1: stars, names and missions](../book/01-stars-names-missions.md).
+**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)

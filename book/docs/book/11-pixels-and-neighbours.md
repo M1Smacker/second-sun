@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 11 · about 20 min · Maths: weighted averages, fractions</p>
 
 !!! plain "In plain words"
-    TESS's pixels are big, so several stars share them. A dip in "our" star's light curve could really come from a faint neighbour that's eclipsing, a **blend**. To check, we look at the pixels themselves: which pixels got dimmer during the dip, and did the centre of the light move? If the dimming sits on our star and the centre doesn't move more than it should, the dip is on our star.
+    TESS's pixels are big, so a dip in our star's light curve could really come from a faint neighbour. We look at the pixels themselves to see where the dimming sits.
 
 **What this chapter answers:** how can a neighbour fake a planet, how do we tell, and what did TOI-1338's pixels say?
 
@@ -84,19 +84,7 @@ From [Lab 7](../labs/lab7-pixels.md), run on your PC {{claim:F-049}}:
 
 ## 11.7 Check your understanding
 
-??? quiz "1. A neighbour gives 2% of the light and eclipses by 10%. How deep is the dip in our light curve?"
-    0.02 × 0.10 = **0.2%** (2,000 ppm): planet-like.
-
-??? quiz "2. Why is a small centroid shift not automatically a problem?"
-    Even a dip on the target moves the centre a little, away from the target (Eq. 11.3). The shift must be compared with what's expected and with the chance spread.
-
-??? quiz "3. Why not just divide the centroid scatter by √N for the error?"
-    That assumes white noise. Pointing drifts are red noise, so the real error is bigger. Measuring the spread of shifts in same-length quiet windows includes it.
-
-??? quiz "4. CROWDSAP is 0.8. A planet's dip in raw SAP data is 800 ppm. What's the true depth?"
-    800 / 0.8 = **1,000 ppm**.
-
-**Next:** [Lab 7: is it that star?](../labs/lab7-pixels.md)
+The questions for this chapter are on the [Part 4 review page](../parts/part4/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-024, F-026, F-035, F-049, F-050, F-051. Bryson et al. 2013 (PASP 125, 889) and Twicken et al. 2018 (PASP 130, 064502), checked on ADS.

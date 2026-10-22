@@ -19,14 +19,14 @@ theme:
       primary: custom
       accent: custom
       toggle: {icon: material/weather-night, name: Back to night}
-  features: [navigation.instant, navigation.tabs, navigation.top, search.highlight]
+  features: [navigation.instant, navigation.tabs, navigation.sections, navigation.indexes, navigation.path, navigation.top, search.highlight]
 
 plugins: [search]
 hooks: [hooks.py]
 # mkdocs serve also rebuilds when these change (hooks.py writes only into site/, so no rebuild loop)
 watch: [progress, data, overrides, sw-template.js]
 
-extra_css: [assets/extra.css, assets/observatory.css]
+extra_css: [assets/extra.css, assets/observatory.css, assets/shape.css]
 extra_javascript: [assets/demos.js]
 
 markdown_extensions:
@@ -40,56 +40,59 @@ markdown_extensions:
 extra:
   generator: false
 
+not_in_nav: |
+  /index.md
+  /labs/*.md
+  /parts/*/review.md
+  /parts/*/labs.md
+
 nav:
-  - Home: index.md
-  - Start here:
+  - Read:
+      - "Start here": start/index.md
+      - "The journey path": start/journey.md
       - "The story so far": start/story-so-far.md
       - "How to read this book": start/how-to-read.md
-      - "Lab 0: your workbench": labs/lab0-workbench.md
-  - Book:
       - "Part 1 · The sky and the data":
+          - parts/part1/index.md
           - "1. Stars, names and missions": book/01-stars-names-missions.md
-          - "Lab 1: from a name to a number": labs/lab1-name-to-number.md
-          - "Lab 2: get the data": labs/lab2-get-the-data.md
           - "2. Light curves": book/02-light-curves.md
           - "3. Our data": book/03-our-data.md
-          - "Lab 3: plot and measure noise": labs/lab3-plot-and-read.md
       - "Part 2 · Two suns":
+          - parts/part2/index.md
           - "4. Two suns": book/04-two-suns.md
           - "5. Wandering transits": book/05-wandering-transits.md
           - "6. Orbits and the three-body problem": book/06-orbits-three-body.md
-          - "Lab 5: two suns up close": labs/lab5-two-suns.md
       - "Part 3 · Finding dips":
+          - parts/part3/index.md
           - "7. Noise and statistics": book/07-noise-and-statistics.md
           - "8. Our detector": book/08-our-detector.md
-          - "Lab 4: find a dip": labs/lab4-find-a-dip.md
           - "9. Fake planets": book/09-fake-planets.md
-          - "Lab 6: hide your own fake planets": labs/lab6-fake-planets.md
       - "Part 4 · Is it real?":
+          - parts/part4/index.md
           - "10. Vetting": book/10-vetting.md
           - "11. Pixels and neighbours": book/11-pixels-and-neighbours.md
-          - "Lab 7: is the dip on that star?": labs/lab7-pixels.md
       - "Part 5 · The professionals' tool":
+          - parts/part5/index.md
           - "12. STANLEY": book/12-stanley.md
-          - "Lab 8: read STANLEY's output": labs/lab8-read-stanley.md
       - "Part 6 · How the project runs":
+          - parts/part6/index.md
           - "13. Your workshop": book/13-your-workshop.md
           - "14. Credit and publishing": book/14-credit-and-publishing.md
-          - "Lab 9: your own star": labs/lab9-your-star.md
           - "15. Our mistakes, as lessons": book/15-mistakes-as-lessons.md
-  - Learn:
-      - learn/index.md
-      - "L1 How big is the dip?": learn/l1-dip-depth.md
-  - Field notes:
-      - field-notes/index.md
-      - "19 Oct 2026": field-notes/2026-10-19.md
-      - "20 Oct 2026": field-notes/2026-10-20.md
-      - "21 Oct 2026": field-notes/2026-10-21.md
-  - The hunt:
+  - Hunt:
       - Progress: progress.md
       - Quests: quests.md
       - Candidates: candidates.md
+      - "Field notes":
+          - field-notes/index.md
+          - "19 Oct 2026": field-notes/2026-10-19.md
+          - "20 Oct 2026": field-notes/2026-10-20.md
+          - "21 Oct 2026": field-notes/2026-10-21.md
+          - "23 Oct 2026": field-notes/2026-10-23.md
+      - "Learning track":
+          - learn/index.md
+          - "L1 How big is the dip?": learn/l1-dip-depth.md
   - Reference:
       - Glossary: glossary.md
-      - Reading list: reference/reading-list.md
-      - Claims register: claims.md
+      - "Facts (claims register)": claims.md
+      - "Reading list": reference/reading-list.md

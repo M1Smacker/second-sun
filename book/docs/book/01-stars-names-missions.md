@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 1 · about 20 min · Maths: powers of ten, one logarithm (explained)</p>
 
 !!! plain "In plain words"
-    Every star we study has several catalogue numbers, a position in the sky, a brightness and a distance. Two space telescopes matter to us: **Kepler**, which stared at one patch of sky for four years, and **TESS**, which has been sweeping the whole sky since 2018. Once you know how stars are named and measured, you can look up any star yourself (Lab 1).
+    Every star we study has several catalogue numbers, a position, a brightness and a distance. Two space telescopes matter to us: Kepler, which stared at one patch of sky, and TESS, which sweeps the whole sky.
 
 **What this chapter answers:** who watched these stars, how do we name them, and how do we read their numbers?
 
@@ -123,19 +123,7 @@ From [Lab 1](../labs/lab1-name-to-number.md), run on your PC {{claim:F-035}} {{c
 
 ## 1.7 Check your understanding
 
-??? quiz "1. Star A is magnitude 8, star B is magnitude 13. Which is brighter, and by how much?"
-    **A**, by 5 magnitudes: **100 times** brighter.
-
-??? quiz "2. Why does our G1 list need both the KIC and the TIC number?"
-    The binary's period and eclipse times come from Kepler's catalogue (KIC); the TESS data is filed under the TIC number. We need both to connect the two.
-
-??? quiz "3. A TESS pixel is 21″. A neighbour sits 30″ from our star. Could its light get into our star's pixels?"
-    **Yes.** 30″ is less than 2 pixels, and a star's light spreads over a few pixels. That's why Chapter 11 checks where a dip really comes from.
-
-??? quiz "4. What's the BTJD of BJD 2,460,295?"
-    2,460,295 − 2,457,000 = **3,295**.
-
-**Next:** [Lab 1](../labs/lab1-name-to-number.md) and [Lab 2](../labs/lab2-get-the-data.md), then [Chapter 2: light curves](02-light-curves.md).
+The questions for this chapter are on the [Part 1 review page](../parts/part1/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-002, F-024, F-025, F-030 to F-038. Background: magnitude scale, Pogson 1856; Borucki et al. 2010; Ricker et al. 2015; Stassun et al. 2019; Guerrero et al. 2021 (all checked on ADS).

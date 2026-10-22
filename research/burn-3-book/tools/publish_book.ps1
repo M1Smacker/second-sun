@@ -51,10 +51,16 @@ else {
 Step "2b. Mission readiness rules still hold (negative and positive tests, run on the committed copy)"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_mission.py"
 
+Step "2c. Colour contrast still 7:1 or better (high-contrast rule)"
+Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_contrast.py"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build
 Pop-Location
+
+Step "3b. Every link and anchor in the built site resolves; every chapter has the template"
+Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\check_site.py" $build
 
 Step "4. Safety checks on the built site"
 $html = Get-ChildItem $build -Recurse -Filter *.html

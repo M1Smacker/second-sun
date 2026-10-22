@@ -7,15 +7,6 @@
 
 **Goal:** go from "Kepler-16" to everything we need to know before downloading data.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab1_name_to_number.py "Kepler-16"
-```
-
-It takes about 20 seconds, because it's asking NASA's servers over the internet.
-
 ## What you should see
 
 From a real run on your PC (20 October 2026) {{claim:F-035}} {{claim:F-036}}:
@@ -35,6 +26,17 @@ Ready-made light curves: 94
   TASOC        9 files, sectors [14, 15, 26]
   TESS-SPOC   17 files, sectors [14, 15, 26, 40, 41, 53, 54, 55, 56, 73, 74, 75, 76, 80, 81, 82, 83]
 ```
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab1_name_to_number.py "Kepler-16"
+    ```
+
+    It takes about 20 seconds, because it's asking NASA's servers over the internet.
 
 ## Reading it line by line
 
@@ -72,4 +74,4 @@ Pick a star from your G1 list. Open `D:\second-sun\targets\g1_targets.csv` in No
 
 **Tell me:** its TIC number (check it against the `tic` column), its TESS magnitude, how many neighbours sit within 1 arcminute, and which teams made light curves for it.
 
-**Next:** [Lab 2: get the data](lab2-get-the-data.md).
+**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)

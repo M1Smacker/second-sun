@@ -7,15 +7,6 @@
 
 **Goal:** check for yourself that a dip is on the right star.
 
-## Do it
-
-```powershell
-cd D:\second-sun
-.\.venv\Scripts\python.exe labs\lab7_pixels.py
-```
-
-It reads a 50 MB file already on D: and asks MAST for the neighbours, so give it a minute.
-
 ## What you should see
 
 ```text
@@ -38,6 +29,17 @@ Picture saved: D:\second-sun\labs\out\lab7_toi1338_pixels.png
 ![Normal light and dimming images of TOI-1338's pixels, with the aperture outlined and neighbours circled](img/lab7-toi1338-pixels.png){ width="100%" loading="lazy" }
 <figcaption>From your PC {{claim:F-049}}.</figcaption>
 </figure>
+
+## Do it yourself
+
+??? note "The commands, when you are at your PC"
+
+    ```powershell
+    cd D:\second-sun
+    .\.venv\Scripts\python.exe labs\lab7_pixels.py
+    ```
+
+    It reads a 50 MB file already on D: and asks MAST for the neighbours, so give it a minute.
 
 ## Reading it
 
@@ -71,4 +73,4 @@ Picture saved: D:\second-sun\labs\out\lab7_toi1338_pixels.png
 
 **Tell me:** "Lab 7 done" and your three answers.
 
-**Next:** [Part 5, Chapter 12: STANLEY](../book/12-stanley.md).
+**Back to:** [Try it yourself, Part 4](../parts/part4/labs.md)

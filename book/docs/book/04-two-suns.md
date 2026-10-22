@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 4 · about 20 min · Maths: ratios, powers (squares, cubes, square roots)</p>
 
 !!! plain "In plain words"
-    Ahmed, most stars you see aren't alone. Many come in pairs that circle each other. A planet can orbit **both stars at once**, in a wide loop around the pair. These are **circumbinary planets** ("circum" = around, "binary" = pair). Only 14 have ever been caught crossing in front of their stars, so every new one matters. This chapter explains what they are, where they can live, and why we hunt them.
+    Many stars come in pairs, and a planet can orbit both at once. Only 14 such planets have ever been caught crossing their stars, so every new one matters.
 
 **What this chapter answers:** what is a circumbinary planet, and where around a pair of stars can one survive?
 
@@ -92,16 +92,7 @@ This is the star our tools have practised on. In Chapter 8 you'll see our search
 
 ## 4.7 Check your understanding
 
-??? quiz "1. What's the difference between an S-type and a P-type planet?"
-    S-type orbits **one** star of the pair. P-type (circumbinary) orbits **both**. We hunt P-type.
-
-??? quiz "2. A binary has a period of 10 days. Roughly where would you expect its innermost stable planet?"
-    The critical period is 4 to 7 times the binary period: **40 to 70 days**. Known planets pile up at 1.3 to 1.6 times that, so roughly **50 to 110 days**.
-
-??? quiz "3. A planet sits at 4 times the stars' separation. About how many binary periods does it take to orbit once?"
-    4<sup>3/2</sup> = √(4³) = √64 = **8** binary periods.
-
-**Next:** [Chapter 5](05-wandering-transits.md): why a two-sun planet's dips don't arrive on a clock.
+The questions for this chapter are on the [Part 2 review page](../parts/part2/review.md).
 
 ## Sources
 Facts on this page are listed with their sources in the [claims register](../claims.md): F-001 to F-006. Background: Martin 2018, "Populations of planets in multiple star systems", [arXiv:1802.08693](https://arxiv.org/abs/1802.08693).

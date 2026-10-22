@@ -3,11 +3,11 @@
 <p class="ss-meta">Start here · about 5 min</p>
 
 !!! plain "In plain words"
-    Read the chapters in order, and do each Part's labs on your PC when you reach them. Chapters work on your phone; labs need the PC. Every fact has a small label showing how sure we are, and you can tap it to see the source.
+    Just read. Pick the journey or by-topic order, and the chapters work on your phone. The labs are optional side trips for your PC. Every fact has a small label showing how sure we are, and you can tap it to see the source.
 
 ## The six Parts
 
-| Part | Question it answers | Chapters | Labs |
+| Part | Question it answers | Chapters | Optional labs |
 |---|---|---|---|
 | **1. The sky and the data** | What are we looking at, and where does it come from? | 1 to 3 | 1, 2, 3 |
 | **2. Two suns** | Why are two-star planets special, and hard to find? | 4 to 6 | 5 |
@@ -16,19 +16,19 @@
 | **5. The professionals' tool** | What does STANLEY do that we don't? | 12 | 8 |
 | **6. How the project runs** | Our workshop, credit, our mistakes | 13 to 15 | 9 |
 
-The menu lists every page; all of them are finished. Later additions (more chapters, more labs) will say so in a [field note](../field-notes/index.md).
+The menu lists the chapters under their Part names. Later additions (more chapters, more labs) will say so in a [field note](../field-notes/index.md).
 
 ## Inside a chapter
 
-Every chapter has the same seven steps, so you always know where you are:
+Every chapter opens the same way, so you always know where you are:
 
-1. **The intuition:** an everyday picture.
-2. **The scientific meaning:** what scientists mean by it.
-3. **The technical explanation:** the numbers and formulas.
-4. **Our implementation:** how our code does it.
-5. **Worked example:** on our own data.
-6. **What this lets us conclude, and what it doesn't.**
-7. **Check your understanding:** tap a question to see the answer.
+1. **A small map strip** shows which Part and chapter you are in.
+2. **A 1-minute summary** of three lines: what it is, why it matters, and what you will be able to do.
+3. **The plain-words box**, two sentences.
+
+Then the chapter itself goes in seven steps: the intuition (an everyday picture), the scientific meaning, the technical explanation (numbers come after the idea, and you can skip them), our implementation, a worked example on our own data, and what it lets us conclude and what it does not. At the bottom, **Mark as read** saves your place on this device, and **Next** says why you might want to read that chapter.
+
+The questions are not in the chapters. Each Part has one **review page** ("Check yourself"), and nothing on it is scored or saved.
 
 ## The labels
 
@@ -48,9 +48,9 @@ Tap any label to open the [claims register](../claims.md), which lists every fac
 
 The home page shows **Mission readiness**, 0 to 100: how complete and how well built *our plan* is. It is **not** the chance of finding a planet. Every point has proof, some points are counted by the program, and the number can go down. The full list, with the proof for each point, is on the [Progress page](../progress.md).
 
-## Labs
+## Labs (optional)
 
-Labs are where you do the work yourself. Each one has commands to copy, the output you should see (from a real run on your PC), what can go wrong, and a **Your turn** box. When you finish one, tell me "Lab 2 done" plus your result, and I'll check it.
+Labs are where you do the work yourself, on your PC. They sit on a "Try it yourself" page at the end of each Part, and the chapters never send you to them. Each lab shows the real output first, from a run on your PC, so you can follow without running anything. The commands are in a fold, and each lab has a **Your turn** box. If you do one, tell me "Lab 2 done" plus your result, and I will check it.
 
 ## Field notes
 
@@ -59,6 +59,5 @@ After every work session, a dated lesson goes into the [Field notes](../field-no
 ## Suggested order
 
 1. [The story so far](story-so-far.md) (12 min)
-2. [Lab 0](../labs/lab0-workbench.md), at your PC (10 min)
-3. [Chapter 1](../book/01-stars-names-missions.md), then [Lab 1](../labs/lab1-name-to-number.md) and [Lab 2](../labs/lab2-get-the-data.md)
-4. Then Chapters 2 and 3, and on through the Parts.
+2. Then either [the journey path](journey.md) or [Chapter 1](../book/01-stars-names-missions.md) and on through the Parts.
+3. Labs only when you feel like it.

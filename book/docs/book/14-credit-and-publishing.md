@@ -3,7 +3,7 @@
 *What this chapter answers: once we find something, how does it become a recognised discovery with your name on it?*
 
 !!! plain "In plain words"
-    Ahmed, a dip doesn't become "ours" when we see it. It becomes ours when it's written up and published, and then shared with the TESS team. In 2026 the rules changed: the public candidate site now wants the write-up published *first*. This chapter is the sample page for the book's chapter layout.
+    A dip does not become ours when we see it. It becomes ours when it is written up and published, and then shared with the TESS team.
 
 **You need first:** [L6 Two-key vetting](../learn/index.md) (outline).
 
@@ -24,5 +24,3 @@ Plan the write-up as part of vetting, not after it. The first candidate's timeli
 - Does citing published tools we use count as "a previously published method" for an RNAAS route? Only ExoFOP support can say.
 
 *Sources: see the [claims register](../claims.md). Last reviewed 2026-10-19.*
-
-**Next:** [Lab 9: your own star](../labs/lab9-your-star.md), then [Chapter 15](15-mistakes-as-lessons.md): our mistakes, as lessons.

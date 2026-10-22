@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 8 · about 30 min · Maths: averages, square roots, ratios · Code: <code>pipeline/detect_v2.py</code></p>
 
 !!! plain "In plain words"
-    Ahmed, this is the heart of the hunt: a program that scans a light curve and points at dips that might be planets. On 20 October 2026 we rebuilt it ("v2") and tested it honestly. It finds the known planet TOI-1338 b in half the sectors where it crossed. It catches fake planets about **6 times Earth's size** and up, but not smaller ones, in a star this bright. This chapter shows how it works, step by step, and why the limit is mostly the data, not the code.
+    This program scans a light curve and points at dips that might be planets. It finds the known planet TOI-1338 b in half the sectors where it crossed, and it catches fake planets about 6 Earth sizes and up.
 
 **What this chapter answers:** how does our search decide "this might be a planet", and how good is it?
 
@@ -148,16 +148,7 @@ The rules for reading the result were written down before anything ran (`experim
 
 ## 8.7 Check your understanding
 
-??? quiz "1. Why did v1's 1-day flattening window hurt us?"
-    A 6-hour dip is a quarter of a day. A 1-day moving fit partly follows the dip down and "flattens" it away, making it shallower than it really is.
-
-??? quiz "2. Why do we search flipped (upside-down) data?"
-    Real dips become bumps, so anything found there is noise or spacecraft effects. It **measures** our false-alarm rate instead of guessing it.
-
-??? quiz "3. The search finds nothing in a star. What can you say?"
-    Only that no transit stronger than our bar happened in that data: roughly nothing bigger than ~6 Earth radii for a TOI-1338-like star. Smaller planets, or planets not crossing during that sector, could still be there.
-
-**Next:** [Lab 4](../labs/lab4-find-a-dip.md) on your PC, then [Chapter 9](09-fake-planets.md): measuring what the search can see.
+The questions for this chapter are on the [Part 3 review page](../parts/part3/review.md).
 
 ## Sources
 In the [claims register](../claims.md): F-011, F-014 to F-017. Full test report: `research/overnight-science/report.md`. Code: `pipeline/detect_v2.py`, `pipeline/accept_v2.py`, `pipeline/diag_v2.py`, `pipeline/book_figures.py`.
