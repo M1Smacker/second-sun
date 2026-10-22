@@ -55,17 +55,13 @@
 .ss-strip { margin: 0 0 20px; max-width: 66ch; }
 [dir] .md-typeset .ss-strip p { margin: 0 0 8px; font: 500 12px/1.5 var(--ss-data); letter-spacing: .06em; color: var(--ss-text-2); max-width: none; }
 [dir] .md-typeset .ss-strip p a { color: var(--ss-text-2); }
-[dir] .md-typeset .ss-strip ol { display: flex; flex-wrap: wrap; gap: 4px 10px; list-style: none; margin: 0; padding: 0; }
+[dir] .md-typeset .ss-strip ol { display: flex; flex-wrap: wrap; gap: 0; list-style: none; margin: 0; padding: 0; }
 [dir] .md-typeset .ss-strip li { margin: 0; }
 [dir] .md-typeset .ss-strip li.ss-gap { margin-left: 8px; }
-@media (max-width: 36em) {
-  [dir] .md-typeset .ss-strip ol { gap: 6px 6px; }
-  [dir] .md-typeset .ss-strip li.ss-gap { margin-left: 4px; }
-}
-[dir] .md-typeset .ss-strip ol a { position: relative; display: block; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--ss-text-3); background: transparent; }
-.ss-strip ol a::after { content: ""; position: absolute; inset: -9px; }
-[dir] .md-typeset .ss-strip ol a.is-read { background: var(--ss-text-3); }
-[dir] .md-typeset .ss-strip ol a[aria-current] { border-color: var(--ss-accent); background: var(--ss-accent); box-shadow: 0 0 0 3px var(--ss-bg), 0 0 0 4.5px var(--ss-accent); }
+[dir] .md-typeset .ss-strip ol a { position: relative; display: block; width: 24px; height: 24px; }   /* 24 px targets (WCAG 2.5.8); the dot is drawn inside */
+[dir] .md-typeset .ss-strip ol a::before { content: ""; position: absolute; left: 6px; top: 6px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--ss-text-3); }
+[dir] .md-typeset .ss-strip ol a.is-read::before { background: var(--ss-text-3); }
+[dir] .md-typeset .ss-strip ol a[aria-current]::before { border-color: var(--ss-accent); background: var(--ss-accent); box-shadow: 0 0 0 3px var(--ss-bg), 0 0 0 4.5px var(--ss-accent); }
 
 /* ---------- Chapter end: mark as read, Next with a reason, reading order ---------- */
 .ss-end { margin: 48px 0 24px; padding-top: 24px; border-top: 1px solid var(--ss-line); max-width: 66ch; }
@@ -94,7 +90,7 @@
 html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data-path="topic"] { display: none; }
 [dir] .md-typeset .ss-pathswitch, [dir] .md-typeset .ss-partend { font: 400 15px/1.6 var(--ss-ui); color: var(--ss-text-2); margin: 16px 0 0; max-width: none; }
 .ss-pathswitch button {
-  min-height: 36px; padding: 0 10px; margin: 0 2px; border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: transparent;
+  min-height: var(--ss-tap); padding: 0 10px; margin: 0 2px; border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: transparent;
   color: var(--ss-text-2); font: 500 14px var(--ss-ui); cursor: pointer;
 }
 .ss-pathswitch button[aria-pressed="true"] { border-color: var(--ss-accent); color: var(--ss-text); }
@@ -119,3 +115,14 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
   float: right; min-height: var(--ss-tap); min-width: var(--ss-tap); margin: -8px -8px 0 0; padding: 0 12px; border: 0; background: transparent;
   color: var(--ss-text-2); font: 500 15px var(--ss-ui); cursor: pointer;
 }
+
+/* breadcrumb links (Material): at least 24 px tall */
+.md-path__link { display: inline-flex; align-items: center; min-height: var(--ss-tap); margin: -10px 0; padding: 0 7px; }   /* 44 px target, no change to the page rhythm */
+/* the map is full width on phones, so its tap targets stay as large as they can be */
+@media (max-width: 36em) {
+  [dir] .md-typeset .ss-sky-wrap { margin-left: -0.8rem; margin-right: -0.8rem; }
+  .ss-sky { border-radius: 0; }
+  [dir] .md-typeset .ss-sky-wrap figcaption { padding: 0 0.8rem; }
+}
+.ss-resume a { display: inline-flex; align-items: center; min-height: var(--ss-tap); }
+[dir] .md-typeset .ss-parthead a { display: inline-flex; align-items: center; min-height: var(--ss-tap); }

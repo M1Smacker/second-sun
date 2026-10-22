@@ -11,7 +11,7 @@ const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const [mode, base, ...rest] = process.argv.slice(2);
 const opt = Object.fromEntries(rest.map((a) => a.replace(/^--/, "").split("=")));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const PAGES = ["", "progress/", "quests/", "candidates/", "learn/", "learn/l1-dip-depth/", "book/credit-and-publishing/", "glossary/", "claims/"];
+const PAGES = ["", "start/", "start/journey/", "progress/", "quests/", "candidates/", "learn/", "learn/l1-dip-depth/", "book/08-our-detector/", "book/14-credit-and-publishing/", "parts/part1/", "parts/part3/review/", "labs/lab3-plot-and-read/", "glossary/", "claims/", "field-notes/2026-10-23/"];
 
 async function launch(tag) {
   const profile = `D:/second-sun/.cache/cdp-${tag}-${process.pid}`;
@@ -88,7 +88,8 @@ const MEASURE = `(() => {
     if (el.closest(".md-skip") || el.classList.contains("headerlink") || el.closest("[hidden]")) return;
     if (r.bottom < 0 || r.right < 0 || r.left > innerWidth) return;       // off-canvas drawer items
     if (isInline(el)) { inline.add(el.className || "a"); return; }
-    if (r.width < 43.5 || r.height < 43.5) small.push(el.tagName.toLowerCase() + "." + [...el.classList].join(".") + " " + Math.round(r.width) + "x" + Math.round(r.height) + " '" + (el.textContent || el.getAttribute("aria-label") || "").trim().slice(0, 24) + "'");
+    const min = el.closest("svg.ss-sky") ? 23.5 : 43.5;   // the home sky map: 24 px (WCAG 2.5.8), the same chapters are in the 44 px list below it
+    if (r.width < min || r.height < min) small.push(el.tagName.toLowerCase() + "." + [...el.classList].join(".") + " " + Math.round(r.width) + "x" + Math.round(r.height) + " '" + (el.textContent || el.getAttribute("aria-label") || "").trim().slice(0, 24) + "'");
   });
   return { overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, small: [...new Set(small)], inline: [...inline], scheme: document.body.dataset.mdColorScheme };
 })()`;

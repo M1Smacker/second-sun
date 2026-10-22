@@ -173,7 +173,7 @@ def contents(p, to_root):
     for part in p["parts"]:
         items = "".join(f'<li data-n="{c["n"]:02d}"><a href="{url(c, to_root)}">{escape(c["title"])}</a><span>{escape(c["hook"][0].upper() + c["hook"][1:])}.</span></li>'
                         for c in p["chapters"] if c["part"] == part["n"])
-        out += f'<h3><a href="{to_root}parts/part{part["n"]}/">Part {part["n"]} · {escape(part["name"])}</a></h3><ol class="ss-chapters">{items}</ol>'
+        out += f'<h3 class="ss-parthead"><a href="{to_root}parts/part{part["n"]}/">Part {part["n"]} · {escape(part["name"])}</a></h3><ol class="ss-chapters">{items}</ol>'
     return out
 
 
@@ -244,26 +244,26 @@ def sky(p, d, to_root):
         mag = star[part["star"]][2]
         r = max(5.0, min(10.0, 5 + (3.4 - mag) * 2.2))
         chs = [c for c in p["chapters"] if c["part"] == part["n"]]
-        R = r + 18
+        R = r + 26
         dots = ""
         for i, c in enumerate(chs):
             ang = math.radians(-90 + 360 * i / len(chs) + (35 if len(chs) == 1 else 0))
             dx, dy = x + R * math.cos(ang), y + R * math.sin(ang)
-            dots += (f'<a href="{url(c, to_root)}" aria-label="Chapter {c["n"]}: {escape(c["title"])}"><title>Chapter {c["n"]}: {escape(c["title"])}</title>'
-                     f'<circle class="ss-hit" cx="{dx:.1f}" cy="{dy:.1f}" r="17"/><circle class="ss-ch" data-ch="{c["n"]}" cx="{dx:.1f}" cy="{dy:.1f}" r="5.2"/></a>')
+            dots += (f'<a xlink:href="{url(c, to_root)}" aria-label="Chapter {c["n"]}: {escape(c["title"])}"><title>Chapter {c["n"]}: {escape(c["title"])}</title>'
+                     f'<circle class="ss-hit" cx="{dx:.1f}" cy="{dy:.1f}" r="25"/><circle class="ss-ch" data-ch="{c["n"]}" cx="{dx:.1f}" cy="{dy:.1f}" r="5.2"/></a>')
         # Albireo is a real double star (an orange sun and a blue one, 34 arcseconds apart): drawn as two, the gap enlarged
         twin = f'<circle cx="{x + 12:.1f}" cy="{y - 9:.1f}" r="{r * .55:.1f}" fill="#aac4ff"/>' if part["star"] == "Albireo" else ""
         left = x > W * 0.55
         lx = x + (-1 if left else 1) * (R + 14)
         nodes += (f'<g class="ss-part"><circle class="ss-ring" cx="{x:.1f}" cy="{y:.1f}" r="{R:.1f}"/>{dots}'
-                  f'<a href="{to_root}parts/part{part["n"]}/" aria-label="Part {part["n"]}: {escape(part["name"])}">'
-                  f'<title>Part {part["n"]}: {escape(part["name"])} (the star {escape(part["star"])})</title><circle class="ss-hit" cx="{x:.1f}" cy="{y:.1f}" r="{r + 8:.0f}"/>'
+                  f'<a xlink:href="{to_root}parts/part{part["n"]}/" aria-label="Part {part["n"]}: {escape(part["name"])}">'
+                  f'<title>Part {part["n"]}: {escape(part["name"])} (the star {escape(part["star"])})</title><circle class="ss-hit" cx="{x:.1f}" cy="{y:.1f}" r="25"/>'
                   f'<circle class="ss-halo" cx="{x:.1f}" cy="{y:.1f}" r="{r * 2.4:.1f}" fill="url(#ss-halo)"/>'
                   f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{COLOR.get(star[part["star"]][3], "#fff")}"/>{twin}</a>'
                   f'<text class="ss-lbl" x="{lx:.0f}" y="{y + 5:.0f}" text-anchor="{"end" if left else "start"}">{part["n"]} {escape(part["short"])}</text></g>')
     defs = ('<defs><filter id="ss-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter>'
             '<radialGradient id="ss-halo"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>')
-    return (f'<svg class="ss-sky" viewBox="0 0 {W} {H}" role="group" aria-label="Map of the book on the real sky around Cygnus">{defs}'
+    return (f'<svg class="ss-sky" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 {W} {H}" role="group" aria-label="Map of the book on the real sky around Cygnus">{defs}'
             f'<rect class="ss-sky-bg" width="{W}" height="{H}" rx="10"/>{"".join(g)}{nodes}</svg>')
 
 

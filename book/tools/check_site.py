@@ -22,7 +22,7 @@ class P(HTMLParser):
             self.ids.add(a["id"])
         if tag == "a" and a.get("name"):
             self.ids.add(a["name"])
-        for k in ("href", "src"):
+        for k in ("href", "xlink:href", "src"):
             if a.get(k) and tag in ("a", "img", "script", "link", "source"):
                 self.refs.append(a[k])
 
