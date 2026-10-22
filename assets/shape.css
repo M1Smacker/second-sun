@@ -1,0 +1,128 @@
+/* Second Sun: the book's shape (home sky map, chapter strip, chapter end, glossary popup, reading order).
+   Loaded after observatory.css. The sky box is always night, in both colour schemes. */
+
+/* ---------- Home: the sky map ---------- */
+.ss-home { margin: 8px 0 32px; max-width: 60rem; }
+[dir] .md-typeset .ss-sky-wrap { margin: 0 0 16px; max-width: none; }
+.ss-sky { display: block; width: 100%; height: auto; border-radius: 10px; }
+.ss-sky-bg { fill: #070b14; stroke: #2a3448; }
+.ss-grid polyline { stroke: #7f8fc4; stroke-opacity: .22; stroke-width: 1; }
+.ss-grid text { font: 500 13px var(--ss-data); fill: #8a96b8; letter-spacing: .06em; }
+.ss-g1 circle { fill: #e2b45f; opacity: .8; }
+.ss-fig line { stroke: #9fb4ff; stroke-opacity: .55; stroke-width: 1.6; stroke-dasharray: 1; animation: ss-draw 2s var(--ss-ease) both; }
+@keyframes ss-draw { from { stroke-dashoffset: 1; } }
+.ss-lbl { font: 600 22px var(--ss-ui); fill: #eef0f6; paint-order: stroke; stroke: #070b14; stroke-width: 5px; stroke-linejoin: round; }
+.ss-lbl.ss-dim { fill: #8a92a6; font-size: 18px; font-weight: 500; }
+.ss-lbl.ss-amber { fill: #e2b45f; font-size: 18px; font-weight: 500; }
+.ss-ring { fill: none; stroke: #aab1c0; stroke-opacity: .3; stroke-dasharray: 2 5; }
+.ss-hit { fill: transparent; }
+.ss-ch { fill: #070b14; stroke: #e2b45f; stroke-width: 1.8; transition: fill var(--ss-dur) var(--ss-ease), stroke-width var(--ss-dur-fast) var(--ss-ease); }
+.ss-ch.is-read { fill: #e2b45f; }
+.ss-sky a:hover .ss-ch, .ss-sky a:focus-visible .ss-ch { stroke-width: 3.4; }
+.ss-sky a { outline: none !important; }
+.ss-sky a:focus-visible .ss-hit { stroke: #e2b45f; stroke-width: 2; }
+.ss-halo { pointer-events: none; }
+[dir] .md-typeset .ss-sky-wrap figcaption { max-width: 66ch; }
+
+.ss-home-row { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: stretch; margin: 0 0 16px; }
+[dir] .md-typeset a.ss-start {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 64px; padding: 0 44px;
+  background: var(--ss-accent); color: var(--ss-on-accent); font: 600 20px var(--ss-ui); border-radius: var(--ss-radius); text-decoration: none;
+  transition: filter var(--ss-dur-fast) var(--ss-ease);
+}
+[dir] .md-typeset a.ss-start:hover { filter: brightness(1.08); color: var(--ss-on-accent); }
+.ss-resume { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: var(--ss-surface); padding: 10px 16px; font: 400 16px/1.4 var(--ss-ui); }
+.ss-resume b { display: block; font: 500 11px/1.4 var(--ss-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ss-text-2); margin-bottom: 2px; }
+.ss-glance { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: var(--ss-surface); margin: 0; overflow: hidden; }
+.ss-glance > div { padding: 10px 16px; border-bottom: 1px solid var(--ss-line); }
+.ss-glance > div:last-child { border-bottom: 0; }
+.ss-glance > div:nth-child(odd):not(.ss-wide) { border-right: 1px solid var(--ss-line); }
+.ss-glance .ss-wide { grid-column: 1 / -1; }
+[dir] .md-typeset .ss-glance dt { font: 500 11px/1.4 var(--ss-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ss-text-2); margin: 0 0 2px; }
+[dir] .md-typeset .ss-glance dd { margin: 0; font: 500 18px/1.4 var(--ss-ui); font-variant-numeric: tabular-nums; }
+@media (max-width: 36em) { .ss-home-row { grid-template-columns: 1fr; } }
+
+/* Home motion: the sky fades in, then the panels rise one after another. Never hides content for long (all under 1.2 s). */
+.ss-g1, .ss-bg { animation: ss-fade 1.2s var(--ss-ease) both; }
+.ss-home-row, .ss-glance { animation: ss-up .6s var(--ss-ease) .25s both; }
+.ss-glance { animation-delay: .4s; }
+.ss-mission, .ss-status-panel { animation: ss-up .6s var(--ss-ease) .5s both; }
+@keyframes ss-up { from { opacity: 0; transform: translateY(10px); } }
+.ss-halo { transition: transform var(--ss-dur) var(--ss-ease); transform-box: fill-box; transform-origin: center; }
+.ss-sky a:hover .ss-halo { transform: scale(1.35); }
+
+/* ---------- Chapter strip: "you are here" ---------- */
+.ss-strip { margin: 0 0 20px; max-width: 66ch; }
+[dir] .md-typeset .ss-strip p { margin: 0 0 8px; font: 500 12px/1.5 var(--ss-data); letter-spacing: .06em; color: var(--ss-text-2); max-width: none; }
+[dir] .md-typeset .ss-strip p a { color: var(--ss-text-2); }
+[dir] .md-typeset .ss-strip ol { display: flex; flex-wrap: wrap; gap: 0; list-style: none; margin: 0; padding: 0; }
+[dir] .md-typeset .ss-strip li { margin: 0; }
+[dir] .md-typeset .ss-strip li.ss-gap { margin-left: 8px; }
+[dir] .md-typeset .ss-strip ol a { position: relative; display: block; width: 24px; height: 24px; }   /* 24 px targets (WCAG 2.5.8); the dot is drawn inside */
+[dir] .md-typeset .ss-strip ol a::before { content: ""; position: absolute; left: 6px; top: 6px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--ss-text-3); }
+[dir] .md-typeset .ss-strip ol a.is-read::before { background: var(--ss-text-3); }
+[dir] .md-typeset .ss-strip ol a[aria-current]::before { border-color: var(--ss-accent); background: var(--ss-accent); box-shadow: 0 0 0 3px var(--ss-bg), 0 0 0 4.5px var(--ss-accent); }
+
+/* ---------- Chapter end: mark as read, Next with a reason, reading order ---------- */
+.ss-end { margin: 48px 0 24px; padding-top: 24px; border-top: 1px solid var(--ss-line); max-width: 66ch; }
+.ss-read-btn {
+  min-height: var(--ss-tap); padding: 0 20px; border: 1.5px solid var(--ss-accent); border-radius: var(--ss-radius); background: transparent;
+  color: var(--ss-accent); font: 600 15px var(--ss-ui); cursor: pointer; transition: background-color var(--ss-dur-fast) var(--ss-ease), color var(--ss-dur-fast) var(--ss-ease);
+}
+.ss-read-btn[aria-pressed="true"] { background: var(--ss-accent); color: var(--ss-on-accent); }
+.ss-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+[dir] .md-typeset .ss-pager a {
+  display: flex; flex-direction: column; gap: 2px; min-height: var(--ss-tap); padding: 12px 16px; border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius); background: var(--ss-surface); color: var(--ss-text); text-decoration: none;
+  transition: border-color var(--ss-dur-fast) var(--ss-ease);
+}
+[dir] .md-typeset .ss-pager a:hover { border-color: var(--ss-accent); color: var(--ss-text); }
+.ss-pager a[rel="prev"] { grid-column: 1; }
+.ss-pager a[rel="next"] { grid-column: 2; text-align: right; }
+.ss-pager small { font: 500 11px/1.4 var(--ss-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ss-text-2); }
+.ss-pager b { font: 600 16px/1.35 var(--ss-ui); }
+.ss-pager em { font: 400 14px/1.4 var(--ss-ui); font-style: normal; color: var(--ss-text-2); }
+@media (max-width: 36em) {
+  .ss-pager { grid-template-columns: 1fr; }
+  .ss-pager a[rel="next"] { grid-column: 1; grid-row: 1; text-align: left; }
+  .ss-pager a[rel="prev"] { grid-column: 1; grid-row: 2; }
+}
+html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data-path="topic"] { display: none; }
+[dir] .md-typeset .ss-pathswitch, [dir] .md-typeset .ss-partend { font: 400 15px/1.6 var(--ss-ui); color: var(--ss-text-2); margin: 16px 0 0; max-width: none; }
+.ss-pathswitch button {
+  min-height: var(--ss-tap); padding: 0 10px; margin: 0 2px; border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: transparent;
+  color: var(--ss-text-2); font: 500 14px var(--ss-ui); cursor: pointer;
+}
+.ss-pathswitch button[aria-pressed="true"] { border-color: var(--ss-accent); color: var(--ss-text); }
+
+.no-js .ss-read-btn, .no-js .ss-pathswitch { display: none; }   /* they need JavaScript to remember anything */
+
+/* ---------- Lists on Part and Journey pages ---------- */
+[dir] .md-typeset ol.ss-journey li > a { display: block; }
+[dir] .md-typeset ol.ss-journey li > span a.ss-note { margin-left: 8px; white-space: nowrap; }
+.md-typeset a[href*="glossary/#"] { text-decoration-style: dotted; }
+
+/* ---------- Glossary popup ---------- */
+.ss-pop {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 11; width: min(34rem, calc(100vw - 32px));
+  background: var(--ss-raised); color: var(--ss-text); border: 1px solid var(--ss-line); border-radius: var(--ss-radius);
+  padding: 14px 16px 8px; box-shadow: 0 4px 16px rgb(0 0 0 / .3); font: 400 16px/1.5 var(--ss-ui); animation: ss-rise var(--ss-dur) var(--ss-ease);
+}
+.ss-pop b { display: block; font: 600 17px/1.4 var(--ss-ui); }
+.ss-pop p { margin: 4px 0 8px; color: var(--ss-text); }
+.ss-pop a { color: var(--ss-accent); }
+.ss-pop button {
+  float: right; min-height: var(--ss-tap); min-width: var(--ss-tap); margin: -8px -8px 0 0; padding: 0 12px; border: 0; background: transparent;
+  color: var(--ss-text-2); font: 500 15px var(--ss-ui); cursor: pointer;
+}
+
+/* breadcrumb links (Material): at least 24 px tall */
+.md-path__link { display: inline-flex; align-items: center; min-height: var(--ss-tap); margin: -10px 0; padding: 0 7px; }   /* 44 px target, no change to the page rhythm */
+/* the map is full width on phones, so its tap targets stay as large as they can be */
+@media (max-width: 36em) {
+  [dir] .md-typeset .ss-sky-wrap { margin-left: -0.8rem; margin-right: -0.8rem; }
+  .ss-sky { border-radius: 0; }
+  [dir] .md-typeset .ss-sky-wrap figcaption { padding: 0 0.8rem; }
+}
+.ss-resume a { display: inline-flex; align-items: center; min-height: var(--ss-tap); }
+[dir] .md-typeset .ss-parthead a { display: inline-flex; align-items: center; min-height: var(--ss-tap); }
