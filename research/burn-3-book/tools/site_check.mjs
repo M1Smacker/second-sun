@@ -157,7 +157,7 @@ async function offlineTest() {
     await goto(b, base + "learn/l1-dip-depth/");                  // a visited page
     await offline(b, true);
     out.pages = {};
-    for (const p of ["", "candidates/", "glossary/", "claims/", "book/credit-and-publishing/", "learn/l1-dip-depth/"]) {   // demo + search are tested on the last one
+    for (const p of ["", "candidates/", "glossary/", "claims/", "book/14-credit-and-publishing/", "learn/l1-dip-depth/"]) {   // demo + search are tested on the last one
       await goto(b, base + p);
       out.pages[p || "/"] = await b.evaluate(PAGE_STATE);
     }
@@ -311,8 +311,8 @@ async function shots() {
   const list = [
     ["home-390-dark", 390, "slate", "", null], ["home-390-light", 390, "default", "", null],
     ["l1-390-dark", 390, "slate", "learn/l1-dip-depth/", null], ["l1-quiz-open-390-dark", 390, "slate", "learn/l1-dip-depth/", "quiz"],
-    ["search-open-390-dark", 390, "slate", "", "search"], ["chapter-1280-dark", 1280, "slate", "book/credit-and-publishing/", null],
-    ["chapter-1280-light", 1280, "default", "book/credit-and-publishing/", null], ["search-1280-light", 1280, "default", "", "search"],
+    ["search-open-390-dark", 390, "slate", "", "search"], ["chapter-1280-dark", 1280, "slate", "book/14-credit-and-publishing/", null],
+    ["chapter-1280-light", 1280, "default", "book/14-credit-and-publishing/", null], ["search-1280-light", 1280, "default", "", "search"],
     ["claims-390-light", 390, "default", "claims/", null], ["progress-1280-dark", 1280, "slate", "progress/", null],
   ];
   const out = { mode: "shots", files: [] };
