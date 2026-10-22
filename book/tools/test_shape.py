@@ -35,6 +35,7 @@ def broken(change):
 
 refused("a chapter missing from the journey", shape.validate, broken(lambda q: q["journey"].pop()))
 refused("a chapter listed twice in the journey", shape.validate, broken(lambda q: q["journey"].append(dict(q["journey"][0]))))
+refused("a story over 130 words", shape.validate, broken(lambda q: q["chapters"][0].update(story="word " * 131)))
 refused("a chapter with two summary lines", shape.validate, broken(lambda q: q["chapters"][0]["summary"].pop()))
 refused("a chapter with no page", shape.validate, broken(lambda q: q["chapters"][0].update(slug="01-nope")))
 refused("a chapter in an unknown Part", shape.validate, broken(lambda q: q["chapters"][0].update(part=9)))

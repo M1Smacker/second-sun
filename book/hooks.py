@@ -276,7 +276,7 @@ def gloss_patterns():
     return DATA["gloss"]
 
 
-def autolink(md, to_root):
+def autolink(md, up):
     """Link the first mention of each glossary term on a page (skipping code, headings, tables, equations, titles and existing links)."""
     done, out, fence, eq = set(), [], False, False
     for line in md.split("\n"):
@@ -299,7 +299,7 @@ def autolink(md, to_root):
             for i in range(0, len(parts), 2):          # even parts are plain text
                 m = rx.search(parts[i])
                 if m:
-                    parts[i] = parts[i][:m.start()] + f"[{m.group(1)}]({to_root}glossary/#{slug})" + parts[i][m.end():]
+                    parts[i] = parts[i][:m.start()] + f"[{m.group(1)}]({up}glossary.md#{slug})" + parts[i][m.end():]
                     done.add(slug)
                     break
             line = "".join(parts)
@@ -322,7 +322,7 @@ def on_page_markdown(markdown, page, config, files):
     P, to_root = DATA["path"], "../" * page.url.count("/")
     c = shape.chapter_for(P, page.file.src_uri)
     if c or page.file.src_uri == "start/story-so-far.md":
-        markdown = autolink(markdown, to_root)      # before the template adds its own text, so the first mention is the reader's first sight of the word
+        markdown = autolink(markdown, "../" * page.file.src_uri.count("/"))      # before the template adds its own text, so the first mention is the reader's first sight of the word
     if c:
         markdown = chapter_wrap(markdown, c, to_root)
     part = shape.part_for(P, page.file.src_uri)

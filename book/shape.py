@@ -36,6 +36,8 @@ def validate(p, docs=ROOT / "docs"):
             raise ValueError(f"data/path.yml: chapter {c['n']} has unknown part {c['part']}")
         if not (docs / "book" / f"{c['slug']}.md").exists():
             raise ValueError(f"data/path.yml: no page book/{c['slug']}.md")
+        if len(c.get("story", "").split()) > 130:
+            raise ValueError(f"data/path.yml: chapter {c['n']} story is over 130 words (brief: about 120)")
         if len(c["summary"]) != 3:
             raise ValueError(f"data/path.yml: chapter {c['n']} needs exactly 3 summary lines")
     for j in p["journey"]:

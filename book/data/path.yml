@@ -23,6 +23,7 @@ chapters:
     part: 1
     title: "Stars, names and missions"
     hook: "how stars are named and where Kepler and TESS fit"
+    story: "Ahmed, on 20 October you typed one name, Kepler-16, and the script answered with a pile of others: TIC 299096355, KIC 12644769 and Gaia DR3 2133476355197071616. One star, three catalogues, three numbers, 75 parsecs away and shining at TESS magnitude 10.94 {{claim:F-035}}. Each telescope team numbered the sky its own way, and nobody lined the numbers up for us. Before you can ask a star a question, you have to learn what each team calls it. That is this chapter."
     summary:
       - "What: how stars get catalogue numbers, a position, a brightness and a distance, and which two telescopes matter."
       - "Why: a number from one catalogue will not find a star in another, so every lookup needs the right name."
@@ -33,6 +34,7 @@ chapters:
     part: 1
     title: "Light curves"
     hook: "how a dip in brightness reveals a planet"
+    story: "Fold TOI-1338's light on its 14.6-day star orbit and one sun passing in front of the other drops the light by about 6% {{claim:F-046}}. The planet's crossing, five hours long, dims it by only about 0.2% {{claim:F-040}}. Both are dips, and only one is a planet. A light curve is the page where you learn to tell them apart, and it is the page we will be reading for the rest of this book."
     summary:
       - "What: a light curve is brightness against time, and a planet crossing its star makes a small dip called a transit."
       - "Why: we cannot photograph these planets, so dips are our only view of them."
@@ -43,6 +45,7 @@ chapters:
     part: 1
     title: "Our data"
     hook: "where our data comes from and how good it is"
+    story: "Kepler-16's file for sector 82 holds 18,619 measurements spread over 25.9 days, and the whole file is 1.9 MB {{claim:F-037}}. A month of one star's life in under two megabytes. Of those measurements, 482 carry a warning flag, and 16 of the flags mark the moments TESS fired its thrusters. The data is tiny and generous, but it comes with warnings, and learning to read them is what this chapter is for."
     summary:
       - "What: the path from TESS's camera to a file on your D: drive, and what can go wrong on the way."
       - "Why: every number in this book starts here, so the data's limits are our limits."
@@ -53,6 +56,7 @@ chapters:
     part: 2
     title: "Two suns"
     hook: "what a planet around two stars is, and why we hunt them"
+    story: "Kepler-16 b, found in 2011, was the first planet seen crossing in front of two stars: a Saturn-like world that circles a pair of suns once every 229 days or so {{claim:F-002}}. Since then only 14 have ever been caught this way {{claim:F-001}}. Ahmed, that is why we are here. A club this small notices every new member."
     summary:
       - "What: binary stars, and the planets that orbit both stars at once."
       - "Why: only 14 have ever been seen crossing their stars, so each new one matters. {{claim:F-001}}"
@@ -63,6 +67,7 @@ chapters:
     part: 2
     title: "Wandering transits"
     hook: "why two-sun dips arrive at odd times"
+    story: "TOI-1338 b is no clock. Its first three crossings came about 93 and 95 days apart, and lasted about 0.3, 0.4 and 0.6 days {{claim:F-008}}. Worse for anyone searching, its orbit slowly tilts, so it swings in and out of view over 21.4 years {{claim:F-010}}. A planet that is late, a different shape each time and sometimes absent: that is what wandering means, and it is why a search that expects a steady beat misses it."
     summary:
       - "What: why a two-sun planet's dips come early, late, longer or shorter."
       - "Why: that wandering hides them from normal search tools, which is our chance."
@@ -73,6 +78,7 @@ chapters:
     part: 2
     title: "Orbits and the three-body problem"
     hook: "the orbit maths behind the wandering"
+    story: "TOI-1338 b circles two suns of about 1.1 and 0.3 times ours every 95.2 days, while the suns circle each other every 14.6 {{claim:F-003}}. It sits only 1.34 times the closest period where an orbit stays safe {{claim:F-006}}. Any closer and the stars would likely throw it out. Nobody can write one tidy formula for three bodies pulling on each other, so a computer has to move them forward in tiny steps, and that is the trick behind STANLEY."
     summary:
       - "What: Kepler's law, the closest safe orbit, and why three pulling bodies have no simple formula."
       - "Why: a computer has to step through the motion, and that is what STANLEY does."
@@ -83,6 +89,7 @@ chapters:
     part: 3
     title: "Noise and statistics"
     hook: "why noise can fake a dip"
+    story: "To find out how often noise alone fools us, we turned TOI-1338's light curves upside down, so that no planet could be in them. Our detector still announced 6 dips in 10 sectors, one as strong as SNR 12.6 {{claim:F-016}}. Nothing was there. Noise is patient, and if you search enough places it will build you a planet. This chapter is how to tell the difference."
     summary:
       - "What: noise, signal to noise (SNR), and how chance alone makes fake dips."
       - "Why: a dip only counts if it is clearly bigger than the wobble over the same length of time."
@@ -93,6 +100,7 @@ chapters:
     part: 3
     title: "Our detector"
     hook: "how our detector finds dips, and how well it works"
+    story: "A 2024 paper had predicted that TOI-1338 b would cross on 16 December 2025. Our detector found a dip that same night, about an hour later than predicted {{claim:F-011}}. Across all 8 sectors with a known crossing, though, it found the planet in only 4 {{claim:F-014}}. Half is an honest score, more honest than a perfect run on easy data. This chapter is about how the detector works, and about the other half it missed."
     summary:
       - "What: how our program scans a light curve and flags dips, with honest tests of how well it works."
       - "Why: this is the heart of the hunt, and a search that finds nothing only means something if we know what it can see."
@@ -103,6 +111,7 @@ chapters:
     part: 3
     title: "Fake planets"
     hook: "how we measure what the search can see"
+    story: "How small a planet could we have missed? We hid fake ones in real TOI-1338 data to find out. A planet of 6 Earth radii was found 5 times in 7, and one of 7 Earth radii every time. At 5 Earth radii and below, never {{claim:F-015}}. That is what turns 'we found nothing' into a sentence with a number in it: nothing bigger than about 6 Earth sizes crossed here."
     summary:
       - "What: hiding fake planets of known size in real data and counting how many the search finds."
       - "Why: it turns \"we found nothing\" into \"nothing bigger than a known size crossed here\"."
@@ -113,6 +122,7 @@ chapters:
     part: 4
     title: "Vetting"
     hook: "the tests every dip must survive"
+    story: "When TOI-1338 b was first found, fake dips in one sector turned out to be the spacecraft jittering just before its thrusters fired {{claim:F-022}}. We took the lesson: our detector now flags dips near those firings for a human instead of deleting them, because deleting also threw away real ones. Vetting is the habit of asking, of every dip, what else could do this."
     summary:
       - "What: the tests that try to kill a dip before anyone else has to."
       - "Why: about one in four of NASA's own TESS planet candidates later turned out to be something else. {{claim:F-019}}"
@@ -123,6 +133,7 @@ chapters:
     part: 4
     title: "Pixels and neighbours"
     hook: "is the dip on our star or on a neighbour?"
+    story: "On 16 December 2025 TOI-1338 b crossed, and the pixel test asked whose light had dimmed. The dimming sat on the target's own pixels, and the centre of light moved by 0.001 arcseconds, a tenth of the chance wobble {{claim:F-049}}. One TESS pixel spans about 21 arcseconds {{claim:F-024}}, so neighbours crowd in, and eight catalogued stars share this 11 by 11 patch. The test says the dip belongs to our star."
     summary:
       - "What: checking the pixels to see whether a dip sits on our star or on a faint neighbour."
       - "Why: TESS pixels are big, so several stars share them."
@@ -133,6 +144,7 @@ chapters:
     part: 5
     title: "STANLEY"
     hook: "the professionals' way to stack crossings that do not keep time"
+    story: "We asked STANLEY to try 20,482 possible orbits for TOI-1338, which took 33 minutes. Its best answer was 96.11 days, and the real planet takes 95.2 {{claim:F-045}} {{claim:F-003}}. Close, but 28% of all the orbits scored above 5 sigma, so the score scale cannot be trusted yet. We first misread the answer as 93.8 days, and a lab caught it."
     summary:
       - "What: STANLEY, a professionals' tool that guesses a whole orbit and adds up the light at every predicted crossing."
       - "Why: crossings that wander cannot be stacked on a timetable, but predicted ones can."
@@ -143,6 +155,7 @@ chapters:
     part: 6
     title: "Your workshop"
     hook: "where everything lives, and the safety rules"
+    story: "On 19 October this project was a plan. By 21 October it had registers for decisions, mistakes, predictions and facts, because a project this young forgets fast, and Claude forgets faster. Everything in this chapter exists for one reason: so that you, or a fresh session a week from now, can pick the work up and know exactly where things stand."
     summary:
       - "What: a tour of the folders, the registers, the safety rules and how a working day becomes a page."
       - "Why: so you can find anything yourself."
@@ -153,6 +166,7 @@ chapters:
     part: 6
     title: "Credit and publishing"
     hook: "how a find becomes a named result"
+    story: "In 2026 NASA's candidate site paused uploads on 31 March and reopened them on 19 August with a new rule: write it up and publish first {{claim:B10}}. So a find of ours would not start with a click on submit. It would start with a short paper, and two keys turned: yours and mine. This chapter is the map from a dip to a name with your name beside it."
     summary:
       - "What: the order of steps from a dip to a credited result, and what journals say about AI."
       - "Why: in 2026 NASA's candidate site started wanting the write-up published first. {{claim:B9}}"
@@ -163,6 +177,7 @@ chapters:
     part: 6
     title: "Our mistakes, as lessons"
     hook: "the mistakes we made and the rules they left"
+    story: "Kepler-16's noise, by one quick method, is about 229 ppm. NASA's own number in the file header says 542, and what our detector really sees after cleaning is 908 {{claim:F-039}}. We had quoted the small one. A lab caught it, because a lab has to print real numbers from real data. Every mistake in this chapter is that kind of mistake: small, plausible and invisible until you check."
     summary:
       - "What: fifteen logged mistakes, five patterns, and the rule each one left behind."
       - "Why: the patterns are how careful people still get things wrong, anywhere."
