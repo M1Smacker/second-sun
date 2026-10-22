@@ -1,6 +1,6 @@
 # Book redesign brief
 
-*Written 2026-10-23 by Claude, from Ahmed's answers to 19 rounds of questions. **Status: waiting for Ahmed's approval. Nothing has been rebuilt.** To approve, reply "approve" or give numbered corrections. A private page with the three font samples and a visual version of this brief: https://claude.ai/artifact/U5HE6UL2Mz1HW4qJVeh6WN (only Ahmed can open it).*
+*Written 2026-10-23 by Claude, from Ahmed's answers to 19 rounds of questions. **Status: APPROVED by Ahmed on 23 Oct 2026 ("approve, font B and start building"). Phase 1 built and published that night, Phase 2 partly; see RESUME.md for what is left.** To approve, reply "approve" or give numbered corrections. A private page with the three font samples and a visual version of this brief: https://claude.ai/artifact/U5HE6UL2Mz1HW4qJVeh6WN (only Ahmed can open it).*
 
 ## 1. What Ahmed told me
 - The book **forces labs before he can learn**, he **doesn't know where to start**, and **nothing shows where the pieces fit**.

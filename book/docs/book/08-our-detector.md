@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 8 · about 30 min · Maths: averages, square roots, ratios · Code: <code>pipeline/detect_v2.py</code></p>
 
 !!! plain "In plain words"
-    This program scans a light curve and points at dips that might be planets. It finds the known planet TOI-1338 b in half the sectors where it crossed, and it catches fake planets about 6 Earth sizes and up.
+    This program scans a light curve and points at dips that might be planets. It finds the known planet TOI-1338 b in half the sectors where it crossed {{claim:F-014}}, and it catches fake planets about 6 Earth sizes and up {{claim:F-015}}.
 
 **What this chapter answers:** how does our search decide "this might be a planet", and how good is it?
 

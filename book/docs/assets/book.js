@@ -46,7 +46,7 @@
     });
     $$("[data-path-set]").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.pathSet === "topic") === topic)));
     const card = document.querySelector(".ss-resume");
-    if (card) {
+    if (card) try {
       const chs = JSON.parse(card.dataset.chapters);
       const last = chs.find((c) => c.n === get("ss-last", 0));
       const span = card.querySelector("span");
@@ -56,7 +56,7 @@
         a.href = last.u; a.textContent = "Chapter " + last.n + ": " + last.t;
         span.append(a, " · " + read.length + " of " + chs.length + " read");
       } else span.textContent = "Nothing opened yet. " + read.length + " of " + chs.length + " chapters read.";
-    }
+    } catch (err) { /* keep the static text */ }
   }
   document.addEventListener("click", (e) => {
     const t = e.target.closest && e.target.closest(".ss-read-btn, [data-path-set]");

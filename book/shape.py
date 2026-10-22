@@ -41,11 +41,39 @@ def validate(p, docs=ROOT / "docs"):
     for j in p["journey"]:
         if j.get("note") and not (docs / "field-notes" / f"{j['note']}.md").exists():
             raise ValueError(f"data/path.yml: journey note {j['note']} does not exist")
+    files = sorted(f.stem for f in (docs / "book").glob("[0-9][0-9]-*.md"))
+    if files != sorted(c["slug"] for c in p["chapters"]):
+        raise ValueError(f"data/path.yml and docs/book/ list different chapters: {sorted(set(files) ^ {c['slug'] for c in p['chapters']})}")
     for part in p["parts"]:
+        if part["star"] not in p["sky"]["named"]:
+            raise ValueError(f"data/path.yml: star {part['star']!r} is not in data/sky.json (run tools/make_sky.py?)")
         if not any(c["part"] == part["n"] for c in p["chapters"]):
             raise ValueError(f"data/path.yml: part {part['n']} has no chapters")
     if DASH.search((root := ROOT / "data" / "path.yml").read_text(encoding="utf-8")):
         raise ValueError(f"{root}: en or em dash (rule: none)")
+
+
+def check_nav(nav, p):
+    """The sidebar (mkdocs.yml nav) and data/path.yml must agree on which chapter sits in which Part, in order."""
+    read = next((list(i.values())[0] for i in nav if isinstance(i, dict) and "Read" in i), None)
+    if read is None:
+        raise ValueError("mkdocs.yml: the nav needs a Read tab")
+    got = {}
+    for item in read:
+        (name, kids), = item.items()
+        if not isinstance(kids, list):
+            continue
+        m = re.match(r"Part (\d+) ", name)
+        if not m:
+            raise ValueError(f"mkdocs.yml: Read section {name!r} should be named 'Part N ...'")
+        for k in kids:
+            if isinstance(k, dict):
+                (t, f), = k.items()
+                got[Path(f).stem] = (int(m.group(1)), t)
+    want = {c["slug"]: (c["part"], title(c)) for c in p["chapters"]}
+    if got != want or list(got) != list(want):
+        diff = sorted(set(got.items()) ^ set(want.items()))[:4]
+        raise ValueError(f"mkdocs.yml nav and data/path.yml disagree about the chapters (or their order): {diff}")
 
 
 def chapter_for(p, src_uri):
@@ -257,7 +285,7 @@ def home(p, d, to_root, docs=ROOT / "docs"):
             f'Part of the book, at its true place, and bigger means brighter. The small dots around it are its chapters. Albireo is the real double star, with its gap enlarged. Amber specks are our Kepler stars. '
             f'Sources: Bright Star Catalogue and the Villanova Kepler EB catalog.</figcaption></figure>'
             f'<div class="ss-home-row"><a class="ss-start" href="{to_root}start/">Start here</a>'
-            f"<div class=\"ss-resume\" data-chapters='{escape(chs, quote=False)}' data-root=\"{to_root}\"><b>Where you stopped</b><span>Nothing read yet. 0 of {len(p['chapters'])} chapters.</span></div></div>"
+            f"<div class=\"ss-resume\" data-chapters=\"{escape(chs)}\"><b>Where you stopped</b><span>Nothing read yet. 0 of {len(p['chapters'])} chapters.</span></div></div>"
             f'<dl class="ss-glance"><div><dt>Readiness</dt><dd><a href="{to_root}progress/">{pct} / 100</a></dd></div>'
             f'<div><dt>Candidates</dt><dd><a href="{to_root}candidates/">{d["n_candidates"]}</a></dd></div>'
             f'<div class="ss-wide"><dt>Latest field note</dt><dd>{note_html}</dd></div></dl></section>')

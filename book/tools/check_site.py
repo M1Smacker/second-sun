@@ -39,6 +39,7 @@ for f in SITE.rglob("*.html"):
     pages[f] = p
 
 bad = []
+inbound = set()
 for f, p in pages.items():
     rel = f.relative_to(SITE).as_posix()
     if rel == "404.html":      # its links are absolute to the live site path (/second-sun/), by design
@@ -51,6 +52,8 @@ for f, p in pages.items():
         if not full.startswith(BASE):
             continue
         t = target(full[len(BASE) - 1:])
+        if t != f:
+            inbound.add(t)
         if not t.exists():
             bad.append(f"{rel}: broken link {ref}")
         elif frag and t.suffix == ".html" and t in pages and frag not in pages[t].ids and unquote(frag) not in pages[t].ids:
@@ -60,6 +63,10 @@ for f, p in pages.items():
         if r[1:] not in p.ids and not r.startswith("#__"):
             bad.append(f"{rel}: missing anchor {r}")
 
+for f in pages:
+    rel = f.relative_to(SITE).as_posix()
+    if f not in inbound and rel not in ("index.html", "404.html"):
+        bad.append(f"{rel}: orphan page (nothing links to it)")
 for f in sorted((SITE / "book").glob("[0-9][0-9]-*/index.html")):
     t = f.read_text(encoding="utf-8")
     n = f.parent.name

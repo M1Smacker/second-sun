@@ -55,7 +55,7 @@ chapters:
     hook: "what a planet around two stars is, and why we hunt them"
     summary:
       - "What: binary stars, and the planets that orbit both stars at once."
-      - "Why: only 14 have ever been seen crossing their stars, so each new one matters."
+      - "Why: only 14 have ever been seen crossing their stars, so each new one matters. {{claim:F-001}}"
       - "You will be able to: explain what a circumbinary planet is and why we hunt them."
     plain: "Many stars come in pairs, and a planet can orbit both at once. Only 14 such planets have ever been caught crossing their stars, so every new one matters."
   - n: 5
@@ -115,7 +115,7 @@ chapters:
     hook: "the tests every dip must survive"
     summary:
       - "What: the tests that try to kill a dip before anyone else has to."
-      - "Why: about one in four of NASA's own TESS planet candidates later turned out to be something else."
+      - "Why: about one in four of NASA's own TESS planet candidates later turned out to be something else. {{claim:F-019}}"
       - "You will be able to: name the impostors and the test that catches each one."
     plain: "Finding a dip is the easy part, because most dips are not planets. Vetting is the set of tests that tries to kill a dip, and only one that survives gets a name."
   - n: 11
@@ -155,7 +155,7 @@ chapters:
     hook: "how a find becomes a named result"
     summary:
       - "What: the order of steps from a dip to a credited result, and what journals say about AI."
-      - "Why: in 2026 NASA's candidate site started wanting the write-up published first."
+      - "Why: in 2026 NASA's candidate site started wanting the write-up published first. {{claim:B9}}"
       - "You will be able to: describe the steps from a dip to credit."
     plain: "A dip does not become ours when we see it. It becomes ours when it is written up and published, and then shared with the TESS team."
   - n: 15
@@ -171,7 +171,7 @@ chapters:
 
 # The Journey order: the order the project needed each chapter. One line per stop: what happened.
 journey:
-  - {ch: 4, line: "19 Oct: we chose the hunt. Planets that orbit two stars are rare: only 14 are known to cross.", note: "2026-10-19"}
+  - {ch: 4, line: "19 Oct: we chose the hunt. Planets that orbit two stars are rare: only 14 are known to cross. {{claim:F-001}}", note: "2026-10-19"}
   - {ch: 5, line: "19 Oct: we saw why the usual tools miss them. Their dips arrive off the clock, and that is our opening.", note: "2026-10-19"}
   - {ch: 1, line: "19 Oct: we chose G1, 549 Kepler two-star systems, and matched Kepler's names to TESS's.", note: "2026-10-19"}
   - {ch: 2, line: "19 Oct: every search starts from a light curve, brightness against time, so this is the skill we use most."}

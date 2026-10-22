@@ -3,7 +3,7 @@
 <p class="ss-meta">Chapter 4 · about 20 min · Maths: ratios, powers (squares, cubes, square roots)</p>
 
 !!! plain "In plain words"
-    Many stars come in pairs, and a planet can orbit both at once. Only 14 such planets have ever been caught crossing their stars, so every new one matters.
+    Many stars come in pairs, and a planet can orbit both at once. Only 14 such planets have ever been caught crossing their stars, so every new one matters. {{claim:F-001}}
 
 **What this chapter answers:** what is a circumbinary planet, and where around a pair of stars can one survive?
 

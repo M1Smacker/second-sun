@@ -234,8 +234,8 @@ def expand(markdown, page_url, d):
             raise PluginError(f"unknown placeholder ss:{m.group(1)} on page {page_url or 'index'}")
         return RENDER[m.group(1)](d)
 
-    markdown = re.sub(r"\{\{claim:([A-Za-z0-9-]+)\}\}", claim, markdown)
-    return re.sub(r"<!-- ss:([a-z-]+) -->", block, markdown)
+    markdown = re.sub(r"<!-- ss:([a-z-]+) -->", block, markdown)      # blocks first, so generated HTML can carry claim chips too
+    return re.sub(r"\{\{claim:([A-Za-z0-9-]+)\}\}", claim, markdown)
 
 
 def on_config(config):
@@ -244,6 +244,7 @@ def on_config(config):
     try:
         DATA["path"] = shape.load()
         shape.validate(DATA["path"])
+        shape.check_nav(config["nav"], DATA["path"])
         validate(DATA)
     except ValueError as e:
         raise PluginError(str(e)) from e

@@ -58,10 +58,14 @@
 [dir] .md-typeset .ss-strip ol { display: flex; flex-wrap: wrap; gap: 4px 10px; list-style: none; margin: 0; padding: 0; }
 [dir] .md-typeset .ss-strip li { margin: 0; }
 [dir] .md-typeset .ss-strip li.ss-gap { margin-left: 8px; }
-[dir] .md-typeset .ss-strip a { position: relative; display: block; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--ss-text-3); background: transparent; }
-.ss-strip a::after { content: ""; position: absolute; inset: -9px; }
-[dir] .md-typeset .ss-strip a.is-read { background: var(--ss-text-3); }
-[dir] .md-typeset .ss-strip a[aria-current] { border-color: var(--ss-accent); background: var(--ss-accent); box-shadow: 0 0 0 3px var(--ss-bg), 0 0 0 4.5px var(--ss-accent); }
+@media (max-width: 36em) {
+  [dir] .md-typeset .ss-strip ol { gap: 6px 6px; }
+  [dir] .md-typeset .ss-strip li.ss-gap { margin-left: 4px; }
+}
+[dir] .md-typeset .ss-strip ol a { position: relative; display: block; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--ss-text-3); background: transparent; }
+.ss-strip ol a::after { content: ""; position: absolute; inset: -9px; }
+[dir] .md-typeset .ss-strip ol a.is-read { background: var(--ss-text-3); }
+[dir] .md-typeset .ss-strip ol a[aria-current] { border-color: var(--ss-accent); background: var(--ss-accent); box-shadow: 0 0 0 3px var(--ss-bg), 0 0 0 4.5px var(--ss-accent); }
 
 /* ---------- Chapter end: mark as read, Next with a reason, reading order ---------- */
 .ss-end { margin: 48px 0 24px; padding-top: 24px; border-top: 1px solid var(--ss-line); max-width: 66ch; }
@@ -94,6 +98,8 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
   color: var(--ss-text-2); font: 500 14px var(--ss-ui); cursor: pointer;
 }
 .ss-pathswitch button[aria-pressed="true"] { border-color: var(--ss-accent); color: var(--ss-text); }
+
+.no-js .ss-read-btn, .no-js .ss-pathswitch { display: none; }   /* they need JavaScript to remember anything */
 
 /* ---------- Lists on Part and Journey pages ---------- */
 [dir] .md-typeset ol.ss-journey li > a { display: block; }
