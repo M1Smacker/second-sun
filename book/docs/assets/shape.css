@@ -136,7 +136,7 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
 .ss-demo__btn { min-height: var(--ss-tap); min-width: 96px; padding: 0 20px; border: 1.5px solid var(--ss-accent); border-radius: var(--ss-radius); background: transparent; color: var(--ss-accent); font: 600 15px var(--ss-ui); cursor: pointer; }
 .ss-demo__result { font: 400 15px/1.5 var(--ss-ui); color: var(--ss-text); margin: 4px 0 0; }
 .ss-demo__row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
-.ss-demo__sm { min-width: 0; padding: 0 14px; }
+.ss-demo__sm { min-width: var(--ss-tap); padding: 0 14px; }
 .ss-demo canvas.ss-demo__drag { touch-action: pan-y; cursor: grab; }
 .ss-demo canvas.ss-demo__drag:active { cursor: grabbing; }
 
@@ -155,3 +155,28 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
 .ss-dg text.sm { font-size: 13.5px; fill: var(--ss-text-2); }
 .ss-dg text.mono { font-family: var(--ss-data); font-size: 13px; }
 .ss-dg text.a-text { fill: var(--ss-accent); font-weight: 600; }
+
+/* NASA pictures at the Part openings: credited, and always captioned as drawings when they are */
+[dir] .md-typeset figure.ss-photo { margin: 0 0 24px; max-width: 66ch; }
+.ss-photo img { display: block; width: 100%; height: auto; border-radius: var(--ss-radius); border: 1px solid var(--ss-line); }
+
+/* ---------- Read aloud bar ---------- */
+.ss-listen { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 16px; max-width: 66ch; font: 400 14px/1.4 var(--ss-ui); color: var(--ss-text-2); }
+.ss-listen[hidden] { display: none; }
+.ss-listen button { min-height: var(--ss-tap); min-width: 88px; padding: 0 16px; border: 1.5px solid var(--ss-accent); border-radius: var(--ss-radius); background: transparent; color: var(--ss-accent); font: 600 15px var(--ss-ui); cursor: pointer; }
+.ss-listen button[hidden] { display: none; }
+.ss-listen select { min-height: var(--ss-tap); margin-left: 6px; padding: 0 8px; border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: var(--ss-surface); color: var(--ss-text); font: 400 15px var(--ss-ui); }
+.md-typeset .ss-saying { background: color-mix(in srgb, var(--ss-accent) 18%, transparent); border-radius: 4px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ss-accent) 18%, transparent); }
+
+/* ---------- Printing: the cheat sheets (and any page) print as plain black on white ---------- */
+@media print {
+  .md-header, .md-tabs, .md-sidebar, .md-footer, .md-top, .ss-update, .ss-end, .ss-listen, .ss-strip, .md-search, [data-print], .md-path, .ss-pop { display: none !important; }
+  body, .md-main, .md-content { background: #fff !important; color: #000 !important; }
+  .md-content__inner { margin: 0 !important; padding: 0 !important; animation: none !important; }
+  .md-typeset { font-size: 10.5pt; line-height: 1.4; color: #000; }
+  .md-typeset h1 { font-size: 18pt; margin: 0 0 6pt; } .md-typeset h2 { font-size: 13pt; margin: 10pt 0 4pt; padding-top: 4pt; }
+  .md-typeset a { color: #000; text-decoration: none; }
+  .md-typeset p, .md-typeset li { max-width: none; margin-top: 0; margin-bottom: 2pt; }
+  .ss-chip { border: 1px solid #000 !important; color: #000 !important; }
+  .md-typeset :is(.admonition, details, .ss-card) { break-inside: avoid; background: #fff !important; }
+}

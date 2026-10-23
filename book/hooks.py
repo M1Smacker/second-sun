@@ -313,7 +313,7 @@ def chapter_wrap(md, c, to_root):
     mark-as-read and Next/Previous (with a reason) before Sources. The pages keep only their own content."""
     P = DATA["path"]
     box = "\n!!! plain"
-    top = diagrams.figure(c["n"]) + "\n\n" + shape.summary(c)     # the picture first, then the 1-minute summary and the story
+    top = shape.listen() + "\n\n" + diagrams.figure(c["n"]) + "\n\n" + shape.summary(c)     # the picture first, then the 1-minute summary and the story
     md = md.replace(box, "\n" + top + box, 1) if box in md else md.replace("\n", "\n\n" + top, 1)
     end = "\n" + shape.chapter_end(P, c, to_root) + "\n\n"
     head, sep, tail = md.partition("\n## Sources")
@@ -327,20 +327,55 @@ def on_page_markdown(markdown, page, config, files):
         markdown = autolink(markdown, "../" * page.file.src_uri.count("/"))      # before the template adds its own text, so the first mention is the reader's first sight of the word
     if c:
         markdown = chapter_wrap(markdown, c, to_root)
+    m = re.fullmatch(r"parts/part(\d)/cheat\.md", page.file.src_uri)
+    if m:
+        markdown = cheat_page(P["part_by_n"][int(m.group(1))], to_root)
     part = shape.part_for(P, page.file.src_uri)
     if part:
         markdown = f"# Part {part['n']} · {part['name']}\n\n" + shape.part_page(P, part, to_root)
     return expand(markdown, page.url, DATA)
 
 
-def glossary_json(site):
-    """Term -> [name, plain definition], so a tap on a glossary link can show a small popup."""
+def glossary_terms():
+    """slug -> [term, plain definition] from docs/glossary.md (used by the popup data and the cheat sheets)."""
     from markdown.extensions.toc import slugify
     text = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
     out = {}
     for m in re.finditer(r"^### ([^\n]+)\n+(.+?)(?=\n### |\Z)", text, re.S | re.M):
         body = re.sub(r"\{\{claim:[^}]+\}\}", "", re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", m.group(2)))
         out[slugify(m.group(1).strip(), "-")] = [m.group(1).strip(), " ".join(body.split()).replace("*", "").replace("`", "")]
+    return out
+
+
+def cheat_page(part, to_root):
+    """One printable page per Part, built from the chapters: three lines each, the words used, and the numbers to remember."""
+    P, terms, by_id = DATA["path"], glossary_terms(), {c["id"]: c for c in DATA["claims"]}
+    chs = [c for c in P["chapters"] if c["part"] == part["n"]]
+    words, ids = [], []
+    for c in chs:
+        md = (ROOT / "docs" / "book" / f"{c['slug']}.md").read_text(encoding="utf-8")
+        for slug in re.findall(r"glossary\.md#([a-z0-9-]+)", autolink(md, "")):
+            if slug in terms and slug not in words:
+                words.append(slug)
+        for cid in re.findall(r"\{\{claim:([A-Za-z0-9-]+)\}\}", md + " " + " ".join(c["summary"]) + " " + c.get("story", "")):
+            if cid not in ids:
+                ids.append(cid)
+    nums = [i for i in ids if i in by_id and len(by_id[i]["claim"]) <= 230][:8]
+    out = [f"# Cheat sheet: Part {part['n']}, {part['name']}", "", '<p class="ss-meta">One page · print or save as PDF</p>', "",
+           '<button type="button" class="ss-demo__btn" data-print>Print or save as PDF</button>', "", "## The chapters in three lines", ""]
+    for c in chs:
+        out += [f"**{c['n']}. {c['title']}**", ""] + [f"- {line}" for line in c["summary"]] + [""]
+    if words:
+        out += ["## Words to know", ""] + [f"- **{terms[w][0]}:** {terms[w][1].split('. ')[0].rstrip('.')}." for w in words[:12]] + [""]
+    if nums:
+        out += ["## Numbers to remember", ""] + [f"- {by_id[i]['claim']} {{{{claim:{i}}}}}" for i in nums] + [""]
+    out += [f"[Check yourself](review.md) · [Back to Part {part['n']}](index.md)"]
+    return "\n".join(out)
+
+
+def glossary_json(site):
+    """Term -> [name, plain definition], so a tap on a glossary link can show a small popup."""
+    out = glossary_terms()
     if len(out) < 20:
         raise PluginError(f"glossary.json has only {len(out)} terms; the glossary format changed?")
     (site / "assets" / "glossary.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

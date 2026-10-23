@@ -21,6 +21,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 
 ## More
 - **What are we hunting?** The [quests](quests.md) page shows the plan and what is done.
+- **Want to practise looking?** Try [Eyes mode](eyes.md): spot hidden dips in real light curves.
 - **Found anything yet?** [Candidates](candidates.md) lists every signal that passed first checks. None yet.
 - **What happened on a given day?** The [field notes](field-notes/index.md) hold one lesson per working day.
 - **Lost on a word?** Tap any underlined term for a short definition, or open the [glossary](glossary.md).

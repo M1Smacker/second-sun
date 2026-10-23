@@ -11,7 +11,7 @@ const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const [mode, base, ...rest] = process.argv.slice(2);
 const opt = Object.fromEntries(rest.map((a) => a.replace(/^--/, "").split("=")));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const PAGES = ["", "start/", "start/journey/", "progress/", "quests/", "candidates/", "learn/", "learn/l1-dip-depth/", "book/02-light-curves/", "book/05-wandering-transits/", "book/07-noise-and-statistics/", "book/08-our-detector/", "book/14-credit-and-publishing/", "parts/part1/", "parts/part3/review/", "labs/lab3-plot-and-read/", "glossary/", "claims/", "field-notes/2026-10-23/"];
+const PAGES = ["", "start/", "start/journey/", "progress/", "quests/", "candidates/", "learn/", "learn/l1-dip-depth/", "book/02-light-curves/", "eyes/", "parts/part3/cheat/", "book/05-wandering-transits/", "book/07-noise-and-statistics/", "book/08-our-detector/", "book/14-credit-and-publishing/", "parts/part1/", "parts/part3/review/", "labs/lab3-plot-and-read/", "glossary/", "claims/", "field-notes/2026-10-23/"];
 
 async function launch(tag) {
   const profile = `D:/second-sun/.cache/cdp-${tag}-${process.pid}`;

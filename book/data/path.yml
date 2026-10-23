@@ -5,11 +5,14 @@
 
 parts:
   - {n: 1, name: "The sky and the data", short: "Sky and data", star: Deneb,
-     blurb: "Names, light curves and where our data comes from."}
+     blurb: "Names, light curves and where our data comes from.",
+     image: {file: "ACD20-0045-002.jpg", w: 1280, h: 853, alt: "Illustration of the patches of sky watched by Kepler and K2", caption: "The patches of sky that Kepler and K2 watched. Our G1 stars come from the original Kepler patch.", credit: "Illustration by Wendy Stenzel, NASA Ames (NASA Image and Video Library, ACD20-0045-002)"}}
   - {n: 2, name: "Two suns", short: "Two suns", star: Albireo,
-     blurb: "Binary stars, wandering transits and the orbit maths."}
+     blurb: "Binary stars, wandering transits and the orbit maths.",
+     image: {file: "PIA14724.jpg", w: 1280, h: 960, alt: "Artist's concept of the planet Kepler-16b with two suns setting over its horizon", caption: "Artist's concept of Kepler-16b, the first planet seen crossing two stars. It is a drawing, not a photograph.", credit: "NASA/JPL-Caltech (NASA Image and Video Library, PIA14724)"}}
   - {n: 3, name: "Finding dips", short: "Finding dips", star: Sadr,
-     blurb: "Noise, our detector and the fake-planet test."}
+     blurb: "Noise, our detector and the fake-planet test.",
+     image: {file: "PIA14725.jpg", w: 1280, h: 1024, alt: "Artist's concept of the planet Kepler-16b and its two stars passing in front of one another", caption: "Artist's concept: a planet and two stars passing in front of one another, each pass dimming the light. A light curve records those dips. It is a drawing, not a photograph.", credit: "NASA/JPL-Caltech (NASA Image and Video Library, PIA14725)"}}
   - {n: 4, name: "Is it real?", short: "Is it real?", star: "Eta Cygni",
      blurb: "Vetting a dip, and the pixel check."}
   - {n: 5, name: "The professionals' tool", short: "STANLEY", star: "Delta Cygni",

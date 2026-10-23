@@ -83,6 +83,7 @@ nav:
       - Progress: progress.md
       - Quests: quests.md
       - Candidates: candidates.md
+      - "Eyes mode": eyes.md
       - "Field notes":
           - field-notes/index.md
           - "19 Oct 2026": field-notes/2026-10-19.md

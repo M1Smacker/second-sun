@@ -79,7 +79,7 @@ for f in SITE.rglob("*.html"):
     if re.search("[–—]", f.read_text(encoding="utf-8")):
         bad.append(f"{f.relative_to(SITE).as_posix()}: en or em dash in built page")
 for n in range(1, 7):
-    for kind in ("", "review/", "labs/"):
+    for kind in ("", "review/", "labs/", "cheat/"):
         if not (SITE / f"parts/part{n}/{kind}index.html").exists():
             bad.append(f"missing parts/part{n}/{kind}")
 if not (SITE / "assets/glossary.json").exists():

@@ -47,6 +47,9 @@ def validate(p, docs=ROOT / "docs"):
     if files != sorted(c["slug"] for c in p["chapters"]):
         raise ValueError(f"data/path.yml and docs/book/ list different chapters: {sorted(set(files) ^ {c['slug'] for c in p['chapters']})}")
     for part in p["parts"]:
+        im = part.get("image")
+        if im and not (docs / "assets" / "img" / "nasa" / im["file"]).exists():
+            raise ValueError(f"data/path.yml: part {part['n']} image {im['file']} is not in docs/assets/img/nasa/")
         if part["star"] not in p["sky"]["named"]:
             raise ValueError(f"data/path.yml: star {part['star']!r} is not in data/sky.json (run tools/make_sky.py?)")
         if not any(c["part"] == part["n"] for c in p["chapters"]):
@@ -145,18 +148,29 @@ def chapter_end(p, c, to_root):
     part = p["part_by_n"][c["part"]]
     last = max(k["n"] for k in p["chapters"] if k["part"] == c["part"]) == c["n"]
     partend = (f'<p class="ss-partend">That is the end of Part {part["n"]}. <a href="{to_root}parts/part{part["n"]}/review/">Check yourself</a> · '
-               f'<a href="{to_root}parts/part{part["n"]}/labs/">Try it yourself (optional)</a></p>') if last else ""
+               f'<a href="{to_root}parts/part{part["n"]}/cheat/">Cheat sheet</a> · <a href="{to_root}parts/part{part["n"]}/labs/">Try it yourself (optional)</a></p>') if last else ""
     return (f'<nav class="ss-end" aria-label="Finish this chapter"><button type="button" class="ss-read-btn" data-ch="{c["n"]}" aria-pressed="false">Mark as read</button>'
             f'{pagers}{partend}<p class="ss-pathswitch">Reading order: <button type="button" data-path-set="journey">Journey</button> '
             f'<button type="button" data-path-set="topic">By topic</button></p></nav>')
 
 
+def listen():
+    """The read-aloud bar. Hidden until the page script finds the browser can speak."""
+    return ('<div class="ss-listen" hidden role="group" aria-label="Read this chapter aloud"><button type="button" data-say="play">Listen</button>'
+            '<button type="button" data-say="pause" hidden>Pause</button><button type="button" data-say="stop" hidden>Stop</button>'
+            '<label>Speed <select data-say-rate><option value="0.85">Slow</option><option value="1" selected>Normal</option><option value="1.2">Fast</option></select></label>'
+            '<span>Uses the voice on your own device.</span></div>')
+
+
 def part_page(p, part, to_root):
     items = "".join(f'<li data-n="{c["n"]:02d}"><a href="{url(c, to_root)}"><b>{escape(title(c))}</b></a><span>{escape(c["summary"][0].partition(": ")[2])}</span></li>'
                     for c in p["chapters"] if c["part"] == part["n"])
-    return (f'<p class="ss-meta">Part {part["n"]} of {len(p["parts"])} · star: {escape(part["star"])}</p><p>{escape(part["blurb"])}</p>'
+    im = part.get("image")
+    photo = (f'<figure class="ss-photo"><img src="{to_root}assets/img/nasa/{im["file"]}" alt="{escape(im["alt"])}" width="{im["w"]}" height="{im["h"]}" loading="lazy">'
+             f'<figcaption>{escape(im["caption"])} Credit: {escape(im["credit"])}.</figcaption></figure>') if im else ""
+    return (f'<p class="ss-meta">Part {part["n"]} of {len(p["parts"])} · star: {escape(part["star"])}</p>{photo}<p>{escape(part["blurb"])}</p>'
             f'<ol class="ss-chapters ss-plain">{items}</ol>'
-            f'<p class="ss-partend"><a href="{to_root}parts/part{part["n"]}/review/">Check yourself</a> · '
+            f'<p class="ss-partend"><a href="{to_root}parts/part{part["n"]}/review/">Check yourself</a> · <a href="{to_root}parts/part{part["n"]}/cheat/">Cheat sheet</a> · '
             f'<a href="{to_root}parts/part{part["n"]}/labs/">Try it yourself (optional)</a></p>')
 
 
