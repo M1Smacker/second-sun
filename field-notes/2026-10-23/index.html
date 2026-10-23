@@ -1860,6 +1860,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#afternoon-an-outside-review-finds-two-silent-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Afternoon: an outside review finds two silent bugs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#questions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2235,6 +2246,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#afternoon-an-outside-review-finds-two-silent-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Afternoon: an outside review finds two silent bugs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#questions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2359,6 +2381,17 @@
 </ul>
 <p><strong>Idea:</strong> test the failure, not the happy path. A check you have never seen fail is a hope, not a check.</p>
 <p><strong>You could try it:</strong> in <code>book/data/path.yml</code>, change one chapter's <code>part</code> and run the build. It stops with a plain message instead of publishing a book whose map and menu disagree.</p>
+<h2 id="afternoon-an-outside-review-finds-two-silent-bugs">Afternoon: an outside review finds two silent bugs<a class="headerlink" href="#afternoon-an-outside-review-finds-two-silent-bugs" title="Permanent link">&para;</a></h2>
+<p>A separate Claude, with web access and a copy of our code, answered our research brief. Everything went through Compass first: I re-ran each bug here with my own scripts, recounted its numbers from our target files and looked up all 20 of its papers in ADS. All 20 were real (Gemini's answer had 7 of 12 wrong). Full review: <code>research/compass-reviews/2026-10-23-deep-review.md</code>.</p>
+<ul>
+<li><strong>Bug 1: the detector was blind on 30-minute data.</strong> It averages the light into 10-minute bins and ignores any box less than 80% full. With one point every 30 minutes only a third of the bins have data, so every box is ignored. I hid an obvious dip (signal 23 times the noise) in fake data: found at 2, 3.3 and 10-minute spacing, <strong>nothing</strong> at 30. TESS took 30-minute pictures until 2020, and Kepler's own light curves are 30-minute, so the planned Kepler test would have failed for no real reason.</li>
+<li><strong>Bug 2: old QLP files used the wrong column.</strong> Before sector 56, QLP's flattened column has a different name (<code>kspsap_flux</code>), and the loader picked it. It is the same flattening we had already caught shrinking a 6-hour dip by about 70%. Our one QLP test happened to use sector 98, which has the good column, so it passed.</li>
+<li><strong>Together</strong> they touch about half of the planned QLP data. Nothing has been searched yet, so no result is wrong, but those stars would have looked quiet.</li>
+<li><strong>The odds moved up a little, to about 20%</strong> (range 5 to 45%). The outside estimate was 21 to 39%, but it used the noise of TOI-1338, a quiet star outside our list. Kepler-16, the one star of ours we have measured, is about twice as noisy. With that noise the same sum gives about 17%.</li>
+<li><strong>Timing matters:</strong> TESS looks at the Kepler field again in July and August 2027. A candidate published with a predicted date before then can be checked by TESS itself.</li>
+</ul>
+<p><strong>Idea:</strong> a filter that silently returns nothing looks exactly like a quiet star. Every way the data can come in (each product, spacing and era) needs a test that hides a known dip and fails loudly if it does not come back.</p>
+<p><strong>You could try it:</strong> <code>research/deep-review-2026-10-23/our-checks/verify_b1_b2.py</code> prints the four spacings and which column the loader picks for each QLP file we have.</p>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <details class="quiz">
 <summary>1. Why do bigger dots mean brighter stars on the map?</summary>
@@ -2367,6 +2400,10 @@
 <details class="quiz">
 <summary>2. Why does the caption say 546 drawn, not 549?</summary>
 <p>Three of our stars have no sky position in the Villanova Kepler catalogue, and we only draw what we can place. The book says so rather than rounding up.</p>
+</details>
+<details class="quiz">
+<summary>3. Why did a dip that was obvious at 10-minute spacing vanish at 30-minute spacing?</summary>
+<p>The detector only trusted boxes that were at least 80% full of 10-minute bins. At 30-minute spacing two bins in three are empty, so no box ever qualified and the search returned nothing, with no error.</p>
 </details>
 
 
