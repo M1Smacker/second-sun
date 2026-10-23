@@ -5,7 +5,7 @@
 # Weights are Claude's first draft (2026-10-21), approved as the starting point by Ahmed; change them here any time.
 
 status:                                   # the six cells of the home-page status panel; edit them in the same commit as the credits
-  - {label: "Phase", value: "Audit done, search not started", note: "all 549 stars measured; Ahmed says when to search"}
+  - {label: "Phase", value: "Trial search done (50 stars)", note: "all 549 stars measured; the full search needs Ahmed's go"}
   - {label: "First campaign", value: "G1: Kepler's binaries", note: "549 stars; 136 need a decision (Chapter 1)"}
   - {label: "Detector", value: "v2 (box search)", note: "floor ~6 Earth radii; raw vs cleaned flux differs (Ch 8)"}
   - {label: "Known-planet test", value: "7 of 8 sectors in raw flux", note: "4 of 8 in cleaned flux (the baseline)"}
@@ -39,9 +39,9 @@ stages:
     items:
       - {what: "Vetting rules written (N1 to N12, C1 to C11)", weight: 3, credit: 1.0, evidence: ["file:research/wave-4-vetting"]}
       - {what: "Gap and thruster warning flags in code (rule C7)", weight: 3, credit: 1.0, evidence: ["file:pipeline/veto_results.json", "file:pipeline/detect_v2.py"]}
-      - {what: "Eclipse-phase check (C5) and odd-even test on the binary", weight: 3, credit: 0}
+      - {what: "Eclipse-phase check (C5) and odd-even test on the binary", weight: 3, credit: 0.5, evidence: ["file:pipeline/stage2_report.py", "file:research/stage2-2026-10-23/README.md"], note: "the phase check caught 2 of 5 trial leads sitting on a missed eclipse; the odd-even test and putting it inside the pipeline are not done"}
       - {what: "Pixel check as an automatic tool", weight: 4, credit: 0.25, evidence: ["claim:F-049"], note: "a hand-run lab exists (Lab 7), not an automatic tool"}
-      - {what: "Second-product check (rule C8) automatic", weight: 3, credit: 0.25, evidence: ["file:pipeline/borrow_windows_check2.py"], note: "worked by hand on one star"}
+      - {what: "Second-product check (rule C8) automatic", weight: 3, credit: 0.75, evidence: ["file:pipeline/stage2_search.py", "file:research/stage2-2026-10-23/README.md"], note: "automatic and measured on 50 stars: keeps 91% of strong injected dips, removes half of false alarms; weak dips and QLP-only stars (no second product) not covered"}
       - {what: "Neighbour check with catalogue positions inside the tool", weight: 2, credit: 0}
       - {what: "Two-key process written down", weight: 2, credit: 1.0, evidence: ["file:book/docs/book/14-credit-and-publishing.md"]}
   - id: calibration
@@ -69,4 +69,5 @@ stages:
 
 changes:                                  # date, delta (points), why. The deltas must add up to the typed credits.
   - {date: 2026-10-21, delta: 35.75, why: "First rubric: everything done up to 21 October, scored with evidence (Ahmed: build it now)"}
+  - {date: 2026-10-23, delta: 3.0, why: "Stage 2 trial search on 50 stars: the second-product check automatic and measured (+1.5), the eclipse-phase check done and shown to catch missed eclipses (+1.5)"}
   - {date: 2026-10-23, delta: 9.25, why: "Stage 1 audit of all 549 stars (8,100 files): sensitivity by brightness and product measured (+4.0), borrowed QLP windows checked leave-one-out (+2.25), false alarms measured across 5,064 star-sectors (+3.0)"}

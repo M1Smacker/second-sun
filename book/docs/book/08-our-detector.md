@@ -105,6 +105,16 @@ Before searching anything, we ran the detector over all 8,100 light-curve files 
 
 These are VERIFIED on the audit files (`research/audit-2026-10-23/summary.txt`), with one standard dip rather than realistic wandering crossings, so they are best cases.
 
+### An eighth test: a first trial search on 50 stars
+
+We then ran the whole detector, for the first time, on 50 real stars (the 5 known planet hosts plus 45 spread by brightness), looking at the real light and at the upside-down light, in every data product (Chapter 3).
+
+- **Fewer real dips than fake ones:** 0.08 real events per star-sector against 0.18 upside-down, so the upside-down count is a high estimate of false alarms.
+- **Four filters, each doing a different job:** a flag near gaps and thruster firings (two thirds of events sit there; flagged, not deleted), a flag when other stars dip at the same moment, a check that a second data product shows the same dip (keeps 91% of strong dips, removes about half the false alarms), and a check that the event is not on the star's own eclipse (it caught two of five leads on missed eclipses). Together they cut 36 real events to 4.
+- **Projected to all 549 stars:** about 60 events for a person, plus a lower tier of about 350 flagged ones. Three leads survived; they are not candidates, and the stars and times stay on this computer (Chapter 14).
+
+Everything here is a count; VERIFIED in `research/stage2-2026-10-23/README.md`.
+
 ### A sixth test: fake planets that move like real ones
 
 Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 5). So I used **STANLEY**'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:

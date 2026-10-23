@@ -1,0 +1,66 @@
+STAGE 2 aggregate report (no star IDs, no event times). Groups searched: 474
+files: 949; searched ok: 947 ({'QLP': 471, 'TESS-SPOC': 277, 'SPOC': 199}); other status: {'no safe windows': 2}
+star-sectors searched with their best product: 472; with a second product available for rule C8: 277 of 472
+
+1. EVENTS PER STAR-SECTOR (best product, SNR >= 7): real curve vs upside-down curve (false-alarm proxy)
+  SNR >=  7: real   36 (0.076 per star-sector) | upside-down   84 (0.178) | real/upside-down = 0.43
+  SNR >=  8: real   23 (0.049 per star-sector) | upside-down   60 (0.127) | real/upside-down = 0.38
+  SNR >=  9: real   17 (0.036 per star-sector) | upside-down   38 (0.081) | real/upside-down = 0.45
+  SNR >= 10: real    9 (0.019 per star-sector) | upside-down   30 (0.064) | real/upside-down = 0.30
+  SNR >= 12: real    7 (0.015 per star-sector) | upside-down   18 (0.038) | real/upside-down = 0.39
+  SNR >= 20: real    2 (0.004 per star-sector) | upside-down    3 (0.006) | real/upside-down = 0.67
+  by brightness (SNR >= 7): star-sectors, real per star-sector, upside-down per star-sector
+    bright<11  n= 160 real 0.056 | upside-down 0.250
+    mid11-12   n= 129 real 0.062 | upside-down 0.093
+    faint12+   n= 183 real 0.104 | upside-down 0.175
+
+2. CUTS, applied one after another to the SNR >= 7 events of the best product (real | upside-down)
+  real         start   36 | no gap/dump flag   12 | not in a same-moment burst    7 | not matched upside-down    7 | not at an eclipse phase    4 | second product SNR>=3 (lenient)    4 | >=4 lenient    4 | >=4 strict    1
+  upside-down  start   84 | no gap/dump flag   30 | not in a same-moment burst   21 | not matched upside-down   21 | not at an eclipse phase   12 | second product SNR>=3 (lenient)   10 | >=4 lenient    9 | >=4 strict    2
+  share of real events with a second product to check: 50%; upside-down: 51%
+
+3. WHAT EACH CHECK COSTS IN REAL DIPS: dips injected in every product at the same time (about 12x the star's own 8 h noise), found in product A at SNR >= 7
+  injected dips found in the product they were put in: 1037 of 1346 product-trials (77%)
+  second product shows it at SNR >= 3: 964 of 1037 = 93% kept
+  second product shows it at SNR >= 4: 941 of 1037 = 91% kept
+  second product shows it at SNR >= 5: 903 of 1037 = 87% kept
+  by product pair (A -> B), share kept at SNR >= 4:
+    QLP       -> SPOC      n= 100  99%
+    QLP       -> TESS-SPOC n= 140  99%
+    SPOC      -> QLP       n= 193  81%
+    SPOC      -> TESS-SPOC n= 194  98%
+    TESS-SPOC -> QLP       n= 242  79%
+    TESS-SPOC -> SPOC      n= 168  99%
+  compare: upside-down false alarms confirmed by a second product at SNR >= 4: 21 of 43 = 49%
+  so the second-product check removes 51% of false alarms and loses 9% of real dips
+
+4. ECLIPSE LEAKAGE: distance of events from the masked eclipses, in eclipse widths (real vs upside-down; an excess of real events just outside the mask means leakage)
+   0 to   2 widths: real    6 (17%) | upside-down    4 (5%)
+   2 to   3 widths: real    2 (6%) | upside-down    5 (6%)
+   3 to   5 widths: real    5 (14%) | upside-down    5 (6%)
+   5 to  10 widths: real    5 (14%) | upside-down    8 (10%)
+  10 to end widths: real   10 (28%) | upside-down   28 (33%)
+  events on stars with no detected eclipse run: real 8, upside-down 34
+  rule C5 (within 0.35 d of a catalogue primary or phase-0.5 eclipse): real 6 of 36 (17%), upside-down 16 of 84 (19%)
+    of the real events at an eclipse phase, the automatic mask had found NO eclipse in that product-sector for 2 of 6
+
+5. KNOWN HOSTS (negative controls: none should show a real crossing in TESS)
+  Kepler-16    real events   3 | upside-down   4 | real events that pass the flag cuts   0
+  Kepler-38    real events   0 | upside-down   0 | real events that pass the flag cuts   0
+  Kepler-64    real events   1 | upside-down   8 | real events that pass the flag cuts   1
+  Kepler-453   real events   1 | upside-down   1 | real events that pass the flag cuts   1
+  Kepler-1647  real events   2 | upside-down   3 | real events that pass the flag cuts   0
+
+6. PROJECTION TO THE FULL CAMPAIGN (5,064 star-sectors; rates per brightness class applied to the campaign's own class sizes)
+  all events SNR >= 7 (real curve)             real       : about    443 events for a person across the campaign
+  all events SNR >= 7 (real curve)             upside-down: about    858 events for a person across the campaign
+  after the flag cuts                          real       : about     91 events for a person across the campaign
+  after the flag cuts                          upside-down: about    190 events for a person across the campaign
+  ... and not at an eclipse phase (C5)         real       : about     61 events for a person across the campaign
+  ... and not at an eclipse phase (C5)         upside-down: about    132 events for a person across the campaign
+  ... and second product SNR >= 4 (lenient)    real       : about     61 events for a person across the campaign
+  ... and second product SNR >= 4 (lenient)    upside-down: about    105 events for a person across the campaign
+
+7. SURVIVORS: real, non-control, best product, SNR >= 7, no gap/dump flag, not in a burst, not matched upside-down, not at an eclipse phase, second product SNR >= 3 where one exists
+  3 events on 3 stars ({'mid11-12': 1, 'faint12+': 2}); strongest SNR 27.05; 2 at SNR >= 10; 1 confirmed in a second product at SNR >= 4
+  (per-event details are in data\stage2\survivors_LOCAL.csv, git-ignored)
