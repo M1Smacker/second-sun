@@ -46,4 +46,4 @@ These rules let the book add a round once and never change or read it; only you 
 Tell me: "Firebase is set up", plus the two values from step 9. Then I build Stage B: the automatic upload (as soon as a round ends or the internet returns), the reader script, and the daily pull into the repo, and we check one 5-curve round end to end: you do it, I read it back and compare every number with your screen.
 
 ## Meanwhile
-Open https://m1smacker.github.io/second-sun/eyes/ and practise. On your iPhone, **Share, then Add to Home Screen**, so Safari keeps your rounds. Results live on the device you used until Stage B; **My results** shows them, and **Copy my results** gives me a text to read.
+Open https://m1smacker.github.io/second-sun/eyes/ and practise. On your iPhone, **Share, then Add to Home Screen**, so Safari keeps your rounds. Until Stage B, results live on the device you used and I cannot see them (you will never be asked to send anything: once Firebase is set up, every finished round reaches me by itself).

@@ -257,9 +257,9 @@ function eyesEngine(el, src, core) {
   const NAMES = core.NAME, WINSZ = EYES_WIN;
   const btn = (label, fn, cls = "") => { const b = mk("button", { type: "button", className: "ss-demo__btn " + cls }, label); b.addEventListener("click", fn); return b; };
   const note = (t, extra = {}) => mk("p", { className: "ss-demo__result", ...extra }, t);
-  const cloud = () => (window.SSEyesCloud && window.SSEyesCloud.status ? window.SSEyesCloud.status(store) : "Cloud backup: not connected yet. Your rounds are saved on this device.");
-  const saveNote = () => (store.lastError ? `Could not save on this device (${store.lastError}). Use Copy my results.`
-    : volatile.on ? "This browser is not letting the page save (private mode?). Rounds are lost when you close the page, so use Copy my results."
+  const cloud = () => (window.SSEyesCloud && window.SSEyesCloud.status ? window.SSEyesCloud.status(store) : "Cloud backup: not set up yet, so Claude cannot see these rounds yet. They are saved on this device.");
+  const saveNote = () => (store.lastError ? `Could not save on this device (${store.lastError}). Free some space on the phone or open the book in a normal window.`
+    : volatile.on ? "This browser is not letting the page save (private mode?). Rounds are lost when you close the page. Open the book in a normal window."
     : `Saved on this device: ${store.rounds().length} round(s).`);
 
   el.append(mk("h4", {}, "Eyes mode"));
@@ -389,16 +389,10 @@ function eyesEngine(el, src, core) {
       mk("tbody", {}, ...rows.map((r) => mk("tr", {}, ...r.map((c) => mk("td", {}, String(c)))))));
     const label = mk("input", { type: "text", className: "ss-eyes__input", value: store.device.label, placeholder: "e.g. iPhone", maxLength: 40, ariaLabel: "Device name" });
     label.addEventListener("change", () => store.setLabel(label.value));
-    const out = mk("div", {});
-    const copy = async () => {
-      const text = store.exportJSON(); let ok = false;
-      try { await navigator.clipboard.writeText(text); ok = true; } catch (e) { /* fall back to a box the text can be copied from */ }
-      out.replaceChildren(ok ? note("Copied. Paste it to Claude.") : mk("textarea", { readOnly: true, rows: 6, value: text, className: "ss-eyes__input", ariaLabel: "Your results, to copy" }));
-    };
     stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
       mk("h4", {}, "Official test pass line"), ...p.lines.map((l) => note(l)),
       rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), note(cloud()),
-      mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Copy my results", copy), btn("Back", start)), out);
+      mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Back", start)));
   }
 
   el.addEventListener("keydown", (e) => {

@@ -413,7 +413,7 @@ async function eyesTest() {
     checks.practiceSaved = r.mode === "practice" && r.status === "done" && r.a.length === 5 && r.a.every((e) => e.ans && typeof e.ok === "boolean" && e.m && e.ms >= 0) && r.s.n === 5;
     checks.lookBacksRecorded = r.a.filter((e) => e.lb > 0).length >= 2;
     const fin = await text();
-    checks.finishScreen = /How you did/.test(fin) && /Saved on this device: 1 round/.test(fin) && /Cloud backup: not connected yet/.test(fin);
+    checks.finishScreen = /How you did/.test(fin) && /Saved on this device: 1 round/.test(fin) && /Cloud backup: not set up yet/.test(fin);
 
     // ---- read-only review of the finished round ----
     await click("Review this round");
@@ -448,7 +448,8 @@ async function eyesTest() {
     checks.resultsAfterReload = /3 round\(s\) saved on this device/.test(res) && /abandoned/.test(res) && /done/.test(res);
     checks.abandonedKept = rounds.length === 3 && rounds[0].status === "abandoned" && rounds[0].a.length === 2;
     checks.resultsTable = await b.evaluate(`document.querySelectorAll(".ss-eyes__table tbody tr").length === 3 && document.querySelector(".ss-eyes__table thead").innerText.includes("False alarms")`);
-    checks.copyExport = await b.evaluate(`(() => { const j = JSON.parse(window.SSEyesStore.exportJSON()); return j.schema === 1 && j.rounds.length === 3 && !!j.device.id; })()`);
+    checks.noCopyOption = !/copy/i.test(res) && !(await b.evaluate(`document.querySelector(".ss-eyes textarea") !== null || [...document.querySelectorAll(".ss-eyes button")].some((x) => /copy|paste|export/i.test(x.textContent))`));   // Ahmed: never make me hand over my results
+    checks.exportApiForTheUpload = await b.evaluate(`(() => { const j = JSON.parse(window.SSEyesStore.exportJSON()); return j.schema === 1 && j.rounds.length === 3 && !!j.device.id; })()`);
 
     // ---- phone layout: nothing wider than the screen, every button big enough ----
     await b.send("Emulation.setDeviceMetricsOverride", { width: 375, height: 812, deviceScaleFactor: 2, mobile: true });
