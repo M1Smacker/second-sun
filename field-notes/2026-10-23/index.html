@@ -1882,6 +1882,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#night-the-kepler-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Night: the Kepler test
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2285,6 +2296,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#night-the-kepler-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Night: the Kepler test
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2433,6 +2455,8 @@
 <li><strong>The audit, tried on 7 of our stars.</strong> In every sector it hides one standard dip and checks that it comes back: it always did where the noise allowed, and never where it did not. It also measures how much worse than ideal the noise is. The middle value is <strong>1.76 times</strong> the ideal, and Kepler-16 is about <strong>1.9</strong>, not the 2.8 I quoted this afternoon: that number came from a different way of measuring. So the odds lean a little up, but these 7 stars are brighter than most of ours, so I keep about 20% until all 549 are measured.</li>
 <li><strong>One honest letdown:</strong> the old QLP sectors keep their dips now, but their raw flux is about <strong>six times noisier</strong> than SPOC's. Those sectors will count for little until we find a better way to clean them.</li>
 </ul>
+<h3 id="night-the-kepler-test">Night: the Kepler test<a class="headerlink" href="#night-the-kepler-test" title="Permanent link">&para;</a></h3>
+<p>With the 30-minute bug fixed, the detector could finally read the original Kepler data. We downloaded four years of it for Kepler-16, 34 and 35 (52 files, 21 MB). No list of the exact transit times could be opened, so I found the transits a different way first, and checked each one by eye: 7 for Kepler-16, 7 for Kepler-34 and 4 for Kepler-35. Then the real detector ran blind. <strong>It found all 18</strong>, in both kinds of flux, at 13 to 320 times the noise. Most of its extra events sat at the edges of Kepler's monthly pauses, which our rules already flag for a person. One extra dip happened at the same moment on two different stars, which can only be the spacecraft. The honest limit: the transits I could see by eye are the easy ones, so this is not yet a fair race against Davies et al., who counted 9 for Kepler-34 and 7 for Kepler-35.</p>
 <p><strong>Idea:</strong> a filter that silently returns nothing looks exactly like a quiet star. Every way the data can come in (each product, spacing and era) needs a test that hides a known dip and fails loudly if it does not come back.</p>
 <p><strong>You could try it:</strong> <code>research/deep-review-2026-10-23/our-checks/verify_b1_b2.py</code> prints the four spacings and which column the loader picks for each QLP file we have.</p>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
