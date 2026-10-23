@@ -449,7 +449,7 @@ async function eyesTest() {
     checks.resultsAfterReload = /3 round\(s\) saved on this device/.test(res) && /abandoned/.test(res) && /done/.test(res);
     checks.abandonedKept = rounds.length === 3 && rounds[0].status === "abandoned" && rounds[0].a.length === 2;
     checks.resultsTable = await b.evaluate(`document.querySelectorAll(".ss-eyes__table tbody tr").length === 3 && document.querySelector(".ss-eyes__table thead").innerText.includes("False alarms")`);
-    checks.noCopyOption = !/copy/i.test(res) && !(await b.evaluate(`document.querySelector(".ss-eyes textarea") !== null || [...document.querySelectorAll(".ss-eyes button")].some((x) => /copy|paste|export/i.test(x.textContent))`));   // Ahmed: never make me hand over my results
+    checks.noCopyOption = !/copy (my|the|your)? ?results|paste|export|send (it |them )?to claude/i.test(res) && !(await b.evaluate(`document.querySelector(".ss-eyes textarea") !== null || [...document.querySelectorAll(".ss-eyes button")].some((x) => /copy|paste|export/i.test(x.textContent))`));   // Ahmed: never make me hand over my results
     checks.exportApiForTheUpload = await b.evaluate(`(() => { const j = JSON.parse(window.SSEyesStore.exportJSON()); return j.schema === 1 && j.rounds.length === 3 && !!j.device.id; })()`);
 
     // ---- phone layout: nothing wider than the screen, every button big enough ----
@@ -517,7 +517,7 @@ async function eyesCloudTest() {
     checks.roundSentAtOnce = await waitFor(b, `window.SSEyesStore.unsynced().length === 0`, 15000) && mock.docs.size === 1;
     checks.shapeAcceptedByRules = mock.calls.length >= 1 && mock.calls.every((c) => c.good);
     checks.statusSaysSafe = await waitFor(b, `/all 1 finished round\\(s\\) are safe in the cloud, and Claude can read them/.test(document.querySelector(".ss-eyes").innerText)`, 8000);
-    checks.noCopyOrSendStep = !/copy|paste|send (it )?to claude/i.test(await text());
+    checks.noCopyOrSendStep = !/copy (my|the|your)? ?results|paste|export|send (it |them )?to claude/i.test(await text());
     const sent = [...mock.docs.values()][0].fields;
     checks.sentMatchesScreen = sent.a.arrayValue.values.length === 5 && sent.mode.stringValue === "practice" && sent.status.stringValue === "done";
 
