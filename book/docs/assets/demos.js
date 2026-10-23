@@ -157,7 +157,58 @@ function initNoiseDemo(el) {
   size(); draw();
 }
 
-const DEMOS = { depth: initDepthDemo, orbit: initOrbitDemo, noise: initNoiseDemo };
+// ---- Demo: a real light curve you can drag and zoom (Chapter 2) ----
+// Real data: TOI-1338, TESS sector 98, built by book/tools/make_explorer_data.py (10-minute averages, ppm from 1).
+const DATA_BASE = document.currentScript ? new URL("data/", document.currentScript.src).href : "";
+async function initExplorerDemo(el) {
+  const note = mk("p", { className: "ss-demo__result", ariaLive: "polite" });
+  let J;
+  try { J = await (await fetch(DATA_BASE + "toi1338-s98.json")).json(); }
+  catch (e) { el.append(mk("p", {}, "The light curve could not be loaded. Check your connection and reload.")); return; }
+  const cv = mk("canvas", { role: "img", tabIndex: 0, className: "ss-demo__drag", ariaLabel: "The real TOI-1338 light curve. Use the left and right arrow keys to move and plus and minus to zoom." });
+  const t0 = J.t0_btjd, dt = J.step_days, tEnd = t0 + J.ppm.length * dt, MIN_WIN = 0.25;
+  let a = t0, b = tEnd, C;
+  const btn = (label, fn) => { const x = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm" }, label); x.addEventListener("click", fn); return x; };
+  const clamp = (lo, hi) => { const w = Math.max(MIN_WIN, Math.min(tEnd - t0, hi - lo)); lo = Math.max(t0, Math.min(tEnd - w, lo)); a = lo; b = lo + w; };
+  const show = (mid, win) => { clamp(mid - win / 2, mid + win / 2); draw(); };
+  const zoom = (k) => { const m = (a + b) / 2, w = (b - a) * k; clamp(m - w / 2, m + w / 2); draw(); };
+  const pan = (f) => { const w = b - a; clamp(a + f * w, b + f * w); draw(); };
+  el.append(cv, mk("div", { className: "ss-demo__row" },
+    btn("Earlier", () => pan(-0.3)), btn("Later", () => pan(0.3)), btn("Zoom in", () => zoom(0.5)), btn("Zoom out", () => zoom(2)),
+    btn("Whole sector", () => show((t0 + tEnd) / 2, tEnd - t0)), btn("Planet crossing", () => show(J.planet_btjd, 1)), btn("An eclipse", () => show(J.eclipses_btjd[1], 1))), note);
+  const size = () => { C = fit(cv, 0.62); };
+  function draw() {
+    const { g, w, h } = C, L = 62, B = 24, T = 8, pw = w - L - 6, ph = h - B - T;
+    g.fillStyle = "#070b14"; g.fillRect(0, 0, w, h);
+    const i0 = Math.max(0, Math.floor((a - t0) / dt)), i1 = Math.min(J.ppm.length - 1, Math.ceil((b - t0) / dt));
+    let lo = 0, hi = 0, n = 0;
+    for (let i = i0; i <= i1; i++) { const v = J.ppm[i]; if (v !== null) { lo = Math.min(lo, v); hi = Math.max(hi, v); n++; } }
+    const pad = Math.max(300, (hi - lo) * 0.08); lo -= pad; hi += pad;
+    const X = (t) => L + (t - a) / (b - a) * pw, Y = (v) => T + (hi - v) / (hi - lo) * ph, big = hi - lo > 20000;
+    g.font = "12px system-ui, sans-serif"; g.fillStyle = "#aab1c0"; g.strokeStyle = "rgba(170,177,192,.18)"; g.textAlign = "right";
+    for (let k = 0; k <= 3; k++) { const v = lo + (hi - lo) * k / 3; g.beginPath(); g.moveTo(L, Y(v)); g.lineTo(w - 6, Y(v)); g.stroke(); g.fillText(big ? (v / 1e4).toFixed(1) + "%" : (Math.abs(v) >= 1000 ? (v / 1000).toFixed(1) + "k" : Math.round(v)) + " ppm", L - 4, Y(v) + 4); }
+    const span = b - a, step = [0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10].find((s) => span / s <= 6) || 10; g.textAlign = "center";
+    for (let tk = Math.ceil(a / step) * step; tk <= b; tk += step) g.fillText(tk.toFixed(step < 1 ? 2 : 0), X(tk), h - 8);
+    g.fillStyle = "rgba(220,226,240,.85)";
+    for (let i = i0; i <= i1; i++) { const v = J.ppm[i]; if (v !== null) g.fillRect(X(t0 + (i + 0.5) * dt) - 0.9, Y(v) - 0.9, 1.8, 1.8); }
+    const tick = (t, col) => { if (t >= a && t <= b) { g.fillStyle = col; g.beginPath(); g.moveTo(X(t), T + 14); g.lineTo(X(t) - 5, T + 3); g.lineTo(X(t) + 5, T + 3); g.closePath(); g.fill(); } };
+    J.eclipses_btjd.forEach((t) => tick(t, "#aab1c0")); tick(J.planet_btjd, "#e2b45f");
+    const low = n ? Math.min(0, ...J.ppm.slice(i0, i1 + 1).filter((v) => v !== null)) : 0;
+    note.textContent = `Showing ${span.toFixed(2)} days (BTJD ${a.toFixed(1)} to ${b.toFixed(1)}). Lowest point in view: ${(-low / 1e4).toFixed(2)}% below normal. Grey markers: one star passing in front of the other. Amber marker: the planet's crossing.`;
+  }
+  let drag = null;
+  cv.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, a, b }; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener("pointermove", (e) => { if (drag) { const d = (e.clientX - drag.x) / cv.getBoundingClientRect().width * (drag.b - drag.a); clamp(drag.a - d, drag.b - d); draw(); } });
+  cv.addEventListener("pointerup", () => { drag = null; });
+  cv.addEventListener("keydown", (e) => {
+    const k = { ArrowLeft: () => pan(-0.2), ArrowRight: () => pan(0.2), "+": () => zoom(0.5), "=": () => zoom(0.5), "-": () => zoom(2) }[e.key];
+    if (k) { e.preventDefault(); k(); }
+  });
+  let w0 = 0; new ResizeObserver(() => { const w = el.clientWidth; if (w !== w0) { w0 = w; size(); draw(); } }).observe(el);
+  size(); draw();
+}
+
+const DEMOS = { depth: initDepthDemo, orbit: initOrbitDemo, noise: initNoiseDemo, explorer: initExplorerDemo };
 const start = () => document.querySelectorAll(".ss-demo[data-demo]").forEach((el) => {
   const init = DEMOS[el.dataset.demo];
   if (init && !el.dataset.ready) { el.dataset.ready = "1"; init(el); }

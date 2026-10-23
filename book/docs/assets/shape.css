@@ -135,3 +135,7 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
 .ss-demo__btn[aria-pressed="true"] { background: var(--ss-accent); color: var(--ss-on-accent); }
 .ss-demo__btn { min-height: var(--ss-tap); min-width: 96px; padding: 0 20px; border: 1.5px solid var(--ss-accent); border-radius: var(--ss-radius); background: transparent; color: var(--ss-accent); font: 600 15px var(--ss-ui); cursor: pointer; }
 .ss-demo__result { font: 400 15px/1.5 var(--ss-ui); color: var(--ss-text); margin: 4px 0 0; }
+.ss-demo__row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+.ss-demo__sm { min-width: 0; padding: 0 14px; }
+.ss-demo canvas.ss-demo__drag { touch-action: pan-y; cursor: grab; }
+.ss-demo canvas.ss-demo__drag:active { cursor: grabbing; }

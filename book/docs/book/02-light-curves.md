@@ -75,9 +75,14 @@ TOI-1338's light curve shows dips of very different sizes:
 
 | Dip | Depth | Cause |
 |---|---|---|
-| Primary eclipse, every 14.6 days | about **5.1%** (51,000 ppm) | the small star passes in front of the big one |
-| Secondary eclipse | about **0.4%** | the big star covers the small one |
+| Primary eclipse, every 14.6 days | about **6%** at the bottom, 5.7% typical inside it {{claim:F-046}} | the small star passes in front of the big one |
+| Secondary eclipse | about **0.3%** {{claim:F-046}} | the big star covers the small one |
 | 16 Dec 2025, once | about **0.24%** (2,400 ppm), ~6.4 h | the planet TOI-1338 b {{claim:F-011}} |
+
+<div class="ss-demo" data-demo="explorer"></div>
+<p class="ss-fallback">With JavaScript on, this spot shows the real TOI-1338 light curve for sector 98, which you can drag and zoom.</p>
+
+**Try it.** This is the real light curve from our own run (TESS sector 98, averaged into 10-minute steps). Press *Whole sector* and count the deep eclipses. Then press *Planet crossing* and look at the dip that is roughly thirty times shallower. Drag the picture to move along it, or use the buttons.
 
 Check the planet with the formula: TOI-1338 b is about 6.9 Earth radii {{claim:F-003}}, and the big star is about 1.3 Sun radii (the value used in our injection test). In Earth radii the star is 1.3 × 109 ≈ 142. So depth ≈ (6.9 / 142)² ≈ 0.0024 = **2,400 ppm**. That matches what our search measured.
 
