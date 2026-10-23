@@ -61,3 +61,6 @@ Done: B1, B2, B5 fixed, tests first, regression on every local light curve, audi
 
 ## 2026-10-23 night: Kepler re-find test (Ahmed: "Do kepler test first")
 Decisions by Claude: (1) the answer key is our own (independent run-length finder plus eye check), labelled LIKELY, because no per-transit table could be opened; (2) scored on transits outside the eclipse mask only; (3) result 18/18 reported as an upper bound, not as beating Davies. Record: research/kepler-refind-2026-10-23/README.md.
+
+## 2026-10-23 evening: Ahmed approves the hunt in stages (Stage 0 and 1 only)
+Ahmed: "go with your pick. make sure to explain it well at the end and keep the book updated. if the limit is reached, no problem, i have set it so that it will auto continue". Scope: Stage 0 (B3, B4 as a flag, same-moment filter, QLP window borrowing) and Stage 1 (download and audit all G1 star-sectors). NOT approved: the trial search (Stage 2) and full search (Stage 3). Real-data events are not looked at in Stage 1. Checklist in RESUME.md.
