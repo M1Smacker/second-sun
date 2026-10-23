@@ -4,6 +4,12 @@
 
 ## TODAY (2026-10-23, day): weekly cap raised to 65% for today (Ahmed: "put the weekly cap for today at around 65%"). Gemini's research answer was Compass-reviewed: `research/compass-reviews/2026-10-23-gemini-answer.md`. Next steps wait for his go.
 
+## LATEST (2026-10-23, afternoon): outside deep review found two real detector bugs
+A separate research Claude answered our brief (`research/deep-review-2026-10-23/review.md`); Compass review: `research/compass-reviews/2026-10-23-deep-review.md` (verdict: APPROVE findings, REVISE odds). Re-checked here:
+- **B1**: `detect_v2` finds NOTHING on 30-minute data (S14-26 FFIs; 890 of 5,081 QLP star-sectors; also Kepler long cadence). **B2**: QLP before S56 silently uses `kspsap_flux` (the transit-eating spline column), 2,845 of 5,081. Both VERIFIED on this machine. Also B3 (KIC 4150611, 7622486 extra periods unmasked), B5 (all-NaN PDCSAP returns nothing), B4 (flipped-match deletion untested; make it a flag).
+- **Odds: about 20% (range 5 to 45%)**, up from 15%; mostly decided by G1's real noise (17% if like Kepler-16, 29% if like TOI-1338).
+- **Proposed next (needs Ahmed's go):** fix B1/B2/B5 with self-checks that fail on the old code, then a data-path audit over all G1 star-sectors (cadence, column, noise per box, one injected transit back out), then the Kepler re-find test. TESS returns to the Kepler field in sectors 119-120 (July-August 2027): a candidate published with a prediction before then can be tested.
+
 ## NEWEST (2026-10-23, night): the book was rebuilt overnight under Ahmed's approval; cap is 50%
 Ahmed said "approve, font B and start building" (23 Oct, going to sleep): build, then stress test, polish, make the home constellation realistic, stop at **50% of the weekly limit** and pause cleanly. Brief: `research/BOOK-REDESIGN-BRIEF.md`.
 
