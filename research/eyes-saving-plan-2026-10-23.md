@@ -11,6 +11,12 @@
 - Feedback: **big truth banner, 4 buttons** (Dip / No dip / Odd / Not sure). After every answer the banner states what it truly was: A DIP, or NOT A DIP with the reason (eclipse, spike, jump, nothing), and whether he was right.
 - Real-lead pass: results go to the **private Firebase** too. Claude's condition: star IDs and light curves never leave this computer; only opaque codes (L1, L2...) and his answers are uploaded; nothing about leads in the public repo.
 
+## CLARIFICATION BY AHMED (2026-10-23 night, after the plan): this replaces the real-lead rows above
+- **Now:** Eyes mode is only practice and the official test. **Claude decides when he is ready** (his words: "once only you agree, like if you are satisfied with my results"); not before.
+- **Later: a separate tab in the book for real data, connected to the hunt** (hunt output pumped into the book as the Eyes deck). He will look at the dips Claude tells him to, possibly all of them, and is happy to give 40 to 60 minutes a day once his practice is solid.
+- **It may be PUBLIC. His explicit decision:** "I don't care if it's public, nobody even knows this... you can put the entire data, every candidate, everything on the book... We will figure this part out of people looking at our candidates when we actually get something big." This overrides the earlier local-only rule for now (the old rule stays on file; reversible, but git history keeps whatever was pushed).
+- **Design consequence for Stage A:** ONE Eyes engine with a swappable deck source (practice generator now; the hunt's events later). Every saved round records `mode` (practice, test, real) and `source`, so Stage C is a new source and a new tab, not a rewrite. Stage C is therefore a normal book tab, not a local page, and its results can use the same cloud save.
+
 ## What is built, in three stages
 **Stage A (no Firebase needed; lets Ahmed start testing at once):**
 1. Round record, saved on the device after EVERY answer (IndexedDB, with a localStorage fallback): schema version, round id, device label, mode (practice, test), planned and actual length, start and end time, and per question: curve kind (truth), his answer, right/wrong/unsure, time taken, looked-back flag, curve id and seed (so any curve can be re-drawn exactly). Round summary: right, wrong, unsure; dips found of hidden; clear and faint split; false alarms on quiet curves; odd things spotted.
@@ -33,3 +39,5 @@
 - iPhone Safari can erase site storage after about 7 days without use unless the book is added to the Home Screen; the cloud copy is what makes "saved forever" true, so the screen shows unsent rounds and Claude tells Ahmed to add it to the Home Screen.
 - Sample size: 20 clear dips (two test rounds) can show he is not below the line, not prove he is above it; a third round narrows it. Claude reports the range, not only the pass/fail.
 - Nothing from this system touches the hunt's candidate data except Stage C, and that stays local to the PC.
+
+## STATUS (small hours, 24 Oct local): Stage A built and tested (see RESUME.md). Stage B waits for Ahmed's Firebase setup (research/firebase-setup-steps.md). Stage C waits for Claude's judgement of his test results.

@@ -367,7 +367,110 @@ async function hammer() {
   return out;
 }
 
-const modes = { hammer, shots, layout, offline: offlineTest, fail404, update, jsoff, redirect, images };
+// Eyes mode, end to end in a real browser: practice round with banner and read-only look back, review, the 30-curve test, an abandoned round,
+// persistence across a reload, and the phone layout. Nothing here may change a saved answer.
+async function eyesTest() {
+  const b = await launch("eyes");
+  const out = { mode: "eyes" }, checks = {};
+  const wait = (ms) => sleep(ms);
+  try {
+    await goto(b, base + "eyes/");
+    checks.started = await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    const click = (text) => b.evaluate(`(() => { const t = ${JSON.stringify(text)}; const bt = [...document.querySelectorAll(".ss-eyes button")].find((x) => x.textContent.trim() === t && x.offsetParent !== null && !x.disabled); if (!bt) return false; bt.click(); return true; })()`);
+    const clickAny = async (list) => { for (const t of list) if (await click(t)) return t; return null; };
+    const text = () => b.evaluate(`document.querySelector(".ss-eyes").innerText`);
+    const visible = (t) => b.evaluate(`[...document.querySelectorAll(".ss-eyes button")].some((x) => x.textContent.trim() === ${JSON.stringify(t)} && x.offsetParent !== null)`);
+    const store = () => b.evaluate(`JSON.parse(JSON.stringify(window.SSEyesStore.rounds()))`);
+    const NEXT = ["Next", "See how you did", "Finish the test"];
+    const start = await text();
+    checks.noOldPromise = !/Nothing here is saved/.test(start) && /Take the official test/.test(start) && /My results/.test(start);
+
+    // ---- practice round of 5 ----
+    await click("5");
+    const ans = ["Dip", "No dip", "Odd", "Not sure", "Dip"], banners = [];
+    let snapBefore = null, lookBackTexts = [];
+    for (let i = 0; i < 5; i++) {
+      if (i === 2) {                                                   // look back from a live, unanswered question
+        snapBefore = JSON.stringify((await store())[0].a.map((e) => [e.ans, e.ok, e.truth]));
+        checks.backButtonShown = await visible("◀ Look at previous question");
+        await click("◀ Look at previous question");
+        lookBackTexts.push(await text());
+        checks.lookBackReadOnly = !(await visible("Dip")) && !(await visible("No dip")) && !(await visible("Odd")) && !(await visible("Not sure"));
+        await click("◀ Earlier"); lookBackTexts.push(await text());
+        checks.cannotGoBeforeFirst = !(await click("◀ Earlier"));
+        await click("Later ▶");
+        await click("Back to light curve 3");
+        checks.returnedToLive = /Light curve 3 of 5/.test(await text()) && await visible("Dip");
+        checks.answersUnchangedByLooking = snapBefore === JSON.stringify((await store())[0].a.map((e) => [e.ans, e.ok, e.truth]));
+      }
+      checks["answered" + i] = await click(ans[i]);
+      banners.push(await text());
+      checks["next" + i] = !!(await clickAny(NEXT));
+    }
+    checks.bannerSaysTruth = banners.every((t) => /THIS WAS: (A DIP|NOT A DIP)/.test(t) && /It was /.test(t) && /You said/.test(t));
+    checks.lookBackShowsTruthAndAnswer = lookBackTexts.every((t) => /Looking back at light curve \d of 5 \(read only\)/.test(t) && /THIS WAS:/.test(t) && /You said/.test(t));
+    let r = (await store())[0];
+    checks.practiceSaved = r.mode === "practice" && r.status === "done" && r.a.length === 5 && r.a.every((e) => e.ans && typeof e.ok === "boolean" && e.m && e.ms >= 0) && r.s.n === 5;
+    checks.lookBacksRecorded = r.a.filter((e) => e.lb > 0).length >= 2;
+    const fin = await text();
+    checks.finishScreen = /How you did/.test(fin) && /Saved on this device: 1 round/.test(fin) && /Cloud backup: not connected yet/.test(fin);
+
+    // ---- read-only review of the finished round ----
+    await click("Review this round");
+    const rv = await text();
+    checks.reviewOpens = /light curve 1 of 5 \(read only\)/.test(rv) && /THIS WAS:/.test(rv) && !(await visible("Dip"));
+    await click("Close the review");
+    checks.reviewCloses = /How you did/.test(await text());
+
+    // ---- the official test: 30 curves, no truth until the end ----
+    await click("Another sitting");
+    await click("Take the official test (30 curves)");
+    const cyc = ["Dip", "No dip", "Odd", "Not sure"]; let leaked = false, lastBanner = "";
+    for (let i = 0; i < 30; i++) {
+      await click(cyc[i % 4]);
+      lastBanner = await text(); if (/THIS WAS:/.test(lastBanner)) leaked = true;
+      if (i === 5) { await click("◀ Look at previous question"); const t = await text(); if (/THIS WAS:/.test(t) || !/You answered:/.test(t)) leaked = true; await click("Back to light curve 6"); }
+      await clickAny(NEXT);
+    }
+    checks.testHidesTruth = !leaked;
+    const tf = await text();
+    checks.testFinish = /Test finished/.test(tf) && /Pass line so far/.test(tf) && /Not enough yet/.test(tf) && /Test rounds: 1, curves: 30/.test(tf);
+    r = (await store())[0];
+    checks.testSaved = r.mode === "test" && r.status === "done" && r.a.length === 30 && r.n === 30 && r.a.filter((e) => e.truth === "dip").length === 14 && r.a.filter((e) => e.truth === "none").length === 8;
+
+    // ---- a round left half done, then a reload ----
+    await click("Another sitting"); await click("5"); await click("Dip"); await clickAny(NEXT); await click("No dip");
+    await goto(b, base + "eyes/");
+    await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    await click("My results");
+    const res = await text();
+    const rounds = await store();
+    checks.resultsAfterReload = /3 round\(s\) saved on this device/.test(res) && /abandoned/.test(res) && /done/.test(res);
+    checks.abandonedKept = rounds.length === 3 && rounds[0].status === "abandoned" && rounds[0].a.length === 2;
+    checks.resultsTable = await b.evaluate(`document.querySelectorAll(".ss-eyes__table tbody tr").length === 3 && document.querySelector(".ss-eyes__table thead").innerText.includes("False alarms")`);
+    checks.copyExport = await b.evaluate(`(() => { const j = JSON.parse(window.SSEyesStore.exportJSON()); return j.schema === 1 && j.rounds.length === 3 && !!j.device.id; })()`);
+
+    // ---- phone layout: nothing wider than the screen, every button big enough ----
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 375, height: 812, deviceScaleFactor: 2, mobile: true });
+    await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    const phone = async () => b.evaluate(`({ over: document.documentElement.scrollWidth - window.innerWidth, small: [...document.querySelectorAll(".ss-eyes button")].filter((x) => x.offsetParent !== null && x.getBoundingClientRect().height < 43.5).length })`);
+    const p1 = await phone(); await click("My results"); const p2 = await phone();
+    await click("Back"); await click("5"); await click("Dip"); const p3 = await phone();
+    checks.phoneLayout = [p1, p2, p3].every((p) => p.over <= 1 && p.small === 0);
+    out.phone = [p1, p2, p3];
+    await b.send("Emulation.clearDeviceMetricsOverride");
+
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    checks.noConsoleErrors = out.errors.length === 0;
+  } catch (e) { out.error = String(e && e.message || e); }
+  finally { await b.close(); }
+  out.checks = checks;
+  out.failed = Object.entries(checks).filter(([, v]) => !v).map(([k]) => k);
+  out.pass = !out.error && out.failed.length === 0 && Object.keys(checks).length >= 30;
+  return out;
+}
+
+const modes = { hammer, shots, layout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));

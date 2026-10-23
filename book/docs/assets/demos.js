@@ -208,21 +208,20 @@ async function initExplorerDemo(el) {
   size(); draw();
 }
 
-// ---- Eyes mode (practice): look at a stretch of light curve with nothing marked, say what you see, then see the answer ----
-// Practice only: every stretch comes from the real TOI-1338 light curve (sector 98) with fake dips, glitches and real eclipses
-// whose answer we know. The hunt's real stars are deliberately NOT connected; that waits until Ahmed says start.
-async function initEyesDemo(el) {
-  let J;
-  try { J = await (await fetch(DATA_BASE + "toi1338-s98.json")).json(); }
-  catch (e) { el.append(mk("p", {}, "The practice light curve could not be loaded. Check your connection and reload.")); return; }
-  const N = J.ppm.length, dt = J.step_days, t0 = J.t0_btjd, WIN = 216;                    // a stretch is 1.5 days of 10-minute steps
-  let s0 = (Date.now() ^ 0x9E3779B9) | 0;
-  const rnd = () => { s0 |= 0; s0 = s0 + 0x6D2B79F5 | 0; let z = Math.imul(s0 ^ s0 >>> 15, 1 | s0); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
+// ---- Eyes mode: look at a stretch of light curve with nothing marked and say what you see ----
+// One engine (eyesEngine) with a swappable "source" of curves {id, label, compose(mode, n), build(spec)}. Today: the practice source (the real
+// TOI-1338 sector 98 light curve with hidden fake dips, glitches and real eclipses whose answers we know). Later, the hunt's real events get
+// their own source and their own tab (Ahmed, 23 Oct 2026: only when Claude agrees his results are good enough).
+// Every answer is saved on this device at once (assets/eyes-core.js). Plan: research/eyes-saving-plan-2026-10-23.md.
+const EYES_WIN = 216;                                                               // a stretch is 1.5 days of 10-minute steps
+
+function practiceSource(J, rnd) {
+  const N = J.ppm.length, dt = J.step_days, t0 = J.t0_btjd, WIN = EYES_WIN;
   const ri = (a, b) => a + Math.floor(rnd() * (b - a + 1)), pick = (a) => a[Math.floor(rnd() * a.length)];
   const idx = (t) => Math.round((t - t0) / dt), ecl = J.eclipses_btjd.map(idx), pl = idx(J.planet_btjd);
   const clear = (i, pad) => ![...ecl, pl].some((e) => e > i - pad && e < i + WIN + pad);
   const valid = (i) => J.ppm.slice(i, i + WIN).filter((v) => v !== null).length >= 0.85 * WIN;
-  function window_(want) {                                                            // find a start that suits the kind of stretch we want
+  function window_(want) {                                                          // find a start that suits the kind of stretch we want
     for (let k = 0; k < 4000; k++) {
       const i = ri(0, N - WIN - 1);
       if (!valid(i)) continue;
@@ -232,48 +231,58 @@ async function initEyesDemo(el) {
     }
     return { i: 0 };
   }
-  function trial(kind) {
-    const w = window_(kind === "eclipse" ? "eclipse" : kind === "real" ? "planet" : "quiet"), y = J.ppm.slice(w.i, w.i + WIN);
+  function build(spec) {                                                            // meta keeps what is needed to redraw the same curve later
+    const kind = spec.kind, w = window_(kind === "eclipse" ? "eclipse" : kind === "real" ? "planet" : "quiet"), y = J.ppm.slice(w.i, w.i + WIN);
     const sub = (a, b, v) => { for (let k = a; k < b; k++) if (y[k] !== null) y[k] += v; };
-    if (kind === "eclipse") return { y, truth: "odd", kind, box: [w.e - 14, w.e + 14], note: "an eclipse: one star passing in front of the other. It is deep, but it is not a planet." };
-    if (kind === "real") return { y, truth: "dip", kind, box: [pl - w.i - 15, pl - w.i + 15], note: "the real planet TOI-1338 b crossing, about 2,000 ppm deep and 5 hours long." };
-    if (kind === "dip") { const d = ri(24, 48), a = ri(30, WIN - 30 - d), depth = pick([1500, 2500, 4000]); sub(a, a + d, -depth); return { y, truth: "dip", kind: "dip" + depth, box: [a, a + d], note: `a hidden fake planet, ${depth.toLocaleString("en")} ppm deep and ${Math.round(d / 6)} hours long.` }; }
-    if (kind === "spike") { const a = ri(30, WIN - 30); sub(a, a + 3, 9000); return { y, truth: "odd", kind, box: [a - 3, a + 6], note: "a short spike upwards, like a flare or a glitch. A planet only makes dips." }; }
-    if (kind === "step") { const a = ri(60, WIN - 60); sub(a, WIN, 3500); return { y, truth: "odd", kind, box: [a - 4, a + 4], note: "a sudden jump in brightness that stays, like an instrument glitch. A planet's dip comes back up." }; }
-    return { y, truth: "none", kind: "quiet", box: null, note: "nothing hidden here." };
+    if (kind === "eclipse") return { y, truth: "odd", kind, box: [w.e - 14, w.e + 14], meta: { w: w.i, e: w.e }, note: "an eclipse: one star passing in front of the other. It is deep, but it is not a planet." };
+    if (kind === "real") return { y, truth: "dip", kind, box: [pl - w.i - 15, pl - w.i + 15], meta: { w: w.i }, note: "the real planet TOI-1338 b crossing, about 2,000 ppm deep and 5 hours long." };
+    if (kind === "dip") { const d = ri(24, 48), a = ri(30, WIN - 30 - d), depth = spec.depth || pick([1500, 2500, 4000]); sub(a, a + d, -depth); return { y, truth: "dip", kind: "dip" + depth, box: [a, a + d], meta: { w: w.i, a, d, depth }, note: `a hidden fake planet, ${depth.toLocaleString("en")} ppm deep and ${Math.round(d / 6)} hours long.` }; }
+    if (kind === "spike") { const a = ri(30, WIN - 30); sub(a, a + 3, 9000); return { y, truth: "odd", kind, box: [a - 3, a + 6], meta: { w: w.i, a }, note: "a short spike upwards, like a flare or a glitch. A planet only makes dips." }; }
+    if (kind === "step") { const a = ri(60, WIN - 60); sub(a, WIN, 3500); return { y, truth: "odd", kind, box: [a - 4, a + 4], meta: { w: w.i, a }, note: "a sudden jump in brightness that stays, like an instrument glitch. A planet's dip comes back up." }; }
+    return { y, truth: "none", kind: "quiet", box: null, meta: { w: w.i }, note: "nothing hidden here." };
   }
-  function deck(n) {
-    const real = n >= 20 ? 1 : 0, e = Math.max(1, Math.round(0.15 * n)), o = Math.max(1, Math.round(0.15 * n)), dp = Math.max(1, Math.round(0.3 * n) - real), q = Math.max(1, n - real - e - o - dp);
-    const kinds = [...Array(real).fill("real"), ...Array(e).fill("eclipse"), ...Array(o).fill(0).map(() => pick(["spike", "step"])), ...Array(dp).fill("dip"), ...Array(q).fill("quiet")].slice(0, n);
-    while (kinds.length < n) kinds.push("quiet");
-    for (let i = kinds.length - 1; i > 0; i--) { const j = ri(0, i); [kinds[i], kinds[j]] = [kinds[j], kinds[i]]; }
-    return kinds.map(trial);
-  }
-  const title = mk("h4", {}, "Eyes mode, practice");
+  return { id: "practice-toi1338-s98", label: "Practice: TOI-1338 sector 98", compose: (mode, n) => window.SSEyes.compose(mode, n, rnd), build };
+}
+
+function eyesEngine(el, src, core) {
+  const volatile = { on: false };
+  const storage = (() => {
+    try { const s = window.localStorage, k = "ss-eyes-probe"; s.setItem(k, "1"); s.removeItem(k); return s; }
+    catch (e) { volatile.on = true; const m = new Map(); return { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)) }; }
+  })();
+  const store = core.createStore(storage);
+  store.recoverOpen();                                                              // a round left open on an earlier visit is kept as "abandoned"
+  window.SSEyesStore = store;                                                       // read by the test page checks and, later, by the cloud upload
+
+  const NAMES = core.NAME, WINSZ = EYES_WIN;
+  const btn = (label, fn, cls = "") => { const b = mk("button", { type: "button", className: "ss-demo__btn " + cls }, label); b.addEventListener("click", fn); return b; };
+  const note = (t, extra = {}) => mk("p", { className: "ss-demo__result", ...extra }, t);
+  const cloud = () => (window.SSEyesCloud && window.SSEyesCloud.status ? window.SSEyesCloud.status(store) : "Cloud backup: not connected yet. Your rounds are saved on this device.");
+  const saveNote = () => (store.lastError ? `Could not save on this device (${store.lastError}). Use Copy my results.`
+    : volatile.on ? "This browser is not letting the page save (private mode?). Rounds are lost when you close the page, so use Copy my results."
+    : `Saved on this device: ${store.rounds().length} round(s).`);
+
+  el.append(mk("h4", {}, "Eyes mode"));
   const stage = mk("div", { className: "ss-eyes" });
-  el.append(title, stage);
-  const NAMES = { dip: "Dip", none: "No dip", odd: "Odd", unsure: "Not sure" };
-  let cards, at, answers, revealed, cv, C, fb, nextBtn, prog, btns;
+  el.append(stage);
+  let mode, cards, at, answered, round, view, review, cv, C, prog, banner, ansBtns, nextBtn, navRow, backBtn, earlierBtn, laterBtn, returnBtn, t0q, lastDraw;
 
   function start() {
-    stage.replaceChildren(mk("p", {}, "How many light curves this time?"),
-      mk("div", { className: "ss-demo__row" }, ...[5, 20, 50, 100].map((n) => { const b = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm" }, String(n)); b.addEventListener("click", () => begin(n)); return b; })),
-      mk("p", { className: "ss-demo__result" }, "Each one is a day and a half of the real TOI-1338 light curve with nothing marked. Say what you see; then the answer is shown. The real stars of the hunt are not in here: that waits until you say start."));
+    cards = null; review = false;
+    stage.replaceChildren(
+      note("Practice sitting: how many light curves?"),
+      mk("div", { className: "ss-demo__row" }, ...[5, 20, 50, 100].map((n) => btn(String(n), () => begin("practice", n), "ss-demo__sm"))),
+      note("Practice shows the answer after every curve. Each curve is a day and a half of the real TOI-1338 light curve with nothing marked."),
+      mk("div", { className: "ss-demo__row" }, btn(`Take the official test (${core.TEST_N} curves)`, () => begin("test", core.TEST_N)), btn("My results", results)),
+      note("The official test shows no answers until the end and counts towards the pass line. You may look back at earlier curves, but you can never change an answer."),
+      note(saveNote(), { ariaLive: "polite" }), note(cloud()));
   }
-  function begin(n) {
-    cards = deck(n); at = 0; answers = [];
-    cv = mk("canvas", { role: "img", ariaLabel: "A stretch of light curve. Look for a dip, a glitch or nothing." });
-    fb = mk("p", { className: "ss-demo__result", ariaLive: "polite" }); prog = mk("p", { className: "ss-demo__result" });
-    btns = ["dip", "none", "odd", "unsure"].map((k, i) => { const b = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm" }, `${NAMES[k]}`); b.title = `Key ${i + 1}`; b.addEventListener("click", () => answer(k)); return b; });
-    nextBtn = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm", hidden: true }, "Next");
-    nextBtn.addEventListener("click", step);
-    stage.replaceChildren(prog, cv, mk("div", { className: "ss-demo__row" }, ...btns), fb, nextBtn);
-    C = fit(cv, 0.55); show();
-  }
+
   function draw(card, reveal) {
+    lastDraw = [card, reveal];
     const { g, w, h } = C, L = 56, B = 22, T = 8, pw = w - L - 6, ph = h - B - T, vals = card.y.filter((v) => v !== null);
     const lo = Math.min(-6000, Math.min(...vals) * 1.1), hi = Math.max(6000, Math.max(...vals) * 1.1);
-    const X = (k) => L + k / WIN * pw, Y = (v) => T + (hi - v) / (hi - lo) * ph;
+    const X = (k) => L + k / WINSZ * pw, Y = (v) => T + (hi - v) / (hi - lo) * ph;
     g.fillStyle = "#070b14"; g.fillRect(0, 0, w, h);
     g.font = "12px system-ui, sans-serif"; g.fillStyle = "#aab1c0"; g.strokeStyle = "rgba(170,177,192,.18)"; g.textAlign = "right";
     [lo, 0, hi].forEach((v) => { g.beginPath(); g.moveTo(L, Y(v)); g.lineTo(w - 6, Y(v)); g.stroke(); g.fillText((v / 1e4).toFixed(1) + "%", L - 4, Y(v) + 4); });
@@ -282,34 +291,137 @@ async function initEyesDemo(el) {
     g.fillStyle = "rgba(220,226,240,.9)";
     card.y.forEach((v, k) => { if (v !== null) g.fillRect(X(k + 0.5) - 1, Y(v) - 1, 2, 2); });
   }
-  function show() { prog.textContent = `Light curve ${at + 1} of ${cards.length}`; fb.textContent = ""; nextBtn.hidden = true; btns.forEach((b) => { b.disabled = false; }); revealed = false; draw(cards[at], false); }
+
+  function buildPlay() {                                                            // the question screen (also used for the read-only review)
+    cv = mk("canvas", { role: "img", ariaLabel: "A stretch of light curve. Look for a dip, a glitch or nothing." });
+    prog = note(""); banner = mk("div", { className: "ss-eyes__banner", role: "status", ariaLive: "polite" });
+    ansBtns = ["dip", "none", "odd", "unsure"].map((k, i) => { const b = btn(NAMES[k], () => answer(k), "ss-demo__sm"); b.title = `Key ${i + 1}`; return b; });
+    nextBtn = btn("Next", step, "ss-demo__sm"); nextBtn.hidden = true;
+    backBtn = btn("◀ Look at previous question", () => look(at - 1), "ss-demo__sm");
+    earlierBtn = btn("◀ Earlier", () => look(view - 1), "ss-demo__sm");
+    laterBtn = btn("Later ▶", () => look(view + 1), "ss-demo__sm");
+    returnBtn = btn("Back", ret, "ss-demo__sm");
+    navRow = mk("div", { className: "ss-demo__row" }, backBtn, earlierBtn, laterBtn, returnBtn);
+    stage.replaceChildren(prog, cv, mk("div", { className: "ss-demo__row" }, ...ansBtns), banner, mk("div", { className: "ss-demo__row" }, nextBtn), navRow);
+    C = fit(cv, 0.55);
+  }
+  const lastViewable = () => (review ? cards.length - 1 : at - 1);
+  function nav() {
+    const viewing = view !== null;
+    backBtn.hidden = viewing || review || at < 1;
+    earlierBtn.hidden = !viewing; earlierBtn.disabled = viewing && view <= 0;
+    laterBtn.hidden = !viewing || view >= lastViewable();
+    returnBtn.hidden = !viewing;
+    returnBtn.textContent = review ? "Close the review" : `Back to light curve ${at + 1}`;
+    navRow.hidden = [backBtn, earlierBtn, laterBtn, returnBtn].every((b) => b.hidden);
+  }
+  function setBanner(card, ans) {
+    const p = core.bannerParts(card, ans);
+    banner.className = "ss-eyes__banner ss-eyes__banner--" + p.cls;
+    banner.replaceChildren(mk("p", { className: "ss-eyes__truth" }, p.headline), mk("p", { className: "ss-eyes__what" }, p.what),
+      mk("p", { className: "ss-eyes__you" }, p.line), note(p.detail ? `This one had ${p.detail}` : ""));
+  }
+  function neutral(ans, why) {
+    banner.className = "ss-eyes__banner ss-eyes__banner--neutral";
+    banner.replaceChildren(mk("p", { className: "ss-eyes__you" }, `${why} "${NAMES[ans]}".`), note("The test shows what each one was at the end. You can look back, but not change an answer."));
+  }
+
+  function begin(m, n) {
+    mode = m; cards = src.compose(m, n).map(src.build); at = 0; view = null; review = false;
+    round = store.startRound({ mode: m, source: src.id, n: cards.length });
+    buildPlay(); show();
+  }
+  function show() {
+    view = null; answered = false; t0q = Date.now();
+    prog.textContent = `Light curve ${at + 1} of ${cards.length}`;
+    banner.replaceChildren(); banner.className = "ss-eyes__banner";
+    ansBtns.forEach((b) => { b.disabled = false; b.hidden = false; }); nextBtn.hidden = true; nav(); draw(cards[at], false);
+  }
   function answer(k) {
-    if (revealed) return; revealed = true;
-    const c = cards[at]; answers.push({ k, c }); btns.forEach((b) => { b.disabled = true; }); draw(c, true);
-    const ok = k === c.truth;
-    fb.textContent = (k === "unsure" ? "Not sure is fine. " : ok ? "Right. " : `Not quite: you said ${NAMES[k].toLowerCase()}. `) + `This one had ${c.note}`;
-    nextBtn.textContent = at + 1 < cards.length ? "Next" : "See how you did"; nextBtn.hidden = false; nextBtn.focus({ preventScroll: true });
+    if (answered || view !== null || review) return;
+    answered = true;
+    const c = cards[at]; store.recordAnswer(round.id, at, c, k, Date.now() - t0q);
+    ansBtns.forEach((b) => { b.disabled = true; });
+    if (mode === "practice") { draw(c, true); setBanner(c, k); } else { draw(c, false); neutral(k, "Answer recorded:"); }
+    if (store.lastError) banner.append(note(saveNote()));
+    nextBtn.textContent = at + 1 < cards.length ? "Next" : mode === "test" ? "Finish the test" : "See how you did"; nextBtn.hidden = false; nextBtn.focus({ preventScroll: true });
+    nav();
   }
-  function step() { at += 1; if (at < cards.length) show(); else finish(); }
-  function finish() {
-    const of = (f) => answers.filter(({ c }) => f(c)), hit = (arr) => arr.filter(({ k, c }) => k === c.truth).length, cnt = (arr) => arr.length;
-    const dips = of((c) => c.truth === "dip"), faint = of((c) => c.kind === "dip1500"), quiet = of((c) => c.truth === "none"), odd = of((c) => c.truth === "odd");
-    const falseAlarms = quiet.filter(({ k }) => k === "dip").length, unsure = answers.filter(({ k }) => k === "unsure").length;
-    const lines = [`You looked at ${answers.length} light curves.`,
-      dips.length ? `Dips hidden in them: you found ${hit(dips)} of ${cnt(dips)}${faint.length ? ` (the faintest: ${hit(faint)} of ${cnt(faint)})` : ""}.` : "",
-      quiet.length ? `Quiet curves: you called ${falseAlarms} of ${cnt(quiet)} a dip (a false alarm).` : "",
-      odd.length ? `Odd things (eclipses, spikes, jumps): you spotted ${hit(odd)} of ${cnt(odd)}.` : "",
-      unsure ? `You said not sure ${unsure} times, which is an honest answer.` : "",
-      "A faint dip is hard to see by eye, and that is the point: this is how it feels to hunt. Nothing here is saved."].filter(Boolean);
-    stage.replaceChildren(mk("h4", {}, "How you did"), ...lines.map((l) => mk("p", { className: "ss-demo__result" }, l)), (() => { const b = mk("button", { type: "button", className: "ss-demo__btn" }, "Another sitting"); b.addEventListener("click", start); return b; })());
+  function step() { if (view !== null || !answered) return; at += 1; if (at < cards.length) show(); else finish(); }
+
+  function look(j) {                                                                // read only: shows the answer you gave, never lets you change it
+    if (j < 0 || j > lastViewable()) return;
+    view = j;
+    const c = cards[j], e = round.a[j], reveal = mode === "practice" || review;
+    if (!review) store.noteLookBack(round.id, j);
+    draw(c, reveal);
+    prog.textContent = `Looking back at light curve ${j + 1} of ${cards.length} (read only)`;
+    ansBtns.forEach((b) => { b.hidden = true; b.disabled = true; }); nextBtn.hidden = true;
+    if (reveal) setBanner(c, e.ans); else neutral(e.ans, "You answered:");
+    nav();
   }
+  function ret() {
+    if (review) { showFinish(); return; }
+    view = null;
+    const c = cards[at];
+    prog.textContent = `Light curve ${at + 1} of ${cards.length}`;
+    ansBtns.forEach((b) => { b.hidden = false; b.disabled = answered; });
+    if (answered) { draw(c, mode === "practice"); if (mode === "practice") setBanner(c, round.a[at].ans); else neutral(round.a[at].ans, "Answer recorded:"); } else { draw(c, false); banner.replaceChildren(); banner.className = "ss-eyes__banner"; }
+    nextBtn.hidden = !answered; nav();
+  }
+
+  function finish() { store.finishRound(round.id); showFinish(); }
+  function showFinish() {
+    review = false; view = null;
+    const lines = core.summaryLines(round.s), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), ...lines.map((l) => note(l))];
+    if (mode === "test") kids.push(mk("h4", {}, "Pass line so far"), ...core.passLine(store.rounds()).lines.map((l) => note(l)));
+    kids.push(note(saveNote()), note(cloud()), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
+    stage.replaceChildren(...kids);
+  }
+  function startReview() { review = true; view = null; buildPlay(); ansBtns.forEach((b) => { b.hidden = true; }); look(0); }
+
+  function results() {
+    cards = null; review = false;
+    const rs = store.rounds(), shown = rs.slice(0, 30), p = core.passLine(rs);
+    const head = ["Date", "Mode", "Curves", "Right", "Wrong", "Not sure", "Dips found", "False alarms", "Status"];
+    const rows = shown.map((r) => { const s = r.s || core.summarize(r.a); return [core.fmtDate(r.t0), r.mode, `${r.a.length}/${r.n}`, s.right, s.wrong, s.unsure, s.dips ? `${s.dipsFound}/${s.dips}` : "", s.quiet ? `${s.falseAlarms}/${s.quiet}` : "", r.status]; });
+    const table = mk("table", { className: "ss-eyes__table" }, mk("thead", {}, mk("tr", {}, ...head.map((h) => mk("th", { scope: "col" }, h)))),
+      mk("tbody", {}, ...rows.map((r) => mk("tr", {}, ...r.map((c) => mk("td", {}, String(c)))))));
+    const label = mk("input", { type: "text", className: "ss-eyes__input", value: store.device.label, placeholder: "e.g. iPhone", maxLength: 40, ariaLabel: "Device name" });
+    label.addEventListener("change", () => store.setLabel(label.value));
+    const out = mk("div", {});
+    const copy = async () => {
+      const text = store.exportJSON(); let ok = false;
+      try { await navigator.clipboard.writeText(text); ok = true; } catch (e) { /* fall back to a box the text can be copied from */ }
+      out.replaceChildren(ok ? note("Copied. Paste it to Claude.") : mk("textarea", { readOnly: true, rows: 6, value: text, className: "ss-eyes__input", ariaLabel: "Your results, to copy" }));
+    };
+    stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
+      mk("h4", {}, "Official test pass line"), ...p.lines.map((l) => note(l)),
+      rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), note(cloud()),
+      mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Copy my results", copy), btn("Back", start)), out);
+  }
+
   el.addEventListener("keydown", (e) => {
-    if (!cards || !cv || !cv.isConnected) return;
+    if (!cards || !cv || !cv.isConnected || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
     const k = { 1: "dip", 2: "none", 3: "odd", 4: "unsure" }[e.key];
-    if (k && !revealed) { e.preventDefault(); answer(k); } else if (e.key === "Enter" && revealed && !nextBtn.hidden && document.activeElement !== nextBtn) { e.preventDefault(); step(); }
+    if (k && !answered && view === null && !review) { e.preventDefault(); answer(k); }
+    else if (e.key === "Enter" && answered && view === null && !nextBtn.hidden && document.activeElement !== nextBtn) { e.preventDefault(); step(); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); if (view !== null) look(view - 1); else if (!review && at >= 1) look(at - 1); }
+    else if (e.key === "ArrowRight" && view !== null) { e.preventDefault(); if (view < lastViewable()) look(view + 1); else ret(); }
+    else if (e.key === "Escape" && view !== null) { e.preventDefault(); ret(); }
   });
-  let w0 = 0; new ResizeObserver(() => { const w = el.clientWidth; if (w !== w0) { w0 = w; if (cv && cv.isConnected) { C = fit(cv, 0.55); draw(cards[at], revealed); } } }).observe(el);
+  let w0 = 0; new ResizeObserver(() => { const w = el.clientWidth; if (w !== w0) { w0 = w; if (cv && cv.isConnected && lastDraw) { C = fit(cv, 0.55); draw(...lastDraw); } } }).observe(el);
   start();
+}
+
+async function initEyesDemo(el) {
+  let J;
+  try { J = await (await fetch(DATA_BASE + "toi1338-s98.json")).json(); }
+  catch (e) { el.append(mk("p", {}, "The practice light curve could not be loaded. Check your connection and reload.")); return; }
+  if (!window.SSEyes) { el.append(mk("p", {}, "Eyes mode could not start (a script did not load). Reload the page.")); return; }
+  let s0 = (Date.now() ^ 0x9E3779B9) | 0;
+  const rnd = () => { s0 |= 0; s0 = s0 + 0x6D2B79F5 | 0; let z = Math.imul(s0 ^ s0 >>> 15, 1 | s0); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
+  eyesEngine(el, practiceSource(J, rnd), window.SSEyes);
 }
 
 const DEMOS = { depth: initDepthDemo, orbit: initOrbitDemo, noise: initNoiseDemo, explorer: initExplorerDemo, eyes: initEyesDemo };
