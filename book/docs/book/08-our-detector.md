@@ -27,7 +27,7 @@ An SNR of 7 means "seven times bigger than a normal wobble". We use 7 as the bar
 
 The steps, with every symbol:
 
-1. **Mask the eclipses.** The stars eclipse each other every binary period *P*<sub>bin</sub>. We use the known *P*<sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside.
+1. **Mask the eclipses.** The stars eclipse each other every binary period *P*<sub>bin</sub>. We use the known *P*<sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside. A star with more than one catalogue period (two of ours have) gets every period masked, one after the other.
 2. **Flatten (detrend).** Stars and the spacecraft cause slow drifts. We fit a smooth curve with a moving window of **2 days** (a "biweight", which ignores outliers) and divide it out. The window must be much longer than a transit, or the flattening eats the dip. v1 used 1 day, which was too short for 6-hour dips.
 3. **Bin.** Average the 2-minute points into **10-minute bins**. When the data itself is spaced wider (30 minutes in TESS's first two years and in Kepler), each bin is one data point wide instead.
 4. **Slide boxes.** For each length *D* in 3, 4, 5, 6.5, 8, 10, 12 and 15 hours, compute the average brightness *m* of every *D*-long stretch.
