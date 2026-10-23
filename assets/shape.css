@@ -140,6 +140,23 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
 .ss-demo canvas.ss-demo__drag { touch-action: pan-y; cursor: grab; }
 .ss-demo canvas.ss-demo__drag:active { cursor: grabbing; }
 
+/* Eyes mode: the truth banner after every answer, the results table, the read-only look back. Right and wrong differ by words, symbols and border style, not by colour alone. */
+.ss-eyes__banner { border: 2px solid var(--ss-line); border-left-width: 8px; border-radius: var(--ss-radius); padding: 10px 14px; margin: 8px 0; background: var(--ss-surface); }
+.ss-eyes__banner:empty { display: none; }
+.ss-eyes__truth { font: 700 20px/1.3 var(--ss-ui); color: var(--ss-text); margin: 0; letter-spacing: .02em; }
+.ss-eyes__what { font: 600 16px/1.4 var(--ss-ui); color: var(--ss-text); margin: 2px 0 6px; }
+.ss-eyes__you { font: 600 15px/1.4 var(--ss-ui); color: var(--ss-text); margin: 0 0 4px; }
+.ss-eyes__banner--right { border-color: var(--ss-accent); border-style: solid; }
+.ss-eyes__banner--wrong { border-color: var(--ss-text); border-style: double; border-left-style: solid; }
+.ss-eyes__banner--partial { border-color: var(--ss-text); border-style: dashed; border-left-style: solid; }
+.ss-eyes__banner--unsure { border-color: var(--ss-text-2); border-style: dotted; border-left-style: solid; }
+.ss-eyes__banner--neutral { border-color: var(--ss-text-2); }
+.ss-eyes__scroll { overflow-x: auto; max-width: 100%; margin: 8px 0; }
+.ss-eyes__table { border-collapse: collapse; font: 400 13px/1.4 var(--ss-ui); width: 100%; }
+.ss-eyes__table th, .ss-eyes__table td { padding: 4px 8px; border-bottom: 1px solid var(--ss-line); text-align: left; white-space: nowrap; color: var(--ss-text); }
+.ss-eyes__input { min-height: var(--ss-tap); max-width: 100%; padding: 0 10px; border: 1.5px solid var(--ss-line); border-radius: var(--ss-radius); background: var(--ss-raised); color: var(--ss-text); font: 400 15px var(--ss-ui); }
+textarea.ss-eyes__input { width: 100%; padding: 8px 10px; }
+
 /* ---------- Chapter diagram: one small picture at the top of each chapter; colours come from the theme ---------- */
 [dir] .md-typeset figure.ss-dg { margin: 0 0 24px; max-width: 66ch; }
 .ss-dg svg { display: block; width: 100%; height: auto; background: var(--ss-surface); border: 1px solid var(--ss-line); border-radius: var(--ss-radius); }

@@ -1926,6 +1926,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#the-small-hours-eyes-mode-now-keeps-your-scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The small hours: Eyes mode now keeps your scores
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2373,6 +2384,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#the-small-hours-eyes-mode-now-keeps-your-scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The small hours: Eyes mode now keeps your scores
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2560,6 +2582,20 @@
 <p><strong>Idea:</strong> a control is a star where you already know the answer. Any event there is a false alarm until it is proved otherwise.</p>
 <p><strong>Idea:</strong> a check that removes the same share of real and fake events is a safety net, not a filter. Know which one you are holding.</p>
 <p><strong>You could try:</strong> open <code>research/stage2-2026-10-23/aggregate.txt</code> and compare the real and upside-down columns at each bar.</p>
+<h3 id="the-small-hours-eyes-mode-now-keeps-your-scores">The small hours: Eyes mode now keeps your scores<a class="headerlink" href="#the-small-hours-eyes-mode-now-keeps-your-scores" title="Permanent link">&para;</a></h3>
+<p>You told me the practice mode forgot your score, and that I should have built the saving before. You were right: I made it a practice game with saving switched off, and I never asked whether the scores mattered. They did, and your first practice rounds are gone.</p>
+<ul>
+<li><strong>Every answer is saved on your device the moment you give it.</strong> A round you leave half done is kept and marked abandoned. Nothing about an old answer can be edited: the save code only accepts the next unanswered question.</li>
+<li><strong>After every answer a big banner says the truth:</strong> THIS WAS: A DIP, or THIS WAS: NOT A DIP, what it was (a hidden planet, a quiet stretch, an eclipse, a spike, a jump), and whether you were right. If you said No dip to an eclipse, it says you were right that it is not a dip but that it was an eclipse.</li>
+<li><strong>You can look back through the round, read only.</strong> You see the curve and what you answered. In the test the truth stays hidden until the end.</li>
+<li><strong>My results</strong> lists every round: right, wrong, not sure, dips found, false alarms. <strong>Copy my results</strong> gives you text to paste to Claude.</li>
+<li><strong>The official test</strong> is 30 curves (10 clear dips, 4 faint, 8 quiet, 8 odd) with no answers until the end. The pass line you chose: at least 85% of clear dips and at most 1 in 10 quiet curves called a dip, over at least 60 curves, in 2 or more rounds, on 2 or more days. Faint dips are reported but are not in the line.</li>
+<li><strong>Not done yet:</strong> the cloud copy. Until it is set up, results live on the device you used, so add the book to your phone's Home Screen.</li>
+<li><strong>Built to be reused:</strong> the Eyes engine takes its light curves from a swappable source. The real candidates of the hunt will get their own tab, using this same engine, once Claude agrees your results are good enough.</li>
+<li><strong>Tested:</strong> 17 checks of the scoring and saving logic and 33 checks in a real browser (answering, looking back, the test, an abandoned round, a reload, phone layout). I also broke the code on purpose five ways in the logic and three ways in the browser, and each break was caught. My first browser break-test was invalid (a text-encoding slip of mine mangled the arrow buttons) and it only showed up because I re-ran the unbroken version.</li>
+</ul>
+<p><strong>Idea:</strong> before you build a tool, ask what it must remember. A practice tool that forgets is fine until the day you want to know how you are doing.</p>
+<p><strong>Idea:</strong> a test that has never failed has not been tested. Break the thing on purpose and watch the test notice, then re-run the unbroken version to be sure the test, not your break, is what failed.</p>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <details class="quiz">
 <summary>1. Why do bigger dots mean brighter stars on the map?</summary>
@@ -2584,6 +2620,10 @@
 <details class="quiz">
 <summary>6. The eclipse-phase check removes 17% of real events and 19% of fake ones. What kind of check is that?</summary>
 <p>A safety net, not a filter. It does not separate real from fake (the shares are about equal); it just catches a specific mistake, an eclipse the mask missed, at the price of ignoring the stretches near eclipses.</p>
+</details>
+<details class="quiz">
+<summary>7. Why can the look-back button never change an answer?</summary>
+<p>The saving code only accepts the next unanswered question of a round that is still open. An old answer is never written again, and the tests try to change one and check that it fails.</p>
 </details>
 
 
@@ -2644,6 +2684,8 @@
     
   
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/eyes-core.js"></script>
       
         <script src="../../assets/demos.js"></script>
       
