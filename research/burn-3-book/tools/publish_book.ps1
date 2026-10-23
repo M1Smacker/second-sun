@@ -89,7 +89,19 @@ if ($Test) {
     $env:MSYS_NO_PATHCONV = "1"
     $srv = Start-Process node -ArgumentList "$tools\serve.mjs", "--dir=$build", "--port=8490" -PassThru -WindowStyle Hidden
     Start-Sleep -Seconds 2
-    try { foreach ($m in "layout", "offline", "jsoff", "eyes", "eyescloud") { Run node "$tools\site_check.mjs" $m "http://127.0.0.1:8490/" "--site=$build" | Out-Null; Write-Host "$m : pass" } }
+    try {
+        foreach ($m in "layout", "offline", "jsoff", "eyes", "eyescloud") {
+            # Headless Chrome occasionally fails to start or to clean up its profile (seen twice, never a real defect). One retry is allowed, and the
+            # first failure is PRINTED, never hidden; a second failure stops the publish.
+            $ok = $false
+            for ($try = 1; $try -le 2 -and -not $ok; $try++) {
+                $o = (& node "$tools\site_check.mjs" $m "http://127.0.0.1:8490/" "--site=$build" 2>&1 | Out-String)
+                if ($LASTEXITCODE -eq 0) { $ok = $true } else { Write-Host "$m attempt $try FAILED: $($o.Substring(0, [Math]::Min(700, $o.Length)))" -ForegroundColor Yellow }
+            }
+            if (-not $ok) { throw "browser test '$m' failed twice. Refusing to publish." }
+            Write-Host "$m : pass$(if ($try -gt 2) { ' (after a retry)' } elseif ($try -eq 3) { '' })"
+        }
+    }
     finally { Stop-Process -Id $srv.Id -Force -ErrorAction SilentlyContinue }
 }
 
