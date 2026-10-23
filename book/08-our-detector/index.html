@@ -1098,6 +1098,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#an-eighth-test-a-first-trial-search-on-50-stars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An eighth test: a first trial search on 50 stars
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2386,6 +2397,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#an-eighth-test-a-first-trial-search-on-50-stars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An eighth test: a first trial search on 50 stars
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2640,6 +2662,14 @@
 <li><strong>False alarms:</strong> upside down, the search made 869 fake events at SNR 7 (0.17 per star-sector). 41% of them fell at moments when three or more other stars also showed one, which points to the spacecraft; the same-moment filter flags those for a person. About 520 fakes would still be left at our bar of 7.</li>
 </ul>
 <p>These are VERIFIED on the audit files (<code>research/audit-2026-10-23/summary.txt</code>), with one standard dip rather than realistic wandering crossings, so they are best cases.</p>
+<h3 id="an-eighth-test-a-first-trial-search-on-50-stars">An eighth test: a first trial search on 50 stars<a class="headerlink" href="#an-eighth-test-a-first-trial-search-on-50-stars" title="Permanent link">&para;</a></h3>
+<p>We then ran the whole detector, for the first time, on 50 real stars (the 5 known planet hosts plus 45 spread by brightness), looking at the real light and at the upside-down light, in every data product (Chapter 3).</p>
+<ul>
+<li><strong>Fewer real dips than fake ones:</strong> 0.08 real events per star-sector against 0.18 upside-down, so the upside-down count is a high estimate of false alarms.</li>
+<li><strong>Four filters, each doing a different job:</strong> a flag near gaps and thruster firings (two thirds of events sit there; flagged, not deleted), a flag when other stars dip at the same moment, a check that a second data product shows the same dip (keeps 91% of strong dips, removes about half the false alarms), and a check that the event is not on the star's own eclipse (it caught two of five leads on missed eclipses). Together they cut 36 real events to 4.</li>
+<li><strong>Projected to all 549 stars:</strong> about 60 events for a person, plus a lower tier of about 350 flagged ones. Three leads survived; they are not <a href="../../glossary/#candidate">candidates</a>, and the stars and times stay on this computer (Chapter 14).</li>
+</ul>
+<p>Everything here is a count; VERIFIED in <code>research/stage2-2026-10-23/README.md</code>.</p>
 <h3 id="a-sixth-test-fake-planets-that-move-like-real-ones">A sixth test: fake planets that move like real ones<a class="headerlink" href="#a-sixth-test-fake-planets-that-move-like-real-ones" title="Permanent link">&para;</a></h3>
 <p>Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 5). So I used <strong><a href="../../glossary/#stanley">STANLEY</a></strong>'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:</p>
 <ul>
