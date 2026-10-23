@@ -49,5 +49,7 @@ a, b = list(parts[0].values())[0], list(parts[1].values())[0]
 a[1], b[1] = b[1], a[1]           # swap a chapter between Part 1 and Part 2 in the sidebar only
 refused("the sidebar putting a chapter in the wrong Part", shape.check_nav, nav, P)
 refused("a nav with no Read tab", shape.check_nav, [], P)
+import diagrams  # noqa: E402
+assert set(diagrams.DIAGRAMS) == {c["n"] for c in P["chapters"]}, "every chapter needs a diagram in book/diagrams.py"
 assert shape.chapter_for(P, "book/08-our-detector.md")["n"] == 8 and shape.chapter_for(P, "start/index.md") is None
 print("all shape checks passed")

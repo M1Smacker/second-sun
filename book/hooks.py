@@ -32,6 +32,7 @@ ROOT = Path(__file__).parent
 REPO = ROOT.parent
 sys.path.insert(0, str(ROOT))
 import mission   # the 0-100 readiness score (book/mission.py)
+import diagrams  # one small diagram per chapter (book/diagrams.py)
 import shape     # Parts, chapters, reading orders, home sky map (book/shape.py, data/path.yml)
 
 DATA = {}
@@ -312,7 +313,8 @@ def chapter_wrap(md, c, to_root):
     mark-as-read and Next/Previous (with a reason) before Sources. The pages keep only their own content."""
     P = DATA["path"]
     box = "\n!!! plain"
-    md = md.replace(box, "\n" + shape.summary(c) + box, 1) if box in md else md.replace("\n", "\n\n" + shape.summary(c), 1)
+    top = diagrams.figure(c["n"]) + "\n\n" + shape.summary(c)     # the picture first, then the 1-minute summary and the story
+    md = md.replace(box, "\n" + top + box, 1) if box in md else md.replace("\n", "\n\n" + top, 1)
     end = "\n" + shape.chapter_end(P, c, to_root) + "\n\n"
     head, sep, tail = md.partition("\n## Sources")
     return shape.strip(P, c, to_root) + "\n\n" + head.rstrip("\n") + "\n" + end + (sep + tail if sep else "")
