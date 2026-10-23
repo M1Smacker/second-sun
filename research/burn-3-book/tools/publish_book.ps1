@@ -60,6 +60,9 @@ Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_contrast.py"
 Step "2d. Eyes mode logic: scoring, truth banner, saving after every answer, pass line (answers can never be changed)"
 Run node "$src\book\tools\test_eyes.mjs"
 
+Step "2e. Eyes cloud uploader: offline queue, retries, no duplicates, nothing sent while a round is open"
+Run node "$src\book\tools\test_eyes_cloud.mjs"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build
@@ -86,7 +89,7 @@ if ($Test) {
     $env:MSYS_NO_PATHCONV = "1"
     $srv = Start-Process node -ArgumentList "$tools\serve.mjs", "--dir=$build", "--port=8490" -PassThru -WindowStyle Hidden
     Start-Sleep -Seconds 2
-    try { foreach ($m in "layout", "offline", "jsoff", "eyes") { Run node "$tools\site_check.mjs" $m "http://127.0.0.1:8490/" "--site=$build" | Out-Null; Write-Host "$m : pass" } }
+    try { foreach ($m in "layout", "offline", "jsoff", "eyes", "eyescloud") { Run node "$tools\site_check.mjs" $m "http://127.0.0.1:8490/" "--site=$build" | Out-Null; Write-Host "$m : pass" } }
     finally { Stop-Process -Id $srv.Id -Force -ErrorAction SilentlyContinue }
 }
 

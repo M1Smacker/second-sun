@@ -221,4 +221,41 @@ test("export round-trips and holds every round with its answers", () => {
   assert.ok(x.device.id);
 });
 
+test("a round marked as synced leaves the unsent list; a round still open can never be marked", () => {
+  const st = new Storage(), s = E.createStore(st), r = s.startRound({ mode: "practice", source: "x", n: 1 });
+  assert.equal(s.markSynced(r.id), false, "open round");
+  s.recordAnswer(r.id, 0, CARDS.clear, "dip", 1); s.finishRound(r.id);
+  assert.equal(s.unsynced().length, 1);
+  assert.ok(s.markSynced(r.id));
+  assert.equal(s.unsynced().length, 0);
+  assert.equal(E.createStore(st).round(r.id).sync, 1, "the marker is saved on the device");
+});
+
+test("the cloud document has exactly the keys the published rules allow, with the right types", () => {
+  const st = new Storage();
+  const s = E.createStore(st), r = s.startRound({ mode: "test", source: "practice-toi1338-s98", n: 2 });
+  s.recordAnswer(r.id, 0, CARDS.quiet, "none", 800); s.recordAnswer(r.id, 1, CARDS.clear, "unsure", 1600); s.finishRound(r.id);
+  s.setLabel("iPhone");
+  const body = E.toFirestoreBody(s.round(r.id), s.device);
+  assert.deepEqual(Object.keys(body.fields).sort(), [...E.CLOUD_KEYS].sort());
+  const f = body.fields;
+  assert.deepEqual(f.v, { integerValue: "1" }); assert.equal(f.id.stringValue, r.id); assert.deepEqual(f.n, { integerValue: "2" });
+  assert.equal(f.mode.stringValue, "test"); assert.ok(/^\d+$/.test(f.t0.integerValue)); assert.equal(f.status.stringValue, "done");
+  assert.equal(f.device.mapValue.fields.label.stringValue, "iPhone");
+  assert.equal(f.a.arrayValue.values.length, 2);
+  const e1 = f.a.arrayValue.values[1].mapValue.fields;
+  assert.equal(e1.bin.nullValue, null, "an unsure answer has no right/wrong about dip");
+  assert.deepEqual(e1.ok, { booleanValue: false });
+  assert.ok(!("sync" in f) && !("syncAt" in f), "device-only bookkeeping must never be uploaded");
+  const back = E.decodeValue({ mapValue: { fields: f } });
+  assert.equal(back.id, r.id); assert.equal(back.a[1].ans, "unsure"); assert.equal(back.a[0].m.w, 7); assert.equal(back.s.n, 2);
+});
+
+test("encoding: integers, decimals, text, booleans, nulls, lists and maps survive a round trip", () => {
+  const v = { a: 1, b: 1.5, c: "x", d: true, e: null, f: [1, "y", { g: false }], h: {}, i: [] };
+  assert.deepEqual(E.decodeValue(E.encodeValue(v)), v);
+  assert.deepEqual(E.encodeValue(NaN), { nullValue: null });
+  assert.deepEqual(E.encodeValue(undefined), { nullValue: null });
+});
+
 console.log(`all ${passed} Eyes core checks passed`);

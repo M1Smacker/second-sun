@@ -413,7 +413,8 @@ async function eyesTest() {
     checks.practiceSaved = r.mode === "practice" && r.status === "done" && r.a.length === 5 && r.a.every((e) => e.ans && typeof e.ok === "boolean" && e.m && e.ms >= 0) && r.s.n === 5;
     checks.lookBacksRecorded = r.a.filter((e) => e.lb > 0).length >= 2;
     const fin = await text();
-    checks.finishScreen = /How you did/.test(fin) && /Saved on this device: 1 round/.test(fin) && /Cloud backup: not set up yet/.test(fin);
+    checks.finishScreen = /How you did/.test(fin) && /Saved on this device: 1 round/.test(fin) && /Cloud backup is paused on this test copy of the book/.test(fin);   // local copies never write to Ahmed's real data
+    checks.noUploadFromTestCopy = await b.evaluate(`window.SSEyesStore.unsynced().length === 1 && window.SSEyesStore.rounds()[0].sync !== 1`);
 
     // ---- read-only review of the finished round ----
     await click("Review this round");
@@ -471,7 +472,109 @@ async function eyesTest() {
   return out;
 }
 
-const modes = { hammer, shots, layout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest };
+// Eyes cloud backup in a real browser against a MOCK Firestore (same rules as the published ones): online, offline, a server error, an abandoned round
+// recovered after a reload. Each round must arrive exactly once, in a shape the real rules accept, with no copy/paste step for the user.
+async function eyesCloudTest() {
+  const http = await import("node:http");
+  const mock = { calls: [], docs: new Map(), failNext: 0 };
+  const rulesOk = (f, id) => JSON.stringify(Object.keys(f).sort()) === JSON.stringify(["a", "device", "id", "mode", "n", "s", "source", "status", "t0", "t1", "v"])
+    && f.v.integerValue === "1" && f.id.stringValue === id && ["practice", "test", "real"].includes(f.mode.stringValue) && f.n.integerValue !== undefined
+    && Number(f.n.integerValue) <= 200 && !!f.a.arrayValue && (f.a.arrayValue.values || []).length <= 200;
+  const server = http.createServer((req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*"); res.setHeader("Access-Control-Allow-Headers", "content-type"); res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    if (req.method === "OPTIONS") { res.statusCode = 204; return res.end(); }
+    let raw = ""; req.on("data", (c) => (raw += c)); req.on("end", () => {
+      const u = new URL(req.url, "http://x"), id = u.searchParams.get("documentId");
+      let code = 200;
+      try {
+        const body = JSON.parse(raw);
+        const good = req.method === "POST" && u.pathname === "/v1/projects/second-sun-faea5/databases/(default)/documents/eyes_rounds" && u.searchParams.get("key") === "AIzaSyBogX_Jte_4fahJ1Ovp3y-twCmxheLTSxY" && rulesOk(body.fields, id);
+        mock.calls.push({ id, good, status: body.fields?.status?.stringValue });
+        if (mock.failNext > 0) { mock.failNext--; code = 503; }
+        else if (!good) code = 403;
+        else if (mock.docs.has(id)) code = 409;
+        else mock.docs.set(id, body);
+      } catch (e) { code = 400; }
+      res.statusCode = code; res.setHeader("Content-Type", "application/json"); res.end("{}");
+    });
+  });
+  await new Promise((r) => server.listen(0, "127.0.0.1", r));
+  const port = server.address().port;
+  const b = await launch("eyescloud"), out = { mode: "eyescloud" }, checks = {};
+  try {
+    await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `window.SSEYES_CLOUD_BASE = "http://127.0.0.1:${port}";` });
+    await goto(b, base + "eyes/");
+    await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    const click = (t) => b.evaluate(`(() => { const t = ${JSON.stringify(t)}; const bt = [...document.querySelectorAll(".ss-eyes button")].find((x) => x.textContent.trim() === t && x.offsetParent !== null && !x.disabled); if (!bt) return false; bt.click(); return true; })()`);
+    const clickAny = async (l) => { for (const t of l) if (await click(t)) return t; return null; };
+    const text = () => b.evaluate(`document.querySelector(".ss-eyes").innerText`);
+    const NEXT = ["Next", "See how you did", "Finish the test"];
+    const playRound = async (n, answers) => { await clickAny(["Another sitting"]); await click(String(n)); for (let i = 0; i < n; i++) { await click(answers[i % answers.length]); await clickAny(NEXT); } };
+    const store = () => b.evaluate(`JSON.parse(JSON.stringify(window.SSEyesStore.rounds()))`);
+    checks.statusAtStart = /Cloud backup is on\. Each finished round is sent by itself/.test(await text());
+
+    await click("5"); for (let i = 0; i < 5; i++) { await click(["Dip", "No dip", "Odd", "Not sure", "Dip"][i]); await clickAny(NEXT); }
+    checks.roundSentAtOnce = await waitFor(b, `window.SSEyesStore.unsynced().length === 0`, 15000) && mock.docs.size === 1;
+    checks.shapeAcceptedByRules = mock.calls.length >= 1 && mock.calls.every((c) => c.good);
+    checks.statusSaysSafe = await waitFor(b, `/all 1 finished round\\(s\\) are safe in the cloud, and Claude can read them/.test(document.querySelector(".ss-eyes").innerText)`, 8000);
+    checks.noCopyOrSendStep = !/copy|paste|send (it )?to claude/i.test(await text());
+    const sent = [...mock.docs.values()][0].fields;
+    checks.sentMatchesScreen = sent.a.arrayValue.values.length === 5 && sent.mode.stringValue === "practice" && sent.status.stringValue === "done";
+
+    await offline(b, true);
+    await playRound(5, ["Dip", "No dip"]);
+    await sleep(1500);
+    checks.offlineWaits = /1 round\(s\) waiting for the internet. They will send themselves/.test(await text()) && mock.docs.size === 1 && (await store())[0].sync !== 1;
+    await offline(b, false);
+    checks.sentWhenInternetReturns = await waitFor(b, `window.SSEyesStore.unsynced().length === 0`, 10000) && mock.docs.size === 2;   // 10 s < the 15 s background check, so only the browser's "online" event can do this
+    checks.statusAfterReturn = await waitFor(b, `/all 2 finished round\\(s\\) are safe/.test(document.querySelector(".ss-eyes").innerText)`, 8000);
+
+    mock.failNext = 1;                                                       // the server is busy once
+    await playRound(5, ["Odd", "Dip", "Not sure"]);
+    checks.serverBusyThenRetried = await waitFor(b, `window.SSEyesStore.unsynced().length === 0`, 45000) && mock.docs.size === 3;
+
+    await clickAny(["Another sitting"]); await click("5"); await click("Dip"); await clickAny(NEXT); await click("No dip");   // a round left half done
+    const before = mock.docs.size;
+    await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    checks.abandonedRoundSentAfterReload = await waitFor(b, `window.SSEyesStore.unsynced().length === 0`, 20000) && mock.docs.size === before + 1
+      && [...mock.docs.values()].some((d) => d.fields.status.stringValue === "abandoned" && d.fields.a.arrayValue.values.length === 2);
+    const rounds = await store();
+    checks.everyRoundExactlyOnce = rounds.length === 4 && rounds.every((r) => r.sync === 1) && mock.docs.size === 4 && new Set(mock.calls.filter((c) => c.good).map((c) => c.id)).size === 4;
+    const calls0 = mock.calls.length; await sleep(4000);
+    checks.noLoopOrResend = mock.calls.length === calls0;
+    out.mock = { calls: mock.calls.length, docs: mock.docs.size };
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js|Failed to load resource|ERR_INTERNET_DISCONNECTED/.test(e));
+    checks.noConsoleErrors = out.errors.length === 0;
+  } catch (e) { out.error = String(e && e.message || e); }
+  finally { await b.close(); server.close(); }
+  out.checks = checks; out.failed = Object.entries(checks).filter(([, v]) => !v).map(([k]) => k);
+  out.pass = !out.error && out.failed.length === 0 && Object.keys(checks).length >= 12;
+  return out;
+}
+
+// ONE-OFF end-to-end test against the REAL Firestore (not part of the publish gates): plays a labelled 'e2e-test' round in a real browser, waits until the
+// page says it is in the cloud, and prints the round as the device saved it, so pipeline/eyes_e2e.py can compare it with what the cloud holds, then delete it.
+async function eyesReal() {
+  const b = await launch("eyesreal"), out = { mode: "eyesreal" };
+  try {
+    await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `window.SSEYES_CLOUD_ALLOW_LOCAL = true;` });   // this one test is allowed to write to the real cloud (labelled e2e-test, deleted after)
+    await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    await b.evaluate(`window.SSEyesStore.setLabel("e2e-test")`);
+    const click = (t) => b.evaluate(`(() => { const t = ${JSON.stringify(t)}; const bt = [...document.querySelectorAll(".ss-eyes button")].find((x) => x.textContent.trim() === t && x.offsetParent !== null && !x.disabled); if (!bt) return false; bt.click(); return true; })()`);
+    const clickAny = async (l) => { for (const t of l) if (await click(t)) return t; return null; };
+    await click("5");
+    for (const a of ["Dip", "No dip", "Odd", "Not sure", "Dip"]) { await click(a); await clickAny(["Next", "See how you did"]); }
+    out.sent = await waitFor(b, `window.SSEyesStore.unsynced().length === 0`, 30000);
+    out.statusText = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__cloud")].map((e) => e.textContent).join(" | ")`);
+    out.round = (await b.evaluate(`JSON.parse(JSON.stringify(window.SSEyesStore.rounds()))`))[0];
+    out.device = await b.evaluate(`window.SSEyesStore.device`);
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = out.sent && out.errors.length === 0;
+  } finally { await b.close(); }
+  return out;
+}
+
+const modes = { hammer, shots, layout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));

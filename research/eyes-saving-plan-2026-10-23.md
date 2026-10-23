@@ -50,3 +50,5 @@ Ahmed expects more options and a more usable, more savable interface once he loo
 - Nothing from this system touches the hunt's candidate data except Stage C, and that stays local to the PC.
 
 ## STATUS (small hours, 24 Oct local): Stage A built and tested (see RESUME.md). Stage B waits for Ahmed's Firebase setup (research/firebase-setup-steps.md). Stage C waits for Claude's judgement of his test results.
+
+## STATUS (24 Oct): Stage B built and proven (cloud upload, reader, daily pull, rules tested, real end-to-end passed). Waiting for: Ahmed's practice rounds on his phone, then his go on the Training record page and the locked real-candidate page.

@@ -252,12 +252,17 @@ function eyesEngine(el, src, core) {
   })();
   const store = core.createStore(storage);
   store.recoverOpen();                                                              // a round left open on an earlier visit is kept as "abandoned"
-  window.SSEyesStore = store;                                                       // read by the test page checks and, later, by the cloud upload
+  window.SSEyesStore = store;                                                       // read by the browser tests
+  if (window.SSEyesCloud) {                                                         // every finished round is sent to the cloud by itself (assets/eyes-cloud.js)
+    window.SSEyesCloud.attach(store);
+    window.SSEyesCloud.onStatus(() => el.querySelectorAll(".ss-eyes__cloud").forEach((e) => { e.textContent = cloud(); }));
+  }
 
   const NAMES = core.NAME, WINSZ = EYES_WIN;
   const btn = (label, fn, cls = "") => { const b = mk("button", { type: "button", className: "ss-demo__btn " + cls }, label); b.addEventListener("click", fn); return b; };
   const note = (t, extra = {}) => mk("p", { className: "ss-demo__result", ...extra }, t);
-  const cloud = () => (window.SSEyesCloud && window.SSEyesCloud.status ? window.SSEyesCloud.status(store) : "Cloud backup: not set up yet, so Claude cannot see these rounds yet. They are saved on this device.");
+  const cloud = () => (window.SSEyesCloud ? window.SSEyesCloud.status() : "Cloud backup: not available in this page, so Claude cannot see these rounds yet. They are saved on this device.");
+  const cloudNote = () => note(cloud(), { className: "ss-demo__result ss-eyes__cloud" });
   const saveNote = () => (store.lastError ? `Could not save on this device (${store.lastError}). Free some space on the phone or open the book in a normal window.`
     : volatile.on ? "This browser is not letting the page save (private mode?). Rounds are lost when you close the page. Open the book in a normal window."
     : `Saved on this device: ${store.rounds().length} round(s).`);
@@ -275,7 +280,7 @@ function eyesEngine(el, src, core) {
       note("Practice shows the answer after every curve. Each curve is a day and a half of the real TOI-1338 light curve with nothing marked."),
       mk("div", { className: "ss-demo__row" }, btn(`Take the official test (${core.TEST_N} curves)`, () => begin("test", core.TEST_N)), btn("My results", results)),
       note("The official test shows no answers until the end and counts towards the pass line. You may look back at earlier curves, but you can never change an answer."),
-      note(saveNote(), { ariaLive: "polite" }), note(cloud()));
+      note(saveNote(), { ariaLive: "polite" }), cloudNote());
   }
 
   function draw(card, reveal) {
@@ -375,7 +380,7 @@ function eyesEngine(el, src, core) {
     review = false; view = null;
     const lines = core.summaryLines(round.s), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), ...lines.map((l) => note(l))];
     if (mode === "test") kids.push(mk("h4", {}, "Pass line so far"), ...core.passLine(store.rounds()).lines.map((l) => note(l)));
-    kids.push(note(saveNote()), note(cloud()), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
+    kids.push(note(saveNote()), cloudNote(), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
     stage.replaceChildren(...kids);
   }
   function startReview() { review = true; view = null; buildPlay(); ansBtns.forEach((b) => { b.hidden = true; }); look(0); }
@@ -391,7 +396,7 @@ function eyesEngine(el, src, core) {
     label.addEventListener("change", () => store.setLabel(label.value));
     stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
       mk("h4", {}, "Official test pass line"), ...p.lines.map((l) => note(l)),
-      rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), note(cloud()),
+      rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), cloudNote(),
       mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Back", start)));
   }
 
