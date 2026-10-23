@@ -161,6 +161,15 @@ def eclipse_mask_auto(t, f, P, nbins=600, nsig=4.0, pad=1.5):
     return keep, runs
 
 
+def mask_all_periods(t, f, periods, **kw):
+    """Mask the eclipses of EVERY catalogue period of a star, one after the other (B3, deep review 2026-10-23: two G1 stars
+    have a second period that the target cut dropped, so its eclipses were never masked). Returns (t, f) with all kept points."""
+    for P in periods:
+        keep, _ = eclipse_mask_auto(t, f, P, **kw)
+        t, f = t[keep], f[keep]
+    return t, f
+
+
 def detrend(t, f, window_d=2.0):
     flat = flatten(t, f, method="biweight", window_length=window_d)
     ok = np.isfinite(flat)
@@ -253,14 +262,19 @@ def systematics(path):
     return edges, dumps[np.isfinite(dumps)]
 
 
-def veto(events, edges, dumps, flipped_events):
-    """Returns (kept, rejected). Kept events carry a 'flags' list for the vetting sheet."""
+def veto(events, edges, dumps, flipped_events, flip_action="reject"):
+    """Returns (kept, rejected). Kept events carry a 'flags' list for the vetting sheet.
+    flip_action: "reject" (default, as published in Lab 9 and Chapter 8) deletes an event that has a flipped-data match
+    within FLIP_D; "flag" keeps it with a flag instead (B4, deep review 2026-10-23: the deletion is untested, a real transit
+    near a bump would be lost with no human seeing it). The hunt uses "flag" until the loss is measured."""
     kept, rejected = [], []
     for e in events:
         c = e["center"]
-        if any(abs(fe["center"] - c) < FLIP_D for fe in flipped_events):
-            rejected.append({**e, "veto": "matched in flipped data"}); continue
         flags = []
+        if any(abs(fe["center"] - c) < FLIP_D for fe in flipped_events):
+            if flip_action == "reject":
+                rejected.append({**e, "veto": "matched in flipped data"}); continue
+            flags.append("matched in flipped data (flag only)")
         if edges.size and np.min(np.abs(edges - c)) < GAP_D:
             flags.append("near data-gap edge")
         if dumps.size and np.any((dumps - c > -DUMP_D) & (dumps - c < PRE_DUMP_D)):
