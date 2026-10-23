@@ -2563,6 +2563,10 @@
 <p>You weigh yourself on a cheap bathroom scale. It says 71.3, then 70.8, then 71.1. Each reading wobbles, but the <strong>average</strong> of 30 readings is much steadier than any one. That's random noise, and averaging beats it.</p>
 <p>Now imagine the floor slowly tilts during the morning. All 30 readings drift together. Averaging them doesn't remove the tilt: you get a steady, <strong>wrong</strong> number. That's correlated noise, called <strong><a href="../../glossary/#red-noise">red noise</a></strong>, and averaging can't beat it.</p>
 <p>A planet's dip lasts hours. So the question is never "how much does one reading wobble?" It's "how much does a <strong>few-hour average</strong> wobble?" Slow drifts decide that.</p>
+<div class="ss-demo" data-demo="noise"></div>
+<p class="ss-fallback">With JavaScript on, this spot shows a made-up light curve with a dip hidden in noise, and sliders to change the dip, the noise and the averaging.</p>
+
+<p><strong>Try it.</strong> The grey dots are measurements and the amber line is their average. Turn the noise up and the dip sinks out of sight. Average more points together and it comes back, because random wobble shrinks when you average. Now turn on the slow drift: averaging stops helping, because a drift is not random wobble. This is why our detector measures the wobble over the same length of time as the dip, and why it first removes slow drifts with a 2-day filter. The numbers here are made up for the demonstration, and this is a harsh case.</p>
 <h2 id="72-the-scientific-meaning">7.2 The scientific meaning<a class="headerlink" href="#72-the-scientific-meaning" title="Permanent link">&para;</a></h2>
 <h3 id="where-the-wobble-comes-from">Where the wobble comes from<a class="headerlink" href="#where-the-wobble-comes-from" title="Permanent link">&para;</a></h3>
 <ul>
