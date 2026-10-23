@@ -208,7 +208,111 @@ async function initExplorerDemo(el) {
   size(); draw();
 }
 
-const DEMOS = { depth: initDepthDemo, orbit: initOrbitDemo, noise: initNoiseDemo, explorer: initExplorerDemo };
+// ---- Eyes mode (practice): look at a stretch of light curve with nothing marked, say what you see, then see the answer ----
+// Practice only: every stretch comes from the real TOI-1338 light curve (sector 98) with fake dips, glitches and real eclipses
+// whose answer we know. The hunt's real stars are deliberately NOT connected; that waits until Ahmed says start.
+async function initEyesDemo(el) {
+  let J;
+  try { J = await (await fetch(DATA_BASE + "toi1338-s98.json")).json(); }
+  catch (e) { el.append(mk("p", {}, "The practice light curve could not be loaded. Check your connection and reload.")); return; }
+  const N = J.ppm.length, dt = J.step_days, t0 = J.t0_btjd, WIN = 216;                    // a stretch is 1.5 days of 10-minute steps
+  let s0 = (Date.now() ^ 0x9E3779B9) | 0;
+  const rnd = () => { s0 |= 0; s0 = s0 + 0x6D2B79F5 | 0; let z = Math.imul(s0 ^ s0 >>> 15, 1 | s0); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
+  const ri = (a, b) => a + Math.floor(rnd() * (b - a + 1)), pick = (a) => a[Math.floor(rnd() * a.length)];
+  const idx = (t) => Math.round((t - t0) / dt), ecl = J.eclipses_btjd.map(idx), pl = idx(J.planet_btjd);
+  const clear = (i, pad) => ![...ecl, pl].some((e) => e > i - pad && e < i + WIN + pad);
+  const valid = (i) => J.ppm.slice(i, i + WIN).filter((v) => v !== null).length >= 0.85 * WIN;
+  function window_(want) {                                                            // find a start that suits the kind of stretch we want
+    for (let k = 0; k < 4000; k++) {
+      const i = ri(0, N - WIN - 1);
+      if (!valid(i)) continue;
+      if (want === "eclipse") { const e = pick(ecl); const j = e - ri(40, WIN - 40); if (j >= 0 && j + WIN < N && valid(j) && ![pl].some((q) => q > j - 36 && q < j + WIN + 36)) return { i: j, e: e - j }; }
+      else if (want === "planet") { const j = pl - ri(60, WIN - 60); if (j >= 0 && j + WIN < N && valid(j) && !ecl.some((q) => q > j - 36 && q < j + WIN + 36)) return { i: j }; }
+      else if (clear(i, 36)) return { i };
+    }
+    return { i: 0 };
+  }
+  function trial(kind) {
+    const w = window_(kind === "eclipse" ? "eclipse" : kind === "real" ? "planet" : "quiet"), y = J.ppm.slice(w.i, w.i + WIN);
+    const sub = (a, b, v) => { for (let k = a; k < b; k++) if (y[k] !== null) y[k] += v; };
+    if (kind === "eclipse") return { y, truth: "odd", kind, box: [w.e - 14, w.e + 14], note: "an eclipse: one star passing in front of the other. It is deep, but it is not a planet." };
+    if (kind === "real") return { y, truth: "dip", kind, box: [pl - w.i - 15, pl - w.i + 15], note: "the real planet TOI-1338 b crossing, about 2,000 ppm deep and 5 hours long." };
+    if (kind === "dip") { const d = ri(24, 48), a = ri(30, WIN - 30 - d), depth = pick([1500, 2500, 4000]); sub(a, a + d, -depth); return { y, truth: "dip", kind: "dip" + depth, box: [a, a + d], note: `a hidden fake planet, ${depth.toLocaleString("en")} ppm deep and ${Math.round(d / 6)} hours long.` }; }
+    if (kind === "spike") { const a = ri(30, WIN - 30); sub(a, a + 3, 9000); return { y, truth: "odd", kind, box: [a - 3, a + 6], note: "a short spike upwards, like a flare or a glitch. A planet only makes dips." }; }
+    if (kind === "step") { const a = ri(60, WIN - 60); sub(a, WIN, 3500); return { y, truth: "odd", kind, box: [a - 4, a + 4], note: "a sudden jump in brightness that stays, like an instrument glitch. A planet's dip comes back up." }; }
+    return { y, truth: "none", kind: "quiet", box: null, note: "nothing hidden here." };
+  }
+  function deck(n) {
+    const real = n >= 20 ? 1 : 0, e = Math.max(1, Math.round(0.15 * n)), o = Math.max(1, Math.round(0.15 * n)), dp = Math.max(1, Math.round(0.3 * n) - real), q = Math.max(1, n - real - e - o - dp);
+    const kinds = [...Array(real).fill("real"), ...Array(e).fill("eclipse"), ...Array(o).fill(0).map(() => pick(["spike", "step"])), ...Array(dp).fill("dip"), ...Array(q).fill("quiet")].slice(0, n);
+    while (kinds.length < n) kinds.push("quiet");
+    for (let i = kinds.length - 1; i > 0; i--) { const j = ri(0, i); [kinds[i], kinds[j]] = [kinds[j], kinds[i]]; }
+    return kinds.map(trial);
+  }
+  const title = mk("h4", {}, "Eyes mode, practice");
+  const stage = mk("div", { className: "ss-eyes" });
+  el.append(title, stage);
+  const NAMES = { dip: "Dip", none: "No dip", odd: "Odd", unsure: "Not sure" };
+  let cards, at, answers, revealed, cv, C, fb, nextBtn, prog, btns;
+
+  function start() {
+    stage.replaceChildren(mk("p", {}, "How many light curves this time?"),
+      mk("div", { className: "ss-demo__row" }, ...[5, 20, 50, 100].map((n) => { const b = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm" }, String(n)); b.addEventListener("click", () => begin(n)); return b; })),
+      mk("p", { className: "ss-demo__result" }, "Each one is a day and a half of the real TOI-1338 light curve with nothing marked. Say what you see; then the answer is shown. The real stars of the hunt are not in here: that waits until you say start."));
+  }
+  function begin(n) {
+    cards = deck(n); at = 0; answers = [];
+    cv = mk("canvas", { role: "img", ariaLabel: "A stretch of light curve. Look for a dip, a glitch or nothing." });
+    fb = mk("p", { className: "ss-demo__result", ariaLive: "polite" }); prog = mk("p", { className: "ss-demo__result" });
+    btns = ["dip", "none", "odd", "unsure"].map((k, i) => { const b = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm" }, `${NAMES[k]}`); b.title = `Key ${i + 1}`; b.addEventListener("click", () => answer(k)); return b; });
+    nextBtn = mk("button", { type: "button", className: "ss-demo__btn ss-demo__sm", hidden: true }, "Next");
+    nextBtn.addEventListener("click", step);
+    stage.replaceChildren(prog, cv, mk("div", { className: "ss-demo__row" }, ...btns), fb, nextBtn);
+    C = fit(cv, 0.55); show();
+  }
+  function draw(card, reveal) {
+    const { g, w, h } = C, L = 56, B = 22, T = 8, pw = w - L - 6, ph = h - B - T, vals = card.y.filter((v) => v !== null);
+    const lo = Math.min(-6000, Math.min(...vals) * 1.1), hi = Math.max(6000, Math.max(...vals) * 1.1);
+    const X = (k) => L + k / WIN * pw, Y = (v) => T + (hi - v) / (hi - lo) * ph;
+    g.fillStyle = "#070b14"; g.fillRect(0, 0, w, h);
+    g.font = "12px system-ui, sans-serif"; g.fillStyle = "#aab1c0"; g.strokeStyle = "rgba(170,177,192,.18)"; g.textAlign = "right";
+    [lo, 0, hi].forEach((v) => { g.beginPath(); g.moveTo(L, Y(v)); g.lineTo(w - 6, Y(v)); g.stroke(); g.fillText((v / 1e4).toFixed(1) + "%", L - 4, Y(v) + 4); });
+    g.textAlign = "center"; for (let hr = 0; hr < 36; hr += 6) g.fillText(hr + " h", X(hr * 6), h - 6);
+    if (reveal && card.box) { g.fillStyle = "rgba(226,180,95,.16)"; g.strokeStyle = "#e2b45f"; g.setLineDash([4, 3]); g.fillRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.strokeRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.setLineDash([]); }
+    g.fillStyle = "rgba(220,226,240,.9)";
+    card.y.forEach((v, k) => { if (v !== null) g.fillRect(X(k + 0.5) - 1, Y(v) - 1, 2, 2); });
+  }
+  function show() { prog.textContent = `Light curve ${at + 1} of ${cards.length}`; fb.textContent = ""; nextBtn.hidden = true; btns.forEach((b) => { b.disabled = false; }); revealed = false; draw(cards[at], false); }
+  function answer(k) {
+    if (revealed) return; revealed = true;
+    const c = cards[at]; answers.push({ k, c }); btns.forEach((b) => { b.disabled = true; }); draw(c, true);
+    const ok = k === c.truth;
+    fb.textContent = (k === "unsure" ? "Not sure is fine. " : ok ? "Right. " : `Not quite: you said ${NAMES[k].toLowerCase()}. `) + `This one had ${c.note}`;
+    nextBtn.textContent = at + 1 < cards.length ? "Next" : "See how you did"; nextBtn.hidden = false; nextBtn.focus({ preventScroll: true });
+  }
+  function step() { at += 1; if (at < cards.length) show(); else finish(); }
+  function finish() {
+    const of = (f) => answers.filter(({ c }) => f(c)), hit = (arr) => arr.filter(({ k, c }) => k === c.truth).length, cnt = (arr) => arr.length;
+    const dips = of((c) => c.truth === "dip"), faint = of((c) => c.kind === "dip1500"), quiet = of((c) => c.truth === "none"), odd = of((c) => c.truth === "odd");
+    const falseAlarms = quiet.filter(({ k }) => k === "dip").length, unsure = answers.filter(({ k }) => k === "unsure").length;
+    const lines = [`You looked at ${answers.length} light curves.`,
+      dips.length ? `Dips hidden in them: you found ${hit(dips)} of ${cnt(dips)}${faint.length ? ` (the faintest: ${hit(faint)} of ${cnt(faint)})` : ""}.` : "",
+      quiet.length ? `Quiet curves: you called ${falseAlarms} of ${cnt(quiet)} a dip (a false alarm).` : "",
+      odd.length ? `Odd things (eclipses, spikes, jumps): you spotted ${hit(odd)} of ${cnt(odd)}.` : "",
+      unsure ? `You said not sure ${unsure} times, which is an honest answer.` : "",
+      "A faint dip is hard to see by eye, and that is the point: this is how it feels to hunt. Nothing here is saved."].filter(Boolean);
+    stage.replaceChildren(mk("h4", {}, "How you did"), ...lines.map((l) => mk("p", { className: "ss-demo__result" }, l)), (() => { const b = mk("button", { type: "button", className: "ss-demo__btn" }, "Another sitting"); b.addEventListener("click", start); return b; })());
+  }
+  el.addEventListener("keydown", (e) => {
+    if (!cards || !cv || !cv.isConnected) return;
+    const k = { 1: "dip", 2: "none", 3: "odd", 4: "unsure" }[e.key];
+    if (k && !revealed) { e.preventDefault(); answer(k); } else if (e.key === "Enter" && revealed && !nextBtn.hidden && document.activeElement !== nextBtn) { e.preventDefault(); step(); }
+  });
+  let w0 = 0; new ResizeObserver(() => { const w = el.clientWidth; if (w !== w0) { w0 = w; if (cv && cv.isConnected) { C = fit(cv, 0.55); draw(cards[at], revealed); } } }).observe(el);
+  start();
+}
+
+const DEMOS = { depth: initDepthDemo, orbit: initOrbitDemo, noise: initNoiseDemo, explorer: initExplorerDemo, eyes: initEyesDemo };
 const start = () => document.querySelectorAll(".ss-demo[data-demo]").forEach((el) => {
   const init = DEMOS[el.dataset.demo];
   if (init && !el.dataset.ready) { el.dataset.ready = "1"; init(el); }

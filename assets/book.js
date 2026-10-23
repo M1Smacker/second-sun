@@ -96,8 +96,70 @@
   }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePop(); });
 
-  if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(() => { closePop(); paint(); });
-  else paint();
+  // 6. Read aloud: the device's own voice (free, works offline, nothing is sent anywhere). Reads the chapter text
+  //    paragraph by paragraph, skips pictures, code, tables, demos and equations, and highlights what it is saying.
+  const SKIP = ".ss-end, .ss-demo, .ss-dg, .ss-strip, .ss-listen, .ss-eq, pre, table, figure, .ss-fallback, details, .md-nav, .md-source-file";
+  let queue = [], at = 0, speaking = false, current = null;
+  const synth = "speechSynthesis" in window ? window.speechSynthesis : null;
+  const bar = () => document.querySelector(".ss-listen");
+  function chunks() {
+    const out = []; let done = false;
+    $$(".md-content__inner :is(h2, h3, h4, p, li)").forEach((el) => {
+      if (done || el.closest(SKIP) || el.classList.contains("ss-meta")) return;
+      if (el.matches("h2") && /^Sources/i.test(el.textContent.trim())) { done = true; return; }      // the reference list is not read aloud
+      if (el.matches("li") && el.querySelector(":scope > p, :scope > ul, :scope > ol")) return;       // read the inner paragraph instead
+      const c = el.cloneNode(true);
+      c.querySelectorAll(".ss-chip, .headerlink, sup, code, svg, .ss-demo").forEach((x) => x.remove());
+      const text = c.textContent.replace(/\s+/g, " ").trim();
+      if (text.length < 2) return;
+      (text.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g) || [text]).reduce((acc, s) => {                 // sentences, packed to about 220 characters
+        if (acc.length && acc[acc.length - 1].length + s.length < 220) acc[acc.length - 1] += s; else acc.push(s);
+        return acc;
+      }, []).forEach((s) => out.push({ el, text: s.trim() }));
+    });
+    return out;
+  }
+  function paintSay(state) {
+    const b = bar(); if (!b) return;
+    b.querySelector('[data-say="play"]').textContent = state === "paused" ? "Resume" : "Listen";
+    b.querySelector('[data-say="play"]').hidden = state === "playing";
+    b.querySelector('[data-say="pause"]').hidden = state !== "playing";
+    b.querySelector('[data-say="stop"]').hidden = state === "idle";
+  }
+  function mark(el) {
+    if (current) current.classList.remove("ss-saying");
+    current = el; if (!el) return;
+    el.classList.add("ss-saying");
+    const r = el.getBoundingClientRect();
+    if (r.top < 70 || r.bottom > innerHeight - 20) el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  function next() {
+    if (!speaking) return;
+    if (at >= queue.length) { speaking = false; at = 0; mark(null); paintSay("idle"); return; }
+    const item = queue[at], u = new SpeechSynthesisUtterance(item.text), rate = bar() && bar().querySelector("[data-say-rate]");
+    u.lang = document.documentElement.lang || "en"; u.rate = rate ? Number(rate.value) : 1;
+    u.onend = () => { if (speaking) { at += 1; next(); } };
+    u.onerror = (e) => { if (speaking && e.error !== "interrupted" && e.error !== "canceled") { at += 1; next(); } };
+    mark(item.el); synth.speak(u);
+  }
+  function saycmd(cmd) {
+    if (!synth) return;
+    if (cmd === "play") { if (!queue.length || at >= queue.length) { queue = chunks(); at = 0; } speaking = true; paintSay("playing"); next(); }
+    else if (cmd === "pause") { speaking = false; synth.cancel(); paintSay("paused"); }          // cancel + remember the place: pause() is unreliable on phones
+    else { speaking = false; synth.cancel(); queue = []; at = 0; mark(null); paintSay("idle"); }
+  }
+  function sayInit() {
+    const b = bar();
+    if (synth && b) { b.hidden = false; queue = []; at = 0; speaking = false; current = null; paintSay("idle"); }
+  }
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest && e.target.closest("[data-say]"); if (t) saycmd(t.dataset.say);
+    if (e.target.closest && e.target.closest("[data-print]")) window.print();
+  });
+  window.addEventListener("pagehide", () => { if (synth) synth.cancel(); });
+
+  if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(() => { closePop(); if (synth) synth.cancel(); paint(); sayInit(); });
+  else { paint(); sayInit(); }
 
   const swUrl = document.currentScript && document.currentScript.dataset.sw;
   if (!("serviceWorker" in navigator) || !swUrl) return;
