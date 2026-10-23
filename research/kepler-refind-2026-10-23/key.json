@@ -1,0 +1,6 @@
+{
+ "_note": "Answer key: planet transits located by an independent method (3-day median flatten, runs of >=4 cadences below 4 sigma) and confirmed by eye on key_windows.png / key_windows_zoom.png. Times are BKJD (BJD - 2454833), +/- ~0.05 d. Our own measurement, NOT a published table (LIKELY). Counts vs Davies et al. 2026 Table 2 N_tr: Kepler-16 7/7, Kepler-34 7/9, Kepler-35 4/7. Not included: Kepler-35 ~879 (inside a masked eclipse), Kepler-35 633.96 (probable crossing of star B, uncertain).",
+ "Kepler-16": [140.43, 370.70, 592.20, 822.42, 1043.98, 1274.25, 1495.74],
+ "Kepler-34": [394.43, 680.87, 957.03, 964.40, 1243.47, 1529.17, 1533.83],
+ "Kepler-35": [627.26, 753.48, 1005.39, 1131.71]
+}
