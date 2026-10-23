@@ -15,6 +15,11 @@ Now imagine the floor slowly tilts during the morning. All 30 readings drift tog
 
 A planet's dip lasts hours. So the question is never "how much does one reading wobble?" It's "how much does a **few-hour average** wobble?" Slow drifts decide that.
 
+<div class="ss-demo" data-demo="noise"></div>
+<p class="ss-fallback">With JavaScript on, this spot shows a made-up light curve with a dip hidden in noise, and sliders to change the dip, the noise and the averaging.</p>
+
+**Try it.** The grey dots are measurements and the amber line is their average. Turn the noise up and the dip sinks out of sight. Average more points together and it comes back, because random wobble shrinks when you average. Now turn on the slow drift: averaging stops helping, because a drift is not random wobble. This is why our detector measures the wobble over the same length of time as the dip, and why it first removes slow drifts with a 2-day filter. The numbers here are made up for the demonstration, and this is a harsh case.
+
 ## 7.2 The scientific meaning
 
 ### Where the wobble comes from

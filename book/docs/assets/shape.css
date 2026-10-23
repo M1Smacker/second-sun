@@ -126,3 +126,12 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
 }
 .ss-resume a { display: inline-flex; align-items: center; min-height: var(--ss-tap); }
 [dir] .md-typeset .ss-parthead a { display: inline-flex; align-items: center; min-height: var(--ss-tap); }
+
+/* ---------- Demos (tap and drag): the canvas is always night; controls follow the theme ---------- */
+.ss-demo canvas { display: block; width: 100%; border-radius: 4px; background: #070b14; margin: 0 0 12px; }
+.ss-demo__ctl { display: grid; gap: 4px 20px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); align-items: end; margin: 0 0 8px; }
+.ss-demo__ctl label { margin: 0; font: 400 15px/1.4 var(--ss-ui); }
+.ss-demo__ctl output { font-variant-numeric: tabular-nums; color: var(--ss-accent); font-weight: 600; }
+.ss-demo__btn[aria-pressed="true"] { background: var(--ss-accent); color: var(--ss-on-accent); }
+.ss-demo__btn { min-height: var(--ss-tap); min-width: 96px; padding: 0 20px; border: 1.5px solid var(--ss-accent); border-radius: var(--ss-radius); background: transparent; color: var(--ss-accent); font: 600 15px var(--ss-ui); cursor: pointer; }
+.ss-demo__result { font: 400 15px/1.5 var(--ss-ui); color: var(--ss-text); margin: 4px 0 0; }

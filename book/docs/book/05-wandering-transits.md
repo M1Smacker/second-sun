@@ -13,6 +13,11 @@ Imagine a lighthouse on a boat, and the boat is circling in the harbour. You wal
 
 The boat is the star being crossed. You're the planet.
 
+<div class="ss-demo" data-demo="orbit"></div>
+<p class="ss-fallback">With JavaScript on, this spot shows two stars circling each other and a planet circling both, with the brightness plotted underneath. The planet's crossings come at uneven gaps.</p>
+
+**Try it.** Press Play, or drag Time. The grey line is the two stars passing in front of each other, and it keeps a steady beat. The amber line is the planet's dips, and they do not: the gaps and the lengths change, and some crossings can be missing altogether. Change the planet's year and watch the gaps change. The picture is not to scale: the planet is drawn far too big so that its dip shows, and the orbits are drawn as circles.
+
 ## 5.2 The scientific meaning
 
 Three effects make circumbinary transits irregular:
