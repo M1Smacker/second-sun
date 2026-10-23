@@ -5,7 +5,7 @@
 # Weights are Claude's first draft (2026-10-21), approved as the starting point by Ahmed; change them here any time.
 
 status:                                   # the six cells of the home-page status panel; edit them in the same commit as the credits
-  - {label: "Phase", value: "Hunt on hold", note: "Ahmed will say when to start"}
+  - {label: "Phase", value: "Audit done, search not started", note: "all 549 stars measured; Ahmed says when to search"}
   - {label: "First campaign", value: "G1: Kepler's binaries", note: "549 stars; 136 need a decision (Chapter 1)"}
   - {label: "Detector", value: "v2 (box search)", note: "floor ~6 Earth radii; raw vs cleaned flux differs (Ch 8)"}
   - {label: "Known-planet test", value: "7 of 8 sectors in raw flux", note: "4 of 8 in cleaned flux (the baseline)"}
@@ -30,8 +30,8 @@ stages:
       - {what: "Smallest visible planet measured with fake planets on a timetable", weight: 4, credit: 1.0, evidence: ["claim:F-015"]}
       - {what: "Smallest visible planet measured with realistic wandering crossings", weight: 4, credit: 1.0, evidence: ["claim:F-029"]}
       - {what: "Quality filter and flux choice settled", weight: 4, credit: 0.5, evidence: ["claim:F-054", "claim:F-056", "claim:F-057"], note: "tested on one star; the second-star test is on hold"}
-      - {what: "Sensitivity at other brightness levels, SPOC vs QLP", weight: 5, credit: 0}
-      - {what: "QLP recipe automated for QLP-only stars", weight: 3, credit: 0}
+      - {what: "Sensitivity at other brightness levels, SPOC vs QLP", weight: 5, credit: 0.8, evidence: ["file:research/audit-2026-10-23/summary.txt", "file:pipeline/audit_all.py"], note: "all 5,064 usable star-sectors measured with one standard fake dip; realistic wandering crossings still only on TOI-1338"}
+      - {what: "QLP recipe automated for QLP-only stars", weight: 3, credit: 0.75, evidence: ["file:pipeline/audit_all.py", "file:research/audit-2026-10-23/summary.txt"], note: "windows borrowed from neighbour stars, checked leave-one-out on 1,298 star-sectors; a search on QLP-only stars not yet run"}
   - id: vetting
     name: Vetting
     weight: 20
@@ -49,7 +49,7 @@ stages:
     weight: 10
     blurb: Knowing how often noise fakes a signal.
     items:
-      - {what: "False-alarm rate measured on upside-down data across many stars", weight: 5, credit: 0.2, evidence: ["claim:F-016", "claim:F-058"], note: "one star so far"}
+      - {what: "False-alarm rate measured on upside-down data across many stars", weight: 5, credit: 0.8, evidence: ["claim:F-016", "claim:F-058", "file:research/audit-2026-10-23/summary.txt"], note: "869 fake events across 5,064 star-sectors; the threshold for a human-sized list is not settled"}
       - {what: "STANLEY scores calibrated against noise", weight: 5, credit: 0}
   - id: search
     name: The search
@@ -69,3 +69,4 @@ stages:
 
 changes:                                  # date, delta (points), why. The deltas must add up to the typed credits.
   - {date: 2026-10-21, delta: 35.75, why: "First rubric: everything done up to 21 October, scored with evidence (Ahmed: build it now)"}
+  - {date: 2026-10-23, delta: 9.25, why: "Stage 1 audit of all 549 stars (8,100 files): sensitivity by brightness and product measured (+4.0), borrowed QLP windows checked leave-one-out (+2.25), false alarms measured across 5,064 star-sectors (+3.0)"}

@@ -93,7 +93,17 @@ Half of your G1 stars only have **QLP** light curves (made by MIT from TESS's fu
 
 That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.
 
-**Found later by an outside review (23 October):** two holes this test could not see. Before sector 56, QLP has no `sys_rm_flux`, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned **nothing**, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (`pipeline/test_detect_v2_paths.py`, VERIFIED). Old QLP sectors now keep their dips, but their raw light is about six times noisier than SPOC's, so they count for little. The lesson: a search that silently finds nothing looks exactly like a quiet star.
+**Found later by an outside review (23 October):** two holes this test could not see. Before sector 56, QLP has no `sys_rm_flux`, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned **nothing**, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (`pipeline/test_detect_v2_paths.py`, VERIFIED). Old QLP sectors now keep their dips, and across 650 comparisons their raw light is only about 1.2 times noisier than SPOC's (I first took one bad Kepler-16 sector, six times noisier, as typical). The lesson: a search that silently finds nothing looks exactly like a quiet star.
+
+### A seventh test: every star, every sector (the audit)
+
+Before searching anything, we ran the detector over all 8,100 light-curve files of all 549 stars, hiding one standard dip (8 hours, 0.3% deep) in each star-sector and checking that it came back. Nothing in it is a search.
+
+- **Noise:** the box-averaged noise is a median of **2.5 times** what a perfectly quiet camera would give (quartiles 1.7 and 4.0). The first seven stars said 1.8; they were brighter than most.
+- **What it means for planet size:** in one 6.5-hour crossing, the smallest planet we could see is below 10 Earth radii for 143 of the 549 stars and below 15 for 269. For the other 239 stars no sector gets below 15, which is bigger than any known two-sun planet (the largest is about 12). The hidden dip came back in 73% of sectors for stars brighter than magnitude 11, but in only 8% at magnitude 12 to 13.
+- **False alarms:** upside down, the search made 869 fake events at SNR 7 (0.17 per star-sector). 41% of them fell at moments when three or more other stars also showed one, which points to the spacecraft; the same-moment filter flags those for a person. About 520 fakes would still be left at our bar of 7.
+
+These are VERIFIED on the audit files (`research/audit-2026-10-23/summary.txt`), with one standard dip rather than realistic wandering crossings, so they are best cases.
 
 ### A sixth test: fake planets that move like real ones
 

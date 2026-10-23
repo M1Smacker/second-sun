@@ -1,0 +1,45 @@
+﻿files audited: 8100 | status: {'ok': 8100}
+by product: {'QLP': 5081, 'TESS-SPOC': 1715, 'SPOC': 1304}
+
+QLP star-sectors with no safe windows (not usable): 21 {'ONE neighbour (weak)': 18, 'NONE (unsafe)': 3}
+
+star-sectors with any product: 5082 | with a usable audited product: 5064 | best product chosen: {'QLP': 3644, 'TESS-SPOC': 725, 'SPOC': 695}
+
+smallest planet (Earth radii) that reaches SNR 7 in ONE 6.5 h crossing, per best star-sector (TIC radius, no dilution):
+{'<4': 69, '4-6': 127, '6-10': 743, '10-15': 1005, '15-25': 1342, '>25': 1398} | no value: 380
+injected 8 h, 3,000 ppm dip recovered: 26.6% of best star-sectors
+
+by brightness (best product): star-sectors, median noise at 6.5 h (ppm), median noise factor beta, median min planet R_earth, % injected recovered
+            n  noise_ppm  beta  rmin  inj%
+tbin                                      
+<11       801      241.0  2.66  14.8  73.0
+11-12    1067      339.0  1.82  12.9  57.0
+12-13    1838      871.0  2.51  17.9   8.0
+13-13.5  1358     1450.0  2.73  21.0   1.0
+overall beta median 2.46 (quartiles 1.71 to 3.96)
+
+product noise ratios on the SAME star-sector (median of QLP or TESS-SPOC noise / SPOC noise):
+  TESS-SPOC: 1304 pairs, median 1.05x, quartiles 0.93 to 1.17
+  QLP sap_flux: 650 pairs, median 1.18x, quartiles 0.90 to 1.63
+  QLP sys_rm_flux: 652 pairs, median 1.39x, quartiles 1.12 to 1.75
+30-minute star-sectors audited: 1223 ({'QLP': 890, 'TESS-SPOC': 333}), injected dip recovered 30.8%
+
+borrowed-window leave-one-out check (1298 QLP star-sectors that also have their own SPOC windows):
+  share of the star's own good time kept: median 0.87, 10th percentile 0.69
+  share of borrowed time that SPOC itself would reject: median 0.000, 90th percentile 0.000, share with more than 5% bad time: 0.4%
+
+per star (549): stars with a usable sector 549; best sector reaches <=6 R_earth: 35, <=10: 143, <=15: 269, never below 15: 239, no usable data: 0
+median usable sectors per star: 9
+stars with no TIC radius (min planet size not computed): 41
+stars where the injected 3,000 ppm dip came back in at least 1 / 3 / 5 sectors: 233 / 177 / 148 of 549
+search exposure: 5064 usable star-sectors; those where a 15 R_earth planet could be seen: 1944; 10 R_earth: 939; 6 R_earth: 196
+
+upside-down (false-alarm proxy) on best star-sectors: 869 events in 5064 star-sectors = 0.17 per star-sector; strongest SNR 99.1
+same-moment filter on those fake events: 353 of 869 flagged (40.6%); largest burst: 27 other stars within 0.1 d
+false-alarm load for a person (upside-down events across all best star-sectors) by threshold:
+  SNR >=  7:  869 events,  516 not flagged by the same-moment filter
+  SNR >=  8:  619 events,  358 not flagged by the same-moment filter
+  SNR >=  9:  448 events,  246 not flagged by the same-moment filter
+  SNR >= 10:  334 events,  177 not flagged by the same-moment filter
+  SNR >= 12:  202 events,  112 not flagged by the same-moment filter
+  bursts (sector, camera, BTJD): [(14, 1, 1696.2), (14, 1, 1696.3), (14, 2, 1696.1), (14, 2, 1696.2), (14, 2, 1698.0), (14, 2, 1702.4), (14, 2, 1703.4), (14, 2, 1704.3), (14, 2, 1704.4), (14, 2, 1705.3), (14, 2, 1706.3), (14, 2, 1707.2)] ...

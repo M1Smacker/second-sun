@@ -25,7 +25,7 @@ el["pri"] = el.inj_found.astype(int)
 best = (el.sort_values(["tic", "sector", "pri", "noise_6.5h_ppm"], ascending=[True, True, False, True])
           .drop_duplicates(["tic", "sector"]))
 best.to_csv(rf"{OUT}\best_per_star_sector.csv", index=False)
-total_ss = a.assign(sec=a.file.str.extract(r"s(\d{4})")[0]).drop_duplicates(["tic", "sec"]).shape[0]
+total_ss = a.drop_duplicates(["tic", "sector"]).shape[0]               # sector column comes from the FITS header (a filename regex picks up "s2019" from "tess2019...")
 print(f"\nstar-sectors with any product: {total_ss} | with a usable audited product: {len(best)} "
       f"| best product chosen: {best['product'].value_counts().to_dict()}")
 
@@ -70,6 +70,12 @@ print(f"\nper star (549): stars with a usable sector {int((pc.n_sectors > 0).sum
       f"best sector reaches <=6 R_earth: {int((pc.best_rmin <= 6).sum())}, <=10: {int((pc.best_rmin <= 10).sum())}, "
       f"<=15: {int((pc.best_rmin <= 15).sum())}, never below 15: {int((pc.best_rmin > 15).sum())}, no usable data: {int((pc.n_sectors == 0).sum())}")
 print("median usable sectors per star:", int(pc.n_sectors.median()))
+print(f"stars with no TIC radius (min planet size not computed): {int(pc.best_rmin.isna().sum())}")
+inj = best.groupby("tic").inj_found.agg(["sum", "size"])
+print(f"stars where the injected 3,000 ppm dip came back in at least 1 / 3 / 5 sectors: "
+      f"{int((inj['sum'] >= 1).sum())} / {int((inj['sum'] >= 3).sum())} / {int((inj['sum'] >= 5).sum())} of {len(pc)}")
+print(f"search exposure: {len(best)} usable star-sectors; those where a 15 R_earth planet could be seen: {int((best.rmin7_rearth <= 15).sum())}; "
+      f"10 R_earth: {int((best.rmin7_rearth <= 10).sum())}; 6 R_earth: {int((best.rmin7_rearth <= 6).sum())}")
 
 fl = best[best.flipped_events > 0]
 evs = []
@@ -83,5 +89,9 @@ if evs:
     n_flag = sum(bool(e["flags"]) for e in out)
     print(f"same-moment filter on those fake events: {n_flag} of {len(out)} flagged ({n_flag / len(out):.1%}); "
           f"largest burst: {max(e['same_moment_stars'] for e in out)} other stars within 0.1 d")
+    print("false-alarm load for a person (upside-down events across all best star-sectors) by threshold:")
+    for thr in (7, 8, 9, 10, 12):
+        left = [e for e in out if e["snr"] >= thr]
+        print(f"  SNR >= {thr:>2}: {len(left):4d} events, {sum(not e['flags'] for e in left):4d} not flagged by the same-moment filter")
     big = sorted({(e["sector"], e["camera"], round(e["center"], 1)) for e in out if e["same_moment_stars"] >= 3})
     print("  bursts (sector, camera, BTJD):", big[:12], "..." if len(big) > 12 else "")

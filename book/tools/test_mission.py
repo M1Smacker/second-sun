@@ -38,7 +38,7 @@ must_fail(lambda m: m["stages"][0]["items"][0].pop("evidence"), "no proof, no po
 must_fail(lambda m: m["stages"][0]["items"][0].update(evidence=["claim:F-9999"]), "not in data/claims.csv")
 must_fail(lambda m: m["stages"][0]["items"][0].update(evidence=["file:nope/missing.txt"]), "no such file")
 must_fail(lambda m: m["stages"][0]["items"][0].update(evidence=["hunch"]), "must start with")
-must_fail(lambda m: m["stages"][1]["items"][4].update(credit=0.5), "no proof, no points")       # a zero-credit item cannot get points without evidence
+must_fail(lambda m: m["stages"][3]["items"][1].update(credit=0.5), "no proof, no points")       # a zero-credit item (STANLEY calibration) cannot get points without evidence
 must_fail(lambda m: m["changes"][0].update(delta=30), "Log every change")                       # credit moved without a matching log line
 must_fail(lambda m: m["changes"].append(dict(date=datetime.date(2029, 1, 1), delta=0, why="")), "numeric delta and a reason")
 must_fail(lambda m: m["changes"].append(dict(date=datetime.date(2031, 1, 1), delta=0, why="future")), "not in the future")
@@ -46,7 +46,8 @@ must_fail(lambda m: m["stages"][4]["items"][0].update(auto={"mystery": 1}), "unk
 
 # 3. a credit change WITH a matching log line and evidence is accepted, and the total moves by exactly that
 m = copy.deepcopy(real)
-item = m["stages"][1]["items"][4]; item.update(credit=0.2, evidence=["file:pipeline/detect_v2.py"])
+item = m["stages"][3]["items"][1]; assert item["weight"] == 5 and not item.get("credit"), item
+item.update(credit=0.2, evidence=["file:pipeline/detect_v2.py"])
 m["changes"].append(dict(date=datetime.date(2026, 10, 22), delta=1.0, why="test"))
 r2 = mission.score(m, REPO, claims, 0, TODAY)
 assert abs(r2["total"] - r["total"] - 1.0) < 1e-9, (r2["total"], r["total"])

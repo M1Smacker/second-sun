@@ -8,3 +8,4 @@ __pycache__/
 book/site/
 site/
 labs/out/
+research/audit-2026-10-23/*.pkl

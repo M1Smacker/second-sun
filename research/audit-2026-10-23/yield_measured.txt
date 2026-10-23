@@ -1,0 +1,11 @@
+﻿
+hosts 1.0x the Kepler hosts: raw expected detectable switch-ons 0.42 (review: 0.47 to 0.71)
+    [('K16', 0.9, 0.4226, 0.165), ('K34', 3.4, 0.0406, 0.06), ('K35', 0.8, 0.0973, 0.034), ('K47c', 3.9, 0.0029, 
+0.005), ('K64', 1.5, 0.0431, 0.028), ('K413', 0.7, 0.0, 0.0), ('K453', 6.0, 0.0485, 0.126), ('K1647', 13.2, 0.0, 0.0)]
+    after vetting x0.7 and halving the Kepler-16 term: lambda 0.23 -> P(at least one) 21%
+hosts 1.3x the Kepler hosts: raw expected detectable switch-ons 0.31 (review: 0.47 to 0.71)
+    [('K16', 0.9, 0.4024, 0.157), ('K34', 3.4, 0.0254, 0.037), ('K35', 0.8, 0.0786, 0.027), ('K47c', 3.9, 0.001, 
+0.002), ('K64', 1.5, 0.0186, 0.012), ('K413', 0.7, 0.0, 0.0), ('K453', 6.0, 0.0285, 0.074), ('K1647', 13.2, 0.0, 0.0)]
+    after vetting x0.7 and halving the Kepler-16 term: lambda 0.16 -> P(at least one) 15%
+
+
