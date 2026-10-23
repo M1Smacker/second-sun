@@ -36,6 +36,8 @@ Body text only, so UNVERIFIED by us: TESS Ten Thousand 1,371 of 2,458; Battley "
 3. **The common-time veto, pair search and short/long boxes are standard and cheap**: agreed. They come after the data path is fixed, because each depends on it.
 4. **Credit**: agree the upper-limit paper is the most realistic credited result, and that it needs the per-star sensitivity map the audit would produce.
 
+**Update the same day (audit pilot, `research/audit-2026-10-23/README.md`):** measured the way the search measures (spread of 6.5 h box means), Kepler-16's noise factor is about 1.9, not 2.8 (the 2.8 came from a 1-hour scatter after a 2-day flatten). Over 27 SPOC star-sectors of 7 G1 stars the median is 1.76. So the 17% case above is too pessimistic for bright stars; the estimate stays about 20% until the full audit covers fainter, QLP-only stars.
+
 ## Decisions taken in this review (Claude)
 1. Filed this review and saved the source review and its scripts in `research/deep-review-2026-10-23/` (scripts are the author's, MIT; we did not run them here; we re-did each check with our own code).
 2. No pipeline code changed. The hunt stays on hold; the B1/B2 fixes need Ahmed's go.

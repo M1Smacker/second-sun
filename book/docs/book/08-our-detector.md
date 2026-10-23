@@ -29,7 +29,7 @@ The steps, with every symbol:
 
 1. **Mask the eclipses.** The stars eclipse each other every binary period *P*<sub>bin</sub>. We use the known *P*<sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside.
 2. **Flatten (detrend).** Stars and the spacecraft cause slow drifts. We fit a smooth curve with a moving window of **2 days** (a "biweight", which ignores outliers) and divide it out. The window must be much longer than a transit, or the flattening eats the dip. v1 used 1 day, which was too short for 6-hour dips.
-3. **Bin.** Average the 2-minute points into **10-minute bins**.
+3. **Bin.** Average the 2-minute points into **10-minute bins**. When the data itself is spaced wider (30 minutes in TESS's first two years and in Kepler), each bin is one data point wide instead.
 4. **Slide boxes.** For each length *D* in 3, 4, 5, 6.5, 8, 10, 12 and 15 hours, compute the average brightness *m* of every *D*-long stretch.
 5. **Score.** For each length, SNR = (*median* − *m*) ÷ *σ*<sub>D</sub>, where *σ*<sub>D</sub> is the **robust spread of all the box averages of that length** (1.4826 × the median absolute deviation, a version of the standard deviation that isn't thrown off by a few odd values).
 6. **Keep peaks** with SNR ≥ 7 and merge overlapping ones into one event.
@@ -42,7 +42,7 @@ All of this is in `pipeline/detect_v2.py`, about 130 lines. The important functi
 
 | Function | Input | Output | What can go wrong |
 |---|---|---|---|
-| `load(path)` | a SPOC light-curve file | time `t`, flux `f`, number of gaps filled | missing PDCSAP data (filled from SAP) |
+| `load(path)` | a SPOC or QLP light-curve file | time `t`, flux `f`, number of gaps filled (and, if asked, which column it used) | missing PDCSAP data (filled from SAP); QLP needs SPOC's good stretches |
 | `eclipse_mask(t, f, P, ...)` | data + binary period and eclipse lengths | which points to keep | wrong period or eclipse lengths leave eclipse edges in |
 | `detrend(t, f, window_d=2.0)` | kept data | flattened flux | gaps create edge effects (Figure 8.2) |
 | `box_scores(bt, bf, dur_h)` | 10-min bins, one length | box centres, SNR, box averages | too few bins → no score |
@@ -92,6 +92,8 @@ Half of your G1 stars only have **QLP** light curves (made by MIT from TESS's fu
 - **The fix:** use QLP's flux that keeps long dips (`sys_rm_flux`) and keep only SPOC's good stretches. Result: **one event, the planet**, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.
 
 That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.
+
+**Found later by an outside review (23 October):** two holes this test could not see. Before sector 56, QLP has no `sys_rm_flux`, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned **nothing**, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (`pipeline/test_detect_v2_paths.py`, VERIFIED). Old QLP sectors now keep their dips, but their raw light is about six times noisier than SPOC's, so they count for little. The lesson: a search that silently finds nothing looks exactly like a quiet star.
 
 ### A sixth test: fake planets that move like real ones
 

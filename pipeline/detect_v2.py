@@ -29,11 +29,18 @@ BIN_D = 10 / 1440
 DURS_H = (3, 4, 5, 6.5, 8, 10, 12, 15)
 
 
-def load(path):
+QLP_COLS = ("sys_rm_flux", "det_flux", "kspsap_flux")
+
+
+def load(path, info=False):
     """Quality-masked, normalized time and flux.
-    SPOC: PDCSAP, with gaps filled from locally scaled SAP. QLP / other FFI products (no PDCSAP column):
-    QLP's sys_rm_flux (keeps long-transit depth; det_flux lost ~70% of a 6 h dip), to be paired with good_windows() from a SPOC file. Raw QLP SAP was tried first and is dominated by
-    scattered light (fake bumps up to SNR 38.7 on TOI-1338 S98), see research/overnight-science/report.md §9."""
+    SPOC: PDCSAP, with gaps filled from locally scaled SAP; if PDCSAP is entirely NaN (e.g. quality bit 32768),
+    SAP alone (B5, deep review 2026-10-23: this used to return no data, silently).
+    QLP: sys_rm_flux from sector 56 (keeps long-transit depth). Before 56 there is no sys_rm_flux, and the detrended
+    column (kspsap_, renamed det_ at 56) eats long dips (det_flux lost ~70% of a 6 h dip), so raw sap_flux is used
+    (B2, same review). Both QLP columns must be paired with good_windows() from SPOC files: raw QLP is dominated by
+    scattered light outside them (fake bumps up to SNR 38.7 on TOI-1338 S98), see research/overnight-science/report.md §9.
+    info=True also returns a dict: product, sector, column, cadence_min, needs_windows (so a result row can record it)."""
     lc = lk.read(path, quality_bitmask="hard")
     t = lc.time.value
     cols = {c.lower() for c in lc.columns}
@@ -42,19 +49,30 @@ def load(path):
     ok_t = np.isfinite(t)
     t, pdc, sap = t[ok_t], pdc[ok_t], sap[ok_t]
     s = sap / np.nanmedian(sap)
-    if not np.isfinite(pdc).any():           # QLP-style file: its detrended flux (lightkurve's lc.flux = raw SAP here)
-        col = next((c for c in ("sys_rm_flux", "det_flux", "kspsap_flux") if c in cols), "flux")  # sys_rm keeps long-dip depth; pair with good_windows()
+    sector = lc.meta.get("SECTOR")
+    name = str(path).lower()
+    product = ("QLP" if cols & set(QLP_COLS) else "TESS-SPOC" if "tess-spoc" in name
+               else "SPOC" if "pdcsap_flux" in cols else "other")
+    meta = dict(product=product, sector=sector, needs_windows=False,
+                cadence_min=round(float(np.median(np.diff(t))) * 1440, 2) if len(t) > 1 else None)
+    out = lambda tt, ff, n, col: (tt, ff, n, {**meta, "column": col}) if info else (tt, ff, n)
+    if meta["product"] == "QLP":
+        col = "sys_rm_flux" if "sys_rm_flux" in cols else "sap_flux"
+        meta["needs_windows"] = True
         q = np.asarray(lc[col].value, float)[ok_t]
         q = q / np.nanmedian(q)
         good = np.isfinite(q)
-        return t[good], q[good], 0
+        return out(t[good], q[good], 0, col)
+    if not np.isfinite(pdc).any():
+        good = np.isfinite(s)
+        return out(t[good], s[good], 0, "sap_flux")
     f = pdc / np.nanmedian(pdc)
     fill = ~np.isfinite(f) & np.isfinite(s)
     for i in np.where(fill)[0]:
         near = np.isfinite(f) & (np.abs(t - t[i]) < 1.0)
         f[i] = s[i] * (np.median(f[near] / s[near]) if near.sum() > 20 else 1.0)
     good = np.isfinite(f)
-    return t[good], f[good], int(fill.sum())
+    return out(t[good], f[good], int(fill.sum()), "pdcsap_flux")
 
 
 def good_windows(spoc_path, min_gap_d=0.25):
@@ -149,30 +167,41 @@ def detrend(t, f, window_d=2.0):
     return t[ok], flat[ok]
 
 
-def bin10(t, f):
-    edges = np.arange(t.min(), t.max() + BIN_D, BIN_D)
+def bin_width(t):
+    """10 min, or the data's own spacing when that is slower (30-min TESS FFIs in S1-26, 29.4-min Kepler long cadence).
+    B1, deep review 2026-10-23: with 10-min bins, 30-min data fills only 1 bin in 3, every box failed the 80% coverage
+    rule, and the search returned nothing, silently."""
+    cad = np.median(np.diff(t)) if len(t) > 1 else BIN_D
+    return BIN_D if cad <= 1.05 * BIN_D else float(cad)
+
+
+def bin10(t, f, bin_d=BIN_D):
+    """Average into bins of bin_d days (default 10 min). Slower bins are centred on the data's own cadences."""
+    start = t.min() if bin_d == BIN_D else t.min() - bin_d / 2
+    edges = np.arange(start, t.max() + bin_d, bin_d)
     k = np.digitize(t, edges) - 1
     n = np.bincount(k, minlength=len(edges))
     s = np.bincount(k, weights=f, minlength=len(edges))
     with np.errstate(invalid="ignore", divide="ignore"):
         bf = s / n
-    bt = edges + BIN_D / 2
+    bt = edges + bin_d / 2
     cad = np.median(np.diff(t)) if len(t) > 1 else BIN_D
     good = n >= (2 if cad < 5 / 1440 else 1)   # 2-min/200-s data: >=2 points per bin; 10-/30-min FFI: >=1
     bf[~good] = np.nan
     return bt, bf
 
 
-def box_scores(bt, bf, dur_h, min_cover=0.8):
+def box_scores(bt, bf, dur_h, min_cover=0.8, bin_d=BIN_D):
     """Box mean and SNR at every bin centre for one duration; NaN where coverage < min_cover."""
-    w = max(int(round(dur_h * 60 / 10)), 1)
+    bin_min = 10 if bin_d == BIN_D else bin_d * 1440
+    w = max(int(round(dur_h * 60 / bin_min)), 1)
     v = np.isfinite(bf)
     c_n = np.concatenate([[0], np.cumsum(v)])
     c_f = np.concatenate([[0], np.cumsum(np.where(v, bf, 0.0))])
     n = c_n[w:] - c_n[:-w]
     m = (c_f[w:] - c_f[:-w]) / np.maximum(n, 1)
     m[n < min_cover * w] = np.nan
-    centre = bt[: len(m)] + (w - 1) * BIN_D / 2
+    centre = bt[: len(m)] + (w - 1) * bin_d / 2
     med = np.nanmedian(bf)
     good = np.isfinite(m)
     if good.sum() < 20:
@@ -184,11 +213,12 @@ def box_scores(bt, bf, dur_h, min_cover=0.8):
 def find_events(t, f, thr=7.0, durs_h=DURS_H, window_d=2.0):
     """t, f = out-of-eclipse data. Returns events sorted by SNR (highest first)."""
     tt, ff = detrend(t, f, window_d)
-    bt, bf = bin10(tt, ff)
+    bd = bin_width(tt)
+    bt, bf = bin10(tt, ff, bd)
     med = np.nanmedian(bf)
     cands = []
     for d in durs_h:
-        c, snr, m = box_scores(bt, bf, d)
+        c, snr, m = box_scores(bt, bf, d, bin_d=bd)
         for i in np.where(np.nan_to_num(snr) >= thr)[0]:
             cands.append((snr[i], c[i], d, (med - m[i]) * 1e6))
     cands.sort(reverse=True)

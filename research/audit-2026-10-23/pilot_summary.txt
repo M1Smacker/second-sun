@@ -1,0 +1,35 @@
+﻿      tic  tmag  sector product      column  windows  noise_6.5h_ppm   beta  rmin7_rearth  inj_expected  inj_found  inj_snr  flipped_events
+ 48507019  9.81      14    SPOC pdcsap_flux      NaN          7770.9 106.74         78.95         False      False      NaN               0
+138638780  9.53      14    SPOC pdcsap_flux      NaN            83.3   1.29           NaN          True       True     32.6               0
+ 48507019  9.81      15    SPOC pdcsap_flux      NaN          3960.3  54.40         56.36         False      False      NaN               0
+138638780  9.53      15    SPOC pdcsap_flux      NaN           106.3   1.65           NaN          True       True     26.7               0
+ 48507019  9.81      26    SPOC pdcsap_flux      NaN          4276.4  58.74         58.57         False      False      NaN               0
+138638780  9.53      40    SPOC pdcsap_flux      NaN            75.1   1.17           NaN          True       True     37.8               0
+299096355 10.94      82    SPOC pdcsap_flux      NaN           515.2   4.03          5.03         False      False      NaN               0
+299096355 10.94      54     QLP    sap_flux own SPOC          2159.9  16.89         10.31         False      False      NaN               1
+299096355 10.94      14    SPOC pdcsap_flux      NaN           277.7   2.17          3.70          True       True     10.4               0
+299096355 10.94      15    SPOC pdcsap_flux      NaN           167.9   1.31          2.87          True       True     15.0               0
+299096355 10.94      26    SPOC pdcsap_flux      NaN           266.9   2.09          3.62          True       True     11.7               0
+299096355 10.94      40    SPOC pdcsap_flux      NaN           298.1   2.33          3.83          True       True      8.5               0
+299096355 10.94      41    SPOC pdcsap_flux      NaN           613.5   4.80          5.49         False      False      NaN               0
+299096355 10.94      53    SPOC pdcsap_flux      NaN           247.7   1.94          3.49          True       True     10.6               1
+299096355 10.94      54    SPOC pdcsap_flux      NaN           361.7   2.83          4.22          True       True      7.7               0
+299096355 10.94      55    SPOC pdcsap_flux      NaN           215.9   1.69          3.26          True       True     10.4               0
+299096355 10.94      56    SPOC pdcsap_flux      NaN           176.7   1.38          2.95          True       True     13.8               0
+299096355 10.94      73    SPOC pdcsap_flux      NaN           148.4   1.16          2.70          True       True     16.5               1
+299096355 10.94      74    SPOC pdcsap_flux      NaN           149.9   1.17          2.72          True       True     17.9               0
+299096355 10.94      75    SPOC pdcsap_flux      NaN           299.8   2.34          3.84          True       True      8.2               1
+299096355 10.94      76    SPOC pdcsap_flux      NaN           225.5   1.76          3.33          True       True      9.4               0
+299096355 10.94      80    SPOC pdcsap_flux      NaN           172.8   1.35          2.92          True       True     14.8               0
+299096355 10.94      81    SPOC pdcsap_flux      NaN           296.5   2.32          3.82          True       True      9.0               1
+299096355 10.94      83    SPOC pdcsap_flux      NaN           170.8   1.34          2.90          True       True     13.0               1
+299096355 10.94      82     QLP sys_rm_flux own SPOC           185.0   1.45          3.02          True       True     13.0               0
+159443078 12.00      15    SPOC pdcsap_flux      NaN           269.3   1.15         10.25          True       True      9.6               0
+121277143 10.00      81    SPOC pdcsap_flux      NaN           111.4   1.40          9.71          True       True     25.0               1
+158278417 13.00      81    SPOC pdcsap_flux      NaN           537.3   1.22         83.52         False      False      NaN               0
+ 63071165 11.00      82    SPOC pdcsap_flux      NaN           389.9   2.96          4.73         False       True      7.2               1
+
+SPOC star-sectors: 27; beta median 1.76 (quartiles 1.32-2.59)
+per star median beta: {48507019: 58.74, 63071165: 2.96, 121277143: 1.4, 138638780: 1.29, 158278417: 1.22, 159443078: 1.15, 299096355: 1.94}
+injected dip missed where it should have been found: 0 []
+flipped events per star-sector: 0.28
