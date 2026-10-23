@@ -1087,6 +1087,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-seventh-test-every-star-every-sector-the-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: every star, every sector (the audit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2364,6 +2375,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-seventh-test-every-star-every-sector-the-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: every star, every sector (the audit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2527,7 +2549,7 @@
 <h2 id="83-the-technical-explanation">8.3 The technical explanation<a class="headerlink" href="#83-the-technical-explanation" title="Permanent link">&para;</a></h2>
 <p>The steps, with every symbol:</p>
 <ol>
-<li><strong>Mask the eclipses.</strong> The stars eclipse each other every binary period <em>P</em><sub>bin</sub>. We use the known <em>P</em><sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside.</li>
+<li><strong>Mask the eclipses.</strong> The stars eclipse each other every binary period <em>P</em><sub>bin</sub>. We use the known <em>P</em><sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside. A star with more than one catalogue period (two of ours have) gets every period masked, one after the other.</li>
 <li><strong>Flatten (detrend).</strong> Stars and the spacecraft cause slow drifts. We fit a smooth curve with a moving window of <strong>2 days</strong> (a "biweight", which ignores outliers) and divide it out. The window must be much longer than a transit, or the flattening eats the dip. v1 used 1 day, which was too short for 6-hour dips.</li>
 <li><strong>Bin.</strong> Average the 2-minute points into <strong>10-minute bins</strong>. When the data itself is spaced wider (30 minutes in <a href="../../glossary/#tess">TESS</a>'s first two years and in <a href="../../glossary/#kepler">Kepler</a>), each bin is one data point wide instead.</li>
 <li><strong>Slide boxes.</strong> For each length <em>D</em> in 3, 4, 5, 6.5, 8, 10, 12 and 15 hours, compute the average brightness <em>m</em> of every <em>D</em>-long stretch.</li>
@@ -2609,7 +2631,15 @@
 <li><strong>The fix:</strong> use QLP's flux that keeps long dips (<code>sys_rm_flux</code>) and keep only SPOC's good stretches. Result: <strong>one event, the planet</strong>, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.</li>
 </ul>
 <p>That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.</p>
-<p><strong>Found later by an outside review (23 October):</strong> two holes this test could not see. Before sector 56, QLP has no <code>sys_rm_flux</code>, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned <strong>nothing</strong>, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (<code>pipeline/test_detect_v2_paths.py</code>, VERIFIED). Old QLP sectors now keep their dips, but their raw light is about six times noisier than SPOC's, so they count for little. The lesson: a search that silently finds nothing looks exactly like a quiet star.</p>
+<p><strong>Found later by an outside review (23 October):</strong> two holes this test could not see. Before sector 56, QLP has no <code>sys_rm_flux</code>, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned <strong>nothing</strong>, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (<code>pipeline/test_detect_v2_paths.py</code>, VERIFIED). Old QLP sectors now keep their dips, and across 650 comparisons their raw light is only about 1.2 times noisier than SPOC's (I first took one bad Kepler-16 sector, six times noisier, as typical). The lesson: a search that silently finds nothing looks exactly like a quiet star.</p>
+<h3 id="a-seventh-test-every-star-every-sector-the-audit">A seventh test: every star, every sector (the audit)<a class="headerlink" href="#a-seventh-test-every-star-every-sector-the-audit" title="Permanent link">&para;</a></h3>
+<p>Before searching anything, we ran the detector over all 8,100 light-curve files of all 549 stars, hiding one standard dip (8 hours, 0.3% deep) in each star-sector and checking that it came back. Nothing in it is a search.</p>
+<ul>
+<li><strong>Noise:</strong> the box-averaged noise is a median of <strong>2.5 times</strong> what a perfectly quiet camera would give (quartiles 1.7 and 4.0). The first seven stars said 1.8; they were brighter than most.</li>
+<li><strong>What it means for planet size:</strong> in one 6.5-hour crossing, the smallest planet we could see is below 10 Earth radii for 143 of the 549 stars and below 15 for 269. For the other 239 stars no sector gets below 15, which is bigger than any known two-sun planet (the largest is about 12). The hidden dip came back in 73% of sectors for stars brighter than <a href="../../glossary/#magnitude">magnitude</a> 11, but in only 8% at magnitude 12 to 13.</li>
+<li><strong>False alarms:</strong> upside down, the search made 869 fake events at SNR 7 (0.17 per star-sector). 41% of them fell at moments when three or more other stars also showed one, which points to the spacecraft; the same-moment filter flags those for a person. About 520 fakes would still be left at our bar of 7.</li>
+</ul>
+<p>These are VERIFIED on the audit files (<code>research/audit-2026-10-23/summary.txt</code>), with one standard dip rather than realistic wandering crossings, so they are best cases.</p>
 <h3 id="a-sixth-test-fake-planets-that-move-like-real-ones">A sixth test: fake planets that move like real ones<a class="headerlink" href="#a-sixth-test-fake-planets-that-move-like-real-ones" title="Permanent link">&para;</a></h3>
 <p>Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 5). So I used <strong><a href="../../glossary/#stanley">STANLEY</a></strong>'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:</p>
 <ul>
