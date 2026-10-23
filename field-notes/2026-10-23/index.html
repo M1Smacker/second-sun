@@ -1868,6 +1868,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Afternoon: an outside review finds two silent bugs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evening-the-fixes-and-the-first-look-at-our-own-stars-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evening: the fixes, and the first look at our own stars' noise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2254,6 +2271,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Afternoon: an outside review finds two silent bugs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evening-the-fixes-and-the-first-look-at-our-own-stars-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evening: the fixes, and the first look at our own stars' noise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2389,6 +2423,15 @@
 <li><strong>Together</strong> they touch about half of the planned QLP data. Nothing has been searched yet, so no result is wrong, but those stars would have looked quiet.</li>
 <li><strong>The odds moved up a little, to about 20%</strong> (range 5 to 45%). The outside estimate was 21 to 39%, but it used the noise of TOI-1338, a quiet star outside our list. Kepler-16, the one star of ours we have measured, is about twice as noisy. With that noise the same sum gives about 17%.</li>
 <li><strong>Timing matters:</strong> TESS looks at the Kepler field again in July and August 2027. A candidate published with a predicted date before then can be checked by TESS itself.</li>
+</ul>
+<h3 id="evening-the-fixes-and-the-first-look-at-our-own-stars-noise">Evening: the fixes, and the first look at our own stars' noise<a class="headerlink" href="#evening-the-fixes-and-the-first-look-at-our-own-stars-noise" title="Permanent link">&para;</a></h3>
+<p>You said to apply the changes and make sure nothing breaks, so the order was: tests first, then fixes, then proof.</p>
+<ul>
+<li><strong>Tests that fail first.</strong> A new check hides a dip at five spacings (2, 3.3, 10, 29.4 and 30 minutes) and reads our real QLP and SPOC files. On the old code it failed at 29.4 minutes; on the new code all of it passes.</li>
+<li><strong>The fixes.</strong> The detector now averages into bins as wide as the data's own spacing when that is slower than 10 minutes. Old QLP sectors use the raw flux (it keeps the dip's depth). A file whose cleaned column is empty now falls back to the raw one instead of returning nothing.</li>
+<li><strong>Nothing else broke.</strong> The old and new detector both ran on all 51 light curves we have: 50 gave exactly the same results, and the one that changed is the old QLP file, as intended.</li>
+<li><strong>The audit, tried on 7 of our stars.</strong> In every sector it hides one standard dip and checks that it comes back: it always did where the noise allowed, and never where it did not. It also measures how much worse than ideal the noise is. The middle value is <strong>1.76 times</strong> the ideal, and Kepler-16 is about <strong>1.9</strong>, not the 2.8 I quoted this afternoon: that number came from a different way of measuring. So the odds lean a little up, but these 7 stars are brighter than most of ours, so I keep about 20% until all 549 are measured.</li>
+<li><strong>One honest letdown:</strong> the old QLP sectors keep their dips now, but their raw flux is about <strong>six times noisier</strong> than SPOC's. Those sectors will count for little until we find a better way to clean them.</li>
 </ul>
 <p><strong>Idea:</strong> a filter that silently returns nothing looks exactly like a quiet star. Every way the data can come in (each product, spacing and era) needs a test that hides a known dip and fails loudly if it does not come back.</p>
 <p><strong>You could try it:</strong> <code>research/deep-review-2026-10-23/our-checks/verify_b1_b2.py</code> prints the four spacings and which column the loader picks for each QLP file we have.</p>

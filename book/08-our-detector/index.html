@@ -2529,7 +2529,7 @@
 <ol>
 <li><strong>Mask the eclipses.</strong> The stars eclipse each other every binary period <em>P</em><sub>bin</sub>. We use the known <em>P</em><sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside.</li>
 <li><strong>Flatten (detrend).</strong> Stars and the spacecraft cause slow drifts. We fit a smooth curve with a moving window of <strong>2 days</strong> (a "biweight", which ignores outliers) and divide it out. The window must be much longer than a transit, or the flattening eats the dip. v1 used 1 day, which was too short for 6-hour dips.</li>
-<li><strong>Bin.</strong> Average the 2-minute points into <strong>10-minute bins</strong>.</li>
+<li><strong>Bin.</strong> Average the 2-minute points into <strong>10-minute bins</strong>. When the data itself is spaced wider (30 minutes in <a href="../../glossary/#tess">TESS</a>'s first two years and in <a href="../../glossary/#kepler">Kepler</a>), each bin is one data point wide instead.</li>
 <li><strong>Slide boxes.</strong> For each length <em>D</em> in 3, 4, 5, 6.5, 8, 10, 12 and 15 hours, compute the average brightness <em>m</em> of every <em>D</em>-long stretch.</li>
 <li><strong>Score.</strong> For each length, SNR = (<em>median</em> − <em>m</em>) ÷ <em>σ</em><sub>D</sub>, where <em>σ</em><sub>D</sub> is the <strong><a href="../../glossary/#robust-spread">robust spread</a> of all the box averages of that length</strong> (1.4826 × the median absolute deviation, a version of the standard deviation that isn't thrown off by a few odd values).</li>
 <li><strong>Keep peaks</strong> with SNR ≥ 7 and merge overlapping ones into one event.</li>
@@ -2549,9 +2549,9 @@
 <tbody>
 <tr>
 <td><code>load(path)</code></td>
-<td>a SPOC light-curve file</td>
-<td>time <code>t</code>, flux <code>f</code>, number of gaps filled</td>
-<td>missing PDCSAP data (filled from SAP)</td>
+<td>a SPOC or QLP light-curve file</td>
+<td>time <code>t</code>, flux <code>f</code>, number of gaps filled (and, if asked, which column it used)</td>
+<td>missing PDCSAP data (filled from SAP); QLP needs SPOC's good stretches</td>
 </tr>
 <tr>
 <td><code>eclipse_mask(t, f, P, ...)</code></td>
@@ -2602,13 +2602,14 @@
 <p>Many fake dips sit next to a <strong>data gap</strong> (where the spacecraft paused) or a <strong><a href="../../glossary/#momentum-dump">momentum dump</a></strong> (a short thruster firing that jolts the pointing). So I tried rejecting any dip close to one. It removed 4 of the 6 fakes, but it also threw away <strong>2 of the 4 real crossings</strong> of TOI-1338 b: one sat 0.17 days from a thruster firing, the other 0.09 days from a gap. On this star, real and fake dips sit at the same kinds of distances, so no cut-off separates them.</p>
 <p>So the rule became gentler. Closeness to a gap or a firing is now a <strong>warning flag</strong> shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (<code>pipeline/veto_test.py</code>, VERIFIED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit <strong>one orbit</strong>.</p>
 <h3 id="a-fifth-test-the-same-dip-in-a-second-independent-product">A fifth test: the same dip in a second, independent product<a class="headerlink" href="#a-fifth-test-the-same-dip-in-a-second-independent-product" title="Permanent link">&para;</a></h3>
-<p>Half of your G1 stars only have <strong><a href="../../glossary/#qlp">QLP</a></strong> light curves (made by MIT from <a href="../../glossary/#tess">TESS</a>'s full-frame pictures, Chapter 3). So I ran the search on QLP's version of sector 98.</p>
+<p>Half of your G1 stars only have <strong><a href="../../glossary/#qlp">QLP</a></strong> light curves (made by MIT from TESS's full-frame pictures, Chapter 3). So I ran the search on QLP's version of sector 98.</p>
 <ul>
 <li><strong>First try: a mess.</strong> QLP's raw light had fake dips up to <strong>44 times the noise</strong>, and QLP's own cleaned version shrank the planet's 2,400 ppm dip to about 700 ppm (its cleaning eats long dips). The planet was missed both ways.</li>
 <li><strong>The clue:</strong> every strong fake sat inside stretches of time that NASA's <a href="../../glossary/#spoc">SPOC</a> pipeline <strong>throws away</strong> (<a href="../../glossary/#scattered-light">scattered light</a> that comes back at the same point in each TESS orbit). QLP keeps those stretches.</li>
 <li><strong>The fix:</strong> use QLP's flux that keeps long dips (<code>sys_rm_flux</code>) and keep only SPOC's good stretches. Result: <strong>one event, the planet</strong>, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.</li>
 </ul>
 <p>That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.</p>
+<p><strong>Found later by an outside review (23 October):</strong> two holes this test could not see. Before sector 56, QLP has no <code>sys_rm_flux</code>, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned <strong>nothing</strong>, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (<code>pipeline/test_detect_v2_paths.py</code>, VERIFIED). Old QLP sectors now keep their dips, but their raw light is about six times noisier than SPOC's, so they count for little. The lesson: a search that silently finds nothing looks exactly like a quiet star.</p>
 <h3 id="a-sixth-test-fake-planets-that-move-like-real-ones">A sixth test: fake planets that move like real ones<a class="headerlink" href="#a-sixth-test-fake-planets-that-move-like-real-ones" title="Permanent link">&para;</a></h3>
 <p>Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 5). So I used <strong><a href="../../glossary/#stanley">STANLEY</a></strong>'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:</p>
 <ul>
