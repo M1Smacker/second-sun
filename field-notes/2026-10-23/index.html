@@ -1937,6 +1937,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#morning-your-scores-now-reach-the-cloud-by-themselves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Morning: your scores now reach the cloud by themselves
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2395,6 +2406,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#morning-your-scores-now-reach-the-cloud-by-themselves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Morning: your scores now reach the cloud by themselves
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2596,6 +2618,18 @@
 </ul>
 <p><strong>Idea:</strong> before you build a tool, ask what it must remember. A practice tool that forgets is fine until the day you want to know how you are doing.</p>
 <p><strong>Idea:</strong> a test that has never failed has not been tested. Break the thing on purpose and watch the test notice, then re-run the unbroken version to be sure the test, not your break, is what failed.</p>
+<h3 id="morning-your-scores-now-reach-the-cloud-by-themselves">Morning: your scores now reach the cloud by themselves<a class="headerlink" href="#morning-your-scores-now-reach-the-cloud-by-themselves" title="Permanent link">&para;</a></h3>
+<p>You set up Firebase, and the cloud backup is built. You never copy or send anything.</p>
+<ul>
+<li><strong>How it works:</strong> the moment you finish a round, or leave one half done, the book sends it to a private cloud copy (your Firebase project). If you are offline, the round waits on your phone and goes out the moment the internet is back. The line under the results says what is happening, from "sending your round" to "all 3 finished rounds are safe in the cloud, and Claude can read them".</li>
+<li><strong>No double copies:</strong> each round has its own unique name, and the cloud refuses a second copy with the same name, so a send that was interrupted can be tried again safely.</li>
+<li><strong>What Claude does:</strong> a reader signs in with a key only your computer holds, pulls every round, scores it with the same code the book uses, and writes the practice and test rounds into the repo as the permanent record. A daily job does this each morning, and Claude can do it any time you say "look at my eye test scores".</li>
+<li><strong>Your rules, tested from the outside:</strong> I tried a good write (accepted), a repeat (refused as already there), nine kinds of junk (all refused), and reading, changing and deleting with the public key (all refused). Only the reader's key can read.</li>
+<li><strong>Proof it works:</strong> a real browser played a round, it reached your real Firebase, and I compared it field by field with what the browser had saved: all 5 answers, the totals and the timing were identical. Then I deleted the test round.</li>
+<li><strong>Tested:</strong> 20 checks of the scoring logic, 11 of the sender (offline, retries, a busy server, no duplicates), 14 in a real browser against a pretend Firestore (online, offline, a server error, an abandoned round), 34 on the Eyes screen. Each family was broken on purpose to prove it can fail. One of the first break-tests did not catch a removed "internet is back" listener, because a background check rescued the round, so I slowed that check down and made the test demand delivery within 10 seconds.</li>
+<li><strong>Still not done:</strong> the Training record page and the real-candidate page (waiting for your go), and a test on your real iPhone: I can only test in a computer browser, so tell me if anything looks off on the phone.</li>
+</ul>
+<p><strong>Idea:</strong> the test of a safety net is whether it holds when you cut the first rope. If a backup path can rescue a failure, a test that only checks "it arrived in the end" cannot tell which path did the work.</p>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <details class="quiz">
 <summary>1. Why do bigger dots mean brighter stars on the map?</summary>
@@ -2686,6 +2720,8 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/eyes-core.js"></script>
+      
+        <script src="../../assets/eyes-cloud.js"></script>
       
         <script src="../../assets/demos.js"></script>
       

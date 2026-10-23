@@ -186,6 +186,11 @@
         if (!r || r.status !== "open") return null;
         r.status = "done"; r.t1 = now(); r.s = summarize(r.a); save("finish", r); return r;
       },
+      markSynced(id) {                                            // the cloud has this round (never for a round still open)
+        const r = find(id);
+        if (!r || r.status === "open") return false;
+        r.sync = 1; r.syncAt = now(); return save("sync", r);
+      },
       // A round left open from an earlier page visit is closed as "abandoned" (kept, with its answers); an empty one is dropped.
       recoverOpen() {
         let changed = 0;
@@ -207,5 +212,34 @@
     return api;
   }
 
-  return { SCHEMA, KEY, NAME, PASS, TEST_N, FAINT, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle };
+  // ---- the cloud document: its shape is fixed by the published Firestore rules (only these keys; create once, never change) ----
+  const CLOUD_KEYS = ["v", "id", "mode", "source", "n", "t0", "t1", "status", "device", "a", "s"];
+  function roundDoc(r, device) {
+    return { v: r.v, id: r.id, mode: r.mode, source: r.source, n: r.n, t0: r.t0, t1: r.t1, status: r.status,
+             device: { id: device.id, label: device.label || "" }, a: r.a, s: r.s || summarize(r.a) };
+  }
+  function encodeValue(v) {                                       // Firestore REST typed values
+    if (v === null || v === undefined || (typeof v === "number" && !Number.isFinite(v))) return { nullValue: null };
+    if (typeof v === "boolean") return { booleanValue: v };
+    if (typeof v === "number") return Number.isInteger(v) ? { integerValue: String(v) } : { doubleValue: v };
+    if (typeof v === "string") return { stringValue: v };
+    if (Array.isArray(v)) return { arrayValue: { values: v.map(encodeValue) } };
+    const fields = {}; for (const k of Object.keys(v)) fields[k] = encodeValue(v[k]);
+    return { mapValue: { fields } };
+  }
+  function decodeValue(v) {
+    const t = Object.keys(v)[0], x = v[t];
+    if (t === "nullValue") return null;
+    if (t === "integerValue") return Number(x);
+    if (t === "arrayValue") return (x.values || []).map(decodeValue);
+    if (t === "mapValue") { const o = {}; for (const k of Object.keys(x.fields || {})) o[k] = decodeValue(x.fields[k]); return o; }
+    return x;
+  }
+  function toFirestoreBody(r, device) {
+    const d = roundDoc(r, device), fields = {};
+    for (const k of CLOUD_KEYS) fields[k] = encodeValue(d[k]);
+    return { fields };
+  }
+
+  return { SCHEMA, KEY, NAME, PASS, TEST_N, FAINT, CLOUD_KEYS, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
 });
