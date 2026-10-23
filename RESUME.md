@@ -2,6 +2,8 @@
 
 *Created 2026-10-20 21:55 UTC by Claude. Keep the "Status" table below current; it is the single source of truth for what is done and what is next. If the weekly limit stops work, anyone (including a fresh session a week later) can continue from here.*
 
+## TODAY (2026-10-23, day): weekly cap raised to 65% for today (Ahmed: "put the weekly cap for today at around 65%"). Gemini's research answer was Compass-reviewed: `research/compass-reviews/2026-10-23-gemini-answer.md`. Next steps wait for his go.
+
 ## NEWEST (2026-10-23, night): the book was rebuilt overnight under Ahmed's approval; cap is 50%
 Ahmed said "approve, font B and start building" (23 Oct, going to sleep): build, then stress test, polish, make the home constellation realistic, stop at **50% of the weekly limit** and pause cleanly. Brief: `research/BOOK-REDESIGN-BRIEF.md`.
 
