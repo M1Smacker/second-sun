@@ -1948,6 +1948,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#night-an-outside-brief-on-how-to-show-you-the-dots-and-what-it-taught-us-about-our-own-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Night: an outside brief on how to show you the dots, and what it taught us about our own practice
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2417,6 +2428,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#night-an-outside-brief-on-how-to-show-you-the-dots-and-what-it-taught-us-about-our-own-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Night: an outside brief on how to show you the dots, and what it taught us about our own practice
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2630,6 +2652,19 @@
 <li><strong>Still not done:</strong> the Training record page and the real-candidate page (waiting for your go), and a test on your real iPhone: I can only test in a computer browser, so tell me if anything looks off on the phone.</li>
 </ul>
 <p><strong>Idea:</strong> the test of a safety net is whether it holds when you cut the first rope. If a backup path can rescue a failure, a test that only checks "it arrived in the end" cannot tell which path did the work.</p>
+<h3 id="night-an-outside-brief-on-how-to-show-you-the-dots-and-what-it-taught-us-about-our-own-practice">Night: an outside brief on how to show you the dots, and what it taught us about our own practice<a class="headerlink" href="#night-an-outside-brief-on-how-to-show-you-the-dots-and-what-it-taught-us-about-our-own-practice" title="Permanent link">&para;</a></h3>
+<p>Another Claude, with web access, wrote a research brief on how a page should present a candidate dip to a beginner and to an AI without one anchoring the other. I did not build from it. I checked it first (our Compass review), and I read the original papers for its key claims.</p>
+<ul>
+<li><strong>What held up:</strong> hiding the star's name until after the answer, hidden fake dips with known answers, an equal-sized "unclear" button, no planet-shaped model drawn on the data before both answers are in, and scoring "can you see dips" separately from "do you say planet too easily". I read the Planet Hunters TESS and Space Warps papers and the TESS vetting paper: the quoted rates (30% fake dips at the start, falling to 1%, or never below 10% in Space Warps) and the "undecided" option are really there. The medical result that a wrong AI hint can drag even experts down to about 45% accuracy is reported consistently, but I only read news coverage of it, so I call it likely, not proven.</li>
+<li><strong>What would have been a mistake: the lineup test.</strong> The idea is to hide the real dip among a few empty stretches and see if you can pick it out. I tried it in a simulation of pure noise with no planet at all. If the empty stretches are random, a perfect observer still picks "the dip" 84% of the time, because the dip was chosen as the biggest wiggle of the whole sector and a random stretch is not. If the empty stretches are the biggest wiggle found by the same search on other noise, the observer drops to 20%, which is pure chance, as it should be. The comparison is only fair when both sides were picked the same way.</li>
+<li><strong>What it showed about our own practice:</strong> your "quiet" practice curves are random stretches. On real data you will only ever see the machine's best-looking wiggle in each sector. So your false-alarm score on easy quiet curves understates how often you would be fooled for real. The fix is a new kind of practice card, "noise at its best", built from the detector's top event on upside-down or noise-only data.</li>
+<li><strong>Our pass line, measured:</strong> I simulated readers of known skill. Someone who truly finds 75% of dips and false-alarms 12% of the time meets the line in the first two rounds about 9% of the time; someone at 90% and 8% meets it only 55% of the time. So the line is a fair gate but a noisy one, and that is why I judge the numbers and do not just read the line.</li>
+<li><strong>What it changes:</strong> the current Eyes practice teaches shapes, but it is a clean 36 hour cutout of one star. The real page will show a whole sector, a zoom, where the dip falls in the stars' own eclipse cycle and a second data product, on many stars with different noise. A new layout needs its own readiness test, so a rehearsal with hidden fakes in the real layout is now required before any real lead, not optional.</li>
+<li><strong>Nothing was built.</strong> This was a review. The full verdict is in <code>research/compass-reviews/2026-10-24-vetting-page-research.md</code>.</li>
+</ul>
+<p><strong>Idea:</strong> a test is only fair if the thing you check and the thing you compare it with were chosen the same way. Picking the best-looking stretch of the data and comparing it with an ordinary stretch proves nothing.</p>
+<p><strong>Idea:</strong> before you ask whether you are good at spotting something, ask whether your practice material is as hard as the real material. Easy practice gives a flattering score.</p>
+<p><strong>You could try:</strong> open <code>research/vetting-page-research-2026-10-23/our_checks.py</code> and change the lineup simulation so the empty stretches are random again; watch the 20% turn into 84%.</p>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <details class="quiz">
 <summary>1. Why do bigger dots mean brighter stars on the map?</summary>
