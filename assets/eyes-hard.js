@@ -95,6 +95,13 @@
         note = "a dip that ends where a gap in the data begins. This is the classic thruster-firing artifact: the spacecraft jitters just before it fires, then the data stops. Real planets do not know when the thrusters fire.";
       } else throw new Error("unknown card kind " + k);
     }
+    if (k !== "gapdip" && k !== "eclipse" && rnd() < 0.4) {                           // decoy gaps: a gap by itself must not give the answer away, only a dip that touches one does
+      const g = ri(24, 60);
+      for (let tries = 0; tries < 30; tries++) {
+        const s = ri(10, WIN - 10 - g);
+        if (s + g < box[0] - 40 || s > box[1] + 40) { for (let j = s; j < s + g; j++) y[j] = null; meta.gap = [s, g]; break; }
+      }
+    }
     if (wander) { const amp = 150 + 250 * rnd(), per = 70 + 230 * rnd(), ph = 6.2832 * rnd(); y = y.map((v, j) => (v === null ? null : v + amp * Math.sin(6.2832 * j / per + ph))); }
     return { y: y.map((v) => (v === null ? null : Math.round(v))), truth, kind: k === "dip" ? "dipSNR" : k, tier, box, meta, note };
   }
