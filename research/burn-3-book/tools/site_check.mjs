@@ -408,7 +408,7 @@ async function eyesTest() {
       banners.push(await text());
       checks["next" + i] = !!(await clickAny(NEXT));
     }
-    checks.easyFeedbackLines = banners.every((t) => /What the numbers say/.test(t));
+    checks.easyFeedbackLines = banners.every((t) => /what the numbers say/i.test(t));
     checks.bannerSaysTruth = banners.every((t) => /THIS WAS: (A DIP|NOT A DIP)/.test(t) && /It was /.test(t) && /You said/.test(t));
     checks.lookBackShowsTruthAndAnswer = lookBackTexts.every((t) => /Looking back at light curve \d of 5 \(read only\)/.test(t) && /THIS WAS:/.test(t) && /You said/.test(t));
     let r = (await store())[0];
@@ -432,7 +432,7 @@ async function eyesTest() {
     const cyc = ["Dip", "No dip", "Odd", "Not sure"]; let leaked = false, lastBanner = "";
     for (let i = 0; i < 30; i++) {
       await click(cyc[i % 4]);
-      lastBanner = await text(); if (/THIS WAS:|What the numbers say/.test(lastBanner)) leaked = true;
+      lastBanner = await text(); if (/THIS WAS:|what the numbers say/i.test(lastBanner)) leaked = true;
       if (i === 5) { await click("◀ Look at previous question"); const t = await text(); if (/THIS WAS:/.test(t) || !/You answered:/.test(t)) leaked = true; await click("Back to light curve 6"); }
       await clickAny(NEXT);
     }
@@ -461,11 +461,11 @@ async function eyesTest() {
     checks.hardButtons = (await visible("Take the HARD test (30 curves)")) && (await visible("Hard practice 20")) && (await visible("Hard practice 50"));
     await click("Take the HARD test (30 curves)");
     let hleak = false;
-    for (let i = 0; i < 30; i++) { await click(cyc[i % 4]); if (/THIS WAS:|What the numbers say/.test(await text())) hleak = true; await clickAny(NEXT); }
+    for (let i = 0; i < 30; i++) { await click(cyc[i % 4]); if (/THIS WAS:|what the numbers say/i.test(await text())) hleak = true; await clickAny(NEXT); }
     checks.hardTestHidesTruth = !hleak;
     const hf = await text();
     checks.hardFinish = /Test finished/.test(hf) && /Hard line so far/.test(hf) && !/Pass line so far/.test(hf) && /Hard test rounds: 1, curves: 30/.test(hf) && /Clear fake planets/.test(hf) && /Not enough yet/.test(hf);
-    await click("Review this round"); const hrv = await text(); checks.hardReviewShowsNumbers = /What the numbers say/.test(hrv) && /light curve 1 of 30 (read only)/.test(hrv); await click("Close the review");
+    await click("Review this round"); const hrv = await text(); checks.hardReviewShowsNumbers = /what the numbers say/i.test(hrv) && /light curve 1 of 30 \(read only\)/.test(hrv); await click("Close the review");
     const hr = (await store())[0], tc = (t) => hr.a.filter((e) => e.t === t).length;
     checks.hardTestSaved = hr.mode === "test" && /^hard/.test(hr.source) && hr.status === "done" && hr.a.length === 30 && tc("clear") === 6 && tc("border") === 6 && tc("hardnoise") === 8 && tc("odd") === 10 && hr.a.some((e) => e.ans === "unsure") && hr.a.every((e) => e.m && e.m.seed > 0 && e.f && typeof e.f.st === "number");
     await click("My results");
@@ -474,7 +474,7 @@ async function eyesTest() {
     await click("Back"); await click("Hard practice 20"); await click("Dip");
     checks.hardPracticeShowsTruth = /THIS WAS: (A DIP|NOT A DIP)/.test(await text());
     checks.plotBarExplained = /dashed line is how deep a dip must be here to score 7/.test(await text());
-    const fbl = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__fb")].map((e) => e.textContent)`), fbw = fbl.join(" ").split(/s+/).filter(Boolean).length;
+    const fbl = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__fb")].map((e) => e.textContent)`), fbw = fbl.join(" ").split(/\s+/).filter(Boolean).length;
     checks.hardPracticeFeedback = fbl.length === 3 && fbw >= 36 && fbw <= 44 && !/missed/.test(fbl.join(" ")) && !/[–—]/.test(fbl.join(" "));
 
     // ---- phone layout: nothing wider than the screen, every button big enough ----
