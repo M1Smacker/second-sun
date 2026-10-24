@@ -244,7 +244,12 @@ function practiceSource(J, rnd) {
   return { id: "practice-toi1338-s98", label: "Practice: TOI-1338 sector 98", compose: (mode, n) => window.SSEyes.compose(mode, n, rnd), build };
 }
 
-function eyesEngine(el, src, core) {
+function hardSource(J, rnd) {                                                       // the hard test: the cards are made by assets/eyes-hard.js (tested in Node)
+  const H = window.SSEyesHard; let P = null;
+  return { id: "hard-toi1338-s98", label: "Hard: TOI-1338 sector 98 noise", compose: (mode, n) => H.compose(mode, n, rnd), build: (spec) => H.build(P || (P = H.prepare(J)), spec, spec.seed) };
+}
+
+function eyesEngine(el, src, core, hard) {
   const volatile = { on: false };
   const storage = (() => {
     try { const s = window.localStorage, k = "ss-eyes-probe"; s.setItem(k, "1"); s.removeItem(k); return s; }
@@ -280,6 +285,10 @@ function eyesEngine(el, src, core) {
       note("Practice shows the answer after every curve. Each curve is a day and a half of the real TOI-1338 light curve with nothing marked."),
       mk("div", { className: "ss-demo__row" }, btn(`Take the official test (${core.TEST_N} curves)`, () => begin("test", core.TEST_N)), btn("My results", results)),
       note("The official test shows no answers until the end and counts towards the pass line. You may look back at earlier curves, but you can never change an answer."),
+      ...(hard ? [mk("h4", {}, "Hard mode"),
+        note("Harder cards: the best-looking dip of a whole sector of noise, fake planets down to the edge of what anyone can see, jumps, and dips that end at a gap in the data. Not sure is a fair answer on the hardest ones."),
+        mk("div", { className: "ss-demo__row" }, ...[20, 50].map((n) => btn(`Hard practice ${n}`, () => begin("practice", n, hard), "ss-demo__sm")), btn("Take the HARD test (30 curves)", () => begin("test", 30, hard))),
+        note("Hard practice shows the answer after every curve. The HARD test shows nothing until the end and has its own line, separate from the official test.")] : []),
       note(saveNote(), { ariaLive: "polite" }), cloudNote());
   }
 
@@ -331,9 +340,9 @@ function eyesEngine(el, src, core) {
     banner.replaceChildren(mk("p", { className: "ss-eyes__you" }, `${why} "${NAMES[ans]}".`), note("The test shows what each one was at the end. You can look back, but not change an answer."));
   }
 
-  function begin(m, n) {
-    mode = m; cards = src.compose(m, n).map(src.build); at = 0; view = null; review = false;
-    round = store.startRound({ mode: m, source: src.id, n: cards.length });
+  function begin(m, n, s = src) {
+    mode = m; cards = s.compose(m, n).map(s.build); at = 0; view = null; review = false;
+    round = store.startRound({ mode: m, source: s.id, n: cards.length });
     buildPlay(); show();
   }
   function show() {
@@ -378,8 +387,8 @@ function eyesEngine(el, src, core) {
   function finish() { store.finishRound(round.id); showFinish(); }
   function showFinish() {
     review = false; view = null;
-    const lines = core.summaryLines(round.s), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), ...lines.map((l) => note(l))];
-    if (mode === "test") kids.push(mk("h4", {}, "Pass line so far"), ...core.passLine(store.rounds()).lines.map((l) => note(l)));
+    const isH = core.isHard(round), lines = isH ? core.hardLines(core.summarizeHard(round.a)) : core.summaryLines(round.s), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), ...lines.map((l) => note(l))];
+    if (mode === "test") kids.push(mk("h4", {}, isH ? "Hard line so far" : "Pass line so far"), ...(isH ? core.hardLine(store.rounds()) : core.passLine(store.rounds())).lines.map((l) => note(l)));
     kids.push(note(saveNote()), cloudNote(), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
     stage.replaceChildren(...kids);
   }
@@ -387,15 +396,16 @@ function eyesEngine(el, src, core) {
 
   function results() {
     cards = null; review = false;
-    const rs = store.rounds(), shown = rs.slice(0, 30), p = core.passLine(rs);
+    const rs = store.rounds(), shown = rs.slice(0, 30), p = core.passLine(rs), ph = core.hardLine(rs);
     const head = ["Date", "Mode", "Curves", "Right", "Wrong", "Not sure", "Dips found", "False alarms", "Status"];
-    const rows = shown.map((r) => { const s = r.s || core.summarize(r.a); return [core.fmtDate(r.t0), r.mode, `${r.a.length}/${r.n}`, s.right, s.wrong, s.unsure, s.dips ? `${s.dipsFound}/${s.dips}` : "", s.quiet ? `${s.falseAlarms}/${s.quiet}` : "", r.status]; });
+    const rows = shown.map((r) => { const s = r.s || core.summarize(r.a); return [core.fmtDate(r.t0), r.mode + (core.isHard(r) ? " (hard)" : ""), `${r.a.length}/${r.n}`, s.right, s.wrong, s.unsure, s.dips ? `${s.dipsFound}/${s.dips}` : "", s.quiet ? `${s.falseAlarms}/${s.quiet}` : "", r.status]; });
     const table = mk("table", { className: "ss-eyes__table" }, mk("thead", {}, mk("tr", {}, ...head.map((h) => mk("th", { scope: "col" }, h)))),
       mk("tbody", {}, ...rows.map((r) => mk("tr", {}, ...r.map((c) => mk("td", {}, String(c)))))));
     const label = mk("input", { type: "text", className: "ss-eyes__input", value: store.device.label, placeholder: "e.g. iPhone", maxLength: 40, ariaLabel: "Device name" });
     label.addEventListener("change", () => store.setLabel(label.value));
     stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
       mk("h4", {}, "Official test pass line"), ...p.lines.map((l) => note(l)),
+      ...(ph.rounds ? [mk("h4", {}, "Hard test line"), ...ph.lines.map((l) => note(l))] : []),
       rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), cloudNote(),
       mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Back", start)));
   }
@@ -420,7 +430,7 @@ async function initEyesDemo(el) {
   if (!window.SSEyes) { el.append(mk("p", {}, "Eyes mode could not start (a script did not load). Reload the page.")); return; }
   let s0 = (Date.now() ^ 0x9E3779B9) | 0;
   const rnd = () => { s0 |= 0; s0 = s0 + 0x6D2B79F5 | 0; let z = Math.imul(s0 ^ s0 >>> 15, 1 | s0); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
-  eyesEngine(el, practiceSource(J, rnd), window.SSEyes);
+  eyesEngine(el, practiceSource(J, rnd), window.SSEyes, window.SSEyesHard ? hardSource(J, rnd) : null);
 }
 
 const DEMOS = { depth: initDepthDemo, orbit: initOrbitDemo, noise: initNoiseDemo, explorer: initExplorerDemo, eyes: initEyesDemo };

@@ -1970,6 +1970,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#night-the-hard-test-built-the-same-night-you-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Night: the hard test, built the same night you asked
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2461,6 +2472,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#night-the-hard-test-built-the-same-night-you-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Night: the hard test, built the same night you asked
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2699,6 +2721,20 @@
 </ul>
 <p><strong>Idea:</strong> a score that climbs steeply inside one session is good news about the learner and bad news about the test. Ask what changed between the first round and the last.</p>
 <p><strong>Idea:</strong> speed can mean skill or it can mean a memorised look. The way to tell them apart is to change the look and see whether the speed survives.</p>
+<h3 id="night-the-hard-test-built-the-same-night-you-asked">Night: the hard test, built the same night you asked<a class="headerlink" href="#night-the-hard-test-built-the-same-night-you-asked" title="Permanent link">&para;</a></h3>
+<p>You said 30 out of 30 had become boring, so step two of the ladder is built and live: <strong>Hard practice</strong> (answers after every curve) and <strong>Take the HARD test</strong> (30 curves, no answers until the end), with its own line.</p>
+<ul>
+<li><strong>The line, fixed before you played it:</strong> at least 80% of the clear fake planets found, and at most 20% of the hard-noise cards called a dip, over at least 4 hard rounds, 120 curves and 2 different days. On a clear fake planet <em>Not sure</em> counts as a miss. On hard noise it is free.</li>
+<li><strong>Hard noise is not random any more.</strong> Each "nothing hidden" card is the best-looking dip found in a whole fresh sector of noise, because that is what the hunt will hand you. I made the noise by reshuffling 6 hour pieces of this star's own noise.</li>
+<li><strong>The fake planets go down to the edge.</strong> Strength 10 to 16 for the clear ones, 5 to 8.5 for the near-limit ones (the hunt keeps 7 and above), with sloping sides instead of boxes.</li>
+<li><strong>New odd things:</strong> a dip that ends where a gap in the data begins (the thruster-firing artifact), a jump down that never recovers, and subtler spikes. Eclipses are real eclipses of this star. The old memorised planet card is gone.</li>
+<li><strong>How hard it really is:</strong> for a perfect box-shaped filter, the hard-noise cards have a median strength of 6.1 and 30% reach 7 or above. The clear fakes beat every noise card. The near-limit fakes at 5 to 6.5 cannot be told from ordinary hard noise, so there <em>Not sure</em> is the right answer, not a dodge.</li>
+<li><strong>The test caught my first version.</strong> I made the noise from the star's own leftovers, and the checks said the "noise" had a median strength of 19. The star's data holds real glitches, and reshuffling them put a huge dip in every card. The fix was to leave out any piece that already holds an obvious dip or bump. Without a check that measured the cards, I would have shipped a test full of hidden eclipses-by-accident.</li>
+<li><strong>Tested:</strong> 14 checks of the cards and scoring, a browser run of a whole hard test and a hard practice round, and I broke the code on purpose 8 ways (unselected noise, an event always in the middle, weaker fakes, a missing gap, wrong <em>Not sure</em> scoring, the two lines mixing, a moved line); every break was caught.</li>
+<li><strong>Still one star.</strong> All of this uses TOI-1338's sector 98. The rehearsal in step three uses many stars.</li>
+</ul>
+<p><strong>Idea:</strong> build a thing that makes fake data, then measure the fake data. If you never check that your fake noise behaves like noise, your whole test rests on a guess.</p>
+<p><strong>Idea:</strong> fix the pass mark before anyone plays. A line chosen after the scores are in is not a line.</p>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <details class="quiz">
 <summary>1. Why do bigger dots mean brighter stars on the map?</summary>
@@ -2789,6 +2825,8 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/eyes-core.js"></script>
+      
+        <script src="../../assets/eyes-hard.js"></script>
       
         <script src="../../assets/eyes-cloud.js"></script>
       
