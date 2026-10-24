@@ -63,6 +63,9 @@ Run node "$src\book\tools\test_eyes.mjs"
 Step "2e. Eyes cloud uploader: offline queue, retries, no duplicates, nothing sent while a round is open"
 Run node "$src\book\tools\test_eyes_cloud.mjs"
 
+Step "2f. Eyes HARD test: best-of-a-sector noise cards, fake planets as strong as they say, no giveaway by position, the two lines never mix"
+Run node "$src\book\tools\test_eyes_hard.mjs"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build

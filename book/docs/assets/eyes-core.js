@@ -19,6 +19,8 @@
     eclipse: "an eclipse: one star passing in front of the other",
     spike: "a short spike upwards, like a flare or a glitch",
     step: "a sudden jump that stays, like an instrument glitch",
+    hardnoise: "nothing hidden: the best-looking dip of a whole sector of noise",
+    gapdip: "a dip that ends where a gap in the data begins, the thruster-firing artifact",
   };
   const baseKind = (k) => (String(k).startsWith("dip") ? "dip" : k);
   const isDip = (card) => card.truth === "dip";
@@ -108,7 +110,7 @@
   const pc = (x) => `${Math.round(100 * x)}%`;
 
   function passLine(rounds) {
-    const done = rounds.filter((r) => r.mode === "test" && r.status === "done" && r.a.length === r.n);
+    const done = rounds.filter((r) => r.mode === "test" && !isHard(r) && r.status === "done" && r.a.length === r.n);
     const entries = done.flatMap((r) => r.a), s = summarize(entries);
     const days = new Set(done.map((r) => localDay(r.t0))).size;
     const clear = { n: s.clear, k: s.clearFound, rate: s.clear ? s.clearFound / s.clear : 0, range: wilson(s.clearFound, s.clear) };
@@ -130,6 +132,52 @@
     lines.push(verdictWord === "not_enough" ? `Not enough yet: still needs ${needs.join(", ")}.`
       : verdictWord === "meets" ? "On the numbers you meet the line. Claude decides whether that is enough." : "Below the line on the numbers so far. Keep practising.");
     return { rounds: done.length, curves: s.n, days, clear, faint, quiet, oddCalledDip: s.oddCalledDip, odd: s.odd, enough, meets, verdict: verdictWord, needs, lines };
+  }
+
+  // ---- the HARD test (second step of the readiness ladder). Its line was fixed on 24 Oct 2026, BEFORE Ahmed played it, and must not be moved afterwards:
+  //      at least 80% of the clear fake planets said "Dip" (Not sure counts as a miss there), at most 20% of the hard-noise cards called a dip (Not sure is free there),
+  //      over at least 4 rounds, 120 curves and 2 different days. Everything else is reported, not required. ----
+  const HARD = { clearHit: 0.80, noiseFalseAlarm: 0.20, minCurves: 120, minRounds: 4, minDays: 2 };
+  const isHard = (r) => /^hard/.test((r && r.source) || "");
+  function summarizeHard(entries) {
+    const T = (t) => entries.filter((e) => e.t === t), cnt = (xs, a) => xs.filter((e) => e.ans === a).length;
+    const clear = T("clear"), border = T("border"), noise = T("hardnoise"), odd = T("odd");
+    const band = (lo, hi) => border.filter((e) => e.m && e.m.snr >= lo && e.m.snr < hi);
+    const h = { n: entries.length, clear: clear.length, clearFound: cnt(clear, "dip"), clearUnsure: cnt(clear, "unsure"),
+      border: border.length, borderDip: cnt(border, "dip"), borderUnsure: cnt(border, "unsure"), borderNo: border.length - cnt(border, "dip") - cnt(border, "unsure"),
+      noise: noise.length, noiseFA: cnt(noise, "dip"), noiseUnsure: cnt(noise, "unsure"),
+      odd: odd.length, oddRight: odd.filter((e) => e.ok).length, oddCalledDip: cnt(odd, "dip"), unsure: cnt(entries, "unsure") };
+    h.unsureOnHard = h.borderUnsure + h.noiseUnsure;
+    h.bands = [[5, 6.5], [6.5, 8.6]].map(([lo, hi]) => { const b = band(lo, hi); return { lo, hi: hi === 8.6 ? 8.5 : hi, n: b.length, dip: cnt(b, "dip"), unsure: cnt(b, "unsure") }; });
+    return h;
+  }
+  function hardLines(h) {
+    const L = [`You looked at ${h.n} light curves.`];
+    if (h.clear) L.push(`Clear fake planets: you said Dip on ${h.clearFound} of ${h.clear}${h.clearUnsure ? ` (Not sure on ${h.clearUnsure})` : ""}.`);
+    for (const b of h.bands) if (b.n) L.push(`Fake planets near the limit (strength ${b.lo} to ${b.hi}): Dip on ${b.dip} of ${b.n}, Not sure on ${b.unsure}.`);
+    if (h.noise) L.push(`Hard noise (nothing hidden): you called a dip on ${h.noiseFA} of ${h.noise}${h.noiseUnsure ? `, Not sure on ${h.noiseUnsure}` : ""}.`);
+    if (h.odd) L.push(`Odd things (eclipses, spikes, jumps, dips at a gap): named right ${h.oddRight} of ${h.odd}${h.oddCalledDip ? `, called a dip ${h.oddCalledDip}` : ""}.`);
+    if (h.unsure) L.push(`You said Not sure ${h.unsure} time(s); ${h.unsureOnHard} of them were on hard noise or fake planets near the limit, where it is a fair answer.`);
+    return L;
+  }
+  function hardLine(rounds) {
+    const done = rounds.filter((r) => r.mode === "test" && isHard(r) && r.status === "done" && r.a.length === r.n);
+    const h = summarizeHard(done.flatMap((r) => r.a)), days = new Set(done.map((r) => localDay(r.t0))).size;
+    const clear = { n: h.clear, k: h.clearFound, rate: h.clear ? h.clearFound / h.clear : 0, range: wilson(h.clearFound, h.clear) };
+    const noise = { n: h.noise, k: h.noiseFA, rate: h.noise ? h.noiseFA / h.noise : 0, range: wilson(h.noiseFA, h.noise) };
+    const needs = [];
+    if (done.length < HARD.minRounds) needs.push(`${HARD.minRounds - done.length} more hard test round(s)`);
+    if (h.n < HARD.minCurves && done.length >= HARD.minRounds) needs.push(`${HARD.minCurves - h.n} more curves`);
+    if (days < HARD.minDays) needs.push("a hard test on a different day");
+    const enough = needs.length === 0, meets = h.clear > 0 && clear.rate >= HARD.clearHit && h.noise > 0 && noise.rate <= HARD.noiseFalseAlarm;
+    const verdictWord = !enough ? "not_enough" : meets ? "meets" : "below";
+    const lines = [`Hard test rounds: ${done.length}, curves: ${h.n}, days: ${days}.`];
+    if (h.clear) lines.push(`Clear fake planets found: ${h.clearFound} of ${h.clear} (${pc(clear.rate)}; 95% range ${pc(clear.range[0])} to ${pc(clear.range[1])}). Line: at least ${pc(HARD.clearHit)}.`);
+    if (h.noise) lines.push(`Hard noise called a dip: ${h.noiseFA} of ${h.noise} (${pc(noise.rate)}; 95% range ${pc(noise.range[0])} to ${pc(noise.range[1])}). Line: at most ${pc(HARD.noiseFalseAlarm)}.`);
+    lines.push(...hardLines(h).slice(1));
+    lines.push(verdictWord === "not_enough" ? `Not enough yet: still needs ${needs.join(", ")}.`
+      : verdictWord === "meets" ? "On the numbers you meet the hard line. Claude decides whether that is enough." : "Below the hard line on the numbers so far. Keep practising.");
+    return { rounds: done.length, curves: h.n, days, clear, noise, h, enough, meets, verdict: verdictWord, needs, lines };
   }
 
   // ---- the store: everything is written to the device after EVERY answer ----
@@ -174,6 +222,7 @@
         if (!r || r.status !== "open" || i !== r.a.length || !NAME[ans]) return null;
         const v = verdict(ans, card);
         const e = { i, kind: card.kind, truth: card.truth, ans, ok: v.ok, bin: v.bin, ms: Math.round(ms || 0), lb: 0, m: card.meta || null };
+        if (card.tier) e.t = card.tier;                           // only the hard test's cards have a tier (clear, border, hardnoise, odd)
         r.a.push(e); r.s = summarize(r.a); save("answer", r); return e;
       },
       noteLookBack(id, i) {                                       // only counts looks during an open round; never touches the answer
@@ -241,5 +290,5 @@
     return { fields };
   }
 
-  return { SCHEMA, KEY, NAME, PASS, TEST_N, FAINT, CLOUD_KEYS, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
+  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, isHard, summarizeHard, hardLines, hardLine, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
 });

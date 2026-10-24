@@ -18,21 +18,29 @@ const done = rounds.filter((r) => r.status === "done");
 out.push(`EYES SCORES  (${rounds.length} rounds: ${["practice", "test", "real"].map((m) => `${by(m).length} ${m}`).join(", ")}; ${rounds.length - done.length} abandoned)`);
 out.push(`First round ${E.fmtDate(rounds[0].t0)}, latest ${E.fmtDate(rounds.at(-1).t0)}. Devices: ${[...new Set(rounds.map((r) => (r.device && (r.device.label || r.device.id)) || "?"))].join(", ")}.`);
 
+const hard = (r) => E.isHard(r);
 for (const m of ["practice", "test"]) {
-  const rs = by(m); if (!rs.length) continue;
+  const rs = by(m).filter((r) => !hard(r)); if (!rs.length) continue;
   const s = E.summarize(rs.flatMap((r) => r.a));
   out.push("", `${m.toUpperCase()}: ${rs.length} round(s), ${s.n} curves: ${s.right} right, ${s.wrong} wrong, ${s.unsure} not sure (${Math.round(100 * s.right / s.n)}% right)`);
   out.push(`  clear dips found ${pc(s.clearFound, s.clear)} | faint dips found ${pc(s.faintFound, s.faint)} | quiet curves called a dip ${pc(s.falseAlarms, s.quiet)} | odd things named right ${pc(s.oddSpotted, s.odd)}${s.oddCalledDip ? ` (called a dip: ${s.oddCalledDip})` : ""}`);
   const lastN = rs.slice(-5), t = E.summarize(lastN.flatMap((r) => r.a));
   out.push(`  last ${lastN.length} round(s): ${Math.round(100 * t.right / t.n)}% right, clear dips ${pc(t.clearFound, t.clear)}, false alarms ${pc(t.falseAlarms, t.quiet)}`);
 }
-out.push("", "RECENT ROUNDS (newest first):");
+for (const [name, rs] of [["HARD PRACTICE", by("practice").filter(hard)], ["HARD TEST", by("test").filter(hard)]]) {
+  if (!rs.length) continue;
+  const h = E.summarizeHard(rs.flatMap((r) => r.a)), lastN = rs.slice(-3), t = E.summarizeHard(lastN.flatMap((r) => r.a));
+  out.push("", `${name}: ${rs.length} round(s), ${h.n} curves`, ...E.hardLines(h).slice(1).map((l) => "  " + l));
+  out.push(`  last ${lastN.length} round(s): clear fake planets ${pc(t.clearFound, t.clear)}, hard noise called a dip ${pc(t.noiseFA, t.noise)}, Not sure ${t.unsure}`);
+}
+out.push("", "RECENT ROUNDS (newest first; * = hard):");
 for (const r of rounds.slice(-8).reverse()) {
   const s = r.s || E.summarize(r.a);
-  out.push(`  ${E.fmtDate(r.t0)}  ${r.mode.padEnd(8)} ${String(r.a.length).padStart(3)}/${String(r.n).padEnd(3)} right ${s.right} wrong ${s.wrong} unsure ${s.unsure}  dips ${s.dipsFound}/${s.dips}  false alarms ${s.falseAlarms}/${s.quiet}  ${r.status}`);
+  out.push(`  ${E.fmtDate(r.t0)}  ${(r.mode + (hard(r) ? "*" : "")).padEnd(8)} ${String(r.a.length).padStart(3)}/${String(r.n).padEnd(3)} right ${s.right} wrong ${s.wrong} unsure ${s.unsure}  dips ${s.dipsFound}/${s.dips}  false alarms ${s.falseAlarms}/${s.quiet}  ${r.status}`);
 }
 const days = {}; for (const r of rounds) days[E.localDay(r.t0)] = (days[E.localDay(r.t0)] || 0) + r.a.length;
 out.push("", "CURVES PER DAY: " + Object.entries(days).map(([d, n]) => `${d} ${n}`).join(", "));
 const p = E.passLine(rounds);
 out.push("", "PASS LINE (official test, Standard):", ...p.lines.map((l) => "  " + l));
+if (rounds.some(hard)) out.push("", "HARD LINE (fixed on 24 Oct 2026 before it was played):", ...E.hardLine(rounds).lines.map((l) => "  " + l));
 console.log(out.join("\n"));

@@ -27,7 +27,7 @@ hooks: [hooks.py]
 watch: [progress, data, overrides, sw-template.js]
 
 extra_css: [assets/extra.css, assets/observatory.css, assets/shape.css]
-extra_javascript: [assets/eyes-core.js, assets/eyes-cloud.js, assets/demos.js]
+extra_javascript: [assets/eyes-core.js, assets/eyes-hard.js, assets/eyes-cloud.js, assets/demos.js]
 
 markdown_extensions:
   - admonition

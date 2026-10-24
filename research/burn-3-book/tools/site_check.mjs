@@ -452,6 +452,23 @@ async function eyesTest() {
     checks.noCopyOption = !/copy (my|the|your)? ?results|paste|export|send (it |them )?to claude/i.test(res) && !(await b.evaluate(`document.querySelector(".ss-eyes textarea") !== null || [...document.querySelectorAll(".ss-eyes button")].some((x) => /copy|paste|export/i.test(x.textContent))`));   // Ahmed: never make me hand over my results
     checks.exportApiForTheUpload = await b.evaluate(`(() => { const j = JSON.parse(window.SSEyesStore.exportJSON()); return j.schema === 1 && j.rounds.length === 3 && !!j.device.id; })()`);
 
+    // ---- the HARD test: its own cards and its own line, with the official pass line left alone ----
+    await click("Back");
+    checks.hardButtons = (await visible("Take the HARD test (30 curves)")) && (await visible("Hard practice 20")) && (await visible("Hard practice 50"));
+    await click("Take the HARD test (30 curves)");
+    let hleak = false;
+    for (let i = 0; i < 30; i++) { await click(cyc[i % 4]); if (/THIS WAS:/.test(await text())) hleak = true; await clickAny(NEXT); }
+    checks.hardTestHidesTruth = !hleak;
+    const hf = await text();
+    checks.hardFinish = /Test finished/.test(hf) && /Hard line so far/.test(hf) && !/Pass line so far/.test(hf) && /Hard test rounds: 1, curves: 30/.test(hf) && /Clear fake planets/.test(hf) && /Not enough yet/.test(hf);
+    const hr = (await store())[0], tc = (t) => hr.a.filter((e) => e.t === t).length;
+    checks.hardTestSaved = hr.mode === "test" && /^hard/.test(hr.source) && hr.status === "done" && hr.a.length === 30 && tc("clear") === 6 && tc("border") === 6 && tc("hardnoise") === 8 && tc("odd") === 10 && hr.a.some((e) => e.ans === "unsure") && hr.a.every((e) => e.m && e.m.seed > 0);
+    await click("My results");
+    const hres = await text();
+    checks.hardInResults = /Hard test line/.test(hres) && /test \(hard\)/.test(hres) && /Test rounds: 1, curves: 30/.test(hres);          // the official pass line still counts only the official test
+    await click("Back"); await click("Hard practice 20"); await click("Dip");
+    checks.hardPracticeShowsTruth = /THIS WAS: (A DIP|NOT A DIP)/.test(await text());
+
     // ---- phone layout: nothing wider than the screen, every button big enough ----
     await b.send("Emulation.setDeviceMetricsOverride", { width: 375, height: 812, deviceScaleFactor: 2, mobile: true });
     await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
