@@ -223,6 +223,7 @@
         const v = verdict(ans, card);
         const e = { i, kind: card.kind, truth: card.truth, ans, ok: v.ok, bin: v.bin, ms: Math.round(ms || 0), lb: 0, m: card.meta || null };
         if (card.tier) e.t = card.tier;                           // only the hard test's cards have a tier (clear, border, hardnoise, odd)
+        if (card.feat) e.f = { st: Math.round(card.feat.strength * 10) / 10, dh: Math.round(card.feat.dur_h * 10) / 10, gr: Math.round(card.feat.gap_ratio * 100) / 100 };   // measured strength, box length (hours), next-best ratio: the data for his own threshold line
         r.a.push(e); r.s = summarize(r.a); save("answer", r); return e;
       },
       noteLookBack(id, i) {                                       // only counts looks during an open round; never touches the answer
@@ -290,5 +291,40 @@
     return { fields };
   }
 
-  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, isHard, summarizeHard, hardLines, hardLine, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
+  // ---- his own habit: how often he says Dip at each measured strength (the strength is measured on the card and saved with the answer, field f) ----
+  const BANDS = [[0, 3, "under 3"], [3, 5, "3 to 5"], [5, 7, "5 to 7"], [7, 10, "7 to 10"], [10, Infinity, "10 or more"]];
+  function probit(p) {                                                  // inverse normal (Abramowitz and Stegun 26.2.23), good to about 4.5e-4
+    const q = Math.min(p, 1 - p), t = Math.sqrt(-2 * Math.log(q)), z = t - (2.515517 + 0.802853 * t + 0.010328 * t * t) / (1 + 1.432788 * t + 0.189269 * t * t + 0.001308 * t * t * t);
+    return p < 0.5 ? -z : z;
+  }
+  function habit(rounds) {
+    const es = rounds.flatMap((r) => r.a).filter((e) => e.f && typeof e.f.st === "number");
+    const bands = BANDS.map(([lo, hi, name]) => {
+      const x = es.filter((e) => e.f.st >= lo && e.f.st < hi), pl = x.filter((e) => e.truth === "dip"), ot = x.filter((e) => e.truth !== "dip");
+      return { name, n: x.length, dip: x.filter((e) => e.ans === "dip").length, planets: pl.length, planetsDip: pl.filter((e) => e.ans === "dip").length, other: ot.length, otherDip: ot.filter((e) => e.ans === "dip").length };
+    });
+    const pl = es.filter((e) => e.truth === "dip"), qu = es.filter((e) => e.truth === "none"), hit = pl.filter((e) => e.ans === "dip").length, fa = qu.filter((e) => e.ans === "dip").length;
+    let dprime = null, criterion = null;
+    if (pl.length >= 10 && qu.length >= 10) { const zh = probit((hit + 0.5) / (pl.length + 1)), zf = probit((fa + 0.5) / (qu.length + 1)); dprime = zh - zf; criterion = -(zh + zf) / 2; }
+    const first = bands.find((b) => b.n >= 5 && b.dip / b.n >= 0.5);
+    return { n: es.length, bands, dprime, criterion, saysDipFrom: first ? first.name : null };
+  }
+  function habitLines(h) {
+    if (!h.n) return ["Your habit by strength fills in as you answer. Every curve you answer from now on is measured, and its strength is saved with your answer."];
+    const out = [`Curves measured so far: ${h.n}. The hunt keeps strength 7 and above.`];
+    for (const b of h.bands) if (b.n) out.push(`Strength ${b.name}: you said Dip on ${b.dip} of ${b.n} curves (hidden planets ${b.planetsDip} of ${b.planets}, everything else ${b.otherDip} of ${b.other}).`);
+    if (h.saysDipFrom) out.push(`You say Dip on more than half of the curves from strength ${h.saysDipFrom}. The hunt's line is 7.`);
+    if (h.dprime !== null) out.push(`d-prime ${h.dprime.toFixed(1)} (0 is guessing, about 3 is excellent). Criterion ${h.criterion.toFixed(2)}: ${h.criterion < -0.3 ? "you lean towards saying Dip" : h.criterion > 0.3 ? "you lean towards saying No dip" : "you are not leaning either way"}.`);
+    return out;
+  }
+  // After a wrong answer in practice, a card of the same kind is moved up to 3 to 5 cards ahead, so the miss comes back soon. Only unseen cards move, and the round keeps the same cards.
+  function bringBack(cards, at, rnd) {
+    const key = (c) => c.kind + (c.tier || ""), k = key(cards[at]), to = at + 3 + Math.floor(rnd() * 3);
+    if (to >= cards.length) return -1;
+    if (key(cards[to]) === k) return to;
+    for (let j = to + 1; j < cards.length; j++) if (key(cards[j]) === k) { [cards[to], cards[j]] = [cards[j], cards[to]]; return to; }
+    return -1;
+  }
+
+  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, BANDS, habit, habitLines, bringBack, isHard, summarizeHard, hardLines, hardLine, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
 });
