@@ -11,8 +11,14 @@ ROOT = pathlib.Path(r"D:\second-sun")
 PUBLIC, LOCAL = ROOT / "research" / "eyes-scores" / "rounds.jsonl", ROOT / "data" / "eyes-real" / "rounds.jsonl"
 
 
+# Devices that are Claude's own browser, not Ahmed's phone. The cloud copy is create-only, so a test round that reached it cannot be deleted; it is ignored here instead.
+# g5hko8: Claude's in-app browser on 24 Oct 2026, two abandoned hard-practice rounds (one answer each) made while checking the live page.
+TEST_DEVICES = {"g5hko8"}
+
+
 def is_test(r):
-    return str(r.get("source", "")).startswith("e2e") or str((r.get("device") or {}).get("label", "")).lower().startswith("e2e")
+    return (str(r.get("source", "")).startswith("e2e") or str((r.get("device") or {}).get("label", "")).lower().startswith("e2e")
+            or str((r.get("device") or {}).get("id", "")) in TEST_DEVICES)
 
 
 def save(path, rounds):
