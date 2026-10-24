@@ -249,7 +249,8 @@ const eyesPrep = (J) => _eyesPrep || (_eyesPrep = window.SSEyesHard.prepare(J));
 
 function hardSource(J, rnd) {                                                       // the hard test: the cards are made by assets/eyes-hard.js (tested in Node)
   const H = window.SSEyesHard;
-  return { id: "hard-toi1338-s98", label: "Hard: TOI-1338 sector 98 noise", compose: (mode, n) => H.compose(mode, n, rnd), build: (spec) => H.build(eyesPrep(J), spec, spec.seed), sigT: () => eyesPrep(J).sigT };
+  return { id: "hard-toi1338-s98", label: "Hard: TOI-1338 sector 98 noise", compose: (mode, n) => H.compose(mode, n, rnd), build: (spec) => H.build(eyesPrep(J), spec, spec.seed), sigT: () => eyesPrep(J).sigT,
+    twins: { compose: (n) => H.composeTwins(n, rnd), build: (spec) => H.buildTwin(eyesPrep(J), spec), strength: (card) => H.strengthOf(card.y, eyesPrep(J).sigT) } };
 }
 
 function eyesEngine(el, src, core, hard) {
@@ -301,13 +302,16 @@ function eyesEngine(el, src, core, hard) {
       ...(hard ? [mk("h4", {}, "Hard mode"),
         note("Harder cards: the best-looking dip of a whole sector of noise, fake planets down to the edge of what anyone can see, jumps, and dips that end at a gap in the data. Not sure is a fair answer on the hardest ones."),
         mk("div", { className: "ss-demo__row" }, ...[20, 50].map((n) => btn(`Hard practice ${n}`, () => begin("practice", n, hard), "ss-demo__sm")), btn("Take the HARD test (30 curves)", () => begin("test", 30, hard))),
-        note("Hard practice shows the answer after every curve. The HARD test shows nothing until the end and has its own line, separate from the official test.")] : []),
+        note("Hard practice shows the answer after every curve. The HARD test shows nothing until the end and has its own line, separate from the official test."),
+        ...(hard.twins ? [mk("div", { className: "ss-demo__row" }, btn("Twin drill 10", () => twinDrill(10), "ss-demo__sm")),
+          note("Twin drill: two curves with exactly the same noise. One hides a faint fake planet (strength 5 to 8.5), the other is only noise. Say which. It is not saved and does not count towards any line.")] : [])] : []),
       note(saveNote(), { ariaLive: "polite" }), cloudNote());
   }
 
-  function draw(card, reveal, ov) {                                                 // ov = the measured facts of the card, drawn after the answer: the hunt's bar and the real depth of the best stretch
-    lastDraw = [card, reveal, ov];
-    const { g, w, h } = C, L = 56, B = 22, T = 8, pw = w - L - 6, ph = h - B - T, vals = card.y.filter((v) => v !== null);
+  function draw(card, reveal, ov) { lastDraw = [card, reveal, ov]; paint(C, card, reveal, ov); }
+  function paint(Cx, card, reveal, ov) {                                                 // ov = the measured facts of the card, drawn after the answer: the hunt's bar and the real depth of the best stretch
+    // (draw() above remembers what was drawn, so the picture can be redrawn when the screen is resized)
+    const { g, w, h } = Cx, L = 56, B = 22, T = 8, pw = w - L - 6, ph = h - B - T, vals = card.y.filter((v) => v !== null);
     const lo = Math.min(-6000, Math.min(...vals) * 1.1), hi = Math.max(6000, Math.max(...vals) * 1.1);
     const X = (k) => L + k / WINSZ * pw, Y = (v) => T + (hi - v) / (hi - lo) * ph;
     g.fillStyle = "#070b14"; g.fillRect(0, 0, w, h);
@@ -416,6 +420,39 @@ function eyesEngine(el, src, core, hard) {
     kids.push(note(saveNote()), cloudNote(), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
     stage.replaceChildren(...kids);
   }
+  function twinDrill(n) {                                                           // same noise twice: which curve hides the planet? Never touches the store, the cloud or any line.
+    cards = null; review = false; curSrc = null;
+    const pairs = hard.twins.compose(n).map((sp) => { const p = hard.twins.build(sp), top = Math.random() < 0.5; return { planetTop: top, top: top ? p.planet : p.quiet, bottom: top ? p.quiet : p.planet }; });
+    const tally = { right: 0, wrong: 0, unsure: 0, planetSt: 0, quietSt: 0 };
+    let i = 0;
+    const ask = () => {
+      const cvTop = mk("canvas", { role: "img", ariaLabel: "Curve one, the top one" }), cvBottom = mk("canvas", { role: "img", ariaLabel: "Curve two, the bottom one" }), out = mk("div", { className: "ss-eyes__banner" });
+      const next = btn(i + 1 < n ? "Next pair" : "See how you did", () => { i += 1; if (i < n) ask(); else done(); }, "ss-demo__sm"); next.hidden = true;
+      const choices = [["Top", "top"], ["Bottom", "bottom"], ["Not sure", "unsure"]].map(([label, k]) => btn(label, () => choose(k), "ss-demo__sm"));
+      stage.replaceChildren(note(`Pair ${i + 1} of ${n}: one of these two curves hides a faint planet. The other has exactly the same noise and no planet. Which one is it?`),
+        note("Top curve"), cvTop, note("Bottom curve"), cvBottom, mk("div", { className: "ss-demo__row" }, ...choices), out, mk("div", { className: "ss-demo__row" }, next));
+      const Ct = fit(cvTop, 0.4), Cb = fit(cvBottom, 0.4), p = pairs[i]; paint(Ct, p.top, false); paint(Cb, p.bottom, false);
+      function choose(k) {
+        choices.forEach((b) => { b.disabled = true; });
+        const stT = hard.twins.strength(p.top), stB = hard.twins.strength(p.bottom), where = p.planetTop ? "top" : "bottom", ok = k !== "unsure" && k === where;
+        tally.planetSt += p.planetTop ? stT : stB; tally.quietSt += p.planetTop ? stB : stT; if (k === "unsure") tally.unsure += 1; else if (ok) tally.right += 1; else tally.wrong += 1;
+        paint(Ct, p.top, true); paint(Cb, p.bottom, true);
+        out.className = "ss-eyes__banner ss-eyes__banner--" + (k === "unsure" ? "unsure" : ok ? "right" : "wrong");
+        out.replaceChildren(mk("p", { className: "ss-eyes__truth" }, `THE PLANET WAS IN THE ${where.toUpperCase()} CURVE`),
+          mk("p", { className: "ss-eyes__you" }, k === "unsure" ? "You said Not sure. That is an honest answer." : ok ? `You said ${k === "top" ? "Top" : "Bottom"}: right ✓` : `You said ${k === "top" ? "Top" : "Bottom"}: not quite ✗`),
+          mk("p", { className: "ss-eyes__fb" }, `Measured strength: top ${stT.toFixed(1)}, bottom ${stB.toFixed(1)}. The hunt keeps 7 and above. The gold box marks where the planet was in one curve and where it would have been in the other.`));
+        next.hidden = false; next.focus({ preventScroll: true });
+      }
+    };
+    const done = () => {
+      const m = tally.planetSt / n, q = tally.quietSt / n;
+      stage.replaceChildren(mk("h4", {}, "Twin drill finished"), note(`You found the planet in ${tally.right} of ${n} pairs${tally.unsure ? `, Not sure on ${tally.unsure}` : ""}. Chance is 5 of 10.`),
+        note(`On average the curve with the planet scored ${m.toFixed(1)} and the same noise without it ${q.toFixed(1)}. The closer those two numbers, the harder the pair.`),
+        note("This drill is not saved, not sent anywhere and does not count towards any line."), mk("div", { className: "ss-demo__row" }, btn("Another drill", () => twinDrill(n)), btn("Back", start)));
+    };
+    ask();
+  }
+
   function startReview() { review = true; view = null; buildPlay(); ansBtns.forEach((b) => { b.hidden = true; }); look(0); }
 
   function results() {
