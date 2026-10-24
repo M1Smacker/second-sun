@@ -223,6 +223,7 @@
         const v = verdict(ans, card);
         const e = { i, kind: card.kind, truth: card.truth, ans, ok: v.ok, bin: v.bin, ms: Math.round(ms || 0), lb: 0, m: card.meta || null };
         if (card.tier) e.t = card.tier;                           // only the hard test's cards have a tier (clear, border, hardnoise, odd)
+        if (card.feat) e.f = { st: Math.round(card.feat.strength * 10) / 10, dh: Math.round(card.feat.dur_h * 10) / 10, gr: Math.round(card.feat.gap_ratio * 100) / 100 };   // measured strength, box length (hours), next-best ratio: the data for his own threshold line
         r.a.push(e); r.s = summarize(r.a); save("answer", r); return e;
       },
       noteLookBack(id, i) {                                       // only counts looks during an open round; never touches the answer

@@ -3,9 +3,9 @@
    whole sector, so the quiet cards here are the best-looking dip found in a fresh, noise-only sector (made by reshuffling this star's own detrended noise in short blocks),
    the fake planets go down to the edge of what anyone can see, and the odd things include a dip that ends at a gap in the data. */
 (function (root, factory) {
-  const api = factory();
+  const api = factory(typeof module === "object" && module.exports ? require("./eyes-strength.js") : root.SSStrength);
   if (typeof module === "object" && module.exports) module.exports = api; else root.SSEyesHard = api;
-})(typeof self !== "undefined" ? self : this, function () {
+})(typeof self !== "undefined" ? self : this, function (SS) {
   "use strict";
   const WIN = 216, SECTOR = 5200, BLOCK = 36, BOXES = [18, 24, 36, 48, 72];            // a card is 1.5 days of 10-minute steps; box lengths are 3 to 12 hours
   const mulberry32 = (a) => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let z = Math.imul(a ^ a >>> 15, 1 | a); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
@@ -24,7 +24,9 @@
     // Pieces of noise that may be reshuffled: leave out any 6 hour piece that already holds an obvious dip or bump of its own (its mean is beyond 3 sigma of a piece mean).
     const c = [0]; for (let i = 0; i < r.length; i++) c.push(c[i] + r[i]);
     const pool = []; for (let s = 0; s + BLOCK <= r.length; s += 9) if (Math.abs((c[s + BLOCK] - c[s]) / BLOCK) <= 3 * sigma / Math.sqrt(BLOCK)) pool.push(s);
-    return { raw: y, ecl: bad.slice(0, -1).map((e) => Math.round((e - t0) / dt)), pl: Math.round((J.planet_btjd - t0) / dt), resid: r, pool, sigma };
+    const P = { raw: y, ecl: bad.slice(0, -1).map((e) => Math.round((e - t0) / dt)), pl: Math.round((J.planet_btjd - t0) / dt), resid: r, pool, sigma };
+    P.sigT = SS.sectorSig(surrogate(P, mulberry32(20261024), 12000));                 // the hunt's scale for each box width, from a long stretch of this star's noise
+    return P;
   }
 
   // A fresh noise-only stretch: short pieces of the real noise in random order. No eclipse, no planet and no obvious dip is hidden in it, so the strongest dip in a whole
@@ -35,25 +37,23 @@
     return out.slice(0, M);
   }
 
-  // The strongest box-shaped dip in a long stretch, scored like the detector scores it (depth over the scatter of a box mean). Returns where it is.
-  function topEvent(x, sigma) {
-    const c = [0]; for (let i = 0; i < x.length; i++) c.push(c[i] + x[i]);
+  // The strongest dip in a long stretch, scored the way the hunt scores it (assets/eyes-strength.js). Only boxes of the given widths count (all of them if none are given).
+  // Returns where it is. The card builder asks for a width drawn like a fake planet's length, so a quiet card's event is not shorter than a fake's (a giveaway the first version had).
+  function topEvent(x, sigT, widths) {
     let best = { score: -Infinity, t: 0, n: 0 };
-    for (const n of BOXES) for (let t = WIN; t + n <= x.length - WIN; t++) {
-      const s = -(c[t + n] - c[t]) / Math.sqrt(n) / sigma;
-      if (s > best.score) best = { score: s, t, n };
+    for (const b of SS.huntBoxes(x, sigT).boxes) {
+      if ((widths && !widths.includes(b.w)) || b.a < WIN || b.a + b.w > x.length - WIN) continue;
+      if (b.s > best.score) best = { score: b.s, t: b.a, n: b.w };
     }
     return best;
   }
+  const strengthOf = (y, sigT) => SS.huntBoxes(y, sigT).boxes.reduce((m, b) => Math.max(m, b.s), -Infinity);
 
-  // A planet-like dip: flat bottom, sloping sides. Its strength is stated on the same scale as topEvent (the best box over the dip).
+  // A planet-like dip: flat bottom, sloping sides. Its strength is stated on the hunt's scale (the best box over the dip).
   const profile = (d, ramp) => Array.from({ length: d }, (_, k) => Math.min(1, Math.min(k + 0.5, d - k - 0.5) / ramp));
-  function unitSnr(d, ramp) {
-    const p = profile(d, ramp); let best = 0;
-    for (let n = 1; n <= d; n++) { const o = (d - n) >> 1; let s = 0; for (let k = 0; k < n; k++) s += p[o + k]; best = Math.max(best, s / Math.sqrt(n)); }
-    return best;
-  }
-  const dipDepth = (snr, d, ramp, sigma) => snr * sigma / unitSnr(d, ramp);
+  const unitSnr = (d, ramp, sigT) => SS.profileStrength(profile(d, ramp), sigT);
+  const dipDepth = (snr, d, ramp, sigT) => snr / unitSnr(d, ramp, sigT);
+  const HUNT_W = [24, 30, 39, 48, 60, 72];                                            // hunt box widths that fit a fake planet's length (4 to 12 hours)
 
   function build(P, spec, seed) {
     const rnd = mulberry32(seed), ri = (a, b) => a + Math.floor(rnd() * (b - a + 1)), sg = P.sigma, k = spec.kind;
@@ -71,16 +71,32 @@
       truth = "odd"; tier = "odd"; box = [e - w - 14, e - w + 14]; meta = { seed, w }; wander = false;
       note = "an eclipse: one star passing in front of the other. It is not a planet.";
     } else if (k === "hardnoise") {                                                   // the best dip of a whole fresh sector, cut out with the event at a random place
-      const sec = surrogate(P, rnd, SECTOR), ev = topEvent(sec, sg), off = ri(30, WIN - 30 - ev.n), s = ev.t - off;
+      // Noise peaks are narrow, fake planets have flat floors: left alone, "how wide is the best box" would tell the two apart. So the card's best box gets the width a fake planet drawn the same way would have,
+      // and the event is the strongest one in the sector whose card really has that width as its best box.
+      // Half of the cards are left natural (the best box of the sector, whatever its width): noise really does peak narrow, and a short dip needs a higher bar to count.
+      const dT = ri(18, 72), rT = Math.max(2, Math.round((0.1 + 0.2 * rnd()) * dT)), wT = SS.profileScan(profile(dT, rT), P.sigT).w, natural = rnd() < 0.5;
+      const sec = surrogate(P, rnd, SECTOR), tried = [];
+      const cands = SS.huntBoxes(sec, P.sigT).boxes.filter((b) => (natural || b.w === wT) && b.a >= WIN && b.a + b.w <= SECTOR - WIN).sort((p, q) => q.s - p.s);
+      let ev = null, off = 0, s = 0;
+      for (const b of cands) {
+        if (natural) { ev = { score: b.s, t: b.a, n: b.w }; off = ri(30, WIN - 30 - b.w); s = b.a - off; break; }
+        if (tried.length >= 60) break;
+        if (tried.some((t) => Math.abs(t - b.a) < wT)) continue;
+        tried.push(b.a);
+        const o = ri(30, WIN - 30 - b.w), cardBest = SS.huntBoxes(sec.slice(b.a - o, b.a - o + WIN), P.sigT).boxes.reduce((m, q) => (q.s > m.s ? q : m));
+        const near = Math.abs(SS.DURS_H.map(SS.widthOf).indexOf(cardBest.w) - SS.DURS_H.map(SS.widthOf).indexOf(wT)) <= 1;
+        if (!ev || near) { ev = { score: b.s, t: b.a, n: b.w }; off = o; s = b.a - o; }   // the strongest event is the fallback; the first one whose card has a best box of that width (or the next one over) wins
+        if (near) break;
+      }
       y = sec.slice(s, s + WIN); box = [off - 4, off + ev.n + 4]; meta = { seed, score: Math.round(ev.score * 10) / 10, n: ev.n };
-      note = `nothing hidden. This is the best-looking dip of a whole sector of noise: the detector scores it ${meta.score}, and the hunt keeps ${meta.score >= 7 ? "7 and above, so a real hunt would have flagged this one" : "7 and above, so a real hunt would not have flagged it"}. Not sure was a fair answer here.`;
+      note = "nothing hidden. This is the best-looking dip, about {H} hours long, of a whole sector of noise: the hunt scores it {ST}, and the hunt keeps 7 and above, so a real hunt {FLAG}. Not sure was a fair answer here.";
     } else {
       y = surrogate(P, rnd, WIN);
       if (k === "dip") {
-        const d = ri(24, 72), ramp = Math.max(2, Math.round((0.1 + 0.2 * rnd()) * d)), a = ri(30, WIN - 30 - d), depth = dipDepth(spec.snr, d, ramp, sg);
+        const d = ri(18, 72), ramp = Math.max(2, Math.round((0.1 + 0.2 * rnd()) * d)), a = ri(30, WIN - 30 - d), depth = dipDepth(spec.snr, d, ramp, P.sigT);
         dip(a, d, ramp, depth); truth = "dip"; tier = spec.tier; box = [a - 4, a + d + 4];
         meta = { seed, a, d, ramp, depth: Math.round(depth), snr: Math.round(spec.snr * 10) / 10 };
-        note = `a hidden fake planet, strength ${meta.snr} on the detector's scale (the hunt keeps 7 and above), ${Math.round(d / 6)} hours long.${tier === "border" ? " This one is close to the limit of what anyone can see, so Not sure or No dip would also have been fair." : ""}`;
+        note = `a hidden fake planet, strength {ST} on the hunt's scale (the hunt keeps 7 and above), ${Math.round(d / 6)} hours long.${tier === "border" ? " This one is close to the limit of what anyone can see, so Not sure or No dip would also have been fair." : ""}`;
       } else if (k === "spike") {
         const a = ri(30, WIN - 30), w = ri(2, 5), h = Math.round(ri(3, 8) * sg); for (let j = 0; j < w; j++) y[a + j] += h;
         truth = "odd"; tier = "odd"; box = [a - 3, a + w + 3]; meta = { seed, a, w, h }; note = "a short spike upwards, like a flare or a glitch. A planet only makes dips.";
@@ -89,7 +105,7 @@
         truth = "odd"; tier = "odd"; box = [a - 4, a + 4]; meta = { seed, a, sign, mag };
         note = `a sudden jump ${sign < 0 ? "down" : "up"} that stays. A planet's dip comes back up, so a jump down that never recovers is an instrument glitch.`;
       } else if (k === "gapdip") {
-        const d = ri(18, 36), ramp = Math.max(2, Math.round(0.2 * d)), snr = 8 + 4 * rnd(), a = ri(40, WIN - 100 - d), g = ri(24, 60), depth = dipDepth(snr, d, ramp, sg);
+        const d = ri(18, 36), ramp = Math.max(2, Math.round(0.2 * d)), snr = 8 + 4 * rnd(), a = ri(40, WIN - 100 - d), g = ri(24, 60), depth = dipDepth(snr, d, ramp, P.sigT);
         dip(a, d, ramp, depth); for (let j = a + d; j < a + d + g; j++) y[j] = null;
         truth = "odd"; tier = "odd"; box = [a - 3, a + d + 3]; meta = { seed, a, d, g, snr: Math.round(snr * 10) / 10 };
         note = "a dip that ends where a gap in the data begins. This is the classic thruster-firing artifact: the spacecraft jitters just before it fires, then the data stops. Real planets do not know when the thrusters fire.";
@@ -103,7 +119,11 @@
       }
     }
     if (wander) { const amp = 150 + 250 * rnd(), per = 70 + 230 * rnd(), ph = 6.2832 * rnd(); y = y.map((v, j) => (v === null ? null : v + amp * Math.sin(6.2832 * j / per + ph))); }
-    return { y: y.map((v) => (v === null ? null : Math.round(v))), truth, kind: k === "dip" ? "dipSNR" : k, tier, box, meta, note };
+    y = y.map((v) => (v === null ? null : Math.round(v)));
+    const st = Math.round(strengthOf(y, P.sigT) * 10) / 10;                            // what the hunt's scoring says about the finished card (wander, gaps and all)
+    meta.st = st;
+    note = note.replace("{ST}", String(st)).replace("{H}", String(Math.round((meta.n || 0) / 6))).replace("{FLAG}", st >= 7 ? "would have flagged this one" : "would not have flagged it");
+    return { y, truth, kind: k === "dip" ? "dipSNR" : k, tier, box, meta, note };
   }
 
   // The official hard test is fixed: 6 clear fake planets, 6 close to the limit, 8 hard-noise cards, 10 odd things (3 eclipses, 2 spikes, 2 jumps, 3 dips at a gap).
@@ -125,5 +145,5 @@
     return shuffle(specs, rnd).slice(0, n);
   }
 
-  return { WIN, BOXES, mulberry32, prepare, surrogate, topEvent, unitSnr, dipDepth, build, compose };
+  return { WIN, BOXES, HUNT_W, mulberry32, prepare, surrogate, topEvent, strengthOf, unitSnr, dipDepth, build, compose };
 });

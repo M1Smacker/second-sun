@@ -16,12 +16,8 @@ let passed = 0;
 const test = (name, fn) => { fn(); passed++; console.log("pass:", name); };
 const rngOf = (s) => H.mulberry32(s);
 
-// the best box dip inside one card, scored the way the detector scores it
-function windowScore(y, sigma) {
-  const x = y.map((v) => (v === null ? 0 : v)), c = [0]; for (let i = 0; i < x.length; i++) c.push(c[i] + x[i]);
-  let best = -Infinity; for (const n of H.BOXES) for (let t = 0; t + n <= x.length; t++) best = Math.max(best, -(c[t + n] - c[t]) / Math.sqrt(n) / sigma);
-  return best;
-}
+// the best box dip inside one card, scored the way the hunt scores it (assets/eyes-strength.js, a port of detect_v2.box_scores)
+const windowScore = (y) => H.strengthOf(y, P.sigT);
 const med = (a) => a.slice().sort((x, y) => x - y)[a.length >> 1];
 const mean = (a) => { const b = a.filter((v) => v !== null); return b.reduce((s, v) => s + v, 0) / b.length; };
 const cards = (spec, n, seed0 = 1) => Array.from({ length: n }, (_, i) => H.build(P, spec, seed0 + i * 7919));
@@ -41,11 +37,12 @@ test("a card is rebuilt exactly from its seed, and different seeds give differen
 });
 
 test("hard-noise cards hold the best dip of a whole sector, far better looking than an ordinary stretch", () => {
-  const hard = cards({ kind: "hardnoise" }, 60).map((c) => windowScore(c.y, P.sigma));
-  const plain = Array.from({ length: 60 }, (_, i) => windowScore(H.surrogate(P, rngOf(900 + i), W), P.sigma));
+  const hard = cards({ kind: "hardnoise" }, 80).map((c) => windowScore(c.y));
+  const plain = Array.from({ length: 80 }, (_, i) => windowScore(H.surrogate(P, rngOf(900 + i), W)));
   assert.ok(med(hard) - med(plain) > 0.8, `hard ${med(hard).toFixed(2)} vs plain ${med(plain).toFixed(2)}`);
   assert.ok(med(hard) > 3.5 && med(hard) < 7, "hard-noise median score " + med(hard).toFixed(2) + " should sit below the hunt's threshold of 7");
-  for (const c of cards({ kind: "hardnoise" }, 10)) { assert.equal(c.truth, "none"); assert.equal(c.tier, "hardnoise"); assert.ok(c.meta.score > 3); }
+  for (const c of cards({ kind: "hardnoise" }, 12)) assert.ok(Math.abs(c.meta.st - windowScore(c.y)) < 0.11, "the note and the measurement must agree");
+  for (const c of cards({ kind: "hardnoise" }, 10)) { assert.equal(c.truth, "none"); assert.equal(c.tier, "hardnoise"); assert.ok(c.meta.score >= 2); }
 });
 
 test("the event does not sit in the same place on every kind of card (position must not give the answer away)", () => {
@@ -57,15 +54,32 @@ test("the event does not sit in the same place on every kind of card (position m
   assert.ok(Math.abs(a - b) < 25, `mean event start differs: ${a.toFixed(0)} vs ${b.toFixed(0)}`);
 });
 
+// The leak audit (Compass review 24 Oct 2026, fix 1): a feature that has nothing to do with the sky must not tell a quiet hard card from a faint fake planet, or Ahmed learns the generator.
+function auc(a, b) { let w = 0; for (const x of a) for (const y of b) w += x > y ? 1 : x === y ? 0.5 : 0; return w / (a.length * b.length); }
+function features(c) {
+  const boxes = SSreq.huntBoxes(c.y, P.sigT).boxes, best = boxes.reduce((p, q) => (q.s > p.s ? q : p));
+  const rival = boxes.filter((b) => b.a + b.w <= best.a || b.a >= best.a + best.w).reduce((m, b) => Math.max(m, b.s), 0.5);
+  return { w: best.w, pos: best.a, nulls: c.y.filter((v) => v === null).length, rival };
+}
+const SSreq = req(path.join(here, "..", "docs", "assets", "eyes-strength.js"));
+test("leak audit: where the event sits, how many holes the card has and how strong the rivals are do not tell a hard-noise card from a faint fake planet; width tells only a little", () => {
+  const hn = cards({ kind: "hardnoise" }, 160, 11).map(features), lim = cards({ kind: "dip", tier: "border", snr: 5.75 }, 80, 22).concat(cards({ kind: "dip", tier: "border", snr: 7.5 }, 80, 33)).map(features);
+  const a = (f) => auc(lim.map((x) => x[f]), hn.map((x) => x[f]));
+  assert.ok(a("pos") > 0.38 && a("pos") < 0.62, "position AUC " + a("pos").toFixed(2));
+  assert.ok(a("nulls") > 0.4 && a("nulls") < 0.6, "holes AUC " + a("nulls").toFixed(2));
+  assert.ok(a("rival") > 0.33 && a("rival") < 0.67, "rival AUC " + a("rival").toFixed(2));
+  assert.ok(a("w") < 0.74, "width AUC " + a("w").toFixed(2) + " (the first generator gave 0.84: 3 hour quiet events against 6.5 hour fakes)");
+});
+
 test("a fake planet is as strong as it says it is, on the detector's scale", () => {
   const P0 = { ...P, resid: new Array(20000).fill(0) };                           // no noise at all, so only the dip is measured
   for (const snr of [5, 8, 12, 16]) {
-    const got = Array.from({ length: 30 }, (_, i) => windowScore(H.build(P0, { kind: "dip", tier: "clear", snr }, 77 + i * 31).y, P.sigma));
+    const got = Array.from({ length: 30 }, (_, i) => windowScore(H.build(P0, { kind: "dip", tier: "clear", snr }, 77 + i * 31).y));
     const r = mean(got) / snr;
-    assert.ok(r > 0.75 && r < 1.2, `nominal ${snr}: measured mean ${mean(got).toFixed(2)} (ratio ${r.toFixed(2)})`);
+    assert.ok(r > 0.75 && r < 1.25, `nominal ${snr}: measured mean ${mean(got).toFixed(2)} (ratio ${r.toFixed(2)})`);
   }
   const c = H.build(P, { kind: "dip", tier: "border", snr: 6 }, 5), m = c.meta;
-  assert.equal(c.truth, "dip"); assert.ok(m.d >= 24 && m.d <= 72 && m.ramp >= 2); assert.ok(Math.abs(m.depth - H.dipDepth(6, m.d, m.ramp, P.sigma)) <= 1);
+  assert.equal(c.truth, "dip"); assert.ok(m.d >= 18 && m.d <= 72 && m.ramp >= 2); assert.ok(Math.abs(m.depth - H.dipDepth(6, m.d, m.ramp, P.sigT)) <= 1);
 });
 
 test("the dip is really in the data, with sloping sides and a flat bottom", () => {

@@ -66,6 +66,12 @@ Run node "$src\book\tools\test_eyes_cloud.mjs"
 Step "2f. Eyes HARD test: best-of-a-sector noise cards, fake planets as strong as they say, no giveaway by position, the two lines never mix"
 Run node "$src\book\tools\test_eyes_hard.mjs"
 
+Step "2g. Eyes strength: the JavaScript box score gives the same numbers as the hunt's own Python box_scores (golden arrays)"
+Run node "$src\book\tools\test_eyes_strength.mjs"
+
+Step "2h. Eyes feedback text: 36 to 44 words, only measured numbers, the lead never looks at the label, no 'missed' on a false alarm, near misses never called plain noise, no repeats"
+Run node "$src\book\tools\test_eyes_feedback.mjs"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build

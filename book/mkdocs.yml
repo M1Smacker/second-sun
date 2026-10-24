@@ -27,7 +27,7 @@ hooks: [hooks.py]
 watch: [progress, data, overrides, sw-template.js]
 
 extra_css: [assets/extra.css, assets/observatory.css, assets/shape.css]
-extra_javascript: [assets/eyes-core.js, assets/eyes-hard.js, assets/eyes-cloud.js, assets/demos.js]
+extra_javascript: [assets/eyes-core.js, assets/eyes-strength.js, assets/eyes-hard.js, assets/eyes-feedback.js, assets/eyes-cloud.js, assets/demos.js]
 
 markdown_extensions:
   - admonition
@@ -90,6 +90,7 @@ nav:
           - "20 Oct 2026": field-notes/2026-10-20.md
           - "21 Oct 2026": field-notes/2026-10-21.md
           - "23 Oct 2026": field-notes/2026-10-23.md
+          - "24 Oct 2026": field-notes/2026-10-24.md
       - "Learning track":
           - learn/index.md
           - "L1 How big is the dip?": learn/l1-dip-depth.md

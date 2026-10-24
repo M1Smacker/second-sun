@@ -407,9 +407,11 @@ async function eyesTest() {
       banners.push(await text());
       checks["next" + i] = !!(await clickAny(NEXT));
     }
+    checks.easyFeedbackLines = banners.every((t) => /What the numbers say/.test(t));
     checks.bannerSaysTruth = banners.every((t) => /THIS WAS: (A DIP|NOT A DIP)/.test(t) && /It was /.test(t) && /You said/.test(t));
     checks.lookBackShowsTruthAndAnswer = lookBackTexts.every((t) => /Looking back at light curve \d of 5 \(read only\)/.test(t) && /THIS WAS:/.test(t) && /You said/.test(t));
     let r = (await store())[0];
+    checks.measuredStrengthSaved = r.a.every((e) => e.f && typeof e.f.st === "number" && e.f.dh > 0 && e.f.gr > 0);
     checks.practiceSaved = r.mode === "practice" && r.status === "done" && r.a.length === 5 && r.a.every((e) => e.ans && typeof e.ok === "boolean" && e.m && e.ms >= 0) && r.s.n === 5;
     checks.lookBacksRecorded = r.a.filter((e) => e.lb > 0).length >= 2;
     const fin = await text();
@@ -429,7 +431,7 @@ async function eyesTest() {
     const cyc = ["Dip", "No dip", "Odd", "Not sure"]; let leaked = false, lastBanner = "";
     for (let i = 0; i < 30; i++) {
       await click(cyc[i % 4]);
-      lastBanner = await text(); if (/THIS WAS:/.test(lastBanner)) leaked = true;
+      lastBanner = await text(); if (/THIS WAS:|What the numbers say/.test(lastBanner)) leaked = true;
       if (i === 5) { await click("◀ Look at previous question"); const t = await text(); if (/THIS WAS:/.test(t) || !/You answered:/.test(t)) leaked = true; await click("Back to light curve 6"); }
       await clickAny(NEXT);
     }
@@ -457,17 +459,20 @@ async function eyesTest() {
     checks.hardButtons = (await visible("Take the HARD test (30 curves)")) && (await visible("Hard practice 20")) && (await visible("Hard practice 50"));
     await click("Take the HARD test (30 curves)");
     let hleak = false;
-    for (let i = 0; i < 30; i++) { await click(cyc[i % 4]); if (/THIS WAS:/.test(await text())) hleak = true; await clickAny(NEXT); }
+    for (let i = 0; i < 30; i++) { await click(cyc[i % 4]); if (/THIS WAS:|What the numbers say/.test(await text())) hleak = true; await clickAny(NEXT); }
     checks.hardTestHidesTruth = !hleak;
     const hf = await text();
     checks.hardFinish = /Test finished/.test(hf) && /Hard line so far/.test(hf) && !/Pass line so far/.test(hf) && /Hard test rounds: 1, curves: 30/.test(hf) && /Clear fake planets/.test(hf) && /Not enough yet/.test(hf);
+    await click("Review this round"); const hrv = await text(); checks.hardReviewShowsNumbers = /What the numbers say/.test(hrv) && /light curve 1 of 30 (read only)/.test(hrv); await click("Close the review");
     const hr = (await store())[0], tc = (t) => hr.a.filter((e) => e.t === t).length;
-    checks.hardTestSaved = hr.mode === "test" && /^hard/.test(hr.source) && hr.status === "done" && hr.a.length === 30 && tc("clear") === 6 && tc("border") === 6 && tc("hardnoise") === 8 && tc("odd") === 10 && hr.a.some((e) => e.ans === "unsure") && hr.a.every((e) => e.m && e.m.seed > 0);
+    checks.hardTestSaved = hr.mode === "test" && /^hard/.test(hr.source) && hr.status === "done" && hr.a.length === 30 && tc("clear") === 6 && tc("border") === 6 && tc("hardnoise") === 8 && tc("odd") === 10 && hr.a.some((e) => e.ans === "unsure") && hr.a.every((e) => e.m && e.m.seed > 0 && e.f && typeof e.f.st === "number");
     await click("My results");
     const hres = await text();
     checks.hardInResults = /Hard test line/.test(hres) && /test \(hard\)/.test(hres) && /Test rounds: 1, curves: 30/.test(hres);          // the official pass line still counts only the official test
     await click("Back"); await click("Hard practice 20"); await click("Dip");
     checks.hardPracticeShowsTruth = /THIS WAS: (A DIP|NOT A DIP)/.test(await text());
+    const fbl = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__fb")].map((e) => e.textContent)`), fbw = fbl.join(" ").split(/s+/).filter(Boolean).length;
+    checks.hardPracticeFeedback = fbl.length === 3 && fbw >= 36 && fbw <= 44 && !/missed/.test(fbl.join(" ")) && !/[–—]/.test(fbl.join(" "));
 
     // ---- phone layout: nothing wider than the screen, every button big enough ----
     await b.send("Emulation.setDeviceMetricsOverride", { width: 375, height: 812, deviceScaleFactor: 2, mobile: true });

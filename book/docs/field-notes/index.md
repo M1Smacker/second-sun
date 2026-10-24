@@ -13,3 +13,4 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [20 October 2026](2026-10-20.md) | Testing honestly: fake planets, false alarms, a bug in a professional tool, and Compass |
 | [21 October 2026](2026-10-21.md) | A progress bar that has to prove itself: evidence, auto-counting and logged changes |
 | [23 October 2026](2026-10-23.md) | Rebuilding the book around a map: orientation, optional labs and a real-sky home page |
+| [24 October 2026](2026-10-24.md) | Feedback that is measured, not copied: one strength score, cards that stop giving themselves away, and breaking the code on purpose |

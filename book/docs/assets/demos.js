@@ -241,12 +241,15 @@ function practiceSource(J, rnd) {
     if (kind === "step") { const a = ri(60, WIN - 60); sub(a, WIN, 3500); return { y, truth: "odd", kind, box: [a - 4, a + 4], meta: { w: w.i, a }, note: "a sudden jump in brightness that stays, like an instrument glitch. A planet's dip comes back up." }; }
     return { y, truth: "none", kind: "quiet", box: null, meta: { w: w.i }, note: "nothing hidden here." };
   }
-  return { id: "practice-toi1338-s98", label: "Practice: TOI-1338 sector 98", compose: (mode, n) => window.SSEyes.compose(mode, n, rnd), build };
+  return { id: "practice-toi1338-s98", label: "Practice: TOI-1338 sector 98", compose: (mode, n) => window.SSEyes.compose(mode, n, rnd), build, sigT: () => (window.SSEyesHard ? eyesPrep(J).sigT : null) };
 }
 
+let _eyesPrep = null;                                                               // the star's own noise and the hunt's scale for each box width: made once, shared by both sittings
+const eyesPrep = (J) => _eyesPrep || (_eyesPrep = window.SSEyesHard.prepare(J));
+
 function hardSource(J, rnd) {                                                       // the hard test: the cards are made by assets/eyes-hard.js (tested in Node)
-  const H = window.SSEyesHard; let P = null;
-  return { id: "hard-toi1338-s98", label: "Hard: TOI-1338 sector 98 noise", compose: (mode, n) => H.compose(mode, n, rnd), build: (spec) => H.build(P || (P = H.prepare(J)), spec, spec.seed) };
+  const H = window.SSEyesHard;
+  return { id: "hard-toi1338-s98", label: "Hard: TOI-1338 sector 98 noise", compose: (mode, n) => H.compose(mode, n, rnd), build: (spec) => H.build(eyesPrep(J), spec, spec.seed), sigT: () => eyesPrep(J).sigT };
 }
 
 function eyesEngine(el, src, core, hard) {
@@ -276,13 +279,23 @@ function eyesEngine(el, src, core, hard) {
   const stage = mk("div", { className: "ss-eyes" });
   el.append(stage);
   let mode, cards, at, answered, round, view, review, cv, C, prog, banner, ansBtns, nextBtn, navRow, backBtn, earlierBtn, laterBtn, returnBtn, t0q, lastDraw;
+  // The three lines under a card (assets/eyes-feedback.js): measured from the card's own dots. Made once when the card is answered (silently in a test, so the review can show them), then shown unchanged.
+  const FB = window.SSFeedback; let curSrc = null, fbState = null, fbText = [];
+  function feedbackFor(card, ans, idx) {
+    if (!FB || !curSrc || !curSrc.sigT || !curSrc.sigT()) return null;
+    if (fbText[idx]) return fbText[idx];
+    try {
+      const F = FB.measure(card.y, curSrc.sigT()), ctx = { mode: "practice", truth: FB.truthKey(card), answer: FB.ANS_KEY[ans], cardId: round.id + ":" + idx, kind: card.kind, state: fbState }, o = FB.compose(F, ctx);
+      FB.record(fbState, F, ctx, o); return (fbText[idx] = { lines: o.lines, F });
+    } catch (e) { return null; }                                                    // never let the text break the sitting: the truth banner still shows
+  }
 
   function start() {
     cards = null; review = false;
     stage.replaceChildren(
       note("Practice sitting: how many light curves?"),
       mk("div", { className: "ss-demo__row" }, ...[5, 20, 50, 100].map((n) => btn(String(n), () => begin("practice", n), "ss-demo__sm"))),
-      note("Practice shows the answer after every curve. Each curve is a day and a half of the real TOI-1338 light curve with nothing marked."),
+      note("Practice shows the answer after every curve, and three lines on what the numbers on that curve show. Each curve is a day and a half of the real TOI-1338 light curve with nothing marked."),
       mk("div", { className: "ss-demo__row" }, btn(`Take the official test (${core.TEST_N} curves)`, () => begin("test", core.TEST_N)), btn("My results", results)),
       note("The official test shows no answers until the end and counts towards the pass line. You may look back at earlier curves, but you can never change an answer."),
       ...(hard ? [mk("h4", {}, "Hard mode"),
@@ -329,11 +342,11 @@ function eyesEngine(el, src, core, hard) {
     returnBtn.textContent = review ? "Close the review" : `Back to light curve ${at + 1}`;
     navRow.hidden = [backBtn, earlierBtn, laterBtn, returnBtn].every((b) => b.hidden);
   }
-  function setBanner(card, ans) {
-    const p = core.bannerParts(card, ans);
+  function setBanner(card, ans, idx) {
+    const p = core.bannerParts(card, ans), fb = feedbackFor(card, ans, idx);
     banner.className = "ss-eyes__banner ss-eyes__banner--" + p.cls;
-    banner.replaceChildren(mk("p", { className: "ss-eyes__truth" }, p.headline), mk("p", { className: "ss-eyes__what" }, p.what),
-      mk("p", { className: "ss-eyes__you" }, p.line), note(p.detail ? `This one had ${p.detail}` : ""));
+    banner.replaceChildren(mk("p", { className: "ss-eyes__truth" }, p.headline), mk("p", { className: "ss-eyes__what" }, p.what), mk("p", { className: "ss-eyes__you" }, p.line),
+      ...(fb ? [mk("p", { className: "ss-eyes__fbh" }, "What the numbers say"), ...fb.lines.map((l) => mk("p", { className: "ss-eyes__fb" }, l))] : [note(p.detail ? `This one had ${p.detail}` : "")]));
   }
   function neutral(ans, why) {
     banner.className = "ss-eyes__banner ss-eyes__banner--neutral";
@@ -342,6 +355,7 @@ function eyesEngine(el, src, core, hard) {
 
   function begin(m, n, s = src) {
     mode = m; cards = s.compose(m, n).map(s.build); at = 0; view = null; review = false;
+    curSrc = s; fbState = FB ? FB.newLearner() : null; fbText = [];
     round = store.startRound({ mode: m, source: s.id, n: cards.length });
     buildPlay(); show();
   }
@@ -354,9 +368,11 @@ function eyesEngine(el, src, core, hard) {
   function answer(k) {
     if (answered || view !== null || review) return;
     answered = true;
-    const c = cards[at]; store.recordAnswer(round.id, at, c, k, Date.now() - t0q);
+    const c = cards[at], fb = feedbackFor(c, k, at);                                // measured now, shown now (practice) or only in the review (test)
+    if (fb) c.feat = fb.F;                                                          // its strength is saved with the answer (eyes-core.js, field f)
+    store.recordAnswer(round.id, at, c, k, Date.now() - t0q);
     ansBtns.forEach((b) => { b.disabled = true; });
-    if (mode === "practice") { draw(c, true); setBanner(c, k); } else { draw(c, false); neutral(k, "Answer recorded:"); }
+    if (mode === "practice") { draw(c, true); setBanner(c, k, at); } else { draw(c, false); neutral(k, "Answer recorded:"); }
     if (store.lastError) banner.append(note(saveNote()));
     nextBtn.textContent = at + 1 < cards.length ? "Next" : mode === "test" ? "Finish the test" : "See how you did"; nextBtn.hidden = false; nextBtn.focus({ preventScroll: true });
     nav();
@@ -371,7 +387,7 @@ function eyesEngine(el, src, core, hard) {
     draw(c, reveal);
     prog.textContent = `Looking back at light curve ${j + 1} of ${cards.length} (read only)`;
     ansBtns.forEach((b) => { b.hidden = true; b.disabled = true; }); nextBtn.hidden = true;
-    if (reveal) setBanner(c, e.ans); else neutral(e.ans, "You answered:");
+    if (reveal) setBanner(c, e.ans, j); else neutral(e.ans, "You answered:");
     nav();
   }
   function ret() {
@@ -380,7 +396,7 @@ function eyesEngine(el, src, core, hard) {
     const c = cards[at];
     prog.textContent = `Light curve ${at + 1} of ${cards.length}`;
     ansBtns.forEach((b) => { b.hidden = false; b.disabled = answered; });
-    if (answered) { draw(c, mode === "practice"); if (mode === "practice") setBanner(c, round.a[at].ans); else neutral(round.a[at].ans, "Answer recorded:"); } else { draw(c, false); banner.replaceChildren(); banner.className = "ss-eyes__banner"; }
+    if (answered) { draw(c, mode === "practice"); if (mode === "practice") setBanner(c, round.a[at].ans, at); else neutral(round.a[at].ans, "Answer recorded:"); } else { draw(c, false); banner.replaceChildren(); banner.className = "ss-eyes__banner"; }
     nextBtn.hidden = !answered; nav();
   }
 

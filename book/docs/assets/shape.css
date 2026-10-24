@@ -146,6 +146,8 @@ html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data
 .ss-eyes__truth { font: 700 20px/1.3 var(--ss-ui); color: var(--ss-text); margin: 0; letter-spacing: .02em; }
 .ss-eyes__what { font: 600 16px/1.4 var(--ss-ui); color: var(--ss-text); margin: 2px 0 6px; }
 .ss-eyes__you { font: 600 15px/1.4 var(--ss-ui); color: var(--ss-text); margin: 0 0 4px; }
+.ss-eyes__fbh { font: 700 13px/1.3 var(--ss-ui); color: var(--ss-text-2); margin: 10px 0 2px; letter-spacing: .06em; text-transform: uppercase; }
+.ss-eyes__fb { font: 400 15px/1.5 var(--ss-ui); color: var(--ss-text); margin: 0 0 5px; }
 .ss-eyes__banner--right { border-color: var(--ss-accent); border-style: solid; }
 .ss-eyes__banner--wrong { border-color: var(--ss-text); border-style: double; border-left-style: solid; }
 .ss-eyes__banner--partial { border-color: var(--ss-text); border-style: dashed; border-left-style: solid; }
