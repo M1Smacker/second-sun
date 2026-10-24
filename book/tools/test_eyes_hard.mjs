@@ -23,7 +23,7 @@ function windowScore(y, sigma) {
   return best;
 }
 const med = (a) => a.slice().sort((x, y) => x - y)[a.length >> 1];
-const mean = (a) => a.reduce((s, v) => s + v, 0) / a.length;
+const mean = (a) => { const b = a.filter((v) => v !== null); return b.reduce((s, v) => s + v, 0) / b.length; };
 const cards = (spec, n, seed0 = 1) => Array.from({ length: n }, (_, i) => H.build(P, spec, seed0 + i * 7919));
 
 test("the star's own noise is measured sensibly", () => {
@@ -95,6 +95,17 @@ test("a dip at a gap really ends where the data stops, and a down-jump never rec
     assert.ok(c.y.slice(m.a + m.d, m.a + m.d + 24).every((v) => v === null), "the gap must start right after the dip");
   }
   for (const c of cards({ kind: "step" }, 20)) { const m = c.meta; assert.equal(c.truth, "odd"); assert.ok(Math.sign(mean(c.y.slice(m.a + 5)) - mean(c.y.slice(0, m.a - 5))) === m.sign); }
+});
+
+test("a gap alone is no giveaway: other cards have gaps too, never touching the event, and only the gap-dip card has a dip that ends at one", () => {
+  const specs = [{ kind: "hardnoise" }, { kind: "dip", tier: "clear", snr: 12 }, { kind: "dip", tier: "border", snr: 6 }, { kind: "spike" }, { kind: "step" }];
+  let withGap = 0, total = 0;
+  for (const spec of specs) for (const c of cards(spec, 60, 31)) {
+    total++; const nulls = c.y.map((v, i) => (v === null ? i : -1)).filter((i) => i >= 0);
+    if (nulls.length) { withGap++; assert.ok(nulls.length >= 24 && nulls.length <= 60); assert.ok(nulls[0] > c.box[1] + 39 || nulls.at(-1) < c.box[0] - 39, "a decoy gap must stay away from the event"); }
+  }
+  assert.ok(withGap / total > 0.25 && withGap / total < 0.55, "share of ordinary cards with a gap: " + (withGap / total).toFixed(2));
+  for (const c of cards({ kind: "gapdip" }, 30, 5)) assert.equal(c.y.indexOf(null), c.meta.a + c.meta.d, "the gap must start exactly where the dip ends");
 });
 
 test("an eclipse card is a real eclipse of this star, levelled, and deep", () => {
