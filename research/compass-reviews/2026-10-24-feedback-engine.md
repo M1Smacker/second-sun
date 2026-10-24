@@ -79,7 +79,7 @@ In practice the ranking adds +3 for lessons that argue for the true class and âˆ
 1. **Phase 0, before any text changes:** leak audit and generator fix on our decks (Fix 1), JavaScript port of the hunt's strength function with golden tests (Fix 2). About 1 to 2 points of weekly usage.
 2. **Phase 1:** import the engine, re-calibrate on our decks, fix the wording bug, add paraphrase pools and the variety test, make the lead label-blind (Fixes 3 to 5), wire it into the practice banner and the end-of-round review, mutation-test, browser-test, publish. About 2 to 3 points.
 3. **Phase 2:** overlays, near-twin pairs, his threshold line, sequencing. About 2 to 3 points.
-These are estimates. The weekly meter moved from 77% to 85% during this one planning session, so it is volatile; the main driver is this session's long history (about 400,000 tokens carried into every step). **A fresh session with a short brief would cost much less per step than building here.**
+These are estimates. The weekly meter read 77% after the hard-test publish and 85% when this review started (cause unclear: possibly other sessions or the long build), and this whole review then cost only about 1 point (85% to 86%). This session now carries about 480,000 tokens of history into every step, which makes each step dearer, so **a fresh session with a short brief would cost less per step than building here.**
 
 ## 8. The single best next step
 Do Phase 0 first: the leak audit on our decks and the shared strength function. Every later lesson depends on those two being right, and neither changes anything Ahmed sees. Start it in a fresh session after the weekly cap allows it.
