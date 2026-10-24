@@ -94,9 +94,10 @@
       y = surrogate(P, rnd, WIN);
       if (k === "dip") {
         const d = ri(18, 72), ramp = Math.max(2, Math.round((0.1 + 0.2 * rnd()) * d)), a = ri(30, WIN - 30 - d), depth = dipDepth(spec.snr, d, ramp, P.sigT);
-        dip(a, d, ramp, depth); truth = "dip"; tier = spec.tier; box = [a - 4, a + d + 4];
+        if (!spec.noPlanet) dip(a, d, ramp, depth);                                   // a twin card draws the same numbers but leaves the planet out
+        truth = spec.noPlanet ? "none" : "dip"; tier = spec.noPlanet ? "twin" : spec.tier; box = [a - 4, a + d + 4];
         meta = { seed, a, d, ramp, depth: Math.round(depth), snr: Math.round(spec.snr * 10) / 10 };
-        note = `a hidden fake planet, strength {ST} on the hunt's scale (the hunt keeps 7 and above), ${Math.round(d / 6)} hours long.${tier === "border" ? " This one is close to the limit of what anyone can see, so Not sure or No dip would also have been fair." : ""}`;
+        note = spec.noPlanet ? "the same noise as the other curve, with no planet in it." : `a hidden fake planet, strength {ST} on the hunt's scale (the hunt keeps 7 and above), ${Math.round(d / 6)} hours long.${tier === "border" ? " This one is close to the limit of what anyone can see, so Not sure or No dip would also have been fair." : ""}`;
       } else if (k === "spike") {
         const a = ri(30, WIN - 30), w = ri(2, 5), h = Math.round(ri(3, 8) * sg); for (let j = 0; j < w; j++) y[a + j] += h;
         truth = "odd"; tier = "odd"; box = [a - 3, a + w + 3]; meta = { seed, a, w, h }; note = "a short spike upwards, like a flare or a glitch. A planet only makes dips.";
@@ -123,7 +124,7 @@
     const st = Math.round(strengthOf(y, P.sigT) * 10) / 10;                            // what the hunt's scoring says about the finished card (wander, gaps and all)
     meta.st = st;
     note = note.replace("{ST}", String(st)).replace("{H}", String(Math.round((meta.n || 0) / 6))).replace("{FLAG}", st >= 7 ? "would have flagged this one" : "would not have flagged it");
-    return { y, truth, kind: k === "dip" ? "dipSNR" : k, tier, box, meta, note };
+    return { y, truth, kind: spec.noPlanet ? "twinQuiet" : k === "dip" ? "dipSNR" : k, tier, box, meta, note };
   }
 
   // The official hard test is fixed: 6 clear fake planets, 6 close to the limit, 8 hard-noise cards, 10 odd things (3 eclipses, 2 spikes, 2 jumps, 3 dips at a gap).
@@ -145,5 +146,9 @@
     return shuffle(specs, rnd).slice(0, n);
   }
 
-  return { WIN, BOXES, HUNT_W, mulberry32, prepare, surrogate, topEvent, strengthOf, unitSnr, dipDepth, build, compose };
+  // Twin drill: the same noise twice, a faint fake planet (strength 5 to 8.5) in one and none in the other. Not saved anywhere, not part of any line.
+  const composeTwins = (n, rnd) => Array.from({ length: n }, () => ({ kind: "dip", tier: "border", snr: 5 + 3.5 * rnd(), seed: Math.floor(rnd() * 2147483647) }));
+  const buildTwin = (P, spec) => ({ planet: build(P, spec, spec.seed), quiet: build(P, { ...spec, noPlanet: true }, spec.seed) });
+
+  return { WIN, BOXES, HUNT_W, composeTwins, buildTwin, mulberry32, prepare, surrogate, topEvent, strengthOf, unitSnr, dipDepth, build, compose };
 });

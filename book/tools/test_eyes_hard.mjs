@@ -126,6 +126,25 @@ test("an eclipse card is a real eclipse of this star, levelled, and deep", () =>
   for (const c of cards({ kind: "eclipse" }, 6)) { assert.equal(c.truth, "odd"); assert.ok(Math.min(...c.y.filter((v) => v !== null)) < -10000, "min " + Math.min(...c.y.filter((v) => v !== null))); }
 });
 
+test("twin drill: the same noise twice, the planet in one only, the planet curve stronger, rebuilt exactly from its seed", () => {
+  const specs = H.composeTwins(40, rngOf(7)); assert.equal(specs.length, 40); assert.equal(new Set(specs.map((x) => x.seed)).size, 40);
+  let stronger = 0;
+  for (const sp of specs) {
+    assert.ok(sp.snr >= 5 && sp.snr <= 8.5);
+    const t = H.buildTwin(P, sp); assert.deepEqual(t, H.buildTwin(P, sp)); const m = t.planet.meta;
+    assert.equal(t.planet.truth, "dip"); assert.equal(t.quiet.truth, "none"); assert.equal(t.quiet.tier, "twin"); assert.equal(t.quiet.kind, "twinQuiet"); assert.deepEqual(t.planet.box, t.quiet.box);
+    let lower = 0;
+    for (let i = 0; i < W; i++) {
+      assert.equal(t.planet.y[i] === null, t.quiet.y[i] === null, "gaps must be the same in both");
+      if (t.planet.y[i] === null) continue;
+      if (i >= m.a && i < m.a + m.d) { assert.ok(t.planet.y[i] <= t.quiet.y[i]); if (t.planet.y[i] < t.quiet.y[i]) lower++; } else assert.equal(t.planet.y[i], t.quiet.y[i], "outside the planet the two curves must be the same noise");
+    }
+    assert.ok(lower >= m.d / 2, "the planet must really be in the dip curve");
+    if (windowScore(t.planet.y) > windowScore(t.quiet.y)) stronger++;
+  }
+  assert.ok(stronger >= 36, "the planet curve should score higher in nearly every pair: " + stronger + " of 40");
+});
+
 // ---- scoring ----
 const ent = (t, ans, extra = {}) => ({ i: 0, kind: t, truth: t === "clear" || t === "border" ? "dip" : t === "hardnoise" ? "none" : "odd", ans, ok: (t === "odd" && ans === "odd"), t, m: null, ...extra });
 function roundOf(day, over = {}) {

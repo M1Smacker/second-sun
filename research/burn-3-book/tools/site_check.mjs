@@ -477,6 +477,21 @@ async function eyesTest() {
     const fbl = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__fb")].map((e) => e.textContent)`), fbw = fbl.join(" ").split(/\s+/).filter(Boolean).length;
     checks.hardPracticeFeedback = fbl.length === 3 && fbw >= 36 && fbw <= 44 && !/missed/.test(fbl.join(" ")) && !/[–—]/.test(fbl.join(" "));
 
+    // ---- twin drill: the same noise twice, which curve hides the planet; it must never be saved ----
+    await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    const roundsBefore = (await store()).length;
+    checks.twinButton = await visible("Twin drill 10");
+    await click("Twin drill 10");
+    let twinOk = true;
+    for (let i = 0; i < 10; i++) {
+      await click(["Top", "Bottom", "Not sure"][i % 3]); const tt = await text();
+      if (!/THE PLANET WAS IN THE (TOP|BOTTOM) CURVE/.test(tt) || !/Measured strength: top [\d.]+, bottom [\d.]+/.test(tt)) twinOk = false;
+      await clickAny(["Next pair", "See how you did"]);
+    }
+    const twinEnd = await text();
+    checks.twinDrillRuns = twinOk && /Twin drill finished/.test(twinEnd) && /You found the planet in \d+ of 10 pairs/.test(twinEnd) && /not saved, not sent anywhere/.test(twinEnd);
+    checks.twinDrillSavesNothing = (await store()).length === roundsBefore && !(await b.evaluate(`JSON.stringify(window.SSEyesStore.rounds()).includes("twin")`));
+
     // ---- phone layout: nothing wider than the screen, every button big enough ----
     await b.send("Emulation.setDeviceMetricsOverride", { width: 375, height: 812, deviceScaleFactor: 2, mobile: true });
     await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
