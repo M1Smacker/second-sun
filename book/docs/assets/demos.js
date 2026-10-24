@@ -305,8 +305,8 @@ function eyesEngine(el, src, core, hard) {
       note(saveNote(), { ariaLive: "polite" }), cloudNote());
   }
 
-  function draw(card, reveal) {
-    lastDraw = [card, reveal];
+  function draw(card, reveal, ov) {                                                 // ov = the measured facts of the card, drawn after the answer: the hunt's bar and the real depth of the best stretch
+    lastDraw = [card, reveal, ov];
     const { g, w, h } = C, L = 56, B = 22, T = 8, pw = w - L - 6, ph = h - B - T, vals = card.y.filter((v) => v !== null);
     const lo = Math.min(-6000, Math.min(...vals) * 1.1), hi = Math.max(6000, Math.max(...vals) * 1.1);
     const X = (k) => L + k / WINSZ * pw, Y = (v) => T + (hi - v) / (hi - lo) * ph;
@@ -317,6 +317,12 @@ function eyesEngine(el, src, core, hard) {
     if (reveal && card.box) { g.fillStyle = "rgba(226,180,95,.16)"; g.strokeStyle = "#e2b45f"; g.setLineDash([4, 3]); g.fillRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.strokeRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.setLineDash([]); }
     g.fillStyle = "rgba(220,226,240,.9)";
     card.y.forEach((v, k) => { if (v !== null) g.fillRect(X(k + 0.5) - 1, Y(v) - 1, 2, 2); });
+    if (reveal && ov && isFinite(ov.med) && ov.best_w > 0) {                        // dashed: how deep a dip must be here to score 7. Solid: how deep the best stretch really is.
+      const x0 = X(ov.best_a), x1 = X(ov.best_a + ov.best_w), yBar = Y(ov.med - ov.depth7_ppm), yDip = Y(ov.best_m);
+      g.lineWidth = 2; g.strokeStyle = "#8fd3ff"; g.fillStyle = "#8fd3ff"; g.setLineDash([6, 4]); g.beginPath(); g.moveTo(x0, yBar); g.lineTo(x1, yBar); g.stroke();
+      g.setLineDash([]); g.strokeStyle = "#ffffff"; g.beginPath(); g.moveTo(x0, yDip); g.lineTo(x1, yDip); g.stroke(); g.lineWidth = 1;
+      g.textAlign = x1 + 56 > w ? "right" : "left"; g.fillText("bar for 7", g.textAlign === "left" ? x1 + 4 : x0 - 4, Math.max(T + 10, yBar - 5));
+    }
   }
 
   function buildPlay() {                                                            // the question screen (also used for the read-only review)
@@ -346,7 +352,8 @@ function eyesEngine(el, src, core, hard) {
     const p = core.bannerParts(card, ans), fb = feedbackFor(card, ans, idx);
     banner.className = "ss-eyes__banner ss-eyes__banner--" + p.cls;
     banner.replaceChildren(mk("p", { className: "ss-eyes__truth" }, p.headline), mk("p", { className: "ss-eyes__what" }, p.what), mk("p", { className: "ss-eyes__you" }, p.line),
-      ...(fb ? [mk("p", { className: "ss-eyes__fbh" }, "What the numbers say"), ...fb.lines.map((l) => mk("p", { className: "ss-eyes__fb" }, l))] : [note(p.detail ? `This one had ${p.detail}` : "")]));
+      ...(fb ? [mk("p", { className: "ss-eyes__fbh" }, "What the numbers say"), ...fb.lines.map((l) => mk("p", { className: "ss-eyes__fb" }, l)),
+        note("On the plot: the dashed line is how deep a dip must be here to score 7. The solid line is how deep the best stretch really is.")] : [note(p.detail ? `This one had ${p.detail}` : "")]));
   }
   function neutral(ans, why) {
     banner.className = "ss-eyes__banner ss-eyes__banner--neutral";
@@ -372,7 +379,8 @@ function eyesEngine(el, src, core, hard) {
     if (fb) c.feat = fb.F;                                                          // its strength is saved with the answer (eyes-core.js, field f)
     store.recordAnswer(round.id, at, c, k, Date.now() - t0q);
     ansBtns.forEach((b) => { b.disabled = true; });
-    if (mode === "practice") { draw(c, true); setBanner(c, k, at); } else { draw(c, false); neutral(k, "Answer recorded:"); }
+    if (mode === "practice") { draw(c, true, fb && fb.F); setBanner(c, k, at); } else { draw(c, false); neutral(k, "Answer recorded:"); }
+    if (mode === "practice" && !core.verdict(k, c).ok) core.bringBack(cards, at, Math.random);   // a miss comes back a few cards later (only unseen cards move)
     if (store.lastError) banner.append(note(saveNote()));
     nextBtn.textContent = at + 1 < cards.length ? "Next" : mode === "test" ? "Finish the test" : "See how you did"; nextBtn.hidden = false; nextBtn.focus({ preventScroll: true });
     nav();
@@ -384,7 +392,7 @@ function eyesEngine(el, src, core, hard) {
     view = j;
     const c = cards[j], e = round.a[j], reveal = mode === "practice" || review;
     if (!review) store.noteLookBack(round.id, j);
-    draw(c, reveal);
+    draw(c, reveal, reveal && fbText[j] ? fbText[j].F : null);
     prog.textContent = `Looking back at light curve ${j + 1} of ${cards.length} (read only)`;
     ansBtns.forEach((b) => { b.hidden = true; b.disabled = true; }); nextBtn.hidden = true;
     if (reveal) setBanner(c, e.ans, j); else neutral(e.ans, "You answered:");
@@ -396,7 +404,7 @@ function eyesEngine(el, src, core, hard) {
     const c = cards[at];
     prog.textContent = `Light curve ${at + 1} of ${cards.length}`;
     ansBtns.forEach((b) => { b.hidden = false; b.disabled = answered; });
-    if (answered) { draw(c, mode === "practice"); if (mode === "practice") setBanner(c, round.a[at].ans, at); else neutral(round.a[at].ans, "Answer recorded:"); } else { draw(c, false); banner.replaceChildren(); banner.className = "ss-eyes__banner"; }
+    if (answered) { draw(c, mode === "practice", mode === "practice" && fbText[at] ? fbText[at].F : null); if (mode === "practice") setBanner(c, round.a[at].ans, at); else neutral(round.a[at].ans, "Answer recorded:"); } else { draw(c, false); banner.replaceChildren(); banner.className = "ss-eyes__banner"; }
     nextBtn.hidden = !answered; nav();
   }
 
@@ -422,6 +430,7 @@ function eyesEngine(el, src, core, hard) {
     stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
       mk("h4", {}, "Official test pass line"), ...p.lines.map((l) => note(l)),
       ...(ph.rounds ? [mk("h4", {}, "Hard test line"), ...ph.lines.map((l) => note(l))] : []),
+      mk("h4", {}, "Your habit by strength"), ...core.habitLines(core.habit(rs)).map((l) => note(l)),
       rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), cloudNote(),
       mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Back", start)));
   }

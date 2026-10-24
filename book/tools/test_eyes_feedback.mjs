@@ -166,12 +166,39 @@ test("a faint brightening just under its test line is never called plain noise: 
 });
 
 test("an answer is saved with the measured strength of its card (field f), and a card without one is saved exactly as before", () => {
-  const core = req(path.join(assets, "eyes-core.js"));
+  const core = req(process.env.EYES_CORE || path.join(assets, "eyes-core.js"));
   class S { constructor() { this.m = new Map(); } getItem(k) { return this.m.has(k) ? this.m.get(k) : null; } setItem(k, v) { this.m.set(k, String(v)); } }
   const store = core.createStore(new S()), r = store.startRound({ mode: "practice", source: "hard-toi1338-s98", n: 2 }), c = decks.hardnoise[0];
   c.feat = facts.hardnoise[0]; const e1 = store.recordAnswer(r.id, 0, c, "dip", 500), e2 = store.recordAnswer(r.id, 1, { kind: "quiet", truth: "none", meta: { w: 1 } }, "none", 400);
   assert.equal(e1.f.st, Math.round(facts.hardnoise[0].strength * 10) / 10); assert.ok(e1.f.dh > 0 && e1.f.gr > 0); assert.equal("f" in e2, false);
   const doc = core.roundDoc(store.finishRound(r.id), store.device); assert.deepEqual(Object.keys(doc).sort(), [...core.CLOUD_KEYS].sort());
+});
+
+test("his own habit by strength: counts per band, d-prime and criterion from measured answers only, and an honest message when nothing is measured yet", () => {
+  const core = req(process.env.EYES_CORE || path.join(assets, "eyes-core.js"));
+  const e = (truth, ans, st) => ({ truth, ans, f: { st, dh: 3, gr: 1.5 } }), a = [];
+  for (let i = 0; i < 20; i++) a.push(e("dip", i < 18 ? "dip" : "none", 7.2 + (i % 3) * 0.9));             // 20 hidden planets, 18 called Dip (strength 7.2 to 9)
+  for (let i = 0; i < 20; i++) a.push(e("none", i < 2 ? "dip" : "none", 3.5 + (i % 2) * 0.8));            // 20 quiet curves, 2 called Dip (strength 3.5 to 4.3)
+  a.push({ truth: "dip", ans: "dip" });                                                           // an old answer with no measurement is left out
+  const h = core.habit([{ a }]);
+  assert.equal(h.n, 40); assert.equal(h.bands.find((b) => b.name === "7 to 10").n, 20); assert.equal(h.bands.find((b) => b.name === "7 to 10").planetsDip, 18);
+  assert.equal(h.bands.find((b) => b.name === "3 to 5").otherDip, 2); assert.equal(h.bands.find((b) => b.name === "under 3").n, 0);
+  assert.ok(Math.abs(h.dprime - 2.36) < 0.08, "d-prime " + h.dprime); assert.ok(Math.abs(h.criterion) < 0.03, "criterion " + h.criterion);
+  const lean = core.habit([{ a: [...Array(15).fill(0).map(() => e("dip", "dip", 8)), ...Array(15).fill(0).map((_, i) => e("none", i < 9 ? "dip" : "none", 4))] }]);
+  assert.ok(lean.criterion < -0.3, "saying Dip too readily must give a negative criterion: " + lean.criterion); assert.match(core.habitLines(lean).join(" "), /lean towards saying Dip/);
+  assert.equal(core.habit([{ a: [{ truth: "dip", ans: "dip" }] }]).n, 0); assert.match(core.habitLines(core.habit([])).join(" "), /fills in as you answer/);
+  assert.equal(core.habit([{ a: Array(6).fill(0).map(() => e("none", "dip", 5.5)) }]).saysDipFrom, "5 to 7"); assert.ok(!/[–—]/.test(core.habitLines(h).join(" ")));
+});
+
+test("a miss comes back 3 to 5 cards later, only unseen cards move, and the round keeps exactly the same cards", () => {
+  const core = req(process.env.EYES_CORE || path.join(assets, "eyes-core.js")), mkc = () => Array.from({ length: 20 }, (_, i) => ({ kind: i % 5 === 2 ? "gapdip" : "hardnoise", id: i }));
+  for (const r of [0, 0.5, 0.99]) {
+    const cards = mkc(), before = cards.slice(), at = 2, to = core.bringBack(cards, at, () => r);
+    assert.ok(to >= at + 3 && to <= at + 5, "placed at " + to); assert.equal(cards[to].kind, cards[at].kind);
+    assert.deepEqual(cards.map((c) => c.id).sort((x, y) => x - y), before.map((c) => c.id).sort((x, y) => x - y)); assert.deepEqual(cards.slice(0, at + 3), before.slice(0, at + 3));
+  }
+  const none = mkc().map((c) => ({ ...c, kind: "hardnoise" })); none[2].kind = "eclipse"; assert.equal(core.bringBack(none, 2, () => 0), -1, "nothing of that kind left to bring back");
+  assert.equal(core.bringBack(mkc(), 18, () => 0.5), -1, "too near the end");
 });
 
 console.log(`all ${passed} Eyes feedback checks passed`);

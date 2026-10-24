@@ -51,7 +51,8 @@ async function launch(tag) {
     try { ws.close(); } catch {}
     proc.kill();
     await sleep(500);
-    fs.rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 300 });
+    try { fs.rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 300 }); }
+    catch (e) { console.error("note: could not delete the scratch browser profile " + profile + " (" + e.code + "); it is only a temporary folder, the test result is not affected"); }   // 24 Oct 2026: a locked profile file made a passing run report failure
   };
   return { send, evaluate, listeners, errors, navigations, close };
 }
@@ -448,7 +449,8 @@ async function eyesTest() {
     await click("My results");
     const res = await text();
     const rounds = await store();
-    checks.resultsAfterReload = /3 round\(s\) saved on this device/.test(res) && /abandoned/.test(res) && /done/.test(res);
+    checks.habitTable = /Your habit by strength/.test(res) && /Curves measured so far: \d+/.test(res) && /Strength (under 3|3 to 5|5 to 7|7 to 10|10 or more): you said Dip on \d+ of \d+ curves/.test(res);
+    checks.resultsAfterReload =/3 round\(s\) saved on this device/.test(res) && /abandoned/.test(res) && /done/.test(res);
     checks.abandonedKept = rounds.length === 3 && rounds[0].status === "abandoned" && rounds[0].a.length === 2;
     checks.resultsTable = await b.evaluate(`document.querySelectorAll(".ss-eyes__table tbody tr").length === 3 && document.querySelector(".ss-eyes__table thead").innerText.includes("False alarms")`);
     checks.noCopyOption = !/copy (my|the|your)? ?results|paste|export|send (it |them )?to claude/i.test(res) && !(await b.evaluate(`document.querySelector(".ss-eyes textarea") !== null || [...document.querySelectorAll(".ss-eyes button")].some((x) => /copy|paste|export/i.test(x.textContent))`));   // Ahmed: never make me hand over my results
@@ -471,6 +473,7 @@ async function eyesTest() {
     checks.hardInResults = /Hard test line/.test(hres) && /test \(hard\)/.test(hres) && /Test rounds: 1, curves: 30/.test(hres);          // the official pass line still counts only the official test
     await click("Back"); await click("Hard practice 20"); await click("Dip");
     checks.hardPracticeShowsTruth = /THIS WAS: (A DIP|NOT A DIP)/.test(await text());
+    checks.plotBarExplained = /dashed line is how deep a dip must be here to score 7/.test(await text());
     const fbl = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__fb")].map((e) => e.textContent)`), fbw = fbl.join(" ").split(/s+/).filter(Boolean).length;
     checks.hardPracticeFeedback = fbl.length === 3 && fbw >= 36 && fbw <= 44 && !/missed/.test(fbl.join(" ")) && !/[–—]/.test(fbl.join(" "));
 

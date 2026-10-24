@@ -132,7 +132,7 @@
     const sigW = sigT[best.D] || sigT[Object.keys(sigT)[0]];
     Object.assign(F, {
       sigma_pt: sigPt, beta, base,
-      strength: best.s, depth_ppm: med - best.m, depth_pts: (med - best.m) / sigPt,
+      strength: best.s, med, best_m: best.m, best_a: best.a, best_w: best.D, depth_ppm: med - best.m, depth_pts: (med - best.m) / sigPt,
       dur_h: best.D * BIN_H, fit_dur_h: sh.Df * BIN_H, ingress_h: sh.f * sh.Df * BIN_H, vness: sh.f / 0.5, shape_dchi2: dChi2,
       second: second.s, gap_ratio: best.s / Math.max(second.s, 0.5), n_similar: others.filter((b) => b.s >= 0.7 * best.s).length,
       n_in: inEv.length, rebound_ppm: known ? post - pre : 0, rebound_z: known ? (post - pre) / lvlErr : 0, rebound_frac: known ? (post - pre) / Math.max(med - best.m, 1) : 1,   // unknown (event at the card edge): no evidence either way
