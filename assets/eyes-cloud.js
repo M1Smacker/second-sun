@@ -21,9 +21,10 @@
     const pending = () => store.unsynced().length;
     const syncedCount = () => store.rounds().filter((r) => r.sync).length;
 
-    const paused = !!o.paused;                                                // a test copy of the book must never write to Ahmed's real cloud data
+    const guest = !!o.guest, paused = !!o.paused;                                               // a test copy of the book must never write to Ahmed's real cloud data
     function status() {
       if (paused) return "Cloud backup is paused on this test copy of the book. Rounds are kept on this device only.";
+      if (guest) return "You are a visitor here, so nothing you do is sent anywhere. Your rounds stay on this device.";
       const p = pending();
       if (sending || (p && state === "idle")) return "Cloud backup: sending your round...";
       if (p && state === "refused") return `Cloud backup: ${p} round(s) could not be sent yet. They stay on this device and the book keeps trying.`;
@@ -52,7 +53,7 @@
 
     // Sends every finished round the cloud does not have yet, oldest first. Safe to call at any time and as often as you like.
     async function flush() {
-      if (stopped || sending || paused) return;
+      if (stopped || sending || paused || guest) return;
       if (!pending()) { state = "idle"; failures = 0; notify(); return; }
       if (!isOnline()) { state = "offline"; failures = Math.max(failures, 1); schedule(); notify(); return; }
       sending = true; state = "sending"; notify();
@@ -77,6 +78,27 @@
     return { flush, status, onStatus: (f) => listeners.push(f), stop() { stopped = true; if (timer) { clearT(timer); timer = null; } }, get state() { return state; } };
   }
 
+  // ---- only Ahmed's devices upload (his rule, 26 Oct 2026): visitors can play freely, nothing they do is sent anywhere, so nobody else's rounds can reach his results.
+  //      "1" = Ahmed's device, "0" = a visitor, and the first decision sticks. A device that already holds rounds when this rule first runs is Ahmed's (nobody else had
+  //      played yet); a brand-new device of his opens the Eyes page once with #owner on the end of the address. This keeps casual visitors out; it is not a lock. ----
+  const OWNER_KEY = "ss-eyes-owner";
+  function isOwner(store, win) {
+    try {
+      const ls = win.localStorage;
+      if (/^#owner$/i.test((win.location && win.location.hash) || "")) {
+        ls.setItem(OWNER_KEY, "1");
+        try { win.history.replaceState(null, "", win.location.pathname + win.location.search); } catch (e) { /* the flag is already saved */ }
+        return true;
+      }
+      const v = ls.getItem(OWNER_KEY);
+      if (v === "1") return true;
+      if (v === "0") return false;
+      const had = store.rounds().length > 0;
+      ls.setItem(OWNER_KEY, had ? "1" : "0");
+      return had;
+    } catch (e) { return false; }                                            // no usable storage: treat as a visitor, nothing is sent
+  }
+
   // ---- browser wiring: one uploader per page visit, started by the Eyes screen ----
   let current = null;
   function attach(store) {
@@ -85,7 +107,7 @@
     if (root.SSEYES_CLOUD_BASE) cfg.base = root.SSEYES_CLOUD_BASE;           // tests only: a mock server instead of Firestore
     const host = (root.location && root.location.hostname) || "";
     const testCopy = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(host) && !root.SSEYES_CLOUD_BASE && !root.SSEYES_CLOUD_ALLOW_LOCAL;   // only the real end-to-end test sets ALLOW_LOCAL
-    const up = createUploader({ store, core, fetch: (u, i) => root.fetch(u, i), config: cfg, paused: testCopy, isOnline: () => root.navigator.onLine !== false });
+    const up = createUploader({ store, core, fetch: (u, i) => root.fetch(u, i), config: cfg, paused: testCopy, guest: !isOwner(store, root),isOnline: () => root.navigator.onLine !== false });
     const go = () => up.flush(), vis = () => { if (root.document.visibilityState === "visible") up.flush(); };
     store.onChange((ev) => { if (ev === "finish" || ev === "recover") up.flush(); });
     root.addEventListener("online", go); root.document.addEventListener("visibilitychange", vis);
@@ -95,7 +117,7 @@
     return up;
   }
 
-  return { createUploader, attach, DEFAULTS,
+  return { createUploader, attach, isOwner, DEFAULTS,
            status: () => (current ? current.status() : "Cloud backup: not started."),
            onStatus: (f) => { if (current) current.onStatus(f); } };
 });

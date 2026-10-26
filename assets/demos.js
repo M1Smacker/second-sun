@@ -415,7 +415,7 @@ function eyesEngine(el, src, core, hard) {
   function finish() { store.finishRound(round.id); showFinish(); }
   function showFinish() {
     review = false; view = null;
-    const isH = core.isHard(round), lines = isH ? core.hardLines(core.summarizeHard(round.a)) : core.summaryLines(round.s), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), ...lines.map((l) => note(l))];
+    const isH = core.isHard(round), lines = isH ? core.hardLines(core.summarizeHard(round.a)) : core.summaryLines(round.s), sc = core.scoreLines(round.a), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), mk("p", { className: "ss-eyes__score" }, sc.head), note(sc.sub), ...lines.map((l) => note(l))];
     if (mode === "test") kids.push(mk("h4", {}, isH ? "Hard line so far" : "Pass line so far"), ...(isH ? core.hardLine(store.rounds()) : core.passLine(store.rounds())).lines.map((l) => note(l)));
     kids.push(note(saveNote()), cloudNote(), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
     stage.replaceChildren(...kids);

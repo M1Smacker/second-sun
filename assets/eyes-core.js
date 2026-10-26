@@ -97,6 +97,13 @@
     return L;
   }
 
+  // ---- the plain score, shown first on every finish screen, hard rounds included (Ahmed, 26 Oct 2026: "how many did I get right out of 30"). "Right" = the answer matched the card; Not sure is never right. ----
+  function scoreLines(entries) {
+    const n = entries.length, right = entries.filter((e) => e.ok).length, by = (k) => entries.filter((e) => e.ans === k).length;
+    return { right, n, head: `You got ${right} of ${n} right.`,
+      sub: `Wrong: ${n - right - by("unsure")}. Not sure: ${by("unsure")}. Your answers: ${NAME.dip} ${by("dip")}, ${NAME.none} ${by("none")}, ${NAME.odd} ${by("odd")}, ${NAME.unsure} ${by("unsure")}.` };
+  }
+
   // ---- the pass line (Standard, agreed with Ahmed): at least 85% of the clear dips found and at most 1 in 10 quiet curves called a dip,
   //      over at least 60 test curves, in at least 2 rounds, on at least 2 different days. Faint dips are reported, not required. ----
   function wilson(k, n, z = 1.96) {
@@ -326,5 +333,5 @@
     return -1;
   }
 
-  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, BANDS, habit, habitLines, bringBack, isHard, summarizeHard, hardLines, hardLine, truthOf, verdict, bannerParts, compose, summarize, summaryLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
+  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, BANDS, habit, habitLines, bringBack, isHard, summarizeHard, hardLines, hardLine, truthOf, verdict, bannerParts, compose, summarize, summaryLines, scoreLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
 });
