@@ -1,7 +1,7 @@
 # The shape of the book: Parts, chapters, both reading orders, summaries and "why read this" lines.
 # hooks.py builds the home map, the chapter strip, the Next/Previous links and the Journey page from this file.
 # Rules: no en or em dashes (the build fails on them). Keep each summary line to one sentence.
-# `topic` order = the chapter numbers 1 to 15. `journey` order = the order the project needed them (see `journey:`).
+# `topic` order = the chapter numbers 1 to 15 (browse). `track` = the ONE reading order (the learning levels). `journey` = the order the project met the ideas (a story page only).
 
 parts:
   - {n: 1, name: "The sky and the data", short: "Sky and data", star: Deneb,
@@ -187,7 +187,21 @@ chapters:
       - "You will be able to: spot the five patterns in your own work."
     plain: "In the first two days we logged 15 mistakes. None reached anyone outside the project, and each one left a rule behind."
 
-# The Journey order: the order the project needed each chapter. One line per stop: what happened.
+# The learning track: the ONE reading order (Ahmed, 27 Oct 2026: start with the first thing to learn, not the first thing the project did, and build up slowly).
+# The levels in docs/learn/index.md drive it. Chapter numbers stay as permanent labels, so chapter 7 comes before chapter 4 on purpose.
+# Every chapter appears exactly once. Levels 1 and 2 have no chapter of their own (they use the L1 lesson and parts of chapters 2 and 11), so they send the reader to a page.
+# The build fails if docs/learn/index.md does not link each chapter inside its level's section.
+track:
+  - {level: L0, label: "Level 0", name: "What a light curve is", chapters: [1, 2, 3]}
+  - {level: L1, label: "Level 1", name: "How big is the dip?", chapters: [], page: "learn/l1-dip-depth/", hint: "The Level 1 lesson"}
+  - {level: L2, label: "Level 2", name: "From dip depth back to size", chapters: [], page: "learn/#l2", hint: "Parts of chapters 2 and 11"}
+  - {level: L3, label: "Level 3", name: "Bright stars, faint stars, noise", chapters: [7, 8]}
+  - {level: L4, label: "Level 4", name: "Orbits, and why our dips wander", chapters: [4, 5, 6]}
+  - {level: L5, label: "Level 5", name: "The fakes", chapters: [9, 10]}
+  - {level: L6, label: "Level 6", name: "Two-key vetting", chapters: [11, 12]}
+  - {level: AFTER, label: "After Level 6", name: "Running the project", chapters: [13, 14, 15]}
+
+# The Journey order: the order the project needed each chapter. One line per stop: what happened. Shown on "How the project unfolded"; it is a story, not a reading order.
 journey:
   - {ch: 4, line: "19 Oct: we chose the hunt. Planets that orbit two stars are rare: only 14 are known to cross. {{claim:F-001}}", note: "2026-10-19"}
   - {ch: 5, line: "19 Oct: we saw why the usual tools miss them. Their dips arrive off the clock, and that is our opening.", note: "2026-10-19"}

@@ -70,7 +70,7 @@ for f in pages:
 for f in sorted((SITE / "book").glob("[0-9][0-9]-*/index.html")):
     t = f.read_text(encoding="utf-8")
     n = f.parent.name
-    for need in ('class="ss-strip"', 'class="ss-end"', "1-minute summary", 'class="ss-read-btn"', 'data-path="journey"', 'data-path="topic"'):
+    for need in ('class="ss-strip"', 'class="ss-end"', "1-minute summary", 'class="ss-read-btn"', 'class="ss-pager"'):
         if need not in t:
             bad.append(f"book/{n}: missing {need}")
     if "details class=\"quiz\"" in t or re.search(r"<strong>Next:</strong>", t):

@@ -1,15 +1,21 @@
 # Learning track
 
-<p class="ss-meta">Seven levels · one or two sittings each · your progress line updates when you finish one</p>
+<p class="ss-meta">Seven levels and a last step · one or two sittings each · your progress line updates when you finish one</p>
 
 !!! plain "In plain words"
-    Seven levels take you from "what is a light curve?" to being the **second key**: someone who can check a candidate independently. Each level says what to read, which lab to do on your PC, and ends with three questions. When you can answer them, tell me "L2 done, 3/3" (or whatever level), and I'll set the date on your progress line.
+    This is the one path through the book. Start at Level 0 and go in order: each level builds on the one before, from "what is a light curve?" up to being the **second key**, someone who can check a candidate independently. Each level says what to read, in order, which lab to do on your PC (optional), and ends with three questions. When you can answer them, tell me "L2 done, 3/3" (or whatever level), and I'll set the date on your progress line.
 
 <!-- ss:progress-line -->
 
-## L0 · What a light curve is
+## The path at a glance
 
-**Read:** [Chapter 1](../book/01-stars-names-missions.md), then [Chapter 2](../book/02-light-curves.md) sections 2.1 to 2.2. **Do:** [Lab 0](../labs/lab0-workbench.md), [Lab 1](../labs/lab1-name-to-number.md), [Lab 2](../labs/lab2-get-the-data.md).
+<!-- ss:track -->
+
+The chapter numbers are permanent labels, so the path visits them out of numeric order on purpose. Level 3 comes before Level 4 because you should learn to measure a dip, and to distrust the noise, before you meet the orbits that make our dips hard to predict. If you would rather browse by topic, the Read menu lists the chapters in six Parts, and [How the project unfolded](../start/journey.md) tells the project as a story.
+
+## L0 · What a light curve is { #l0 }
+
+**Read:** [Chapter 1](../book/01-stars-names-missions.md), then [Chapter 2](../book/02-light-curves.md) sections 2.1 to 2.2, then [Chapter 3](../book/03-our-data.md). **Do:** [Lab 0](../labs/lab0-workbench.md), [Lab 1](../labs/lab1-name-to-number.md), [Lab 2](../labs/lab2-get-the-data.md).
 
 ??? quiz "L0 check 1. What do the columns TIME, PDCSAP_FLUX and QUALITY hold?"
     When each measurement was taken (BTJD days), the cleaned brightness, and a warning number (0 = fine).
@@ -20,7 +26,9 @@
 ??? quiz "L0 check 3. Magnitude 10 vs magnitude 15: which is brighter, and how much?"
     Magnitude 10, by 5 magnitudes: 100 times.
 
-## L1 · How big is the dip?
+**Next:** [Level 1](#l1).
+
+## L1 · How big is the dip? { #l1 }
 
 **Read:** the [L1 lesson](l1-dip-depth.md) (or Chapter 2, section 2.3). **Do:** [Lab 3](../labs/lab3-plot-and-read.md).
 
@@ -33,9 +41,11 @@
 ??? quiz "L1 check 3. Why do we divide the flux by its median before measuring a dip?"
     So 1.0 means "normal" and a dip reads directly as a fraction, whatever the star's raw brightness.
 
-## L2 · From dip depth back to size
+**Next:** [Level 2](#l2).
 
-**Read:** [Chapter 2](../book/02-light-curves.md) sections 2.3 and 2.5; [Chapter 11](../book/11-pixels-and-neighbours.md) section 11.3 (dilution). **Do:** the "Reading it" part of [Lab 4](../labs/lab4-find-a-dip.md).
+## L2 · From dip depth back to size { #l2 }
+
+**Read:** [Chapter 2](../book/02-light-curves.md) sections 2.3 and 2.5, and one section from further on, [Chapter 11](../book/11-pixels-and-neighbours.md) section 11.3 (dilution). That is a short look ahead: read only that section now, and the rest of Chapter 11 when you reach Level 6. **Do:** the "Reading it" part of [Lab 4](../labs/lab4-find-a-dip.md).
 
 ??? quiz "L2 check 1. A 1,000 ppm dip on a star the size of the Sun. How big is the planet?"
     √0.001 ≈ 0.032 of the Sun's radius; the Sun is 109 Earths across, so about **3.4 Earth radii**.
@@ -46,9 +56,11 @@
 ??? quiz "L2 check 3. Why is a transit's centre deeper than (planet ÷ star)²?"
     Limb darkening: the star's middle is brighter than its edge, so blocking the middle removes more light.
 
-## L3 · Bright stars, faint stars, noise
+**Next:** [Level 3](#l3), which starts with Chapter 7.
 
-**Read:** [Chapter 7](../book/07-noise-and-statistics.md), [Chapter 8](../book/08-our-detector.md). **Do:** [Lab 3](../labs/lab3-plot-and-read.md)'s noise table, [Lab 4](../labs/lab4-find-a-dip.md).
+## L3 · Bright stars, faint stars, noise { #l3 }
+
+**Read:** [Chapter 7](../book/07-noise-and-statistics.md), then [Chapter 8](../book/08-our-detector.md). **Do:** [Lab 3](../labs/lab3-plot-and-read.md)'s noise table, [Lab 4](../labs/lab4-find-a-dip.md).
 
 ??? quiz "L3 check 1. White noise of 2,000 ppm per 2 minutes. Expected wobble of a 2-hour average?"
     2,000 ÷ √60 ≈ **260 ppm**.
@@ -59,9 +71,11 @@
 ??? quiz "L3 check 3. In Lab 4 at SNR 5, a second event appeared, 15 hours long, next to a data gap. Trust it?"
     No: it's below our bar, it's at a gap edge, and lowering the bar is exactly how noise gets in (Chapter 7's look-elsewhere effect).
 
-## L4 · Orbits, and why our dips wander
+**Next:** [Level 4](#l4), which starts with Chapter 4.
 
-**Read:** [Chapter 4](../book/04-two-suns.md), [Chapter 5](../book/05-wandering-transits.md), [Chapter 6](../book/06-orbits-three-body.md). **Do:** [Lab 5](../labs/lab5-two-suns.md).
+## L4 · Orbits, and why our dips wander { #l4 }
+
+**Read:** [Chapter 4](../book/04-two-suns.md), then [Chapter 5](../book/05-wandering-transits.md), then [Chapter 6](../book/06-orbits-three-body.md). **Do:** [Lab 5](../labs/lab5-two-suns.md).
 
 ??? quiz "L4 check 1. Why do a two-star planet's crossings change length?"
     The star moves too. Moving with the planet: slow pass, long crossing. Against it: quick pass, short crossing.
@@ -72,9 +86,11 @@
 ??? quiz "L4 check 3. Why aren't TOI-1338's eclipses exactly half an orbit apart?"
     The stars' orbit is eccentric (stretched).
 
-## L5 · The fakes
+**Next:** [Level 5](#l5), which starts with Chapter 9.
 
-**Read:** [Chapter 9](../book/09-fake-planets.md), [Chapter 10](../book/10-vetting.md) sections 10.1 to 10.2. **Do:** [Lab 6](../labs/lab6-fake-planets.md), [Lab 8](../labs/lab8-read-stanley.md).
+## L5 · The fakes { #l5 }
+
+**Read:** [Chapter 9](../book/09-fake-planets.md), then [Chapter 10](../book/10-vetting.md) sections 10.1 to 10.2 (the rest of Chapter 10 waits for Level 6). **Do:** [Lab 6](../labs/lab6-fake-planets.md), [Lab 8](../labs/lab8-read-stanley.md).
 
 ??? quiz "L5 check 1. Name three things that can fake a planet's dip."
     Any three of: a thruster firing or pointing jitter, a data-gap edge, scattered light, an eclipsing neighbour (blend), the binary's own eclipse edge, stellar variability, noise.
@@ -85,9 +101,11 @@
 ??? quiz "L5 check 3. 28% of STANLEY's orbits scored above 5σ. What does that mean for its 18.4σ peak?"
     Its σ scale isn't calibrated: noise scores high here. The peak is encouraging but needs calibrating before it means anything precise.
 
-## L6 · Two-key vetting
+**Next:** [Level 6](#l6), which starts with the rest of Chapter 10.
 
-**Read:** [Chapter 10](../book/10-vetting.md) sections 10.3 to 10.6, [Chapter 11](../book/11-pixels-and-neighbours.md), [Chapter 12](../book/12-stanley.md). **Do:** [Lab 7](../labs/lab7-pixels.md), [Lab 9](../labs/lab9-your-star.md).
+## L6 · Two-key vetting { #l6 }
+
+**Read:** [Chapter 10](../book/10-vetting.md) sections 10.3 to 10.6, then [Chapter 11](../book/11-pixels-and-neighbours.md), then [Chapter 12](../book/12-stanley.md). **Do:** [Lab 7](../labs/lab7-pixels.md), [Lab 9](../labs/lab9-your-star.md).
 
 ??? quiz "L6 check 1. A dip appears in SPOC data but not in QLP data at the same time. What does rule C8 say?"
     It fails C8: a real dip should show in a second, independently made product.
@@ -98,5 +116,24 @@
 ??? quiz "L6 check 3. What does 'second key' mean?"
     You independently check a candidate and decide whether you agree, before anything is submitted. Both keys must turn.
 
+**Next:** [After Level 6](#after): how the project runs.
+
+## After Level 6 · Running the project { #after }
+
+These three chapters are not part of the readiness bar. They are how a careful project is run, and you can read them any time after Level 6.
+
+**Read:** [Chapter 13](../book/13-your-workshop.md), then [Chapter 14](../book/14-credit-and-publishing.md), then [Chapter 15](../book/15-mistakes-as-lessons.md).
+
+??? quiz "After L6, check 1. In 2026 NASA's candidate site started wanting something published before it takes a candidate. What?"
+    The write-up (a paper or note) comes first. So the order is: find a dip, check it with both keys, publish, and only then submit the candidate.
+
+??? quiz "After L6, check 2. Where would you look to find out why we made a decision, and where to find a mistake we logged?"
+    Decisions are in `research/decisions.md` and mistakes in `research/mistakes.md`. Results, with their labels and sources, are on the facts page (the claims register).
+
+??? quiz "After L6, check 3. Chapter 15 groups fifteen mistakes into five patterns and keeps a rule for each. Why write a rule instead of just fixing the mistake?"
+    A fix repairs one case. A written rule stops the same pattern coming back, anywhere in the work.
+
+That is the end of the track. The Hunt tab shows where the project stands now.
+
 ## Sources
-The levels follow the course design in `research/burn-3-book/learning-track.md` (19 October). Facts used here are in the chapters' sources.
+The levels follow the course design in `research/burn-3-book/learning-track.md` (19 October). On 27 October 2026 the track became the book's one reading order (see the Compass review `research/compass-reviews/2026-10-27-learning-spine.md`). Facts used here are in the chapters' sources.

@@ -52,4 +52,4 @@ The fraction of light blocked is the **[depth](../glossary.md#depth)**:
 
 **Summary:** depth = (planet ÷ star)². Tiny dips (ppm) can be planets; huge dips (tens of %) are stars.
 
-**When you're done, tell Claude: "L1 done, n/3".** Next: L2 turns a depth back into a size.
+**When you're done, tell Claude: "L1 done, n/3".** Next: [Level 2](index.md#l2) turns a depth back into a size. Back to the [learning track](index.md#l1).

@@ -35,8 +35,6 @@
 
   function paint() {
     const read = get("ss-read", []);
-    const topic = get("ss-path", "journey") === "topic";
-    root.classList.toggle("ss-topic", topic);
     $$("[data-ch]").forEach((el) => el.classList.toggle("is-read", read.includes(Number(el.dataset.ch))));
     $$(".ss-read-btn").forEach((b) => {
       const on = read.includes(Number(b.dataset.ch));
@@ -44,7 +42,6 @@
       b.textContent = on ? "Marked as read. Tap to undo" : "Mark as read";
       if (!b.dataset.seen) { b.dataset.seen = "1"; put("ss-last", Number(b.dataset.ch)); }   // opening a chapter = where you stopped
     });
-    $$("[data-path-set]").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.pathSet === "topic") === topic)));
     const card = document.querySelector(".ss-resume");
     if (card) try {
       const chs = JSON.parse(card.dataset.chapters);
@@ -59,12 +56,10 @@
     } catch (err) { /* keep the static text */ }
   }
   document.addEventListener("click", (e) => {
-    const t = e.target.closest && e.target.closest(".ss-read-btn, [data-path-set]");
+    const t = e.target.closest && e.target.closest(".ss-read-btn");
     if (!t) return;
-    if (t.classList.contains("ss-read-btn")) {
-      const n = Number(t.dataset.ch), read = get("ss-read", []);
-      put("ss-read", read.includes(n) ? read.filter((x) => x !== n) : read.concat(n));
-    } else put("ss-path", t.dataset.pathSet);
+    const n = Number(t.dataset.ch), read = get("ss-read", []);
+    put("ss-read", read.includes(n) ? read.filter((x) => x !== n) : read.concat(n));
     paint();
   });
 

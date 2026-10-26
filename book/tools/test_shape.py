@@ -42,6 +42,11 @@ refused("a chapter in an unknown Part", shape.validate, broken(lambda q: q["chap
 refused("a Part star missing from the sky data", shape.validate, broken(lambda q: q["parts"][0].update(star="Nowhere")))
 refused("a journey note that does not exist", shape.validate, broken(lambda q: q["journey"][0].update(note="2099-01-01")))
 refused("chapters out of order", shape.validate, broken(lambda q: q["chapters"].reverse()))
+refused("a chapter missing from the learning track", shape.validate, broken(lambda q: q["track"][0]["chapters"].pop()))
+refused("a chapter listed twice in the learning track", shape.validate, broken(lambda q: q["track"][3]["chapters"].append(1)))
+refused("levels out of order in the track", shape.validate, broken(lambda q: q["track"].reverse()))
+refused("a level with no chapters and no page", shape.validate, broken(lambda q: q["track"][1].pop("page")))
+refused("a chapter moved to another level but not on the learning page", shape.validate, broken(lambda q: (q["track"][0]["chapters"].remove(3), q["track"][3]["chapters"].append(3))))
 nav = copy.deepcopy(NAV)
 read = list(nav[0].values())[0]
 parts = [i for i in read if isinstance(list(i.values())[0], list)]
@@ -51,5 +56,8 @@ refused("the sidebar putting a chapter in the wrong Part", shape.check_nav, nav,
 refused("a nav with no Read tab", shape.check_nav, [], P)
 import diagrams  # noqa: E402
 assert set(diagrams.DIAGRAMS) == {c["n"] for c in P["chapters"]}, "every chapter needs a diagram in book/diagrams.py"
+assert shape._seq(P) == [1, 2, 3, 7, 8, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15], "the learning path Ahmed approved on 27 Oct 2026"
+assert "learn/l1-dip-depth" in shape.chapter_end(P, P["by_n"][3], "../../") and "Level 1" in shape.chapter_end(P, P["by_n"][3], "../../")
+assert "book/04-two-suns" in shape.chapter_end(P, P["by_n"][8], "../../"), "the end of Level 3 leads to the start of Level 4"
 assert shape.chapter_for(P, "book/08-our-detector.md")["n"] == 8 and shape.chapter_for(P, "start/index.md") is None
 print("all shape checks passed")

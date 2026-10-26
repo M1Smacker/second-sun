@@ -3,7 +3,7 @@
 <p class="ss-meta">Start here · about 5 min</p>
 
 !!! plain "In plain words"
-    Just read. Pick the journey or by-topic order, and the chapters work on your phone. The labs are optional side trips for your PC. Every fact has a small label showing how sure we are, and you can tap it to see the source.
+    Just read, in the order of the learning track. The chapters work on your phone. The labs are optional side trips for your PC. Every fact has a small label showing how sure we are, and you can tap it to see the source.
 
 ## The six Parts
 
@@ -16,13 +16,13 @@
 | **5. The professionals' tool** | What does STANLEY do that we don't? | 12 | 8 |
 | **6. How the project runs** | Our workshop, credit, our mistakes | 13 to 15 | 9 |
 
-The menu lists the chapters under their Part names. Later additions (more chapters, more labs) will say so in a [field note](../field-notes/index.md).
+The menu lists the chapters under their Part names, to browse by topic. To learn them in the right order, follow the [learning track](../learn/index.md). Later additions (more chapters, more labs) will say so in a [field note](../field-notes/index.md).
 
 ## Inside a chapter
 
 Every chapter opens the same way, so you always know where you are:
 
-1. **A small map strip** shows which Part and chapter you are in.
+1. **A small map strip** shows your level, your step on the learning path and your chapter.
 2. **A 1-minute summary** of three lines: what it is, why it matters, and what you will be able to do.
 3. **The plain-words box**, two sentences.
 
@@ -59,5 +59,5 @@ After every work session, a dated lesson goes into the [Field notes](../field-no
 ## Suggested order
 
 1. [The story so far](story-so-far.md) (12 min)
-2. Then either [the journey path](journey.md) or [Chapter 1](../book/01-stars-names-missions.md) and on through the Parts.
+2. Then the [learning track](../learn/index.md), from Level 0. [How the project unfolded](journey.md) is the story of the project, not a reading order.
 3. Labs only when you feel like it.

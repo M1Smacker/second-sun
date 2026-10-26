@@ -213,7 +213,7 @@ def claims_table(d):
 
 # placeholders that need the page's path back to the site root
 RENDER_AT = {"home-map": lambda d, r: shape.home(d["path"], d, r), "journey": lambda d, r: shape.journey(d["path"], r),
-             "contents": lambda d, r: shape.contents(d["path"], r)}
+             "contents": lambda d, r: shape.contents(d["path"], r), "track": lambda d, r: shape.track_page(d["path"], r)}
 RENDER = {"status-panel": status_panel, "mission-bar": mission_bar, "mission-detail": mission_detail, "progress-line": progress_line, "levels": levels, "milestones": milestones,
           "quests": quests, "candidates": candidates, "claims": claims_table}
 
@@ -333,6 +333,9 @@ def on_page_markdown(markdown, page, config, files):
     part = shape.part_for(P, page.file.src_uri)
     if part:
         markdown = f"# Part {part['n']} · {part['name']}\n\n" + shape.part_page(P, part, to_root)
+    m = re.fullmatch(r"field-notes/(\d{4}-\d\d-\d\d)\.md", page.file.src_uri)
+    if m:
+        markdown += shape.note_chapters(P, m.group(1), to_root)                 # the chapters this note taught, from the journey data
     return expand(markdown, page.url, DATA)
 
 

@@ -60,4 +60,4 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 
 ## Where to go next
 
-Read [How to read this book](how-to-read.md), then pick the [journey](journey.md) or start at [Chapter 1](../book/01-stars-names-missions.md). The labs are optional.
+Read [How to read this book](how-to-read.md), then follow the [learning track](../learn/index.md) from Level 0. The labs are optional.

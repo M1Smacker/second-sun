@@ -15,6 +15,7 @@ COLOR = {"O": "#aac4ff", "B": "#aac4ff", "A": "#e8eeff", "F": "#fff8ec", "G": "#
 # real figure of Cygnus (the Northern Cross), drawn faintly behind the book's six stars
 FIGURE = [("Deneb", "Sadr"), ("Sadr", "Eta Cygni"), ("Eta Cygni", "Albireo"), ("Delta Cygni", "Sadr"), ("Sadr", "Gienah")]
 W, H = 800, 560
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
 def load(root=ROOT):
@@ -31,6 +32,24 @@ def validate(p, docs=ROOT / "docs"):
         raise ValueError("data/path.yml: chapters must be numbered 1..N in order")
     if sorted(j["ch"] for j in p["journey"]) != ns:
         raise ValueError("data/path.yml: the journey must list every chapter exactly once")
+    if [t["level"] for t in p["track"]] != ["L0", "L1", "L2", "L3", "L4", "L5", "L6", "AFTER"]:
+        raise ValueError("data/path.yml: track: must list the levels L0 to L6 and then AFTER, in that order")
+    if sorted(_seq(p)) != ns:
+        raise ValueError("data/path.yml: the learning track must list every chapter exactly once")
+    for t in p["track"]:
+        if not t["chapters"] and not t.get("page"):
+            raise ValueError(f"data/path.yml: level {t['level']} has no chapters and no page to send the reader to")
+    learn = docs / "learn" / "index.md"
+    if learn.exists():                                                  # the page and the data must tell the same story
+        text = learn.read_text(encoding="utf-8")
+        for t in p["track"]:
+            anchor = "{ #" + t["level"].lower() + " }"
+            m = re.search(r"^## [^\n]*" + re.escape(anchor) + r"[^\n]*\n(.*?)(?=^## |\Z)", text, re.M | re.S)
+            if not m:
+                raise ValueError(f"docs/learn/index.md: no section headed with {anchor} for {t['level']}")
+            for n in t["chapters"]:
+                if f"[Chapter {n}]" not in m.group(1):
+                    raise ValueError(f"docs/learn/index.md: the {t['level']} section does not link [Chapter {n}] (data/path.yml puts it there)")
     for c in p["chapters"]:
         if c["part"] not in p["part_by_n"]:
             raise ValueError(f"data/path.yml: chapter {c['n']} has unknown part {c['part']}")
@@ -101,16 +120,17 @@ def title(c):
 
 # ---------- chapter pages ----------
 def strip(p, c, to_root):
-    part = p["part_by_n"][c["part"]]
+    seq, t = _seq(p), _group(p, c)
     dots = []
-    prev_part = None
-    for k in p["chapters"]:
+    prev_part = None                      # holds the level of the previous dot (the name is from the old Part-based strip)
+    for k in (p["by_n"][n] for n in seq):
         cur = ' aria-current="page"' if k["n"] == c["n"] else ""
-        gap = " ss-gap" if prev_part is not None and k["part"] != prev_part else ""
+        gap = " ss-gap" if prev_part is not None and _group(p, k)["level"] != prev_part else ""
         dots.append(f'<li class="{gap.strip()}"><a data-ch="{k["n"]}" href="{url(k, to_root)}" aria-label="Chapter {k["n"]}: {escape(k["title"])}"{cur}></a></li>')
-        prev_part = k["part"]
-    return (f'<nav class="ss-strip" aria-label="Where you are in the book"><p><a href="{to_root}">Map</a> · Part {part["n"]} of {len(p["parts"])}: '
-            f'{escape(part["name"])} · Chapter {c["n"]} of {len(p["chapters"])}</p><ol>{"".join(dots)}</ol></nav>')
+        prev_part = _group(p, k)["level"]
+    return (f'<nav class="ss-strip" aria-label="Where you are on the learning path"><p><a href="{to_root}">Map</a> · '
+            f'<a href="{to_root}learn/#{t["level"].lower()}">{escape(t["label"])}: {escape(t["name"])}</a> · Step {seq.index(c["n"]) + 1} of {len(seq)} on your path · '
+            f'Chapter {c["n"]}, Part {c["part"]}</p><ol>{"".join(dots)}</ol></nav>')
 
 
 def summary(c):
@@ -124,8 +144,24 @@ def summary(c):
     return out
 
 
-def _order(p, kind):
-    return [p["by_n"][j["ch"]] for j in p["journey"]] if kind == "journey" else p["chapters"]
+# ---------- the learning track: the one reading order ----------
+def _seq(p):
+    """Chapter numbers in reading order: the levels, one after the other."""
+    return [n for t in p["track"] for n in t["chapters"]]
+
+
+def _group(p, c):
+    """The level entry (from track:) that a chapter belongs to."""
+    return next(t for t in p["track"] if c["n"] in t["chapters"])
+
+
+def _notes_by_chapter(p):
+    return {j["ch"]: j["note"] for j in p["journey"] if j.get("note")}
+
+
+def _date(note):
+    y, m, d = (int(x) for x in note.split("-"))
+    return f"{d} {MONTHS[m - 1]} {y}"
 
 
 def _link(c, to_root, rel, label, why=""):
@@ -134,24 +170,55 @@ def _link(c, to_root, rel, label, why=""):
 
 
 def chapter_end(p, c, to_root):
-    pagers = ""
-    start = f'{to_root}start/'
-    for kind in ("journey", "topic"):
-        seq = _order(p, kind)
-        i = seq.index(c)
-        prev = _link(seq[i - 1], to_root, "prev", "Previous") if i else ""
-        if i + 1 < len(seq):
-            nxt = _link(seq[i + 1], to_root, "next", "Next", seq[i + 1]["hook"])
-        else:
-            nxt = f'<a rel="next" href="{start}"><small>Next</small><b>Back to Start here</b><em>pick another path, or read the field notes</em></a>'
-        pagers += f'<div class="ss-pager" data-path="{kind}">{prev}{nxt}</div>'
+    seq, t = _seq(p), _group(p, c)
+    i, ti = seq.index(c["n"]), p["track"].index(t)
+    prev = _link(p["by_n"][seq[i - 1]], to_root, "prev", "Previous") if i else ""
+    ends_level = c["n"] == t["chapters"][-1]
+    if ends_level and ti + 1 < len(p["track"]):                        # the last chapter of a level: Next is the start of the next level
+        nt = p["track"][ti + 1]
+        if nt["chapters"]:
+            nxt = _link(p["by_n"][nt["chapters"][0]], to_root, "next", "Next", f'{nt["label"]}: {nt["name"]}')
+        else:                                                           # levels 1 and 2 have no chapter of their own
+            nxt = (f'<a rel="next" href="{to_root}{nt["page"]}"><small>Next</small><b>{escape(nt["label"])}: {escape(nt["name"])}</b>'
+                   f'<em>no new chapter, the learning track says what to read</em></a>')
+    elif i + 1 < len(seq):
+        nxt = _link(p["by_n"][seq[i + 1]], to_root, "next", "Next", p["by_n"][seq[i + 1]]["hook"])
+    else:
+        nxt = f'<a rel="next" href="{to_root}learn/"><small>Next</small><b>Back to the learning track</b><em>you have been through every chapter</em></a>'
+    pager = f'<div class="ss-pager" data-path="track">{prev}{nxt}</div>'
+    levelend = (f'<p class="ss-partend">That is the end of the reading for {"the learning track" if t["level"] == "AFTER" else escape(t["label"])}. '
+                f'<a href="{to_root}learn/#{t["level"].lower()}">Check yourself and see what comes next</a></p>') if ends_level else ""
+    note = _notes_by_chapter(p).get(c["n"])
+    notehtml = f'<p class="ss-partend">The field note that taught this: <a href="{to_root}field-notes/{note}/">{_date(note)}</a></p>' if note else ""
     part = p["part_by_n"][c["part"]]
     last = max(k["n"] for k in p["chapters"] if k["part"] == c["part"]) == c["n"]
     partend = (f'<p class="ss-partend">That is the end of Part {part["n"]}. <a href="{to_root}parts/part{part["n"]}/review/">Check yourself</a> · '
                f'<a href="{to_root}parts/part{part["n"]}/cheat/">Cheat sheet</a> · <a href="{to_root}parts/part{part["n"]}/labs/">Try it yourself (optional)</a></p>') if last else ""
     return (f'<nav class="ss-end" aria-label="Finish this chapter"><button type="button" class="ss-read-btn" data-ch="{c["n"]}" aria-pressed="false">Mark as read</button>'
-            f'{pagers}{partend}<p class="ss-pathswitch">Reading order: <button type="button" data-path-set="journey">Journey</button> '
-            f'<button type="button" data-path-set="topic">By topic</button></p></nav>')
+            f'{pager}{levelend}{notehtml}{partend}</nav>')
+
+
+def track_page(p, to_root):
+    """The whole learning path at a glance: each level, its chapters in reading order, and the field notes that taught them."""
+    notes = _notes_by_chapter(p)
+    rows = ""
+    for t in p["track"]:
+        if t["chapters"]:
+            what = "Read " + ", ".join(f'<a href="{url(p["by_n"][n], to_root)}">Chapter {n}</a>' for n in t["chapters"])
+        else:
+            what = f'<a href="{to_root}{t["page"]}">{escape(t["hint"])}</a>'
+        ns = sorted({notes[n] for n in t["chapters"] if n in notes})
+        nh = (" · Field notes: " + ", ".join(f'<a href="{to_root}field-notes/{x}/">{_date(x)}</a>' for x in ns)) if ns else ""
+        rows += f'<li><a href="{to_root}learn/#{t["level"].lower()}"><b>{escape(t["label"])}: {escape(t["name"])}</b></a><span>{what}{nh}</span></li>'
+    return f'<ol class="ss-chapters ss-track">{rows}</ol>'
+
+
+def note_chapters(p, note, to_root):
+    """A line for the end of a field note: the chapters it taught (from the journey data)."""
+    ns = sorted(n for n, d in _notes_by_chapter(p).items() if d == note)
+    if not ns:
+        return ""
+    return '\n\n<p class="ss-partend">Chapters this note taught: ' + ", ".join(f'<a href="{url(p["by_n"][n], to_root)}">Chapter {n}</a>' for n in ns) + "</p>\n"
 
 
 def listen():
@@ -326,8 +393,9 @@ if __name__ == "__main__":
     assert len(p["chapters"]) == 15 and len(p["parts"]) == 6
     assert all(summary(c).count("\n    - ") == 3 for c in p["chapters"])
     c8 = p["by_n"][8]
-    e = chapter_end(p, c8, "../../")
-    assert 'data-path="journey"' in e and 'data-path="topic"' in e and "Mark as read" in e and "ss-partend" not in e
+    e = chapter_end(p, p["by_n"][7], "../../")
+    assert 'data-path="track"' in e and "Mark as read" in e and "ss-partend" not in e and "ss-pathswitch" not in e
+    assert _seq(p) == [1, 2, 3, 7, 8, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15]
     assert "ss-partend" in chapter_end(p, p["by_n"][3], "../../")          # last chapter of Part 1
     assert strip(p, c8, "../../").count("<a data-ch") == 15
     svg = sky(p, {"score": {"total": 36}}, "")
