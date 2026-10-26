@@ -19,12 +19,24 @@
 ## Daily budget log
 | Day | Start % | Cap % | End % | Done |
 |---|---|---|---|---|
-| Tue 27 Oct | 0 | 10 | | planned: see the daily plan |
+| Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 waits for Ahmed's OK) |
 
 ## Status 27 Oct
 Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for a reply, but it is OFF until he says "start the search". The font report was reviewed by Compass (`research/compass-reviews/2026-10-27-font-advice-report.md`): approve with addendum; main finding: the fonts served today have no Greek or math symbols, so σ and ≈ come from the phone's fallback font.
 
 "was N" means the item number in an earlier version of this file.
+
+## Day 1 results (Tue 27 Oct)
+- **A1 done.** `D:\Backup-from-C\Backup-C-to-D.bat`: copy only, never deletes, re-runnable. First run copied about 6 GB (client work, Claude Code data, V8, Codex, gstack). Checked: Claude's memory folder 56 of 56 files identical by hash; sign-in files left out on purpose; the repos' `.git` folders are included. A first PowerShell version was blocked by the auto-mode classifier (it used an execution-policy bypass), so it is a plain batch file now. The Claude desktop app's own data folder is not copied (it holds sign-in data).
+- **A2 done.** `D:\Backup-from-C\LAPTOP-GUIDE.txt`; `requirements.txt` (main environment) and `requirements-tools/` in the repo. The LEO-Vetter and mono-cbp environments contain only pip, so there is nothing to record for them.
+- **A3 not done:** pushing the client repos needs Ahmed's OK.
+- **B1 done.** The finish screen says "You got N of 30 right" first, for hard rounds too; unit test and browser checks added.
+- **C1 done.** Font test Artifact (private): https://claude.ai/artifact/4ZzWK4p451xZN2xp5PZ6gv. Script syntax checked; not looked at on a phone.
+- **D1 done.** Reference pages "For astronomers" and "Prior work", three reading-list rows. Thornton et al. and Oddo et al. are described by their titles only, and the pages say so.
+- **D2 done.** Visitor guard: visitors can play and nothing they do is sent; a device that already holds rounds stays an owner; a brand-new device of Ahmed's opens `https://m1smacker.github.io/second-sun/eyes/#owner` once. This keeps casual visitors out; it is not a lock (the Firebase rules were not changed). `eyes_scores.py` now prints which devices uploaded.
+- **F1a done.** `research/compass-reviews/2026-10-27-learning-spine.md`: REVISE, three questions for Ahmed before the build (F1b).
+- **H3 done.** Field note 27 Oct.
+- Commit `3ff0db4`. Every gate passed (20 + 14 + 17 + 5 + 16 unit checks, strict build, 73 pages of links, colour contrast, and the five browser tests: layout, offline, JS off, eyes, eyes cloud). Published to gh-pages (`158c61a`) and checked live: the two new pages and the field note answer 200, and the live Eyes scripts contain the score line and the owner check. Not done on a real phone: reading the new pages and the score line on the iPhone (reload the book once so it updates).
 
 ## Phase A. Safety: copy to D (copy only, not a move; may be outdated)
 - A1. One-click backup script on D (robocopy, never deletes old copies, skips node_modules and caches): client work `C:\CLaudeCode`, `C:\Users\hanzl\.claude` (memory of Ahmed, settings, transcripts), V8 (where `V8-LOCATION.txt` points), Al Mundhir Voucher Books, templates, Second Sun's untracked bits. Me. 0.5 to 1.
