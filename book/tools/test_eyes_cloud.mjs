@@ -150,6 +150,30 @@ await test("a paused uploader (a test copy of the book) never sends anything, wh
   assert.match(up.status(), /paused on this test copy of the book/);
 });
 
+await test("a visitor can play but nothing is ever sent, and the line says so", async () => {
+  const store = core.createStore(new Storage()), calls = [];
+  const up = cloud.createUploader({ store, core, fetch: async (u) => { calls.push(u); return { status: 200 }; }, guest: true, timeoutMs: 0, setTimer: () => 1, clearTimer: () => {} });
+  store.onChange((ev) => { if (ev === "finish") up.flush(); });
+  finishedRound(store); await up.flush(); await settle(); await settle();
+  assert.equal(calls.length, 0);
+  assert.equal(store.unsynced().length, 1, "the round stays on the device");
+  assert.match(up.status(), /You are a visitor here, so nothing you do is sent anywhere/);
+});
+
+await test("who is an owner: a device with rounds before the rule, or the #owner link; a visitor stays a visitor even after playing", async () => {
+  const win = (hash = "") => { const m = new Map(), w = { hash, replaced: null }; return { localStorage: { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)) },
+    location: { hash, pathname: "/second-sun/eyes/", search: "" }, history: { replaceState: (a, b, u) => { w.replaced = u; } }, w, m }; };
+  const withRounds = core.createStore(new Storage()); finishedRound(withRounds);
+  const empty = () => core.createStore(new Storage());
+  let a = win(); assert.equal(cloud.isOwner(withRounds, a), true, "a device that already has rounds is Ahmed's"); assert.equal(a.m.get("ss-eyes-owner"), "1");
+  let b = win(); assert.equal(cloud.isOwner(empty(), b), false, "a new device is a visitor"); assert.equal(b.m.get("ss-eyes-owner"), "0");
+  assert.equal(cloud.isOwner(withRounds, b), false, "the first decision sticks: playing does not make a visitor the owner");
+  let c = win("#owner"); assert.equal(cloud.isOwner(empty(), c), true, "the link makes a new device his"); assert.equal(c.m.get("ss-eyes-owner"), "1"); assert.equal(c.w.replaced, "/second-sun/eyes/", "the hash is removed");
+  let d = win(); d.m.set("ss-eyes-owner", "0"); d.location.hash = "#owner"; assert.equal(cloud.isOwner(empty(), d), true, "the link overrides an earlier visitor decision");
+  const broken = { localStorage: { getItem() { throw new Error("blocked"); }, setItem() { throw new Error("blocked"); } }, location: { hash: "" } };
+  assert.equal(cloud.isOwner(empty(), broken), false, "no usable storage: treated as a visitor");
+});
+
 await test("the status line is honest before any round exists", async () => {
   const h = harness(); assert.match(h.up.status(), /Cloud backup is on\. Each finished round is sent by itself/);
 });

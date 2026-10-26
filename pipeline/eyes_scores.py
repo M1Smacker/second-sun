@@ -42,7 +42,11 @@ def main():
     plain = [r for r in rounds if r.get("mode") != "real"]
     changed_public = save(PUBLIC, plain)
     save(LOCAL, real) if real or LOCAL.exists() else None
-    print(f"read {len(rounds)} round(s) from the cloud: {len(plain)} practice/test, {len(real)} real. Public file {'updated' if changed_public else 'unchanged'}.\n")
+    print(f"read {len(rounds)} round(s) from the cloud: {len(plain)} practice/test, {len(real)} real. Public file {'updated' if changed_public else 'unchanged'}.")
+    devs = {}
+    for r in rounds:                                            # the book only uploads from Ahmed's devices; a device that is not his would show up here
+        d = str((r.get("device") or {}).get("id", "?")); devs[d] = devs.get(d, 0) + 1
+    print("devices that uploaded: " + ", ".join(f"{d} ({n})" for d, n in sorted(devs.items())) + "\n")
     rep = subprocess.run(["node", str(ROOT / "book" / "tools" / "eyes_report.mjs"), str(PUBLIC)], capture_output=True, text=True, encoding="utf-8")
     print(rep.stdout or rep.stderr)
     if "--commit" in sys.argv and changed_public:

@@ -14,3 +14,4 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [21 October 2026](2026-10-21.md) | A progress bar that has to prove itself: evidence, auto-counting and logged changes |
 | [23 October 2026](2026-10-23.md) | Rebuilding the book around a map: orientation, optional labs and a real-sky home page |
 | [24 October 2026](2026-10-24.md) | Feedback that is measured, not copied: one strength score, cards that stop giving themselves away, and breaking the code on purpose |
+| [27 October 2026](2026-10-27.md) | Measure the advice before you take it: contrast numbers, a font file's character list, a path review, and a plain score line |

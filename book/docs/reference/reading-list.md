@@ -20,6 +20,9 @@
 | Holman and Wiegert 1999, *AJ* 117, 621 | how close to two stars a planet can orbit and survive, from thousands of simulations | used (`stability.py`) | 4, 6 |
 | ★ Martin and Fabrycky 2021, *AJ* 162, 84 | STANLEY: stacking crossings that don't keep time, using simulated orbits | abstract, used | 12 |
 | Wang and Liu 2024, arXiv:2404.18415 | predicted TOI-1338 b's 16 December 2025 crossing, which our search found | used (prediction scored) | 8 |
+| Davies et al. 2026, *MNRAS* 548, arXiv:2604.09435 | mono-cbp: a semi-automated single-transit search of 512 detached eclipsing binaries, one weak candidate (claims F-001, F-021) | abstract, Table 2 | [prior work](prior-work.md) |
+| Thornton et al. 2026, *MNRAS* 548, arXiv:2512.07934 | 27 candidate two-star planets from the slow turning of binary orbits, found by timing eclipses rather than transits | title | [prior work](prior-work.md) |
+| Oddo et al. 2026, arXiv:2610.22625 | how common planets are around red-dwarf eclipsing binaries in TESS | title | [prior work](prior-work.md) |
 
 ## Missions and catalogues
 

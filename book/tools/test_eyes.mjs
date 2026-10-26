@@ -155,6 +155,11 @@ test("summary counts: clear and faint dips, false alarms, odd things, looks", ()
   assert.deepEqual([s.dips, s.dipsFound, s.clear, s.clearFound, s.faint, s.faintFound], [4, 2, 2, 1, 2, 1]);
   assert.deepEqual([s.quiet, s.falseAlarms, s.odd, s.oddSpotted, s.oddCalledDip, s.lookedBack, s.partial], [2, 1, 3, 1, 1, 1, 1]);
   assert.ok(E.summaryLines(s).join(" ").includes("found 2 of 4"));
+  const sc = E.scoreLines([mk(CARDS.clear, "dip"), mk(CARDS.real, "none"), mk(CARDS.faint, "dip"), mk(CARDS.faint, "unsure"), mk(CARDS.quiet, "dip"), mk(CARDS.quiet, "none"),
+    mk(CARDS.eclipse, "odd", 1), mk(CARDS.spike, "dip"), mk(CARDS.step, "none")]);
+  assert.equal(sc.head, "You got 4 of 9 right.");                                           // same 4 right as summarize(); Not sure is never right
+  assert.ok(sc.sub.includes("Wrong: 4. Not sure: 1.") && sc.sub.includes("Dip 4, No dip 3, Odd 1, Not sure 1."));
+  assert.equal(E.scoreLines([]).head, "You got 0 of 0 right.");
 });
 
 test("Wilson range behaves: 17 of 20 is about 64% to 95%, 0 of 0 is the whole range", () => {

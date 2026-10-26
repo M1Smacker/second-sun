@@ -418,6 +418,7 @@ async function eyesTest() {
     const fin = await text();
     checks.finishScreen = /How you did/.test(fin) && /Saved on this device: 1 round/.test(fin) && /Cloud backup is paused on this test copy of the book/.test(fin);   // local copies never write to Ahmed's real data
     checks.noUploadFromTestCopy = await b.evaluate(`window.SSEyesStore.unsynced().length === 1 && window.SSEyesStore.rounds()[0].sync !== 1`);
+    checks.scoreLineFirst = (() => { const m = fin.match(/You got (\d+) of 5 right\./); return !!m && Number(m[1]) === r.a.filter((e) => e.ok).length && fin.indexOf("You got") < fin.indexOf("You looked at"); })();   // the plain score comes first (Ahmed: never open My results to find it)
 
     // ---- read-only review of the finished round ----
     await click("Review this round");
@@ -439,6 +440,7 @@ async function eyesTest() {
     checks.testHidesTruth = !leaked;
     const tf = await text();
     checks.testFinish = /Test finished/.test(tf) && /Pass line so far/.test(tf) && /Not enough yet/.test(tf) && /Test rounds: 1, curves: 30/.test(tf);
+    checks.testScoreLine = await (async () => { const m = tf.match(/You got (\d+) of 30 right\./); return !!m && Number(m[1]) === (await store())[0].a.filter((e) => e.ok).length; })();
     r = (await store())[0];
     checks.testSaved = r.mode === "test" && r.status === "done" && r.a.length === 30 && r.n === 30 && r.a.filter((e) => e.truth === "dip").length === 14 && r.a.filter((e) => e.truth === "none").length === 8;
 
@@ -551,6 +553,14 @@ async function eyesCloudTest() {
     const NEXT = ["Next", "See how you did", "Finish the test"];
     const playRound = async (n, answers) => { await clickAny(["Another sitting"]); await click(String(n)); for (let i = 0; i < n; i++) { await click(answers[i % answers.length]); await clickAny(NEXT); } };
     const store = () => b.evaluate(`JSON.parse(JSON.stringify(window.SSEyesStore.rounds()))`);
+    // ---- a visitor (a brand-new device) can play, and nothing is sent anywhere ----
+    checks.visitorStatus = /You are a visitor here, so nothing you do is sent anywhere/.test(await text());
+    await click("5"); for (let i = 0; i < 5; i++) { await click(["Dip", "No dip", "Odd", "Not sure", "Dip"][i]); await clickAny(NEXT); }
+    await sleep(2500);
+    checks.visitorSendsNothing = mock.calls.length === 0 && mock.docs.size === 0 && /You are a visitor here/.test(await text()) && (await store()).length === 1;
+    await b.evaluate(`localStorage.clear()`);                                // the owner link then makes a brand-new device Ahmed's; start clean
+    await goto(b, base + "eyes/?o=1#owner"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
+    checks.ownerLinkWorks = (await b.evaluate(`localStorage.getItem("ss-eyes-owner")`)) === "1" && (await b.evaluate(`location.hash`)) === "";
     checks.statusAtStart = /Cloud backup is on\. Each finished round is sent by itself/.test(await text());
 
     await click("5"); for (let i = 0; i < 5; i++) { await click(["Dip", "No dip", "Odd", "Not sure", "Dip"][i]); await clickAny(NEXT); }
@@ -597,7 +607,7 @@ async function eyesCloudTest() {
 async function eyesReal() {
   const b = await launch("eyesreal"), out = { mode: "eyesreal" };
   try {
-    await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `window.SSEYES_CLOUD_ALLOW_LOCAL = true;` });   // this one test is allowed to write to the real cloud (labelled e2e-test, deleted after)
+    await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `window.SSEYES_CLOUD_ALLOW_LOCAL = true; try { localStorage.setItem("ss-eyes-owner", "1"); } catch (e) {}` });   // this one test is allowed to write to the real cloud (labelled e2e-test, deleted after)
     await goto(b, base + "eyes/"); await waitFor(b, `!!document.querySelector(".ss-eyes button")`);
     await b.evaluate(`window.SSEyesStore.setLabel("e2e-test")`);
     const click = (t) => b.evaluate(`(() => { const t = ${JSON.stringify(t)}; const bt = [...document.querySelectorAll(".ss-eyes button")].find((x) => x.textContent.trim() === t && x.offsetParent !== null && !x.disabled); if (!bt) return false; bt.click(); return true; })()`);
