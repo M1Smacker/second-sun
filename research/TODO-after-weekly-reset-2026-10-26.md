@@ -20,7 +20,7 @@
 | Day | Start % | Cap % | End % | Done |
 |---|---|---|---|---|
 | Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 cancelled by Ahmed) |
-| Tue 27 Oct (Day 2) | 5 | 15 | see Day 2 results | F1b learning spine built; then stop and ask for Claude AI's report (H1) |
+| Tue 27 Oct (Day 2) | 5 | 15 | 7 | F1b learning spine built; then stop and ask for Claude AI's report (H1) |
 
 ## Status 27 Oct
 Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for a reply, but it is OFF until he says "start the search". The font report was reviewed by Compass (`research/compass-reviews/2026-10-27-font-advice-report.md`): approve with addendum; main finding: the fonts served today have no Greek or math symbols, so σ and ≈ come from the phone's fallback font.
