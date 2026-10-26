@@ -87,18 +87,12 @@
   .ss-pager a[rel="next"] { grid-column: 1; grid-row: 1; text-align: left; }
   .ss-pager a[rel="prev"] { grid-column: 1; grid-row: 2; }
 }
-html.ss-topic .ss-pager[data-path="journey"], html:not(.ss-topic) .ss-pager[data-path="topic"] { display: none; }
-[dir] .md-typeset .ss-pathswitch, [dir] .md-typeset .ss-partend { font: 400 15px/1.6 var(--ss-ui); color: var(--ss-text-2); margin: 16px 0 0; max-width: none; }
-.ss-pathswitch button {
-  min-height: var(--ss-tap); padding: 0 10px; margin: 0 2px; border: 1px solid var(--ss-line); border-radius: var(--ss-radius); background: transparent;
-  color: var(--ss-text-2); font: 500 14px var(--ss-ui); cursor: pointer;
-}
-.ss-pathswitch button[aria-pressed="true"] { border-color: var(--ss-accent); color: var(--ss-text); }
+[dir] .md-typeset .ss-partend { font: 400 15px/1.6 var(--ss-ui); color: var(--ss-text-2); margin: 16px 0 0; max-width: none; }
 
-.no-js .ss-read-btn, .no-js .ss-pathswitch { display: none; }   /* they need JavaScript to remember anything */
+.no-js .ss-read-btn { display: none; }   /* it needs JavaScript to remember anything */
 
 /* ---------- Lists on Part and Journey pages ---------- */
-[dir] .md-typeset ol.ss-journey li > a { display: block; }
+[dir] .md-typeset ol.ss-journey li > a, [dir] .md-typeset ol.ss-track li > a { display: block; }
 [dir] .md-typeset ol.ss-journey li > span a.ss-note { margin-left: 8px; white-space: nowrap; }
 .md-typeset a[href*="glossary/#"] { text-decoration-style: dotted; }
 
