@@ -19,12 +19,21 @@
 ## Daily budget log
 | Day | Start % | Cap % | End % | Done |
 |---|---|---|---|---|
-| Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 waits for Ahmed's OK) |
+| Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 cancelled by Ahmed) |
+| Tue 27 Oct (Day 2) | 5 | 15 | see Day 2 results | F1b learning spine built; then stop and ask for Claude AI's report (H1) |
 
 ## Status 27 Oct
 Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for a reply, but it is OFF until he says "start the search". The font report was reviewed by Compass (`research/compass-reviews/2026-10-27-font-advice-report.md`): approve with addendum; main finding: the fonts served today have no Greek or math symbols, so σ and ≈ come from the phone's fallback font.
 
 "was N" means the item number in an earlier version of this file.
+
+## Day 2 results (Tue 27 Oct, after Ahmed's answers; weekly usage 6 percent at the end of the build)
+- **Decisions (Ahmed):** all three spine recommendations; font = Atkinson Hyperlegible Next at 16 px; do NOT push the exposed client repos (A3 cancelled); stop after the spine and ask for Claude AI's Compass report (H1).
+- **F1b done: one learning path.** `data/path.yml` has a `track:` list, the only reading order: L0 (chapters 1, 2, 3), L1 and L2 (no chapter of their own: the L1 lesson page and parts of chapters 2 and 11), L3 (7, 8), L4 (4, 5, 6), L5 (9, 10), L6 (11, 12), then "After Level 6" (13, 14, 15, unscored). Chapter numbers stay as labels. The build refuses a chapter that is missing, doubled, out of level order, or not linked in its level's section of `docs/learn/index.md`.
+- **What the reader sees:** the chapter strip shows level, step "n of 15 on your path" and chapter; Next goes to the next chapter, and the last chapter of a level leads to the start of the next level (chapter 3 leads to the Level 1 lesson); the Journey/By topic buttons are gone; the Learning track page is first in the Read menu, with a "path at a glance" list generated from the data (chapters and the field notes that taught them); Start here and How to read were rewritten to point at Level 0; the old Journey page is "How the project unfolded", a story. Chapters link to the field note that taught them and the 19 and 20 Oct notes list their chapters (from the journey data only, so only 6 chapters have a note).
+- **Not changed:** `levels.yml` and the readiness bar (the last step is not a scored level); the L1 lesson page is reached from the track page (it left the menu).
+- **Tests added:** 5 refusals plus path checks in `test_shape.py`; `check_site.py` now expects the single pager.
+- **Open for later (the redesign):** chapter 10 is split across Levels 5 and 6 and says so on the track page; the new strip text is long on a narrow phone and has not been seen on a real iPhone.
 
 ## Day 1 results (Tue 27 Oct)
 - **A1 done.** `D:\Backup-from-C\Backup-C-to-D.bat`: copy only, never deletes, re-runnable. First run copied about 6 GB (client work, Claude Code data, V8, Codex, gstack). Checked: Claude's memory folder 56 of 56 files identical by hash; sign-in files left out on purpose; the repos' `.git` folders are included. A first PowerShell version was blocked by the auto-mode classifier (it used an execution-policy bypass), so it is a plain batch file now. The Claude desktop app's own data folder is not copied (it holds sign-in data).
@@ -41,7 +50,7 @@ Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for 
 ## Phase A. Safety: copy to D (copy only, not a move; may be outdated)
 - A1. One-click backup script on D (robocopy, never deletes old copies, skips node_modules and caches): client work `C:\CLaudeCode`, `C:\Users\hanzl\.claude` (memory of Ahmed, settings, transcripts), V8 (where `V8-LOCATION.txt` points), Al Mundhir Voucher Books, templates, Second Sun's untracked bits. Me. 0.5 to 1.
 - A2. Laptop guide: what to install (Claude Code, Python, Node, Git), requirements files for the two Python environments that have none, how to point Claude at the copy (memory is filed under the folder path; copy it to the new key). Me. 0.3 to 0.5.
-- A3. Push or commit the exposed client repos (almundhir-website 1 unpushed, nexo-website 2 uncommitted, project-morgue 4 uncommitted), only after Ahmed's OK. Me. 0.1.
+- A3. CANCELLED (Ahmed, 27 Oct: do not push the exposed client repos). Was: push or commit the exposed client repos (almundhir-website 1 unpushed, nexo-website 2 uncommitted, project-morgue 4 uncommitted), only after Ahmed's OK. Me. 0.1.
 - A4. Ahmed: choose a small encrypted cloud copy of the critical set (memory, secrets, private leads, notes); restrict the Firebase web key to the site address; consider BitLocker on D and a small UPS.
 
 **Phase A: 1 to 2 points.**
@@ -54,7 +63,7 @@ Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for 
 
 ## Phase C. Fonts
 - C1. **Font test page**: a private Artifact, outside the book, nothing downloaded, nothing in the repo changes. Ahmed's real paragraph, a number table, "σ" labels, dark and light, 17 px / line height 1.7, a switcher: Inter and Source Serif 4 (controls), Literata, Plex Sans, Plex Serif, Atkinson. Me. 0.5 to 1.
-- C2. Ahmed reads it on the iPhone at night and picks; the pick feeds F2 and F4. If Greek or math symbols are missing in the pick, add a tiny Greek and math subset (a few KB, not yet tested).
+- C2. DONE 27 Oct: Ahmed picked **Atkinson Hyperlegible Next at the smallest size (16 px)**. It has no Greek in the Google Fonts build, so the redesign must add a small Greek and math subset (σ μ λ Δ θ ≈ ≥ ≤ → √ and a few more) and test it offline. Original wording: Ahmed reads it on the iPhone at night and picks; the pick feeds F2 and F4. If Greek or math symbols are missing in the pick, add a tiny Greek and math subset (a few KB, not yet tested).
 - Addendum from the Compass review to honour in the build: remove Inter's `"cv11", "ss03"` setting, lining figures in prose and tabular figures in tables, keep Literata's optical-size axis, measure real file sizes against today's 130 KB, test offline caching.
 
 **Phase C: 0.5 to 1 point.**
@@ -75,7 +84,7 @@ Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for 
 
 ## Phase F. The book itself: spine, look, and every PC layout fix
 - F1a. Compass review of the learning spine proposal below. Me. 0.5 to 1.
-- F1b. **Learning spine.** Today three orders disagree: topic order (1 to 15), learning-track order (L0 uses Ch 1 to 2, L3 uses Ch 7 to 8, L4 uses Ch 4 to 6, L5 to L6 use Ch 9 to 12) and journey order (starts at Ch 4). Proposal: one spine, the levels drive the order; each level shows its chapters, labs, questions and the field notes that taught it; the topic list stays as browse; the Journey page becomes "how the project unfolded"; every field note lists the chapters it touched and every chapter lists the notes that taught it. Me. 2.5 to 5.
+- F1b. DONE 27 Oct (Day 2, see below). **Learning spine.** Today three orders disagree: topic order (1 to 15), learning-track order (L0 uses Ch 1 to 2, L3 uses Ch 7 to 8, L4 uses Ch 4 to 6, L5 to L6 use Ch 9 to 12) and journey order (starts at Ch 4). Proposal: one spine, the levels drive the order; each level shows its chapters, labs, questions and the field notes that taught it; the topic list stays as browse; the Journey page becomes "how the project unfolded"; every field note lists the chapters it touched and every chapter lists the notes that taught it. Me. 2.5 to 5.
 - F2. **Visual identity Artifact** (Phase 1 only, then stop). The brief gets these additions: the one-spine structure; the chosen font (C2); and **the PC layout, designed once for the whole book and for Eyes**: a wide horizontal reading layout that uses the sides (contents rail and margin column), and for Eyes on PC a smaller, wider curve with the answer buttons, the feedback and Next in one screen with no scrolling, plus Next reachable without scrolling everywhere. Me. 4 to 7.
 - F3. Ahmed approves, changes or rejects the Artifact.
 - F4. **The real redesign on the live book** (Phase 2): its own plan and its own go. Includes the new look, the fonts, the wide PC layout for the whole book, the Eyes PC layout (was B2, 1 to 1.5), the spine layout, tests and the offline gate. Me. 7 to 13, a rough guess made before the design exists.
