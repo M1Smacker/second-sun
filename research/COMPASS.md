@@ -27,3 +27,6 @@ A promising idea is not an improvement until its value is shown.
 3. **What needs changing**, and **why it matters**.
 4. **The single best next step.**
 Findings marked verified vs assumed vs untested throughout.
+
+## Labels (Ahmed, 28 Oct 2026)
+Use CONFIRMED, LIKELY, UNCERTAIN, NOT TESTED (CONFIRMED replaces VERIFIED in new notes). The standing rule "verify before concluding" is in `D:\second-sun\CLAUDE.md`: a search summary is a lead, not a source; open the paper or table.
