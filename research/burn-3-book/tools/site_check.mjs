@@ -723,7 +723,88 @@ async function eyesReal() {
   return out;
 }
 
-const modes = { hammer, shots, layout, chapter: chapterLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal };
+// F4 step 3 (Claude AI's review): the Eyes screen at every size. The curve is as tall as its aspect needs (170 to 340 px, never a share of the window), the four answers share a
+// row where there is room, the Next bar has a reserved slot and is pinned only once it can be pressed, nothing overlaps, every target is 44 px, and the keyboard focus is never dropped.
+const EYES_CLICK = (t) => `(() => { const b = [...document.querySelectorAll(".ss-eyes button")].find((x) => x.textContent.trim() === ${JSON.stringify(t)} && x.offsetParent !== null && !x.disabled); if (!b) return false; b.click(); return true; })()`;
+const EYES_MEASURE = `(() => {
+  const R = (e) => { const r = e.getBoundingClientRect(); return { l: r.left, t: r.top, r: r.right, b: r.bottom, w: r.width, h: r.height }; };
+  const q = (s) => document.querySelector(s), vis = (e) => !!e && e.offsetParent !== null && e.getBoundingClientRect().width > 0;
+  const stage = q(".ss-eyes"), cv = q(".ss-eyes__cv"), banner = q(".ss-eyes__banner"), nextRow = q(".ss-eyes__next");
+  const btns = [...stage.querySelectorAll("button")].filter(vis), ans = [...q(".ss-eyes__ans").children].filter(vis);
+  const next = btns.find((b) => /^(Next|Finish the test|See how you did)$/.test(b.textContent.trim()));
+  const items = [["curve", cv], ...ans.map((b, i) => ["answer " + (i + 1), b]), ...(vis(banner) ? [["feedback", banner]] : []), ...(next ? [["next", next]] : [])], overlaps = [];
+  for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
+    const a = R(items[i][1]), c = R(items[j][1]); if (Math.min(a.r, c.r) - Math.max(a.l, c.l) > 1 && Math.min(a.b, c.b) - Math.max(a.t, c.t) > 1) overlaps.push(items[i][0] + " x " + items[j][0]); }
+  const ae = document.activeElement, ao = ae && getComputedStyle(ae);
+  return { vw: innerWidth, vh: innerHeight, over: document.documentElement.scrollWidth - innerWidth, hdr: R(q(".md-header")).b, stage: R(stage), cv: R(cv), cvh: Math.round(parseFloat(cv.style.height)),
+    ans: ans.map(R), banner: vis(banner) ? R(banner) : null, next: next ? R(next) : null, nextRow: R(nextRow), rowPos: getComputedStyle(nextRow).position, overlaps,
+    small: btns.filter((b) => { const r = b.getBoundingClientRect(); return r.height < 43.5 || r.width < 43.5; }).map((b) => b.textContent.trim()),
+    prog: q(".ss-eyes__prog").textContent, active: ae ? ae.textContent.trim() : "", ring: ao ? parseFloat(ao.outlineWidth) * (ao.outlineStyle === "none" ? 0 : 1) : 0,
+    truth: (q(".ss-eyes__truth") || {}).textContent || "", you: !!q(".ss-eyes__you"), fb: document.querySelectorAll(".ss-eyes__fb").length };
+})()`;
+async function eyesLayout() {
+  const b = await launch("eyeslayout");
+  const out = { mode: "eyeslayout", checks: 0, fails: [], sizes: [] };
+  const fail = (m) => out.fails.push(m), ok = (c, m) => { out.checks++; if (!c) fail(m); };
+  const key = async (k, code, vk) => { await b.send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk, text: k === "Enter" ? "\r" : undefined }); await b.send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }); };
+  const toStage = async (how) => b.evaluate(how === "end" ? `document.querySelector(".ss-eyes").scrollIntoView({ block: "end" })` : `(() => { const h = document.querySelector(".md-header").getBoundingClientRect().bottom, p = document.querySelector(".ss-eyes__prog"); scrollTo(0, p.getBoundingClientRect().top + scrollY - h - 8); })()`);
+  try {
+    for (const [w, h] of [[390, 844], [683, 325], [1024, 768], [1366, 650], [1440, 900]]) {
+      const tag = `${w}x${h}`, wide = w >= 1220, row = w >= 640;
+      await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 768 });
+      await goto(b, base + "eyes/");
+      ok(await waitFor(b, `!!document.querySelector(".ss-eyes button")`, 15000), `${tag}: Eyes did not start`);
+      ok(await b.evaluate(EYES_CLICK("5")), `${tag}: no 5-curve practice button`);
+      await sleep(400);
+      // the question, before any answer
+      await toStage("end"); await sleep(150);
+      const q = await b.evaluate(EYES_MEASURE);
+      const want = Math.min(340, Math.max(170, q.cv.w * 0.55));
+      ok(q.over <= 1, `${tag}: sideways scroll +${q.over}`);
+      ok(Math.abs(q.cvh - want) <= 1 && q.cvh >= 170 && q.cvh <= 340, `${tag}: curve is ${q.cvh} px tall for ${Math.round(q.cv.w)} wide (want ${Math.round(want)}, between 170 and 340)`);
+      ok(q.ans.length === 4, `${tag}: ${q.ans.length} answer buttons`);
+      ok(!q.small.length, `${tag}: targets under 44 px: ${q.small.join(", ")}`);
+      ok(!q.overlaps.length, `${tag}: overlap before answering: ${q.overlaps.join(", ")}`);
+      ok(q.ans.every((a) => a.r <= q.stage.r + 1 && a.l >= q.stage.l - 1), `${tag}: an answer sticks out of the box`);
+      if (row) ok(q.ans.every((a) => Math.abs(a.t - q.ans[0].t) <= 1), `${tag}: the four answers should share one row`);
+      ok(q.rowPos !== "sticky" && q.nextRow.h >= 60, `${tag}: before an answer the Next slot should be reserved (${Math.round(q.nextRow.h)} px) and not pinned (${q.rowPos})`);
+      // the answer
+      ok(await b.evaluate(EYES_CLICK("Dip")), `${tag}: no Dip button`);
+      await sleep(500);
+      await toStage("end"); await sleep(150);
+      const a = await b.evaluate(EYES_MEASURE);
+      ok(a.over <= 1, `${tag}: sideways scroll after answering +${a.over}`);
+      ok(!!a.banner && /this was/i.test(a.truth) && a.you && a.fb >= 1, `${tag}: feedback incomplete (truth "${a.truth}", you ${a.you}, lines ${a.fb})`);
+      ok(!!a.next && a.next.h >= 43.5 && a.active === "Next",`${tag}: Next should hold the focus after an answer (focus on "${a.active}")`);
+      ok(!a.small.length, `${tag}: targets under 44 px after answering: ${a.small.join(", ")}`);
+      ok(!a.overlaps.length, `${tag}: overlap after answering: ${a.overlaps.join(", ")}`);
+      ok(Math.abs(a.nextRow.h - q.nextRow.h) <= 1, `${tag}: the Next slot changed height (${Math.round(q.nextRow.h)} to ${Math.round(a.nextRow.h)}), so the page would jump`);
+      ok(a.rowPos === "sticky", `${tag}: the Next bar should be pinned once it can be pressed (${a.rowPos})`);
+      ok(Math.abs((a.cv.t - a.stage.t) - (q.cv.t - q.stage.t)) <= 1 && Math.abs(a.cv.w - q.cv.w) <= 1,`${tag}: the curve moved or resized when the feedback appeared`);
+      await toStage("top"); await sleep(250);
+      const t = await b.evaluate(EYES_MEASURE);
+      ok(!!t.next && t.next.t >= 0 && t.next.b <= t.vh + 1, `${tag}: with the curve at the top of the window the Next button is off screen (${t.next && Math.round(t.next.t)} to ${t.next && Math.round(t.next.b)} of ${t.vh})`);
+      if (wide) {
+        ok(t.cv.t >= t.hdr - 1 && t.cv.b <= t.vh, `${tag}: the whole curve should show (${Math.round(t.cv.t)} to ${Math.round(t.cv.b)}, window ${t.vh}, header ends ${Math.round(t.hdr)})`);
+        ok(!!t.banner && t.banner.b <= t.vh && t.banner.l >= t.cv.r + 8, `${tag}: the feedback should sit beside the curve and fit the window (${t.banner && Math.round(t.banner.b)} of ${t.vh})`);
+        ok(t.ans.every((x) => x.b <= t.vh) && t.next.b <= t.vh, `${tag}: answers and Next should be on screen together with the curve`);
+      }
+      // the keyboard: Enter on Next moves on, and the focus lands on the first answer, with a visible ring
+      await b.evaluate(`document.activeElement.focus()`);
+      await key("Enter", "Enter", 13); await sleep(400);
+      const k = await b.evaluate(EYES_MEASURE);
+      ok(/Light curve 2 of 5/.test(k.prog), `${tag}: Enter on Next did not move to curve 2 ("${k.prog}")`);
+      ok(k.active === "Dip", `${tag}: keyboard focus was dropped after Next (it is on "${k.active}", want the first answer)`);
+      ok(k.ring >= 2, `${tag}: the focused answer has no visible ring (${k.ring} px)`);
+      out.sizes.push({ tag, cvh: q.cvh, cvw: Math.round(q.cv.w), rowH: Math.round(q.nextRow.h), bannerB: t.banner && Math.round(t.banner.b), nextB: t.next && Math.round(t.next.b) });
+    }
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length && out.checks >= 70;
+  } finally { await b.close(); }
+  return out;
+}
+
+const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));

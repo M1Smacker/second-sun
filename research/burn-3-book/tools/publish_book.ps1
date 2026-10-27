@@ -102,7 +102,7 @@ if ($Test) {
     $srv = Start-Process node -ArgumentList "$tools\serve.mjs", "--dir=$build", "--port=8490" -PassThru -WindowStyle Hidden
     Start-Sleep -Seconds 2
     try {
-        foreach ($m in "layout", "chapter", "offline", "jsoff", "eyes", "eyescloud") {
+        foreach ($m in "layout", "chapter", "eyeslayout", "offline", "jsoff", "eyes", "eyescloud") {
             # Headless Chrome occasionally fails to start or to clean up its profile (seen twice, never a real defect). One retry is allowed, and the
             # first failure is PRINTED, never hidden; a second failure stops the publish.
             $ok = $false
