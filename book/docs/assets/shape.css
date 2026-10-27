@@ -224,7 +224,7 @@ textarea.ss-eyes__input { width: 100%; padding: 8px 10px; }
   [dir] .md-typeset .ss-rail__track ul { margin: 4px 0 0; padding-left: 28px; }
   [dir] .md-typeset .ss-rail__track ul li { margin: 0; padding: 3px 0; }
   [dir] .md-typeset .ss-rail a[aria-current="page"] { color: var(--ss-text); font-weight: 700; }
-  [dir] .md-typeset .ss-rail__nums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 0 0 6px; }
+  [dir] .md-typeset .ss-rail__nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 0 0 6px; }
   [dir] .md-typeset .ss-rail__nums a { display: flex; align-items: center; justify-content: center; min-height: var(--ss-tap); border: 1.5px solid var(--ss-line); border-radius: var(--ss-radius); font-size: 14px; }
   [dir] .md-typeset .ss-rail__nums a[aria-current="page"] { border-color: var(--ss-accent); }
   [dir] .md-typeset .ss-rail p.ss-rail__small { font-size: 13px; color: var(--ss-text-2); margin: 0; }
