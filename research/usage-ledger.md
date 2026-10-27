@@ -44,12 +44,16 @@ Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 - **Whole stretch, 27 Oct about 02:05 to 02:30 UTC:** E1 prep, F4 plan, field note, full publish gate, notes: weekly 11 to 12, 5-hour 78 to 85, +95K context tokens, so about 0.9 weekly points for what I had estimated at 2.0 to 4.2.
 - **To learn next:** a full book publish gate, a CSS change that needs browser tests, a long machine run that I monitor.
 
+Lapse noted 27 Oct morning: no estimate was written before the Eyes review task (row in the bundled table below). Rule restated: the estimate goes into the ledger before the first tool call, even for a "quick look".
+
 ## Small tasks, bundled (each under 1 point)
 | When | Task | Context tokens added | 5-hour | Weekly | Note |
 |---|---|---|---|---|---|
 | 27 Oct, 01:58 UTC | Read Ahmed's message, two greps of this file's source data, write the ledger | +12K | 76 to 77 | 11 to 11 | about 0.1 point |
 | 27 Oct, 02:00 UTC | Memory entry, record Ahmed's picks, commit and push (research only) | +9.5K | 77 to 77 | 11 to 11 | under 0.1 point; lower end of the notes-and-commit unit cost (0.25) |
 | 27 Oct, 02:40 UTC | Full regression: dry50 mode, 75 s machine run of all 474 Stage 2 groups, one test fix (NaN equality), commit and push | +6K | 85 to 87 | 12 to 12 | about 0.25 by the 5-hour ruler; a 75 s machine run itself cost nothing |
+
+| 27 Oct, morning | Ahmed's Eyes review: cloud pull (26 rounds), 2 analysis scripts, 3 code files read, F4 plan section, field note item 10, commit, full publish gate | +39K | 2 to 4 | 13 to 13 | about 0.3 point (5-hour ruler 0.25, context ruler 0.37); no estimate written beforehand, my gut would have said 0.5 to 1, so about 0.4 of gut |
 
 ## Open rows (fill in as they happen)
 | When | Task | Estimate | Weekly before | 5-hour before | Context tokens before | After | Actual |
