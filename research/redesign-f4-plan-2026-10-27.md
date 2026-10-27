@@ -51,3 +51,9 @@ Ahmed says "start F4". Nothing else is blocking: the typeface, the label face, t
 - **Step 4 not done:** four callout styles and the look pass. The gate and a field note item for steps 1 and 2 are done.
 - **Not verified:** nothing has been seen on Ahmed's iPhone or PC; the layout was measured by script and looked at in one window. Actual cost so far about 2.0 weekly points (estimate for what was done 3 to 6.5).
 - Process: push main before running the gate, because it builds the pushed main.
+
+## Update, 27 Oct (after Claude AI's review of the Results design; Ahmed pasted it)
+- **Step 3, results screen: built and live** (gh-pages 3dc9a97). `core.resultsView` (eyes-core.js) and `resultsDom` (demos.js): a verdict sentence that cannot overstate (the 95% confidence interval chooses the wording near a target), observed rate and count first, every target stated, a bar with the target marked, the practice-not-a-pass pill, the weakest spot as a pattern to check (12 of 82 on Ahmed's data), score per test round, and the older lists closed under "All the numbers". Real numbers on the local copy: 92.7% of clear dips (102 of 110), 11.4% false alarms (10 of 88, above the limit of 10%). 4 unit tests added (22 hard-test checks), the Eyes browser test updated, and checked once at phone width in a desktop browser. Not on Ahmed's iPhone.
+- **Margin notes:** a note that cannot sit within 120 px of its anchor is left out of the margin. `chapter` test sweeps two chapters down the page at 1440 by 900: worst distance 81 px, at most 1 note left out of 20.
+- **Still not built:** Eyes layout on PC (to follow the review: minimum and maximum curve height set by the plot's aspect ratio, answers wrap when narrow, reserve space for Next, check 1366 by 650 and 1024 by 768, feedback that gives a reason), the Plex Sans 500 versus 600 comparison, and step 4's look pass.
+- Cost of this round about 0.75 weekly point. Weekly usage 17%, cap 20%.
