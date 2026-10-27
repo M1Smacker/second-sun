@@ -8,12 +8,12 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
 3. DONE 28 Oct (depth scatter only; the period test was dropped as vacuous). **Repeater labels:** for repeater stars, depth scatter and odd/even depths: "periodic blend" if uniform and regular, "variability" if scattered. Label, never discard.
 4. DONE 28 Oct (86.4% completeness ceiling on deep injections; Kepler-1660 gives no tier-1 events; faint-dip recovery still NOT TESTED). **Sixth control and recovery:** use Kepler-1660 as a control; measure recovery of known planets and of trapezoid-shaped injected dips under the frozen version (extend `step_retention.py`).
 
-## v4: one frozen re-search for everything that changes the search or needs it (about 40 minutes of machine time, about 0.5 point)
-5. **Red-noise-corrected SNR** (our control finds 869 events where Gaussian noise would find about 0). Biggest expected gain. Check first how `box_scores` computes noise. Model: Kepler's per-target bootstrap that sets the false alarm rate for each star (Twicken et al., arXiv:1501.03586, CONFIRMED in the text); our scrambled and upside-down curves can play the bootstrap's role.
-6. **Scrambled control** next to the upside-down one (Kepler's two controls differed by 2x), both reported.
-7. **Orbit-start ramp flag:** flag events within about 1 day after each orbit start and gap.
-8. **Measured eclipse width** from the TESS eclipsing binary catalogue (53 stars) instead of the formula where available; the formula over-flags by a median 2.7x.
-9. **Duration grid beyond 15 h** (events pile at 3 h and 15 h; long circumbinary transits are not searched). Changes the search, so Stage 2 regression is re-proved first.
+## v4 DONE 28 Oct (hash d5767e66c4d2: flags only). v5: everything that changes the search (about 40 to 60 minutes of machine time, about 0.5 to 0.8 point)
+5. DONE as a local calibration (v4 dominated flag; the original "red-noise SNR" idea was wrong, see learnings section 11: the SNR already uses the measured scatter of the box statistic). Still open: a per-star bootstrap false-alarm level in the style of Kepler (Twicken et al., arXiv:1501.03586), judged against a scrambled control.
+6. **TOP OF v5, matters more after v4 (the upside-down control probably overstates false alarms for dips, section 11): Scrambled control** next to the upside-down one (Kepler's two controls differed by 2x), both reported.
+7. DONE in v4 (flag; price 14.2% of the data timeline). **Orbit-start ramp flag:** flag events within about 1 day after each orbit start and gap.
+8. DONE in v4 (40 stars). **Measured eclipse width** from the TESS eclipsing binary catalogue (53 stars) instead of the formula where available; the formula over-flags by a median 2.7x.
+9. v5 (kept out of v4 so the search stayed identical and the flags are attributable; use 20 h at most, since a 2 d detrending window is 2.4 x 20 h and Wotan says at least 2.2). **Duration grid beyond 15 h** (events pile at 3 h and 15 h; long circumbinary transits are not searched). Changes the search, so Stage 2 regression is re-proved first.
 
 ## Needs Ahmed once
 10. **Pair search** (two dips close together) was never built. Default if he does not answer: not built, stated plainly in every report.
