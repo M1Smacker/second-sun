@@ -1,0 +1,34 @@
+# The real redesign (F4): build plan, written 27 October 2026. Plan only, nothing built.
+
+Status: waiting for Ahmed's go. His picks so far: Atkinson Hyperlegible Next (A) for text and headings; the rest left to me (listed below). The approved picture is the Design canvas, version 12: https://claude.ai/artifact/D5a9xdG1NFnDVHrCJUXyTQ. Measurements behind it: `research/redesign-type-tests/REPORT.md`.
+
+## What the book is built from today (VERIFIED by reading the repo)
+Material for MkDocs with `overrides/main.html`; three CSS files (`extra.css` 14 KB, `observatory.css` 11 KB, `shape.css` 16 KB); `book.js` and `demos.js` (44 KB, the Eyes interface) plus the Eyes logic files; fonts declared in `observatory.css` (Inter normal and italic, IBM Plex Mono 400 and 500) with files in `docs/assets/fonts`; text lines capped at `66ch` in `extra.css`; offline reading through a service worker built from `sw-template.js`. Tests: `test_contrast.py`, `test_shape.py`, `test_mission.py`, `check_site.py`, and seven `test_eyes*.mjs` files; the publish gate is `research/burn-3-book/tools/publish_book.ps1 -Test`.
+
+## Decisions (all reversible, all on the plan page)
+- Reading face A: Atkinson Hyperlegible Next for text and headings; interface IBM Plex Sans; code IBM Plex Mono; labels and plot notes IBM Plex Sans with tabular figures.
+- Symbols: `ss-symbols.woff2` (1.9 KB) and `ss-cross.woff2` (0.9 KB), already cut and verified, with their licence file.
+- Scale: body 17 px on a phone and 18 px from 640 px up; titles 30 and 38; reading column 540 px (about 70 characters in Atkinson, measured).
+- PC chapter: three zones from 1100 px (rail 232, text 540, margin 260), page never wider than 1400 px; the margin opens only the note for what is on screen; under 1100 px and at zoom the notes sit inline.
+- Eyes: curve height 40% of the window (220 to 400 px, up to 1000 px wide), four answers in a row, feedback as body text, Next pinned after answering, natural scrolling.
+
+## Steps, files, proof
+1. **Type, symbols, offline.** Files: `observatory.css` (font faces, variables), `extra.css` (scale, column), `assets/fonts/*`, `sw-template.js` precache list. New test `tools/test_fonts.py`: every non-ASCII character used in `docs/` must be drawn by a font the book serves or by the symbol files (fontTools, read from the served files). This makes today's finding permanent. Proof: that test, `test_contrast.py`, the existing browser tests with the network off, and a local look at phone and PC widths. Calibrated 0.8 to 1.8 points (original gut 2 to 3).
+2. **Chapter page and notes on PC.** Files: `overrides/main.html` (rail with the track and the 15 chapters as two labelled lists, from `data/path.yml`), `shape.css`, `book.js` (move evidence notes and glossary meanings into the margin, open the one in view, inline fallback). Notes stay in document order so a keyboard and a screen reader read them where they belong. Proof: `test_shape.py`, `check_site.py`, and a new browser layout test at 390, 683, 1100, 1366 and 1500 px (no sideways scroll, column width 540, 60 to 72 characters a line, margin shown only from 1100 px). Calibrated 1 to 2.5 points (gut 2 to 4).
+3. **Eyes on PC and zoom.** Files: `demos.js` (layout only), `shape.css`. The scoring, saving and cloud logic stay untouched; all `test_eyes*.mjs` must pass unchanged. Proof: those tests plus browser checks at 1366 by 650, 683 wide (200% zoom) and 390, that the pinned Next never covers feedback text, and that answers stay reachable. Calibrated 0.5 to 1.5 points (gut 1 to 2).
+4. **Quieter look, full gate, publish.** Four callout styles only; colours unchanged; the Cygnus home map untouched. Run the publish gate with `-Test`, write the same-day field note, publish. Ahmed reloads once on his iPhone. Calibrated 0.7 to 2 points (gut 1.5 to 3).
+
+Total calibrated 3 to 8 points (the first estimate on the canvas was 6.5 to 12; my gut has run about 2.5 times high on design work, see `research/usage-ledger.md`). Uncalibrated for a large CSS change that needs browser tests, so I would quote 3 to 8 and report the real number after each step.
+
+## Risks and how each is covered
+- Material's own styles override mine: build on the existing override files and test at every width listed.
+- The service worker keeps old fonts: bump the cache version through the existing template and test with the network off.
+- A flash of fallback text while fonts load: `font-display: swap` plus size-matched fallback metrics.
+- Noto Sans Math has one weight: a bold heading with a sigma shows it regular; accepted and stated in the report.
+- Eyes behaviour must not change: logic files untouched, all seven Eyes tests run unchanged.
+
+## Pacing and rollback
+Day 1 steps 1 and 2 (publish once they pass); day 2 steps 3 and 4. Each step ends with tests, a commit and a ledger row. Rollback is a git revert plus republishing the previous commit through the same gate.
+
+## What I need before starting
+Ahmed says "start F4". Nothing else is blocking: the typeface, the label face, the margin, the pinned Next and the symbol files are settled.
