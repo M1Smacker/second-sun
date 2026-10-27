@@ -412,11 +412,42 @@ function eyesEngine(el, src, core, hard) {
     nextBtn.hidden = !answered; nav();
   }
 
+  // The calibrated results (core.resultsView): the verdict says only what the numbers say, each measure is a bar with its target marked, and every older line stays under "All the numbers".
+  function resultsDom(v) {
+    const out = [], up = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+    v.sections.forEach((s) => {
+      const box = mk("div", { className: "ss-res" }, mk("p", { className: "ss-res__eyebrow" }, `${s.title} · ${s.rounds} round(s) · ${s.curves} curves · ${s.days} day(s)`), mk("p", { className: "ss-res__verdict" }, s.sentence), mk("p", { className: "ss-res__pill" }, s.pill));
+      s.measures.forEach((m) => {
+        const fl = mk("i", { className: "ss-res__fl" }), ln = mk("i", { className: "ss-res__ln" });
+        fl.style.width = m.pct + "%"; ln.style.left = m.targetPct + "%";
+        box.append(mk("div", { className: "ss-res__m" }, mk("div", { className: "ss-res__mh" }, mk("b", {}, m.label), mk("span", {}, m.valueText)),
+          mk("div", { className: "ss-res__trk", role: "img", ariaLabel: `${m.label}: ${m.valueText}, ${m.count}. ${m.targetText}. Scale 0 to 100 percent.` }, fl, ln),
+          note(`${m.count} · ${m.targetText}`), note(`${up(m.word)}.`), note(m.ciText)));
+      });
+      box.append(note(s.ciNote)); if (s.recent) box.append(note(s.recent));
+      out.push(box);
+    });
+    if (v.weak) out.push(mk("div", { className: "ss-res__weak" }, mk("b", {}, "Weakest spot, over all your rounds"), note(v.weak.text), note(v.weak.habit)));
+    const t = v.trend, N = Math.max(t.standard.length, t.hard.length);
+    if (N >= 2) {
+      const W = 330, Hh = 110, L = 32, B = 20, T = 8, pt = (i, y) => [L + (W - L - 8) * i / (N - 1), T + (Hh - T - B) * (1 - (Math.min(1, Math.max(0.6, y)) - 0.6) / 0.4)];
+      const line = (vals, cls) => vals.length > 1 ? `<polyline class="${cls}" fill="none" points="${vals.map((y, i) => pt(i, y).map((q) => q.toFixed(1)).join(",")).join(" ")}"/>` : "";
+      const grid = [0.6, 0.8, 1].map((y) => `<line class="g" x1="${L}" x2="${W - 8}" y1="${pt(0, y)[1].toFixed(1)}" y2="${pt(0, y)[1].toFixed(1)}"/><text x="2" y="${(pt(0, y)[1] + 4).toFixed(1)}">${Math.round(100 * y)}%</text>`).join("");
+      const wrap = mk("div", { className: "ss-res__tr" });
+      wrap.innerHTML = `<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Share of curves right in each test round, oldest first. Standard test: ${t.standard.map((y) => Math.round(100 * y)).join(", ")} percent. Hard test: ${t.hard.map((y) => Math.round(100 * y)).join(", ") || "none yet"} percent.">${grid}${line(t.standard, "a")}${line(t.hard, "b")}</svg>`;
+      out.push(mk("p", { className: "ss-eyes__fbh" }, "Share right in each test round, oldest first"), wrap, note("Solid line: standard test. Dashed line: hard test. Each test has its own rounds, so the two lines are not one timeline."));
+    }
+    return out;
+  }
+  const det = (title, kids) => mk("details", { className: "ss-res__det" }, mk("summary", {}, title), ...kids);
+
   function finish() { store.finishRound(round.id); showFinish(); }
   function showFinish() {
     review = false; view = null;
-    const isH = core.isHard(round), lines = isH ? core.hardLines(core.summarizeHard(round.a)) : core.summaryLines(round.s), sc = core.scoreLines(round.a), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), mk("p", { className: "ss-eyes__score" }, sc.head), note(sc.sub), ...lines.map((l) => note(l))];
-    if (mode === "test") kids.push(mk("h4", {}, isH ? "Hard line so far" : "Pass line so far"), ...(isH ? core.hardLine(store.rounds()) : core.passLine(store.rounds())).lines.map((l) => note(l)));
+    const isH = core.isHard(round), lines = isH ? core.hardLines(core.summarizeHard(round.a)) : core.summaryLines(round.s), sc = core.scoreLines(round.a), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), mk("p", { className: "ss-eyes__score" }, sc.head), note(sc.sub)];
+    if (mode === "test") kids.push(...resultsDom(core.resultsView(store.rounds(), isH ? "hard" : "standard")),
+      det("All the numbers", [mk("p", { className: "ss-eyes__fbh" }, "This round"), ...lines.map((l) => note(l)), mk("p", { className: "ss-eyes__fbh" }, isH ? "Hard line so far" : "Pass line so far"), ...(isH ? core.hardLine(store.rounds()) : core.passLine(store.rounds())).lines.map((l) => note(l))]));
+    else kids.push(...lines.map((l) => note(l)));
     kids.push(note(saveNote()), cloudNote(), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
     stage.replaceChildren(...kids);
   }
@@ -465,8 +496,8 @@ function eyesEngine(el, src, core, hard) {
     const label = mk("input", { type: "text", className: "ss-eyes__input", value: store.device.label, placeholder: "e.g. iPhone", maxLength: 40, ariaLabel: "Device name" });
     label.addEventListener("change", () => store.setLabel(label.value));
     stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
-      mk("h4", {}, "Official test pass line"), ...p.lines.map((l) => note(l)),
-      ...(ph.rounds ? [mk("h4", {}, "Hard test line"), ...ph.lines.map((l) => note(l))] : []),
+      ...(rs.some((r) => r.mode === "test" && r.status === "done") ? resultsDom(core.resultsView(rs)) : [note("No finished test rounds yet. Practice rounds do not count towards a line.")]),
+      det("All the numbers", [mk("p", { className: "ss-eyes__fbh" }, "Official test pass line"), ...p.lines.map((l) => note(l)), ...(ph.rounds ? [mk("p", { className: "ss-eyes__fbh" }, "Hard test line"), ...ph.lines.map((l) => note(l))] : [])]),
       mk("h4", {}, "Your habit by strength"), ...core.habitLines(core.habit(rs)).map((l) => note(l)),
       rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), cloudNote(),
       mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Back", start)));
