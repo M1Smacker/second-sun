@@ -9,7 +9,7 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
 4. **Sixth control and recovery:** use Kepler-1660 as a control; measure recovery of known planets and of trapezoid-shaped injected dips under the frozen version (extend `step_retention.py`).
 
 ## v4: one frozen re-search for everything that changes the search or needs it (about 40 minutes of machine time, about 0.5 point)
-5. **Red-noise-corrected SNR** (our control finds 869 events where Gaussian noise would find about 0). Biggest expected gain. Check first how `box_scores` computes noise.
+5. **Red-noise-corrected SNR** (our control finds 869 events where Gaussian noise would find about 0). Biggest expected gain. Check first how `box_scores` computes noise. Model: Kepler's per-target bootstrap that sets the false alarm rate for each star (Twicken et al., arXiv:1501.03586, CONFIRMED in the text); our scrambled and upside-down curves can play the bootstrap's role.
 6. **Scrambled control** next to the upside-down one (Kepler's two controls differed by 2x), both reported.
 7. **Orbit-start ramp flag:** flag events within about 1 day after each orbit start and gap.
 8. **Measured eclipse width** from the TESS eclipsing binary catalogue (53 stars) instead of the formula where available; the formula over-flags by a median 2.7x.
