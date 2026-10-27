@@ -1,0 +1,219 @@
+[
+ {
+  "cp": 183,
+  "ch": "·",
+  "n": 213,
+  "files": 43,
+  "name": "MIDDLE DOT"
+ },
+ {
+  "cp": 963,
+  "ch": "σ",
+  "n": 44,
+  "files": 9,
+  "name": "GREEK SMALL LETTER SIGMA"
+ },
+ {
+  "cp": 215,
+  "ch": "×",
+  "n": 35,
+  "files": 14,
+  "name": "MULTIPLICATION SIGN"
+ },
+ {
+  "cp": 8776,
+  "ch": "≈",
+  "n": 32,
+  "files": 11,
+  "name": "ALMOST EQUAL TO"
+ },
+ {
+  "cp": 8730,
+  "ch": "√",
+  "n": 27,
+  "files": 12,
+  "name": "SQUARE ROOT"
+ },
+ {
+  "cp": 8243,
+  "ch": "″",
+  "n": 25,
+  "files": 6,
+  "name": "DOUBLE PRIME"
+ },
+ {
+  "cp": 8722,
+  "ch": "−",
+  "n": 23,
+  "files": 12,
+  "name": "MINUS SIGN"
+ },
+ {
+  "cp": 178,
+  "ch": "²",
+  "n": 22,
+  "files": 9,
+  "name": "SUPERSCRIPT TWO"
+ },
+ {
+  "cp": 247,
+  "ch": "÷",
+  "n": 16,
+  "files": 10,
+  "name": "DIVISION SIGN"
+ },
+ {
+  "cp": 956,
+  "ch": "μ",
+  "n": 15,
+  "files": 3,
+  "name": "GREEK SMALL LETTER MU"
+ },
+ {
+  "cp": 176,
+  "ch": "°",
+  "n": 10,
+  "files": 3,
+  "name": "DEGREE SIGN"
+ },
+ {
+  "cp": 9733,
+  "ch": "★",
+  "n": 9,
+  "files": 2,
+  "name": "BLACK STAR"
+ },
+ {
+  "cp": 179,
+  "ch": "³",
+  "n": 7,
+  "files": 3,
+  "name": "SUPERSCRIPT THREE"
+ },
+ {
+  "cp": 167,
+  "ch": "§",
+  "n": 6,
+  "files": 4,
+  "name": "SECTION SIGN"
+ },
+ {
+  "cp": 177,
+  "ch": "±",
+  "n": 6,
+  "files": 4,
+  "name": "PLUS-MINUS SIGN"
+ },
+ {
+  "cp": 8242,
+  "ch": "′",
+  "n": 5,
+  "files": 2,
+  "name": "PRIME"
+ },
+ {
+  "cp": 8805,
+  "ch": "≥",
+  "n": 5,
+  "files": 4,
+  "name": "GREATER-THAN OR EQUAL TO"
+ },
+ {
+  "cp": 916,
+  "ch": "Δ",
+  "n": 5,
+  "files": 2,
+  "name": "GREEK CAPITAL LETTER DELTA"
+ },
+ {
+  "cp": 948,
+  "ch": "δ",
+  "n": 4,
+  "files": 1,
+  "name": "GREEK SMALL LETTER DELTA"
+ },
+ {
+  "cp": 10003,
+  "ch": "✓",
+  "n": 3,
+  "files": 3,
+  "name": "CHECK MARK"
+ },
+ {
+  "cp": 772,
+  "ch": "̄",
+  "n": 3,
+  "files": 1,
+  "name": "COMBINING MACRON"
+ },
+ {
+  "cp": 9664,
+  "ch": "◀",
+  "n": 2,
+  "files": 1,
+  "name": "BLACK LEFT-POINTING TRIANGLE"
+ },
+ {
+  "cp": 10007,
+  "ch": "✗",
+  "n": 2,
+  "files": 2,
+  "name": "BALLOT X"
+ },
+ {
+  "cp": 8804,
+  "ch": "≤",
+  "n": 2,
+  "files": 2,
+  "name": "LESS-THAN OR EQUAL TO"
+ },
+ {
+  "cp": 8733,
+  "ch": "∝",
+  "n": 2,
+  "files": 2,
+  "name": "PROPORTIONAL TO"
+ },
+ {
+  "cp": 8594,
+  "ch": "→",
+  "n": 2,
+  "files": 2,
+  "name": "RIGHTWARDS ARROW"
+ },
+ {
+  "cp": 931,
+  "ch": "Σ",
+  "n": 2,
+  "files": 1,
+  "name": "GREEK CAPITAL LETTER SIGMA"
+ },
+ {
+  "cp": 9654,
+  "ch": "▶",
+  "n": 1,
+  "files": 1,
+  "name": "BLACK RIGHT-POINTING TRIANGLE"
+ },
+ {
+  "cp": 960,
+  "ch": "π",
+  "n": 1,
+  "files": 1,
+  "name": "GREEK SMALL LETTER PI"
+ },
+ {
+  "cp": 955,
+  "ch": "λ",
+  "n": 1,
+  "files": 1,
+  "name": "GREEK SMALL LETTER LAMDA"
+ },
+ {
+  "cp": 952,
+  "ch": "θ",
+  "n": 1,
+  "files": 1,
+  "name": "GREEK SMALL LETTER THETA"
+ }
+]

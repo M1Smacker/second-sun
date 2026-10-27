@@ -22,6 +22,7 @@
 | Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 cancelled by Ahmed) |
 | Tue 27 Oct (Day 2) | 5 | 15 | 7 | F1b learning spine built; then stop and ask for Claude AI's report (H1) |
 | Tue 27 Oct (Day 3) | 7 | 17 | 8 | F2 redesign plan canvas (private), field note item; H1 dropped by Ahmed |
+| Tue 27 Oct (Day 3 night run) | 8 | 14 (Ahmed set 15, then 14) | 10 so far | F2 redesign plan version 2 after Ahmed's feedback (seven boards), type and symbol tests; 5-hour stop at 98% |
 
 ## Status 27 Oct
 Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for a reply, but it is OFF until he says "start the search". The font report was reviewed by Compass (`research/compass-reviews/2026-10-27-font-advice-report.md`): approve with addendum; main finding: the fonts served today have no Greek or math symbols, so σ and ≈ come from the phone's fallback font.
@@ -132,3 +133,11 @@ Not scheduled: Phase E (search) and Phase G (vetting), until Ahmed says. The sch
 
 ## Ahmed's own actions
 Three official starter rounds on a date after 24 Oct; hard practice (the vetting key needs it); check the new feedback lines on the iPhone (reload the book once); Firebase key restriction; choose the cloud copy; tell me which group the astronomer you emailed belongs to (UNSW or Warwick) so the prior-work page names the right one; share any reply; read the font test page on the phone and pick; share Claude AI's Compass answer.
+
+
+## Day 3 night run: redesign plan version 2 (27 Oct, Ahmed asleep)
+- Ahmed did not approve version 1. He asked for: Atkinson Hyperlegible Next against Literata (reading text and headings) with IBM Plex Sans for the interface and Plex Mono kept as a label candidate; a real type scale; a contextual, unobtrusive right margin; the 15 chapters kept apart from the 7 level track; Eyes without a rigid no-scroll fit; a tested self-hosted symbol font; a fair comparison with a realistic phone view. No implementation, no deployment.
+- Built: seven boards in the same private canvas (Main, Type-Compare, Symbols, Phone, PC-Chapter, PC-Eyes, Zoomed), version 7, https://claude.ai/artifact/D5a9xdG1NFnDVHrCJUXyTQ. Tools and numbers: `research/redesign-type-tests/REPORT.md`.
+- Decided without asking (all reversible, listed on the plan page): Option A is Atkinson for text and headings, Option B is Literata, Plex Sans for the interface in both; label face left open (Plex Mono, Plex Sans or the reading face); PC reading column 540 px (a 600 px column gave 72 to 75 characters a line); the margin opens only the note for what is on screen; Next pinned after answering on Eyes.
+- Findings: Inter has no maths signs, so it is not a good fallback; Noto Sans Math cut to 23 glyphs is 1,876 bytes and a 876 byte file supplies the ballot x; Plex Mono has no Greek in the Google and Fontsource build.
+- Waiting for Ahmed: pick A or B, the label face, approve or change the PC chapter, Eyes and zoom layouts. Then F4 (real redesign) gets its own plan and go. Phase E stays off.
