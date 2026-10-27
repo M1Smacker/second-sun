@@ -158,11 +158,11 @@
     h.bands = [[5, 6.5], [6.5, 8.6]].map(([lo, hi]) => { const b = band(lo, hi); return { lo, hi: hi === 8.6 ? 8.5 : hi, n: b.length, dip: cnt(b, "dip"), unsure: cnt(b, "unsure") }; });
     return h;
   }
-  function hardLines(h) {
+  function hardLines(h, skipClearNoise = false) {     // skipClearNoise: the line block already states these two (one fact, one place; Ahmed, 27 Oct 2026)
     const L = [`You looked at ${h.n} light curves.`];
-    if (h.clear) L.push(`Clear fake planets: you said Dip on ${h.clearFound} of ${h.clear}${h.clearUnsure ? ` (Not sure on ${h.clearUnsure})` : ""}.`);
+    if (h.clear && !skipClearNoise) L.push(`Clear fake planets: you said Dip on ${h.clearFound} of ${h.clear}${h.clearUnsure ? ` (Not sure on ${h.clearUnsure})` : ""}.`);
     for (const b of h.bands) if (b.n) L.push(`Fake planets near the limit (strength ${b.lo} to ${b.hi}): Dip on ${b.dip} of ${b.n}, Not sure on ${b.unsure}.`);
-    if (h.noise) L.push(`Hard noise (nothing hidden): you called a dip on ${h.noiseFA} of ${h.noise}${h.noiseUnsure ? `, Not sure on ${h.noiseUnsure}` : ""}.`);
+    if (h.noise && !skipClearNoise) L.push(`Hard noise (nothing hidden): you called a dip on ${h.noiseFA} of ${h.noise}${h.noiseUnsure ? `, Not sure on ${h.noiseUnsure}` : ""}.`);
     if (h.odd) L.push(`Odd things (eclipses, spikes, jumps, dips at a gap): named right ${h.oddRight} of ${h.odd}${h.oddCalledDip ? `, called a dip ${h.oddCalledDip}` : ""}.`);
     if (h.unsure) L.push(`You said Not sure ${h.unsure} time(s); ${h.unsureOnHard} of them were on hard noise or fake planets near the limit, where it is a fair answer.`);
     return L;
@@ -181,7 +181,7 @@
     const lines = [`Hard test rounds: ${done.length}, curves: ${h.n}, days: ${days}.`];
     if (h.clear) lines.push(`Clear fake planets found: ${h.clearFound} of ${h.clear} (${pc(clear.rate)}; 95% range ${pc(clear.range[0])} to ${pc(clear.range[1])}). Line: at least ${pc(HARD.clearHit)}.`);
     if (h.noise) lines.push(`Hard noise called a dip: ${h.noiseFA} of ${h.noise} (${pc(noise.rate)}; 95% range ${pc(noise.range[0])} to ${pc(noise.range[1])}). Line: at most ${pc(HARD.noiseFalseAlarm)}.`);
-    lines.push(...hardLines(h).slice(1));
+    lines.push(...hardLines(h, true).slice(1));
     lines.push(verdictWord === "not_enough" ? `Not enough yet: still needs ${needs.join(", ")}.`
       : verdictWord === "meets" ? "On the numbers you meet the hard line. Claude decides whether that is enough." : "Below the hard line on the numbers so far. Keep practising.");
     return { rounds: done.length, curves: h.n, days, clear, noise, h, enough, meets, verdict: verdictWord, needs, lines };
