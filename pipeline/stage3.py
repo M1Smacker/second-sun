@@ -4,6 +4,7 @@ second-product state, the QLP-only label and a tier. Real events stay in D:\\sec
 NOTHING SEARCHES UNTIL YOU CALL `dry` (5 known hosts) OR `run` (all stars, only after `freeze`, which needs Ahmed's go: "start the search").
 Usage: python stage3.py settings | stars | dry [n] | freeze | run [n]"""
 import sys, json, subprocess, pathlib, datetime, multiprocessing as mp
+import numpy as np
 import pandas as pd
 import stage2_search as S2
 import detect_v2 as D
@@ -25,7 +26,7 @@ def current_settings(stars_csv):
     code = {f: C.sha(C.ROOT / "pipeline" / f) for f in ("stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py",
                                                        "stage3_core.py", "stage3.py")}
     return dict(snr_threshold=7.0, durs_h=list(D.DURS_H), bin_d=getattr(D, "BIN_D", None), burst_d=S2.BURST_D, flip_burst_min=S2.FLIP_BURST_MIN,
-                c5_ph_d=C.PH_D, ecl_mtot=C.ECL_MTOT, ecl_rfac=C.ECL_RFAC, ecl_max_frac=C.ECL_MAX_FRAC, repeat_n=C.REPEAT_N, step_lift=C.STEP_LIFT, step_cover=C.STEP_COVER, burst_min=C.BURST_MIN, c8_strict=C.C8_STRICT, c8_lenient=C.C8_LENIENT,
+                c5_ph_d=C.PH_D, ecl_mtot=C.ECL_MTOT, ecl_rfac=C.ECL_RFAC, ecl_max_frac=C.ECL_MAX_FRAC, repeat_n=C.REPEAT_N, step_lift=C.STEP_LIFT, ramp_d=C.RAMP_D, dominance="strongest other-kind event in the same light curve >= this event", eb_widths=(C.sha(C.EBS) if C.EBS.exists() else None), step_cover=C.STEP_COVER, burst_min=C.BURST_MIN, c8_strict=C.C8_STRICT, c8_lenient=C.C8_LENIENT,
                 injection="12 x 8 h noise, clipped to 1500..40000 ppm, 8 h wide, middle of the longest segment (stage2_search.do_group)",
                 stars=C.sha(stars_csv), manifest=C.sha(C.MANIFEST), targets=C.sha(C.TARGETS), best_product=C.sha(C.BEST), code=code)
 
@@ -39,7 +40,7 @@ def _init3(groups_dir, tag):
     S2._init()
     S2.GROUPS = pathlib.Path(groups_dir)
     S3["tag"] = tag
-    S3["ephem"] = C.Ephem(pd.read_csv(C.TARGETS, comment="#"))
+    S3["ephem"] = C.Ephem(pd.read_csv(C.TARGETS, comment="#"), C.eb_widths())
     S3["qlp"] = C.qlp_only_tics()
 
 
@@ -62,6 +63,8 @@ def add_step(g, paths):
             cache[key] = S2.Prod(d["t"], d["f"], key[1])
         P = cache[key]
         e.update(C.step_stats(P.bt, P.bf, P.bd, P.med, e["center"], e["dur_h"], e["depth_ppm"]))
+        ed = np.asarray(d["edges"], dtype=float); before = ed[ed <= e["center"]]              # latest data edge before the event = when data last resumed
+        e["ramp_d"] = float(e["center"] - before.max()) if len(before) else None
 
 
 def do_group3(args):

@@ -20,7 +20,7 @@ def test_tier_rules():
     assert C.tier_of(ev(c8_n=1, c8_best=4.0)) == "1A"
     assert C.tier_of(ev(c8_n=2, c8_best=3.5)) == "1L"
     assert C.tier_of(ev(c8_n=1, c8_best=2.0)) == "3"
-    for k in ("gap_dump", "burst", "flipmatch", "c5", "ecl_overlap", "repeater", "step"):                    # any flag: tier 2, kept
+    for k in ("gap_dump", "burst", "flipmatch", "c5", "ecl_overlap", "repeater", "step", "ramp", "dominated"):                    # any flag: tier 2, kept
         assert C.tier_of(ev(c8_n=1, c8_best=9.0, **{k: True})) == "2", k
     f = C.flags_of(dict(flags="gap edge; flipped", burst_n=3))
     assert f == dict(gap_dump=True, flipmatch=True, burst=True), f
@@ -95,6 +95,25 @@ def test_step_test():
     eph = C.Ephem(pd.DataFrame(dict(tic=[1], bjd0=[57000.0], p_bin_d=[67.7], tic_radius_rsun=[np.nan])))
     o = C.enrich_group(dict(events=[ev_]), eph, set())[0]; assert o["step"] and o["tier"] == "2"
     assert not C.enrich_group(dict(events=[ev_]), eph, set(), extra=False)[0]["step"]
+
+
+def test_v4_flags():
+    base = dict(tic=1, product="QLP", dur_h=3, flags="", burst_n=0, c8_n=0, c8_best=None)
+    one = pd.DataFrame(dict(tic=[1], bjd0=[57000.0], p_bin_d=[10.0], tic_radius_rsun=[np.nan]))
+    eph = C.Ephem(one, {1: (0.1, 0.05)})
+    # measured widths: primary 1.0 d, secondary 0.5 d (works without a TIC radius)
+    assert eph.overlap(1, 0.45, 3) and not eph.overlap(1, 0.7, 3) and eph.overlap(1, 5.3, 3) and not eph.overlap(1, 5.4, 3), "measured widths"
+    assert not C.Ephem(one).overlap(1, 0.45, 3), "no width and no radius: never flagged"
+    g = dict(events=[dict(base, kind="real", center=22.0, snr=8.0, ramp_d=0.5), dict(base, kind="flip", center=32.0, snr=9.0, ramp_d=3.0),
+                     dict(base, kind="real", center=42.0, snr=12.0, ramp_d=None), dict(base, product="SPOC", kind="real", center=22.0, snr=8.0, ramp_d=2.0)])
+    o = C.enrich_group(g, eph, set())
+    assert [e["ramp"] for e in o] == [True, False, False, False], "ramp: 0.5 d after data resumed yes, 3 d no, unknown no"
+    # QLP: real 8, flip 9, real 12. Real 8 and flip 9 are both dominated by a stronger event of the other kind (flip 9 by real 12; real 8 by flip 9); real 12 beats the flip 9; SPOC has no upside-down event
+    assert [e["dominated"] for e in o] == [True, True, False, False], [e["dominated"] for e in o]
+    assert [e["tier"] for e in o] == ["2", "2", "1B", "1B"], [e["tier"] for e in o]
+    tie = dict(events=[dict(base, kind="real", center=2.0, snr=9.0, ramp_d=None), dict(base, kind="flip", center=3.0, snr=9.0, ramp_d=None)])
+    assert all(e["dominated"] for e in C.enrich_group(tie, eph, set())), "a tie dominates both (symmetric)"
+    assert not any(e["ramp"] or e["dominated"] for e in C.enrich_group(g, eph, set(), extra=False))
 
 
 def test_settings_hash_changes_with_any_setting():

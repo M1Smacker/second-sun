@@ -8,7 +8,7 @@ import stage3_core as C
 
 
 def load(groups_dir, extra=True):
-    ephem, qlp = C.Ephem(pd.read_csv(C.TARGETS, comment="#")), C.qlp_only_tics()
+    ephem, qlp = C.Ephem(pd.read_csv(C.TARGETS, comment="#"), C.eb_widths()), C.qlp_only_tics()
     ev, meta = [], []
     for p in glob.glob(str(pathlib.Path(groups_dir) / "*.json")):
         g = json.load(open(p))

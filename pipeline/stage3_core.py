@@ -22,7 +22,8 @@ TBINS, TLABELS = [0, 11, 12, 14], ["bright<11", "mid11-12", "faint12+"]
 
 class Ephem:
     """Catalogue eclipse ephemeris per star (Villanova: bjd0 in BJD-2400000, period p_bin_d)."""
-    def __init__(self, tg):
+    def __init__(self, tg, widths=None):
+        self.widths = widths or {}
         self.by = {}
         for q in tg.itertuples():
             self.by.setdefault(int(q.tic), []).append((float(q.bjd0) - 57000.0, float(q.p_bin_d), float(q.tic_radius_rsun)))
@@ -36,14 +37,19 @@ class Ephem:
         return best
 
     def overlap(self, tic, center, dur_h):
-        """True if the event (its middle +- half its length) touches an eclipse whose length comes from physics: T = P/pi * (R1+R2)/a, a from
-        Kepler's third law. Stars without a TIC radius are never flagged by this rule (the 0.35 d rule still applies to them)."""
+        """True if the event (its middle +- half its length) touches an eclipse. The eclipse length is the catalogue's measured width where the star has one
+        (v4), else physics: T = P/pi x (R1+R2)/a with a from Kepler's third law. Stars with neither are never flagged by this rule (the 0.35 d rule still
+        applies to them)."""
+        w = self.widths.get(int(tic))
         for t0, P, R in self.by.get(int(tic), []):
-            if not np.isfinite(R):
+            if w is not None:
+                Tp, Ts = w[0] * P, w[1] * P
+            elif np.isfinite(R):
+                Tp = Ts = min(P / np.pi * ECL_RFAC * R / (215.03 * (ECL_MTOT * (P / 365.25) ** 2) ** (1 / 3)), ECL_MAX_FRAC * P)
+            else:
                 continue
-            T = min(P / np.pi * ECL_RFAC * R / (215.03 * (ECL_MTOT * (P / 365.25) ** 2) ** (1 / 3)), ECL_MAX_FRAC * P)
             ph = ((center - t0) / P) % 1.0
-            if min(min(ph, 1 - ph) * P, abs(ph - 0.5) * P) <= T / 2 + dur_h / 48:
+            if min(ph, 1 - ph) * P <= Tp / 2 + dur_h / 48 or abs(ph - 0.5) * P <= Ts / 2 + dur_h / 48:
                 return True
         return False
 
@@ -57,6 +63,24 @@ def qlp_only_tics(manifest=MANIFEST):
 def flags_of(e):
     fl = e.get("flags") or ""
     return dict(gap_dump=("gap edge" in fl) or ("momentum dump" in fl), flipmatch="flipped" in fl, burst=(e.get("burst_n") or 0) >= BURST_MIN)
+
+
+RAMP_D = 1.0                        # v4: an event within 1 day after data resumes (orbit start, gap, sector start) sits in the thermal and scattered light ramp
+EBS = ROOT / "data" / "xmatch" / "ebs.csv"
+
+
+def eb_widths():
+    """{tic: (primary width, secondary width)} in phase units of the Kepler period, from the TESS eclipsing binary catalogue (Prsa et al. 2022; columns
+    Wp-pf, Ws-pf) for stars whose TESS period equals the Kepler period within 2%. Empty if the table is not on this machine."""
+    if not EBS.exists():
+        return {}
+    tg = pd.read_csv(TARGETS, comment="#").drop_duplicates("tic").set_index("tic")
+    eb = pd.read_csv(EBS).drop_duplicates("TIC").set_index("TIC")
+    out = {}
+    for tic, r in eb.iterrows():
+        if tic in tg.index and abs(r.Per / tg.p_bin_d[tic] - 1) < 0.02 and np.isfinite(r["Wp-pf"]) and r["Wp-pf"] > 0:
+            out[int(tic)] = (float(r["Wp-pf"]), float(r["Ws-pf"]) if np.isfinite(r["Ws-pf"]) and r["Ws-pf"] > 0 else float(r["Wp-pf"]))
+    return out
 
 
 def window_lift(bt, bf, bd, med, lo, hi, depth_ppm):
@@ -86,7 +110,7 @@ def tier_of(e):
     """2 = flagged (kept, lower priority); 1A second product agrees at SNR >= 4; 1L agrees at 3 to 4; 1B no second product (cannot be confirmed
     by this check, includes every QLP-only star); 3 = a second product exists and disagrees (SNR < 3), kept and labelled. Stage 2's 'survivors'
     are exactly 1A + 1L + 1B."""
-    if e["gap_dump"] or e["burst"] or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("step"):
+    if e["gap_dump"] or e["burst"] or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("step") or e.get("ramp") or e.get("dominated"):
         return "2"
     if not (e.get("c8_n") or 0) > 0 or e.get("c8_best") is None:
         return "1B"
@@ -94,14 +118,15 @@ def tier_of(e):
     return "1A" if b >= C8_STRICT else ("1L" if b >= C8_LENIENT else "3")
 
 
-def enrich_event(e, ephem, qlp_only, n_same=0, extra=True):
+def enrich_event(e, ephem, qlp_only, n_same=0, extra=True, dominated=False):
     """The fields Stage 3 adds to every event the Stage 2 search writes. Idempotent. `n_same` = events of the same kind in the same product and
     sector; `extra=False` switches the two v2 flags off (used to reproduce Stage 2's published numbers)."""
     d = ephem.dist(e["tic"], e["center"])
     out = flags_of(e)
     out.update(ph_d=(float(d) if np.isfinite(d) else None), c5=bool(d < PH_D), second_product=(e.get("c8_n") or 0) > 0,
                qlp_only_star=int(e["tic"]) in qlp_only, repeat_n=int(n_same),
-               ecl_overlap=bool(extra and ephem.overlap(e["tic"], e["center"], e.get("dur_h") or 0)), repeater=bool(extra and n_same >= REPEAT_N), step=bool(extra and step_flag(e)))
+               ecl_overlap=bool(extra and ephem.overlap(e["tic"], e["center"], e.get("dur_h") or 0)), repeater=bool(extra and n_same >= REPEAT_N), step=bool(extra and step_flag(e)),
+               ramp=bool(extra and e.get("ramp_d") is not None and e["ramp_d"] == e["ramp_d"] and e["ramp_d"] < RAMP_D), dominated=bool(extra and dominated))
     out["tier"] = tier_of({**e, **out})
     return out
 
@@ -110,7 +135,13 @@ def enrich_group(g, ephem, qlp_only, extra=True):
     """Enrich every event of one star-sector group JSON (needs the whole group to count repeats). Returns the list of enriched events."""
     from collections import Counter
     n = Counter((e["kind"], e["product"]) for e in g["events"])
-    return [{**e, **enrich_event(e, ephem, qlp_only, n[(e["kind"], e["product"])], extra)} for e in g["events"]]
+    mx = {}
+    for e in g["events"]:
+        mx[(e["product"], e["kind"])] = max(mx.get((e["product"], e["kind"]), 0.0), e.get("snr") or 0.0)
+    # v4 local false alarm calibration: an event is dominated if the strongest event of the OTHER kind (real vs upside-down) in the same light curve is at
+    # least as strong. Symmetric, no setting: under noise alone real and upside-down dominate each other equally often.
+    return [{**e, **enrich_event(e, ephem, qlp_only, n[(e["kind"], e["product"])], extra,
+                                 e.get("snr") is not None and mx.get((e["product"], "flip" if e["kind"] == "real" else "real"), 0.0) >= e["snr"])} for e in g["events"]]
 
 
 def sha(path):
