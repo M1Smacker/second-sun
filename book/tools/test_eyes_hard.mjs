@@ -177,6 +177,57 @@ test("one fact, one place: the hard line block states the clear-planet and hard-
   assert.match(round, /Clear fake planets: you said Dip/); assert.match(round, /Hard noise \(nothing hidden\)/);
 });
 
+// ---- the results view (F4, 27 Oct 2026; Claude AI's review): it must never say more than the numbers do ----
+const stdEnt = (kind, truth, ans) => ({ i: 0, kind, truth, ans, ok: ans === (truth === "dip" ? "dip" : truth === "none" ? "none" : "odd"), bin: true, ms: 1, lb: 0, m: null });
+function stdRound(day, over = {}) {            // 10 clear dips, 4 faint, 8 quiet, 8 odd
+  const a = [];
+  for (let i = 0; i < 10; i++) a.push(stdEnt("dip2500", "dip", i < (over.missClear || 0) ? "none" : "dip"));
+  for (let i = 0; i < 4; i++) a.push(stdEnt("dip1500", "dip", "dip"));
+  for (let i = 0; i < 8; i++) a.push(stdEnt("quiet", "none", i < (over.falseAlarms || 0) ? "dip" : "none"));
+  for (let i = 0; i < 8; i++) a.push(stdEnt(i < (over.stepsCalledDip || 0) ? "step" : "spike", "odd", i < (over.stepsCalledDip || 0) ? "dip" : "odd"));
+  return { id: "s" + Math.random(), mode: "test", source: "test-toi1338-s98", status: "done", n: 30, t0: new Date(2026, 9, day, 12, over.hour || 0).getTime(), t1: 1, a };
+}
+
+test("results view: a false-alarm rate above the limit is said to be above the limit, never softened; clear dips above the target say so", () => {
+  const rounds = [stdRound(24, { falseAlarms: 2 }), stdRound(24, { falseAlarms: 1, hour: 1 }), stdRound(25, { falseAlarms: 1 }), stdRound(25, { falseAlarms: 1, hour: 1 })];   // 5 of 32 = 15.6%
+  const v = core.resultsView(rounds), s = v.sections[0], [clear, fa] = s.measures;
+  assert.equal(s.id, "standard"); assert.equal(fa.k, 5); assert.equal(fa.n, 32); assert.equal(fa.valueText, "15.6%"); assert.equal(fa.ok, false);
+  assert.match(fa.word, /^above the limit of 10%$/); assert.match(s.sentence, /False alarms on quiet curves are above the limit of 10%\.$/);
+  assert.equal(clear.count, "40 of 40"); assert.equal(clear.ok, true, "40 of 40 has an interval floor above 85%");
+  assert.match(fa.targetText, /Limit: at most 10%/); assert.match(clear.targetText, /Target: at least 85%/); assert.match(fa.ciText, /95% confidence interval: \d+(\.\d)?% to \d+(\.\d)?%/);
+  assert.doesNotMatch(s.sentence + s.pill, /every time|rarely|pass(ed)?\b(?!:)/, "no cheerful words the numbers do not earn");
+});
+
+test("results view: near a target the wording follows the confidence interval, not the point estimate", () => {
+  const clean = core.resultsView(Array.from({ length: 12 }, (_, i) => stdRound(10 + (i % 3), { hour: i }))).sections[0].measures[1];   // 0 of 96: the interval tops out near 4%
+  assert.equal(clean.ok, true); assert.match(clean.word, /^within the limit of 10%$/);
+  const thin = core.resultsView([stdRound(24), stdRound(24, { hour: 1 }), stdRound(25), stdRound(25, { hour: 1 })]).sections[0].measures[1];   // even 0 of 32 cannot rule out a rate above 10%
+  assert.equal(thin.ok, null);
+  const edge = core.resultsView([stdRound(24, { falseAlarms: 1 }), stdRound(24, { falseAlarms: 1, hour: 1 }), stdRound(25), stdRound(25, { hour: 1 })]).sections[0].measures[1];   // 2 of 32 = 6.3%, interval reaches above 10%
+  assert.equal(edge.ok, null); assert.match(edge.word, /^within the limit of 10%, but with this many curves the true rate could be above it$/);
+  const few = core.resultsView([stdRound(24, { missClear: 3 })]).sections[0].measures[0];                                                       // 7 of 10 = 70% < 85%
+  assert.equal(few.ok, false); assert.match(few.word, /^below the target of 85%$/);
+});
+
+test("results view: the pill never calls a practice result a pass; the line and the hard line stay separate; nothing without test rounds", () => {
+  assert.deepEqual(core.resultsView([]).sections, []);
+  const v = core.resultsView([stdRound(24), roundOf(24)]);
+  assert.deepEqual(v.sections.map((x) => x.id), ["standard", "hard"]);
+  v.sections.forEach((x) => assert.match(x.pill, /^Practice result, not an official pass: still needs /));
+  assert.deepEqual(core.resultsView([stdRound(24), roundOf(24)], "hard").sections.map((x) => x.id), ["hard"]);
+  assert.equal(v.sections[1].measures[1].k, 0); assert.match(v.sections[1].measures[1].word, /^within the limit of 20%/);
+});
+
+test("results view: the weak spot is a pattern to check and only appears when it is at least 10% of at least 20 jumps and gaps; trend is per test, oldest first", () => {
+  const none = core.resultsView([stdRound(24), stdRound(24, { hour: 1 }), stdRound(25), stdRound(25, { hour: 1 })]);
+  assert.equal(none.weak, null);
+  const some = core.resultsView([stdRound(24, { stepsCalledDip: 2 }), stdRound(24, { stepsCalledDip: 2, hour: 1 }), stdRound(25), stdRound(25, { hour: 1 })]);   // 4 of 32 odd (steps)... 8 odd per round, steps are the first n
+  assert.equal(some.weak, null, "only 'step' and 'gapdip' kinds count, and 4 steps are fewer than 20");
+  const many = core.resultsView(Array.from({ length: 6 }, (_, i) => stdRound(20 + i, { stepsCalledDip: 8 })));                                         // 48 steps, all called a dip
+  assert.equal(many.weak.n, 48); assert.equal(many.weak.k, 48); assert.match(many.weak.habit, /^A pattern to check:/); assert.doesNotMatch(many.weak.habit, /\bcaused\b|\bbecause\b/);
+  assert.equal(many.trend.standard.length, 6); assert.equal(many.trend.hard.length, 0);
+});
+
 test("the hard line: not enough, then meets, then below; the numbers are the ones fixed in advance", () => {
   assert.deepEqual({ ...core.HARD }, { clearHit: 0.80, noiseFalseAlarm: 0.20, minCurves: 120, minRounds: 4, minDays: 2 });
   const three = core.hardLine([roundOf(24), roundOf(24), roundOf(25)]);

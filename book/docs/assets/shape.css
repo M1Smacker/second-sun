@@ -240,3 +240,26 @@ textarea.ss-eyes__input { width: 100%; padding: 8px 10px; }
   .ss-margin .mn.off .q { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
   .ss-margin .mn.off .s { display: none; }
 }
+/* ---------- F4: the calibrated Eyes results (verdict, pill, bars with the target marked, weakest spot, trend). Meaning is in words and shapes, never colour alone. ---------- */
+.ss-res { border-top: 1px solid var(--ss-line); padding-top: 12px; margin: 14px 0 6px; max-width: var(--ss-measure); }
+[dir] .md-typeset .ss-res p { max-width: none; }
+.ss-res__eyebrow { font: 600 12.5px/1.4 var(--ss-label); letter-spacing: .08em; text-transform: uppercase; color: var(--ss-text-2); margin: 0 0 6px; }
+.ss-res__verdict { font: 700 19px/1.35 var(--ss-read); color: var(--ss-text); margin: 0 0 8px; }
+.ss-res__pill { display: inline-block; font: 600 13px/1.4 var(--ss-label); border: 1.5px dashed var(--ss-text); border-radius: 12px; padding: 4px 12px; color: var(--ss-text); margin: 0 0 6px; }
+.ss-res__m { margin: 14px 0 6px; }
+.ss-res__mh { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.ss-res__mh b { font: 600 15px/1.35 var(--ss-ui); color: var(--ss-text); }
+.ss-res__mh span { font: 700 22px/1.2 var(--ss-ui); color: var(--ss-text); font-variant-numeric: tabular-nums; }
+.ss-res__trk { position: relative; height: 14px; background: var(--ss-surface); border: 1.5px solid var(--ss-text-3); border-radius: 4px; margin: 8px 0 10px; }
+.ss-res__trk i { position: absolute; display: block; }
+.ss-res__fl { left: 0; top: 0; bottom: 0; background: var(--ss-accent); }
+.ss-res__ln { top: -7px; bottom: -7px; border-left: 2.5px solid var(--ss-text); }
+.ss-res__weak { border-left: 3px solid var(--ss-accent); padding: 2px 0 2px 12px; margin: 16px 0 8px; max-width: var(--ss-measure); }
+.ss-res__weak b { display: block; font: 600 15px/1.4 var(--ss-ui); color: var(--ss-text); }
+.ss-res__tr svg { display: block; width: 100%; max-width: 360px; height: auto; }
+.ss-res__tr text { font: 400 11px var(--ss-ui); fill: var(--ss-text-2); }
+.ss-res__tr .g { stroke: var(--ss-line); stroke-width: 1; }
+.ss-res__tr .a, .ss-res__tr .b { stroke: var(--ss-accent); stroke-width: 2; }
+.ss-res__tr .b { stroke-dasharray: 5 4; }
+.ss-res__det { border-top: 1px solid var(--ss-line); border-bottom: 1px solid var(--ss-line); margin: 14px 0; max-width: var(--ss-measure); }
+.ss-res__det > summary { min-height: var(--ss-tap); display: flex; align-items: center; cursor: pointer; font: 600 15px var(--ss-ui); color: var(--ss-text); }

@@ -162,6 +162,10 @@ const CHAPTER_MEASURE = `(() => {
   return { overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, rail: shown(rail), margin: shown(mar), strip: shown(strip),
     sidebar: shown(q(".md-sidebar--primary")), railBox: box(rail), paraBox: box(para), marBox: box(mar), mainW: Math.round(q(".md-main__inner").getBoundingClientRect().width),
     chars: lines.length >= 3 ? Math.round(lines.slice(0, 3).reduce((a, b) => a + b, 0) / 3) : 0, notes: mar ? mar.querySelectorAll(".mn:not([hidden])").length : 0, open: open.length,
+    far: (() => { if (!mar) return { shown: 0, hidden: 0, worst: 0, orphan: 0 }; let worst = 0, orphan = 0; const all = [...mar.querySelectorAll(".mn")], shown = all.filter((n) => !n.hidden);
+      for (const n of shown) { const key = n.dataset.key, a = key.startsWith("g:") ? [...document.querySelectorAll('.md-content__inner a[href*="glossary/#"]')].find((x) => x.hash === key.slice(2)) : document.querySelector('.md-content__inner a.ss-chip[data-cid="' + key + '"]');
+        if (!a) { orphan++; continue; } worst = Math.max(worst, Math.abs(n.getBoundingClientRect().top - a.getBoundingClientRect().top)); }
+      return { shown: shown.length, hidden: all.length - shown.length, worst: Math.round(worst), orphan }; })(),
     toc: rail ? rail.querySelectorAll(".ss-rail__toc a").length : 0, ariaHidden: mar ? mar.getAttribute("aria-hidden") : null, marginLinks: mar ? mar.querySelectorAll("a, button, [tabindex]").length : 0 };
 })()`;
 
@@ -171,7 +175,7 @@ async function chapterLayout() {
   const fail = (m) => out.fails.push(m);
   try {
     for (const p of ["book/02-light-curves/", "book/07-noise-and-statistics/"]) {
-      for (const [w, h] of [[390, 844], [683, 800], [1100, 800], [1119, 800], [1120, 800], [1366, 650], [1500, 900]]) {
+      for (const [w, h] of [[390, 844], [683, 800], [1100, 800], [1119, 800], [1120, 800], [1366, 650], [1440, 900], [1500, 900]]) {
         await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 768 });
         await goto(b, base + p);
         const wide = w >= 1120;
@@ -193,6 +197,8 @@ async function chapterLayout() {
           if (m.chars < 58 || m.chars > 76) fail(`${tag}: ${m.chars} characters a line (want 58 to 76)`);
           if (!m.notes) fail(`${tag}: no notes in the margin`);
           if (m.open > 1) fail(`${tag}: ${m.open} notes open at once`);
+          if (m.far.worst > 124 || m.far.orphan) fail(`${tag}: a margin note sits ${m.far.worst} px from its anchor (limit 120, ${m.far.orphan} without an anchor)`);
+          out.farSeen = Math.max(out.farSeen || 0, m.far.shown + m.far.hidden);
           if (m.toc < 3) fail(`${tag}: 'In this chapter' has ${m.toc} entries`);
           if (m.ariaHidden !== "true" || m.marginLinks) fail(`${tag}: margin must be aria-hidden with no links or tab stops (${m.ariaHidden}, ${m.marginLinks})`);
         } else {
@@ -215,6 +221,21 @@ async function chapterLayout() {
     if (out.scroll.open !== 1) fail(`scroll: ${out.scroll.open} notes open (want exactly 1)`);
     if (!(out.scroll.railTop >= 90 && out.scroll.railTop <= 130 && out.scroll.railBottom <= out.scroll.vh)) fail(`scroll: the rail is not pinned inside the window (${JSON.stringify(out.scroll)})`);
     if (!out.scroll.noteInView) fail(`scroll: the open note is not on screen (${JSON.stringify(out.scroll)})`);
+    // F4, Claude AI's review: at 1440x900, down the whole page, no margin note may sit more than 120 px from its anchor (notes that cannot are left out), and at most one is open
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+    out.sweep = { positions: 0, worst: 0, maxHidden: 0, maxNotes: 0 };
+    for (const p of ["book/02-light-curves/", "book/07-noise-and-statistics/"]) {
+      await goto(b, base + p);
+      await waitFor(b, `document.querySelectorAll(".ss-margin .mn").length > 0`, 8000);
+      for (let f = 0; f <= 0.9; f += 0.1) {
+        await b.evaluate(`scrollTo(0, document.documentElement.scrollHeight * ${f.toFixed(2)})`); await sleep(350);
+        const m = await b.evaluate(CHAPTER_MEASURE);
+        out.sweep.positions++; out.sweep.worst = Math.max(out.sweep.worst, m.far.worst); out.sweep.maxHidden = Math.max(out.sweep.maxHidden, m.far.hidden); out.sweep.maxNotes = Math.max(out.sweep.maxNotes, m.far.shown + m.far.hidden);
+        if (m.far.worst > 124 || m.far.orphan) fail(`sweep ${p} at ${f.toFixed(1)}: a note sits ${m.far.worst} px from its anchor (limit 120)`);
+        if (m.open > 1) fail(`sweep ${p} at ${f.toFixed(1)}: ${m.open} notes open`);
+      }
+    }
+    if (out.sweep.maxNotes < 8) fail(`sweep: only ${out.sweep.maxNotes} notes on the pages, the dense-passage check needs at least 8`);
     out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
     out.pass = !out.fails.length && !out.errors.length;
   } finally { await b.close(); }
@@ -514,7 +535,8 @@ async function eyesTest() {
     }
     checks.testHidesTruth = !leaked;
     const tf = await text();
-    checks.testFinish = /Test finished/.test(tf) && /Pass line so far/.test(tf) && /Not enough yet/.test(tf) && /Test rounds: 1, curves: 30/.test(tf);
+    checks.testFinish = /Test finished/.test(tf) && /Standard test · 1 round\(s\) · 30 curves/i.test(tf) && /Practice result, not an official pass: still needs/.test(tf) && /You found [\d.]+% of the clear dips\./.test(tf) && /Limit: at most 10%/.test(tf) && /Target: at least 85%/.test(tf) && /95% confidence interval/.test(tf) && !/Pass line so far/.test(tf);   // the old lines are behind "All the numbers" (closed)
+    checks.testFinishDetails = await b.evaluate(`(() => { const d = document.querySelector(".ss-eyes details.ss-res__det"); return !!d && !d.open && /Pass line so far/.test(d.textContent) && /Not enough yet/.test(d.textContent) && /Test rounds: 1, curves: 30/.test(d.textContent); })()`);
     checks.testScoreLine = await (async () => { const m = tf.match(/You got (\d+) of 30 right\./); return !!m && Number(m[1]) === (await store())[0].a.filter((e) => e.ok).length; })();
     r = (await store())[0];
     checks.testSaved = r.mode === "test" && r.status === "done" && r.a.length === 30 && r.n === 30 && r.a.filter((e) => e.truth === "dip").length === 14 && r.a.filter((e) => e.truth === "none").length === 8;
@@ -541,13 +563,15 @@ async function eyesTest() {
     for (let i = 0; i < 30; i++) { await click(cyc[i % 4]); if (/THIS WAS:|what the numbers say/i.test(await text())) hleak = true; await clickAny(NEXT); }
     checks.hardTestHidesTruth = !hleak;
     const hf = await text();
-    checks.hardFinish = /Test finished/.test(hf) && /Hard line so far/.test(hf) && !/Pass line so far/.test(hf) && /Hard test rounds: 1, curves: 30/.test(hf) && /Clear fake planets/.test(hf) && /Not enough yet/.test(hf);
+    checks.hardFinish = /Test finished/.test(hf) && /Hard test · 1 round\(s\) · 30 curves/i.test(hf) && !/Pass line so far/.test(hf) && /You found [\d.]+% of the clear fake planets\./.test(hf) && /Practice result, not an official pass: still needs/.test(hf) && /Limit: at most 20%/.test(hf);
+    checks.hardFinishDetails = await b.evaluate(`(() => { const d = document.querySelector(".ss-eyes details.ss-res__det"); return !!d && !d.open && /Hard line so far/.test(d.textContent) && /Hard test rounds: 1, curves: 30/.test(d.textContent) && /Clear fake planets/.test(d.textContent); })()`);
     await click("Review this round"); const hrv = await text(); checks.hardReviewShowsNumbers = /what the numbers say/i.test(hrv) && /light curve 1 of 30 \(read only\)/.test(hrv); await click("Close the review");
     const hr = (await store())[0], tc = (t) => hr.a.filter((e) => e.t === t).length;
     checks.hardTestSaved = hr.mode === "test" && /^hard/.test(hr.source) && hr.status === "done" && hr.a.length === 30 && tc("clear") === 6 && tc("border") === 6 && tc("hardnoise") === 8 && tc("odd") === 10 && hr.a.some((e) => e.ans === "unsure") && hr.a.every((e) => e.m && e.m.seed > 0 && e.f && typeof e.f.st === "number");
     await click("My results");
     const hres = await text();
-    checks.hardInResults = /Hard test line/.test(hres) && /test \(hard\)/.test(hres) && /Test rounds: 1, curves: 30/.test(hres);          // the official pass line still counts only the official test
+    checks.hardInResults = /Hard test · 1 round\(s\) · 30 curves/i.test(hres) && /test \(hard\)/.test(hres) && /Standard test · 1 round\(s\) · 30 curves/i.test(hres);          // the official pass line still counts only the official test
+    checks.resultsDetailsClosed = await b.evaluate(`(() => { const d = document.querySelector(".ss-eyes details.ss-res__det"); return !!d && !d.open && /Official test pass line/.test(d.textContent) && /Hard test line/.test(d.textContent); })()`);
     await click("Back"); await click("Hard practice 20"); await click("Dip");
     checks.hardPracticeShowsTruth = /THIS WAS: (A DIP|NOT A DIP)/.test(await text());
     checks.plotBarExplained = /dashed line is how deep a dip must be here to score 7/.test(await text());

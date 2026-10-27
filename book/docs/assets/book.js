@@ -111,7 +111,7 @@
     const add = (anchor, key, label, text, src) => {
       if (seen.has(key)) return; seen.add(key);
       const el = document.createElement("div"), t = document.createElement("span"), q = document.createElement("p");
-      el.className = "mn off"; t.className = "t"; t.textContent = label; q.className = "q"; q.textContent = text; el.append(t, q);
+      el.className = "mn off"; el.dataset.key = key; t.className = "t"; t.textContent = label; q.className = "q"; q.textContent = text; el.append(t, q);
       if (src) { const s = document.createElement("p"); s.className = "s"; s.textContent = src; el.append(s); }
       margin.append(el); notes.push({ el, anchor });
     };
@@ -130,10 +130,15 @@
     let best = null, bd = 1e9;
     vis.forEach((n) => { const r = n.anchor.getBoundingClientRect(); if (r.bottom > 90 && r.top < vh * 0.85) { const d = Math.abs(r.top - vh * 0.38); if (d < bd) { bd = d; best = n; } } });
     if (best !== M.on) { M.on = best; M.notes.forEach((n) => { n.el.classList.toggle("on", n === best); n.el.classList.toggle("off", n !== best); }); }
-    const top0 = M.inner.getBoundingClientRect().top; let floor = 0;
-    vis.map((n) => ({ n, y: n.anchor.getBoundingClientRect().top - top0 })).sort((a, b) => a.y - b.y).forEach(({ n, y }) => {
-      const top = Math.max(y - 4, floor); n.el.style.top = top + "px"; floor = top + n.el.offsetHeight + 10;
-    });
+    // The open note sits exactly beside its anchor; the others stack above and below it. A note that cannot sit within 120 px of its own anchor is left out of the margin
+    // (its chip or glossary link in the text still works as on a phone) rather than drifting away from what it explains.
+    const top0 = M.inner.getBoundingClientRect().top, MAXD = 120;
+    const items = vis.map((n) => ({ n, y: n.anchor.getBoundingClientRect().top - top0 - 4, h: n.el.offsetHeight })).sort((a, b) => a.y - b.y);
+    const k = items.findIndex((it) => it.n === M.on), put = (it, top) => { it.n.el.style.top = top + "px"; };
+    let floor = 0, ceil = Infinity;
+    if (k >= 0) { put(items[k], items[k].y); floor = items[k].y + items[k].h + 10; ceil = items[k].y - 10; }
+    for (let i = k + 1; i < items.length; i++) { const it = items[i], top = Math.max(it.y, floor); if (top - it.y > MAXD) { it.n.el.hidden = true; continue; } put(it, top); floor = top + it.h + 10; }
+    for (let i = k - 1; i >= 0; i--) { const it = items[i], top = Math.min(it.y, ceil - it.h); if (it.y - top > MAXD || top < 0) { it.n.el.hidden = true; continue; } put(it, top); ceil = top - 10; }
     const hs = $$(".md-content__inner > h2[id]"), links = M.toc ? Array.from(M.toc.querySelectorAll("a")) : [];
     let cur = -1; hs.forEach((h, i) => { if (h.getBoundingClientRect().top < vh * 0.3) cur = i; });
     links.forEach((a, i) => { if (i === cur) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current"); });

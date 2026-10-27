@@ -187,6 +187,51 @@
     return { rounds: done.length, curves: h.n, days, clear, noise, h, enough, meets, verdict: verdictWord, needs, lines };
   }
 
+  // ---- the results view (F4, 27 Oct 2026, after Claude AI's review). It says what the numbers say and no more: every target is stated, the observed rate comes first with its
+  //      count, a miss is never dressed as a pass, the 95% confidence interval decides the wording near a target, and the weak spot is a pattern to check, not a proven cause.
+  //      Pure data; demos.js draws it. The older line lists stay available behind "All the numbers". ----
+  const pc1 = (x) => { const v = Math.round(1000 * x) / 10; return `${Number.isInteger(v) ? v : v.toFixed(1)}%`; };
+  function measureOf(label, k, n, target, dir) {
+    const rate = n ? k / n : 0, range = wilson(k, n);
+    let word, ok = null;
+    if (!n) word = "not measured yet";
+    else if (dir === "atleast") {
+      if (rate < target) { word = `below the target of ${pc(target)}`; ok = false; }
+      else if (range[0] >= target) { word = `above the target of ${pc(target)}`; ok = true; }
+      else word = `at or above the target of ${pc(target)}, but with this many curves the true rate could be below it`;
+    } else if (rate > target) { word = `above the limit of ${pc(target)}`; ok = false; }
+    else if (range[1] <= target) { word = `within the limit of ${pc(target)}`; ok = true; }
+    else word = `within the limit of ${pc(target)}, but with this many curves the true rate could be above it`;
+    return { label, k, n, rate, range, target, dir, word, ok, valueText: pc1(rate), count: `${k} of ${n}`, pct: Math.round(100 * rate), targetPct: Math.round(100 * target),
+      targetText: `${dir === "atleast" ? "Target: at least" : "Limit: at most"} ${pc(target)}`, ciText: `95% confidence interval: ${pc1(range[0])} to ${pc1(range[1])}` };
+  }
+  const pillOf = (p) => p.verdict === "not_enough" ? `Practice result, not an official pass: still needs ${p.needs.join(", ")}.`
+    : p.verdict === "meets" ? "On the numbers you meet the line. Claude decides whether that is enough." : "Below the line on the numbers so far. Keep practising.";
+  const CI_NOTE = "The 95% confidence interval is the span of true rates that your result fits, given how many curves you saw. A wide span means more curves could move the result a lot.";
+  function resultsView(rounds, only) {
+    const sections = [], p = passLine(rounds), ph = hardLine(rounds);
+    const sentence = (a, b, what, bLabel) => (a.n && b.n) ? `You found ${a.valueText} of the clear ${what}. ${bLabel} ${b.word}.` : "There are not yet enough curves of each kind to judge.";
+    if ((!only || only === "standard") && p.rounds) {
+      const a = measureOf("Finding clear dips", p.clear.k, p.clear.n, PASS.clearHit, "atleast"), b = measureOf("False alarms on quiet curves", p.quiet.k, p.quiet.n, PASS.falseAlarm, "atmost");
+      const std = rounds.filter((r) => r.mode === "test" && !isHard(r) && r.status === "done" && r.a.length === r.n).sort((x, y) => x.t0 - y.t0);
+      let recent = "";
+      if (std.length >= 8) { const s5 = summarize(std.slice(-5).flatMap((r) => r.a)); recent = `In your last 5 test rounds you called ${s5.falseAlarms} of ${s5.quiet} quiet curves a dip. This is context only: the line counts every round.`; }
+      sections.push({ id: "standard", title: "Standard test", rounds: p.rounds, curves: p.curves, days: p.days, verdict: p.verdict, pill: pillOf(p), measures: [a, b],
+        sentence: sentence(a, b, "dips", "False alarms on quiet curves are"), recent, ciNote: CI_NOTE });
+    }
+    if ((!only || only === "hard") && ph.rounds) {
+      const a = measureOf("Finding clear fake planets", ph.clear.k, ph.clear.n, HARD.clearHit, "atleast"), b = measureOf("Hard noise called a dip", ph.noise.k, ph.noise.n, HARD.noiseFalseAlarm, "atmost");
+      sections.push({ id: "hard", title: "Hard test", rounds: ph.rounds, curves: ph.curves, days: ph.days, verdict: ph.verdict, pill: pillOf(ph), measures: [a, b],
+        sentence: sentence(a, b, "fake planets", "Calls of a dip on hard noise are"), recent: "", ciNote: CI_NOTE });
+    }
+    const odd = rounds.filter((r) => r.status === "done").flatMap((r) => r.a || []).filter((e) => e.kind === "step" || e.kind === "gapdip"), bad = odd.filter((e) => e.ans === "dip").length;
+    const weak = odd.length >= 20 && bad / odd.length >= 0.10 ? { k: bad, n: odd.length,
+      text: `${bad} of ${odd.length} curves with a jump or a dip at a data gap were called a dip.`,
+      habit: "A pattern to check: before calling a dip, see whether it starts or ends at a data gap, and whether the light comes back to where it started. A jump or a gap edge can imitate a real dip." } : null;
+    const test = rounds.filter((r) => r.mode === "test" && r.status === "done" && r.a.length === r.n).sort((x, y) => x.t0 - y.t0), right = (r) => r.a.filter((e) => e.ok).length / r.a.length;
+    return { sections, weak, trend: { standard: test.filter((r) => !isHard(r)).map(right), hard: test.filter(isHard).map(right) } };
+  }
+
   // ---- the store: everything is written to the device after EVERY answer ----
   function createStore(storage, opts = {}) {
     const now = opts.now || (() => Date.now()), rid = opts.rid || (() => Math.random().toString(36).slice(2, 8));
@@ -333,5 +378,5 @@
     return -1;
   }
 
-  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, BANDS, habit, habitLines, bringBack, isHard, summarizeHard, hardLines, hardLine, truthOf, verdict, bannerParts, compose, summarize, summaryLines, scoreLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
+  return { SCHEMA, KEY, NAME, PASS, HARD, TEST_N, FAINT, CLOUD_KEYS, BANDS, habit, habitLines, bringBack, isHard, summarizeHard, hardLines, hardLine, resultsView, truthOf, verdict, bannerParts, compose, summarize, summaryLines, scoreLines, wilson, passLine, createStore, localDay, fmtDate, shuffle, roundDoc, encodeValue, decodeValue, toFirestoreBody };
 });
