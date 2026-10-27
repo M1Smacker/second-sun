@@ -104,6 +104,8 @@ if __name__ == "__main__":
         DRY.mkdir(parents=True, exist_ok=True)
         st = pd.read_csv(S2.STARS); st[st.stratum == "control"].to_csv(DRY / "stars_dry.csv", index=False)
         search(DRY / "stars_dry.csv", DRY, "dry", n)
+    elif mode == "dry50":                                        # all 50 Stage 2 stars into a separate folder: full regression against Stage 2
+        search(S2.STARS, C.ROOT / "data" / "stage3_dry50", "dry50", n)
     elif mode == "freeze":
         if FROZEN.exists():
             sys.exit(f"already frozen: {FROZEN}")

@@ -72,10 +72,15 @@ def test_c5_timeline_cover_is_small_and_known():
     assert len(cov) == 549 and cov.max() < 0.3 and int((cov >= 0.2).sum()) == 70, (cov.max(), int((cov >= 0.2).sum()))
 
 
-def test_dry_run_matches_stage2():
-    fs = sorted(glob.glob(str(DRY / "*.json")))
+def test_dry_runs_match_stage2():
+    for d in (DRY, C.ROOT / "data" / "stage3_dry50" / "groups"):
+        check_dry(d)
+
+
+def check_dry(d):
+    fs = sorted(glob.glob(str(d / "*.json")))
     if not fs:
-        print("  (skipped: run `python stage3.py dry` first)"); return
+        print(f"  (skipped: {d.parent.name} has no groups; run `python stage3.py dry` or `dry50` first)"); return
     n_ev = 0
     for p in fs:
         new = json.load(open(p)); old_p = D2 / "groups" / pathlib.Path(p).name
@@ -83,10 +88,10 @@ def test_dry_run_matches_stage2():
         assert new["meta"] == old["meta"] and new["inj"] == old["inj"], p
         assert len(new["events"]) == len(old["events"]), p
         for a, b in zip(old["events"], new["events"]):
-            assert all(b[k] == v for k, v in a.items()), (p, a, b)
+            assert all(b[k] == v or (v != v and b[k] != b[k]) for k, v in a.items()), (p, a, b)     # NaN equals NaN here
             assert "tier" in b and "c5" in b and "ph_d" in b
         n_ev += len(old["events"])
-    print(f"  {len(fs)} dry-run groups, {n_ev} events: identical to Stage 2 on every old field, plus the new fields")
+    print(f"  {d.parent.name}: {len(fs)} groups, {n_ev} events: identical to Stage 2 on every old field, plus the new fields")
 
 
 if __name__ == "__main__":
