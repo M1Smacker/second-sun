@@ -20,6 +20,17 @@ Material for MkDocs with `overrides/main.html`; three CSS files (`extra.css` 14 
 
 Total calibrated 3 to 8 points (the first estimate on the canvas was 6.5 to 12; my gut has run about 2.5 times high on design work, see `research/usage-ledger.md`). Uncalibrated for a large CSS change that needs browser tests, so I would quote 3 to 8 and report the real number after each step.
 
+## Requirement added 27 Oct (Ahmed, morning): results must be clear, not crowded. "Smarter lines, not fewer lines."
+Ahmed said the book is hard to read for his stats, that it feels messy, and that Claude should present results in the clearest way. Cause found by reading the code (VERIFIED): `eyes-core.js` `hardLine()` line 184 appends the same sentences `hardLines()` already printed (`demos.js` lines 418 and 419 show both after a hard test), so on the finish screen and in My results the same facts appear two or three times (clear fake planets, near-limit bands, hard noise), each as a full sentence, with the pass line, the 95% range and the verdict mixed in the same list. The pass line block repeats the standard numbers the same way.
+
+Rules for the F4 Eyes results (they are part of step 3, not extra scope):
+1. **One fact, one place.** No number appears twice on a screen. A test enforces it: print the results page text and fail if two lines state the same count.
+2. **Verdict first.** The top shows one plain sentence, then at most four numbers: dips you caught, quiet curves you called a dip, glitches you took for a dip, and the pass line status. Each number has a label, a bar with the pass line marked on it, and the count behind it ("93%, 102 of 110").
+3. **Trend as a picture.** One small chart of accuracy per round, so "am I getting better" needs no sentence.
+4. **Detail on request.** The band-by-band lines (near-limit strengths, hard noise, odd things by type) sit behind one "Details" control. The 95% range is shown as the shaded part of the bar, with one line explaining it once.
+5. **Words say what to do.** "Weakest spot: jumps called a dip (8 of 50)" with the one-line habit to fix it, instead of a list of counts.
+Proof: the no-repeat test above, a screenshot read at 390 px, and Ahmed's answer to "can you find your pass-line status in three seconds". Cost is inside step 3 (0.5 to 1.5 points) plus about 0.2 for the repeat test; not a new step.
+
 ## Risks and how each is covered
 - Material's own styles override mine: build on the existing override files and test at every width listed.
 - The service worker keeps old fonts: bump the cache version through the existing template and test with the network off.
