@@ -119,8 +119,8 @@ code,.code{font-family:var(--ffM);font-size:14.5px;background:var(--surf);border
 .seg label{font-family:var(--ffU);font-size:15px;font-weight:600;padding:0 14px;min-height:44px;display:inline-flex;align-items:center;cursor:pointer;color:var(--tx2);background:var(--surf);border-right:1px solid var(--rule)}
 .seg label:last-child{border-right:0}
 .bar .gl{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx2)}
-.wrap:has(#v1:checked) label[for=v1],.wrap:has(#v2:checked) label[for=v2],.wrap:has(#v3:checked) label[for=v3],
-.wrap:has(#k1:checked) label[for=k1],.wrap:has(#k2:checked) label[for=k2]{background:var(--acc);color:var(--bg)}
+.wrap:not(:has(#v2:checked,#v3:checked)) label[for=v1],.wrap:has(#v2:checked) label[for=v2],.wrap:has(#v3:checked) label[for=v3],
+.wrap:not(:has(#k2:checked)) label[for=k1],.wrap:has(#k2:checked) label[for=k2]{background:var(--acc);color:var(--bg)}
 .wrap:has(#v1:focus-visible) label[for=v1],.wrap:has(#v2:focus-visible) label[for=v2],.wrap:has(#v3:focus-visible) label[for=v3],
 .wrap:has(#k1:focus-visible) label[for=k1],.wrap:has(#k2:focus-visible) label[for=k2]{outline:3px solid var(--tx);outline-offset:-3px}
 .wrap:has(#v2:checked) .optB{display:none}
@@ -170,7 +170,7 @@ code,.code{font-family:var(--ffM);font-size:14.5px;background:var(--surf);border
 .tog{display:inline-flex;border:1.5px solid var(--tx3);border-radius:8px;overflow:hidden}
 .tog label{font-size:14px;font-weight:600;min-height:40px;padding:0 12px;display:inline-flex;align-items:center;cursor:pointer;color:var(--tx2);background:var(--surf);border-right:1px solid var(--rule)}
 .tog label:last-child{border-right:0}
-#fa:checked ~ .board label[for=fa],#fb:checked ~ .board label[for=fb]{background:var(--acc);color:var(--bg)}
+#fb:not(:checked) ~ .board label[for=fa],#fb:checked ~ .board label[for=fb]{background:var(--acc);color:var(--bg)}
 #fa:focus-visible ~ .board label[for=fa],#fb:focus-visible ~ .board label[for=fb]{outline:3px solid var(--tx);outline-offset:-3px}
 #fb:checked ~ .board{--read:var(--ffB);--hw:600}
 .ans{font-family:var(--ffU);font-size:18px;font-weight:700;min-height:56px;border:2px solid var(--tx2);border-radius:6px;background:var(--surf);color:var(--tx);cursor:pointer}

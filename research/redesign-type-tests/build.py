@@ -40,7 +40,7 @@ def frame(face, size, inner, extra=''):
 def seg(name, items):
     out = ['<span class="seg" role="group" aria-label="%s">' % name]
     for i, (id_, lab, chk) in enumerate(items):
-        out.append('<input class="sr" type="radio" name="%s" id="%s"%s><label for="%s">%s</label>' % (name, id_, ' checked' if chk else '', id_, lab))
+        out.append('<input class="sr" type="radio" name="%s" id="%s"><label for="%s">%s</label>' % (name, id_, id_, lab))
     out.append('</span>')
     return ''.join(out)
 
@@ -48,7 +48,7 @@ def tog():
     return '<span class="tog"><label for="fa">A Atkinson</label><label for="fb">B Literata</label></span>'
 
 def facepick(inner_board):
-    return '<input class="sr" type="radio" name="face" id="fa" checked><input class="sr" type="radio" name="face" id="fb">' + inner_board
+    return '<input class="sr" type="radio" name="face" id="fa"><input class="sr" type="radio" name="face" id="fb">' + inner_board
 
 # ================================================================ TYPE COMPARE
 def board_type():
@@ -105,7 +105,7 @@ def board_type():
              '</tbody></table></div>'
              % (f1(tot_today), f1(SZ['atk_n']), f1(SZ['atk_i']), f1(SZ['sym'] + SZ['cross']), f1(tot_A),
                 f1(SZ['lit_n']), f1(SZ['lit_i']), f1(SZ['lit_g']), f1(SZ['sym'] + SZ['cross']), f1(tot_B)))
-    b.append('<p class="small">Both fit the offline cache with room to spare. The difference between A and B is mostly Literata\u2019s own Greek.</p>')
+    b.append('<p class="small">For scale, the book\u2019s offline cache is about 4.9 MB today. The difference between A and B is mostly Literata\u2019s own Greek.</p>')
     obs = MEAS.get('notes')
     b.append('<h2>6. Decision</h2><p class="lede">Tell me A or B for the reading face, and which label face you prefer (Plex Mono, Plex Sans or the reading face). I have not picked for you.</p>')
     if obs: b.append('<div class="note"><p class="lab">What I noticed after rendering both</p>%s</div>' % obs)
@@ -322,7 +322,7 @@ def board_pc_eyes():
             + win('2. After answering: the window has scrolled, so the feedback is readable and Next stays pinned', f2_, 650) +
             '</div><div style="padding:22px 40px 0;max-width:1100px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;font-size:14px;color:var(--tx2)">'
             '<div><p class="eyebrow">Curve height follows the window</p><p style="margin:0">40% of the window height, never under 220 px or over 400 px, up to 1000 px wide. Short windows or a zoomed page just push the buttons lower; nothing is cut off.</p></div>'
-            '<div><p class="eyebrow">Feedback is body text</p><p style="margin:0">18 px, about 62 characters a line, the same size as a chapter. It is never squeezed to fit.</p></div>'
+            '<div><p class="eyebrow">Feedback is body text</p><p style="margin:0">18 px body text at a comfortable line length, the same size as a chapter. It is never squeezed to fit.</p></div>'
             '<div><p class="eyebrow">Next stays under your thumb</p><p style="margin:0">The pinned bar appears after you answer. The page keeps bottom space so it never covers the last line.</p></div></div></div>')
     return facepick(body)
 
