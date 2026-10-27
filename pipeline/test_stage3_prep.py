@@ -20,7 +20,7 @@ def test_tier_rules():
     assert C.tier_of(ev(c8_n=1, c8_best=4.0)) == "1A"
     assert C.tier_of(ev(c8_n=2, c8_best=3.5)) == "1L"
     assert C.tier_of(ev(c8_n=1, c8_best=2.0)) == "3"
-    for k in ("gap_dump", "burst", "flipmatch", "c5", "ecl_overlap", "repeater"):                    # any flag: tier 2, kept
+    for k in ("gap_dump", "burst", "flipmatch", "c5", "ecl_overlap", "repeater", "step"):                    # any flag: tier 2, kept
         assert C.tier_of(ev(c8_n=1, c8_best=9.0, **{k: True})) == "2", k
     f = C.flags_of(dict(flags="gap edge; flipped", burst_n=3))
     assert f == dict(gap_dump=True, flipmatch=True, burst=True), f
@@ -74,6 +74,27 @@ def test_v2_flags():
     out = C.enrich_group(g, eph, set())
     assert [e["repeater"] for e in out] == [True] * 3 + [False] * 2 and all(e["tier"] == "2" for e in out[:3]) and out[3]["tier"] == "1B", out
     assert not any(e["repeater"] or e["ecl_overlap"] for e in C.enrich_group(g, eph, set(), extra=False))
+
+
+def test_step_test():
+    bd = 1 / 144; bt = np.arange(0, 6, bd)
+    def run(f, center=3.0, dur=4.0, depth=5000.0, t=bt):
+        s = C.step_stats(t, f, bd, np.median(f), center, dur, depth)
+        return s, C.step_flag(s)
+    box = np.ones_like(bt); box[np.abs(bt - 3) < 2 / 24] -= 5000e-6
+    s, fl = run(box); assert not fl and abs(s["lift_pre"]) < 0.05 and abs(s["lift_post"]) < 0.05 and s["cover_pre"] > 0.99, ("box must pass", s)
+    step = np.ones_like(bt); step[bt > 3 - 2 / 24] -= 5000e-6                      # drops and stays down: an eclipse edge or a level shift
+    assert run(step)[1], "step must be flagged"
+    ring = box.copy(); ring[(bt > 3 + 2 / 24) & (bt < 3 + 6 / 24)] += 4000e-6      # overshoot after the dip: detrender ringing on a ramp
+    assert run(ring)[1], "overshoot must be flagged"
+    k = bt > 2.9                                                                    # event at the start of the data: nothing before it
+    s, fl = run(box[k], t=bt[k], center=3.0); assert fl and s["cover_pre"] < C.STEP_COVER, ("no baseline", s)
+    assert not C.step_flag(dict(tic=1)), "never measured: not flagged (Stage 2 data)"
+    e = dict(**s, tic=1)                                                            # enrich: flagged in tier, and switched off for Stage 2 regressions
+    ev_ = dict(tic=1, kind="real", product="QLP", center=3.0, dur_h=4, flags="", burst_n=0, c8_n=0, c8_best=None, **s)
+    eph = C.Ephem(pd.DataFrame(dict(tic=[1], bjd0=[57000.0], p_bin_d=[67.7], tic_radius_rsun=[np.nan])))
+    o = C.enrich_group(dict(events=[ev_]), eph, set())[0]; assert o["step"] and o["tier"] == "2"
+    assert not C.enrich_group(dict(events=[ev_]), eph, set(), extra=False)[0]["step"]
 
 
 def test_settings_hash_changes_with_any_setting():

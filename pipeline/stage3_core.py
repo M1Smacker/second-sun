@@ -14,6 +14,8 @@ C8_STRICT, C8_LENIENT = 4.0, 3.0    # second-product SNR: confirmed / weakly con
 # v2 (28 Oct, after the first real search): two flags set from physics, never tuned on the events they remove (flag, never delete)
 ECL_MTOT, ECL_RFAC = 2.0, 2.0       # eclipse length: total mass 2 Msun (Kepler 3rd law), R1+R2 taken as 2 x the TIC radius; true length known to about 2x
 ECL_MAX_FRAC = 0.4                  # an eclipse is never taken as longer than 0.4 of the orbit
+STEP_LIFT, STEP_COVER = 0.5, 0.5    # v3 flat-baseline test: a transit is a box, so the flux just before and after must sit at baseline: a side lifted
+                                    # or dropped by more than 0.5 of the dip depth, or a side with under half its data, flags the event
 REPEAT_N = 3                        # a binary-orbiting planet has P >= about 15 d (binary > 5 d, stability), so at most 2 transits fit in a 27 d sector
 TBINS, TLABELS = [0, 11, 12, 14], ["bright<11", "mid11-12", "faint12+"]
 
@@ -57,11 +59,34 @@ def flags_of(e):
     return dict(gap_dump=("gap edge" in fl) or ("momentum dump" in fl), flipmatch="flipped" in fl, burst=(e.get("burst_n") or 0) >= BURST_MIN)
 
 
+def window_lift(bt, bf, bd, med, lo, hi, depth_ppm):
+    """(mean flux in [lo, hi) minus the median, in units of the dip depth; share of the window that has data). The dip itself is -1 in these units."""
+    k = (bt >= lo) & (bt < hi) & np.isfinite(bf)
+    return (float((np.mean(bf[k]) - med) / (depth_ppm * 1e-6)) if k.any() and depth_ppm else None), float(k.sum() * bd / (hi - lo))
+
+
+def step_stats(bt, bf, bd, med, center, dur_h, depth_ppm):
+    """Flux just before and after an event, in the same flattened, binned flux the detector scored. Window length = event length, at least 6 h."""
+    half, w = dur_h / 48, max(dur_h, 6.0) / 24
+    pre = window_lift(bt, bf, bd, med, center - half - w, center - half, depth_ppm)
+    post = window_lift(bt, bf, bd, med, center + half, center + half + w, depth_ppm)
+    return dict(lift_pre=pre[0], lift_post=post[0], cover_pre=pre[1], cover_post=post[1])
+
+
+def step_flag(e):
+    """True if the event is not a box on a flat baseline (step, ramp, overshoot) or has too little data on a side to tell. False if never measured."""
+    if "lift_pre" not in e:
+        return False
+    if min(e["cover_pre"], e["cover_post"]) < STEP_COVER:
+        return True
+    return any(l is None or abs(l) > STEP_LIFT for l in (e["lift_pre"], e["lift_post"]))
+
+
 def tier_of(e):
     """2 = flagged (kept, lower priority); 1A second product agrees at SNR >= 4; 1L agrees at 3 to 4; 1B no second product (cannot be confirmed
     by this check, includes every QLP-only star); 3 = a second product exists and disagrees (SNR < 3), kept and labelled. Stage 2's 'survivors'
     are exactly 1A + 1L + 1B."""
-    if e["gap_dump"] or e["burst"] or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater"):
+    if e["gap_dump"] or e["burst"] or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("step"):
         return "2"
     if not (e.get("c8_n") or 0) > 0 or e.get("c8_best") is None:
         return "1B"
@@ -76,7 +101,7 @@ def enrich_event(e, ephem, qlp_only, n_same=0, extra=True):
     out = flags_of(e)
     out.update(ph_d=(float(d) if np.isfinite(d) else None), c5=bool(d < PH_D), second_product=(e.get("c8_n") or 0) > 0,
                qlp_only_star=int(e["tic"]) in qlp_only, repeat_n=int(n_same),
-               ecl_overlap=bool(extra and ephem.overlap(e["tic"], e["center"], e.get("dur_h") or 0)), repeater=bool(extra and n_same >= REPEAT_N))
+               ecl_overlap=bool(extra and ephem.overlap(e["tic"], e["center"], e.get("dur_h") or 0)), repeater=bool(extra and n_same >= REPEAT_N), step=bool(extra and step_flag(e)))
     out["tier"] = tier_of({**e, **out})
     return out
 

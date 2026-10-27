@@ -1,0 +1,5 @@
+160 random star-sectors, 774 injected boxes, 616 detected at SNR 7 or more (flagged share below is among the detected)
+     4 h box:  183 detected, step test flags   3.3%  (of which no data on a side:  3.3%)
+     8 h box:  214 detected, step test flags   2.8%  (of which no data on a side:  2.8%)
+    14 h box:  219 detected, step test flags   0.9%  (of which no data on a side:  0.5%)
+  all: 616 detected, flagged 2.3%, so 97.7% of injected dips are kept
