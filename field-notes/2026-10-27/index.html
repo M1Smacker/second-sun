@@ -2352,6 +2352,7 @@
 <p><strong>The plan was revised after your feedback, and a font was measured for it.</strong> You asked for Atkinson against Literata, a quieter note margin and an Eyes layout that scrolls naturally. The new private page has seven boards. We also tested which font should draw σ, ≈ and √. Inter, my first idea, has Greek but not the maths signs. A cut of Noto Sans Math is 1.9 KB and covers everything the book uses, with one more glyph (✗) in a 0.9 KB file. You picked Atkinson and left the other choices to us.</p>
 </li>
 <li><strong>The next hunt stage is prepared but not run.</strong> Stage 3 would search all 549 stars. Before it, we wrapped the Stage 2 search so its results go to a folder named after the settings, added the eclipse-phase check to every event, labelled the 237 stars that have only one light curve, and checked the eclipse shape of the 136 stars whose shape was never measured. No star was searched and the settings are not frozen.</li>
+<li><strong>Your Eyes results were read, and the page that shows them was found cluttered.</strong> Over 25 finished rounds (665 curves; every dip is a fake hidden in real noise, and no real candidate has been shown yet), you found 93% of the clear dips in the standard test, and in the last five rounds you called none of 40 quiet curves a dip. Your misses come in three kinds: faint dips under strength 6.5 (you found 14 of 30), jumps and dips at a gap taken for a dip (12 of 82), and early on, deep dips called "odd" (9 times in the first five rounds, never after). You said the stats are hard to find, and the code shows why: after a hard test the same sentences are printed two or three times. The redesign plan now says one fact in one place, verdict first.</li>
 </ol>
 <h2 id="the-idea-behind-it">The idea behind it<a class="headerlink" href="#the-idea-behind-it" title="Permanent link">&para;</a></h2>
 <p><strong>Idea (measure the claim):</strong> advice is a claim. Some claims have a number that can contradict them, such as a contrast ratio, a character count or a list of characters in a file. For those, checking with a tool beats reading, because a tool can say no. A <strong>contrast ratio</strong> compares the brightness of text and its background; 7 to 1 means the lighter is seven times brighter once a small allowance is added to both. Black on white is 21 to 1. A <strong>character map</strong> is the list of characters a font file can draw; if a character is missing, the device quietly borrows one from another font.</p>
@@ -2359,6 +2360,8 @@
 <p><strong>Idea (decide before you build):</strong> the learning-path review ended with three questions for you, not with code. Changing the order of a book changes how you learn, and that is your call.</p>
 <p><strong>Idea (make new code rebuild an old answer):</strong> before trusting new code, ask it to reproduce a result you already trust. Our Stage 3 preparation rebuilt the published Stage 2 numbers exactly (36 real events cut to 12, 7, 7, 4, 4, 4 and 1), and a re-run of the five known stars gave identical events. If either had differed, the new code would have been wrong, not the old result. This is called a <strong>regression test</strong>.</p>
 <p><strong>Idea (a flag is not a deletion):</strong> a rule such as "this event sits near a known eclipse" marks the event and moves it to a lower tier. It never throws the event away, because a real planet can cross at an awkward moment.</p>
+<p><strong>Idea (count the kind of mistake, not only the score):</strong> "93% right" hides that a missed planet, a false alarm and a mislabelled glitch cost the hunt different things. A miss loses a candidate, a false alarm wastes a check, and a glitch taken for a dip is the one that could fool us. Sort the misses by kind before judging anyone, a person or a program.</p>
+<p><strong>Idea (one fact, one place):</strong> a results page is clear when each number appears once, next to the line it is judged against. Repeating a fact in three lists does not make it safer, it only hides the one number you came for.</p>
 <h2 id="how-you-could-do-it-yourself">How you could do it yourself<a class="headerlink" href="#how-you-could-do-it-yourself" title="Permanent link">&para;</a></h2>
 <ul>
 <li>List the missing characters of a font file (needs <code>pip install fonttools brotli</code>): <code>python -c "from fontTools.ttLib import TTFont as T; cm=T('book/docs/assets/fonts/inter-latin-wght-normal.woff2').getBestCmap(); print([c for c in 'σμΔ≈≥' if ord(c) not in cm])"</code></li>
@@ -2375,6 +2378,8 @@
 <li><strong>Not tested:</strong> the font page has been checked for script errors but not yet looked at on your phone. The new score line is covered by tests on a local copy of the book, not on your device.</li>
 <li><strong>Found (hunt):</strong> the eclipse-phase rule never covers more than 28% of any star's timeline, because the shortest binary period is 5 days. Of the 136 stars with an unmeasured eclipse shape, 80 show a clear eclipse and 56 do not; those 56 would be searched last.</li>
 <li><strong>Not decided:</strong> the Stage 3 plan mentions a search for pairs of dips, but nothing for it is built. It needs your decision before the run.</li>
+<li><strong>Found (Eyes):</strong> in the first standard sitting your score went from 77% in the first two test rounds to 90% or more in every test round from the fourth on, and the last third of a round scores as well as the middle (83%) and above the first third (78%), so there is no sign of tiredness. Dips at strength 6.5 and above were found 84% to 98% of the time; below 6.5 only 47%, which is roughly under the search's own cut of 7, so that is the limit of the data and not a flaw in you.</li>
+<li><strong>Not tested (Eyes):</strong> every dip so far is a fake. The standard test and the hard test each still need a second day to count, and the real-candidate mode has had no rounds yet. Two rounds on a second device are too few to compare it with the first.</li>
 <li><strong>Still waiting:</strong> nothing has been searched on the real target stars. The hunt stays on hold until you say start.</li>
 </ul>
 <h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
@@ -2389,6 +2394,10 @@
 <details class="quiz">
 <summary>3. Why did we re-run the five known stars through the new code before searching the rest?</summary>
 <p>To prove the new code returns the same events as Stage 2. Then any difference in Stage 3 comes from the new rules, not from a slip in the code.</p>
+</details>
+<details class="quiz">
+<summary>4. Why is a single score such as 93% not enough to judge how well someone spots dips?</summary>
+<p>Because the wrong answers differ in kind. Missing a faint dip, calling a quiet curve a dip and mistaking a jump for a dip each cost the hunt something different, so the misses must be sorted by kind first.</p>
 </details>
 
 
