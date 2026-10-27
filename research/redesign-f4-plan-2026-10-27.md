@@ -43,3 +43,11 @@ Day 1 steps 1 and 2 (publish once they pass); day 2 steps 3 and 4. Each step end
 
 ## What I need before starting
 Ahmed says "start F4". Nothing else is blocking: the typeface, the label face, the margin, the pinned Next and the symbol files are settled.
+
+## Status, 27 Oct evening (Ahmed said "start F4"; weekly cap raised to 20%)
+- **Step 1 done and live** (gh-pages 3ea879f). Atkinson Hyperlegible Next for text and headings, Plex Sans for the interface and labels (400 and 600 files; a 500 request renders at 600), Plex Mono for code, the two symbol files with their unicode-range. Inter removed. `tools/test_fonts.py` (31 non-ASCII characters in the sources and the built pages, all drawn; it reads `tools/font_coverage.json`, made by `tools/make_font_coverage.py` because the gate's Python has no brotli) is in the gate as step 3c. The service worker needed no list change: `hooks.py` precaches every built file.
+- **Step 2 done and live.** Rail (232), reading column (540), margin (260) from 1120 px (not the 1100 drawn: the three zones plus gaps need 1086 px), strip hidden beside the rail, notes inline below that. `site_check.mjs chapter` (14 checks at 7 widths on 2 chapters, plus a scroll check at 1366 by 650) is in the gate. It was shown to fail by widening the column in a scratch copy. Chapter-number buttons are a 4 column grid (5 columns gave 40 px wide targets and the existing layout test refused them).
+- **Step 3 partly done.** The hard line no longer prints the clear-planet and hard-noise sentences a second time (`hardLines(h, true)`), with a test. NOT built: the Eyes PC layout, and the verdict-first results screen, which waits for Ahmed's decisions 1 to 3 on the Results board of the design Artifact (v13).
+- **Step 4 not done:** four callout styles and the look pass. The gate and a field note item for steps 1 and 2 are done.
+- **Not verified:** nothing has been seen on Ahmed's iPhone or PC; the layout was measured by script and looked at in one window. Actual cost so far about 2.0 weekly points (estimate for what was done 3 to 6.5).
+- Process: push main before running the gate, because it builds the pushed main.
