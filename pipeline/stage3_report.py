@@ -7,12 +7,12 @@ import numpy as np, pandas as pd
 import stage3_core as C
 
 
-def load(groups_dir):
+def load(groups_dir, extra=True):
     ephem, qlp = C.Ephem(pd.read_csv(C.TARGETS, comment="#")), C.qlp_only_tics()
     ev, meta = [], []
     for p in glob.glob(str(pathlib.Path(groups_dir) / "*.json")):
         g = json.load(open(p))
-        ev += [e if "tier" in e else {**e, **C.enrich_event(e, ephem, qlp)} for e in g["events"]]
+        ev += g["events"] if all("tier" in e for e in g["events"]) else C.enrich_group(g, ephem, qlp, extra)
         meta += [dict(m, tic=g["tic"], sector=g["sector"]) for m in g["meta"]]
     best = pd.read_csv(C.BEST)[["tic", "sector", "product"]].rename(columns={"product": "best"})
     ev = pd.DataFrame(ev).merge(best, on=["tic", "sector"], how="left")

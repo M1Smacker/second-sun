@@ -25,7 +25,7 @@ def current_settings(stars_csv):
     code = {f: C.sha(C.ROOT / "pipeline" / f) for f in ("stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py",
                                                        "stage3_core.py", "stage3.py")}
     return dict(snr_threshold=7.0, durs_h=list(D.DURS_H), bin_d=getattr(D, "BIN_D", None), burst_d=S2.BURST_D, flip_burst_min=S2.FLIP_BURST_MIN,
-                c5_ph_d=C.PH_D, burst_min=C.BURST_MIN, c8_strict=C.C8_STRICT, c8_lenient=C.C8_LENIENT,
+                c5_ph_d=C.PH_D, ecl_mtot=C.ECL_MTOT, ecl_rfac=C.ECL_RFAC, ecl_max_frac=C.ECL_MAX_FRAC, repeat_n=C.REPEAT_N, burst_min=C.BURST_MIN, c8_strict=C.C8_STRICT, c8_lenient=C.C8_LENIENT,
                 injection="12 x 8 h noise, clipped to 1500..40000 ppm, 8 h wide, middle of the longest segment (stage2_search.do_group)",
                 stars=C.sha(stars_csv), manifest=C.sha(C.MANIFEST), targets=C.sha(C.TARGETS), best_product=C.sha(C.BEST), code=code)
 
@@ -47,8 +47,7 @@ def do_group3(args):
     p = S2.do_group(args)                                        # the unchanged Stage 2 search; writes its JSON into S2.GROUPS
     g = json.load(open(p))
     if g.get("stage3") != S3["tag"]:
-        for e in g["events"]:
-            e.update(C.enrich_event(e, S3["ephem"], S3["qlp"]))
+        g["events"] = C.enrich_group(g, S3["ephem"], S3["qlp"])
         g["stage3"] = S3["tag"]
         json.dump(g, open(p, "w"), default=lambda o: None if o != o else float(o))
     return str(p)

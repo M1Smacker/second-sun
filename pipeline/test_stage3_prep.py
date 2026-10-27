@@ -20,7 +20,7 @@ def test_tier_rules():
     assert C.tier_of(ev(c8_n=1, c8_best=4.0)) == "1A"
     assert C.tier_of(ev(c8_n=2, c8_best=3.5)) == "1L"
     assert C.tier_of(ev(c8_n=1, c8_best=2.0)) == "3"
-    for k in ("gap_dump", "burst", "flipmatch", "c5"):                    # any flag: tier 2, kept
+    for k in ("gap_dump", "burst", "flipmatch", "c5", "ecl_overlap", "repeater"):                    # any flag: tier 2, kept
         assert C.tier_of(ev(c8_n=1, c8_best=9.0, **{k: True})) == "2", k
     f = C.flags_of(dict(flags="gap edge; flipped", burst_n=3))
     assert f == dict(gap_dump=True, flipmatch=True, burst=True), f
@@ -48,7 +48,7 @@ def parse(line):
 
 
 def test_waterfall_reproduces_stage2():
-    ev2, _ = R.load(D2 / "groups")
+    ev2, _ = R.load(D2 / "groups", extra=False)
     E = ev2[ev2.primary]
     txt = (C.ROOT / "research" / "stage2-2026-10-23" / "aggregate.txt").read_text(encoding="utf-8").splitlines()
     want = {l.split()[0]: parse(l) for l in txt if "no gap/dump flag" in l and "start" in l}
@@ -57,6 +57,23 @@ def test_waterfall_reproduces_stage2():
     surv = E[(E.kind == "real") & E.tier.isin(["1A", "1L", "1B"])]
     assert len(surv) == got["real"][5], "tiers 1A+1L+1B must equal Stage 2's lenient survivors"
     print(f"  real {got['real']} | upside-down {got['upside-down']} (identical to the published Stage 2 aggregate)")
+
+
+def test_v2_flags():
+    tg = pd.DataFrame(dict(tic=[1, 2, 3], bjd0=[2457000.0 + 57000 - 2457000 + 0.0] * 3, p_bin_d=[67.7, 12.7, 67.7], tic_radius_rsun=[10.9, 0.48, np.nan]))
+    tg["bjd0"] = 57000.0                                                  # eclipse centre at t = 0 in the Ephem's own frame (bjd0 - 57000)
+    eph = C.Ephem(tg)
+    assert eph.overlap(1, 0.8, 3), "giant: an event 0.8 d from the eclipse centre sits inside the physical eclipse"
+    assert not eph.overlap(1, 20.0, 3), "far from both eclipses"
+    assert eph.overlap(1, 67.7 / 2 + 0.9, 3), "secondary at phase 0.5 counts too"
+    assert not eph.overlap(2, 1.3, 15), "dwarf pair: a 15 h event 1.3 d from a 0.13 d eclipse does not overlap"
+    assert not eph.overlap(2, 3.0, 3), "dwarf pair, event 3 d from the eclipse: no overlap"
+    assert not eph.overlap(3, 0.0, 3), "no TIC radius: never flagged by this rule"
+    g = dict(events=[dict(tic=1, kind="real", product="QLP", center=20.0, dur_h=3, flags="", burst_n=0, c8_n=0, c8_best=None) for _ in range(3)]
+             + [dict(tic=1, kind="flip", product="QLP", center=20.0, dur_h=3, flags="", burst_n=0, c8_n=0, c8_best=None) for _ in range(2)])
+    out = C.enrich_group(g, eph, set())
+    assert [e["repeater"] for e in out] == [True] * 3 + [False] * 2 and all(e["tier"] == "2" for e in out[:3]) and out[3]["tier"] == "1B", out
+    assert not any(e["repeater"] or e["ecl_overlap"] for e in C.enrich_group(g, eph, set(), extra=False))
 
 
 def test_settings_hash_changes_with_any_setting():
