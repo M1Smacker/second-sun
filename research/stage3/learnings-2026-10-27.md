@@ -1,0 +1,38 @@
+# What the first real search taught us, and how to improve the filter (27 Oct 2026)
+
+Plain facts, no planet claims. Real events stay in `data\` (git-ignored); only totals are here.
+
+## 1. What happened
+- **v1** (settings hash 04e917e5a7e9): 549 stars, 5,082 star-sector groups, about 30 minutes, 0 errors. 604 real dips; 186 passed the checks (tier 1); the same search on upside-down copies of the curves gave 174.
+- **v2** (hash 14c896421028): same search code, same 2,642 events (checked: identical), two new flags. Real tier 1 fell to 64 (11 of them confirmed by a second data product); upside-down tier 1 fell to 90 (37 confirmed).
+- **Reading:** after the fixes the real count (64) is below the control (90). There is no excess of real dips over false alarms. The control is an upper bound, because stellar flares point up and become dips when flipped, so real below control is expected for noise alone. We cannot claim a signal.
+
+## 2. The two fixes (flags, never deletions), and why they are physics and not tuning
+1. **Eclipse overlap by physical length.** An event is flagged if its window touches an eclipse of length T = P/pi x (R1+R2)/a, with a from Kepler's third law (total mass 2 Msun, R1+R2 taken as 2 x the TIC radius, never longer than 0.4 of the orbit). True length is known to about a factor of 2; the rule is a flag so that is acceptable. Stars with no TIC radius (42 of 552 rows) keep only the old 0.35 d rule. Effect: 147 real and 137 upside-down events flagged. The two strongest events of v1 (signal to noise 39 and 15) were the sloping edges of long eclipses and are now flagged.
+2. **Repeater flag: 3 or more events of the same kind in one product and sector.** A planet orbiting a binary must be outside the stability limit. Holman and Wiegert's fit gives about 2.4 binary separations for a circular, equal-mass binary, so (by my own conversion, Kepler's third law) a period of about 3.7 binary periods; with our binary periods above 5 d that is about 18 d, so at most 2 transits fit in a 27 d sector (for a very unequal pair the limit drops to about 14 d, still at most 2 in nearly all cases). A third dip in one sector means a variable star or a second eclipsing pair. 226 real and 281 upside-down events flagged; 23 stars carry repeaters among the real events.
+- **Honest limit:** I chose both rules after reading the v1 results (I had seen the events they remove). They are fixed by physics and applied identically to the real and the upside-down curves, so the comparison stays fair, but this is not a blind pre-registration. v2 is the new frozen baseline; do not tune it further on these 549 stars.
+- Tests: 3 new checks, mutation-tested (a wrong eclipse factor and a wrong repeat count are both caught); the Stage 2 regression (36 and 84 events, published waterfall) is unchanged.
+
+## 3. What the catalogues said (downloaded 27 Oct; files in `data\xmatch`, not in git)
+- **NASA Exoplanet Archive, TESS Objects of Interest:** 6 of our 549 stars are TOIs: 5 are marked known planet and 1 is a planet candidate (TOI-7910.01, period 77.5 d, depth about 1,360 ppm, 10 h). One of the 8 strongest v1 events sat on a star that is itself a TOI whose period equals the star's own Kepler binary period (an eclipsing binary labelled as a TOI).
+- **Known circumbinary planets (archive flag cb_flag=1, 53 rows):** 6 hosts are in our list: Kepler-16, 38, 453, 1647, PH1 and Kepler-1660. We used 5 as controls; **Kepler-1660 is a sixth control we have not used.**
+- **TESS eclipsing binary catalogue (Prsa et al. 2022, VizieR):** 53 of our stars are in it. For 40 the TESS period matches Kepler's, for 8 it is half (equal-depth eclipses), for 1 double, and 4 disagree (possible blends). The repeater-flagged stars are almost all not in that catalogue (4 of 68), so the repeater flag is finding things that catalogue does not list, or things that appear only in later sectors.
+
+## 4. What the literature says about the same problems
+- **Davies et al. 2026** (mono-cbp, arXiv 2604.09435): after automatic vetting they still found, among 1,647 flagged events, 258 detrending artefacts and 135 systematics by eye; their residual false positives are uneliminated secondary eclipses, background variable stars and leftover stellar variability. Same classes as ours. They recover at least 50% of 14 known planets by injection.
+- **LEO-Vetter** (arXiv 2509.10619): the standard TESS vetting list is shape and significance tests (momentum dumps, scattered light ramps at the start of each orbit), odd and even depth, secondary events, depths too deep for a planet, then pixel-level tests for blends.
+- **Pterodactyls** (arXiv 2206.03989): flags signals whose single-event depths scatter widely and whose duration does not match the expected one, because variability makes dips longer than a transit.
+- **Blend tools** (TRICERATOPS arXiv 2002.00691, DEATHSTAR arXiv 2312.08373): need pixel and neighbour data; only worth running on survivors.
+
+## 5. How the filter can improve next (ranked; none built)
+1. **Step and ramp test (flat baseline).** A transit is a box: flux before and after should match. Five of the 8 strongest v1 events still pass v2: four look like slow drifts or orbit-start ramps (which this test targets) and one is a weak 823 ppm dip. This is the biggest cheap gain. Cost: reading event windows once (about 1,500 events).
+2. **Orbit-start ramp flag:** widen the gap-edge flag to about a day after each orbit start (LEO-Vetter names this failure).
+3. **Per-event depth scatter and odd/even depth (Pterodactyls and LEO-Vetter style),** applied to repeaters: a repeating, consistent pattern is a periodic blend and can be labelled instead of discarded.
+4. **Use the sixth control (Kepler-1660)** and measure recovery of known planets and of injected dips under v2, per class, so every cut has a measured cost in real dips lost.
+5. **Label events on stars that are TOIs, known hosts or in the TESS EB catalogue** automatically, so nobody spends time on a known object.
+6. **Judge every future version by real minus upside-down per tier,** and by recovery of injections, not by list length.
+7. **Pixel and centroid tests (blends)** only for survivors, later (needs target pixel files).
+8. **Pair search** (two dips close together) was never built; it is still a gap and a decision for Ahmed.
+
+## 6. What this does not tell us
+No human has looked at any v2 event. The step test is not built. Nothing here is a candidate.
