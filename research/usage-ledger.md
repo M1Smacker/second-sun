@@ -1,0 +1,44 @@
+# Usage ledger: what each kind of task really costs (Second Sun)
+
+Why this exists: Ahmed rations weekly usage by the day, so my estimates must get better. Before 27 Oct night I guessed 5.5 to 6.5 points for ten steps; they cost 2. This file is the record I read before I quote a number, and update after every task.
+
+## Protocol (every task, no exceptions)
+1. **Before:** call `get_usage`. Write down weekly %, 5-hour %, and `tokensUsed` of the context.
+2. **Estimate:** write my range in this file's table before starting, using the calibration section below and the task type. Say "uncalibrated" if the type has no row yet.
+3. **After:** call `get_usage` again. Fill the actual columns the same day.
+4. **Read the weekly meter with care:** it moves in whole points, so one task has about plus or minus 1 point of error. For small tasks use the 5-hour meter as the finer ruler: about 8 five-hour points equal 1 weekly point (see calibration). Bundle several small tasks into one row when each is under 1 point.
+5. **Update the calibration** (ratios and per-type costs) when a row is added. Keep sample sizes honest.
+
+What moves the meter: tokens I write, tool output I read into context, and the number of turns (each turn re-reads the whole context, so long sessions cost more per step). Screenshots and big file reads are expensive. Waiting idle costs nothing, so a long machine job is cheap if I do not poll it. Ahmed's own chats on the same account also count.
+
+## Ledger
+Times are UTC. "Mid" is the middle of my estimate range.
+
+| When | Task | Type | Size | My estimate | Weekly before to after | 5-hour before to after | Context tokens added | Actual points | Actual / mid |
+|---|---|---|---|---|---|---|---|---|---|
+| 27 Oct Day 1 | Eight mixed items: backup copy to D, score line, visitor guard, two expert pages, font test Artifact, spine review, field note | Mixed code, pages, Artifact, publish | 8 items, 1 publish | 4.1 to 7.1 | 0 to 5 | not recorded | not recorded | 5 | 0.9 |
+| 27 Oct Day 2 | Learning spine: data change, shape rules, pages, tests, publish | Book code plus full publish gate | 1 item, 1 publish | 2.5 to 6.5 | 5 to 7 | not recorded | not recorded | 2 | 0.44 |
+| 27 Oct Day 3 | Redesign plan canvas v1 (4 boards), field note item, book republish | Design Artifact plus publish | 4 boards, 1 publish | 4 to 7 (as scoped then) | 7 to 8 | not recorded | not recorded | 1 | 0.18 |
+| 27 Oct night, part 1 | Font and glyph research: scan book, download 10 font packages, coverage, cut and proof scripts, plan reply | Research with scripts | about 8 script runs, 3.5 MB downloaded | none given | 8 to 9 | 52 to 60 | +129K | 1 | n/a |
+| 27 Oct night, part 2 | The ten step run: generator, 7 boards, font upload, local browser checks, 12 publishes, notes, commits | Design Artifact build plus verification | 7 boards (about 70 KB source), 12 publishes, about 30 browser calls, 3 commits | 5.5 to 6.5 | 9 to 11 | 60 to 76 | +196K | 2 | 0.33 |
+
+Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
+
+| Step | 5-hour points | About weekly points |
+|---|---|---|
+| Generator, 7 boards, font upload | 5 | 0.6 |
+| Local browser checks, fixes, first publish | 4 | 0.5 |
+| Notes, memory, commit, push | 2 | 0.25 |
+| Visual checks, fixes, publish v8 | 2 | 0.25 |
+| Final fixes, publishes v9 to v12, commit | 3 | 0.4 |
+
+## Calibration (current, n = 4 estimated rows)
+- **Bias:** actual divided by the middle of my estimate was 0.9, 0.44, 0.18, 0.33. Median 0.39. My gut runs about 2.5 times too high on design and document build work, and about right on a mixed day of many small book items.
+- **Rule for now:** for Artifact and design work quote 0.25 to 0.6 times my gut. For mixed book work with a publish gate quote 0.5 to 0.9 times my gut. For pipeline or science code, and for long unattended runs, there is no data yet: say "uncalibrated, wide range" and give the old gut range, not a smaller one.
+- **Rulers:** about 8 five-hour points per weekly point (16 to 2 and 24 to 3, so n = 2). About 100K added context tokens per weekly point (98K and 108K, n = 2). Treat both as rough.
+- **Per unit costs seen so far:** one Artifact publish is about 0.15 to 0.25 point. A pass of about 25 browser calls with a few screenshots is about 0.5 to 0.7 point. Notes, commit and push is about 0.25 point. A research script batch with downloads is about 1 point.
+- **To learn next:** pipeline code with tests, a machine run that I only monitor, a full book publish gate, a Compass review.
+
+## Open rows (fill in as they happen)
+| When | Task | Estimate | Weekly before | 5-hour before | Context tokens before | After | Actual |
+|---|---|---|---|---|---|---|---|

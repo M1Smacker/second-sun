@@ -141,3 +141,8 @@ Three official starter rounds on a date after 24 Oct; hard practice (the vetting
 - Decided without asking (all reversible, listed on the plan page): Option A is Atkinson for text and headings, Option B is Literata, Plex Sans for the interface in both; label face left open (Plex Mono, Plex Sans or the reading face); PC reading column 540 px (a 600 px column gave 72 to 75 characters a line); the margin opens only the note for what is on screen; Next pinned after answering on Eyes.
 - Findings: Inter has no maths signs, so it is not a good fallback; Noto Sans Math cut to 23 glyphs is 1,876 bytes and a 876 byte file supplies the ballot x; Plex Mono has no Greek in the Google and Fontsource build.
 - Waiting for Ahmed: pick A or B, the label face, approve or change the PC chapter, Eyes and zoom layouts. Then F4 (real redesign) gets its own plan and go. Phase E stays off.
+
+## Ahmed's picks on the redesign plan v2 (27 Oct, about 05:00 Kuwait)
+- Decision 1, reading face: **A, Atkinson Hyperlegible Next** for text and headings (Plex Sans for the interface).
+- Decisions 2 to 5 he left to me ("whatever you think is best"). My picks: (2) labels and plot notes in **Plex Sans with tabular figures**, because it has Greek natively and keeps number columns aligned; Plex Mono stays for code only; (3) the right margin stays **contextual** as drawn, folding to inline notes under 1100 px and at zoom; (4) a **pinned Next bar** on Eyes after answering; (5) the **Noto Sans Math cut (1.9 KB) plus the 0.9 KB one-glyph file**.
+- Still true: nothing is built; F4 (the real redesign) gets its own plan and go. Ahmed also asked for the usage ledger, now in `research/usage-ledger.md`.
