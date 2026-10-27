@@ -23,6 +23,7 @@ Times are UTC. "Mid" is the middle of my estimate range.
 | 27 Oct night, part 2 | The ten step run: generator, 7 boards, font upload, local browser checks, 12 publishes, notes, commits | Design Artifact build plus verification | 7 boards (about 70 KB source), 12 publishes, about 30 browser calls, 3 commits | 5.5 to 6.5 | 9 to 11 | 60 to 76 | +196K | 2 | 0.33 |
 | 27 Oct, 02:05 to 02:20 UTC | Phase E1 prep: Compass review, 5 pipeline files (about 700 lines) with 7 self-checks, dry run of the 5 known hosts (45 s machine time), eclipse shape check of 136 stars (25 s), commit | Pipeline code with tests plus a Compass review | 5 code files, 1 review, 2 short machine runs, 1 commit | 1.5 to 3 (uncalibrated) | 11 to 12 | 78 to 83 | +71K | about 0.6 (5-hour ruler; the weekly meter rounded to 1) | 0.27 |
 | 27 Oct, 02:20 UTC | Option 4: written plan for the real redesign (F4), one repo survey | Plan document | 1 document (about 60 lines), 1 survey command | 0.3 to 0.7 | 12 to 12 | 83 to 84 | +9K | about 0.15 | 0.3 |
+| 27 Oct, 02:25 UTC | Same-day field note (5 edits), ledger and notes, commit, full book publish gate (all tests, 5 browser tests, gh-pages push) | Mixed book work with a publish gate | 5 edits, 1 gate run, 2 commits | 0.2 to 0.5 | 12 to 12 | 84 to 85 | +15K | about 0.15 | 0.43 |
 
 Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 
@@ -34,12 +35,13 @@ Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 | Visual checks, fixes, publish v8 | 2 | 0.25 |
 | Final fixes, publishes v9 to v12, commit | 3 | 0.4 |
 
-## Calibration (current, n = 6 estimated rows)
-- **Bias:** actual divided by the middle of my estimate: 0.9, 0.44, 0.18, 0.33, 0.27, 0.3. Median 0.31. My gut runs about 3 times too high on almost everything except a mixed day of many small book items (0.9, n = 1).
-- **Rule for now:** quote 0.25 to 0.6 times my gut for design and document work, for plan documents, and (first data point) for pipeline code with tests. Quote 0.5 to 0.9 times my gut for mixed book work with a publish gate. For long unattended runs and Compass reviews alone there is still no clean data: say "uncalibrated" and widen the range.
+## Calibration (current, n = 7 estimated rows)
+- **Bias:** actual divided by the middle of my estimate: 0.9, 0.44, 0.18, 0.33, 0.27, 0.3, 0.43. Median 0.33. My gut runs about 3 times too high on almost everything except a mixed day of many small book items (0.9, n = 1).
+- **Rule for now:** quote 0.25 to 0.6 times my gut for design and document work, for plan documents, and (first data point) for pipeline code with tests. Quote 0.4 to 0.9 times my gut for mixed book work with a publish gate (0.43 for a small note plus one gate run, 0.44 for a spine build). For long unattended runs and Compass reviews alone there is still no clean data: say "uncalibrated" and widen the range.
 - **Rulers:** about 8 five-hour points per weekly point (16 to 2, 24 to 3, 32 to 4: n = 3, steady). About 100K to 110K added context tokens per weekly point (n = 3).
 - **Per unit costs seen so far:** one Artifact publish about 0.15 to 0.25 point. A pass of about 25 browser calls with a few screenshots about 0.5 to 0.7 point. Notes, commit and push about 0.1 to 0.25 point. A research script batch with downloads about 1 point. A written plan document about 0.15 point. A machine job that I do not poll (45 s and 25 s runs) costs almost nothing beyond reading its output.
 - **Estimating habit that helps:** write the estimate before the work, do the work in the order of the plan, read `get_usage` at each step boundary. A lower number is not a better estimate: the aim is for actual divided by mid to sit near 1.
+- **Whole stretch, 27 Oct about 02:05 to 02:30 UTC:** E1 prep, F4 plan, field note, full publish gate, notes: weekly 11 to 12, 5-hour 78 to 85, +95K context tokens, so about 0.9 weekly points for what I had estimated at 2.0 to 4.2.
 - **To learn next:** a full book publish gate, a CSS change that needs browser tests, a long machine run that I monitor.
 
 ## Small tasks, bundled (each under 1 point)
@@ -51,4 +53,3 @@ Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 ## Open rows (fill in as they happen)
 | When | Task | Estimate | Weekly before | 5-hour before | Context tokens before | After | Actual |
 |---|---|---|---|---|---|---|---|
-| 27 Oct, 02:25 UTC | Same-day field note (5 edits) and the full book publish gate | 0.2 to 0.5 (mixed book work with a gate, 0.5 to 0.9 times a gut of 0.4 to 0.6) | 12 | 84 | about 545K | | |
