@@ -1,5 +1,8 @@
-160 random star-sectors, 774 injected boxes, 616 detected at SNR 7 or more (flagged share below is among the detected)
-     4 h box:  183 detected, step test flags   3.3%  (of which no data on a side:  3.3%)
-     8 h box:  214 detected, step test flags   2.8%  (of which no data on a side:  2.8%)
-    14 h box:  219 detected, step test flags   0.9%  (of which no data on a side:  0.5%)
-  all: 616 detected, flagged 2.3%, so 97.7% of injected dips are kept
+160 random star-sectors, 1548 injected dips, 1120 detected at SNR 7 or more; shares below are among the detected
+  box 14 h :  219 detected | step test  0.9% (no data on a side  0.5%) | eclipse overlap 10.5% | 0.35 d rule  7.3% | kept by all three  85.8%
+  box 4 h  :  183 detected | step test  3.3% (no data on a side  3.3%) | eclipse overlap  7.1% | 0.35 d rule  8.7% | kept by all three  86.3%
+  box 8 h  :  214 detected | step test  2.8% (no data on a side  2.8%) | eclipse overlap  7.5% | 0.35 d rule  7.5% | kept by all three  86.9%
+  trap 14 h:  221 detected | step test  0.9% (no data on a side  0.5%) | eclipse overlap 10.4% | 0.35 d rule  7.2% | kept by all three  86.0%
+  trap 4 h :  110 detected | step test  0.9% (no data on a side  0.9%) | eclipse overlap  9.1% | 0.35 d rule 11.8% | kept by all three  85.5%
+  trap 8 h :  173 detected | step test  2.3% (no data on a side  2.3%) | eclipse overlap  8.1% | 0.35 d rule  6.9% | kept by all three  87.9%
+  all: 1120 detected, kept by the three flags 86.4% (a ceiling: the other flags and the second-product check remove more)

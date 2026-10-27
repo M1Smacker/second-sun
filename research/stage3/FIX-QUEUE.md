@@ -4,9 +4,9 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
 
 ## Do first (no re-search needed, small); v3 step test DONE 27 Oct (hash 23a74c021d8a); item 1 DONE (report section 5)
 1. **Report line: real minus upside-down per tier and per SNR threshold,** written into every aggregate. (Item 5 of the review prompt too.)
-2. **Auto-labels on existing events:** star is a TOI, a known planet host, a known circumbinary host or in the TESS eclipsing binary catalogue (tables in `data\xmatch`).
-3. **Repeater labels:** for repeater stars, depth scatter and odd/even depths: "periodic blend" if uniform and regular, "variability" if scattered. Label, never discard.
-4. **Sixth control and recovery:** use Kepler-1660 as a control; measure recovery of known planets and of trapezoid-shaped injected dips under the frozen version (extend `step_retention.py`).
+2. DONE 28 Oct (report section 6; 0 of 15 tier-1 events on any catalogue star). **Auto-labels on existing events:** star is a TOI, a known planet host, a known circumbinary host or in the TESS eclipsing binary catalogue (tables in `data\xmatch`).
+3. DONE 28 Oct (depth scatter only; the period test was dropped as vacuous). **Repeater labels:** for repeater stars, depth scatter and odd/even depths: "periodic blend" if uniform and regular, "variability" if scattered. Label, never discard.
+4. DONE 28 Oct (86.4% completeness ceiling on deep injections; Kepler-1660 gives no tier-1 events; faint-dip recovery still NOT TESTED). **Sixth control and recovery:** use Kepler-1660 as a control; measure recovery of known planets and of trapezoid-shaped injected dips under the frozen version (extend `step_retention.py`).
 
 ## v4: one frozen re-search for everything that changes the search or needs it (about 40 minutes of machine time, about 0.5 point)
 5. **Red-noise-corrected SNR** (our control finds 869 events where Gaussian noise would find about 0). Biggest expected gain. Check first how `box_scores` computes noise. Model: Kepler's per-target bootstrap that sets the false alarm rate for each star (Twicken et al., arXiv:1501.03586, CONFIRMED in the text); our scrambled and upside-down curves can play the bootstrap's role.

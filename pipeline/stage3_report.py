@@ -21,6 +21,39 @@ def load(groups_dir, extra=True):
     return ev, pd.DataFrame(meta).merge(best, on=["tic", "sector"], how="left")
 
 
+XM = C.ROOT / "data" / "xmatch"
+
+
+def star_labels():
+    """Catalogue labels per star from the tables saved in data/xmatch (NASA TOI table, NASA circumbinary hosts, TESS eclipsing binary catalogue of Prsa et al. 2022).
+    Returns None if the tables are not on this machine. toi = TFOPWG disposition; eb = how the TESS period compares with the Kepler period."""
+    if not all((XM / f).exists() for f in ("toi.csv", "cbp.csv", "ebs.csv")):
+        return None
+    tg = pd.read_csv(C.TARGETS, comment="#").drop_duplicates("tic").set_index("tic")
+    toi = pd.read_csv(XM / "toi.csv").drop_duplicates("tid").set_index("tid").tfopwg_disp
+    cbp = set(pd.to_numeric(pd.read_csv(XM / "cbp.csv").tic_id.astype(str).str.replace("TIC ", ""), errors="coerce").dropna().astype(int))
+    eb = pd.read_csv(XM / "ebs.csv").drop_duplicates("TIC").set_index("TIC").Per
+    out = pd.DataFrame(index=tg.index)
+    out["toi"] = out.index.map(toi)
+    out["cbp_host"] = out.index.isin(cbp)
+    r = out.index.map(eb) / tg.p_bin_d
+    out["eb"] = np.select([r.isna(), (r - 1).abs() < .02, (r - .5).abs() < .01, (r - 2).abs() < .02], ["no", "same", "half", "double"], "other")
+    return out
+
+
+def repeater_labels(X):
+    """Label star-sectors with 3 or more events of one kind in one product (never a deletion) by how much the event depths scatter (std / mean):
+    uniform-depth (<= 0.25), scattered (> 0.5), mixed. A period test was tried and dropped: with thousands of trial periods any 3 or more events fit
+    some period by chance, so it cannot tell a regular pattern from noise (it would need a significance test against the upside-down control).
+    Thresholds are a priori label choices, not used in any flag."""
+    lab = {}
+    for key, g in X.groupby(["kind", "tic", "sector", "product"]):
+        if len(g) >= C.REPEAT_N:
+            cv = float(g.depth_ppm.std() / g.depth_ppm.mean())
+            lab[key] = "uniform-depth" if cv <= 0.25 else ("scattered" if cv > 0.5 else "mixed")
+    return pd.Series(lab, dtype=object)
+
+
 def waterfall(X):
     """Same order and rules as stage2_report.waterfall: start, no gap/dump, no burst, not matched upside-down, not at an eclipse phase (C5),
     second product >= 3 (lenient), >= 4 (lenient), >= 4 (strict)."""
@@ -68,6 +101,18 @@ def report(groups_dir):
         P(f"  tier 1 with SNR >= {thr:2d}: real {a:3d}, upside-down {b:3d}, excess {a - b:+4d}")
     if "step" in E:
         P("  v3 flat-baseline flag (real | upside-down): " + f"{int(R.step.sum())} | {int(F.step.sum())} of {len(R)} | {len(F)} best-product events")
+    P("\n6. LABELS (aggregate only; labels never remove an event)")
+    sl = star_labels()
+    if sl is None:
+        P("  catalogue tables not on this machine: star labels skipped")
+    else:
+        for lab, X in (("real tier-1", t1r), ("upside-down tier-1", t1f)):
+            tt = sl.reindex(X.tic.values)
+            P(f"  {lab:20s} {len(X):3d} events: on a TOI {int(tt.toi.notna().sum())}, on a known circumbinary host {int(tt.cbp_host.sum())}, "
+              f"in the TESS eclipsing binary catalogue {int((tt.eb != 'no').sum())} (period same {int((tt.eb == 'same').sum())}, half {int((tt.eb == 'half').sum())}, other {int((tt.eb == 'other').sum())})")
+    for lab, X in (("real", R), ("upside-down", F)):
+        rl = repeater_labels(X)
+        P(f"  repeater star-sectors, {lab}: {len(rl)} " + ", ".join(f"{k} {int(v)}" for k, v in rl.value_counts().items()))
     txt = "\n".join(out)
     leaked = [str(t) for t in ev.tic.unique() if str(t) in txt]
     assert not leaked, f"star IDs leaked into the published text: {leaked[:3]}"

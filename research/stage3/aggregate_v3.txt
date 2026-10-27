@@ -27,3 +27,9 @@ STAGE 3 aggregate report (no star IDs, no event times). Groups: 5082; star-secto
   tier 1 with SNR >= 10: real   4, upside-down  15, excess  -11
   tier 1 with SNR >= 12: real   2, upside-down   8, excess   -6
   v3 flat-baseline flag (real | upside-down): 400 | 633 of 604 | 869 best-product events
+
+6. LABELS (aggregate only; labels never remove an event)
+  real tier-1           15 events: on a TOI 0, on a known circumbinary host 0, in the TESS eclipsing binary catalogue 0 (period same 0, half 0, other 0)
+  upside-down tier-1    38 events: on a TOI 0, on a known circumbinary host 0, in the TESS eclipsing binary catalogue 2 (period same 2, half 0, other 0)
+  repeater star-sectors, real: 44 uniform-depth 30, mixed 9, scattered 5
+  repeater star-sectors, upside-down: 66 uniform-depth 28, mixed 24, scattered 14
