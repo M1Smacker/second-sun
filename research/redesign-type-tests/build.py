@@ -307,7 +307,7 @@ PC_GRID_CSS = """
 def board_pc_eyes():
     def win(title, inner, h):
         return ('<div><p class="eyebrow" style="margin:0 0 8px">%s</p><div style="width:1366px;height:%dpx;border:1.5px solid var(--rule);border-radius:6px;overflow:hidden;position:relative;background:var(--bg)">%s</div></div>' % (title, h, inner))
-    topbar = '<div class="top" style="min-height:52px;padding:4px 40px"><span class="t">Second Sun \u00b7 Eyes mode</span><span style="font-size:15px;font-weight:600">Practice round \u00b7 Card 12 of 30</span><span class="btn" style="min-height:40px">Menu</span></div>'
+    topbar = '<div class="top" style="min-height:52px;padding:4px 40px;position:relative;z-index:2;background:var(--bg)"><span class="t">Second Sun \u00b7 Eyes mode</span><span style="font-size:15px;font-weight:600">Practice round \u00b7 Card 12 of 30</span><span class="btn" style="min-height:40px">Menu</span></div>'
     f1_ = (topbar + '<div style="max-width:1000px;margin:0 auto;padding:22px 0 0"><p class="eyebrow">Is there a dip?</p><div class="fig">' + curve_svg(1000, 260, L=56, B=40) + '</div>'
            '<p class="src">Example card from the book\u2019s own card code. Not one of your rounds.</p>'
            '<p class="eyebrow" style="margin-top:10px">Your answer</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px"><button class="ans">Dip</button><button class="ans">No dip</button><button class="ans">Odd</button><button class="ans">Not sure</button></div></div>')

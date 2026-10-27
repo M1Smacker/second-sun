@@ -153,7 +153,7 @@ code,.code{font-family:var(--ffM);font-size:14.5px;background:var(--surf);border
 
 /* ---- glyph proof ---- */
 .gp{display:grid;grid-template-columns:minmax(78px,1fr) repeat(6,40px);gap:2px 4px;align-items:center;min-width:360px}
-.gp .hd{font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--tx2);text-align:center;line-height:1.2;padding:4px 0}
+.gp .hd{font-size:12.5px;font-weight:600;color:var(--tx2);line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);height:92px;white-space:nowrap;text-align:left;justify-self:center}
 .gp .lbl{font-size:13px;line-height:1.3;color:var(--tx2);padding:2px 0;border-top:1px solid var(--rule)}
 .gp .lbl b{font-size:16px;color:var(--tx);margin-right:4px}
 .gp .c{display:flex;align-items:center;justify-content:center;height:44px;border-top:1px solid var(--rule)}
@@ -202,11 +202,11 @@ code,.code{font-family:var(--ffM);font-size:14.5px;background:var(--surf);border
 .nums{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:0 0 6px}
 .nums span{display:flex;align-items:center;justify-content:center;min-height:34px;border:1.5px solid var(--rule);border-radius:6px;font-size:14px;color:var(--tx2)}
 .nums span.cur{border-color:var(--brass);color:var(--tx);font-weight:700}
-.dots{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:8px 0 4px}
-.dots i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--tx3);display:inline-block}
+.dots{display:flex;align-items:center;gap:3px;flex-wrap:nowrap;margin:8px 0 4px}
+.dots i{width:11px;height:11px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--tx3);display:inline-block}
 .dots i.d{background:var(--tx2);border-color:var(--tx2)}
 .dots i.c{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 3px var(--bg),0 0 0 4.5px var(--acc)}
-.dots b{width:10px;height:1px;background:var(--rule);display:inline-block;margin:0 3px}
+.dots b{width:8px;height:1px;background:var(--rule);display:inline-block;margin:0 2px;flex:0 0 auto}
 details.inl{font-family:var(--ffU);font-size:14.5px;line-height:1.5;color:var(--tx2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:8px 0 14px}
 details.inl summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;color:var(--tx)}
 details.inl p{margin:0 0 8px}
