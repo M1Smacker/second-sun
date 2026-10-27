@@ -2,7 +2,7 @@
 
 Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges best, inside the weekly cap (stop line 23% while the cap is 25%). Only item 10 needs him. Every fix is a flag or a labelled measurement unless noted; each new version is tested, mutation-checked, frozen under a new hash and judged by real minus control per tier, never by list length. Source of each item: `learnings-2026-10-27.md` sections 5 and 7.
 
-## Do first (no re-search needed, small): after the v3 comparison
+## Do first (no re-search needed, small); v3 step test DONE 27 Oct (hash 23a74c021d8a); item 1 DONE (report section 5)
 1. **Report line: real minus upside-down per tier and per SNR threshold,** written into every aggregate. (Item 5 of the review prompt too.)
 2. **Auto-labels on existing events:** star is a TOI, a known planet host, a known circumbinary host or in the TESS eclipsing binary catalogue (tables in `data\xmatch`).
 3. **Repeater labels:** for repeater stars, depth scatter and odd/even depths: "periodic blend" if uniform and regular, "variability" if scattered. Label, never discard.

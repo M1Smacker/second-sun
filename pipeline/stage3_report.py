@@ -58,6 +58,16 @@ def report(groups_dir):
     for lab, X in (("real tier-1", R[R.tier.isin(['1A', '1L', '1B'])]), ("real tier-1 + tier 2 (all real)", R), ("upside-down tier-1 (upper bound)", F[F.tier.isin(['1A', '1L', '1B'])])):
         tot = sum((X.tb == b).sum() / nss[b] * camp[b] for b in camp if b in nss.index)
         P(f"  {lab:34s}: about {tot:6.0f} events across the campaign")
+    P("\n5. SIGNAL EXCESS: real minus upside-down (positive = more real dips than the control; the control is an upper bound on false alarms)")
+    for lab, tiers in (("tier 1 (1A+1L+1B)", ["1A", "1L", "1B"]), ("tier 1A (second product agrees)", ["1A"]), ("tier 2 (flagged)", ["2"])):
+        r, f = int(R.tier.isin(tiers).sum()), int(F.tier.isin(tiers).sum())
+        P(f"  {lab:34s}: real {r:4d}, upside-down {f:4d}, excess {r - f:+5d}")
+    t1r, t1f = R[R.tier.isin(["1A", "1L", "1B"])], F[F.tier.isin(["1A", "1L", "1B"])]
+    for thr in (7, 8, 10, 12):
+        a, b = int((t1r.snr >= thr).sum()), int((t1f.snr >= thr).sum())
+        P(f"  tier 1 with SNR >= {thr:2d}: real {a:3d}, upside-down {b:3d}, excess {a - b:+4d}")
+    if "step" in E:
+        P("  v3 flat-baseline flag (real | upside-down): " + f"{int(R.step.sum())} | {int(F.step.sum())} of {len(R)} | {len(F)} best-product events")
     txt = "\n".join(out)
     leaked = [str(t) for t in ev.tic.unique() if str(t) in txt]
     assert not leaked, f"star IDs leaked into the published text: {leaked[:3]}"
