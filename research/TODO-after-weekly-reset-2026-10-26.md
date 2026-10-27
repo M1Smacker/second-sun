@@ -21,14 +21,14 @@
 |---|---|---|---|---|
 | Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 cancelled by Ahmed) |
 | Tue 27 Oct (Day 2) | 5 | 15 | 7 | F1b learning spine built; then stop and ask for Claude AI's report (H1) |
-| Tue 27 Oct (Day 3) | 7 | 17 | 7 | F2 redesign plan canvas (private), field note item; H1 dropped by Ahmed |
+| Tue 27 Oct (Day 3) | 7 | 17 | 8 | F2 redesign plan canvas (private), field note item; H1 dropped by Ahmed |
 
 ## Status 27 Oct
 Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for a reply, but it is OFF until he says "start the search". The font report was reviewed by Compass (`research/compass-reviews/2026-10-27-font-advice-report.md`): approve with addendum; main finding: the fonts served today have no Greek or math symbols, so σ and ≈ come from the phone's fallback font.
 
 "was N" means the item number in an earlier version of this file.
 
-## Day 3 results (Tue 27 Oct; start 7 percent, cap 17, weekly usage still 7 at the end)
+## Day 3 results (Tue 27 Oct; start 7 percent, cap 17, weekly usage 8 at the end; book published, gh-pages 587be84)
 - **Decision (Ahmed):** drop H1, the Compass upgrade. It is revisited only if Claude judges it deserves one. For the redesign, show the plan in an Artifact.
 - **F2 built as a plan canvas, not the full prototype.** Private Design canvas: https://claude.ai/artifact/D5a9xdG1NFnDVHrCJUXyTQ . Four boards: the plan page (what changes, how, choices made for Ahmed, build steps and points, what was and was not checked), a phone chapter, a PC chapter (three zones: path rail 248 px, text 600 px, margin 296 px) and PC Eyes (curve left, answers, banner and Next right, 1366 by 650, no scrolling). Real material only: Chapter 2 text, claims F-012 and F-013 (both VERIFIED), glossary entries, the TOI-1338 sector 98 curve (4 hour averages in the chart, 30 minute in the Eyes illustration).
 - **Choices made for Ahmed (he can change any):** Atkinson Hyperlegible Next for everything including titles; night default (day follows the device in the boards); margin column only at 1100 px and wider; page max width 1400 px; code in system monospace and IBM Plex Mono dropped (30 KB); Greek and maths cut from Inter (has Greek) and tested before publishing.
