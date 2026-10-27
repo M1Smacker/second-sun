@@ -80,6 +80,9 @@ Pop-Location
 Step "3b. Every link and anchor in the built site resolves; every chapter has the template"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\check_site.py" $build
 
+Step "3c. Fonts: every non-ASCII character in the sources and in the built pages is drawn by a font the book serves (F4)"
+Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_fonts.py" $build
+
 Step "4. Safety checks on the built site"
 $html = Get-ChildItem $build -Recurse -Filter *.html
 $missing = @($html | Where-Object { -not (Select-String -Path $_.FullName -Pattern 'noindex' -Quiet) })
@@ -99,7 +102,7 @@ if ($Test) {
     $srv = Start-Process node -ArgumentList "$tools\serve.mjs", "--dir=$build", "--port=8490" -PassThru -WindowStyle Hidden
     Start-Sleep -Seconds 2
     try {
-        foreach ($m in "layout", "offline", "jsoff", "eyes", "eyescloud") {
+        foreach ($m in "layout", "chapter", "offline", "jsoff", "eyes", "eyescloud") {
             # Headless Chrome occasionally fails to start or to clean up its profile (seen twice, never a real defect). One retry is allowed, and the
             # first failure is PRINTED, never hidden; a second failure stops the publish.
             $ok = $false

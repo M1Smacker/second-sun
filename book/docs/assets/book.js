@@ -91,9 +91,64 @@
   }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePop(); });
 
+  // 5b. PC chapter page (from 1120 px, see shape.css): the evidence and glossary notes also sit in the margin beside the text, only the note nearest the middle of
+  //     the screen is open, and "In this chapter" fills in the left rail. The chips and glossary links in the text stay the real thing (phone, keyboard, screen
+  //     reader, offline), so the margin only repeats them for the eye: it is aria-hidden and holds no links. Without JavaScript the margin simply is not there.
+  const WIDE = matchMedia("(min-width: 70em)");
+  let M = null;
+  async function marginInit() {
+    M = null;
+    const inner = document.querySelector(".md-content__inner"), rail = inner && inner.querySelector(":scope > .ss-rail");
+    if (!rail) return;
+    const toc = rail.querySelector(".ss-rail__toc");
+    if (toc && !toc.children.length) $$(".md-content__inner > h2[id]").forEach((h) => {
+      const li = document.createElement("li"), a = document.createElement("a");
+      a.href = "#" + h.id; a.textContent = Array.from(h.childNodes).filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim();
+      li.append(a); toc.append(li);
+    });
+    const margin = document.createElement("aside"), notes = [], seen = new Set();
+    margin.className = "ss-margin"; margin.setAttribute("aria-hidden", "true");
+    const add = (anchor, key, label, text, src) => {
+      if (seen.has(key)) return; seen.add(key);
+      const el = document.createElement("div"), t = document.createElement("span"), q = document.createElement("p");
+      el.className = "mn off"; t.className = "t"; t.textContent = label; q.className = "q"; q.textContent = text; el.append(t, q);
+      if (src) { const s = document.createElement("p"); s.className = "s"; s.textContent = src; el.append(s); }
+      margin.append(el); notes.push({ el, anchor });
+    };
+    $$(".md-content__inner a.ss-chip[data-cid]").forEach((a) => add(a, a.dataset.cid, "Evidence · " + a.dataset.cid + " · " + a.textContent.trim().toLowerCase(), a.dataset.claim, "Source: " + a.dataset.src + ". Checked " + a.dataset.checked + "."));
+    const G = await glossary();
+    $$('.md-content__inner a[href*="glossary/#"]').forEach((a) => { const hit = G[decodeURIComponent(a.hash.slice(1))]; if (hit) add(a, "g:" + a.hash, "Glossary · " + hit[0], hit[1], ""); });
+    if (!document.querySelector(".md-content__inner > .ss-rail")) return;           // the reader moved to another page while the glossary loaded
+    inner.append(margin);
+    M = { inner, rail, margin, notes, on: null, toc };
+    marginTick();
+  }
+  function marginTick() {
+    if (!M || !WIDE.matches) return;
+    const vis = M.notes.filter((n) => n.anchor.getClientRects().length), vh = innerHeight;
+    M.notes.forEach((n) => { n.el.hidden = !vis.includes(n); });
+    let best = null, bd = 1e9;
+    vis.forEach((n) => { const r = n.anchor.getBoundingClientRect(); if (r.bottom > 90 && r.top < vh * 0.85) { const d = Math.abs(r.top - vh * 0.38); if (d < bd) { bd = d; best = n; } } });
+    if (best !== M.on) { M.on = best; M.notes.forEach((n) => { n.el.classList.toggle("on", n === best); n.el.classList.toggle("off", n !== best); }); }
+    const top0 = M.inner.getBoundingClientRect().top; let floor = 0;
+    vis.map((n) => ({ n, y: n.anchor.getBoundingClientRect().top - top0 })).sort((a, b) => a.y - b.y).forEach(({ n, y }) => {
+      const top = Math.max(y - 4, floor); n.el.style.top = top + "px"; floor = top + n.el.offsetHeight + 10;
+    });
+    const hs = $$(".md-content__inner > h2[id]"), links = M.toc ? Array.from(M.toc.querySelectorAll("a")) : [];
+    let cur = -1; hs.forEach((h, i) => { if (h.getBoundingClientRect().top < vh * 0.3) cur = i; });
+    links.forEach((a, i) => { if (i === cur) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current"); });
+  }
+  let marginQueued = false;
+  const marginSoon = () => { if (!marginQueued) { marginQueued = true; requestAnimationFrame(() => { marginQueued = false; marginTick(); }); } };
+  addEventListener("scroll", marginSoon, { passive: true }); addEventListener("resize", marginSoon); addEventListener("load", marginSoon);
+  document.addEventListener("toggle", marginSoon, true);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(marginSoon);
+  WIDE.addEventListener("change", marginSoon);
+  if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(marginInit); else marginInit();
+
   // 6. Read aloud: the device's own voice (free, works offline, nothing is sent anywhere). Reads the chapter text
   //    paragraph by paragraph, skips pictures, code, tables, demos and equations, and highlights what it is saying.
-  const SKIP = ".ss-end, .ss-demo, .ss-dg, .ss-strip, .ss-listen, .ss-eq, pre, table, figure, .ss-fallback, details, .md-nav, .md-source-file";
+  const SKIP = ".ss-end, .ss-demo, .ss-dg, .ss-strip, .ss-rail, .ss-margin, .ss-listen, .ss-eq, pre, table, figure, .ss-fallback, details, .md-nav, .md-source-file";
   let queue = [], at = 0, speaking = false, current = null;
   const synth = "speechSynthesis" in window ? window.speechSynthesis : null;
   const bar = () => document.querySelector(".ss-listen");

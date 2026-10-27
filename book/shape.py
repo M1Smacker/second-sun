@@ -133,6 +133,40 @@ def strip(p, c, to_root):
             f'Chapter {c["n"]}, Part {c["part"]}</p><ol>{"".join(dots)}</ol></nav>')
 
 
+def rail(p, c, to_root):
+    """The left rail on a PC (shape.css shows it from 1120 px; phones keep the strip above). Two different lists, labelled and never merged:
+    the learning track (7 levels, in reading order, this level's chapters listed) and the 15 chapters by their fixed number.
+    book.js fills 'In this chapter' from the page's own headings."""
+    seq, t = _seq(p), _group(p, c)
+    rows = ""
+    for lv in p["track"]:
+        tag, name, lvl = ("+" if lv["level"] == "AFTER" else lv["level"]), escape(lv["name"]), lv["level"].lower()
+        head = f'<a class="ss-rail__lv" href="{to_root}learn/#{lvl}"><span class="tag">{tag}</span>{name}</a>'
+        if lv is t:
+            lis = ""
+            for n in lv["chapters"]:
+                k, cur = p["by_n"][n], (' aria-current="page"' if n == c["n"] else "")
+                lis += f'<li><a href="{url(k, to_root)}"{cur}>{n} {escape(k["title"])}</a></li>'
+            rows += f'<li class="cur">{head}<ul>{lis}</ul></li>'
+        elif lv["chapters"]:
+            links = ", ".join(f'<a href="{url(p["by_n"][n], to_root)}">{n}</a>' for n in lv["chapters"])
+            rows += f'<li>{head}<em>Chapters {links}</em></li>'
+        else:
+            rows += f'<li>{head}<em>{escape(lv["hint"])}</em></li>'
+    nums = ""
+    for k in p["chapters"]:
+        cur = ' aria-current="page"' if k["n"] == c["n"] else ""
+        nums += f'<a href="{url(k, to_root)}" title="{escape(title(k))}"{cur}>{k["n"]}</a>'
+    return (f'<nav class="ss-rail" aria-label="Where you are and the learning track"><div class="ss-rail__in">'
+            f'<p class="ss-rail__lab">Where you are</p>'
+            f'<p class="ss-rail__here"><b>Chapter {c["n"]}</b> · {escape(c["title"])}<small>{escape(t["label"])} · step {seq.index(c["n"]) + 1} of {len(seq)} on the track</small></p>'
+            f'<p class="ss-rail__lab">The track: {sum(1 for lv in p["track"] if lv["level"] != "AFTER")} levels, in learning order</p><ol class="ss-rail__track">{rows}</ol>'
+            f'<p class="ss-rail__lab">The {len(p["chapters"])} chapters, by fixed number</p><div class="ss-rail__nums">{nums}</div>'
+            f'<p class="ss-rail__small">Numbers are topics and never change. The track decides which to read next, so 7 comes before 4.</p>'
+            f'<p class="ss-rail__lab">In this chapter</p><ol class="ss-rail__toc"></ol>'
+            f'</div></nav>')
+
+
 def summary(c):
     bullets = []
     for line in c["summary"]:

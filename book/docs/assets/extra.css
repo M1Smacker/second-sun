@@ -57,24 +57,24 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 .md-header { border-bottom: 1px solid var(--ss-line); box-shadow: none; }
 .md-tabs { border-bottom: 1px solid var(--ss-line); }
 
-/* ---------- Type scale (phone / PC): caption 13/14 · body 17/18 · h4 19/20 · h3 21/23 · h2 26/29 · h1 32/38 ---------- */
-.md-typeset { font-size: 17px; line-height: 1.65; }
+/* ---------- Type scale (phone / PC), the approved F4 scale: caption 13/14 · body 17/18 · h4 17/18 · h3 19/21 · h2 23/26 · h1 30/38 ---------- */
+.md-typeset { font-size: 17px; line-height: 1.6; }
 .md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 { line-height: 1.25; color: var(--ss-text); letter-spacing: 0; }
-.md-typeset h1 { font-size: 32px; font-weight: 600; margin: 0 0 24px; }
-.md-typeset h2 { font-size: 26px; font-weight: 600; margin: 48px 0 16px; }
-.md-typeset h3 { font-size: 21px; font-weight: 600; margin: 32px 0 12px; }
-.md-typeset h4 { font-size: 19px; font-weight: 600; margin: 24px 0 8px; }
+.md-typeset h1 { font-size: 30px; line-height: 1.15; margin: 0 0 24px; }
+.md-typeset h2 { font-size: 23px; margin: 44px 0 14px; }
+.md-typeset h3 { font-size: 19px; line-height: 1.3; margin: 30px 0 10px; }
+.md-typeset h4 { font-size: 17px; line-height: 1.3; margin: 22px 0 8px; }
 .md-typeset small, .md-typeset figcaption, .ss-meta, .ss-caption { font-size: 13px; color: var(--ss-text-2); }
 @media (min-width: 60em) {
-  .md-typeset { font-size: 18px; }
+  .md-typeset { font-size: 18px; line-height: 1.65; }
   .md-typeset h1 { font-size: 38px; }
-  .md-typeset h2 { font-size: 29px; margin-top: 64px; }
-  .md-typeset h3 { font-size: 23px; }
-  .md-typeset h4 { font-size: 20px; }
+  .md-typeset h2 { font-size: 26px; margin-top: 56px; }
+  .md-typeset h3 { font-size: 21px; }
+  .md-typeset h4 { font-size: 18px; }
   .md-typeset small, .md-typeset figcaption, .ss-meta, .ss-caption { font-size: 14px; }
 }
 /* measure: 66 characters for running text */
-.md-typeset > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4, .admonition, details, .ss-progress) { max-width: 66ch; }
+.md-typeset > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4, .admonition, details, .ss-progress) { max-width: var(--ss-measure); }
 
 /* ---------- Links, focus ---------- */
 .md-typeset a { color: var(--ss-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
@@ -102,7 +102,7 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 /* ---------- Confidence chips: meaning by SHAPE, label always spelled out, no traffic-light colours ---------- */
 .md-typeset a.ss-chip {
   display: inline-flex; align-items: center; gap: 4px; position: relative;
-  font: 600 12px/1 var(--md-code-font-family); letter-spacing: .04em;
+  font: 600 13px/1 var(--ss-label); letter-spacing: .03em;
   padding: 3px 6px; border: 1.5px solid currentColor; border-radius: 4px;
   color: var(--ss-text-2); text-decoration: none; vertical-align: .1em; white-space: nowrap;
 }
@@ -119,12 +119,12 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 .ss-bar span { display: block; height: 100%; background: var(--ss-accent); }
 
 /* ---------- Checklists, cards, facts ---------- */
-.md-typeset ul.ss-list { list-style: none; margin: 0 0 24px; padding: 0; max-width: 66ch; }
+.md-typeset ul.ss-list { list-style: none; margin: 0 0 24px; padding: 0; max-width: var(--ss-measure); }
 .md-typeset ul.ss-list li { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--ss-line); display: flex; gap: 12px; align-items: baseline; }
 .ss-check { width: 1rem; flex: none; color: var(--ss-accent); }
 .ss-list small { margin-left: auto; font-variant-numeric: tabular-nums; }
 .ss-list li:not(.done) { color: var(--ss-text-2); }
-.md-typeset .ss-card { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); padding: 12px 16px; margin: 0 0 16px; max-width: 66ch; }
+.md-typeset .ss-card { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); padding: 12px 16px; margin: 0 0 16px; max-width: var(--ss-measure); }
 .md-typeset .ss-card h3 { margin: 4px 0 8px; }
 .md-typeset .ss-meta { margin: 0; }
 .md-typeset .ss-card li.done { color: var(--ss-text-2); }
@@ -139,7 +139,7 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 .md-typeset table:not([class]) { font-size: 15px; font-variant-numeric: tabular-nums; }
 
 /* ---------- Depth demo (progressive enhancement: static figure without JS) ---------- */
-.ss-demo { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); padding: 16px; background: var(--ss-raised); max-width: 66ch; }
+.ss-demo { border: 1px solid var(--ss-line); border-radius: var(--ss-radius); padding: 16px; background: var(--ss-raised); max-width: var(--ss-measure); }
 .ss-demo label { display: grid; gap: 4px; margin-bottom: 12px; }
 .ss-demo input[type=range] { width: 100%; min-height: var(--ss-tap); accent-color: var(--ss-accent); margin: 0; }
 .ss-demo__lc { height: 64px; border-top: 2px solid var(--ss-accent); position: relative; }

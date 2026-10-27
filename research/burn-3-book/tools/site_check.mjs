@@ -146,6 +146,81 @@ async function layout() {
   return out;
 }
 
+// F4 (27 Oct 2026): the chapter page on a PC. Rail 232 | text 540 | margin 260 from 1120 px, one note open, 60 to 75 characters a line, no sideways scroll at any width;
+// under 1120 px (and at 200% zoom) the rail and margin are gone and the strip is back.
+const CHAPTER_MEASURE = `(() => {
+  const q = (s) => document.querySelector(s), box = (el) => { if (!el) return null; const r = el.getBoundingClientRect(); return { l: Math.round(r.left), r: Math.round(r.right), t: Math.round(r.top), w: Math.round(r.width) }; };
+  const shown = (el) => !!el && getComputedStyle(el).display !== "none" && el.getClientRects().length > 0;
+  const inner = q(".md-content__inner"), rail = q(".ss-rail"), mar = q(".ss-margin"), strip = q(".ss-strip");
+  const para = [...inner.querySelectorAll(":scope > p")].find((x) => x.textContent.length > 250 && x.getClientRects().length);
+  let lines = [];
+  if (para) { const w = document.createTreeWalker(para, NodeFilter.SHOW_TEXT); let n, top = null, cnt = 0;
+    outer: while ((n = w.nextNode())) for (let i = 0; i < n.length; i++) { const rg = document.createRange(); rg.setStart(n, i); rg.setEnd(n, i + 1); const rr = rg.getClientRects()[0]; if (!rr) continue;
+      if (top === null) top = rr.top; if (Math.abs(rr.top - top) > 4) { lines.push(cnt); cnt = 0; top = rr.top; if (lines.length === 4) break outer; } cnt++; } }
+  const open = mar ? [...mar.querySelectorAll(".mn.on")] : [];
+  const anchorOf = (el) => { const n = [...mar.querySelectorAll(".mn")].indexOf(el); return n; };
+  return { overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, rail: shown(rail), margin: shown(mar), strip: shown(strip),
+    sidebar: shown(q(".md-sidebar--primary")), railBox: box(rail), paraBox: box(para), marBox: box(mar), mainW: Math.round(q(".md-main__inner").getBoundingClientRect().width),
+    chars: lines.length >= 3 ? Math.round(lines.slice(0, 3).reduce((a, b) => a + b, 0) / 3) : 0, notes: mar ? mar.querySelectorAll(".mn:not([hidden])").length : 0, open: open.length,
+    toc: rail ? rail.querySelectorAll(".ss-rail__toc a").length : 0, ariaHidden: mar ? mar.getAttribute("aria-hidden") : null, marginLinks: mar ? mar.querySelectorAll("a, button, [tabindex]").length : 0 };
+})()`;
+
+async function chapterLayout() {
+  const b = await launch("chapter");
+  const out = { mode: "chapter", checks: 0, fails: [] };
+  const fail = (m) => out.fails.push(m);
+  try {
+    for (const p of ["book/02-light-curves/", "book/07-noise-and-statistics/"]) {
+      for (const [w, h] of [[390, 844], [683, 800], [1100, 800], [1119, 800], [1120, 800], [1366, 650], [1500, 900]]) {
+        await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 768 });
+        await goto(b, base + p);
+        const wide = w >= 1120;
+        await waitFor(b, wide ? `document.querySelectorAll(".ss-margin .mn").length > 0` : "document.readyState === 'complete'", 8000);
+        await sleep(400);
+        const m = await b.evaluate(CHAPTER_MEASURE), tag = `${p} ${w}x${h}`;
+        out.checks++;
+        if (m.overflow > 0) fail(`${tag}: sideways scroll +${m.overflow}`);
+        if (m.mainW > 1400) fail(`${tag}: page wider than 1400 (${m.mainW})`);
+        if (wide) {
+          if (!m.rail || !m.margin) fail(`${tag}: rail or margin missing`);
+          if (m.strip) fail(`${tag}: the strip should be hidden next to the rail`);
+          if (m.sidebar) fail(`${tag}: Material's own sidebar still shows`);
+          if (m.paraBox && Math.abs(m.paraBox.w - 540) > 1) fail(`${tag}: reading column is ${m.paraBox.w}, want 540`);
+          if (m.railBox && Math.abs(m.railBox.w - 232) > 1) fail(`${tag}: rail is ${m.railBox.w}, want 232`);
+          if (m.marBox && Math.abs(m.marBox.w - 260) > 1) fail(`${tag}: margin is ${m.marBox.w}, want 260`);
+          if (m.paraBox && m.railBox && m.paraBox.l < m.railBox.r + 15) fail(`${tag}: text touches the rail`);
+          if (m.paraBox && m.marBox && m.marBox.l < m.paraBox.r + 15) fail(`${tag}: text touches the margin`);
+          if (m.chars < 58 || m.chars > 76) fail(`${tag}: ${m.chars} characters a line (want 58 to 76)`);
+          if (!m.notes) fail(`${tag}: no notes in the margin`);
+          if (m.open > 1) fail(`${tag}: ${m.open} notes open at once`);
+          if (m.toc < 3) fail(`${tag}: 'In this chapter' has ${m.toc} entries`);
+          if (m.ariaHidden !== "true" || m.marginLinks) fail(`${tag}: margin must be aria-hidden with no links or tab stops (${m.ariaHidden}, ${m.marginLinks})`);
+        } else {
+          if (m.rail || m.margin) fail(`${tag}: rail or margin shows under 1120 px`);
+          if (!m.strip) fail(`${tag}: the strip is missing under 1120 px`);
+          if (m.paraBox && m.paraBox.w > 540.5) fail(`${tag}: text column ${m.paraBox.w} is wider than 540`);
+        }
+      }
+    }
+    // scroll to the middle of a chapter at 1366x650: the rail stays in view, exactly one note is open, and it sits near the thing it explains
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 1366, height: 650, deviceScaleFactor: 1, mobile: false });
+    await goto(b, base + "book/02-light-curves/");
+    await waitFor(b, `document.querySelectorAll(".ss-margin .mn").length > 0`, 8000);
+    out.scroll = await b.evaluate(`(async () => {
+      scrollTo(0, document.documentElement.scrollHeight * 0.45); await new Promise((r) => setTimeout(r, 700));
+      const mar = document.querySelector(".ss-margin"), on = [...mar.querySelectorAll(".mn.on")], rail = document.querySelector(".ss-rail__in").getBoundingClientRect();
+      const o = on[0], r = o ? o.getBoundingClientRect() : null;
+      return { open: on.length, railTop: Math.round(rail.top), railBottom: Math.round(rail.bottom), vh: innerHeight, noteTop: r ? Math.round(r.top) : null, noteInView: r ? r.top > 0 && r.top < innerHeight : false, label: o ? o.querySelector(".t").textContent : "" };
+    })()`);
+    if (out.scroll.open !== 1) fail(`scroll: ${out.scroll.open} notes open (want exactly 1)`);
+    if (!(out.scroll.railTop >= 90 && out.scroll.railTop <= 130 && out.scroll.railBottom <= out.scroll.vh)) fail(`scroll: the rail is not pinned inside the window (${JSON.stringify(out.scroll)})`);
+    if (!out.scroll.noteInView) fail(`scroll: the open note is not on screen (${JSON.stringify(out.scroll)})`);
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length;
+  } finally { await b.close(); }
+  return out;
+}
+
 async function offlineTest() {
   const b = await launch("offline");
   const out = { mode: "offline" };
@@ -624,7 +699,7 @@ async function eyesReal() {
   return out;
 }
 
-const modes = { hammer, shots, layout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal };
+const modes = { hammer, shots, layout, chapter: chapterLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));

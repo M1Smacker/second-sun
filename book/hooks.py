@@ -196,16 +196,18 @@ def candidates(d):
     return "".join(out)
 
 
-def chip(c, to_root):
+def chip(c, to_root, note=True):
+    """The claim chip. On chapter pages it also carries the claim sentence, so the PC margin (book.js) can show it beside the text."""
     title = f'{c["label"]} · {c["source"]} · checked {c["checked"]}'
+    data = f' data-cid="{escape(c["id"])}" data-claim="{escape(c["claim"])}" data-src="{escape(c["source"])}" data-checked="{escape(c["checked"])}"' if note else ""
     return (f'<a class="ss-chip ss-chip--{c["label"].lower()}" href="{to_root}claims/#claim-{c["id"].lower()}" '
-            f'title="{escape(title)}">{escape(c["label"])}</a>')
+            f'title="{escape(title)}"{data}>{escape(c["label"])}</a>')
 
 
 def claims_table(d):
     rows = "".join(
         f'<tr id="claim-{escape(c["id"].lower())}"><td><code>{escape(c["id"])}</code></td><td>{escape(c["claim"])}</td>'
-        f'<td>{chip(c, "../")}</td><td><a href="{escape(c["url"])}">{escape(c["source"])}</a></td>'
+        f'<td>{chip(c, "../", note=False)}</td><td><a href="{escape(c["url"])}">{escape(c["source"])}</a></td>'
         f'<td>{escape(c["checked"])}</td></tr>' for c in d["claims"])
     return (f'<table><thead><tr><th>ID</th><th>Claim</th><th>Confidence</th><th>Source</th><th>Checked</th></tr></thead>'
             f'<tbody>{rows}</tbody></table>')
@@ -317,7 +319,7 @@ def chapter_wrap(md, c, to_root):
     md = md.replace(box, "\n" + top + box, 1) if box in md else md.replace("\n", "\n\n" + top, 1)
     end = "\n" + shape.chapter_end(P, c, to_root) + "\n\n"
     head, sep, tail = md.partition("\n## Sources")
-    return shape.strip(P, c, to_root) + "\n\n" + head.rstrip("\n") + "\n" + end + (sep + tail if sep else "")
+    return shape.rail(P, c, to_root) + "\n\n" + shape.strip(P, c, to_root) + "\n\n" + head.rstrip("\n") + "\n" + end + (sep + tail if sep else "")
 
 
 def on_page_markdown(markdown, page, config, files):

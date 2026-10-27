@@ -168,6 +168,15 @@ test("hard scoring counts each tier, and Not sure is a miss on a clear fake plan
   assert.match(lines, /Clear fake planets: you said Dip on 0 of 6 \(Not sure on 6\)/); assert.match(lines, /Hard noise \(nothing hidden\): you called a dip on 0 of 8, Not sure on 8/);
 });
 
+test("one fact, one place: the hard line block states the clear-planet and hard-noise numbers once, the round block still has its own (F4, 27 Oct 2026)", () => {
+  const good = core.hardLine([roundOf(24), roundOf(24), roundOf(25), roundOf(25)]), text = good.lines.join("\n");
+  assert.equal((text.match(/Clear fake planets/g) || []).length, 1, text);
+  assert.equal((text.match(/Hard noise/g) || []).length, 1, text);
+  assert.match(text, /Line: at least 80%/); assert.match(text, /Line: at most 20%/);
+  const round = core.hardLines(core.summarizeHard(roundOf(24).a)).join("\n");
+  assert.match(round, /Clear fake planets: you said Dip/); assert.match(round, /Hard noise \(nothing hidden\)/);
+});
+
 test("the hard line: not enough, then meets, then below; the numbers are the ones fixed in advance", () => {
   assert.deepEqual({ ...core.HARD }, { clearHit: 0.80, noiseFalseAlarm: 0.20, minCurves: 120, minRounds: 4, minDays: 2 });
   const three = core.hardLine([roundOf(24), roundOf(24), roundOf(25)]);
