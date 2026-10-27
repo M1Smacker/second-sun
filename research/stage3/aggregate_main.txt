@@ -1,0 +1,19 @@
+STAGE 3 aggregate report (no star IDs, no event times). Groups: 5082; star-sectors with a best product searched: 5064
+
+1. CUTS in order (real | upside-down): start, no gap/dump, no burst, not matched upside-down, not at an eclipse phase (C5), second product >=3 lenient, >=4 lenient, >=4 strict
+  real         604 | 328 | 275 | 268 | 204 | 186 | 180 | 33
+  upside-down  869 | 336 | 237 | 237 | 188 | 174 | 165 | 69
+
+2. TIERS of the best-product events (1A second product agrees >=4; 1L 3 to 4; 1B no second product; 2 flagged; 3 second product disagrees)
+  real         1A 33  1L 6  1B 147  2 400  3 18
+  upside-down  1A 69  1L 9  1B 96  2 681  3 14
+  real tier-1 events on QLP-only stars: 99 of 186 (no second product is possible there)
+
+3. HOW MUCH TIMELINE C5 COVERS (windows of 0.35 d around the primary and phase 0.5): stars with at least 5% / 10% / 20% / 30% of the timeline
+  >= 5%: 353 of 549 | >= 10%: 217 of 549 | >= 20%: 70 of 549 | >= 30%: 0 of 549
+
+4. PROJECTION TO THE CAMPAIGN (class sizes derived from data; rates per brightness class from this sample; REAL-curve tier-1 is the planning number, upside-down is an upper bound)
+  campaign star-sectors by class: {'faint12+': 3196, 'mid11-12': 1067, 'bright<11': 801} (total 5064, without a magnitude class 0)
+  real tier-1                       : about    186 events across the campaign
+  real tier-1 + tier 2 (all real)   : about    604 events across the campaign
+  upside-down tier-1 (upper bound)  : about    174 events across the campaign
