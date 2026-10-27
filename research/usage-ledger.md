@@ -39,6 +39,12 @@ Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 - **Per unit costs seen so far:** one Artifact publish is about 0.15 to 0.25 point. A pass of about 25 browser calls with a few screenshots is about 0.5 to 0.7 point. Notes, commit and push is about 0.25 point. A research script batch with downloads is about 1 point.
 - **To learn next:** pipeline code with tests, a machine run that I only monitor, a full book publish gate, a Compass review.
 
+## Small tasks, bundled (each under 1 point)
+| When | Task | Context tokens added | 5-hour | Weekly | Note |
+|---|---|---|---|---|---|
+| 27 Oct, 01:58 UTC | Read Ahmed's message, two greps of this file's source data, write the ledger | +12K | 76 to 77 | 11 to 11 | about 0.1 point |
+| 27 Oct, 02:00 UTC | Memory entry, record Ahmed's picks, commit and push (research only) | +9.5K | 77 to 77 | 11 to 11 | under 0.1 point; lower end of the notes-and-commit unit cost (0.25) |
+
 ## Open rows (fill in as they happen)
 | When | Task | Estimate | Weekly before | 5-hour before | Context tokens before | After | Actual |
 |---|---|---|---|---|---|---|---|
