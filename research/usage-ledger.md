@@ -49,6 +49,7 @@ Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 |---|---|---|---|---|---|
 | 27 Oct, 01:58 UTC | Read Ahmed's message, two greps of this file's source data, write the ledger | +12K | 76 to 77 | 11 to 11 | about 0.1 point |
 | 27 Oct, 02:00 UTC | Memory entry, record Ahmed's picks, commit and push (research only) | +9.5K | 77 to 77 | 11 to 11 | under 0.1 point; lower end of the notes-and-commit unit cost (0.25) |
+| 27 Oct, 02:40 UTC | Full regression: dry50 mode, 75 s machine run of all 474 Stage 2 groups, one test fix (NaN equality), commit and push | +6K | 85 to 87 | 12 to 12 | about 0.25 by the 5-hour ruler; a 75 s machine run itself cost nothing |
 
 ## Open rows (fill in as they happen)
 | When | Task | Estimate | Weekly before | 5-hour before | Context tokens before | After | Actual |
