@@ -52,6 +52,7 @@ nav:
       - "The learning track": learn/index.md
       - "How to read this book": start/how-to-read.md
       - "The story so far": start/story-so-far.md
+      - "The first real search": start/first-search.md
       - "How the project unfolded": start/journey.md
       - "Part 1 · The sky and the data":
           - parts/part1/index.md

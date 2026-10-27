@@ -77,6 +77,10 @@ On 20 October 2026 our pipeline ran on Kepler-16 (a real G1 binary) and flagged 
 
 Verdict: impostor. The lesson for us: the rule was right, but our code checked "within 0.25 days either side" instead of the rule's "up to 0.5 days **before**". The code now follows the rule. Writing the rule down first, then checking the code against it, is how this got caught.
 
+### Known objects and repeats
+
+Before anyone studies a dip, look the star up in NASA's lists: **TOIs** (TESS Objects of Interest, dips that TESS itself flagged; the code KP means "known planet"), the known circumbinary hosts, and the TESS eclipsing binary catalogue. Six of our 549 stars are TOIs, six are known hosts and 53 are in the eclipsing binary catalogue {{claim:F-069}}. None of the dips that survived our rules sits on one of them {{claim:F-061}}. A star with many repeated dips of similar depth is probably a second eclipsing pair hiding in the same pixels, not a planet.
+
 ## 10.6 What this lets us conclude, and what it doesn't
 
 - **Passing vetting does not make a planet.** It makes a **candidate**: a dip with no known innocent explanation. Confirmation needs more data, usually from other telescopes.

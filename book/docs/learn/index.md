@@ -60,7 +60,7 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 
 ## L3 · Bright stars, faint stars, noise { #l3 }
 
-**Read:** [Chapter 7](../book/07-noise-and-statistics.md), then [Chapter 8](../book/08-our-detector.md). **Do:** [Lab 3](../labs/lab3-plot-and-read.md)'s noise table, [Lab 4](../labs/lab4-find-a-dip.md).
+**Read:** [Chapter 7](../book/07-noise-and-statistics.md) (newest part: "Noise is lopsided"), then [Chapter 8](../book/08-our-detector.md) (newest part: "Flags, tiers and frozen settings"). For the story behind both, read [The first real search](../start/first-search.md). **Do:** [Lab 3](../labs/lab3-plot-and-read.md)'s noise table, [Lab 4](../labs/lab4-find-a-dip.md).
 
 ??? quiz "L3 check 1. White noise of 2,000 ppm per 2 minutes. Expected wobble of a 2-hour average?"
     2,000 ÷ √60 ≈ **260 ppm**.
@@ -70,6 +70,15 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 
 ??? quiz "L3 check 3. In Lab 4 at SNR 5, a second event appeared, 15 hours long, next to a data gap. Trust it?"
     No: it's below our bar, it's at a gap edge, and lowering the bar is exactly how noise gets in (Chapter 7's look-elsewhere effect).
+
+??? quiz "L3 check 4. Why does an upside-down light curve find MORE false dips than a real one would from noise alone?"
+    Noise is lopsided: flares and glitches jump up more than down, and upside-down they become dips. At signal-to-noise 7 we measured 2.3 times as many (see Chapter 7).
+
+??? quiz "L3 check 5. Why is a scrambled control the wrong control for a search for single dips?"
+    Scrambling moves big blocks of time but keeps the order inside each block, so a single dip survives it. It only destroys repeating signals.
+
+??? quiz "L3 check 6. We froze all settings before reading any result. What does that protect us from?"
+    From quietly tuning the rules until the answer looks good. Every number can be traced to the exact rules that made it.
 
 **Next:** [Level 4](#l4), which starts with Chapter 4.
 
@@ -90,7 +99,7 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 
 ## L5 · The fakes { #l5 }
 
-**Read:** [Chapter 9](../book/09-fake-planets.md), then [Chapter 10](../book/10-vetting.md) sections 10.1 to 10.2 (the rest of Chapter 10 waits for Level 6). **Do:** [Lab 6](../labs/lab6-fake-planets.md), [Lab 8](../labs/lab8-read-stanley.md).
+**Read:** [Chapter 9](../book/09-fake-planets.md) (newest part: "Completeness"), then [Chapter 10](../book/10-vetting.md) sections 10.1 to 10.2 (the rest of Chapter 10 waits for Level 6). **Do:** [Lab 6](../labs/lab6-fake-planets.md), [Lab 8](../labs/lab8-read-stanley.md).
 
 ??? quiz "L5 check 1. Name three things that can fake a planet's dip."
     Any three of: a thruster firing or pointing jitter, a data-gap edge, scattered light, an eclipsing neighbour (blend), the binary's own eclipse edge, stellar variability, noise.
@@ -100,6 +109,12 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 
 ??? quiz "L5 check 3. 28% of STANLEY's orbits scored above 5σ. What does that mean for its 18.4σ peak?"
     Its σ scale isn't calibrated: noise scores high here. The peak is encouraging but needs calibrating before it means anything precise.
+
+??? quiz "L5 check 4. What is completeness, and how do we measure it?"
+    The share of real planets a search would catch. We hide fake planets in real data and count how many come back through every rule: 82.7% of strong ones got through the flag chain.
+
+??? quiz "L5 check 5. Name two things our completeness number does NOT cover."
+    Faint planets, and planets that cross near the edge of the data. (Also: the second-product check and some flags are not in the number.)
 
 **Next:** [Level 6](#l6), which starts with the rest of Chapter 10.
 
@@ -115,6 +130,15 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 
 ??? quiz "L6 check 3. What does 'second key' mean?"
     You independently check a candidate and decide whether you agree, before anything is submitted. Both keys must turn.
+
+??? quiz "L6 check 4. Why can a dip within 1 day after data resumes not be trusted?"
+    TESS is settling and scattered light is strongest there, which fakes slow dips. The price of the rule is about 14% of the time.
+
+??? quiz "L6 check 5. Why can a planet around two stars not make three transits in one 27-day sector?"
+    It must orbit beyond the stability limit, at least about 3.7 binary periods, so for a binary of 5 days or more it needs about 15 days per lap. At most two transits fit.
+
+??? quiz "L6 check 6. A dip sits on a star that is a TESS Object of Interest. What do you do first?"
+    Look the star up: TOIs, known hosts and catalogued eclipsing binaries are known objects, so a dip there is probably the known thing and not a discovery.
 
 **Next:** [After Level 6](#after): how the project runs.
 

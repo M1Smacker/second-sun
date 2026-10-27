@@ -158,6 +158,23 @@ The rules for reading the result were written down before anything ran (`experim
 !!! warning "What this does to earlier numbers"
     The "mostly the data" conclusion below was drawn from the cleaned flux only. On this star, part of the limit comes from how noisy the cleaned flux looks to our detector. Nothing is changed in the production detector: this is one star, two new crossings (one of them a prediction), and a few injections. The next steps are in `RESUME.md`.
 
+### Flags, tiers and frozen settings
+
+After the real search we sort every dip and never delete one. A **flag** is a reason to doubt a dip:
+
+- **Gap or momentum dump:** close to a hole in the data or a thruster firing.
+- **Burst:** dips at the same moment on many stars, which means the telescope and not the stars.
+- **Matched upside-down:** an upside-down dip at the same moment.
+- **Eclipse overlap:** the dip falls inside one of the two stars' own eclipses. How long is an eclipse? From the stars' size and orbit (about the orbit time divided by pi, times the two radii over the distance between the stars), or from a measured width where a catalogue has one (40 of our stars).
+- **Repeater:** three or more dips in one sector. A planet around two stars must orbit beyond a stability limit of about 3.7 binary periods {{claim:F-068}}, so with binaries over 5 days it needs at least about 15 days per lap and only two transits fit in a 27-day sector.
+- **Flat-baseline (step) test:** a transit is a box, so the light just before and just after it is normal. If either side is off by more than half the dip's depth, or has no data, the dip is a ramp, a cliff or the edge of the data.
+- **Orbit-start ramp:** within 1 day after data resumes, where TESS is settling and scattered light is strongest. The price is about 14% of the time {{claim:F-064}}.
+- **Dominated:** the strongest upside-down dip in the same light curve is at least as strong. A fair local contest with no setting to tune.
+
+**Tiers** sort what is left. Tier 1A: the same dip shows in a second data product. 1L: weakly. 1B: no second product exists, so it cannot be checked. Tier 2: flagged, kept but doubted. Tier 3: a second product disagrees. Candidates could only come from tier 1.
+
+**Frozen settings.** Before we read any result we write every setting and a fingerprint (a hash) of every code and data file into a file, and the run refuses to start if anything has changed. Each version gets a new fingerprint, so we always know which rules made which numbers and cannot quietly tune the rules to the answer. Scientists call it pre-registering.
+
 ## 8.6 What this lets us conclude, and what it doesn't
 
 - **We can conclude:** the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about **6 Earth radii**.

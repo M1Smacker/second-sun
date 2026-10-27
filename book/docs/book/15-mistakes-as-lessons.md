@@ -51,6 +51,14 @@
 | You were asked to approve "the blueprint with my 3 additions" before the additions were written out | Write out everything being approved before asking |
 | An overnight session ended on a question box and nothing ran until morning | Overnight work states its defaults and keeps going; questions wait in the report |
 
+## Lesson 6: a check that cannot fail proves nothing
+
+Three times in two days one of our checks could not fail. A test for "do the dips repeat on a regular period?" fitted any three dips by luck, because it tried thousands of periods. A "scrambled" control cannot remove single dips, so it tests nothing for a search like ours. A diagnosis that our noise was "red" was already handled by the code. Each was caught by asking "what result would make this check say no?" and then testing it on a case that should fail. If you cannot name a result that would break a check, do not trust it.
+
+## Lesson 7: look it up before you believe it
+
+A search-engine summary is a lead, not a source. Four claims we first took from summaries were checked in the papers: three were right, and the reason given for NASA's 7.1 sigma bar (a count of trials per star) was not in the paper at all and was dropped. Label what you know CONFIRMED, LIKELY, UNCERTAIN or NOT TESTED, and say which.
+
 ## What the mistakes have in common
 
 - **None was hidden.** Each was logged the day it was found, with its cost, and corrected where it appeared (the book included).

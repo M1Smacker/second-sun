@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (23 Oct 2026):** the planet hunt is **on hold** until you say start. This week the book was rebuilt around the map above, with three tabs, optional labs and a review page for each Part. Our search works on a known two-sun planet; no new planet yet. Begin with [Start here](start/index.md).
+    **Two-minute recap (28 Oct 2026):** the first real search of all 549 stars has run, and nothing in it looks like a planet yet. Read [The first real search](start/first-search.md) for what we found, how the pipeline changed and what comes next. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

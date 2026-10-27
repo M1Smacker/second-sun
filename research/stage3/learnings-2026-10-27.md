@@ -50,7 +50,7 @@ No human has looked at any v2 event. Nothing here is a candidate. (The step test
 - **Tier 1 after v3:** real 15 (2 confirmed by a second product), upside-down 38 (7 confirmed). Real minus upside-down is -23 for tier 1, -5 for tier 1A, and stays negative at every signal-to-noise bar from 7 to 12 (-23, -18, -11, -6). From v1 to v3 real tier 1 went 186 to 64 to 15; the control went 174 to 90 to 38.
 - **Surprise, verified:** the step flag fired on 400 of 604 real events (305 of those only because one side has no data) and 633 of 869 control events (510). So more than half of everything the detector finds sits at the edge of a data segment (orbit starts, gaps): that is where the false alarms live. The flag removed real events faster than control events, so the real events were even more concentrated at edges and ramps than the control.
 - **The first 8 events:** 6 are now flagged: all 6 by the step test, 3 of them also by eclipse overlap. The 2 left are a weak 823 ppm dip and one messy drift; neither is a candidate.
-- **Reading:** across three versions and every threshold the real curves never beat the upside-down control, so the search finds no sign of planets at this detection level. That is a result, not a failure: it bounds what this detector can do on these stars and says the next gains are in noise handling (FIX-QUEUE item 5), not in more flags.
+- **Reading:** after the first version (real 186 against upside-down 174 in tier 1, the extra real dips being mostly repeater stars and eclipse edges that later flags removed) the real curves never beat the upside-down control, at any version or threshold, so the search finds no sign of planets at this detection level. That is a result, not a failure: it bounds what this detector can do on these stars and says the next gains are in noise handling (FIX-QUEUE item 5), not in more flags.
 
 ## 9. Verification status of the claims above (28 Oct 2026; standing rule in `CLAUDE.md`)
 | Claim | Status | Evidence |
@@ -67,7 +67,7 @@ No human has looked at any v2 event. Nothing here is a candidate. (The step test
 | Repeater rule: at most 2 transits in a 27 d sector for P_planet of 14 d or more | LIKELY | follows from the previous row; not tested against a real third-transit case |
 | My eclipse length is 1.5 to 6.4 x (median 2.7 x) the catalogue's measured primary width, on 30 stars | CONFIRMED as a computation; what the width means: LIKELY contact-to-contact | the catalogue paper says its polyfit knots sit at ingress and egress ([arXiv:2110.13382](https://ar5iv.labs.arxiv.org/html/2110.13382)) but gives no explicit definition of the width column; the VizieR ReadMe could not be fetched (connection refused) |
 | Detector detrending window of 2 d is right up to 15 h boxes | CONFIRMED | code `detect_v2.detrend(window_d=2.0)` plus the Wotan rule: 3 x 15 h = 1.9 d |
-| Real never exceeds the upside-down control, at any version or SNR bar | CONFIRMED | our own counts, `aggregate_v3.txt` |
+| Real does not exceed the upside-down control from version 2 on (v1 tier 1 was real 186 against 174, a small excess made mostly of repeater stars and eclipse edges, LIKELY) | CONFIRMED for the counts, LIKELY for the reason | our own counts, `aggregate_main.txt` to `aggregate_v4.txt` |
 | Whether the control overstates false alarms because flares point up | LIKELY | physical reasoning; NOT TESTED (a scrambled control would test it, FIX-QUEUE item 6) |
 | The step test keeps 97.7% of injected dips | CONFIRMED for mid-segment injections; NOT TESTED near segment edges | `step_retention.txt` |
 

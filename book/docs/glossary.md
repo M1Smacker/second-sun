@@ -32,6 +32,12 @@ The centre of a star's light on the camera, like the balance point of its pixels
 ### Circumbinary planet
 A planet that orbits **both** stars of a pair. Its dips come at irregular times, which is why standard searches miss them. Our main quest.
 
+### Completeness
+The share of real planets a search would catch, measured by hiding fake planets in real data and counting how many come back. Ours keeps about 83 in 100 strong ones through the flags. See [Chapter 9](book/09-fake-planets.md).
+
+### Control
+A test run where the right answer is known to be "nothing", to see how many false alarms the method makes. Ours is the upside-down light curve. See [Chapter 7](book/07-noise-and-statistics.md).
+
 ### Critical orbit
 The closest a planet can orbit a pair of stars and stay stable: usually 2.5 to 3.5 times the stars' separation. See [Chapter 4](book/04-two-suns.md).
 
@@ -47,6 +53,12 @@ Two stars far enough apart that they don't touch or distort each other; their ec
 ### Detrending
 Removing slow drifts (from the star or the spacecraft) so short dips stand out. We divide by a smooth fitted curve with a 2-day window. See [Chapter 8](book/08-our-detector.md).
 
+### Dominated
+A dip is dominated when the strongest upside-down dip in the same light curve is at least as strong. A fair local contest, with no setting to tune. See [Chapter 8](book/08-our-detector.md).
+
+### Eclipse overlap
+A flag for a dip that falls inside one of the two stars' own eclipses, where it is the stars and not a planet. See [Chapter 8](book/08-our-detector.md).
+
 ### Eclipsing binary
 Two stars orbiting each other, lined up so that one passes in front of the other. Makes deep, regular dips.
 
@@ -59,11 +71,23 @@ A "detection" caused by noise or spacecraft effects instead of a real dip. We co
 ### FITS
 The standard file format of astronomy since 1981: a header of labels plus tables or images. Every TESS file is FITS. See [Lab 2](labs/lab2-get-the-data.md).
 
+### Flag
+A reason to doubt a dip. We flag and sort dips, we never delete them. See [Chapter 8](book/08-our-detector.md).
+
+### Flat-baseline test
+A transit is a box: the light just before and after it is normal. A dip whose two sides are not level, or that has no data on one side, is a ramp, a cliff or a data edge. Also called the step test. See [Chapter 8](book/08-our-detector.md).
+
+### Frozen settings
+Every setting and a fingerprint of every file written down before any result is read, so the rules cannot be tuned to the answer. See [Chapter 8](book/08-our-detector.md).
+
 ### Full-frame image (FFI)
 A picture of a TESS camera's whole view, saved every 30 minutes, 10 minutes or 200 seconds depending on the year. Every star in view is in it. See [Chapter 3](book/03-our-data.md).
 
 ### Gaia
 The European Space Agency's star-mapping spacecraft. Its catalogue gives positions, distances and colours for over a billion stars. See [Chapter 1](book/01-stars-names-missions.md).
+
+### Heavy tails
+Real noise makes far more very big wobbles than bell-curve noise would, so a 7 sigma dip is not as rare as the maths says. See [Chapter 7](book/07-noise-and-statistics.md).
 
 ### Injection test
 Hiding computer-made planet dips of known size in real data and checking how many the search finds. It measures what we can and can't detect.
@@ -80,6 +104,9 @@ A star's brightness measured again and again over time and drawn as a graph: tim
 ### Look-elsewhere effect
 If you search in thousands of places, a few will show something unusual by chance. A search's false-alarm rate must count all its tries. See [Chapter 7](book/07-noise-and-statistics.md).
 
+### Lopsided noise
+Noise that is not the same upwards and downwards: flares and glitches jump up more than down, so an upside-down light curve makes more false dips than a real one. See [Chapter 7](book/07-noise-and-statistics.md).
+
 ### Magnitude
 Astronomy's brightness scale, where bigger numbers are fainter. 5 magnitudes is a factor of 100. See [Chapter 1](book/01-stars-names-missions.md).
 
@@ -94,6 +121,9 @@ A short thruster firing that TESS uses every few days to stay pointed. It jolts 
 
 ### N-body simulation
 A computer calculation that moves several objects (like two stars and a planet) step by step under each other's gravity. STANLEY uses one to predict when a two-star planet crosses.
+
+### Orbit-start ramp
+TESS settles and scattered light is strongest just after it resumes recording, which fakes slow dips. We doubt every dip within 1 day after data resumes. See [Chapter 8](book/08-our-detector.md).
 
 ### Parsec
 A distance of about 3.26 light years, used by astronomers. Kepler-16 is 75 parsecs away.
@@ -128,6 +158,9 @@ Distance from the centre of a star or planet to its edge. We measure planets in 
 ### Red noise
 Slow wobbles where neighbouring measurements move together. Unlike random noise, it doesn't shrink much when you average, so it fakes planet-like dips. See [Chapter 7](book/07-noise-and-statistics.md).
 
+### Repeater
+A star with three or more dips in one sector. A planet around two stars cannot make that many in 27 days, so it is a variable star or a second eclipsing pair. See [Chapter 10](book/10-vetting.md).
+
 ### Robust spread
 A measure of wobble that ignores a few wild points: 1.4826 times the median distance from the median. Our detector uses it everywhere. See [Chapter 7](book/07-noise-and-statistics.md).
 
@@ -146,6 +179,9 @@ Signal-to-noise ratio: how big a signal is compared with normal wobble. SNR 7 me
 ### SPOC
 NASA's Science Processing Operations Center: makes the cleanest TESS light curves, from 2-minute postage stamps. See [Chapter 3](book/03-our-data.md).
 
+### Stability limit
+The closest a planet can orbit a pair of stars without being thrown out, about 3.7 binary periods for equal stars. See [Chapter 8](book/08-our-detector.md).
+
 ### STANLEY
 A search tool by David Martin's group (Martin et al. 2021) that looks for two-star planets by simulating orbits and stacking all their predicted crossings together. Installed on your PC.
 
@@ -154,6 +190,9 @@ NASA's Transiting Exoplanet Survey Satellite, launched in 2018. It photographs m
 
 ### TIC
 TESS Input Catalog number: TESS's ID for a star, like TIC 299096355 for Kepler-16. See [Chapter 1](book/01-stars-names-missions.md).
+
+### Tier
+A bin for a dip after our flags: 1A, 1L and 1B are the unflagged ones (candidates could only come from there), tier 2 is flagged, tier 3 disagrees with a second data product. See [Chapter 8](book/08-our-detector.md).
 
 ### TOI
 TESS Object of Interest: a signal NASA's team thinks might be a planet. TOI-1338 became TOI-1338 b once confirmed.

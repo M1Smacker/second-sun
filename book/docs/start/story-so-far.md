@@ -3,7 +3,7 @@
 <p class="ss-meta">Start here · about 12 min · no maths</p>
 
 !!! plain "In plain words"
-    We're hunting for planets that orbit **two stars at once**, using free public data from NASA's TESS telescope. So far we've built a search tool, tested it honestly on a planet that's already known, and chosen 549 two-star systems to search. **No new planet yet**, and we haven't searched the 549 yet. The search is paused while you catch up with this book.
+    We're hunting for planets that orbit **two stars at once**, using free public data from NASA's TESS telescope. So far we've built a search tool, tested it honestly on a planet that's already known, and chosen 549 two-star systems to search. **No new planet yet.** On 27 to 28 October we searched all 549 and found nothing that looks like a planet; [The first real search](first-search.md) explains what that means.
 
 **What this page answers:** what happened, in order, and where we stand today. Each day has a longer lesson in the [Field notes](../field-notes/index.md).
 
@@ -57,6 +57,8 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 3. **A bigger fake-planet test** (hundreds of planets), so "nothing found" has a measured meaning.
 4. **Decide the 136 unmeasured stars:** a quarter of the G1 list has no measured binary shape {{claim:F-052}}. Your call (decision log).
 5. **Run G1:** 549 stars, about 6.3 GB of light curves.
+
+- **27 to 28 October: the real search.** You said start. We froze the settings, searched all 549 stars, found 604 dips, and cut them to 12 with our rules; the upside-down control still found more. Four versions of the filter followed, each one fixing something we learned. [The first real search](first-search.md).
 
 ## Where to go next
 

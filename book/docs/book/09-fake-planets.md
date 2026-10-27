@@ -75,6 +75,10 @@ STANLEY's N-body code (Chapter 6) gives each fake planet real crossing times and
 
 And one new loss: **3 of 33** realistic crossings fell inside the stars' eclipses, so they were cut out before the search looked {{claim:F-029}}. About 1 crossing in 11 is invisible to us whatever its size.
 
+### Completeness: what share of real planets do all our rules keep?
+
+**Completeness** is the share of real planets a search would catch. We measure it by hiding fake planets, as above. For our flag chain we hid 1,548 strong fake dips (boxes and gently sloped ones, 4 to 14 hours) in 160 random star-months: 1,120 were found at signal-to-noise 7 or more, and **82.7%** of those got through the step test, the eclipse flags and the dominance flag {{claim:F-063}}. The orbit-start flag takes about 14% more of the time {{claim:F-064}}, so roughly 7 in 10 strong planets would survive. Two honest limits: faint planets are not tested yet, and neither are planets that cross near the edge of the data.
+
 ## 9.6 What this lets us conclude, and what it doesn't
 
 - **We can say:** "for TOI-1338-like stars, nothing bigger than about 6 Earth radii crossed in the searched data, apart from the known planet, with about 1 crossing in 11 hidden by eclipses".

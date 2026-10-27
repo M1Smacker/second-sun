@@ -77,6 +77,16 @@ SNR = depth / σ<sub>*D*</sub>
 
 For pure bell-curve noise, the chance of one average falling 7σ below normal is about **1 in 780 billion**. A sector gives our search tens of thousands of tries (thousands of ten-minute positions × 8 box lengths). Pure white noise would almost never cross the bar. Yet on upside-down TOI-1338 data, noise crossed it **6 times in 10 sectors** {{claim:F-016}}. That's the strongest evidence that real TESS noise isn't white or bell-shaped: it has slow drifts and sudden jumps.
 
+### Noise is lopsided: the upside-down test and its limits
+
+A planet makes a **dip**, so an upside-down light curve has no planets in it, only noise. Every "dip" we find there is a **false alarm**, so the number of upside-down dips tells us how many fakes noise makes with the same search. That is a **control**: the same test, run where the right answer is known to be "nothing".
+
+The control has a flaw: noise is **lopsided**. Stars throw flares, which are sudden brightenings, and telescope glitches jump up more often than down. Turned upside-down, those become dips. So the upside-down curve makes **more** false dips than the real curve would make from noise alone. We measured it on 900 random star-months with no filters at all: at signal-to-noise 4.5 the upside-down curve has 1.25 times as many dips as the real one, and at 7 it has 2.3 times as many {{claim:F-062}}. Real planets would add dips to the real curve and push that ratio down. It went up, so there is no sign of planets, and the control is harsher than a fair one.
+
+One control is one opinion. NASA's Kepler team used two, inverted and scrambled light curves, and for long periods and faint signals they gave a reliability of 24% and 51% {{claim:F-066}}. Scrambling moves big blocks of time around but keeps the order inside each block {{claim:F-067}}, so a **single** dip survives it. That makes it the wrong control for a search for single dips like ours.
+
+**Heavy tails.** Bell-curve noise almost never reaches 7 sigma, yet real data does it again and again, because real noise has **heavy tails**: more big wobbles than the bell curve allows. Our signal-to-noise already divides by the measured spread of the box averages, so correlated (red) noise is included, but that spread is measured in the middle of the distribution and the far tail is fatter. NASA's Kepler search sets a false-alarm level for each star with a bootstrap {{claim:F-065}}. We do not do that yet.
+
 ## 7.4 Our implementation
 
 In `pipeline/detect_v2.py`:
