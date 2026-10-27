@@ -263,3 +263,23 @@ textarea.ss-eyes__input { width: 100%; padding: 8px 10px; }
 .ss-res__tr .b { stroke-dasharray: 5 4; }
 .ss-res__det { border-top: 1px solid var(--ss-line); border-bottom: 1px solid var(--ss-line); margin: 14px 0; max-width: var(--ss-measure); }
 .ss-res__det > summary { min-height: var(--ss-tap); display: flex; align-items: center; cursor: pointer; font: 600 15px var(--ss-ui); color: var(--ss-text); }
+/* ---------- F4 step 3: Eyes on a PC. The plot is as tall as its aspect needs (fit() keeps it between 170 and 340 px, never a share of the window). The answers share a row, the Next bar has its own reserved slot and is pinned only once there is a Next to press. ---------- */
+.ss-demo__btn:focus-visible { outline: 3px solid var(--ss-text); outline-offset: 2px; }
+.ss-eyes__next { min-height: calc(var(--ss-tap) + 16px); align-items: center; margin: 0; }
+.ss-eyes__next:has(> button:not([hidden])) { position: sticky; bottom: 0; z-index: 2; padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)); background: var(--ss-raised); box-shadow: 0 -1px 0 var(--ss-line); }
+.ss-eyes__nav[hidden] { display: none; }
+@media (min-width: 40em) {
+  .ss-eyes__ans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ss-eyes__ans .ss-demo__btn { min-width: 0; }
+}
+@media (min-width: 76.25em) {
+  .md-main__inner:has(.ss-demo[data-demo="eyes"]) .md-sidebar--secondary { display: none; }
+  .ss-demo[data-demo="eyes"] { max-width: 940px; }
+  .ss-eyes:has(> .ss-eyes__cv) { display: grid; grid-template-columns: minmax(0, 1fr) 340px; grid-template-rows: auto auto auto auto 1fr; column-gap: 24px; align-items: start; }
+  .ss-eyes:has(> .ss-eyes__cv) > .ss-eyes__prog { grid-column: 1 / -1; grid-row: 1; }
+  .ss-eyes:has(> .ss-eyes__cv) > .ss-eyes__cv { grid-column: 1; grid-row: 2; }
+  .ss-eyes:has(> .ss-eyes__cv) > .ss-eyes__ans { grid-column: 1; grid-row: 3; }
+  .ss-eyes:has(> .ss-eyes__cv) > .ss-eyes__next { grid-column: 1; grid-row: 4; }
+  .ss-eyes:has(> .ss-eyes__cv) > .ss-eyes__nav { grid-column: 1; grid-row: 5; }
+  .ss-eyes:has(> .ss-eyes__cv) > .ss-eyes__banner { grid-column: 2; grid-row: 2 / 6; margin: 0; }
+}

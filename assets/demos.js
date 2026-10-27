@@ -28,12 +28,12 @@ function control(label, id, min, max, step, value, fmt) {
   input.addEventListener("input", show); show();
   return { row: mk("label", { htmlFor: id }, mk("span", {}, label + ": ", out), input), input, show };
 }
-function fit(canvas, aspect) {
-  const dpr = window.devicePixelRatio || 1, w = canvas.getBoundingClientRect().width || 320;
-  canvas.style.height = Math.round(w * aspect) + "px";
-  canvas.width = Math.round(w * dpr); canvas.height = Math.round(w * aspect * dpr);
+function fit(canvas, aspect, minH = 0, maxH = Infinity) {                          // height follows the plot's aspect, kept between minH and maxH (never a share of the window)
+  const dpr = window.devicePixelRatio || 1, w = canvas.getBoundingClientRect().width || 320, h = Math.min(maxH, Math.max(minH, w * aspect));
+  canvas.style.height = Math.round(h) + "px";
+  canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
   const g = canvas.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0);
-  return { g, w, h: w * aspect };
+  return { g, w, h };
 }
 const reduced = () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -267,7 +267,7 @@ function eyesEngine(el, src, core, hard) {
     window.SSEyesCloud.onStatus(() => el.querySelectorAll(".ss-eyes__cloud").forEach((e) => { e.textContent = cloud(); }));
   }
 
-  const NAMES = core.NAME, WINSZ = EYES_WIN;
+  const NAMES = core.NAME, WINSZ = EYES_WIN, fitEyes = (c) => fit(c, 0.55, 170, 340);   // the plot's height: 0.55 of its width, kept between 170 and 340 px
   const btn = (label, fn, cls = "") => { const b = mk("button", { type: "button", className: "ss-demo__btn " + cls }, label); b.addEventListener("click", fn); return b; };
   const note = (t, extra = {}) => mk("p", { className: "ss-demo__result", ...extra }, t);
   const cloud = () => (window.SSEyesCloud ? window.SSEyesCloud.status() : "Cloud backup: not available in this page, so Claude cannot see these rounds yet. They are saved on this device.");
@@ -330,17 +330,17 @@ function eyesEngine(el, src, core, hard) {
   }
 
   function buildPlay() {                                                            // the question screen (also used for the read-only review)
-    cv = mk("canvas", { role: "img", ariaLabel: "A stretch of light curve. Look for a dip, a glitch or nothing." });
-    prog = note(""); banner = mk("div", { className: "ss-eyes__banner", role: "status", ariaLive: "polite" });
+    cv = mk("canvas", { role: "img", className: "ss-eyes__cv", ariaLabel: "A stretch of light curve. Look for a dip, a glitch or nothing." });
+    prog = note("", { className: "ss-demo__result ss-eyes__prog" }); banner = mk("div", { className: "ss-eyes__banner", role: "status", ariaLive: "polite" });
     ansBtns = ["dip", "none", "odd", "unsure"].map((k, i) => { const b = btn(NAMES[k], () => answer(k), "ss-demo__sm"); b.title = `Key ${i + 1}`; return b; });
     nextBtn = btn("Next", step, "ss-demo__sm"); nextBtn.hidden = true;
     backBtn = btn("◀ Look at previous question", () => look(at - 1), "ss-demo__sm");
     earlierBtn = btn("◀ Earlier", () => look(view - 1), "ss-demo__sm");
     laterBtn = btn("Later ▶", () => look(view + 1), "ss-demo__sm");
     returnBtn = btn("Back", ret, "ss-demo__sm");
-    navRow = mk("div", { className: "ss-demo__row" }, backBtn, earlierBtn, laterBtn, returnBtn);
-    stage.replaceChildren(prog, cv, mk("div", { className: "ss-demo__row" }, ...ansBtns), banner, mk("div", { className: "ss-demo__row" }, nextBtn), navRow);
-    C = fit(cv, 0.55);
+    navRow = mk("div", { className: "ss-demo__row ss-eyes__nav" }, backBtn, earlierBtn, laterBtn, returnBtn);
+    stage.replaceChildren(prog, cv, mk("div", { className: "ss-demo__row ss-eyes__ans" }, ...ansBtns), banner, mk("div", { className: "ss-demo__row ss-eyes__next" }, nextBtn), navRow);
+    C = fitEyes(cv);
   }
   const lastViewable = () => (review ? cards.length - 1 : at - 1);
   function nav() {
@@ -372,9 +372,11 @@ function eyesEngine(el, src, core, hard) {
   }
   function show() {
     view = null; answered = false; t0q = Date.now();
+    const kept = document.activeElement === nextBtn;                                // the Next button is about to hide: hand the keyboard focus to the first answer instead of dropping it
     prog.textContent = `Light curve ${at + 1} of ${cards.length}`;
     banner.replaceChildren(); banner.className = "ss-eyes__banner";
     ansBtns.forEach((b) => { b.disabled = false; b.hidden = false; }); nextBtn.hidden = true; nav(); draw(cards[at], false);
+    if (kept) ansBtns[0].focus({ preventScroll: true });
   }
   function answer(k) {
     if (answered || view !== null || review) return;
@@ -512,7 +514,7 @@ function eyesEngine(el, src, core, hard) {
     else if (e.key === "ArrowRight" && view !== null) { e.preventDefault(); if (view < lastViewable()) look(view + 1); else ret(); }
     else if (e.key === "Escape" && view !== null) { e.preventDefault(); ret(); }
   });
-  let w0 = 0; new ResizeObserver(() => { const w = el.clientWidth; if (w !== w0) { w0 = w; if (cv && cv.isConnected && lastDraw) { C = fit(cv, 0.55); draw(...lastDraw); } } }).observe(el);
+  let w0 = 0; new ResizeObserver(() => { const w = el.clientWidth; if (w !== w0) { w0 = w; if (cv && cv.isConnected && lastDraw) { C = fitEyes(cv); draw(...lastDraw); } } }).observe(el);
   start();
 }
 
