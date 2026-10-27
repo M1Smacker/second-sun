@@ -21,11 +21,20 @@
 |---|---|---|---|---|
 | Tue 27 Oct | 0 | 10 | 5 | Day 1 done: A1, A2, B1, C1, D1, D2, F1a, H3 (A3 cancelled by Ahmed) |
 | Tue 27 Oct (Day 2) | 5 | 15 | 7 | F1b learning spine built; then stop and ask for Claude AI's report (H1) |
+| Tue 27 Oct (Day 3) | 7 | 17 | 7 | F2 redesign plan canvas (private), field note item; H1 dropped by Ahmed |
 
 ## Status 27 Oct
 Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for a reply, but it is OFF until he says "start the search". The font report was reviewed by Compass (`research/compass-reviews/2026-10-27-font-advice-report.md`): approve with addendum; main finding: the fonts served today have no Greek or math symbols, so σ and ≈ come from the phone's fallback font.
 
 "was N" means the item number in an earlier version of this file.
+
+## Day 3 results (Tue 27 Oct; start 7 percent, cap 17, weekly usage still 7 at the end)
+- **Decision (Ahmed):** drop H1, the Compass upgrade. It is revisited only if Claude judges it deserves one. For the redesign, show the plan in an Artifact.
+- **F2 built as a plan canvas, not the full prototype.** Private Design canvas: https://claude.ai/artifact/D5a9xdG1NFnDVHrCJUXyTQ . Four boards: the plan page (what changes, how, choices made for Ahmed, build steps and points, what was and was not checked), a phone chapter, a PC chapter (three zones: path rail 248 px, text 600 px, margin 296 px) and PC Eyes (curve left, answers, banner and Next right, 1366 by 650, no scrolling). Real material only: Chapter 2 text, claims F-012 and F-013 (both VERIFIED), glossary entries, the TOI-1338 sector 98 curve (4 hour averages in the chart, 30 minute in the Eyes illustration).
+- **Choices made for Ahmed (he can change any):** Atkinson Hyperlegible Next for everything including titles; night default (day follows the device in the boards); margin column only at 1100 px and wider; page max width 1400 px; code in system monospace and IBM Plex Mono dropped (30 KB); Greek and maths cut from Inter (has Greek) and tested before publishing.
+- **Checked with a script:** contrast of every text colour on all three surfaces in both schemes (text 14.5 or better, secondary 8.8 or better, accent 7.1 or better; day brass ornament 3.5 or better); no en or em dashes in the canvas files.
+- **Not checked:** how the boards look on an iPhone; the PC boards are drawings at fixed sizes, not tested layouts; fonts load from Google in the canvas only. The type's own instructions say not to open or screenshot the canvas, so none of it was rendered.
+- **Next:** Ahmed approves or changes the plan (F3). F4, the real build, gets its own plan and go; rough 6 to 11 points (steps: type and Greek file 1.5 to 2.5, chapter and note PC layout 2 to 4, Eyes PC 1 to 1.5, look pass and tests 1.5 to 3).
 
 ## Day 2 results (Tue 27 Oct, after Ahmed's answers; weekly usage 6 percent at the end of the build)
 - **Decisions (Ahmed):** all three spine recommendations; font = Atkinson Hyperlegible Next at 16 px; do NOT push the exposed client repos (A3 cancelled); stop after the spine and ask for Claude AI's Compass report (H1).
@@ -99,7 +108,7 @@ Ahmed emailed the astronomer (26 Oct), no reply. The search no longer waits for 
 **Phase G: 5.5 to 10 points.**
 
 ## Phase H. Compass and housekeeping (slot in whenever)
-- H1. Compass upgrade: review Claude AI's report (Ahmed shares it later), then fold the useful parts into `COMPASS.md`. Me. 1 to 1.5.
+- H1. DROPPED by Ahmed 27 Oct (revisit only if Claude judges Compass deserves an upgrade). Was: Compass upgrade: review Claude AI's report (Ahmed shares it later), then fold the useful parts into `COMPASS.md`. Me. 1 to 1.5.
 - H2. Ahmed's saved prompts: a Compass review each, 0.5 to 1 each.
 - H3. Field note for 25 to 27 Oct (same-day rule). Me. 0.3.
 
