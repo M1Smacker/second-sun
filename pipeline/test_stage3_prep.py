@@ -151,6 +151,50 @@ def test_pair_search_rules():
     assert len(P.pairs_of([ev(1, 100), ev(2, 128), ev(3, 160)])) == 3                      # three matching dips make three pairs
 
 
+def test_sap_twin_rules():
+    import sap_twin as T
+    truth = np.ones(1000); truth[400:500] = 0.99                                         # a 1% dip on the target
+    raw = 0.9 * truth + 0.1                                                              # raw SAP with CROWDSAP 0.9: 10% of the light is a neighbour's, so the dip looks like 0.9%
+    assert abs((1 - T.crowd_fix(raw, 0.9)[450]) - 0.01) < 1e-9 and abs(np.median(T.crowd_fix(raw, 0.9)) - 1) < 1e-9
+    assert abs((1 - T.crowd_fix(raw, None)[450]) - 0.009) < 1e-9 and abs((1 - T.crowd_fix(raw, np.nan)[450]) - 0.009) < 1e-9     # no CROWDSAP: no correction
+    gl = [(1, 10, ["a/x.fits", "a/q.fits"]), (1, 11, ["a/y.fits"]), (2, 10, ["a/z.fits"]), (3, 10, ["a/w.fits"])]
+    best = {(1, 10): "TESS-SPOC", (1, 11): "QLP", (2, 10): "SPOC", (3, 10): "QLP"}
+    fam = {"x.fits": "TESS-SPOC", "q.fits": "QLP", "y.fits": "SPOC", "z.fits": "SPOC", "w.fits": "SPOC"}
+    # only star-sectors whose best product is SPOC or TESS-SPOC; inside them only SPOC-family files (QLP left out); a QLP-best sector is never searched, even if it has a SPOC file
+    assert T.twin_groups(gl, best, fam) == [(1, 10, ["a/x.fits" + T.SUFFIX]), (2, 10, ["a/z.fits" + T.SUFFIX])]
+
+
+def sap_rows():
+    row = lambda kind, product, center, tic=1, dur=8, tier="1B", sector=1: dict(
+        kind=kind, product=product, best="SPOC", center=center, dur_h=dur, snr=8.0, tic=tic, sector=sector, camera=1, tier=tier, c8_n=0, c8_best=np.nan, gap_dump=False,
+        burst=False, flipmatch=False, c5=False, ecl_overlap=False, repeater=False, step=False, ramp=False, dominated=False)
+    return row
+
+
+def test_sap_union():
+    row = sap_rows()
+    rows = [row("real", "SPOC", 100.0, tier="3"), row("real", "SPOC-SAP", 100.2, tier="1B"),             # same dip (0.2 d apart, inside 0.5 x 8 h + 0.1 d = 0.27): the v5 version stays, tier 3 too
+            row("real", "SPOC-SAP", 100.5), row("real", "SPOC-SAP", 105.0),                              # 0.5 d apart is a different dip; 105 has no PDCSAP partner
+            row("real", "TESS-SPOC-SAP", 130.0),                                                         # SAP twin of a product that is not the best one: never primary
+            row("real", "SPOC", 100.0, tic=2), row("real", "SPOC-SAP", 100.2, tic=1, sector=2),          # other star, other sector: never a partner
+            row("flip", "SPOC-SAP", 100.2)]                                                              # the control gets the same rule: no PDCSAP partner, so it is added
+    ev = pd.DataFrame(rows); ev["primary"] = ev["product"] == ev["best"]
+    out = R.merge_sap(ev)
+    pr = out[out.primary]
+    assert list(pr[(pr.tic == 1) & (pr.sector == 1) & (pr.kind == "real")].center) == [100.0, 100.5, 105.0]
+    assert out.loc[0, "seen_by"] == "both" and out.loc[0, "tier"] == "3" and not out.loc[1, "primary"], "a dip PDCSAP found keeps its v5 version"
+    assert out.loc[2, "seen_by"] == "SAP only" and out.loc[3, "seen_by"] == "SAP only" and not out.loc[4, "primary"]
+    assert out.loc[6, "primary"] and out.loc[7, "primary"] and out.loc[7, "kind"] == "flip"
+    v5 = ev[~ev["product"].str.endswith("-SAP")]
+    assert R.merge_sap(v5)["primary"].eq(v5["primary"]).all(), "no SAP rows: nothing changes"
+    # burst test on the SAP pass: three OTHER stars with upside-down SAP events within 0.1 d, same sector and camera, flag a SAP-only dip and re-tier it
+    for n_other, flagged in ((3, True), (2, False)):
+        e2 = pd.DataFrame(rows + [row("flip", "SPOC-SAP", 105.05, tic=10 + j) for j in range(n_other)]); e2["primary"] = e2["product"] == e2["best"]
+        o2 = R.merge_sap(e2)
+        assert bool(o2.loc[3, "burst"]) == flagged and o2.loc[3, "tier"] == ("2" if flagged else "1B") and o2.loc[3, "sap_burst_n"] == n_other, (n_other, o2.loc[3].to_dict())
+        assert o2.loc[0, "tier"] == "3", "the v5 events are never re-tiered"
+
+
 def test_settings_hash_changes_with_any_setting():
     s = dict(snr_threshold=7.0, durs_h=[3, 4], code=dict(a="x"))
     h = C.settings_hash(s)

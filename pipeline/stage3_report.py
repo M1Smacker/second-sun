@@ -7,17 +7,60 @@ import numpy as np, pandas as pd
 import stage3_core as C
 
 
+SAP_BURST_D, SAP_BURST_N = 0.1, C.BURST_MIN     # v6: the same 0.1 d and 3 stars as the Stage 2 burst flag, counted on the SAP pass itself
+
+
+def merge_sap(ev):
+    """v6 union of the PDCSAP search (v5, unchanged) and the SAP-twin search. `ev` has the columns load() builds. A dip counts ONCE. If the best product's PDCSAP version has
+    an event within the Stage 2 merge radius (0.5 x the longer box + 0.1 d) of a SAP-twin event of the same star-sector and kind, the dip keeps its v5 version (seen_by "both") and
+    the SAP row stays non-primary; otherwise the SAP row becomes primary (seen_by "SAP only"). So v6 never changes a v5 event: it only adds dips PDCSAP missed.
+    SAP-only dips also get the burst test on the SAP pass itself (the Stage 2 burst list is built from PDCSAP events and cannot know the scattered-light events only SAP has):
+    flagged if upside-down SAP events of at least 3 other stars sit within 0.1 d at the same sector and camera. A newly flagged dip is re-tiered (tier 2). Only the SAP twin of the
+    BEST product is eligible; twins of other products are searched only to confirm each other (rule C8) and stay non-primary."""
+    ev = ev.copy()
+    ev["seen_by"] = np.where(ev["primary"], "PDCSAP only", "")
+    ev["sap_burst_n"] = 0
+    twin = ev["product"] == ev["best"].astype(str) + "-SAP"
+    if not twin.any():
+        return ev
+    pdc = {k: g for k, g in ev[ev["primary"]].groupby(["kind", "tic", "sector"])}
+    sap_only = []
+    for i, r in ev[twin].iterrows():
+        g = pdc.get((r["kind"], r["tic"], r["sector"]))
+        hit = None if g is None else next((j for j, c, d in zip(g.index, g.center, g.dur_h) if abs(c - r["center"]) <= 0.5 * max(d, r["dur_h"]) / 24 + 0.1), None)
+        if hit is None:
+            ev.at[i, "primary"] = True; ev.at[i, "seen_by"] = "SAP only"; sap_only.append(i)
+        else:
+            ev.at[hit, "seen_by"] = "both"
+    flips = ev[ev["product"].str.endswith("-SAP") & (ev["kind"] == "flip")]
+    where = {k: (g.center.values, g.tic.values) for k, g in flips.groupby(["sector", "camera"])}
+    for i in sap_only:
+        c, tics = where.get((ev.at[i, "sector"], ev.at[i, "camera"]), (np.array([]), np.array([])))
+        n = len(set(tics[np.abs(c - ev.at[i, "center"]) < SAP_BURST_D]) - {ev.at[i, "tic"]})
+        ev.at[i, "sap_burst_n"] = n
+        if n >= SAP_BURST_N and not ev.at[i, "burst"]:
+            ev.at[i, "burst"] = True; ev.at[i, "tier"] = C.tier_of(ev.loc[i].to_dict())
+    return ev
+
+
 def load(groups_dir, extra=True):
+    """Events and star-sector meta of a run folder. If the folder has a sibling `groups_sap` (v6 and later) the SAP-twin events are read too and merged by merge_sap."""
     ephem, qlp = C.Ephem(pd.read_csv(C.TARGETS, comment="#"), C.eb_widths()), C.qlp_only_tics()
+    dirs = [pathlib.Path(groups_dir)]
+    if dirs[0].with_name("groups_sap").exists():
+        dirs.append(dirs[0].with_name("groups_sap"))
     ev, meta = [], []
-    for p in glob.glob(str(pathlib.Path(groups_dir) / "*.json")):
-        g = json.load(open(p))
-        ev += g["events"] if all("tier" in e for e in g["events"]) else C.enrich_group(g, ephem, qlp, extra)
-        meta += [dict(m, tic=g["tic"], sector=g["sector"]) for m in g["meta"]]
+    for d in dirs:
+        for p in glob.glob(str(d / "*.json")):
+            g = json.load(open(p))
+            ev += g["events"] if all("tier" in e for e in g["events"]) else C.enrich_group(g, ephem, qlp, extra)
+            meta += [dict(m, tic=g["tic"], sector=g["sector"]) for m in g["meta"]]
     best = pd.read_csv(C.BEST)[["tic", "sector", "product"]].rename(columns={"product": "best"})
     ev = pd.DataFrame(ev).merge(best, on=["tic", "sector"], how="left")
     ev["primary"] = ev["product"] == ev["best"]
     ev["c8_best"] = pd.to_numeric(ev.c8_best, errors="coerce")
+    if len(dirs) > 1:
+        ev = merge_sap(ev)
     return ev, pd.DataFrame(meta).merge(best, on=["tic", "sector"], how="left")
 
 
@@ -142,6 +185,21 @@ def report(groups_dir):
     for lab, X in (("real", R), ("upside-down", F)):
         rl = repeater_labels(X)
         P(f"  repeater star-sectors, {lab}: {len(rl)} " + ", ".join(f"{k} {int(v)}" for k, v in rl.value_counts().items()))
+    if "seen_by" in ev:
+        P("\n7. SAP TWIN (v6; sections 1 to 6 above already count each dip ONCE, the union). The PDCSAP half is the frozen v5 run; the SAP search of the same files adds dips PDCSAP missed")
+        tw = meta[meta["product"].astype(str) == meta["best"].astype(str) + "-SAP"]
+        P(f"  star-sectors whose best product has a SAP twin searched: {len(tw[tw.status == 'ok'].drop_duplicates(['tic', 'sector']))} of {len(pr)} star-sectors with a best product ({len(pr[pr['product'].isin(['SPOC', 'TESS-SPOC'])])} have a SPOC or TESS-SPOC best product)")
+        t1 = ["1A", "1L", "1B"]
+        for lab, X in (("real", R), ("upside-down", F)):
+            c = X.seen_by.value_counts()
+            P(f"  {lab:12s} dips by who found them: PDCSAP only {int(c.get('PDCSAP only', 0))}, both {int(c.get('both', 0))}, SAP only {int(c.get('SAP only', 0))}; "
+              f"tier 1 of those: " + ", ".join(f"{k} {int(X[(X.seen_by == k) & X.tier.isin(t1)].shape[0])}" for k in ('PDCSAP only', 'both', 'SAP only')))
+        a, b = int(((R.seen_by == "SAP only") & R.tier.isin(t1)).sum()), int(((F.seen_by == "SAP only") & F.tier.isin(t1)).sum())
+        P(f"  tier-1 dips ADDED by the SAP twin: real {a}, upside-down {b}, excess {a - b:+d}   (judge the SAP half by this line: real minus upside-down)")
+        for lab, X in (("real", R), ("upside-down", F)):
+            both, only = int((X.seen_by == "both").sum()), int((X.seen_by == "PDCSAP only").sum())
+            P(f"  {lab:12s} PDCSAP dips that SAP also found: {both} of {both + only}; SAP-only dips flagged by the SAP burst test: {int(((X.seen_by == 'SAP only') & (X.sap_burst_n >= SAP_BURST_N)).sum())} of {int((X.seen_by == 'SAP only').sum())}")
+        P("  NOT measured for the SAP half: its own real-to-upside-down asymmetry ratio (section 5b uses the PDCSAP ratio), and injected-dip recovery (see sap_recovery).")
     txt = "\n".join(out)
     leaked = [str(t) for t in ev.tic.unique() if str(t) in txt]
     assert not leaked, f"star IDs leaked into the published text: {leaked[:3]}"
