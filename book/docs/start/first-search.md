@@ -76,7 +76,7 @@ We are at step 2 of 6, and step 3 has not given us anything.
 These are plans, not promises, and each needs your say first.
 
 1. **Fix what the search taught us.** Search for dips up to 20 hours long (our limit now is 15, and long planets are missed), set a false-alarm level for each star the way NASA's Kepler team does, and test how well we find faint planets.
-2. **Search more stars.** TESS itself found 4,584 two-star systems in its first 26 sectors. A professional team searched 512 of them and found one weak candidate {{claim:F-070}}. We can search others they did not.
+2. **Search more stars.** TESS itself found 4,584 two-star systems in its first 26 sectors. A professional team searched 512 of them, the well-separated ones with orbits longer than 7 days, and found one weak candidate {{claim:F-070}}. Only 30 of our 549 stars are in their starting list of 591 {{claim:F-072}}, so the two searches mostly cover different stars. The next step is to run both on the stars we share and compare.
 3. **Search for pairs of dips.** We never built that.
 4. **If a dip survives all of it:** people look at it, two independent checks, then publish.
 
