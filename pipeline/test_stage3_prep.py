@@ -116,6 +116,30 @@ def test_v4_flags():
     assert not any(e["ramp"] or e["dominated"] for e in C.enrich_group(g, eph, set(), extra=False))
 
 
+def test_grid_v5_sees_a_20_hour_dip():
+    import stage2_search as S2
+    rng = np.random.default_rng(3); t = np.arange(0, 27, 2 / 1440); f = 1 + rng.normal(0, 1000e-6, t.size)
+    f[np.abs(t - 13.3) < 10 / 24] -= 3000e-6                                           # a 20 h box dip, 3000 ppm, in white noise (1000 ppm per 2 min)
+    old = S2.DURS_H
+    try:
+        C.use_grid(S2, C.GRID_V4); e4 = S2.Prod(t, f).events()
+        C.use_grid(S2, C.GRID_V5); e5 = S2.Prod(t, f).events()
+    finally:
+        S2.DURS_H = old
+    assert C.GRID_V5 == C.GRID_V4 + (20,) and e4 and max(e["dur_h"] for e in e4) <= 15, "the old grid stops at 15 h"
+    assert e5 and e5[0]["dur_h"] == 20 and e5[0]["snr"] > e4[0]["snr"], (e4[:1], e5[:1])
+    assert S2.DURS_H == old, "use_grid must only change the module name it is given"
+
+
+def test_noise_expected_and_ratio_table():
+    lam, p = R.noise_expected(12, 33, 2.3)
+    assert abs(lam - 33 / 2.3) < 1e-9 and 0.6 < p < 0.8, (lam, p)                        # 12 real against 14.3 expected: nothing unusual
+    assert R.noise_expected(40, 33, 2.3)[1] < 1e-6 and R.noise_expected(0, 0, 2.0) == (0.0, 1.0)
+    assert R.noise_expected(20, 33, 2.3)[1] < R.noise_expected(15, 33, 2.3)[1], "more real events must be less likely under noise alone"
+    r, name = R.asym_ratios("v4-does-not-exist")                                         # falls back to the v4 file, whose bars are known
+    assert name == "asymmetry.txt" and r[7.0] == 2.30 and r[10.0] == 2.07 and set(r) == {4.5, 5.0, 6.0, 7.0, 8.0, 10.0}, (name, r)
+
+
 def test_settings_hash_changes_with_any_setting():
     s = dict(snr_threshold=7.0, durs_h=[3, 4], code=dict(a="x"))
     h = C.settings_hash(s)

@@ -54,6 +54,26 @@ def repeater_labels(X):
     return pd.Series(lab, dtype=object)
 
 
+def asym_ratios(label="v5"):
+    """({SNR bar: upside-down dips / real dips}, file name) from research/stage3/asymmetry_<label>.txt (written by asymmetry_test.py), or the v4 file
+    asymmetry.txt if there is no v5 one; ({}, None) if neither exists."""
+    import re
+    for name in (f"asymmetry_{label}.txt", "asymmetry.txt"):
+        p = C.ROOT / "research" / "stage3" / name
+        if p.exists():
+            out = {float(m[0]): float(m[3]) for m in re.findall(r"^\s*([\d.]+)\s+(\d+)\s+(\d+)\s+([\d.]+)\s*$", p.read_text(encoding="utf-8"), re.M)}
+            if out:
+                return out, name
+    return {}, None
+
+
+def noise_expected(real, flip, ratio):
+    """(real events expected from noise alone = upside-down / ratio, chance of seeing at least `real` if the real curves held noise only). Poisson."""
+    from scipy.stats import poisson
+    lam = flip / ratio
+    return lam, float(poisson.sf(real - 1, lam)) if lam > 0 else (1.0 if real == 0 else 0.0)
+
+
 def waterfall(X):
     """Same order and rules as stage2_report.waterfall: start, no gap/dump, no burst, not matched upside-down, not at an eclipse phase (C5),
     second product >= 3 (lenient), >= 4 (lenient), >= 4 (strict)."""
@@ -101,6 +121,15 @@ def report(groups_dir):
         P(f"  tier 1 with SNR >= {thr:2d}: real {a:3d}, upside-down {b:3d}, excess {a - b:+4d}")
     if "step" in E:
         P("  v3 flat-baseline flag (real | upside-down): " + f"{int(R.step.sum())} | {int(F.step.sum())} of {len(R)} | {len(F)} best-product events")
+    ratios, src = asym_ratios()
+    if ratios:                                                    # v5: the control overstates dip false alarms, so judge real against upside-down / ratio
+        P(f"\n5b. NOISE-EXPECTED REAL: upside-down tier-1 divided by the measured asymmetry ratio ({src}); chance = P(real >= observed | noise alone, Poisson)")
+        P("  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED); a SNR bar above the table uses its last ratio.")
+        for thr in (7, 8, 10, 12):
+            a, b = int((t1r.snr >= thr).sum()), int((t1f.snr >= thr).sum())
+            r = ratios[max(k for k in ratios if k <= thr)]
+            lam, p = noise_expected(a, b, r)
+            P(f"  tier 1 with SNR >= {thr:2d}: real {a:3d}, upside-down {b:3d}, ratio {r:.2f}, noise-expected real {lam:5.1f}, chance {p:.2f}")
     P("\n6. LABELS (aggregate only; labels never remove an event)")
     sl = star_labels()
     if sl is None:

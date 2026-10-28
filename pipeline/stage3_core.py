@@ -67,6 +67,14 @@ def flags_of(e):
 
 RAMP_D = 1.0                        # v4: an event within 1 day after data resumes (orbit start, gap, sector start) sits in the thermal and scattered light ramp
 EBS = ROOT / "data" / "xmatch" / "ebs.csv"
+GRID_V4 = (3, 4, 5, 6.5, 8, 10, 12, 15)    # box lengths in hours, Stage 2 to v4 (equal to detect_v2.DURS_H)
+GRID_V5 = GRID_V4 + (20,)           # v5: long circumbinary transits were never searched; a 2 d window is 2.4 x 20 h (it still absorbs part of such a dip, learnings section 13)
+
+
+def use_grid(S2, grid):
+    """Make the Stage 2 search code score the given box lengths. stage2_search.py is not edited: its module-level name DURS_H is rebound (Prod.events and
+    Prod.snr_near_any read it at call time). Dry runs use GRID_V4 to reproduce Stage 2 exactly; the v5 run uses GRID_V5."""
+    S2.DURS_H = tuple(grid)
 
 
 def eb_widths():
