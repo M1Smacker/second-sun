@@ -10,6 +10,7 @@
 | Work | What it did | How we read it |
 |---|---|---|
 | Davies et al. 2026, *MNRAS* 548 ([arXiv:2604.09435](https://arxiv.org/abs/2604.09435)), a Warwick team | A semi-automated search for single transits (the tool is called mono-cbp). It searched 512 detached eclipsing binaries with orbits over 7 days and reported one weak candidate. An event was kept only if it survived at least 18 of 21 different detrendings (F-021). | abstract; Table 2 (F-001) |
+| Paz 2024, *AJ* ([arXiv:2409.15499](https://arxiv.org/abs/2409.15499)) and Paz and others 2026 ([arXiv:2605.19059](https://arxiv.org/abs/2605.19059)) | VARnet and VarWISE: a machine-learning detector and a catalogue of 1.9 million infrared variable objects from NEOWISE. Not a planet search: it has no planet class and sparse six-month epochs. | abstracts and most of the text, not the final sections |
 | Thornton et al. 2026, *MNRAS* 548 ([arXiv:2512.07934](https://arxiv.org/abs/2512.07934)) | 27 candidate two-star planets from the slow turning of the binary's orbit (apsidal precession), found by timing eclipses, not by looking for transits. | title only |
 | Oddo et al. 2026 ([arXiv:2610.22625](https://arxiv.org/abs/2610.22625)) | The occurrence of two-star planets around red-dwarf eclipsing binaries in TESS. An earlier conference abstract, "Towards Transiting Tatooines" (2024), described the search. | title only |
 | Martin and Fabrycky 2021, *AJ* 162, 84 | STANLEY: stack shallow crossings that do not keep time, using simulated orbits. | abstract; we ran it (F-044, F-045) |
