@@ -65,6 +65,7 @@ def report(h):
            "Real = the dip on the real curve, upside-down = its mirror image on the flipped curve (the control). SNR 7 or more, one row per dip (primary).", ""]
     flags = ["burst"] + (["common"] if v7 else []) + ["flipmatch"] + BASE_FLAGS
     out.append("A. DOES THE CONTROL TREAT THE FLAGS ALIKE? Share of events carrying each flag (real | upside-down), Fisher exact p for equal shares; p < 0.01 marks an unfair flag. flipmatch can only fire on real events.")
+    out.append("   UNFAIR says the two sides are not interchangeable for that flag. It does not say whose fault: the pooled common-moment flag is identical for an event and its mirror in rule, and can still hit them unequally if the noise is lopsided.")
     for half, G in E.groupby("half"):
         r, f = G[G.kind == "real"], G[G.kind == "flip"]
         out.append(f"  {half}: {len(r)} real, {len(f)} upside-down")
@@ -99,14 +100,14 @@ def report(h):
         for lab, pdc in (("tier 1", False),) + ((("tier 1 with the PDCSAP check", True),) if (v7 and half == "SAP only") else ()):
             ok_r, ok_f = passes(r, r[burst_col], pdc), passes(f, f[burst_col], pdc)
             obs, exp = int(ok_r.sum()), float(w[ok_f.values].sum())
-            out.append(f"  {half}, {lab}: real {obs}, upside-down {int(ok_f.sum())} unweighted, {exp:.1f} when it is made to share the real flag shares; chance of {obs} or more from noise at {exp:.1f}: {poisson.sf(obs - 1, exp) if exp > 0 else float('nan'):.3f}   (fit gap {gap:.3f})")
+            tail = f"chance of {obs} or more from noise at {exp:.1f}: {poisson.sf(obs - 1, exp):.3f}" if exp > 0 else "NO NULL: the control has no event that passes, so re-weighting cannot make any"
+            out.append(f"  {half}, {lab}: real {obs}, upside-down {int(ok_f.sum())} unweighted, {exp:.1f} when it is made to share the real flag shares; {tail}   (fit gap {gap:.3f})")
     out.append("  Margins only: the joint pattern of the flags is the control's own, and real planets, if any, are part of the target shares. Approximate, not a proof of either direction.")
     if v7:
         out += ["", "D. PDCSAP CHECK: share of SAP-only dips that the PDCSAP flux of the same file also shows (SNR >= %g at the dip's own box length)." % C.PDC_MIN]
         G = E[E.half == "SAP only"]
         r, f = G[G.kind == "real"], G[G.kind == "flip"]
-        for lab, rr, ff in (("all SAP-only dips", r, f), ("those that pass every flag", r[passes(r, r["common"], False) & ~(r.c8_n.fillna(0) > 0)], f[passes(f, f["common"], False) & ~(f.c8_n.fillna(0) > 0)]),
-                            ("tier 1 before the PDCSAP check", r[passes(r, r["common"], False)], f[passes(f, f["common"], False)])):
+        for lab, rr, ff in (("all SAP-only dips", r, f), ("tier 1 before the PDCSAP check", r[passes(r, r["common"], False)], f[passes(f, f["common"], False)])):
             a, b = int((rr.pdc_snr >= C.PDC_MIN).sum()), int((ff.pdc_snr >= C.PDC_MIN).sum())
             out.append(f"  {lab:34s}: pass {a} of {len(rr)} real | {b} of {len(ff)} upside-down" + (f"   (shares {100 * a / len(rr):.1f}% | {100 * b / len(ff):.1f}%, p = {fisher(a, len(rr), b, len(ff)):.2f})" if len(rr) and len(ff) else ""))
         out.append(f"  median PDCSAP SNR at the dip: real {r.pdc_snr.median():.2f}, upside-down {f.pdc_snr.median():.2f}   (a dip PDC left alone would show about its SAP SNR, 7 or more, in the same pixels)")

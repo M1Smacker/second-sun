@@ -1,0 +1,11 @@
+PAIR SEARCH on frozen run fd788be04650. Rules: different sectors, depths within x1.5, durations within x1.5, one count per dip. Aggregates only.
+
+clean (tier 1A, 1L, 1B)
+  real        :   21 dips on  17 stars | pairs   0 on   0 stars | gap between the two dips: under 60 d 0, 60 to 365 d 0, over 365 d 0
+  upside-down :   32 dips on  30 stars | pairs   2 on   2 stars | gap between the two dips: under 60 d 0, 60 to 365 d 1, over 365 d 1
+  noise-expected real stars with a pair (upside-down stars with a pair x (real dips / upside-down dips) squared): 0.86; real 0; chance of at least that many from noise 1.00
+
+soft (tier 1 or 2 with no data-quality or eclipse flag)
+  real        :  226 dips on 104 stars | pairs 1062 on   7 stars | gap between the two dips: under 60 d 105, 60 to 365 d 171, over 365 d 786
+  upside-down :  201 dips on 112 stars | pairs 175 on  12 stars | gap between the two dips: under 60 d 12, 60 to 365 d 9, over 365 d 154
+  noise-expected real stars with a pair (upside-down stars with a pair x (real dips / upside-down dips) squared): 15.17; real 7; chance of at least that many from noise 0.99

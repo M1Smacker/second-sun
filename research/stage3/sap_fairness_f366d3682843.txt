@@ -1,0 +1,39 @@
+SAP FAIRNESS on run f366d3682843 (v6: Stage 2 burst flag). Aggregates only; post-hoc; changes no tier.
+Real = the dip on the real curve, upside-down = its mirror image on the flipped curve (the control). SNR 7 or more, one row per dip (primary).
+
+A. DOES THE CONTROL TREAT THE FLAGS ALIKE? Share of events carrying each flag (real | upside-down), Fisher exact p for equal shares; p < 0.01 marks an unfair flag. flipmatch can only fire on real events.
+   UNFAIR says the two sides are not interchangeable for that flag. It does not say whose fault: the pooled common-moment flag is identical for an event and its mirror in rule, and can still hit them unequally if the noise is lopsided.
+  PDCSAP half: 642 real, 910 upside-down
+    burst         32.4% |  48.1%   p = 6.2e-10   UNFAIR
+    flipmatch      1.7% |   0.0%   p = 5.8e-05
+    gap_dump      45.6% |  60.9%   p = 3.4e-09   UNFAIR
+    c5            15.3% |  11.9%   p = 5.8e-02
+    ecl_overlap   24.0% |  15.8%   p = 8.3e-05   UNFAIR
+    repeater      35.5% |  31.1%   p = 7.1e-02
+    step          68.7% |  73.4%   p = 4.6e-02
+    ramp          22.6% |  29.9%   p = 1.4e-03   UNFAIR
+    dominated     23.1% |  14.4%   p = 1.6e-05   UNFAIR
+  SAP only: 550 real, 488 upside-down
+    burst         52.4% |  66.0%   p = 9.6e-06   UNFAIR
+    flipmatch      0.4% |   0.0%   p = 5.0e-01
+    gap_dump      70.2% |  77.0%   p = 1.4e-02
+    c5            10.7% |   7.2%   p = 5.1e-02
+    ecl_overlap   15.1% |   8.8%   p = 2.2e-03   UNFAIR
+    repeater      24.7% |  55.5%   p = 2.8e-24   UNFAIR
+    step          75.6% |  86.9%   p = 4.0e-06   UNFAIR
+    ramp          28.4% |  31.6%   p = 2.8e-01
+    dominated     22.7% |  27.3%   p = 9.8e-02
+
+B. LADDER: survivors (real | upside-down, real / upside-down) as flags are added in order; ratios far from the raw one show where the sides part.
+  PDCSAP half: all 642 | 910; +gap_dump 349 | 356; +burst 293 | 255; +flipmatch 286 | 255; +c5 222 | 204; +ecl_overlap 186 | 177; +repeater 83 | 110; +step 18 | 44; +ramp 18 | 42; +dominated 16 | 38; +second product 14 | 35
+  SAP only: all 550 | 488; +gap_dump 164 | 112; +burst 102 | 59; +flipmatch 101 | 59; +c5 94 | 56; +ecl_overlap 91 | 54; +repeater 73 | 22; +step 24 | 3; +ramp 19 | 3; +dominated 19 | 1; +second product 19 | 1
+
+C. EQUAL FLAG PASS RATES (upside-down re-weighted to the real events' flag shares; sum of weights = number of real events). Expected = what noise would leave among the real events.
+  PDCSAP half, tier 1: real 14, upside-down 35 unweighted, 30.0 when it is made to share the real flag shares; chance of 14 or more from noise at 30.0: 1.000   (fit gap 0.000)
+  SAP only, tier 1: real 19, upside-down 1 unweighted, 7.6 when it is made to share the real flag shares; chance of 19 or more from noise at 7.6: 0.000   (fit gap 0.000)
+  Margins only: the joint pattern of the flags is the control's own, and real planets, if any, are part of the target shares. Approximate, not a proof of either direction.
+
+E. TIER 1 BY RULE SET (real | upside-down), per half and whole union
+  v6 as frozen (Stage 2 burst flag, plus the SAP burst test on SAP-only dips)      PDCSAP half: 14 | 35   SAP only: 19 | 1   whole union: 33 | 36
+  no burst-type flag at all                                                        PDCSAP half: 21 | 49   SAP only: 34 | 6   whole union: 55 | 55
+  same-kind common moment instead of burst (FIX-QUEUE 17 wording; sensitivity)     PDCSAP half: 18 | 37   SAP only: 17 | 1   whole union: 35 | 38

@@ -1,0 +1,56 @@
+STAGE 3 aggregate report (no star IDs, no event times). Groups: 5082; star-sectors with a best product searched: 5064
+
+1. CUTS in order (real | upside-down): start, no gap/dump, no burst, not matched upside-down, not at an eclipse phase (C5), second product >=3 lenient, >=4 lenient, >=4 strict
+  real         1192 | 513 | 361 | 353 | 284 | 260 | 256 | 89
+  upside-down  1398 | 468 | 290 | 290 | 234 | 218 | 207 | 100
+
+2. TIERS of the best-product events (1A second product agrees >=4; 1L 3 to 4; 1B no second product; 2 flagged; 3 second product disagrees)
+  real         1A 7  1L 0  1B 14  2 1161  3 10
+  upside-down  1A 6  1L 3  1B 23  2 1363  3 3
+  real tier-1 events on QLP-only stars: 3 of 21 (no second product is possible there)
+
+3. HOW MUCH TIMELINE C5 COVERS (windows of 0.35 d around the primary and phase 0.5): stars with at least 5% / 10% / 20% / 30% of the timeline
+  >= 5%: 353 of 549 | >= 10%: 217 of 549 | >= 20%: 70 of 549 | >= 30%: 0 of 549
+
+4. PROJECTION TO THE CAMPAIGN (class sizes derived from data; rates per brightness class from this sample; REAL-curve tier-1 is the planning number, upside-down is an upper bound)
+  campaign star-sectors by class: {'faint12+': 3196, 'mid11-12': 1067, 'bright<11': 801} (total 5064, without a magnitude class 0)
+  real tier-1                       : about     21 events across the campaign
+  real tier-1 + tier 2 (all real)   : about   1192 events across the campaign
+  upside-down tier-1 (upper bound)  : about     32 events across the campaign
+
+5. SIGNAL EXCESS: real minus upside-down (positive = more real dips than the control; the control is an upper bound on false alarms)
+  tier 1 (1A+1L+1B)                 : real   21, upside-down   32, excess   -11
+  tier 1A (second product agrees)   : real    7, upside-down    6, excess    +1
+  tier 2 (flagged)                  : real 1161, upside-down 1363, excess  -202
+  tier 1 with SNR >=  7: real  21, upside-down  32, excess  -11
+  tier 1 with SNR >=  8: real  13, upside-down  23, excess  -10
+  tier 1 with SNR >= 10: real   5, upside-down   9, excess   -4
+  tier 1 with SNR >= 12: real   2, upside-down   5, excess   -3
+  v3 flat-baseline flag (real | upside-down): 857 | 1092 of 1192 | 1398 best-product events
+
+5b. NOISE-EXPECTED REAL (PDCSAP half only: dips PDCSAP found; the SAP-only half has no valid ratio): upside-down tier-1 divided by the measured asymmetry ratio (asymmetry_v5.txt); chance = P(real >= observed | noise alone, Poisson)
+  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED for the PDCSAP half; for the SAP half it is known to FAIL, see sap_fairness); a SNR bar above the table uses its last ratio.
+  tier 1 with SNR >=  7: real  14, upside-down  32, ratio 2.25, noise-expected real  14.2, chance 0.56
+  tier 1 with SNR >=  8: real  11, upside-down  23, ratio 2.36, noise-expected real   9.7, chance 0.39
+  tier 1 with SNR >= 10: real   4, upside-down   9, ratio 1.96, noise-expected real   4.6, chance 0.67
+  tier 1 with SNR >= 12: real   2, upside-down   5, ratio 1.96, noise-expected real   2.6, chance 0.72
+
+6. LABELS (aggregate only; labels never remove an event)
+  real tier-1           21 events: on a TOI 0, on a known circumbinary host 0, in the TESS eclipsing binary catalogue 3 (period same 2, half 1, other 0)
+  upside-down tier-1    32 events: on a TOI 0, on a known circumbinary host 0, in the TESS eclipsing binary catalogue 1 (period same 1, half 0, other 0)
+  repeater star-sectors, real: 78 uniform-depth 43, mixed 27, scattered 8
+  repeater star-sectors, upside-down: 132 mixed 54, uniform-depth 49, scattered 29
+
+7. SAP TWIN (v6; sections 1 to 6 above already count each dip ONCE, the union). The PDCSAP half is the frozen v5 run; the SAP search of the same files adds dips PDCSAP missed
+  star-sectors whose best product has a SAP twin searched: 1420 of 5064 star-sectors with a best product (1420 have a SPOC or TESS-SPOC best product)
+  real         dips by who found them: PDCSAP only 572, both 70, SAP only 550; tier 1 of those: PDCSAP only 12, both 2, SAP only 7
+  upside-down  dips by who found them: PDCSAP only 796, both 114, SAP only 488; tier 1 of those: PDCSAP only 29, both 3, SAP only 0
+  tier-1 dips ADDED by the SAP twin: real 7, upside-down 0, excess +7   (judge the SAP half by this line: real minus upside-down)
+  real         PDCSAP dips that SAP also found: 70 of 642; SAP-only dips flagged by the SAP burst test: 181 of 550
+  upside-down  PDCSAP dips that SAP also found: 114 of 910; SAP-only dips flagged by the SAP burst test: 290 of 488
+  NOT measured for the SAP half: its own real-to-upside-down asymmetry ratio (section 5b uses the PDCSAP ratio), and injected-dip recovery with every check (see sap_recovery).
+
+8. v7 FLAGS (the common-moment flag replaces the Stage 2 burst flag in the tiers; SAP-only dips must also show in the PDCSAP flux of the same file)
+  real         flagged by the common moment 700 of 1192 (the old burst flag: 496); SAP-only dips: 550, PDCSAP shows them (SNR 3 or more) 102, does not 438, not measurable 10
+  upside-down  flagged by the common moment 885 of 1398 (the old burst flag: 760); SAP-only dips: 488, PDCSAP shows them (SNR 3 or more) 114, does not 365, not measurable 9
+  Is the upside-down copy a fair control for the SAP half, and what is left when it is made fair: sap_fairness_<run hash>.txt (flag shares, ladder, equal-pass-rate null, PDCSAP check, rule-set variants).

@@ -141,6 +141,12 @@ def test_noise_expected_and_ratio_table():
     assert name == "asymmetry.txt" and r[7.0] == 2.30 and r[10.0] == 2.07 and set(r) == {4.5, 5.0, 6.0, 7.0, 8.0, 10.0}, (name, r)
 
 
+def test_pdc_half_for_the_noise_expected_line():
+    X = pd.DataFrame(dict(snr=[8.0, 9.0, 7.5], seen_by=["PDCSAP only", "SAP only", "both"]))
+    assert list(R.pdc_half(X).snr) == [8.0, 7.5], "the v5 ratio is never applied to the SAP-only half"
+    assert len(R.pdc_half(X.drop(columns="seen_by"))) == 3, "a run without a SAP twin is whole"
+
+
 def test_pair_search_rules():
     ev = lambda sector, center, depth=5000, dur=10, snr=8: dict(sector=sector, center=center, depth_ppm=depth, dur_h=dur, snr=snr)
     assert P.pairs_of([ev(1, 100), ev(2, 128, 6000)]) == [28]                               # matching dips in two sectors pair

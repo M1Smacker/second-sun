@@ -14,10 +14,16 @@ ROOT = r"D:\second-sun\data\stage3"
 DEPTH_RATIO = 1.5
 DUR_RATIO = 1.5
 CLUSTER_D = 0.5
-HARD = ("gap_dump", "burst", "flipmatch", "c5", "ecl_overlap")
+HARD = ("gap_dump", "flipmatch", "c5", "ecl_overlap")
+
+
+def burst_like(e):
+    """The flag in the burst flag's place: the v7 common-moment flag when the run has one, else the Stage 2 burst flag."""
+    c = e.get("common")
+    return bool(e.get("burst") if c is None or c != c else c)
 CLASSES = {
     "clean (tier 1A, 1L, 1B)": lambda e: e["tier"] in ("1A", "1L", "1B"),
-    "soft (tier 1 or 2 with no data-quality or eclipse flag)": lambda e: e["tier"] in ("1A", "1L", "1B", "2") and not any(e.get(k) for k in HARD),
+    "soft (tier 1 or 2 with no data-quality or eclipse flag)": lambda e: e["tier"] in ("1A", "1L", "1B", "2") and not any(e.get(k) for k in HARD) and not burst_like(e),
 }
 
 

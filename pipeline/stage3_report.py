@@ -131,6 +131,11 @@ def asym_ratios(label="v5"):
     return {}, None
 
 
+def pdc_half(X):
+    """The dips PDCSAP found (v5 events, seen by PDCSAP alone or by both); runs without a SAP twin are returned whole. The v5 asymmetry ratio belongs to this half."""
+    return X[X.seen_by != "SAP only"] if "seen_by" in X else X
+
+
 def noise_expected(real, flip, ratio):
     """(real events expected from noise alone = upside-down / ratio, chance of seeing at least `real` if the real curves held noise only). Poisson."""
     from scipy.stats import poisson
@@ -187,10 +192,11 @@ def report(groups_dir):
         P("  v3 flat-baseline flag (real | upside-down): " + f"{int(R.step.sum())} | {int(F.step.sum())} of {len(R)} | {len(F)} best-product events")
     ratios, src = asym_ratios()
     if ratios:                                                    # v5: the control overstates dip false alarms, so judge real against upside-down / ratio
-        P(f"\n5b. NOISE-EXPECTED REAL: upside-down tier-1 divided by the measured asymmetry ratio ({src}); chance = P(real >= observed | noise alone, Poisson)")
-        P("  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED); a SNR bar above the table uses its last ratio.")
+        u1r, u1f = pdc_half(t1r), pdc_half(t1f)                   # v6 and later: the ratio was measured on PDCSAP flux, so it is applied to the PDCSAP half only (sap_fairness.py shows why not to the SAP half)
+        P(f"\n5b. NOISE-EXPECTED REAL{' (PDCSAP half only: dips PDCSAP found; the SAP-only half has no valid ratio)' if 'seen_by' in R else ''}: upside-down tier-1 divided by the measured asymmetry ratio ({src}); chance = P(real >= observed | noise alone, Poisson)")
+        P("  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED for the PDCSAP half; for the SAP half it is known to FAIL, see sap_fairness); a SNR bar above the table uses its last ratio.")
         for thr in (7, 8, 10, 12):
-            a, b = int((t1r.snr >= thr).sum()), int((t1f.snr >= thr).sum())
+            a, b = int((u1r.snr >= thr).sum()), int((u1f.snr >= thr).sum())
             r = ratios[max(k for k in ratios if k <= thr)]
             lam, p = noise_expected(a, b, r)
             P(f"  tier 1 with SNR >= {thr:2d}: real {a:3d}, upside-down {b:3d}, ratio {r:.2f}, noise-expected real {lam:5.1f}, chance {p:.2f}")

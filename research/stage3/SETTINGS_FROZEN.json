@@ -1,7 +1,14 @@
 {
- "hash": "f366d368284316775c50f13d350a9268b178bf21b91ded58a4bf788ac48897af",
+ "hash": "fd788be04650eb4cbf28e73e406e431bc2a9f68a2b4da644ee33bfea2e4864e5",
  "settings": {
-  "base_run": "5392f864e810",
+  "base_run": "f366d3682843",
+  "v7": {
+   "common_d": 0.1,
+   "common_n": 3,
+   "pdc_min": 3.0,
+   "common_moment": "a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); it replaces the Stage 2 burst flag in the tiers, which counted only upside-down events",
+   "pdc_check": "a SAP-only dip whose PDCSAP flux (same file, same box length, nothing filled from SAP: sap_twin.load_pdc) shows SNR under pdc_min is tier 3; not measurable (PDC dropped those cadences) means no judgement (stage3.pdc_pass writes pdc_snr into groups_sap)"
+  },
   "sap_twin": "v6: the SAP flux (crowding fixed, hard quality mask, nothing filled) of every SPOC and TESS-SPOC file in star-sectors whose best product is one of them, searched with the v5 settings; a dip PDCSAP also found keeps its v5 version, a SAP-only dip is added (merge in stage3_report.load)",
   "snr_threshold": 7.0,
   "durs_h": [
@@ -42,14 +49,15 @@
    "audit_all.py": "f6e09dbf5d25bb21bcb0f860108dedb97c814ee8a111855f77ae7f76dd8d1a00",
    "audit_paths.py": "36ef6c98abf2482ba20c6ce5372d437d84535ddc41bb07ade404639a8b7e6128",
    "common_time.py": "edd7c2b11a1b2d0612ee4d3402b4da43601f04d1a64b1c2f65f58807e44c2f91",
-   "stage3_core.py": "8628d7065a3771c1cac7f9e02d965588dce8b8ff8dd87b44cd049723a4e302af",
-   "stage3.py": "de6f788cd39edfc4abf96bd3613da3c2c4f0ac09f2cbe4c1dbc16ffd96aa02df",
-   "sap_twin.py": "49b3c32083ec14e43ef497af4adf8afda05520c9d085f7ff2b9f9e42262631aa"
+   "stage3_core.py": "1ae12bfa612ba0708cf7e9c961fe10a41032babd0a9b78fc9a59a2bbb730ada0",
+   "stage3.py": "e2e03aea2de9ae72c891c197b0e892509a1b0aedcd21ed5da21ef34c800b2d43",
+   "sap_twin.py": "094aa68179ac3c3424f04ba71ca88ab5cd71d36c3db9e04d8aaf2e64e4d7be3f",
+   "stage3_report.py": "5ccd9fab061383c74fd525ace1d78f289daa2a0c503f572d2424ad93b8ccb1a8"
   }
  },
  "provenance": {
-  "git_commit": "5f21d230b4a547a7d6cee6e911697ab7b5209ce9",
+  "git_commit": "79eeb99492d419cdd3b155b652f8c2c87652a158",
   "pipeline_dirty": false,
-  "when": "2026-10-28T12:19:35+00:00"
+  "when": "2026-10-28T13:24:45+00:00"
  }
 }

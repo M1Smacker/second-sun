@@ -28,11 +28,11 @@ STAGE 3 aggregate report (no star IDs, no event times). Groups: 5082; star-secto
   tier 1 with SNR >= 12: real   2, upside-down   6, excess   -4
   v3 flat-baseline flag (real | upside-down): 857 | 1092 of 1192 | 1398 best-product events
 
-5b. NOISE-EXPECTED REAL: upside-down tier-1 divided by the measured asymmetry ratio (asymmetry_v5.txt); chance = P(real >= observed | noise alone, Poisson)
-  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED); a SNR bar above the table uses its last ratio.
-  tier 1 with SNR >=  7: real  33, upside-down  36, ratio 2.25, noise-expected real  16.0, chance 0.00
-  tier 1 with SNR >=  8: real  19, upside-down  27, ratio 2.36, noise-expected real  11.4, chance 0.03
-  tier 1 with SNR >= 10: real   7, upside-down  13, ratio 1.96, noise-expected real   6.6, chance 0.49
+5b. NOISE-EXPECTED REAL (PDCSAP half only: dips PDCSAP found; the SAP-only half has no valid ratio): upside-down tier-1 divided by the measured asymmetry ratio (asymmetry_v5.txt); chance = P(real >= observed | noise alone, Poisson)
+  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED for the PDCSAP half; for the SAP half it is known to FAIL, see sap_fairness); a SNR bar above the table uses its last ratio.
+  tier 1 with SNR >=  7: real  14, upside-down  35, ratio 2.25, noise-expected real  15.6, chance 0.69
+  tier 1 with SNR >=  8: real  11, upside-down  26, ratio 2.36, noise-expected real  11.0, chance 0.54
+  tier 1 with SNR >= 10: real   4, upside-down  13, ratio 1.96, noise-expected real   6.6, chance 0.90
   tier 1 with SNR >= 12: real   2, upside-down   6, ratio 1.96, noise-expected real   3.1, chance 0.81
 
 6. LABELS (aggregate only; labels never remove an event)
@@ -48,4 +48,4 @@ STAGE 3 aggregate report (no star IDs, no event times). Groups: 5082; star-secto
   tier-1 dips ADDED by the SAP twin: real 19, upside-down 1, excess +18   (judge the SAP half by this line: real minus upside-down)
   real         PDCSAP dips that SAP also found: 70 of 642; SAP-only dips flagged by the SAP burst test: 181 of 550
   upside-down  PDCSAP dips that SAP also found: 114 of 910; SAP-only dips flagged by the SAP burst test: 290 of 488
-  NOT measured for the SAP half: its own real-to-upside-down asymmetry ratio (section 5b uses the PDCSAP ratio), and injected-dip recovery (see sap_recovery).
+  NOT measured for the SAP half: its own real-to-upside-down asymmetry ratio (section 5b uses the PDCSAP ratio), and injected-dip recovery with every check (see sap_recovery).
