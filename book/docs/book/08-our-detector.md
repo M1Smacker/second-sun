@@ -163,7 +163,8 @@ The rules for reading the result were written down before anything ran (`experim
 After the real search we sort every dip and never delete one. A **flag** is a reason to doubt a dip:
 
 - **Gap or momentum dump:** close to a hole in the data or a thruster firing.
-- **Burst:** dips at the same moment on many stars, which means the telescope and not the stars.
+- **Burst (until version 6):** upside-down dips on three or more other stars within 0.1 days, which means the telescope and not the stars. It asked the control's question of the real dips, so it removed more upside-down events than real ones.
+- **Common moment (version 7, replaces Burst):** three or more other stars on the same camera have an event of either kind within 0.1 days. A dip and its upside-down mirror image get the same question about the same stars, so the control is treated like the data.
 - **Matched upside-down:** an upside-down dip at the same moment.
 - **Eclipse overlap:** the dip falls inside one of the two stars' own eclipses. How long is an eclipse? From the stars' size and orbit (about the orbit time divided by pi, times the two radii over the distance between the stars), or from a measured width where a catalogue has one (40 of our stars).
 - **Repeater:** three or more dips in one sector. A planet around two stars must orbit beyond a stability limit of about 3.7 binary periods {{claim:F-068}}, so with binaries over 5 days it needs at least about 15 days per lap and only two transits fit in a 27-day sector.

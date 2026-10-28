@@ -32,6 +32,9 @@ The centre of a star's light on the camera, like the balance point of its pixels
 ### Circumbinary planet
 A planet that orbits **both** stars of a pair. Its dips come at irregular times, which is why standard searches miss them. Our main quest.
 
+### Common moment
+A flag from version 7. A dip is doubtful if three or more other stars on the same camera have an event of either kind (a dip or an upside-down dip) within 0.1 days. It replaced the older burst flag, which counted only upside-down events and so treated the control differently from the data. See [Chapter 8](book/08-our-detector.md).
+
 ### Completeness
 The share of real planets a search would catch, measured by hiding fake planets in real data and counting how many come back. Ours keeps about 83 in 100 strong ones through the flags. See [Chapter 9](book/09-fake-planets.md).
 

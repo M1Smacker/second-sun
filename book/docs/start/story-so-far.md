@@ -40,25 +40,30 @@ Some stars come in pairs, two suns orbiting each other. A planet can orbit the *
 - **23 October: the book was rebuilt** around a map of the real sky, with three tabs, optional labs and a review page for each Part. Nothing about the science changed. [Field note](../field-notes/2026-10-23.md).
 - **You paused the hunt** to start this overhaul: "I can't let an AI do all the work while I just sit and say yes or no."
 
-## The honest scoreboard
+## Days 6 to 10: 24 to 28 October, the real search and its repairs
+
+- **24 October: Eyes got a memory.** Your scores now save by themselves and a feedback engine explains each card in a few lines. [Field note](../field-notes/2026-10-24.md).
+- **26 to 27 October: the learning track and the redesign plan.** The book now has one reading order, and a private design canvas for the next look. [Field note](../field-notes/2026-10-27.md).
+- **27 to 28 October: the real search.** You said start. We froze the settings, searched all 549 stars, found 604 dips, and cut them to 12 with our rules; the upside-down control still found more. Then came six more versions, each fixing something we learned: a longer box (20 hours), the raw light as a second look (version 6), and a fairer same-moment check with a cleaned-light test (version 7). The list of best dips ended at 21 real against 32 upside-down. Nothing looks like a planet. [The first real search](first-search.md) and the [field note for 28 October](../field-notes/2026-10-28.md).
+
+## The honest scoreboard (28 October)
 
 | Question | Answer today |
 |---|---|
 | New planets found | **0** |
-| Stars searched from G1 | 1 (Kepler-16), as a dry run |
-| Smallest planet we can see in one sector | about 6 Earth radii (TOI-1338) |
-| Known planet re-found | yes, TOI-1338 b, in 4 of 8 sectors |
+| Stars searched from G1 | all 549 (5,082 star-months), seven versions of the rules |
+| Best dips left after all checks | 21 real against 32 upside-down. Nobody has looked at any of them |
+| Faintest dip we reliably see | an 8 hour dip needs to be about 10 times the normal wobble to be found 6 times in 10 |
+| Known planet re-found | yes, TOI-1338 b: 4 of 8 sectors with the cleaned light, 7 of 8 with the raw light, 8 of 8 together |
 | Anything sent to NASA or published | no |
 
-## What's left before the real hunt
+## What's left
 
-1. **Smarter quality flags:** warn about scattered light instead of deleting it.
-2. **A pixel check:** is the dip on our star, or on a neighbour? (Chapter 11)
-3. **A bigger fake-planet test** (hundreds of planets), so "nothing found" has a measured meaning.
-4. **Decide the 136 unmeasured stars:** a quarter of the G1 list has no measured binary shape {{claim:F-052}}. Your call (decision log).
-5. **Run G1:** 549 stars, about 6.3 GB of light curves.
-
-- **27 to 28 October: the real search.** You said start. We froze the settings, searched all 549 stars, found 604 dips, and cut them to 12 with our rules; the upside-down control still found more. Four versions of the filter followed, each one fixing something we learned. [The first real search](first-search.md).
+1. **A person looks.** Nobody looks at a real dip until you have finished the Eyes training and we agree you are ready.
+2. **A fair control for the raw light.** The upside-down copy runs out of events once our checks are applied, so we cannot judge the raw-light dips by it.
+3. **A bigger fake-planet test with every check included**, turned into planet size, so "nothing found" has a measured meaning.
+4. **A pixel check:** is the dip on our star, or on a neighbour? (Chapter 11)
+5. **If something survives:** two independent checks, then publish.
 
 ## Where to go next
 
