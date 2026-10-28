@@ -43,8 +43,27 @@ def merge_sap(ev):
     return ev
 
 
+def apply_v7(ev):
+    """v7 flags on the union (FIX-QUEUE 17 and 19; learnings section 17). (1) `common`: 3 or more other stars have an event of EITHER kind within 0.1 d at the same sector and camera
+    (stage3_core.common_moment_n); it REPLACES the Stage 2 burst flag in the tiers, because that flag counts only upside-down events and so treats data and control differently. (2) `pdc_snr`: for a
+    SAP-only dip, the SNR the PDCSAP flux of the same file shows at that time and box length (written by `stage3.py pdccheck`); under PDC_MIN the dip is tier 3. v5 events (PDCSAP only or both) are
+    never judged by pdc_snr. Only primary events are re-tiered; the old `burst` column stays for the record."""
+    ev = ev.copy()
+    P = ev["primary"].values
+    ev["common_n"], ev["common"] = 0, False
+    n = C.common_moment_n(ev[P])
+    ev.loc[P, "common_n"], ev.loc[P, "common"] = n, n >= C.COMMON_N
+    if "pdc_snr" not in ev:
+        ev["pdc_snr"] = np.nan
+    ev["pdc_snr"] = pd.to_numeric(ev["pdc_snr"], errors="coerce").where(ev["seen_by"] == "SAP only")
+    for i in ev.index[P]:
+        ev.at[i, "tier"] = C.tier_of(ev.loc[i].to_dict())
+    return ev
+
+
 def load(groups_dir, extra=True):
-    """Events and star-sector meta of a run folder. If the folder has a sibling `groups_sap` (v6 and later) the SAP-twin events are read too and merged by merge_sap."""
+    """Events and star-sector meta of a run folder. If the folder has a sibling `groups_sap` (v6 and later) the SAP-twin events are read too and merged by merge_sap; if the run folder
+    also holds v7.json (v7 and later) the v7 flags are applied on top (apply_v7)."""
     ephem, qlp = C.Ephem(pd.read_csv(C.TARGETS, comment="#"), C.eb_widths()), C.qlp_only_tics()
     dirs = [pathlib.Path(groups_dir)]
     if dirs[0].with_name("groups_sap").exists():
@@ -61,6 +80,8 @@ def load(groups_dir, extra=True):
     ev["c8_best"] = pd.to_numeric(ev.c8_best, errors="coerce")
     if len(dirs) > 1:
         ev = merge_sap(ev)
+        if dirs[0].with_name("v7.json").exists():
+            ev = apply_v7(ev)
     return ev, pd.DataFrame(meta).merge(best, on=["tic", "sector"], how="left")
 
 
@@ -120,7 +141,7 @@ def noise_expected(real, flip, ratio):
 def waterfall(X):
     """Same order and rules as stage2_report.waterfall: start, no gap/dump, no burst, not matched upside-down, not at an eclipse phase (C5),
     second product >= 3 (lenient), >= 4 (lenient), >= 4 (strict)."""
-    b = X[~X.gap_dump]; c = b[~b.burst]; d0 = c[~c.flipmatch]; d = d0[~d0.c5]
+    b = X[~X.gap_dump]; c = b[~(b.common if "common" in b else b.burst)]; d0 = c[~c.flipmatch]; d = d0[~d0.c5]      # v7: "burst" means the common-moment flag
     has = d.second_product
     return (len(X), len(b), len(c), len(d0), len(d), len(d[(d.c8_best.fillna(99) >= 3) | ~has]), len(d[(d.c8_best.fillna(99) >= 4) | ~has]),
             len(d[has & (d.c8_best >= 4)]))
@@ -199,7 +220,14 @@ def report(groups_dir):
         for lab, X in (("real", R), ("upside-down", F)):
             both, only = int((X.seen_by == "both").sum()), int((X.seen_by == "PDCSAP only").sum())
             P(f"  {lab:12s} PDCSAP dips that SAP also found: {both} of {both + only}; SAP-only dips flagged by the SAP burst test: {int(((X.seen_by == 'SAP only') & (X.sap_burst_n >= SAP_BURST_N)).sum())} of {int((X.seen_by == 'SAP only').sum())}")
-        P("  NOT measured for the SAP half: its own real-to-upside-down asymmetry ratio (section 5b uses the PDCSAP ratio), and injected-dip recovery (see sap_recovery).")
+        P("  NOT measured for the SAP half: its own real-to-upside-down asymmetry ratio (section 5b uses the PDCSAP ratio), and injected-dip recovery with every check (see sap_recovery).")
+    if "common" in ev:
+        P("\n8. v7 FLAGS (the common-moment flag replaces the Stage 2 burst flag in the tiers; SAP-only dips must also show in the PDCSAP flux of the same file)")
+        for lab, X in (("real", R), ("upside-down", F)):
+            so = X[X.seen_by == "SAP only"]
+            P(f"  {lab:12s} flagged by the common moment {int(X.common.sum())} of {len(X)} (the old burst flag: {int(X.burst.sum())}); SAP-only dips: {len(so)}, PDCSAP shows them (SNR {C.PDC_MIN:g} or more) {int((so.pdc_snr >= C.PDC_MIN).sum())}, "
+              f"does not {int((so.pdc_snr < C.PDC_MIN).sum())}, not measurable {int(so.pdc_snr.isna().sum())}")
+        P("  Is the upside-down copy a fair control for the SAP half, and what is left when it is made fair: sap_fairness_<run hash>.txt (flag shares, ladder, equal-pass-rate null, PDCSAP check, rule-set variants).")
     txt = "\n".join(out)
     leaked = [str(t) for t in ev.tic.unique() if str(t) in txt]
     assert not leaked, f"star IDs leaked into the published text: {leaked[:3]}"

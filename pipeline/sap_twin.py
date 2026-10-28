@@ -2,14 +2,15 @@
 TOI-1338 b that input found 4 of 8 testable transits and plain SAP flux found 7 of 8, because the two fail in different sectors. v6 therefore ALSO searches the SAP flux of the
 best product's file and keeps the union. This module is the small, pure-ish part: the SAP loader, the hook that lets the unchanged Stage 2 search read it, and the choice of
 which star-sectors get a second pass. stage2_search.py and detect_v2.py are NOT edited: S2.load and S2.prepare are rebound in the worker process, the way C.use_grid rebinds the box lengths.
-A path ending in SUFFIX means "this file, read as SAP". Only SPOC and TESS-SPOC files have a twin (QLP flux is already SAP-based before sector 56)."""
+A path ending in SUFFIX means "this file, read as SAP"; v7 adds SUFFIX_PDC, "this file, read as PDCSAP with nothing filled". Only SPOC and TESS-SPOC files have a twin (QLP flux is already SAP-based before sector 56)."""
 import pathlib
 import numpy as np
 import lightkurve as lk
 
 SUFFIX = "::sap"
+SUFFIX_PDC = "::pdc"                # v7: this file, read as PDCSAP exactly as PDC delivered it (nothing filled from SAP)
 FAMILY = ("SPOC", "TESS-SPOC")
-MODE = {"sap": False}
+MODE = {"sap": False, "pdc": False}
 
 
 def crowd_fix(sap, crowdsap=None):
@@ -35,6 +36,21 @@ def load_sap(path, info=False):
                          cadence_min=round(float(np.median(np.diff(t))) * 1440, 2) if len(t) > 1 else None, column="sap_flux")
 
 
+def load_pdc(path, info=False):
+    """Same call signature and return as detect_v2.load. PDCSAP flux as PDC delivered it: hard quality mask, finite PDCSAP cadences only, nothing filled. detect_v2.load fills the cadences PDC dropped
+    from locally scaled SAP, which puts the SAP systematics back into the very curve the v7 check judges SAP-only dips by; this loader leaves those cadences out, so a dip there is 'not measurable'."""
+    lc = lk.read(path, quality_bitmask="hard")
+    t = lc.time.value
+    pdc = np.asarray(lc.pdcsap_flux.value, float)
+    ok = np.isfinite(t) & np.isfinite(pdc)
+    t, pdc = t[ok], pdc[ok]
+    f = pdc / np.nanmedian(pdc)
+    if not info:
+        return t, f, 0
+    return t, f, 0, dict(product=("TESS-SPOC" if "tess-spoc" in str(path).lower() else "SPOC"), sector=lc.meta.get("SECTOR"), needs_windows=False,
+                         cadence_min=round(float(np.median(np.diff(t))) * 1440, 2) if len(t) > 1 else None, column="pdcsap_flux")
+
+
 def install(S2):
     """Make S2.prepare understand paths that end in SUFFIX. Safe to call twice in one process."""
     if getattr(S2, "_sap_twin", False):
@@ -42,17 +58,18 @@ def install(S2):
     prepare0, load0 = S2.prepare, S2.load
 
     def load(path, info=False):
-        return load_sap(path, info) if MODE["sap"] else load0(path, info)
+        return load_sap(path, info) if MODE["sap"] else load_pdc(path, info) if MODE["pdc"] else load0(path, info)
 
     def prepare(path):
         p = str(path)
-        if not p.endswith(SUFFIX):
-            return prepare0(path)
-        MODE["sap"] = True
-        try:
-            return prepare0(p[:-len(SUFFIX)])
-        finally:
-            MODE["sap"] = False
+        for suffix, key in ((SUFFIX, "sap"), (SUFFIX_PDC, "pdc")):
+            if p.endswith(suffix):
+                MODE[key] = True
+                try:
+                    return prepare0(p[:-len(suffix)])
+                finally:
+                    MODE[key] = False
+        return prepare0(path)
 
     S2.load, S2.prepare, S2._sap_twin = load, prepare, True
 

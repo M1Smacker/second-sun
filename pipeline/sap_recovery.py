@@ -3,7 +3,9 @@ trapezoid dip (20 percent ingress and egress; same time, same depth in ppm) is i
 segment. Depth unit = the 8 h box noise of the PDCSAP curve (the unit of faint_recovery_v5.txt), at graded depths 4 to 10 times that noise and four box lengths. For each cell: how often
 PDCSAP finds the dip (SNR 7 or more, the search's own bar), how often SAP finds it, and the union. 'Found' only: the flags and the second-product check are NOT modelled (they act on
 both halves). The SAP noise relative to PDCSAP is recorded per star-sector, so the gain can be split by which flux is quieter.
-Usage: python sap_recovery.py [n_groups] [procs]   (writes research\\stage3\\sap_recovery_v6.txt)"""
+v7 adds one column and one table (label v7): for an injected dip SAP finds, the SNR the PDCSAP flux of the same file shows at the dip's own box length (the v7 PDCSAP check,
+stage3_core.PDC_MIN), so the cost of that check on true dips is measured, not guessed.
+Usage: python sap_recovery.py [n_groups] [procs] [v6|v7]   (writes research\\stage3\\sap_recovery_<label>.txt; v6, the default, reproduces the published file)"""
 import sys, pathlib, random, multiprocessing as mp
 import numpy as np, pandas as pd
 import stage2_search as S2, stage3_core as C, stage3 as S3, sap_twin as T
@@ -23,6 +25,10 @@ def one(args):
     a, _ = S2.prepare(sp[:-len(T.SUFFIX)]); b, _ = S2.prepare(sp)
     if a is None or b is None:
         return []
+    try:
+        c, _ = S2.prepare(sp[:-len(T.SUFFIX)] + T.SUFFIX_PDC)            # v7: PDCSAP with nothing filled, the curve the PDCSAP check reads
+    except Exception:
+        c = None
     t = a["t"]
     seg = np.split(np.arange(len(t)), np.where(np.diff(t) > 0.25)[0] + 1)
     s = max(seg, key=lambda i: t[i[-1]] - t[i[0]]); t0, t1 = t[s[0]], t[s[-1]]; tc = 0.5 * (t0 + t1)
@@ -34,11 +40,17 @@ def one(args):
         if tc - dur / 48 < t0 or tc + dur / 48 > t1:
             continue
         for k in KS:
-            snr = []
+            snr, prods = [], []
             for d in (a, b):
                 prof = np.clip((dur / 2 - np.abs(d["t"] - tc) * 24) / (0.2 * dur), 0, 1)
-                snr.append(S2.Prod(d["t"], d["f"] - k * n8 * 1e-6 * prof).snr_near_any(tc))
-            out.append((a["meta"]["product"], dur, k, snr[0], snr[1], n8s / n8))
+                prods.append(S2.Prod(d["t"], d["f"] - k * n8 * 1e-6 * prof)); snr.append(prods[-1].snr_near_any(tc))
+            pdc_box = np.nan                                         # v7: what the unfilled PDCSAP flux shows at the box length SAP found the dip with
+            if snr[1] >= 7 and c is not None:
+                near = [e for e in prods[1].events() if abs(e["center"] - tc) <= 0.5 * max(dur, e["dur_h"]) / 24 + 0.1]
+                if near:
+                    e = max(near, key=lambda x: x["snr"]); prof = np.clip((dur / 2 - np.abs(c["t"] - tc) * 24) / (0.2 * dur), 0, 1)
+                    pdc_box = S2.Prod(c["t"], c["f"] - k * n8 * 1e-6 * prof).snr_near(e["center"], e["dur_h"])
+            out.append((a["meta"]["product"], dur, k, snr[0], snr[1], n8s / n8, pdc_box))
     return out
 
 
@@ -63,7 +75,7 @@ if __name__ == "__main__":
     random.Random(20261028).shuffle(gl)
     with mp.Pool(procs, initializer=init) as pool:
         rows = [r for rr in pool.imap_unordered(one, gl[:n]) for r in rr]
-    df = pd.DataFrame(rows, columns=["product", "dur", "k", "snr_p", "snr_s", "noise_ratio"])
+    df = pd.DataFrame(rows, columns=["product", "dur", "k", "snr_p", "snr_s", "noise_ratio", "pdc_box"])
     df["p"], df["s"] = df.snr_p >= 7, df.snr_s >= 7
     df["u"] = df.p | df.s
     ng = int(((df.dur == DURS[0]) & (df.k == KS[0])).sum())
@@ -78,5 +90,16 @@ if __name__ == "__main__":
     s8 = df[df.dur == 8.0]
     txt.append("  8 h cells: dips found by SAP but not by PDCSAP / by PDCSAP but not by SAP (percent of all 8 h injections): " +
                ", ".join(f"{k:g}x {100 * ((g.s & ~g.p).mean()):.0f}/{100 * ((g.p & ~g.s).mean()):.0f}" for k, g in s8.groupby("k")))
+    label = sys.argv[3] if len(sys.argv) > 3 else "v6"
+    if label == "v7":
+        df["sv"] = df.s & (df.pdc_box >= C.PDC_MIN); df["u7"] = df.p | df.sv
+        txt.append(f"\nv7 PDCSAP CHECK: a SAP-only dip must show SNR {C.PDC_MIN:g} or more in the PDCSAP flux of the same file at its own box length. Cells: PDCSAP / SAP dips that pass the check / union with the check, percent")
+        txt += table(df.assign(s=df.sv, u=df.u7), "all star-sectors, SAP counted only when it passes the check")
+        for dur in DURS:
+            g = df[(df.dur == dur) & df.s & ~df.p]
+            txt.append(f"  dips SAP finds and PDCSAP does not ({dur:g} h boxes, n = {len(g)}): share that pass the check, by depth: " +
+                       ", ".join(f"{k:g}x {100 * h.pdc_box.ge(C.PDC_MIN).mean():.0f}%" for k, h in g.groupby("k") if len(h)) + f"; median PDCSAP SNR {g.pdc_box.median():.1f}")
+        g = df[df.s & ~df.p]
+        txt.append(f"  all boxes and depths: {len(g)} dips found by SAP only; {100 * g.pdc_box.ge(C.PDC_MIN).mean():.0f}% pass the check ({int(g.pdc_box.ge(C.PDC_MIN).sum())} of {len(g)})")
     print("\n".join(txt))
-    (pathlib.Path(r"D:\second-sun\research\stage3") / "sap_recovery_v6.txt").write_text("\n".join(txt), encoding="utf-8")
+    (pathlib.Path(r"D:\second-sun\research\stage3") / f"sap_recovery_{label}.txt").write_text("\n".join(txt), encoding="utf-8")

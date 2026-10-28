@@ -2,7 +2,7 @@
 detect_v2.find_events). What changes: the output folder is named by the hash of the frozen settings (never data\\stage2), and every event gets C5, the
 second-product state, the QLP-only label and a tier. Real events stay in D:\\second-sun\\data (git-ignored); publish aggregates only.
 NOTHING SEARCHES UNTIL YOU CALL `dry` (5 known hosts) OR `run` (all stars, only after `freeze`, which needs Ahmed's go: "start the search").
-Usage: python stage3.py settings | stars | dry [n] | freeze | run [n]"""
+Usage: python stage3.py settings | stars | dry [n] | sapdry [n] | pdcdry [n] | freeze | run [n]"""
 import sys, json, shutil, subprocess, pathlib, datetime, multiprocessing as mp
 import numpy as np
 import pandas as pd
@@ -16,7 +16,8 @@ DRY = C.ROOT / "data" / "stage3_dry"
 RUN = C.ROOT / "data" / "stage3"
 FROZEN = C.ROOT / "research" / "stage3" / "SETTINGS_FROZEN.json"
 STARS_ALL = PREP / "stage3_stars_LOCAL.csv"
-BASE = "5392f864e810"                  # v6 = this frozen v5 run, copied unchanged, plus a second pass over the SAP twins (folder groups_sap)
+BASE = "f366d3682843"                  # v7 = this frozen v6 run (the v5 search plus the SAP twin pass), both folders copied unchanged; v7 adds two flags and one measurement, no new search
+V7 = dict(common_d=C.COMMON_D, common_n=C.COMMON_N, pdc_min=C.PDC_MIN)
 S3 = {}
 
 
@@ -26,8 +27,11 @@ def git(*a):
 
 def current_settings(stars_csv):
     code = {f: C.sha(C.ROOT / "pipeline" / f) for f in ("stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py",
-                                                       "stage3_core.py", "stage3.py", "sap_twin.py")}
-    return dict(base_run=BASE, sap_twin="v6: the SAP flux (crowding fixed, hard quality mask, nothing filled) of every SPOC and TESS-SPOC file in star-sectors whose best product is one of them, "
+                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py")}
+    return dict(base_run=BASE, v7=dict(V7, common_moment="a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); "
+                                                          "it replaces the Stage 2 burst flag in the tiers, which counted only upside-down events",
+                                       pdc_check="a SAP-only dip whose PDCSAP flux (same file, same box length, nothing filled from SAP: sap_twin.load_pdc) shows SNR under pdc_min is tier 3; not measurable (PDC dropped those cadences) means no judgement (stage3.pdc_pass writes pdc_snr into groups_sap)"),
+                sap_twin="v6: the SAP flux (crowding fixed, hard quality mask, nothing filled) of every SPOC and TESS-SPOC file in star-sectors whose best product is one of them, "
                                         "searched with the v5 settings; a dip PDCSAP also found keeps its v5 version, a SAP-only dip is added (merge in stage3_report.load)",
                 snr_threshold=7.0, durs_h=list(C.GRID_V5), bin_d=getattr(D, "BIN_D", None), burst_d=S2.BURST_D, flip_burst_min=S2.FLIP_BURST_MIN,
                 c5_ph_d=C.PH_D, ecl_mtot=C.ECL_MTOT, ecl_rfac=C.ECL_RFAC, ecl_max_frac=C.ECL_MAX_FRAC, repeat_n=C.REPEAT_N, step_lift=C.STEP_LIFT, ramp_d=C.RAMP_D, dominance="strongest other-kind event in the same light curve >= this event", eb_widths=(C.sha(C.EBS) if C.EBS.exists() else None), step_cover=C.STEP_COVER, burst_min=C.BURST_MIN, c8_strict=C.C8_STRICT, c8_lenient=C.C8_LENIENT,
@@ -99,6 +103,63 @@ def sap_pass_groups(gl):
     return T.twin_groups(gl, {(int(a), int(b)): c for a, b, c in zip(best.tic, best.sector, best["product"])}, dict(zip(man.file, man.author)))
 
 
+def _init_pdc():
+    S2._init(); C.use_grid(S2, C.GRID_V5); T.install(S2)
+
+
+def add_pdc(a):
+    """v7: for every event of the SAP twin of the best product, the SNR the PDCSAP flux of the SAME file shows at that time and box length (Prod.snr_near, the rule C8 measure), on the
+    real curve for a real event and on the upside-down curve for an upside-down event. The PDCSAP curve is read with nothing filled from SAP (sap_twin.load_pdc). Written into the group JSON as
+    `pdc_snr`; NaN where the PDCSAP curve has no score there (PDC dropped those cadences): then the check says nothing."""
+    p, paths, best = a
+    g = json.load(open(p))
+    if g.get("pdc_check") == "v7u":
+        return p
+    prods = {}
+    for q in paths:
+        try:
+            d, _ = S2.prepare(q + T.SUFFIX_PDC)
+        except Exception:
+            continue
+        if d is not None:
+            prods[d["meta"]["product"]] = d
+    d = prods.get(best)
+    if d is not None:
+        P = {1: S2.Prod(d["t"], d["f"]), -1: S2.Prod(d["t"], d["f"], -1)}
+        for e in g["events"]:
+            if e["product"] == best + "-SAP":
+                e["pdc_snr"] = P[1 if e["kind"] == "real" else -1].snr_near(e["center"], e["dur_h"])
+    g["pdc_check"] = "v7u"
+    json.dump(g, open(p, "w"), default=lambda o: None if o != o else float(o))
+    return p
+
+
+def safe_pdc(a):
+    try:
+        return add_pdc(a)
+    except Exception as e:
+        return f"ERROR {a[0]}: {type(e).__name__}: {str(e)[:100]}"
+
+
+def pdc_pass(run_dir, stars_csv, n):
+    """v7 measurement pass over run_dir/groups_sap (the SAP search is not repeated): which groups, with which PDCSAP files, comes from sap_pass_groups."""
+    S2.STARS = pathlib.Path(stars_csv)
+    best = pd.read_csv(C.BEST, usecols=["tic", "sector", "product"]); bp = {(int(a), int(b)): c for a, b, c in zip(best.tic, best.sector, best["product"])}
+    todo = []
+    for tic, sec, tw in sap_pass_groups(S2.groups()):
+        f = pathlib.Path(run_dir) / "groups_sap" / f"{tic}_{sec}.json"
+        if f.exists():
+            todo.append((str(f), [q[:-len(T.SUFFIX)] for q in tw], bp[(int(tic), int(sec))]))
+    print(f"{len(todo)} SAP groups get a PDCSAP check", flush=True)
+    with mp.Pool(n, initializer=_init_pdc) as pool:
+        for i, r in enumerate(pool.imap_unordered(safe_pdc, todo), 1):
+            if r.startswith("ERROR"):
+                print(r, flush=True)
+            if i % 100 == 0:
+                print(f"{i}/{len(todo)}", flush=True)
+    print("PDC CHECK DONE", flush=True)
+
+
 def search(stars_csv, out_dir, tag, n, grid=C.GRID_V5, sap=False):
     out_dir = pathlib.Path(out_dir); groups_dir = out_dir / ("groups_sap" if sap else "groups"); groups_dir.mkdir(parents=True, exist_ok=True)
     S2.STARS = pathlib.Path(stars_csv)
@@ -148,6 +209,8 @@ if __name__ == "__main__":
         DRY.mkdir(parents=True, exist_ok=True)
         st = pd.read_csv(S2.STARS); st[st.stratum == "control"].to_csv(DRY / "stars_dry.csv", index=False)
         search(DRY / "stars_dry.csv", DRY, "sapdry", n, C.GRID_V5, sap=True)
+    elif mode == "pdcdry":                                       # v7 measurement on the dry folder's groups_sap (run `sapdry` first)
+        pdc_pass(DRY, DRY / "stars_dry.csv", n)
     elif mode == "dry50":                                        # all 50 Stage 2 stars into a separate folder: full regression against Stage 2
         search(S2.STARS, C.ROOT / "data" / "stage3_dry50", "dry50", n, C.GRID_V4)
     elif mode == "freeze":
@@ -166,7 +229,9 @@ if __name__ == "__main__":
         h = C.settings_hash(current_settings(STARS_ALL))
         if h != fz["hash"]:
             sys.exit(f"settings or code changed since the freeze ({h[:12]} vs {fz['hash'][:12]}): refusing to run")
-        dst = RUN / h[:12] / "groups"
-        if not dst.exists():                                     # v6: the PDCSAP half IS the frozen v5 run, copied byte for byte (not searched again)
-            shutil.copytree(RUN / BASE / "groups", dst); print(f"copied {len(list(dst.glob('*.json')))} v5 group files from {BASE}", flush=True)
-        search(STARS_ALL, RUN / h[:12], h[:12], n, sap=True)
+        dst = RUN / h[:12]
+        for sub in ("groups", "groups_sap"):                     # v7: the PDCSAP half (v5) and the SAP half (v6) ARE the frozen v6 run, copied byte for byte (not searched again)
+            if not (dst / sub).exists():
+                shutil.copytree(RUN / BASE / sub, dst / sub); print(f"copied {len(list((dst / sub).glob('*.json')))} {sub} files from {BASE}", flush=True)
+        (dst / "v7.json").write_text(json.dumps(V7), encoding="utf-8")   # marks the folder: stage3_report.load applies the v7 flags
+        pdc_pass(dst, STARS_ALL, n)

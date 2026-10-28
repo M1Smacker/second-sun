@@ -114,12 +114,36 @@ def step_flag(e):
     return any(l is None or abs(l) > STEP_LIFT for l in (e["lift_pre"], e["lift_post"]))
 
 
+# v7 (FIX-QUEUE 17, 18, 19): the Stage 2 burst flag counts other stars' UPSIDE-DOWN events at the same moment, whatever the kind of the event it judges, so it removes more of the control than of the
+# data when the common-mode events are dips (learnings section 16). The common-moment flag below asks every event, real or upside-down, the same question of the same pool.
+COMMON_D, COMMON_N = 0.1, BURST_MIN  # days and number of other stars: the Stage 2 burst values, unchanged
+PDC_MIN = C8_LENIENT                # v7: a SAP-only dip must still show at this SNR in the PDCSAP flux of the same file (the systematics-corrected version of the same pixels)
+
+
+def common_moment_n(E):
+    """E = DataFrame of the primary events of a run, BOTH kinds (columns sector, camera, center, tic). Returns an int array: for each row, the number of OTHER stars that have an event of EITHER kind
+    within COMMON_D days at the same sector and camera. The pool is the same for an event and its upside-down mirror, so the flag treats data and control identically (a same-kind count would not:
+    an episode of dips on many stars flags the control's mirrors but not the real dips, and an episode of bumps does the reverse)."""
+    out = np.zeros(len(E), int)
+    pos = {ix: n for n, ix in enumerate(E.index)}
+    for _, g in E.groupby(["sector", "camera"]):
+        c, t = g.center.values, g.tic.values
+        for ix, ci, ti in zip(g.index, c, t):
+            out[pos[ix]] = len(set(t[np.abs(c - ci) < COMMON_D]) - {ti})
+    return out
+
+
 def tier_of(e):
     """2 = flagged (kept, lower priority); 1A second product agrees at SNR >= 4; 1L agrees at 3 to 4; 1B no second product (cannot be confirmed
     by this check, includes every QLP-only star); 3 = a second product exists and disagrees (SNR < 3), kept and labelled. Stage 2's 'survivors'
-    are exactly 1A + 1L + 1B."""
-    if e["gap_dump"] or e["burst"] or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("step") or e.get("ramp") or e.get("dominated"):
+    are exactly 1A + 1L + 1B. v7: if the event carries `common` (the common-moment flag) it replaces `burst`; if it carries `pdc_snr` (SAP-only dips) a value under PDC_MIN makes it tier 3."""
+    c = e.get("common")
+    bad_moment = e["burst"] if c is None or c != c else c
+    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("step") or e.get("ramp") or e.get("dominated"):
         return "2"
+    p = e.get("pdc_snr")
+    if p is not None and p == p and p < PDC_MIN:
+        return "3"
     if not (e.get("c8_n") or 0) > 0 or e.get("c8_best") is None:
         return "1B"
     b = e["c8_best"]

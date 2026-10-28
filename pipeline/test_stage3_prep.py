@@ -164,6 +164,17 @@ def test_sap_twin_rules():
     assert T.twin_groups(gl, best, fam) == [(1, 10, ["a/x.fits" + T.SUFFIX]), (2, 10, ["a/z.fits" + T.SUFFIX])]
 
 
+def test_sap_twin_hook_routes_both_suffixes():
+    import sap_twin as T, types
+    seen = []
+    S2 = types.SimpleNamespace(load=lambda path, info=False: ("plain", path), prepare=lambda path: (seen.append((str(path), dict(T.MODE))), (None, {}))[1])
+    T.install(S2); T.install(S2)                                                              # twice in one process must not stack the hook
+    S2.prepare("a/x.fits"); S2.prepare("a/x.fits" + T.SUFFIX); S2.prepare("a/x.fits" + T.SUFFIX_PDC); S2.prepare("a/y.fits")
+    assert seen == [("a/x.fits", {"sap": False, "pdc": False}), ("a/x.fits", {"sap": True, "pdc": False}), ("a/x.fits", {"sap": False, "pdc": True}), ("a/y.fits", {"sap": False, "pdc": False})], seen
+    assert T.MODE == {"sap": False, "pdc": False} and S2.load("p") == ("plain", "p"), "modes are switched back after every call"
+    assert T.SUFFIX != T.SUFFIX_PDC and not T.SUFFIX.endswith(T.SUFFIX_PDC) and not T.SUFFIX_PDC.endswith(T.SUFFIX)
+
+
 def sap_rows():
     row = lambda kind, product, center, tic=1, dur=8, tier="1B", sector=1: dict(
         kind=kind, product=product, best="SPOC", center=center, dur_h=dur, snr=8.0, tic=tic, sector=sector, camera=1, tier=tier, c8_n=0, c8_best=np.nan, gap_dump=False,
@@ -193,6 +204,57 @@ def test_sap_union():
         o2 = R.merge_sap(e2)
         assert bool(o2.loc[3, "burst"]) == flagged and o2.loc[3, "tier"] == ("2" if flagged else "1B") and o2.loc[3, "sap_burst_n"] == n_other, (n_other, o2.loc[3].to_dict())
         assert o2.loc[0, "tier"] == "3", "the v5 events are never re-tiered"
+
+
+def test_common_moment_rules():
+    ev = lambda tic, center, kind="real", sector=1, camera=1: dict(tic=tic, center=center, kind=kind, sector=sector, camera=camera)
+    rows = [ev(1, 100.0), ev(2, 100.05, "flip"), ev(3, 99.96), ev(4, 100.09, "flip"),              # three other stars within 0.1 d, both kinds count
+            ev(5, 100.11), ev(1, 100.02),                                                            # 0.11 d away is outside; the same star never counts for itself
+            ev(6, 100.0, camera=2), ev(7, 100.0, sector=2),                                          # other camera, other sector: separate pools
+            ev(1, 100.0, "flip")]                                                                    # the mirror of event 0
+    E = pd.DataFrame(rows); n = C.common_moment_n(E)
+    assert n[0] == 3 and n[8] == 3, n                                                                # an event and its upside-down mirror see the same pool
+    assert n[5] == 4 and n[4] == 3 and n[2] == 2, n                                                  # star 5 at 100.11 sees stars 1 (via 100.02), 2 and 4; star 3 sees only stars 1 and 2
+    assert n[6] == 0 and n[7] == 0, "other camera and other sector are separate pools"
+    E2 = E.drop(index=[3]).reset_index(drop=True); assert C.common_moment_n(E2)[0] == 2, "two other stars are not a common moment"
+    assert (C.common_moment_n(E) >= C.COMMON_N).sum() == 6 and C.COMMON_N == 3 and C.COMMON_D == 0.1
+    # an episode of dips on three stars flags a real dip on a fourth AND its mirror (the Stage 2 burst flag, which counts only upside-down events, would flag only the mirror)
+    E3 = pd.DataFrame([ev(10 + j, 50.0) for j in range(3)] + [ev(1, 50.02), ev(1, 50.02, "flip")]); m = C.common_moment_n(E3)
+    assert m[3] == 3 and m[4] == 3, m
+
+
+def test_tier_v7_rules():
+    base = dict(tic=1, gap_dump=False, burst=False, flipmatch=False, c5=False, c8_n=0, c8_best=None)
+    assert C.tier_of(base) == "1B"
+    assert C.tier_of({**base, "burst": True}) == "2", "without a `common` field the Stage 2 burst flag still decides (Stage 2 numbers reproduce)"
+    assert C.tier_of({**base, "burst": True, "common": False}) == "1B" and C.tier_of({**base, "burst": False, "common": True}) == "2", "v7: `common` replaces `burst`"
+    assert C.tier_of({**base, "common": np.nan, "burst": True}) == "2", "a missing value falls back to burst"
+    assert C.tier_of({**base, "pdc_snr": 2.9}) == "3" and C.tier_of({**base, "pdc_snr": 3.0}) == "1B" and C.tier_of({**base, "pdc_snr": 8.0}) == "1B"
+    assert C.tier_of({**base, "pdc_snr": np.nan}) == "1B" and C.tier_of({**base, "pdc_snr": None}) == "1B", "not measurable: no judgement"
+    assert C.tier_of({**base, "pdc_snr": 0.5, "step": True}) == "2", "a flagged dip stays tier 2"
+    assert C.tier_of({**base, "pdc_snr": 0.5, "c8_n": 1, "c8_best": 9.0}) == "3", "a SAP twin that agrees does not rescue a dip the PDCSAP flux does not show"
+
+
+def test_apply_v7():
+    row = sap_rows()
+    rows = [row("real", "SPOC", 100.0), row("flip", "SPOC", 100.0),                                  # 0, 1: PDCSAP dip and its mirror
+            row("real", "SPOC-SAP", 105.0), row("flip", "SPOC-SAP", 105.0),                          # 2, 3: SAP-only dip and its mirror
+            row("real", "SPOC-SAP", 110.0), row("flip", "SPOC-SAP", 110.0)]                          # 4, 5: SAP-only pair, PDCSAP agrees
+    ev = pd.DataFrame(rows); ev["primary"] = ev["product"] == ev["best"]
+    ev = R.merge_sap(ev); ev["pdc_snr"] = [0.1, 0.1, 1.0, 1.0, 5.0, 5.0]                              # pdc_snr only matters for SAP-only rows (row 0 and 1 carry a value that must be ignored)
+    ev["tier"] = "1B"
+    others = [row("real", "SPOC", 105.02, tic=20 + j) for j in range(3)]                             # a camera-wide episode at 105.0 on three other stars (dips)
+    ev = pd.concat([ev, pd.DataFrame(others).assign(primary=True, seen_by="PDCSAP only", pdc_snr=np.nan)], ignore_index=True)
+    out = R.apply_v7(ev)
+    assert list(out.loc[:5, "seen_by"]) == ["PDCSAP only", "PDCSAP only", "SAP only", "SAP only", "SAP only", "SAP only"]
+    assert out.loc[0, "pdc_snr"] != out.loc[0, "pdc_snr"] and out.loc[0, "tier"] == "1B", "v5 events are never judged by pdc_snr"
+    assert bool(out.loc[2, "common"]) and bool(out.loc[3, "common"]) and out.loc[2, "tier"] == "2" and out.loc[3, "tier"] == "2", "the episode flags the real dip AND its mirror"
+    assert not out.loc[4, "common"] and out.loc[4, "tier"] == "1B" and out.loc[5, "tier"] == "1B", "PDCSAP agrees and no common moment"
+    assert bool(out.loc[6, "common"]) and out.loc[6, "tier"] == "2", "a v5 event inside the episode is re-tiered too (v7 changes the v5 tiers, never the v5 events)"
+    ev2 = ev.copy(); ev2.loc[[4, 5], "pdc_snr"] = 0.2
+    o2 = R.apply_v7(ev2); assert o2.loc[4, "tier"] == "3" and o2.loc[5, "tier"] == "3", "PDCSAP does not show the dip: tier 3, for the mirror too"
+    ev3 = ev.copy(); ev3.loc[[4, 5], "burst"] = True
+    assert R.apply_v7(ev3).loc[4, "tier"] == "1B", "the old burst flag no longer decides under v7"
 
 
 def test_settings_hash_changes_with_any_setting():
