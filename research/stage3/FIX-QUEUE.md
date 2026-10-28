@@ -15,8 +15,8 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
 8. DONE in v4 (40 stars). **Measured eclipse width** from the TESS eclipsing binary catalogue (53 stars) instead of the formula where available; the formula over-flags by a median 2.7x.
 9. DONE in v5 (hash 5392f864e810; kept out of v4 so the search stayed identical and the flags are attributable; use 20 h at most, since a 2 d detrending window is 2.4 x 20 h and Wotan says at least 2.2). **Duration grid beyond 15 h** (events pile at 3 h and 15 h; long circumbinary transits are not searched). Changes the search, so Stage 2 regression is re-proved first.
 
-## Needs Ahmed once
-10. **Pair search** (two dips close together) was never built. Default if he does not answer: not built, stated plainly in every report.
+## Needs Ahmed once (nothing waiting)
+10. DONE 28 Oct, first version, after Ahmed said "build it" (`pipeline/pair_search.py`, `pair_search_v5.txt`; learnings section 14). Links dips of one star across different sectors on the frozen v5 events: 0 real pairs among the 14 clean dips. Still open: (a) a lower per-dip bar (SNR 5 to 7) needs a re-search, i.e. a v6 freeze, because the frozen run only stores SNR 7 and above; (b) the alias check (do shorter periods Dt/n land in data gaps?) needs the observed time stamps, not stored in the group files; (c) circumbinary transits are not strictly periodic, so Dt/n is only a first filter.
 
 ## Not now
 - Pixel and centroid blend tests: only for survivors, later (needs target pixel files).
@@ -30,3 +30,5 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
   12. **Convert injected depth into planet radius for a typical star of each brightness class**, so "10 x the 8 h noise" becomes "smallest planet found half the time".
   13. **Faint-dip recovery with the second-product and burst flags included**, and with the 1 d ramp flag's price shown per star.
   14. **Mask-before-detrend and a three-window check** (ideas from mono-cbp, audit report 2026-10-28), after the B-lite benchmark if Ahmed approves it.
+  15. **Search SAP as well as PDCSAP and keep the union** (B-lite found TOI-1338 b: PDCSAP 4 of 8 testable transits, SAP 7 of 8, union 8 of 8; SAP is more than 20% quieter than PDCSAP in 23% of 224 star-sectors; learnings section 15). Record which product saw each event; second-product agreement then needs a rule for SAP against PDCSAP of the same file. Changes the search: Stage 2 regression is re-proved first, then a new freeze. Needs Ahmed's go.
+  16. **B-lite follow-ups:** the same injected dips through both tools (the fair recovery comparison); mono-cbp with its paper's data product (FFI TESS-SPOC) and settings; a repeat run to prove it reproduces; more known planets than TOI-1338 (first find which have cached TESS data). Cheap: each is under 0.3 point.

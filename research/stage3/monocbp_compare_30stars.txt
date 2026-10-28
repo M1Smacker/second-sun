@@ -1,0 +1,27 @@
+mono-cbp against Second Sun (frozen run 5392f864e810) on the 30 shared stars, 224 star-sectors of TESS-SPOC data for mono-cbp. Aggregates only.
+matching rule: same star-sector, centres within 0.5 d. Their SNR scale differs from ours (they search down to about SNR 3, we store SNR 7 and above).
+
+1. EVENTS FOUND (real curve | upside-down copy; per 100 star-sectors in brackets)
+  mono-cbp, all events                                :  437 (195.1) |  209 ( 93.3)
+  mono-cbp, robust to detrending (DET_DEPENDENCE 0)   :  310 (138.4) |   93 ( 41.5)
+  mono-cbp, SNR >= 7 on their scale                   :  144 ( 64.3) |   27 ( 12.1)
+  mono-cbp, model comparison says T or AT             :  209 ( 93.3) |   34 ( 15.2)
+  Second Sun, all tiers                               :   41 ( 18.3) |   46 ( 20.5)
+  Second Sun, tier 1                                  :    0 (  0.0) |    1 (  0.4)
+
+2. AGREEMENT ON THE REAL CURVES
+  our events also found by mono-cbp (any event)               : 3 of 41   (tier 1: 0 of 0)
+  our events also found by mono-cbp (robust to detrending)    : 3 of 41
+  our UPSIDE-DOWN events also found by mono-cbp on its upside-down curves: 4 of 46
+  mono-cbp events at SNR >= 7 (their scale) also found by us  : 0 of 144
+  mono-cbp transit-like events (T or AT) also found by us     : 0 of 209
+
+3. THEIR EVENTS BY MODEL-COMPARISON CLASS (real | upside-down)
+  A           :   88 |   52
+  ASin        :   19 |   14
+  ASt         :   13 |   19
+  AT          :   53 |   23
+  L           :    1 |    1
+  Sin         :   63 |   43
+  St          :   44 |   46
+  T           :  156 |   11

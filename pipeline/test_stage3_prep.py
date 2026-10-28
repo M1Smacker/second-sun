@@ -4,6 +4,7 @@ import re, glob, json, pathlib
 import numpy as np, pandas as pd
 import stage3_core as C
 import stage3_report as R
+import pair_search as P
 
 D2 = C.ROOT / "data" / "stage2"
 DRY = C.ROOT / "data" / "stage3_dry" / "groups"
@@ -138,6 +139,16 @@ def test_noise_expected_and_ratio_table():
     assert R.noise_expected(20, 33, 2.3)[1] < R.noise_expected(15, 33, 2.3)[1], "more real events must be less likely under noise alone"
     r, name = R.asym_ratios("v4-does-not-exist")                                         # falls back to the v4 file, whose bars are known
     assert name == "asymmetry.txt" and r[7.0] == 2.30 and r[10.0] == 2.07 and set(r) == {4.5, 5.0, 6.0, 7.0, 8.0, 10.0}, (name, r)
+
+
+def test_pair_search_rules():
+    ev = lambda sector, center, depth=5000, dur=10, snr=8: dict(sector=sector, center=center, depth_ppm=depth, dur_h=dur, snr=snr)
+    assert P.pairs_of([ev(1, 100), ev(2, 128, 6000)]) == [28]                               # matching dips in two sectors pair
+    assert P.pairs_of([ev(1, 100), ev(2, 128, 9000)]) == []                                 # depth too different
+    assert P.pairs_of([ev(1, 100), ev(2, 128, dur=5)]) == []                                # duration too different
+    assert P.pairs_of([ev(1, 100), ev(1, 105)]) == []                                       # same sector never pairs
+    assert P.pairs_of([ev(1, 100), ev(1, 100.2, snr=7), ev(2, 128)]) == [28]                # one dip seen in two products counts once
+    assert len(P.pairs_of([ev(1, 100), ev(2, 128), ev(3, 160)])) == 3                      # three matching dips make three pairs
 
 
 def test_settings_hash_changes_with_any_setting():
