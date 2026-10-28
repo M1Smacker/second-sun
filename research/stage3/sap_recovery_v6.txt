@@ -1,0 +1,28 @@
+SAP-twin recovery, v5 box lengths, 240 random star-sectors with a SPOC or TESS-SPOC best product (of 1420), 5064 injected dips (trapezoid, 20% ingress and egress), middle of the longest segment.
+The SAME dip (same time, same depth in ppm) goes into the PDCSAP flux and into the SAP flux of the best file. Depth unit = 8 h box noise of the PDCSAP curve. Found = SNR 7 or more.
+Flags and the second-product check are not modelled, so these are ceilings for both halves. Cells: PDCSAP / SAP / union, percent.
+  all star-sectors
+    box h | 4 x noise | 5 x noise | 6 x noise | 7 x noise | 8 x noise | 10 x noise     cells: PDCSAP / SAP / union, % found at SNR 7 or more
+        4 |   1/  3/  3 |   1/  3/  3 |   2/  3/  4 |   4/  5/  8 |   9/  9/ 13 |  27/ 16/ 32
+        8 |   2/  3/  4 |   3/  4/  6 |   4/  6/  9 |  10/ 11/ 16 |  22/ 16/ 28 |  64/ 35/ 66
+       14 |   3/  4/  6 |   4/  7/  9 |   9/ 10/ 16 |  17/ 15/ 22 |  38/ 21/ 44 |  81/ 43/ 83
+       20 |   3/  6/  8 |   5/  7/  9 |  11/  9/ 17 |  22/ 13/ 27 |  42/ 20/ 49 |  75/ 39/ 80
+  SAP quieter than PDCSAP by more than 20 percent (SAP noise / PDCSAP noise < 0.8): 7 star-sectors at 4 h
+    box h | 4 x noise | 5 x noise | 6 x noise | 7 x noise | 8 x noise | 10 x noise     cells: PDCSAP / SAP / union, % found at SNR 7 or more
+        4 |   0/ 29/ 29 |   0/ 29/ 29 |   0/ 43/ 43 |   0/ 43/ 43 |  29/ 86/ 86 |  71/ 86/100
+        8 |   0/ 29/ 29 |   0/ 29/ 29 |   0/ 43/ 43 |  14/ 57/ 57 |  57/ 86/100 |  71/ 86/100
+       14 |   0/ 43/ 43 |   0/ 71/ 71 |  14/ 71/ 71 |  43/ 71/ 71 |  57/100/100 |  71/100/100
+       20 |   0/ 71/ 71 |  29/ 71/ 71 |  29/ 71/ 71 |  29/ 71/ 71 |  43/ 86/ 86 |  57/100/100
+  about equal (0.8 to 1.25): 106 star-sectors at 4 h
+    box h | 4 x noise | 5 x noise | 6 x noise | 7 x noise | 8 x noise | 10 x noise     cells: PDCSAP / SAP / union, % found at SNR 7 or more
+        4 |   1/  2/  2 |   1/  2/  2 |   1/  2/  2 |   5/  6/  8 |  12/  9/ 17 |  33/ 23/ 39
+        8 |   1/  3/  3 |   3/  3/  5 |   6/  6/ 10 |  15/ 14/ 21 |  27/ 22/ 35 |  69/ 52/ 72
+       14 |   3/  3/  5 |   5/  6/  8 |  10/  9/ 16 |  19/ 19/ 26 |  42/ 25/ 49 |  84/ 62/ 88
+       20 |   3/  6/  7 |   6/  7/  9 |  13/  8/ 18 |  25/ 16/ 30 |  43/ 25/ 51 |  76/ 57/ 82
+  SAP noisier by more than 25 percent (> 1.25): 98 star-sectors at 4 h
+    box h | 4 x noise | 5 x noise | 6 x noise | 7 x noise | 8 x noise | 10 x noise     cells: PDCSAP / SAP / union, % found at SNR 7 or more
+        4 |   1/  2/  2 |   1/  2/  2 |   3/  2/  4 |   3/  2/  4 |   3/  2/  4 |  17/  4/ 19
+        8 |   3/  2/  4 |   3/  3/  5 |   3/  3/  5 |   5/  5/  8 |  13/  5/ 16 |  57/ 13/ 58
+       14 |   3/  2/  4 |   3/  3/  5 |   7/  6/ 11 |  12/  6/ 14 |  32/ 10/ 34 |  78/ 17/ 78
+       20 |   3/  2/  4 |   3/  3/  5 |   7/  5/ 11 |  18/  6/ 21 |  41/  9/ 45 |  76/ 16/ 76
+  8 h cells: dips found by SAP but not by PDCSAP / by PDCSAP but not by SAP (percent of all 8 h injections): 4x 2/1, 5x 3/2, 6x 5/3, 7x 6/5, 8x 7/12, 10x 3/31

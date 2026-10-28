@@ -1,0 +1,5 @@
+POST-HOC common-mode check on frozen run f366d3682843 (diagnostic, not part of any tier). Same-kind event of at least 3 other stars within 0.1 d, same sector and camera.
+Tier-1 events (real | upside-down): as frozen -> after removing those with a same-kind common moment
+  PDCSAP (v5, with the dips SAP also found)   :  14 |  35 ->  14 |  34   (all events with a common moment: real 184 of 642, upside-down 427 of 910)
+  SAP only                                    :  19 |   1 ->  12 |   1   (all events with a common moment: real 345 of 550, upside-down 316 of 488)
+  whole union                                 :  33 |  36 ->  26 |  35
