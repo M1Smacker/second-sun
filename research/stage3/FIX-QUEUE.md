@@ -13,7 +13,7 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
 6. WITHDRAWN 28 Oct: a scrambled control keeps single dips, so it is not a null for our search (learnings section 12). Replaced by the asymmetry test, DONE (`asymmetry.txt`): the upside-down control overstates dip false alarms by about 1.3 to 2.5 times. Still to do: report real against upside-down divided by this ratio in every aggregate.
 7. DONE in v4 (flag; price 14.2% of the data timeline). **Orbit-start ramp flag:** flag events within about 1 day after each orbit start and gap.
 8. DONE in v4 (40 stars). **Measured eclipse width** from the TESS eclipsing binary catalogue (53 stars) instead of the formula where available; the formula over-flags by a median 2.7x.
-9. v5 (kept out of v4 so the search stayed identical and the flags are attributable; use 20 h at most, since a 2 d detrending window is 2.4 x 20 h and Wotan says at least 2.2). **Duration grid beyond 15 h** (events pile at 3 h and 15 h; long circumbinary transits are not searched). Changes the search, so Stage 2 regression is re-proved first.
+9. DONE in v5 (hash 5392f864e810; kept out of v4 so the search stayed identical and the flags are attributable; use 20 h at most, since a 2 d detrending window is 2.4 x 20 h and Wotan says at least 2.2). **Duration grid beyond 15 h** (events pile at 3 h and 15 h; long circumbinary transits are not searched). Changes the search, so Stage 2 regression is re-proved first.
 
 ## Needs Ahmed once
 10. **Pair search** (two dips close together) was never built. Default if he does not answer: not built, stated plainly in every report.
@@ -21,3 +21,12 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
 ## Not now
 - Pixel and centroid blend tests: only for survivors, later (needs target pixel files).
 - Human review of any event: stays gated behind his own Eyes practice and the real-candidate page.
+
+## v5 DONE 28 Oct (hash 5392f864e810; see learnings section 13)
+- Item 9 (20 h boxes): DONE. Item 4 faint-dip recovery: DONE (`faint_recovery_v5.txt`): an 8 h dip is found 61% at 10 x the 8 h box noise, 22% at 8 x, 2% at 6 x. Item 6 report line (real against upside-down / ratio): DONE (`aggregate_v5.txt` section 5b).
+- Item 5 per-star false-alarm level: NOT BUILT, no valid null (reason in learnings section 13). Reopen only with a null that removes dips and keeps the star's noise.
+- **v6 candidates (file, do when best inside the cap):**
+  11. **Longer detrending window for long boxes** (a 2 d window keeps 57% of a 20 h dip's depth, 68% at 15 h; 3 d keeps 72% and 79%). Measure the ramps a longer window admits before adopting it. Changes the search.
+  12. **Convert injected depth into planet radius for a typical star of each brightness class**, so "10 x the 8 h noise" becomes "smallest planet found half the time".
+  13. **Faint-dip recovery with the second-product and burst flags included**, and with the 1 d ramp flag's price shown per star.
+  14. **Mask-before-detrend and a three-window check** (ideas from mono-cbp, audit report 2026-10-28), after the B-lite benchmark if Ahmed approves it.

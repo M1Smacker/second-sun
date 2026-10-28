@@ -1,0 +1,9 @@
+900 random star-sectors, all products, RAW events (no flags). Counts of dips found in the real curve and in the upside-down curve:
+kind  upside-down dips  real dips  ratio upside-down / real
+thr                                                        
+4.5               1013        846                      1.20
+5.0                779        590                      1.32
+6.0                503        294                      1.71
+7.0                353        157                      2.25
+8.0                248        105                      2.36
+10.0               133         68                      1.96

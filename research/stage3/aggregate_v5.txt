@@ -1,0 +1,42 @@
+STAGE 3 aggregate report (no star IDs, no event times). Groups: 5082; star-sectors with a best product searched: 5064
+
+1. CUTS in order (real | upside-down): start, no gap/dump, no burst, not matched upside-down, not at an eclipse phase (C5), second product >=3 lenient, >=4 lenient, >=4 strict
+  real         642 | 349 | 293 | 286 | 222 | 202 | 197 | 33
+  upside-down  910 | 356 | 255 | 255 | 204 | 189 | 179 | 71
+
+2. TIERS of the best-product events (1A second product agrees >=4; 1L 3 to 4; 1B no second product; 2 flagged; 3 second product disagrees)
+  real         1A 2  1L 0  1B 12  2 626  3 2
+  upside-down  1A 6  1L 4  1B 25  2 872  3 3
+  real tier-1 events on QLP-only stars: 3 of 14 (no second product is possible there)
+
+3. HOW MUCH TIMELINE C5 COVERS (windows of 0.35 d around the primary and phase 0.5): stars with at least 5% / 10% / 20% / 30% of the timeline
+  >= 5%: 353 of 549 | >= 10%: 217 of 549 | >= 20%: 70 of 549 | >= 30%: 0 of 549
+
+4. PROJECTION TO THE CAMPAIGN (class sizes derived from data; rates per brightness class from this sample; REAL-curve tier-1 is the planning number, upside-down is an upper bound)
+  campaign star-sectors by class: {'faint12+': 3196, 'mid11-12': 1067, 'bright<11': 801} (total 5064, without a magnitude class 0)
+  real tier-1                       : about     14 events across the campaign
+  real tier-1 + tier 2 (all real)   : about    642 events across the campaign
+  upside-down tier-1 (upper bound)  : about     35 events across the campaign
+
+5. SIGNAL EXCESS: real minus upside-down (positive = more real dips than the control; the control is an upper bound on false alarms)
+  tier 1 (1A+1L+1B)                 : real   14, upside-down   35, excess   -21
+  tier 1A (second product agrees)   : real    2, upside-down    6, excess    -4
+  tier 2 (flagged)                  : real  626, upside-down  872, excess  -246
+  tier 1 with SNR >=  7: real  14, upside-down  35, excess  -21
+  tier 1 with SNR >=  8: real  11, upside-down  26, excess  -15
+  tier 1 with SNR >= 10: real   4, upside-down  13, excess   -9
+  tier 1 with SNR >= 12: real   2, upside-down   6, excess   -4
+  v3 flat-baseline flag (real | upside-down): 441 | 668 of 642 | 910 best-product events
+
+5b. NOISE-EXPECTED REAL: upside-down tier-1 divided by the measured asymmetry ratio (asymmetry_v5.txt); chance = P(real >= observed | noise alone, Poisson)
+  Assumes the flags act equally on both sides and the ratio measured on raw dips holds for tier 1 (NOT TESTED); a SNR bar above the table uses its last ratio.
+  tier 1 with SNR >=  7: real  14, upside-down  35, ratio 2.25, noise-expected real  15.6, chance 0.69
+  tier 1 with SNR >=  8: real  11, upside-down  26, ratio 2.36, noise-expected real  11.0, chance 0.54
+  tier 1 with SNR >= 10: real   4, upside-down  13, ratio 1.96, noise-expected real   6.6, chance 0.90
+  tier 1 with SNR >= 12: real   2, upside-down   6, ratio 1.96, noise-expected real   3.1, chance 0.81
+
+6. LABELS (aggregate only; labels never remove an event)
+  real tier-1           14 events: on a TOI 0, on a known circumbinary host 0, in the TESS eclipsing binary catalogue 0 (period same 0, half 0, other 0)
+  upside-down tier-1    35 events: on a TOI 0, on a known circumbinary host 0, in the TESS eclipsing binary catalogue 1 (period same 1, half 0, other 0)
+  repeater star-sectors, real: 45 uniform-depth 29, mixed 11, scattered 5
+  repeater star-sectors, upside-down: 68 uniform-depth 27, mixed 25, scattered 16

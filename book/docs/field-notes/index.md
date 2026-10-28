@@ -15,4 +15,4 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [23 October 2026](2026-10-23.md) | Rebuilding the book around a map: orientation, optional labs and a real-sky home page |
 | [24 October 2026](2026-10-24.md) | Feedback that is measured, not copied: one strength score, cards that stop giving themselves away, and breaking the code on purpose |
 | [27 October 2026](2026-10-27.md) | Measure the advice before you take it: contrast numbers, a font file's character list, one learning path, and a plain score line |
-| [28 October 2026](2026-10-28.md) | Check the rival before you copy it: a professional tool, its licence, and how few stars we truly share |
+| [28 October 2026](2026-10-28.md) | Check the rival before you copy it: a professional tool, its licence, how few stars we truly share, and how faint a dip our own search can see |

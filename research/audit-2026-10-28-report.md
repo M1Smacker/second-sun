@@ -25,7 +25,7 @@ Strengths (VERIFIED, our files): settings frozen under a hash before each run; r
 Measured state: 5,064 star-sectors searched. Raw events 604 real and 869 upside-down, which is 11.9 and 17.2 per 100 star-sectors. Tier 1: 12 real (0.24 per 100) and 33 upside-down (0.65 per 100). Real is below the control at every signal-to-noise bar. Upside-down finds 1.25 to 2.5 times more raw dips than real at every strength, so the control overstates false alarms and "real below control" says nothing either way (VERIFIED as a measurement; cause LIKELY, upward spikes).
 
 Gaps (all from our own files):
-1. Faint-dip recovery is NOT TESTED. The 82.7 to 86.4% completeness is for deep (12 sigma) dips in the middle of a segment only.
+1. Faint-dip recovery was NOT TESTED when this report was written; v5 measured it the same day (`stage3/faint_recovery_v5.txt`): an 8 h dip is found 61% at 10 x the 8 h box noise, 22% at 8 x, 2% at 6 x. Correction: the 82.7 to 86.4% above was the share of DETECTED deep (12 x) dips that survive the flags; only 72% were detected, so the chain keeps about 62% of such dips.
 2. Boxes stop at 15 hours, but long circumbinary transits can be longer (LIKELY). A 20 hour grid is queued (v5).
 3. More than half of all events sit at the edge of a data segment (VERIFIED: the step flag fired on 400 of 604 real events, 305 only because one side had no data). A planet near an edge cannot be verified by a flat-baseline test.
 4. One sector-wide noise level cannot describe heavy tails or noise that changes along a sector (VERIFIED by reading the code, learnings section 11).
