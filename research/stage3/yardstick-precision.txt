@@ -1,0 +1,26 @@
+Precision of the Vesper yardstick (29 Oct 2026). Bootstrap over star-sectors, 1,000 resamples.
+
+G1 rows_v7: 299 star-sectors, 7176 dip injections
+  box    4 h: K50 13.14; 95% range 12.15 to 14.21 (+-8%); share of resamples where 50% is reached 100%
+    tier-1 share by K: 6: 2%, 8: 8%, 10: 29%, 12: 43%, 14: 55%, 18: 62%
+  box    8 h: K50 10.90; 95% range 10.25 to 11.59 (+-6%); share of resamples where 50% is reached 100%
+    tier-1 share by K: 6: 5%, 8: 20%, 10: 43%, 12: 59%, 14: 63%, 18: 64%
+  box   14 h: K50 13.25; 95% range 10.81 to 16.33 (+-21%); share of resamples where 50% is reached 64%
+    tier-1 share by K: 6: 7%, 8: 17%, 10: 41%, 12: 49%, 14: 51%, 18: 51%
+  box   20 h: K50   nan; 95% range   nan to   nan (+-nan%); share of resamples where 50% is reached 2%
+    tier-1 share by K: 6: 4%, 8: 12%, 10: 28%, 12: 39%, 14: 42%, 18: 44%
+
+G2 dev rows_g2dev: 284 star-sectors, 6816 dip injections
+  box    4 h: K50 11.19; 95% range 10.18 to 12.38 (+-10%); share of resamples where 50% is reached 100%
+    tier-1 share by K: 6: 12%, 8: 27%, 10: 43%, 12: 55%, 14: 61%, 18: 63%
+  box    8 h: K50 10.50; 95% range  9.64 to 11.79 (+-10%); share of resamples where 50% is reached 100%
+    tier-1 share by K: 6: 15%, 8: 30%, 10: 48%, 12: 57%, 14: 60%, 18: 60%
+  box   14 h: K50   nan; 95% range   nan to   nan (+-nan%); share of resamples where 50% is reached 6%
+    tier-1 share by K: 6: 9%, 8: 21%, 10: 34%, 12: 45%, 14: 45%, 18: 41%
+  box   20 h: K50   nan; 95% range   nan to   nan (+-nan%); share of resamples where 50% is reached 0%
+    tier-1 share by K: 6: 6%, 8: 10%, 10: 19%, 12: 27%, 14: 29%, 18: 28%
+
+Paired design (same injections through both versions): a 10% K50 shift near K = 10 changes the tier-1 share by roughly the curve's slope per K unit (about 5 to 8 points per K on these curves),
+so about 5 to 8% of the injections at K 8 to 12 change outcome in one direction. With the 300-star-sector design (about 3,400 dips at K 8 to 12 per run) that is 170 to 270 one-way changes,
+far above the random flips seen between dip and mirror bump (about 250 to 340 of 3,400 each way, which is the noise of a comparison between two DIFFERENT shapes, an upper bound).
+Conclusion to test in C: compare versions on the SAME injections (paired, exact binomial on the changed outcomes), not by two separate K50 numbers.
