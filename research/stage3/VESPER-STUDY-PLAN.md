@@ -5,8 +5,10 @@ Scope: G1 (549 stars) and the G2 development slice (301 stars) only. The 594 sea
 
 ## 0. Ahmed's decisions (29 Oct)
 1. Order: first get everything single dips can give (the losses in the filters, and the long dips), then try stacking several transits.
-2. Budget: about 3 weekly points per day for about 3 days, inside his daily stop line. Research: up to 2 hours, by Claude.
+2. Budget (updated 29 Oct, evening): weekly cap 60%, spent whenever Ahmed sits down to work, not split over days. No real star hunt during the study: only the filter is improved. Research: by Claude, up to 2 hours, and it stops as soon as everything needed is found and filed.
 3. Yardstick false-alarm level: today's rate, about 6 to 8 upside-down tier-1 survivors per 1,000 star-sectors (G1 32 of about 5,064; G2 dev 25 of 3,253).
+4. Models and stops: phases A and B on Opus 5.5 (Ahmed's choice: medium for B, C and the v8 design). STOP after A and B so Ahmed can switch to Sonnet 5.5 extra for phases C and D. STOP again before the v8 design so he can switch back to Opus 5.5 medium. Opus usage is tracked in its own ledger table (`research/usage-ledger.md`), never assumed equal to Sonnet's.
+5. Version numbers and the before/after record: `research/stage3/VESPER-VERSIONS.md` (Vesper 0.7.1 is the baseline this study starts from).
 
 ## 1. What we already know (measured, our own files)
 | Fact | Number | Source |
@@ -74,4 +76,24 @@ Combine the accepted options, prove G1 regression and mutation tests as for v7, 
 - If a step takes more than 1.5 times its estimate, stop and tell Ahmed.
 
 ## 6. Results
-(filled as phases finish)
+### Phase A (29 Oct, Vesper 0.7.1; files `loss-ledger-0.7.1.txt`, `step-causes-0.7.1-g2.txt`)
+- **Flags, not detection, lose the planets.** Fake dips at 10 x noise or more are seen at SNR 7 in 77 to 96% of cases, but only 38 to 57% reach tier 1. Lost to flags (primary but tier 2): 38% (G1), 45% (G2 dev). CONFIRMED.
+- **The step (flat-baseline) flag is the biggest single cost and the biggest single guard.** As the ONLY flag it loses 5.8% (G1) and 11.3% (G2 dev) of all fakes; as the only flag it also removes 46 (G1) and 52 (G2 dev) upside-down events, more than any other flag. So it cannot simply be dropped; it must be made fair. CONFIRMED.
+- **Why it fires on true transit shapes (H3, CONFIRMED on 150 G2 dev star-sectors, depth 12 x noise):**
+  - 8 h dips: flagged 19%, every one because a side window has under half its data (a gap nearby). The lift part never fired. So for short dips the step flag is a second gap flag.
+  - 20 h dips: flagged 49%: 34 for data cover, 27 for lift alone. The lifts are POSITIVE (median +0.21 of the depth even on unflagged events, 68% positive on flagged ones): the 2 d biweight bends down under a long dip and leaves raised shoulders. The same smoothing keeps only 68% of the depth (8 h: 91%) and the best box comes out at 15 h instead of 20 h. H2 and H3 are one problem: the smoothing makes the shoulders the step test then punishes.
+- **Gap and dump flag:** on 34 to 37% of lost fakes, the only flag on 2.8% (G1) and 5.4% (G2 dev) of all fakes, but as the only flag it removes few false alarms (4 G1, 13 G2 dev upside-down). Poor value as it stands; candidate to scale with the box length (C3).
+- **Repeater:** costs 1.2% (G1) and 3.9% (G2 dev) of fakes alone; prevents 32 and 5 upside-down alone. Must allow 2 to 3 transits in one conjunction (literature Q3).
+- **Common moment:** costs 2.4% on G1 alone (Kepler field, crowded cameras), 0% on G2; prevents 26 upside-down on G1.
+- **Long dips:** detection is NOT the main problem (90% seen at 10 x noise at 20 h); tier 1 falls from 56% (8 h) to 26% (20 h) on G2 dev, with the step flag on 47% of 20 h primaries against 11% at 4 h.
+- **Stacking (H4):** G2 dev stars have a median 6 usable sectors (1 to 45). A planet of period 50 d gives a median 3 transits per star (113 of 301 stars get 4 or more); at 100 d a median 1.5; at 200 d and above stacking reaches no star at 16 transits. Stacking can help only short-period planets on many-sector stars. CONFIRMED arithmetic with an assumed 25 usable days per sector.
+### Phase B (29 Oct; `vesper-study-literature-2026-10-29.md`)
+- Smoothing window about 3 x the transit duration is the published guidance (wotan); Vesper uses one 2 d window for all boxes.
+- Circumbinary transits vary in timing by days and in duration by hours, and can come 2 to 3 times in one conjunction: the repeater and orbit-locked rules and the injections must allow for this.
+- Small circumbinary planets (under 3 Earth radii) have been reachable only by stacking with N-body timing on 4 years of Kepler data; for TESS single-sector stars "smaller" realistically means Saturn to Neptune on quiet stars.
+- Kepler calibrated its vetting with inverted light curves (like our upside-down control) and offered a soft Disposition Score: supports C4.
+### What phase C should test first (proposal for Ahmed)
+1. **C1 + C2 together:** smoothing window scaled to about 3 x the box length (or the box masked before the smoothing), and the step test measured on that flux, with its cover rule merged into the gap rule. Expected: most of the 20 h loss back, short dips unchanged. Pass rule: section 3.
+2. **C3:** gap and dump window scaled with the box length.
+3. **C4:** one calibrated score instead of nine yes/no flags.
+4. **C6** orbit-locked flag with the same-conjunction exception; **C5** physical box range last.

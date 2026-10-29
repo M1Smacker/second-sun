@@ -48,6 +48,19 @@ Breakdown of part 2, derived from the 5-hour meter divided by 8 (approximate):
 
 Lapse noted 27 Oct morning: no estimate was written before the Eyes review task (row in the bundled table below). Rule restated: the estimate goes into the ledger before the first tool call, even for a "quick look".
 
+## Calibration update (29 Oct, evening): what the 28 and 29 Oct rows taught
+- **Pipeline work with machine runs is now estimated well.** v5 0.9 (est mid 0.7), v6 about 1.6 (mid 1.7), 29 Oct morning about 4.0 (mid 4.0), 29 Oct evening G2 switch and run about 2.0 (mid 2.2): ratio 0.9 to 1.3. My gut no longer runs 3 times high on this type; the 0.4 rule above is for design and document work only.
+- **Tiny tasks:** a ledger row, a memory note or a commit is under 0.1 point; a written plan document about 0.15 to 0.3 point; a plain-words answer turn with one small data check about 0.2 to 0.4 point (three of those sat inside the 29 Oct evening row).
+- **Substantial tasks:** reading code before the first edit is still the biggest cost (the dataset switch read about 70K tokens of pipeline code). Machine jobs I do not poll cost almost nothing; every restart of a job costs a little (two CPU-cap restarts and one launcher bug on 29 Oct).
+- **Rule now:** pipeline code plus machine runs: quote my gut times 0.9 to 1.2. Design, plan and document work: gut times 0.3 to 0.6. Research with web reading: uncalibrated, see the Opus table below.
+
+## Opus 5.5 usage (separate table; started 29 Oct 2026)
+Ahmed uses Opus 5.5 (high on 29 Oct, medium from phase B on) for the Vesper study's thinking phases (B, C design and v8 design) and Sonnet 5.5 extra for the long runs. **Do not assume Opus costs the same weekly points as Sonnet 5.5 extra:** measure every Opus task with `get_usage` before and after and keep it in this table until there are at least 5 rows; then compare the points per context token with the Sonnet rows above (Sonnet rulers: about 8 five-hour points and about 100K to 110K context tokens per weekly point).
+| When | Model and effort | Task | Estimate | Weekly before to after | 5-hour before to after | Context tokens added | Actual points | Points per 100K context tokens | Note |
+|---|---|---|---|---|---|---|---|---|---|
+| 29 Oct, evening | Opus 5.5 (high) | Write the Vesper study plan, commit (the turn that switched models) | not written (lapse: the model switch came with the request) | 49 to 51 | 69 to 79 | about 35K | about 1 to 2 by the meters, but the weekly reading also holds the end of the Sonnet answer turns; not separable | NOT measurable | first Opus row; the next rows are measured cleanly |
+| 29 Oct, evening | Opus 5.5 (Ahmed set medium for B; this turn started on the same setting) | Phases A and B of the Vesper study: version notes, per-flag loss ledger, step-flag causes, long-dip split, research on five questions, filing | 2.0 to 3.5 (gut for code plus research; research uncalibrated) | 51 to 51 | 79 to 83 | about 37K (377K to 414K) | about 0.5 (weekly meter did not move at its rounding; 5-hour ruler 4 points = 0.5 by the Sonnet ruler) | about 1.4 by the 5-hour ruler | ratio about 0.2 of the mid: much cheaper than guessed. Two scripts, one 150-star-sector machine run (not polled), 7 web searches, 4 files. If Opus cost the same per token as Sonnet this would be about 0.35 point by the context ruler; the 5-hour ruler says 0.5, so Opus looks at most about 1.4 x Sonnet per token on this row (n = 1, weak) |
+
 ## Small tasks, bundled (each under 1 point)
 | When | Task | Context tokens added | 5-hour | Weekly | Note |
 |---|---|---|---|---|---|

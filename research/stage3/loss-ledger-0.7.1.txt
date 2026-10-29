@@ -1,0 +1,67 @@
+Vesper 0.7.1 loss ledger (study phase A, 29 Oct 2026). Aggregates only. Injections: K = depth in units of the 8 h box noise; 'lost' = primary but tier 2.
+
+G1 (rows_v7): injected dips at 10 x noise or more: 4784; primary 4103; tier 1 2275 (48%); tier 2 1806 (38%)
+  flags per lost (tier-2) fake: 1 flag 886, 2 flags 540, 3 or more 380
+  flag        | on lost fakes | SOLE flag on lost fakes (dropping it alone frees them) | share of ALL fakes it alone loses
+  gap_dump    |   664 ( 37%) |   135 (  7%) |  2.8%
+  common      |   434 ( 24%) |   117 (  6%) |  2.4%
+  flipmatch   |     4 (  0%) |     2 (  0%) |  0.0%
+  c5          |   205 ( 11%) |     5 (  0%) |  0.1%
+  ecl_overlap |   348 ( 19%) |    77 (  4%) |  1.6%
+  repeater    |   130 (  7%) |    59 (  3%) |  1.2%
+  step        |   842 ( 47%) |   277 ( 15%) |  5.8%
+  ramp        |   421 ( 23%) |   124 (  7%) |  2.6%
+  dominated   |   181 ( 10%) |    90 (  5%) |  1.9%
+  long-dip split (all K 10 or more): box h | seen at SNR 7 anywhere | primary | tier 1 | step on primary | gap_dump on primary | ramp on primary
+       4 |  77% |  76% |  47% |   9% |  16% |  10%
+       8 |  90% |  88% |  57% |  11% |  16% |  12%
+      14 |  91% |  90% |  48% |  24% |  16% |   8%
+      20 |  90% |  89% |  38% |  36% |  17% |  11%
+
+G2 dev (rows_g2dev): injected dips at 10 x noise or more: 4544; primary 4085; tier 1 2029 (45%); tier 2 2039 (45%)
+  flags per lost (tier-2) fake: 1 flag 1226, 2 flags 586, 3 or more 227
+  flag        | on lost fakes | SOLE flag on lost fakes (dropping it alone frees them) | share of ALL fakes it alone loses
+  gap_dump    |   690 ( 34%) |   246 ( 12%) |  5.4%
+  common      |     7 (  0%) |     0 (  0%) |  0.0%
+  flipmatch   |     8 (  0%) |     0 (  0%) |  0.0%
+  c5          |   240 ( 12%) |    40 (  2%) |  0.9%
+  ecl_overlap |   213 ( 10%) |    63 (  3%) |  1.4%
+  repeater    |   306 ( 15%) |   175 (  9%) |  3.9%
+  step        |  1114 ( 55%) |   512 ( 25%) | 11.3%
+  ramp        |   376 ( 18%) |   133 (  7%) |  2.9%
+  dominated   |   169 (  8%) |    57 (  3%) |  1.3%
+  long-dip split (all K 10 or more): box h | seen at SNR 7 anywhere | primary | tier 1 | step on primary | gap_dump on primary | ramp on primary
+       4 |  91% |  86% |  56% |  11% |  15% |  11%
+       8 |  96% |  93% |  56% |  15% |  20% |   8%
+      14 |  95% |  92% |  41% |  36% |  15% |   8%
+      20 |  90% |  88% |  26% |  47% |  17% |  10%
+
+g1 run events (best product, SNR 7 or more): real 1192, upside-down 1398; tier 1 real 21, upside-down 32
+  flag        | removes real (sole) | removes upside-down (sole) | sole upside-down per 1,000 events = false alarms it alone prevents
+  gap_dump    |   679 (   7) |   930 (   4) |     3
+  common      |   700 (  30) |   885 (  26) |    19
+  flipmatch   |    13 (   1) |     0 (   0) |     0
+  c5          |   157 (   0) |   143 (   2) |     1
+  ecl_overlap |   237 (   0) |   187 (   4) |     3
+  repeater    |   364 (  67) |   554 (  32) |    23
+  step        |   857 (  50) |  1092 (  46) |    33
+  ramp        |   301 (   0) |   426 (   1) |     1
+  dominated   |   273 (   2) |   264 (   6) |     4
+
+g2 run events (best product, SNR 7 or more): real 1505, upside-down 1040; tier 1 real 90, upside-down 25
+  flag        | removes real (sole) | removes upside-down (sole) | sole upside-down per 1,000 events = false alarms it alone prevents
+  gap_dump    |   808 (  58) |   778 (  13) |    12
+  common      |   106 (   5) |    78 (   1) |     1
+  flipmatch   |    27 (   0) |     0 (   0) |     0
+  c5          |   191 (   3) |    79 (   2) |     2
+  ecl_overlap |   149 (   6) |    62 (   2) |     2
+  repeater    |   481 (  63) |   286 (   5) |     5
+  step        |  1103 ( 128) |   936 (  52) |    50
+  ramp        |   364 (   2) |   480 (   8) |     8
+  dominated   |   318 (  15) |   289 (   5) |     5
+
+G2 dev: sectors per star with a usable product: min 1, quartiles [3.0, 6.0, 10.0], max 45
+  planet period  50 d: expected transits seen per star (about 25 usable days per sector): median 3.0; stars with 4 or more 113 of 301; with 16 or more 38
+  planet period 100 d: expected transits seen per star (about 25 usable days per sector): median 1.5; stars with 4 or more 55 of 301; with 16 or more 0
+  planet period 200 d: expected transits seen per star (about 25 usable days per sector): median 0.8; stars with 4 or more 38 of 301; with 16 or more 0
+  planet period 400 d: expected transits seen per star (about 25 usable days per sector): median 0.4; stars with 4 or more 0 of 301; with 16 or more 0

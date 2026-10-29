@@ -1,0 +1,9 @@
+Why the step flag fires on injected dips (Vesper 0.7.1, g2, 150 random star-sectors, depth 12 x the 8 h box noise, one 8 h and one 20 h dip each). Errors: 0.
+  box    8 h: recovered as primary 134; step flag 25 (19%); of those: too little data on a side 25, lift over 0.5 before 1, after 2, lift only (data fine) 0
+    lift values on flagged events (units of the dip depth; + = side above the median): quartiles [-0.11, -0.04, 0.06], share positive 42%
+    lift on NOT-flagged events: quartiles [-0.12, -0.02, 0.07]
+    recovered depth / injected depth: median 0.91 (smoothing and box fit together); box length found: median 5.0 h
+  box   20 h: recovered as primary 125; step flag 61 (49%); of those: too little data on a side 34, lift over 0.5 before 20, after 32, lift only (data fine) 27
+    lift values on flagged events (units of the dip depth; + = side above the median): quartiles [-0.14, 0.21, 0.53], share positive 68%
+    lift on NOT-flagged events: quartiles [0.01, 0.21, 0.33]
+    recovered depth / injected depth: median 0.68 (smoothing and box fit together); box length found: median 15.0 h
