@@ -42,5 +42,7 @@ Sources: `aggregate_v7.txt`, `chain_recovery_v7.txt`, `aggregate_g2dev.txt`, `ch
 | Option | Version | 8 h K50 | 14 to 20 h K50 | False alarms per 1,000 | Mirror test | Verdict |
 |---|---|---|---|---|---|---|
 | Baseline | 0.7.1 | about 10.5 (G2 dev) | over 18 | 6.3 (G1), 7.7 (G2 dev) | pass | reference |
+| C2: no data-cover rule in the step flag | 0.7.2 candidate (switch `c2`) | paired: never loses a fake; +1.7 to +4.4 points of dip recovery | long dips +53 (G1), +139 (G2 dev) net | 9.3 (G1), 12.6 (G2 dev) | pass | NOT ACCEPTED: false alarms over 8; at a bar that restores 8, net loss (-360, -138) |
+| C1b+C2: re-smoothed step test | 0.7.2 candidate (switch `c1b,c2`) | 8 h about equal; 4 h +14, +35 | long dips +90 (G1), +195 (G2 dev) net, loses 67 and 51 | 9.3 (G1), 12.3 (G2 dev) | pass | NOT ACCEPTED: same reason (at the budget bar net -441, -164) |
 
 Known weak spots of 0.7.1 found by the study's phase A (details in `VESPER-STUDY-PLAN.md` section 6): flags lose 38 to 45% of planet-shaped fakes; the step flag is the largest cost (alone 5.8 to 11.3% of fakes) and the largest guard; for 8 h dips it fires only through its data-cover rule near gaps; for 20 h dips the 2 d smoothing leaves raised shoulders (median +0.21 of the depth) and keeps only 68% of the depth.

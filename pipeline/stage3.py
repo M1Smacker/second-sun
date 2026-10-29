@@ -11,6 +11,7 @@ import detect_v2 as D
 import stage3_core as C
 import sap_twin as T
 import dataset as DS
+import vopts as V
 
 PREP = DS.PREP                          # dataset.py: G1 by default (data/stage3_prep, data/stage3), G2 when SS_SET=g2
 DRY = C.ROOT / "data" / "stage3_dry"
@@ -28,8 +29,8 @@ def git(*a):
 
 def current_settings(stars_csv):
     code = {f: C.sha(C.ROOT / "pipeline" / f) for f in ("stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py",
-                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py", "dataset.py")}
-    return dict(base_run=BASE, v7=dict(V7, common_moment="a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); "
+                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py", "dataset.py", "vopts.py")}
+    return dict(options=sorted(V.ON), base_run=BASE, v7=dict(V7, common_moment="a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); "
                                                           "it replaces the Stage 2 burst flag in the tiers, which counted only upside-down events",
                                        pdc_check="a SAP-only dip whose PDCSAP flux (same file, same box length, nothing filled from SAP: sap_twin.load_pdc) shows SNR under pdc_min is tier 3; not measurable (PDC dropped those cadences) means no judgement (stage3.pdc_pass writes pdc_snr into groups_sap)"),
                 sap_twin="v6: the SAP flux (crowding fixed, hard quality mask, nothing filled) of every SPOC and TESS-SPOC file in star-sectors whose best product is one of them, "
@@ -74,6 +75,10 @@ def add_step(g, paths):
             cache[key] = S2.Prod(d["t"], d["f"], key[1])
         P = cache[key]
         e.update(C.step_stats(P.bt, P.bf, P.bd, P.med, e["center"], e["dur_h"], e["depth_ppm"]))
+        if "c1b" in V.ON:                                        # study switch: the same measurements on a curve smoothed without the event (stage3_core.resmooth_stats)
+            r = C.resmooth_stats(P.t, P.f, e["center"], e["dur_h"], P.bd)
+            if r is not None:
+                e.update(lift2_pre=r[0]["lift_pre"], lift2_post=r[0]["lift_post"], depth_c1b=r[1])
         ed = np.asarray(d["edges"], dtype=float); before = ed[ed <= e["center"]]              # latest data edge before the event = when data last resumed
         e["ramp_d"] = float(e["center"] - before.max()) if len(before) else None
 
@@ -226,14 +231,16 @@ if __name__ == "__main__":
         FROZEN.write_text(json.dumps(dict(hash=C.settings_hash(s), settings=s, provenance=pv), indent=1), encoding="utf-8")
         print("FROZEN", C.settings_hash(s))
     elif mode == "devrun":                                       # G2 preregistration sections 3 and 4: the whole chain on the 301 DEVELOPMENT stars only (development use, any number of times)
-        if DS.NAME != "g2":
-            sys.exit("devrun needs SS_SET=g2")
-        tg = pd.read_csv(C.TARGETS, comment="#").drop_duplicates("tic")
-        st = tg[tg["slice"] == "dev"][["tic", "kic", "tmag", "morph"]]
-        assert len(st) == 301, f"the development slice must have 301 stars, not {len(st)}"
-        PREP.mkdir(parents=True, exist_ok=True); dev_stars = PREP / "g2_dev_stars_LOCAL.csv"; st.to_csv(dev_stars, index=False)
+        if DS.NAME == "g2":
+            tg = pd.read_csv(C.TARGETS, comment="#").drop_duplicates("tic")
+            st = tg[tg["slice"] == "dev"][["tic", "kic", "tmag", "morph"]]
+            assert len(st) == 301, f"the development slice must have 301 stars, not {len(st)}"
+            PREP.mkdir(parents=True, exist_ok=True); dev_stars = PREP / "g2_dev_stars_LOCAL.csv"; st.to_csv(dev_stars, index=False)
+            pre = "dev"
+        else:                                                    # study runs on G1 (all 549 stars) with VESPER_OPTS switches; never overwrites the frozen run
+            dev_stars, pre = STARS_ALL, "g1opt"
         s = current_settings(dev_stars); s["base_run"] = None    # nothing is copied from a G1 run: both searches are made here
-        h = C.settings_hash(s)[:12]; dst = RUN / f"dev_{h}"; dst.mkdir(parents=True, exist_ok=True)
+        h = C.settings_hash(s)[:12]; dst = RUN / f"{pre}_{h}"; dst.mkdir(parents=True, exist_ok=True)
         (dst / "settings.json").write_text(json.dumps(dict(hash=h, settings=s, provenance=provenance()), indent=1), encoding="utf-8")
         print("G2 DEVELOPMENT RUN", h, "->", dst, flush=True)
         search(dev_stars, dst, "dev", n, C.GRID_V5)              # the v5 half: PDCSAP / QLP products, second-product check, flags

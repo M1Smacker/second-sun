@@ -4,6 +4,7 @@ tier of an event; plus the settings hash used to freeze a run. Real events never
 import json, hashlib, pathlib
 import numpy as np, pandas as pd
 import dataset as DS
+import vopts as V
 
 ROOT = pathlib.Path(r"D:\second-sun")
 TARGETS = DS.TARGETS                # dataset.py: G1 by default, G2 when SS_SET=g2 (the same code reads either)
@@ -107,12 +108,57 @@ def step_stats(bt, bf, bd, med, center, dur_h, depth_ppm):
 
 
 def step_flag(e):
-    """True if the event is not a box on a flat baseline (step, ramp, overshoot) or has too little data on a side to tell. False if never measured."""
+    """True if the event is not a box on a flat baseline (step, ramp, overshoot) or has too little data on a side to tell. False if never measured.
+    Study switch c2 (vopts.py): the data-cover rule is dropped and a side with no data is not judged (the gap rule owns gaps)."""
     if "lift_pre" not in e:
         return False
+    if "lift2_pre" in e:                                          # switch c1b: the lifts measured on the re-smoothed curve (plus the trend jump across the event) replace the 2 d lifts
+        l2 = (e["lift2_pre"], e["lift2_post"])
+        if "c2" in V.ON:
+            return any(l is not None and abs(l) > STEP_LIFT for l in l2)
+        return min(e["cover_pre"], e["cover_post"]) < STEP_COVER or any(l is None or abs(l) > STEP_LIFT for l in l2)
+    if "c2" in V.ON:
+        return any(l is not None and abs(l) > STEP_LIFT for l in (e["lift_pre"], e["lift_post"]))
     if min(e["cover_pre"], e["cover_post"]) < STEP_COVER:
         return True
     return any(l is None or abs(l) > STEP_LIFT for l in (e["lift_pre"], e["lift_post"]))
+
+
+C1B_MASK, C1B_WIN, C1B_MIN_D = 0.75, 3.0, 0.5       # study switch c1b: mask half-width and window as multiples of the box length; shortest window in days
+
+
+def resmooth_stats(t, f, center, dur_h, bin_d):
+    """Study switch c1b: the step measurements of one event on a curve smoothed WITHOUT the event. t, f = the prepared curve in the search's orientation (dips are down, so the upside-down copy is already
+    flipped). The event (centre +- C1B_MASK x box) is left out of a biweight trend of window C1B_WIN x box (at least C1B_MIN_D days); the trend is interpolated across the gap; the curve is binned as the
+    search bins it. Returns (step_stats dict measured on that curve with the depth measured there, depth_ppm) or None when too little data is left."""
+    from wotan import flatten
+    import detect_v2 as D
+    half = C1B_MASK * dur_h / 24
+    keep = np.abs(t - center) >= half
+    if keep.sum() < 100 or (~keep).sum() < 3:
+        return None
+    w = max(C1B_WIN * dur_h / 24, C1B_MIN_D)
+    _, tr = flatten(t[keep], f[keep], method="biweight", window_length=w, return_trend=True)
+    ok = np.isfinite(tr)
+    if ok.sum() < 100:
+        return None
+    trend = np.interp(t, t[keep][ok], tr[ok])
+    flat = f / trend
+    bt, bf = D.bin10(t, flat, bin_d)
+    med = np.nanmedian(bf)
+    inside = (np.abs(bt - center) <= dur_h / 48) & np.isfinite(bf)
+    if inside.sum() < 2:
+        return None
+    depth = float((med - np.mean(bf[inside])) * 1e6)
+    if not depth > 0:
+        return None
+    st = step_stats(bt, bf, bin_d, med, center, dur_h, depth)
+    # the smoothing follows a real level step, so on the flattened curve both sides look flat; the step lives in the TREND: carry the difference of the trend at the two edges of the mask as an extra lift
+    # on each side (half the jump, opposite signs, in units of the depth). A smoothing shoulder leaves the trend alone, so it adds nothing.
+    t_pre, t_post = np.interp([center - half, center + half], t[keep][ok], tr[ok])
+    if st["lift_post"] is not None:
+        st["lift_post"] = float(st["lift_post"] + (t_post - t_pre) / (depth * 1e-6))     # pre side is the reference, as one side sits at the baseline in the original rule
+    return st, depth
 
 
 # v7 (FIX-QUEUE 17, 18, 19): the Stage 2 burst flag counts other stars' UPSIDE-DOWN events at the same moment, whatever the kind of the event it judges, so it removes more of the control than of the
