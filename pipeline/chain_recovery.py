@@ -10,13 +10,15 @@ light curve in ppm (the unit of faint_recovery_v5.txt), converted to ppm in the 
 Usage: python chain_recovery.py run [n_groups] [procs] [label]   |   python chain_recovery.py summary [label]   (writes research\\stage3\\chain_recovery_<label>.txt; real events are not shown)"""
 import sys, json, glob, random, shutil, uuid, pathlib, multiprocessing as mp
 import numpy as np, pandas as pd
+import os
 import stage2_search as S2, stage3 as S3m, stage3_core as C, stage3_report as R, sap_twin as T
+import dataset as DS
 from audit_paths import noise
 
-RUN = C.ROOT / "data" / "stage3" / "fd788be04650"
-PREP = C.ROOT / "data" / "chain_recovery"
+RUN = C.ROOT / "data" / "stage3" / "fd788be04650" if DS.NAME == "g1" else DS.RUNS / os.environ["SS_RUN"]    # G2: SS_RUN = the run folder name, e.g. dev_ab12cd34ef56
+PREP = C.ROOT / "data" / ("chain_recovery" if DS.NAME == "g1" else "chain_recovery_g2")
 TMP = PREP / "tmp"
-G1 = C.ROOT / "data" / "g1"
+G1 = DS.DATA                                                 # the data folder of the active set (the name is kept from the G1 days)
 KS = (6.0, 8.0, 10.0, 12.0, 14.0, 18.0)                      # injected depth in units of the 8 h box noise
 DURS = (4.0, 8.0, 14.0, 20.0)
 TIER1 = ("1A", "1L", "1B")

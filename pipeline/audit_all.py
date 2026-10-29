@@ -11,10 +11,11 @@ import numpy as np
 from astropy.io import fits
 from detect_v2 import (load, mask_all_periods, find_events, good_windows, in_windows, intersect_windows)
 from audit_paths import noise
+import dataset as DS
 
 warnings.filterwarnings("ignore")
-DATA = pathlib.Path(r"D:\second-sun\data\g1")
-OUT = pathlib.Path(r"D:\second-sun\research\audit-2026-10-23")
+DATA = DS.DATA                                                   # dataset.py: G1 by default, G2 when SS_SET=g2
+OUT = DS.AUDIT
 WIN_DB = OUT / "spoc_windows.pkl"
 RESULT = OUT / "audit_all.csv"
 INJ_H, INJ_PPM, R_EARTH_PER_RSUN = 8.0, 3000.0, 109.08
@@ -32,6 +33,19 @@ def g1_tables():
     for r in csv.DictReader(open(r"D:\second-sun\research\wave-3-pipeline\g1_tmag.csv")):     # ALL catalogue periods (B3)
         if r["tic"].strip().isdigit() and int(r["tic"]) in rad and float(r["p_bin"]) > 0.2:
             per.setdefault(int(r["tic"]), set()).add(round(float(r["p_bin"]), 6))
+    return rad, {k: sorted(v, reverse=True) for k, v in per.items()}
+
+
+def g2_tables():
+    """Same two tables for the G2 stars: radius (not in the TESS catalogue, so nan) and ALL catalogue periods of the star (B3), from every row of the TESS eclipsing binary catalogue with that TIC."""
+    import pandas as pd
+    tg = pd.read_csv(DS.TARGETS, comment="#").drop_duplicates("tic")
+    rad = {int(t): float("nan") for t in tg.tic}
+    eb = pd.read_csv(DS.ROOT / "data" / "xmatch" / "ebs.csv")
+    per = {}
+    for t, p in zip(eb.TIC, eb.Per):
+        if int(t) in rad and float(p) > 0.2:
+            per.setdefault(int(t), set()).add(round(float(p), 6))
     return rad, {k: sorted(v, reverse=True) for k, v in per.items()}
 
 
@@ -79,7 +93,7 @@ DB, RAD, PER = {}, {}, {}
 
 def _init():
     global DB, RAD, PER
-    DB = pickle.load(open(WIN_DB, "rb")); RAD, PER = g1_tables()
+    DB = pickle.load(open(WIN_DB, "rb")); RAD, PER = g1_tables() if DS.NAME == "g1" else g2_tables()
 
 
 def neighbour_windows(sec, cam, ccd, exclude):

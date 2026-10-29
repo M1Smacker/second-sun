@@ -9,6 +9,7 @@ import sys, json, csv, pathlib, warnings, multiprocessing as mp
 import numpy as np, pandas as pd
 import lightkurve as lk
 import audit_all as A
+import dataset as DS
 from detect_v2 import (load, eclipse_mask_auto, find_events, detrend, bin10, bin_width, box_scores, DURS_H, veto,
                        good_windows, in_windows)
 from audit_paths import noise
@@ -101,12 +102,12 @@ S = {}
 
 def _init():
     A._init()
-    man = pd.read_csv(r"D:\second-sun\data\g1\manifest.csv").drop_duplicates("file")
+    man = pd.read_csv(DS.MANIFEST).drop_duplicates("file")       # dataset.py: G1 by default, G2 when SS_SET=g2
     sp = man[man.author == "SPOC"]
     S["spoc_by_sector"] = {}
     for r in sp.itertuples():
         S["spoc_by_sector"].setdefault(int(r.file.split("-s")[1][:4]), r.path)
-    a = pd.read_csv(r"D:\second-sun\research\audit-2026-10-23\audit_all.csv")
+    a = pd.read_csv(DS.AUDIT / "audit_all.csv")
     S["burst"] = {}                                              # (sector, camera) -> (centres, tics) of upside-down events of ALL stars
     for r in a[a.flipped_events > 0].itertuples():
         for item in str(r.flipped_centers).split():
@@ -215,7 +216,7 @@ def groups():
     st = pd.read_csv(STARS)
     g = {}
     for tic in st.tic:
-        for p in sorted((pathlib.Path(r"D:\second-sun\data\g1") / str(tic)).glob("*.fits")):
+        for p in sorted((DS.DATA / str(tic)).glob("*.fits")):
             sec = A.head(p)[0]
             g.setdefault((int(tic), int(sec)), []).append(str(p))
     return [(t, s, ps) for (t, s), ps in sorted(g.items())]

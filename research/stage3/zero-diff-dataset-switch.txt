@@ -1,0 +1,8 @@
+Zero-difference test of the dataset switch, G1, 29 Oct 2026 (SS_SET unset, frozen run fd788be04650).
+Paths: all 7 paths read by the edited code equal the old literal G1 paths.
+Sample: 5082 random star-sectors (seed 20261029), stratified (SPOC family best / QLP best x with events / without events), 5023 events re-made by the whole chain.
+Every field of every event equal to the frozen group files: 5082 of 5082 star-sectors.
+Tiers, union and v7 flags equal to stage3_report.load of the frozen run: 5082 of 5082 star-sectors.
+Errors: 0. Star-sectors that differ: 0.
+Mutation (flat-baseline lift 0.5 changed to 0.05, 15 star-sectors with events): the comparison caught 7 of 15.
+Not tested: the other 0 star-sectors of the frozen run (the code paths are the same; only the sample was re-run). Time 506 s.

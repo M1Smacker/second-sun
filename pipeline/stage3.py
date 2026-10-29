@@ -10,10 +10,11 @@ import stage2_search as S2
 import detect_v2 as D
 import stage3_core as C
 import sap_twin as T
+import dataset as DS
 
-PREP = C.ROOT / "data" / "stage3_prep"
+PREP = DS.PREP                          # dataset.py: G1 by default (data/stage3_prep, data/stage3), G2 when SS_SET=g2
 DRY = C.ROOT / "data" / "stage3_dry"
-RUN = C.ROOT / "data" / "stage3"
+RUN = DS.RUNS
 FROZEN = C.ROOT / "research" / "stage3" / "SETTINGS_FROZEN.json"
 STARS_ALL = PREP / "stage3_stars_LOCAL.csv"
 BASE = "f366d3682843"                  # v7 = this frozen v6 run (the v5 search plus the SAP twin pass), both folders copied unchanged; v7 adds two flags and one measurement, no new search
@@ -27,7 +28,7 @@ def git(*a):
 
 def current_settings(stars_csv):
     code = {f: C.sha(C.ROOT / "pipeline" / f) for f in ("stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py",
-                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py")}
+                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py", "dataset.py")}
     return dict(base_run=BASE, v7=dict(V7, common_moment="a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); "
                                                           "it replaces the Stage 2 burst flag in the tiers, which counted only upside-down events",
                                        pdc_check="a SAP-only dip whose PDCSAP flux (same file, same box length, nothing filled from SAP: sap_twin.load_pdc) shows SNR under pdc_min is tier 3; not measurable (PDC dropped those cadences) means no judgement (stage3.pdc_pass writes pdc_snr into groups_sap)"),
@@ -224,6 +225,21 @@ if __name__ == "__main__":
         FROZEN.parent.mkdir(exist_ok=True)
         FROZEN.write_text(json.dumps(dict(hash=C.settings_hash(s), settings=s, provenance=pv), indent=1), encoding="utf-8")
         print("FROZEN", C.settings_hash(s))
+    elif mode == "devrun":                                       # G2 preregistration sections 3 and 4: the whole chain on the 301 DEVELOPMENT stars only (development use, any number of times)
+        if DS.NAME != "g2":
+            sys.exit("devrun needs SS_SET=g2")
+        tg = pd.read_csv(C.TARGETS, comment="#").drop_duplicates("tic")
+        st = tg[tg["slice"] == "dev"][["tic", "kic", "tmag", "morph"]]
+        assert len(st) == 301, f"the development slice must have 301 stars, not {len(st)}"
+        PREP.mkdir(parents=True, exist_ok=True); dev_stars = PREP / "g2_dev_stars_LOCAL.csv"; st.to_csv(dev_stars, index=False)
+        s = current_settings(dev_stars); s["base_run"] = None    # nothing is copied from a G1 run: both searches are made here
+        h = C.settings_hash(s)[:12]; dst = RUN / f"dev_{h}"; dst.mkdir(parents=True, exist_ok=True)
+        (dst / "settings.json").write_text(json.dumps(dict(hash=h, settings=s, provenance=provenance()), indent=1), encoding="utf-8")
+        print("G2 DEVELOPMENT RUN", h, "->", dst, flush=True)
+        search(dev_stars, dst, "dev", n, C.GRID_V5)              # the v5 half: PDCSAP / QLP products, second-product check, flags
+        search(dev_stars, dst, "devsap", n, C.GRID_V5, sap=True) # the v6 half: SAP twins of the best product
+        (dst / "v7.json").write_text(json.dumps(V7), encoding="utf-8")
+        pdc_pass(dst, dev_stars, n)                              # the v7 PDCSAP check
     elif mode == "run":
         fz = json.loads(FROZEN.read_text(encoding="utf-8")) if FROZEN.exists() else sys.exit("not frozen: Ahmed has not said start")
         h = C.settings_hash(current_settings(STARS_ALL))

@@ -2,13 +2,14 @@
 Writes best_per_star_sector.csv and per_star.csv next to the audit, prints the report. Usage: python audit_all_summary.py"""
 import numpy as np, pandas as pd
 from common_time import common_time_flags
+import dataset as DS
 
-OUT = r"D:\second-sun\research\audit-2026-10-23"
+OUT = str(DS.AUDIT)                                              # dataset.py: G1 by default, G2 when SS_SET=g2
 c = [3.29685004771, 0.850021465753, -0.285041632435, 0.0395908321369, -0.0022308015894, 4.73508403525e-5]
 sig1h = lambda T: np.exp(sum(ci * T**i for i, ci in enumerate(c)))          # white-noise ppm in 1 h (Stassun et al. 2018, as in ticgen)
 
 a = pd.read_csv(rf"{OUT}\audit_all.csv")
-tm = pd.read_csv(r"D:\second-sun\targets\g1_targets.csv", comment="#").drop_duplicates("tic")[["tic", "tmag"]]
+tm = pd.read_csv(DS.TARGETS, comment="#").drop_duplicates("tic")[["tic", "tmag"]]
 print(f"files audited: {len(a)} | status: {a.status.value_counts().to_dict()}")
 print("by product:", a["product"].value_counts().to_dict())
 err = a[a.status.astype(str).str.startswith("ERROR")]
@@ -63,7 +64,7 @@ print(f"  share of borrowed time that SPOC itself would reject: median {lo.win_l
 pc = best.groupby("tic").agg(n_sectors=("sector", "size"), best_rmin=("rmin7_rearth", "min"),
                              med_rmin=("rmin7_rearth", "median"), n_usable15=("rmin7_rearth", lambda s: int((s <= 15).sum())),
                              tmag=("tmag", "first"))
-allt = pd.read_csv(r"D:\second-sun\targets\g1_coverage.csv").tic
+allt = pd.read_csv(DS.TIC_LIST, comment="#").tic
 pc = pc.reindex(allt).assign(n_sectors=lambda d: d.n_sectors.fillna(0).astype(int))
 pc.to_csv(rf"{OUT}\per_star.csv")
 print(f"\nper star (549): stars with a usable sector {int((pc.n_sectors > 0).sum())}; "

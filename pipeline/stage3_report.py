@@ -122,7 +122,7 @@ def asym_ratios(label="v5"):
     """({SNR bar: upside-down dips / real dips}, file name) from research/stage3/asymmetry_<label>.txt (written by asymmetry_test.py), or the v4 file
     asymmetry.txt if there is no v5 one; ({}, None) if neither exists."""
     import re
-    for name in (f"asymmetry_{label}.txt", "asymmetry.txt"):
+    for name in ((f"asymmetry_{label}.txt", "asymmetry.txt") if C.DS.NAME == "g1" else (f"asymmetry_{C.DS.NAME}_{label}.txt",)):   # G2: only its own ratio (prereg section 5), never the G1 file
         p = C.ROOT / "research" / "stage3" / name
         if p.exists():
             out = {float(m[0]): float(m[3]) for m in re.findall(r"^\s*([\d.]+)\s+(\d+)\s+(\d+)\s+([\d.]+)\s*$", p.read_text(encoding="utf-8"), re.M)}

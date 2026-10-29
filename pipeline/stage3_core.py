@@ -3,11 +3,12 @@ No search runs here, no heavy imports. Rule C5 (distance from the catalogue ecli
 tier of an event; plus the settings hash used to freeze a run. Real events never leave D:\\second-sun\\data (git-ignored)."""
 import json, hashlib, pathlib
 import numpy as np, pandas as pd
+import dataset as DS
 
 ROOT = pathlib.Path(r"D:\second-sun")
-TARGETS = ROOT / "targets" / "g1_targets.csv"
-MANIFEST = ROOT / "data" / "g1" / "manifest.csv"
-BEST = ROOT / "research" / "audit-2026-10-23" / "best_per_star_sector.csv"
+TARGETS = DS.TARGETS                # dataset.py: G1 by default, G2 when SS_SET=g2 (the same code reads either)
+MANIFEST = DS.MANIFEST
+BEST = DS.BEST
 PH_D = 0.35                         # rule C5: same value as stage2_report.py (flag, never delete)
 BURST_MIN = 3                       # same-moment events on other stars that make a burst (stage2_report.py)
 C8_STRICT, C8_LENIENT = 4.0, 3.0    # second-product SNR: confirmed / weakly confirmed
