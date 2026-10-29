@@ -1,0 +1,28 @@
+Step 0 audit of the v7 run (hash fd788be04650): cadences filled from SAP in the 'PDCSAP' half, and failures the run swallowed. Counts only; nothing was searched again.
+
+A. FILL, every SPOC and TESS-SPOC file of G1 (3019 read, 0 could not be read)
+  cadences kept 33569837, filled from SAP 224754 (0.67% of all cadences)
+  files with at least one filled cadence: 578 of 3019 (19.1%)
+  files with more than 1% filled: 455 of 3019 (15.1%)
+  files with more than 5% filled: 149 of 3019 (4.9%)
+  files with more than 20% filled: 2 of 3019 (0.1%)
+  files whose whole PDCSAP column is empty (read as SAP alone): 0 of 3019 (0.0%)
+  by product: SPOC 0.85% filled, 324 of 1304 files touched, TESS-SPOC 0.28% filled, 254 of 1715 files touched
+
+B. PRIMARY EVENTS OF THE PDCSAP HALF (361: SPOC or TESS-SPOC best product, seen by PDCSAP or both) WITH A FILLED CADENCE INSIDE THE BOX
+  all tiers, real: 11 of 129 have at least one filled cadence in the box; 0 come from a file whose PDCSAP column is empty
+  all tiers, flip: 18 of 232 have at least one filled cadence in the box; 0 come from a file whose PDCSAP column is empty
+  tier 1 (1A, 1L, 1B), real: 0 of 2 have at least one filled cadence in the box; 0 come from a file whose PDCSAP column is empty
+  tier 1 (1A, 1L, 1B), flip: 1 of 9 have at least one filled cadence in the box; 0 come from a file whose PDCSAP column is empty
+  tier 1 real minus upside-down: 2 vs 9 in the PDCSAP half; with filled cadences in the box 0 vs 1
+  tier 1 primary events by where they come from (all products, counts): QLP: 12 real, 23 upside-down; SAP only: 7 real, 0 upside-down; SPOC: 1 real, 4 upside-down; TESS-SPOC: 1 real, 5 upside-down
+  tier 1 primary events by FLUX COLUMN (counts; QLP before sector 56 has no cleaned column, our loader reads its raw sap_flux): QLP sap_flux: 10 real, 16 upside-down; QLP sys_rm_flux: 2 real, 7 upside-down; SPOC family PDC flux: 2 real, 9 upside-down; SPOC family raw SAP (twin): 7 real, 0 upside-down
+
+C. SWALLOWED OR SILENT FAILURES
+  prepare status of every file in every group, by folder (status other than ok is a file that gave no data to that search):
+    groups      no safe windows                    21
+    groups      ok                                 8079
+    groups_sap  ok                                 2521
+  events with no step measurement (stage3.add_step swallowed a failed prepare, or the product was missing): none
+  SAP-twin events of the best product: 1228; with no PDCSAP check at all (stage3.add_pdc swallowed a failed prepare): 0; with an empty check (NaN, 'not measurable', PDC dropped those cadences): 29
+  ERROR lines in the run logs (what the run itself printed): run_log.txt 0, run_log_v2.txt 0, run_log_v3.txt 0, run_log_v4.txt 0, run_log_v6.txt 0, run_log_v6_dry.txt 0, run_log_v6_dry50.txt 0, run_log_v6_sapdry.txt 0, run_log_v7.txt 0

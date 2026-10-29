@@ -1,0 +1,74 @@
+Full-chain recovery of injected dips through the frozen v7 chain (hash fd788be04650), 299 random star-sectors, 14352 injections, label v7. 1 star-sectors failed (listed below).
+Each injection is a trapezoid (20% ingress and egress) added at the same time and ppm depth to EVERY file of the star-sector, then the unchanged search, flags, second-product check, SAP twin, PDCSAP check, union and tiers run.
+'Recovered' = the dip is a primary event in tier 1 (1A, 1L or 1B). Depth K is in units of the 8 h box noise of that light curve (the unit of faint_recovery_v5.txt). Time = a random cadence, so gap edges, orbit starts,
+eclipse overlap and the common-moment flag cost what they really cost. Planet size is NOT measured: G1 has no light ratio or radius ratio (see the last section).
+Zero-injection check: 299 of 299 sampled star-sectors reproduce the real run's events exactly (kind, product, centre, SNR, tier) when nothing is injected.
+
+FAILED star-sectors (reported, not hidden):
+  no prepared product
+
+1. DIPS (sign +1, real path). Tier-1 recovery by duration and depth; cell = share recovered (share seen at SNR 7 in some product)
+  all (299 star-sectors)
+    box h | 6 x noise | 8 x noise | 10 x noise | 12 x noise | 14 x noise | 18 x noise
+        4 |   2% (  5) |   8% ( 17) |  29% ( 44) |  43% ( 71) |  55% ( 92) |  62% ( 99)
+        8 |   5% (  9) |  20% ( 30) |  43% ( 69) |  59% ( 94) |  63% ( 99) |  64% ( 99)
+       14 |   7% ( 14) |  17% ( 39) |  41% ( 77) |  49% ( 94) |  51% ( 97) |  51% ( 98)
+       20 |   4% ( 14) |  12% ( 35) |  28% ( 71) |  39% ( 91) |  42% ( 97) |  44% ( 98)
+  bright<11 (41 star-sectors)
+    box h | 6 x noise | 8 x noise | 10 x noise | 12 x noise | 14 x noise | 18 x noise
+        4 |   2% (  7) |  15% ( 24) |  41% ( 59) |  54% ( 80) |  63% ( 95) |  68% (100)
+        8 |  12% ( 17) |  29% ( 41) |  51% ( 73) |  59% ( 90) |  63% (100) |  66% (100)
+       14 |   2% ( 20) |  15% ( 59) |  34% ( 88) |  37% ( 93) |  41% ( 93) |  39% ( 95)
+       20 |   5% ( 20) |  15% ( 49) |  34% ( 85) |  39% ( 95) |  41% (100) |  44% (100)
+  mid11-12 (71 star-sectors)
+    box h | 6 x noise | 8 x noise | 10 x noise | 12 x noise | 14 x noise | 18 x noise
+        4 |   6% ( 10) |  14% ( 24) |  25% ( 48) |  46% ( 85) |  51% ( 96) |  59% (100)
+        8 |   7% ( 13) |  25% ( 35) |  48% ( 76) |  63% ( 97) |  63% (100) |  66% (100)
+       14 |  14% ( 27) |  18% ( 49) |  32% ( 83) |  41% ( 97) |  42% (100) |  42% (100)
+       20 |   3% ( 21) |  11% ( 39) |  31% ( 72) |  39% ( 89) |  41% ( 97) |  44% ( 99)
+  faint12+ (187 star-sectors)
+    box h | 6 x noise | 8 x noise | 10 x noise | 12 x noise | 14 x noise | 18 x noise
+        4 |   1% (  3) |   4% ( 13) |  27% ( 39) |  40% ( 64) |  55% ( 90) |  61% ( 99)
+        8 |   3% (  6) |  16% ( 26) |  39% ( 65) |  57% ( 94) |  62% ( 98) |  62% ( 98)
+       14 |   5% (  9) |  18% ( 31) |  45% ( 72) |  55% ( 94) |  56% ( 96) |  57% ( 98)
+       20 |   4% ( 10) |  12% ( 31) |  26% ( 68) |  39% ( 91) |  43% ( 97) |  44% ( 98)
+
+2. WHERE IT FAILS (dips, K 10 or more): share of injections lost at each step
+  n = 4784; not seen at SNR 7 in any product 13%; seen but not a primary event 1%; primary but tier 2 38%; tier 3 0%; tier 1 48%
+  flags on the tier-2 dips (a dip can carry several): gap_dump 37%, flipmatch 0%, c5 11%, ecl_overlap 19%, repeater 7%, step 47%, ramp 23%, dominated 10%, common 24%
+  which product found the tier-1 dips: PDCSAP only 77%, both 22%, SAP only 0%
+
+3. MIRROR-BUMP TEST (same place, same shape, same chain): dip in the real path vs bump in the upside-down path. Tier-1 recovery; paired by star-sector, duration and depth
+    K x noise | pairs | dip recovered | bump recovered | only dip | only bump | exact p      | dip seen | bump seen
+            6 |  1196 |            5% |             5% |       28 |        36 |        0.382 |      11% |       11%
+            8 |  1196 |           14% |            16% |      104 |       124 |        0.208 |      31% |       32%
+           10 |  1196 |           35% |            38% |      137 |       168 |        0.086 |      65% |       69%
+           12 |  1196 |           47% |            47% |       87 |        87 |        1.000 |      88% |       89%
+           14 |  1196 |           53% |            53% |       59 |        62 |        0.856 |      96% |       96%
+           18 |  1196 |           55% |            55% |       45 |        41 |        0.747 |      99% |       98%
+  K 8, 10 and 12 pooled: 3588 pairs, only dip 328, only bump 379, exact p = 0.060; dip 32% vs bump 34%
+
+4. DEPTH THAT IS RECOVERED, in ppm, with planet radius only as a labelled illustration
+  K50 and K90 = the depth (units of the 8 h box noise) at which tier-1 recovery first reaches 50% and 90%. Depth in ppm = K x the class's median 8 h noise. The radius columns are an ILLUSTRATION, not a measurement:
+  they assume the crossed star has the TIC radius (a blended-point radius) and give the planet radius for it carrying all the light (smallest planet) and half the light (the crossed star is one of two equal stars, planet x 1.41).
+  The crossed star's own radius and light share are NOT in the G1 table; treat the radius as a range with at least that spread plus the unknown radius ratio.
+    class        box h | K50 | K90 | median 8 h noise ppm | depth50 ppm | depth90 ppm | median TIC R (Rsun) | R_planet at 50% (Rearth, share 1 to 0.5) | at 90%
+    bright<11       4 | 11.4 |  >18 |                 312 |   3551 |    n/a |                2.94 | 19.1 to 27.0                             | n/a
+    bright<11       8 |  9.9 |  >18 |                 312 |   3084 |    n/a |                2.94 | 17.8 to 25.2                             | n/a
+    bright<11      14 |  >18 |  >18 |                 312 |    n/a |    n/a |                2.94 | n/a                                      | n/a
+    bright<11      20 |  >18 |  >18 |                 312 |    n/a |    n/a |                2.94 | n/a                                      | n/a
+    mid11-12        4 | 13.7 |  >18 |                 344 |   4718 |    n/a |                2.47 | 18.5 to 26.2                             | n/a
+    mid11-12        8 | 10.3 |  >18 |                 344 |   3547 |    n/a |                2.47 | 16.1 to 22.7                             | n/a
+    mid11-12       14 |  >18 |  >18 |                 344 |    n/a |    n/a |                2.47 | n/a                                      | n/a
+    mid11-12       20 |  >18 |  >18 |                 344 |    n/a |    n/a |                2.47 | n/a                                      | n/a
+    faint12+        4 | 13.3 |  >18 |                 999 |  13292 |    n/a |                1.93 | 24.3 to 34.3                             | n/a
+    faint12+        8 | 11.2 |  >18 |                 999 |  11193 |    n/a |                1.93 | 22.3 to 31.5                             | n/a
+    faint12+       14 | 10.9 |  >18 |                 999 |  10893 |    n/a |                1.93 | 22.0 to 31.1                             | n/a
+    faint12+       20 |  >18 |  >18 |                 999 |    n/a |    n/a |                1.93 | n/a                                      | n/a
+    all             4 | 13.1 |  >18 |                 746 |   9774 |    n/a |                2.18 | 23.5 to 33.3                             | n/a
+    all             8 | 10.9 |  >18 |                 746 |   8133 |    n/a |                2.18 | 21.5 to 30.4                             | n/a
+    all            14 | 13.2 |  >18 |                 746 |   9849 |    n/a |                2.18 | 23.6 to 33.4                             | n/a
+    all            20 |  >18 |  >18 |                 746 |    n/a |    n/a |                2.18 | n/a                                      | n/a
+
+5. BY PRODUCT FAMILY (dips, K 10 or more): best product with a SAP twin (SPOC, TESS-SPOC) vs QLP
+  QLP:  46% of 3488, SPOC family:  51% of 1296
