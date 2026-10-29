@@ -10,6 +10,7 @@ import dataset as DS
 FL = ["gap_dump", "flipmatch", "c5", "ecl_overlap", "repeater", "step", "ramp", "dominated", "common"]
 SETS = {"g1": ("fd788be04650", "../data/chain_recovery/rows_v7.pkl"), "g2": ("dev_73f62615e365", "../data/chain_recovery_g2/rows_g2dev.pkl")}
 BUDGET, MIN_F, NAMES = 8.0, 10, FL + ["tier3"]
+LAST = {}
 
 
 def load(name):
@@ -21,7 +22,7 @@ def load(name):
     ev, meta = R.load(str(C.DS.RUNS / run / "groups"))
     n = len(meta[(meta.status == "ok") & (meta["product"] == meta["best"])].drop_duplicates(["tic", "sector"]))
     E = ev[ev.primary & (ev.kind == "flip") & (ev.snr >= 7)].copy()
-    E["t3"] = E.tier == "3"
+    E["t3"] = E.tier == "3"; LAST[name] = E.snr.values      # SNR of the upside-down events, same order as `flips` (used by snr_waiver.py)
     flips = [tuple(bool(x) for x in r) for r in E[FL + ["t3"]].values]
     b = pd.read_pickle(rows); b = b[b["error"].isna()] if "error" in b else b
     b = b[b.K.isin((8., 10., 12., 14.)) & (b.sign == 1) & b.tc.notna()].copy()
@@ -53,15 +54,20 @@ def score(keep, n, flips, b, label):
     return out
 
 
-D = {s: load(s) for s in SETS}
-txt = []
-for tr, te in (("g1", "g2"), ("g2", "g1"), ("g1", "g1"), ("g2", "g2")):
-    keep = choose(*D[tr])
-    if tr != te or True:
-        txt += score(keep, *D[te], f"train {tr} -> score {te}" + (" (IN-SAMPLE)" if tr == te else ""))
-    if tr == "g1" and te == "g2":
-        txt.append("   patterns kept (train g1): " + "; ".join("+".join(n for n, v in zip(NAMES, p) if v) or "clean" for p in keep))
-    if tr == "g2" and te == "g1":
-        txt.append("   patterns kept (train g2): " + "; ".join("+".join(n for n, v in zip(NAMES, p) if v) or "clean" for p in keep))
-print("\n".join(txt))
-open("../research/stage3/flag-patterns.txt", "a", encoding="utf-8").write("\n".join(txt) + "\n")
+def main():
+    D = {s: load(s) for s in SETS}
+    txt = []
+    for tr, te in (("g1", "g2"), ("g2", "g1"), ("g1", "g1"), ("g2", "g2")):
+        keep = choose(*D[tr])
+        if tr != te or True:
+            txt += score(keep, *D[te], f"train {tr} -> score {te}" + (" (IN-SAMPLE)" if tr == te else ""))
+        if tr == "g1" and te == "g2":
+            txt.append("   patterns kept (train g1): " + "; ".join("+".join(n for n, v in zip(NAMES, p) if v) or "clean" for p in keep))
+        if tr == "g2" and te == "g1":
+            txt.append("   patterns kept (train g2): " + "; ".join("+".join(n for n, v in zip(NAMES, p) if v) or "clean" for p in keep))
+    print("\n".join(txt))
+    open("../research/stage3/flag-patterns.txt", "a", encoding="utf-8").write("\n".join(txt) + "\n")
+
+
+if __name__ == "__main__":
+    main()

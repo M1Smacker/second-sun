@@ -10,6 +10,7 @@ import numpy as np, pandas as pd
 import lightkurve as lk
 import audit_all as A
 import dataset as DS
+import vopts as V
 from detect_v2 import (load, eclipse_mask_auto, find_events, detrend, bin10, bin_width, box_scores, DURS_H, veto,
                        good_windows, in_windows)
 from audit_paths import noise
@@ -48,11 +49,16 @@ class Prod:
         self.t, self.f = t, (f if sign == 1 else 2 - f)
         tt, ff = detrend(self.t, self.f)
         self.bd = bin_width(tt); self.bt, self.bf = bin10(tt, ff, self.bd); self.cache = {}
-        self.med = np.nanmedian(self.bf)
+        self.med = np.nanmedian(self.bf); self.meds = {}
 
     def scores(self, d):
         if d not in self.cache:
-            self.cache[d] = box_scores(self.bt, self.bf, d, bin_d=self.bd)
+            if "c1a" in V.ON:                                   # study switch c1a: own curve per box length (window 3 x box, at least 0.5 d)
+                tt, ff = detrend(self.t, self.f, window_d=max(3 * d / 24, 0.5))
+                bd = bin_width(tt); bt, bf = bin10(tt, ff, bd)
+                self.meds[d] = np.nanmedian(bf); self.cache[d] = box_scores(bt, bf, d, bin_d=bd)
+            else:
+                self.cache[d] = box_scores(self.bt, self.bf, d, bin_d=self.bd)
         return self.cache[d]
 
     def events(self, thr=7.0):                                   # same logic as detect_v2.find_events, on cached scores
@@ -60,7 +66,7 @@ class Prod:
         for d in DURS_H:
             c, snr, m = self.scores(d)
             for i in np.where(np.nan_to_num(snr) >= thr)[0]:
-                cands.append((snr[i], c[i], d, (self.med - m[i]) * 1e6))
+                cands.append((snr[i], c[i], d, (self.meds.get(d, self.med) - m[i]) * 1e6))
         cands.sort(reverse=True); ev = []
         for snr, c, d, depth in cands:
             if all(abs(c - e["center"]) > 0.5 * max(d, e["dur_h"]) / 24 + 0.1 for e in ev):

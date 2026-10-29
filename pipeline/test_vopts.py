@@ -57,5 +57,27 @@ def test_c2_rules():
     print("PASS c2 rules: default flags a thin side, c2 ignores it but still flags a measured lift")
 
 
+
+
+
+def test_c1a_window():
+    """c1a: a 4 h dip on a star that varies on 2.5 d: the 2 d window leaves the variability, the 3 x box (0.5 d) window removes more of it, so the dip stands out more."""
+    rng = np.random.default_rng(5)
+    t = np.arange(0, 27, 2 / 1440)
+    f = 1 + 3e-4 * rng.normal(size=t.size) + 1.2e-3 * np.sin(2 * np.pi * t / 2.5)
+    f -= 2e-3 * (np.abs(t - 13.0) * 24 < 2)
+    P = S2.Prod(t, f); s0 = P.snr_near(13.0, 4.0)
+    V.ON = frozenset({"c1a"})
+    try:
+        P1 = S2.Prod(t, f); s1 = P1.snr_near(13.0, 4.0)
+        c, snr, m = P1.scores(4.0); i = np.nanargmax(np.where(np.abs(c - 13.0) < 0.2, snr, np.nan)); depth = (P1.meds[4.0] - m[i]) * 1e6
+    finally:
+        V.ON = frozenset()
+    assert s1 > s0 + 3, f"c1a should raise the SNR of the short dip on a variable star: default {s0:.1f}, c1a {s1:.1f}"
+    assert 0.8 * 2000 < depth < 1.2 * 2000, depth
+    assert S2.Prod(t, f).snr_near(13.0, 4.0) == s0, "default must be unchanged"
+    print(f"PASS c1a: 4 h dip SNR {s0:.1f} with the 2 d window, {s1:.1f} with the 0.5 d window; depth {depth:.0f} ppm (injected 2000)")
+
+
 if __name__ == "__main__":
-    test_shoulders(); test_guard_stays(); test_c2_rules()
+    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window()

@@ -1,0 +1,66 @@
+train g1 -> score g2 [logistic]: upside-down tier-1 on the scored set 37 = 11.37 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 46.5% option 57.6%; gained 173, lost 47, net +126, exact p 0.00000
+   dips 8 h: base 48.5% option 58.0%; gained 163, lost 55, net +108, exact p 0.00000
+   dips 14 and 20 h: base 28.7% option 32.1%; gained 184, lost 106, net +78, exact p 0.00001
+   dips all boxes: base 38.1% option 45.0%; gained 520, lost 208, net +312, exact p 0.00000
+   weights (standardised, + = more planet-like): repeat_n -1.41, lift_max -0.76, burst_n -0.52, common_n -0.48, dur_h -0.24, dominated -0.19, c8_n -0.13, gap_dump -0.06, ramp_d +0.08, flipmatch +0.12, ph_d +0.24, cover_min +0.27, ecl_ratio +0.47, has_ecl +0.54
+train g2 -> score g1 [logistic]: upside-down tier-1 on the scored set 42 = 8.29 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 33.8% option 31.9%; gained 57, lost 80, net -23, exact p 0.05977
+   dips 8 h: base 46.0% option 34.1%; gained 57, lost 199, net -142, exact p 0.00000
+   dips 14 and 20 h: base 34.9% option 27.0%; gained 163, lost 350, net -187, exact p 0.00000
+   dips all boxes: base 37.4% option 30.0%; gained 277, lost 629, net -352, exact p 0.00000
+   weights (standardised, + = more planet-like): lift_max -0.74, repeat_n -0.72, gap_dump -0.62, burst_n -0.47, dominated -0.45, has_ecl -0.28, ph_d -0.15, ecl_ratio -0.08, dur_h -0.07, c8_n +0.05, ramp_d +0.14, common_n +0.16, flipmatch +0.19, cover_min +0.67
+train g1 -> score g2 [boosting]: upside-down tier-1 on the scored set 22 = 6.76 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 46.5% option 42.7%; gained 101, lost 144, net -43, exact p 0.00717
+   dips 8 h: base 48.5% option 48.3%; gained 141, lost 143, net -2, exact p 0.95270
+   dips 14 and 20 h: base 28.7% option 28.8%; gained 182, lost 180, net +2, exact p 0.95809
+   dips all boxes: base 38.1% option 37.1%; gained 424, lost 467, net -43, exact p 0.15937
+train g2 -> score g1 [boosting]: upside-down tier-1 on the scored set 31 = 6.12 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 33.8% option 36.4%; gained 87, lost 56, net +31, exact p 0.01185
+   dips 8 h: base 46.0% option 41.3%; gained 85, lost 141, net -56, exact p 0.00024
+   dips 14 and 20 h: base 34.9% option 30.6%; gained 164, lost 265, net -101, exact p 0.00000
+   dips all boxes: base 37.4% option 34.7%; gained 336, lost 462, net -126, exact p 0.00001
+within G2 dev, split by tic parity, half sizes 1702 -> 1551 [logistic]: upside-down tier-1 on the scored set 16 = 10.32 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 45.8% option 37.5%; gained 23, lost 67, net -44, exact p 0.00000
+   dips 8 h: base 48.5% option 45.3%; gained 28, lost 45, net -17, exact p 0.06037
+   dips 14 and 20 h: base 26.0% option 29.8%; gained 93, lost 53, net +40, exact p 0.00117
+   dips all boxes: base 36.6% option 35.6%; gained 144, lost 165, net -21, exact p 0.25518
+   weights (standardised, + = more planet-like): repeat_n -0.77, lift_max -0.76, gap_dump -0.64, has_ecl -0.56, burst_n -0.39, dominated -0.37, ecl_ratio -0.32, ph_d -0.25, c8_n -0.02, dur_h +0.14, flipmatch +0.23, ramp_d +0.25, common_n +0.26, cover_min +0.63
+within G2 dev, split by tic parity, half sizes 1551 -> 1702 [logistic]: upside-down tier-1 on the scored set 23 = 13.51 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 47.0% option 49.3%; gained 30, lost 16, net +14, exact p 0.05408
+   dips 8 h: base 48.5% option 49.0%; gained 31, lost 28, net +3, exact p 0.79484
+   dips 14 and 20 h: base 31.0% option 26.7%; gained 59, lost 111, net -52, exact p 0.00008
+   dips all boxes: base 39.4% option 38.0%; gained 120, lost 155, net -35, exact p 0.04014
+   weights (standardised, + = more planet-like): burst_n -1.05, lift_max -0.79, repeat_n -0.65, gap_dump -0.62, dominated -0.53, dur_h -0.28, ph_d -0.09, flipmatch +0.00, has_ecl +0.02, ramp_d +0.05, c8_n +0.18, common_n +0.20, ecl_ratio +0.26, cover_min +0.76
+within G2 dev, split by tic parity, half sizes 1702 -> 1551 [boosting]: upside-down tier-1 on the scored set 13 = 8.38 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 45.8% option 35.6%; gained 40, lost 94, net -54, exact p 0.00000
+   dips 8 h: base 48.5% option 41.5%; gained 51, lost 88, net -37, exact p 0.00215
+   dips 14 and 20 h: base 26.0% option 30.3%; gained 138, lost 93, net +45, exact p 0.00370
+   dips all boxes: base 36.6% option 34.4%; gained 229, lost 275, net -46, exact p 0.04491
+within G2 dev, split by tic parity, half sizes 1551 -> 1702 [boosting]: upside-down tier-1 on the scored set 10 = 5.88 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 47.0% option 36.5%; gained 33, lost 97, net -64, exact p 0.00000
+   dips 8 h: base 48.5% option 32.2%; gained 31, lost 130, net -99, exact p 0.00000
+   dips 14 and 20 h: base 31.0% option 15.5%; gained 21, lost 209, net -188, exact p 0.00000
+   dips all boxes: base 39.4% option 25.0%; gained 85, lost 436, net -351, exact p 0.00000
+within G2 dev, split by tic//1000 parity, half sizes 1611 -> 1642 [logistic]: upside-down tier-1 on the scored set 28 = 17.05 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 44.9% option 42.6%; gained 19, lost 32, net -13, exact p 0.09191
+   dips 8 h: base 46.1% option 49.6%; gained 36, lost 16, net +20, exact p 0.00779
+   dips 14 and 20 h: base 31.7% option 42.4%; gained 158, lost 38, net +120, exact p 0.00000
+   dips all boxes: base 38.6% option 44.2%; gained 213, lost 86, net +127, exact p 0.00000
+   weights (standardised, + = more planet-like): burst_n -0.94, repeat_n -0.93, lift_max -0.82, gap_dump -0.56, ph_d -0.18, dominated -0.14, has_ecl +0.01, ecl_ratio +0.01, c8_n +0.05, common_n +0.06, ramp_d +0.15, dur_h +0.21, flipmatch +0.24, cover_min +0.83
+within G2 dev, split by tic//1000 parity, half sizes 1642 -> 1611 [logistic]: upside-down tier-1 on the scored set 5 = 3.10 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 48.1% option 33.9%; gained 22, lost 103, net -81, exact p 0.00000
+   dips 8 h: base 50.9% option 21.0%; gained 17, lost 188, net -171, exact p 0.00000
+   dips 14 and 20 h: base 25.7% option 2.4%; gained 7, lost 273, net -266, exact p 0.00000
+   dips all boxes: base 37.6% option 14.9%; gained 46, lost 564, net -518, exact p 0.00000
+   weights (standardised, + = more planet-like): lift_max -0.66, dominated -0.63, repeat_n -0.59, gap_dump -0.57, has_ecl -0.41, burst_n -0.28, dur_h -0.20, ph_d -0.11, ecl_ratio -0.03, flipmatch +0.00, c8_n +0.08, ramp_d +0.18, common_n +0.26, cover_min +0.72
+within G2 dev, split by tic//1000 parity, half sizes 1611 -> 1642 [boosting]: upside-down tier-1 on the scored set 18 = 10.96 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 44.9% option 36.5%; gained 26, lost 73, net -47, exact p 0.00000
+   dips 8 h: base 46.1% option 43.6%; gained 53, lost 67, net -14, exact p 0.23520
+   dips 14 and 20 h: base 31.7% option 32.2%; gained 111, lost 106, net +5, exact p 0.78605
+   dips all boxes: base 38.6% option 36.1%; gained 190, lost 246, net -56, exact p 0.00836
+within G2 dev, split by tic//1000 parity, half sizes 1642 -> 1611 [boosting]: upside-down tier-1 on the scored set 5 = 3.10 per 1,000 star-sectors (cut set on the training set for 8)
+   dips 4 h: base 48.1% option 20.5%; gained 28, lost 186, net -158, exact p 0.00000
+   dips 8 h: base 50.9% option 23.6%; gained 15, lost 171, net -156, exact p 0.00000
+   dips 14 and 20 h: base 25.7% option 9.1%; gained 18, lost 208, net -190, exact p 0.00000
+   dips all boxes: base 37.6% option 15.6%; gained 61, lost 565, net -504, exact p 0.00000
