@@ -1,6 +1,6 @@
-# G2 preregistration (PROPOSED 29 Oct 2026)
+# G2 preregistration (LOCKED 29 Oct 2026)
 
-**Status: PROPOSED.** It becomes binding when Ahmed says "lock it" and the commit id of that moment is written at the bottom. Until then the development slice may be downloaded and used; the sealed slice may not be downloaded, searched or looked at. After locking, a change needs a new dated amendment at the bottom, never an edit of the rules above it.
+**Status: LOCKED** by Ahmed on 29 Oct 2026 (see the lock record at the bottom). The development slice may be downloaded and used; the sealed slice may not be downloaded, searched or looked at until the conditions in section 3 are met. A change now needs a new dated amendment at the bottom, never an edit of the rules above it.
 
 ## 1. Purpose
 G1 (549 Kepler field stars) was used to build and tune Vesper v1 to v7, so it cannot be the final test. G2 is a second set of stars, defined before it is searched, so that a frozen version is tested once on stars it never saw. Win condition (Ahmed, 29 Oct 2026): a clean measured null, that is, how small a planet the chain could have found plus an honest count of what was found. A candidate would be welcome but is not the target. Interesting signals are not discoveries.
@@ -9,7 +9,7 @@ G1 (549 Kepler field stars) was used to build and tune Vesper v1 to v7, so it ca
 - Source: TESS eclipsing binary catalogue (Prsa et al. 2022, https://arxiv.org/abs/2110.13382) as saved in `data/xmatch/ebs.csv` (sha256 933e635c0370ee436fafbca250869e13067ddad22b13aecfd1d9e44f1e5d4087). The saved copy lists sectors up to 39; whether its periods and morphology were redone with the later sectors is UNCERTAIN.
 - Rule: one row per TIC; morphology from 0 up to but not including 0.5 (detached); binary period over 5 days; Tmag 13.5 or brighter; TIC not in `targets/g1_targets.csv` (sha256 38ad01b2d1ceca7abb6e30bbf984f5debe1cdff10fcbc5910e341269b8ce87c9). This is the G1 rule applied to a different catalogue. It gives **895 stars**.
 - The list is `targets/g2_targets.csv` (sha256 809212e5ef3ac1ecd77de99989aab89ba935cc97cebbb62d3fe6e651641f8bb6). It contains no light curve, no event and no search result.
-- Known circumbinary hosts and TOIs inside the list are labelled, never removed. About 2 known hosts are expected (one very likely TOI-1338); their recovery is reported.
+- Known circumbinary hosts and TOIs inside the list are labelled, never removed. Measured 29 Oct: 95 TOIs (29 development, 66 sealed) and 1 NASA-listed circumbinary host (in the sealed slice, so the development slice has no known planet to recover; it relies on injections). Their recovery is reported.
 
 ## 3. The split
 - **Development slice (301 stars):** the integer value of sha256(str(TIC)) modulo 3 is 0. It may be downloaded, searched any number of times and used to tune and choose Vesper v8.
@@ -26,10 +26,10 @@ On the sealed slice, per flux half and per SNR bar (7, 8, 10, 12): the real tier
 `chain_recovery.py` (unchanged logic) on the development slice, and on 300 random star-sectors of the sealed slice AFTER the sealed search. Reported as depth in ppm and duration first, tier 1 recovery, the 50% depth, and planet size only as a labelled range. A null is stated together with this table.
 
 ## 7. Reporting rules
-Aggregates only. No real event is opened or plotted without Ahmed's explicit yes. Labels CONFIRMED, LIKELY, UNCERTAIN, NOT TESTED. Anything searched in G2 before locking is development use and is reported as such.
+Aggregates only. No real event is opened or plotted without Ahmed's explicit yes. Labels CONFIRMED, LIKELY, UNCERTAIN, NOT TESTED. Anything searched in G2 before locking is development use and is reported as such. **Labels clause (added at lock time, before any G2 search; it changes no list, split or excess rule):** every result is also reported separately for (a) stars in the professionals' 591-star table (`TEBC_morph_05_P_7.csv` of Davies et al. 2026, held outside this repository; 531 of 895 stars: 178 development, 353 sealed), (b) stars not in it (364: 123 and 241), (c) TOIs, and (d) the stars in none of those three groups (310: 107 and 203). The per-star label file is `data/g2/g2_labels_LOCAL.csv` and stays out of the repository because it carries a fact taken from their table.
 
 ## 8. Known limits of this design
-G2 stars have many more sectors than G1 stars (median 7 against 15 for Kepler field stars, 28 GB in all, UNCERTAIN how much is 20 second data); the professionals (Davies and colleagues) already searched some of these stars with a different tool and we do not hold their list; the catalogue's periods may be updated; 895 stars give limited power for a rare event.
+G2 stars have many more sectors than G1 stars (median 7 against 15 for Kepler field stars, 28 GB in all, UNCERTAIN how much is 20 second data); **531 of the 895 stars (59%) are in the professionals' 591-star table (CONFIRMED by matching TIC numbers, counts only)**; their table cuts at period over 7 days, so none of our 228 stars with periods of 5 to 7 days is in it. They searched 512 of those 591 after removals we cannot see, so for most of G2 this is a second look with a different method (SPOC 2 minute, TESS-SPOC and QLP light, raw-light twin, upside-down control), not a first look. That is useful as a cross-check; a new find is more likely among the 364 stars outside their table. Other earlier searches (Planet Hunters TESS, other teams' eclipsing binary work) were NOT checked. The catalogue's periods may be updated; 895 stars give limited power for a rare event.
 
 ## Lock record
-Not locked. (When locked: date, Ahmed's words, commit id.)
+LOCKED on 29 Oct 2026. Ahmed's words: "also lock in g2 preregistration". The rules in sections 1 to 6 are those first committed in d26ff5f (list sha256 809212e5ef3ac1ecd77de99989aab89ba935cc97cebbb62d3fe6e651641f8bb6); at lock time only the status line, the measured counts in sections 2 and 8, and the labels clause in section 7 were added. The commit that contains this record is the lock commit: find it with `git log -- research/stage3/G2-PREREGISTRATION.md`. The comment line at the top of `targets/g2_targets.csv` still says PROPOSED; it is part of the hashed file, so it is left unchanged. Amendments go below this line, dated.
