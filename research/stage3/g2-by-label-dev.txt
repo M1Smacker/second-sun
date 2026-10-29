@@ -1,0 +1,14 @@
+G2 dev run dev_73f62615e365: tier-1 events split by the labels clause (counts only; DEVELOPMENT USE; best product per star-sector; PDCSAP half and SAP half together as in the aggregate report).
+Asymmetry ratio file used for the noise-expected line: asymmetry_g2_v5.txt
+group | stars | star-sectors | tier-1 real | tier-1 upside-down | by SNR bar 7 / 8 / 10 / 12: real - upside-down
+(a) in the professionals' table    |  178 |  1996 |   44 |   20 | 44-20 / 27-15 / 17-12 / 10-7
+(b) not in their table             |  123 |  1257 |   46 |    5 | 46-5 / 24-5 / 12-2 / 9-2
+(c) TOI hosts                      |   29 |   454 |    8 |    7 | 8-7 / 8-5 / 6-3 / 5-2
+(d) none of the three              |  107 |  1070 |   45 |    4 | 45-4 / 23-4 / 12-2 / 9-2
+all                                |  301 |  3253 |   90 |   25 | 90-25 / 51-20 / 29-14 / 19-9
+Noise-expected check on the PDCSAP half (upside-down tier-1 / measured ratio), SNR 7 bar:
+  (a) in the professionals' table    real  36, upside-down  17, noise-expected real  17.3, chance 0.00
+  (b) not in their table             real  42, upside-down   4, noise-expected real   4.1, chance 0.00
+  (c) TOI hosts                      real   7, upside-down   6, noise-expected real   6.1, chance 0.41
+  (d) none of the three              real  41, upside-down   3, noise-expected real   3.1, chance 0.00
+  all                                real  78, upside-down  21, noise-expected real  21.4, chance 0.00

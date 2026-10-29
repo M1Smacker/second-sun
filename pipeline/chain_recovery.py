@@ -263,7 +263,7 @@ def summarize(df, label):
     t += ["", "4. DEPTH THAT IS RECOVERED, in ppm, with planet radius only as a labelled illustration",
           "  K50 and K90 = the depth (units of the 8 h box noise) at which tier-1 recovery first reaches 50% and 90%. Depth in ppm = K x the class's median 8 h noise. The radius columns are an ILLUSTRATION, not a measurement:",
           "  they assume the crossed star has the TIC radius (a blended-point radius) and give the planet radius for it carrying all the light (smallest planet) and half the light (the crossed star is one of two equal stars, planet x 1.41).",
-          "  The crossed star's own radius and light share are NOT in the G1 table; treat the radius as a range with at least that spread plus the unknown radius ratio.",
+          "  The crossed star's own radius and light share are NOT in the G1 or G2 table (G2 has no radius at all); treat the radius as a range with at least that spread plus the unknown radius ratio.",
           "    class        box h | K50 | K90 | median 8 h noise ppm | depth50 ppm | depth90 ppm | median TIC R (Rsun) | R_planet at 50% (Rearth, share 1 to 0.5) | at 90%"]
     for lab, g0 in tuple((c, d[d.cls == c]) for c in C.TLABELS) + (("all", d),):
         n8m, rr = g0.drop_duplicates(["tic", "sector"]).n8.median(), g0.drop_duplicates("tic").rtic.median()
@@ -275,7 +275,8 @@ def summarize(df, label):
             cells = []
             for kk in (k5, k9):
                 try:
-                    dp = float(kk) * n8m; lo = R_EARTH_PER_RSUN * rr * np.sqrt(dp * 1e-6); cells.append((f"{dp:6.0f}", f"{lo:4.1f} to {lo * np.sqrt(2):4.1f}"))
+                    dp = float(kk) * n8m; lo = R_EARTH_PER_RSUN * rr * np.sqrt(dp * 1e-6)
+                    cells.append((f"{dp:6.0f}", f"{lo:4.1f} to {lo * np.sqrt(2):4.1f}" if lo == lo else "n/a (no TIC radius in the G2 table)"))
                 except ValueError:
                     cells.append(("   n/a", "n/a"))
             t.append(f"    {lab:11s} {dur:5.0f} | {k5:>4s} | {k9:>4s} | {n8m:19.0f} | {cells[0][0]} | {cells[1][0]} | {rr:19.2f} | {cells[0][1]:40s} | {cells[1][1]}")
