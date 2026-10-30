@@ -4,7 +4,7 @@
 # the development rows did not change.
 $env:OMP_NUM_THREADS = "1"; $env:MKL_NUM_THREADS = "1"; $env:OPENBLAS_NUM_THREADS = "1"; $env:NUMEXPR_NUM_THREADS = "1"; $env:NUMBA_NUM_THREADS = "1"
 $env:SS_SET = "g2"; $env:VESPER_OPTS = "c6"
-(Get-Process -Id $PID).PriorityClass = 'BelowNormal'
+(Get-Process -Id $PID).PriorityClass = 'Normal'      # Ahmed 30 Oct: normal priority, he is not using the computer
 $py = "D:\second-sun\.venv\Scripts\python.exe"; Set-Location D:\second-sun\pipeline
 if (-not (Select-String -Path D:\second-sun\data\g2_sealed_download_log.txt -Pattern "ALL DONE" -Quiet)) { throw "the sealed download has not finished" }
 if (-not (Test-Path D:\second-sun\data\g2\audit_dev_only_2026-10-30)) { Copy-Item -Recurse D:\second-sun\data\g2\audit D:\second-sun\data\g2\audit_dev_only_2026-10-30 }
