@@ -2,6 +2,8 @@
 
 Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges best, inside the weekly cap (stop line 23% while the cap is 25%). Only item 10 needs him. Every fix is a flag or a labelled measurement unless noted; each new version is tested, mutation-checked, frozen under a new hash and judged by real minus control per tier, never by list length. Source of each item: `learnings-2026-10-27.md` sections 5 and 7.
 
+**Bugs only from 30 Oct 2026 (Ahmed):** this file takes defects. New builds, studies and features go in `research/stage3/BUILD-QUEUE.md`, one task each, never mixed in here.
+
 ## Do first (no re-search needed, small); v3 step test DONE 27 Oct (hash 23a74c021d8a); item 1 DONE (report section 5)
 1. **Report line: real minus upside-down per tier and per SNR threshold,** written into every aggregate. (Item 5 of the review prompt too.)
 2. DONE 28 Oct (report section 6; 0 of 15 tier-1 events on any catalogue star). **Auto-labels on existing events:** star is a TOI, a known planet host, a known circumbinary host or in the TESS eclipsing binary catalogue (tables in `data\xmatch`).
@@ -47,54 +49,8 @@ Rule from Ahmed: obvious follow-ups are filed and done by Claude when it judges 
   30. **ORBIT-LOCKED DIPS (found 29 Oct, G2 development run; v8 candidate, the most important open item):** the 90 real tier-1 dips (against 25 upside-down) sit on 29 stars; 238 of 296 cross-sector pairs on the same star fall within 0.25 d of the same point of the binary orbit (chance: 12); 54 events on 8 stars are orbit-locked at phases away from 0 and 0.5, median depth 822 ppm, periods 5.5 to 20.6 d (LIKELY shallow secondary eclipses of eccentric binaries; NOT tested directly). Design (physics, no tuning on results): flag an event if another event of the SAME kind on the same star, in a different sector, lies within the existing match window (0.5 x the longer box + 0.1 d) of a whole number of binary periods; apply it to real and upside-down alike; it also covers the same-sector case the repeater flag handles. A planet's transits are not locked to the binary's clock, so this cannot remove a real circumbinary signal except by chance coincidence (estimate that chance per star from P and the number of events). Test on G1 (events and tiers must change only for locked events), on the development slice, and with injections placed at the binary phase of a real event. Details: `g2-dev-results-2026-10-29.md` section 3. **STATUS 30 Oct 2026: tested offline (`c6_orbit_lock.py`, plan section 7). Partner pool must be tier-1 events with matched box length and depth (variant C); with any event as partner it flags 33% of injected dips by chance on G2 dev. Variant C: real tier-1 90 to 43, upside-down 25 to 23, real-minus-upside-down excess +65 to +20 at bar 7 and 0 at bar 12; cost 0.81% of injected tier-1 dips; G1 unchanged. To build as switch `c6` at the v8 design.**
   29. **Completeness counts only the time we keep (29 Oct; partly queue 7 and 13):** injections are placed on cadences that survive the eclipse mask, gaps and data cuts, so the reported recovery is for the kept time. The thrown-away share (v4 ramp flag 14.2% of the G1 timeline, the eclipse mask, C5 windows up to 30% for short-period binaries) lowers real completeness further. Print the kept share per star next to every recovery table.
 
-## After the sealed search (30 Oct 2026, night)
-- [ ] TOI-1338 b ephemeris drift (UNCERTAIN, not part of the test): real events 0.6 to 1.4 d after the Kostov 2020 prediction in sectors 65, 89, 93, 96, 98. Check against a later published ephemeris (blueprint, primary source). About 1 point.
-- [ ] Chapter and learning-track check for the sealed result and the leads section (standing rule: same day). Skipped on 30 Oct because of the usage stop line; do first next session.
-- [ ] Vesper next version: guard against a near-zero noise estimate (one sealed star-sector had a dip score of 3.5e26). Needs a re-freeze, so only with the next study.
-- [ ] Lead checks 5 and 6 (by-eye record, pixel check) are not built; the card lists them as pending and not built.
-
-## Filled 30 Oct 2026 after the sealed search (items 31 to 60; evidence in DEEP-ANALYSIS-AFTER-SEALED-2026-10-30.md). Nothing here is started; Ahmed approves the order.
-Legend: **V** = changes the search, needs a new Vesper version and a re-freeze (a study, then a new sealed-style test); **S** = scorecard or statistics, needs a written amendment before the next run, changes no old result; **H** = harness, tool or page, no re-freeze; **B** = book or learning. Cost is a rough guess in weekly points in a fresh session (machine time is free).
-
-### A. The filter (V)
-31. **V. Depth sanity guard.** A dip deeper than about 30% of the flux, or a flux that goes to zero or below, cannot be a planet transit: tier 2 with its own flag name. Evidence: upside-down tier-1 max depth 1.0e7 ppm, 23 of 59 deeper than 1%; real max 265,216 ppm. About 0.3 point plus a study run.
-32. **V. Near-zero noise guard for the SNR.** One sealed star-sector scored 3.5e26 (TIC 392536805, sector 76, QLP). Refuse or cap an SNR when the scatter estimate is below a floor. About 0.2 point.
-33. **V. Flare-shape check (ingress against egress).** 44 of 59 upside-down tier-1 events are 3 h boxes, short and deep, flare-like (LIKELY, NOT TESTED). Needs research question Q3 first. About 1 point.
-34. **V. Review the step check.** It fires on 82% to 90% of all raw events and on 51% of the strong planted dips that were lost (found 98% at K 14, kept 48%). Biggest single completeness cost. Each option trades about 1 point of recovery for 1 false alarm per 1,000, so test a better baseline estimate, not a looser threshold. Needs Q5. About 1 point.
-35. **V. Decide the 3 h box.** It holds 62% of real and 75% of upside-down tier-1 events; circumbinary transits are longer. First a report-only split line (no search change), then decide. About 0.3 point.
-36. **V. Cross-sector orbit-lock harness.** The 0.51% cost of c6 is an offline estimate because the harness cannot see other sectors. Either build a multi-sector plant test or keep the label "estimate". About 1 point.
-37. **V. Study plan for Vesper 0.9** that bundles 31 to 35 as separate switches (like c1 to c6), each judged on the same two numbers (kept real dips and false alarms), then frozen once. Machine time about 2 hours, about 2 points of my time.
-
-### B. The scorecard and the statistics (S)
-38. **S. Star-level S1.** Count stars with at least one tier-1 real event against stars with at least one upside-down event, with a cluster bootstrap over stars, beside the event count. Evidence: development 78 events on 21 stars, up to 14 on one star. About 0.5 point.
-39. **S. Asymmetry ratio from the whole run, per bar, with an interval.** The 1,500-sample, all-products estimate gave 1.41 where the full run gives 1.18 (sealed) and 0.98 against 0.92 (development); the ratio rises from 1.09 to 1.78 across bars 4.5 to 10. About 0.5 point.
-40. **S. S2 wording.** Both slices straddle the mark (development 4.97 to 11.34, sealed 6.80 to 11.47). Write down how a borderline reading is to be stated, and state a pooled 895-star rate once the development slice has been re-run with 0.8.0 (item 43). About 0.2 point.
-41. **S. "DID NOT GENERALISE" fires in both directions** (the 20 h box was better in the sealed slice). Say "better" or "worse". About 0.1 point.
-42. **S. S4 gets a "found at all" column beside "kept".** The cost of the filter should be visible in every scorecard. About 0.2 point.
-43. **S. Census run.** Re-run Vesper 0.8.0 over the 301 development stars so all 895 stars have one version and one lead list (about 25 minutes of machine time). Development tuning makes it unfit for a test, fine for a census. About 0.3 point.
-44. **S. TOI-1338 b second line.** After Q1, add a labelled post-hoc line with an updated ephemeris; keep the preregistered line unchanged. About 0.2 point.
-45. **S. Two-key rule for amendments.** Every scorecard change is written as a dated amendment with the reason, before the next sealed-style run (as was done for the leads rules).
-
-### C. Leads and vetting (H)
-46. **H. By-eye record per lead.** Store Ahmed's verdict on each lead (needs the real-candidate Eyes page, unbuilt). About 1.5 points.
-47. **H. Crowding and neighbour note on every lead card** from the light-curve headers if the keys are there (Q12), then a real pixel check later (target pixel files). About 1 point.
-48. **H. "Too deep for a planet" tag** on the card automatically (links to item 31). About 0.2 point.
-49. **H. Show the raw-light twin picture beside the cleaned one** and the other sectors of the star at the same phase. About 0.5 point.
-50. **H. A census page** for all 895 stars once item 43 exists (leads from both slices, one place). About 1 point.
-
-### D. Harness, tools and process (H)
-51. **H. Data branch commit message** says "counts only" even when it carries lead cards; say "counts and leads". 0.05 point.
-52. **H. Read the data set and the study options from each run's own settings** instead of the environment variables SS_SET and VESPER_OPTS, and fail loudly when the data folder is missing (the development example showed G1 paths with no files). About 0.3 point.
-53. **H. Finished marker.** `sealed_run.py` writes a small DONE file; the page uses it instead of inferring completion from file counts; plus an "exporter alive" light separate from "search alive". About 0.3 point.
-54. **H. Regression test:** the funnel of a finished run must equal the scorecard (sealed 26 and 59). Add to `test_leads.py`. About 0.2 point.
-55. **H. Write the book preview recipe** into RESUME (static test page or `--no-livereload`; the pane's service-worker reload loop). 0.05 point.
-56. **H. Plan long jobs in a fresh context.** About 0.3 point per step after a compaction against about 1 point at 500K tokens (usage ledger). Process rule, no cost.
-
-### E. Book, learning and the other tracks (B)
-57. **B. Chapter and learning-track checks** for the sealed result, clusters, what a null means and the leads section (standing rule, overdue). About 1 point.
-58. **B. A teaching note** on "events cluster on stars" and "a control that is not a mirror", in plain words with the development against sealed picture. About 0.5 point.
-59. **B. Open build items:** Downloads page and the real-time channel (needs Ahmed's Firebase console steps, plan in `research/firebase-setup-steps.md` and `live-updates-literature-2026-10-30.md`), F4 redesign with rounded bars and the new colours (unblocked now that the sealed search is done), the three unbuilt Eyes pages (real-candidate, eye-training record, real-layout rehearsal), the Eyes sittings still needed, the mission readiness cells (44 work commits behind).
-60. **B. Rabtsevich / TIC 4206066:** report the TESS follow-up outcome honestly after 26 Nov 2026.
+## Moved out on 30 Oct 2026 (not bugs)
+Items 31 to 60 and the four lines that stood under "After the sealed search" were builds, studies and statistics changes, not bugs. They are in `research/stage3/BUILD-QUEUE.md` as T31 to T60, one task each, to be done slowly after the research. The numbers 31 to 60 are not reused here; the next bug is 70.
 
 ## Book bugs found by the complete book test, 30 Oct 2026 night (items 61 to 69; nothing fixed yet, Ahmed decides)
 Method: the live book (https://m1smacker.github.io/second-sun/) in the Browser pane at 1440x900 and 375x812. Sweep of all 78 pages, each opened the way a reader does (a click, so instant navigation runs), with real wheel scrolling for the scroll bugs; script in `book/tools/page_sweep.js`. Severity: H high, M medium, L low.

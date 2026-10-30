@@ -116,7 +116,7 @@ One star-sector (TIC 392536805, sector 76, QLP product, 15 h box) has a dip scor
 - **The live page and the leads rules,** including their own bug and the amendment written in the open.
 - **Reproduction by an independent route:** the leads funnel rebuilt from the scorecard's loader gives 26 and 59 exactly.
 
-## 6. What should be improved (items 31 to 60 in `FIX-QUEUE.md`)
+## 6. What should be improved (tasks T31 to T60 in `BUILD-QUEUE.md`)
 - **The filter (needs a new Vesper version and a re-freeze):** depth and noise sanity guards; a flare-shape check; a review of the step check; a decision on the 3 h box; keep c6.
 - **The scorecard (needs an amendment before the next run):** star-level counts and a cluster bootstrap beside the event count; a bar-specific asymmetry ratio from the whole run with an interval; a "found at all and kept" line in S4; clearer wording for S2 and the "did not generalise" label; an updated-ephemeris line for TOI-1338 b labelled post hoc.
 - **Census:** run 0.8.0 over the 301 development stars so all 895 stars share one version and one lead list.
@@ -145,4 +145,4 @@ One star-sector (TIC 392536805, sector 76, QLP product, 15 h box) has a dip scor
 - Scorecard: `research/stage3/benchmark-g2-sealed.txt`; labels `g2-by-label-sealed.txt`; asymmetry `asymmetry_g2_sealed_v5.txt`.
 - Scripts and raw outputs of the exploratory analyses: `research/stage3/post-sealed-analysis/` (`analyse2.py` flag and cluster tables, `analyse3.py` planted-dip fate, `analyse4.py` star-level bootstrap, `toi1338_why.py` events near each expected transit; outputs next to them).
 - Rules for the lead cards and their amendment: `research/stage3/LEADS-RULES.md`.
-- Fixes: `research/stage3/FIX-QUEUE.md`, items 31 to 60. Research questions waiting for approval: `research/RESEARCH-QUESTIONS-2026-10-30.md`.
+- Builds and studies: `research/stage3/BUILD-QUEUE.md`, tasks T31 to T60. Bugs: `research/stage3/FIX-QUEUE.md`, items 61 to 69. Research questions waiting for approval: `research/RESEARCH-QUESTIONS-2026-10-30.md`.
