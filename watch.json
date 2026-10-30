@@ -2,7 +2,7 @@
  "label": "SEALED RUN: Vesper 0.8.0 on the 594 sealed G2 stars (blind)",
  "blind": true,
  "phase": "search",
- "updated": "2026-10-30T16:43:21+00:00",
+ "updated": "2026-10-30T16:44:26+00:00",
  "loop_s": 60,
  "run": {
   "folder": "sealed_5f73692944aa",
@@ -36,12 +36,12 @@
  },
  "machine": {
   "workers": 8,
-  "cpu": 33
+  "cpu": 46
  },
  "started": "2026-10-30T16:32:35+00:00",
  "progress": {
   "search": [
-   3940,
+   4360,
    6877
   ],
   "sap": [
@@ -53,27 +53,28 @@
    4233
   ],
   "stars": 594,
-  "per_min": 365.1,
-  "eta_min": 8
+  "per_min": 370.8,
+  "eta_min": 7
  },
  "files": {
-  "read_ok": 9940,
+  "read_ok": 10986,
   "skipped": {
-   "no safe windows": 113
+   "no safe windows": 126,
+   "too little data": 1
   },
   "products": {
-   "QLP": 3759,
-   "SPOC": 3109,
-   "TESS-SPOC": 3072
+   "QLP": 4159,
+   "SPOC": 3429,
+   "TESS-SPOC": 3398
   }
  },
  "events": {
-  "found": 4303,
+  "found": 4794,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 2718
+    "n": 2970
    },
    {
     "flag": "flipmatch",
@@ -83,7 +84,7 @@
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 157
+    "n": 188
    },
    {
     "flag": "ecl_overlap",
@@ -93,58 +94,57 @@
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 520
+    "n": 634
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 624
+    "n": 681
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 22
+    "n": 24
    },
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 27
+    "n": 30
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 197
+    "n": 229
    }
   ],
   "tiers": {
-   "2": 4117,
-   "1A": 118,
-   "3": 44,
-   "1B": 13,
-   "1L": 5,
-   "?": 6
+   "2": 4576,
+   "1A": 145,
+   "3": 53,
+   "1B": 14,
+   "1L": 6
   },
   "boxes": {
-   "3": 1347,
-   "4": 455,
-   "5": 451,
-   "6.5": 376,
-   "8": 320,
-   "10": 305,
-   "12": 278,
-   "15": 338,
-   "20": 433
+   "3": 1621,
+   "4": 502,
+   "5": 472,
+   "6.5": 396,
+   "8": 352,
+   "10": 328,
+   "12": 298,
+   "15": 368,
+   "20": 457
   },
   "bands": {
-   "7 to 8": 1259,
-   "8 to 10": 1311,
-   "10 to 12": 610,
-   "12 and up": 1123
+   "7 to 8": 1381,
+   "8 to 10": 1454,
+   "10 to 12": 688,
+   "12 and up": 1271
   }
  },
  "selftest": {
-  "fakes": 17370,
-  "second_product_sees": 16650
+  "fakes": 19166,
+  "second_product_sees": 18312
  },
  "history": [
   {
@@ -212,6 +212,12 @@
    "done": 3940,
    "events": 4303,
    "per_min": 365.1
+  },
+  {
+   "t": 1793378669,
+   "done": 4360,
+   "events": 4794,
+   "per_min": 370.8
   }
  ],
  "notes": [
@@ -9404,88 +9410,88 @@
  },
  "ticker": [
   {
-   "tic": 279741942,
-   "sector": 31,
-   "events": 0,
-   "files": 1,
-   "at": "16:43:20"
-  },
-  {
-   "tic": 279741942,
-   "sector": 29,
-   "events": 6,
-   "files": 3,
-   "at": "16:43:20"
-  },
-  {
-   "tic": 279741942,
-   "sector": 4,
-   "events": 2,
-   "files": 3,
-   "at": "16:43:20"
-  },
-  {
-   "tic": 279741942,
-   "sector": 3,
-   "events": 4,
-   "files": 3,
-   "at": "16:43:20"
-  },
-  {
-   "tic": 279741942,
-   "sector": 28,
+   "tic": 300560295,
+   "sector": 68,
    "events": 0,
    "files": 3,
-   "at": "16:43:20"
+   "at": "16:44:26"
   },
   {
-   "tic": 279741942,
-   "sector": 2,
-   "events": 1,
-   "files": 3,
-   "at": "16:43:20"
-  },
-  {
-   "tic": 279537689,
-   "sector": 5,
+   "tic": 300560295,
+   "sector": 69,
    "events": 0,
    "files": 3,
-   "at": "16:43:19"
+   "at": "16:44:26"
   },
   {
-   "tic": 279640088,
-   "sector": 6,
-   "events": 0,
-   "files": 3,
-   "at": "16:43:19"
-  },
-  {
-   "tic": 279537689,
-   "sector": 31,
+   "tic": 300560295,
+   "sector": 89,
    "events": 0,
    "files": 2,
-   "at": "16:43:18"
+   "at": "16:44:26"
   },
   {
-   "tic": 279454212,
-   "sector": 31,
-   "events": 1,
-   "files": 3,
-   "at": "16:43:18"
-  },
-  {
-   "tic": 279322914,
-   "sector": 97,
-   "events": 7,
+   "tic": 300560295,
+   "sector": 88,
+   "events": 0,
    "files": 2,
-   "at": "16:43:18"
+   "at": "16:44:26"
   },
   {
-   "tic": 279454212,
-   "sector": 5,
-   "events": 1,
+   "tic": 300560295,
+   "sector": 66,
+   "events": 0,
    "files": 3,
-   "at": "16:43:18"
+   "at": "16:44:25"
+  },
+  {
+   "tic": 300560295,
+   "sector": 67,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:25"
+  },
+  {
+   "tic": 300560295,
+   "sector": 64,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:25"
+  },
+  {
+   "tic": 300560295,
+   "sector": 65,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:25"
+  },
+  {
+   "tic": 300560295,
+   "sector": 63,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:25"
+  },
+  {
+   "tic": 300560295,
+   "sector": 62,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:25"
+  },
+  {
+   "tic": 300560295,
+   "sector": 61,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:24"
+  },
+  {
+   "tic": 300560295,
+   "sector": 39,
+   "events": 0,
+   "files": 3,
+   "at": "16:44:24"
   }
  ]
 }
