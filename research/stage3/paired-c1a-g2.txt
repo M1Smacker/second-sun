@@ -1,0 +1,14 @@
+Paired comparison, set g2, options c1a against baseline 0.7.1 (9088 matched injections of 9088; 284 star-sectors; K 8 to 14).
+box h | sign | n | base tier1 | option tier1 | gained | lost | exact p (two-sided)
+    4 | bump | 1136 | 47.8% | 52.3% |   79 |   28 | 0.0000
+    4 | dip | 1136 | 46.5% | 46.2% |   79 |   82 | 0.8748
+    8 | bump | 1136 | 49.6% | 47.4% |   53 |   78 | 0.0356
+    8 | dip | 1136 | 48.5% | 34.2% |   43 |  206 | 0.0000
+   14 | bump | 1136 | 37.7% | 34.3% |   77 |  115 | 0.0074
+   14 | dip | 1136 | 36.1% | 34.8% |   82 |   97 | 0.2954
+   20 | bump | 1136 | 24.6% | 25.4% |   59 |   50 | 0.4437
+   20 | dip | 1136 | 21.3% | 21.9% |   51 |   44 | 0.5384
+DIPS, 8 h box: gained 43, lost 206, exact p 0.00000, net -163 (-14.3 points of recovery)
+DIPS, 14 and 20 h boxes: gained 133, lost 141, exact p 0.67246, net -8 (-0.4 points of recovery)
+DIPS, 4 h box: gained 79, lost 82, exact p 0.87482, net -3 (-0.3 points of recovery)
+Mirror test, all boxes: baseline dip 38.1% vs bump 39.9% (gap +1.8); option dip 34.3% vs bump 39.9% (gap +5.6); rule: gap within 3 points

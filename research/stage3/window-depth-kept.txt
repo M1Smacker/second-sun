@@ -1,0 +1,5 @@
+kept share of a 1000 ppm dip (white noise, 30 runs); window = max(2 d, k x box)
+8 h | k=base w=2.00d: 96% | k=3 w=2.00d: 96% | k=4 w=2.00d: 96% | k=5 w=2.00d: 95% | k=6 w=2.00d: 96% | k=8 w=2.67d: 99%
+14 h | k=base w=2.00d: 82% | k=3 w=2.00d: 82% | k=4 w=2.33d: 89% | k=5 w=2.92d: 96% | k=6 w=3.50d: 98% | k=8 w=4.67d: 100%
+20 h | k=base w=2.00d: 62% | k=3 w=2.50d: 77% | k=4 w=3.33d: 92% | k=5 w=4.17d: 97% | k=6 w=5.00d: 100% | k=8 w=6.67d: 100%
+c1a windows (3 x box, at least 0.5 d, NO 2 d floor), 20 d synthetic series, same star, 30 runs: kept share default 2 d window -> c1a window: 4 h 99% -> 74%; 8 h 98% -> 75%; 14 h 86% -> 78%; 20 h 66% -> 83%.

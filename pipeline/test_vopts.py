@@ -79,5 +79,24 @@ def test_c1a_window():
     print(f"PASS c1a: 4 h dip SNR {s0:.1f} with the 2 d window, {s1:.1f} with the 0.5 d window; depth {depth:.0f} ppm (injected 2000)")
 
 
+def test_c1c_window():
+    """c1c: a 20 h dip on a quiet star keeps ~100% of its depth with the 5 x box window (62% with the 2 d window); boxes up to 8 h give bit-identical scores."""
+    rng = np.random.default_rng(7)
+    t = np.arange(0, 30, 2 / 1440)
+    f = 1 + 3e-4 * rng.normal(size=t.size); f -= 1e-3 * (np.abs(t - 15.0) * 24 < 10)
+    P0 = S2.Prod(t, f); s0 = P0.snr_near(15.0, 20.0); c0, snr0, m0 = P0.scores(8.0)
+    V.ON = frozenset({"c1c"})
+    try:
+        P1 = S2.Prod(t, f); s1 = P1.snr_near(15.0, 20.0)
+        c, snr, m = P1.scores(20.0); i = np.nanargmax(np.where(np.abs(c - 15.0) < 0.3, snr, np.nan)); depth = (P1.meds[20.0] - m[i]) * 1e6
+        c8, snr8, m8 = P1.scores(8.0)
+    finally:
+        V.ON = frozenset()
+    assert s1 > 1.1 * s0, f"c1c should raise the SNR of the long dip: default {s0:.1f}, c1c {s1:.1f}"
+    assert 0.9 * 1000 < depth < 1.1 * 1000, depth
+    assert np.array_equal(snr0, snr8, equal_nan=True) and np.array_equal(m0, m8, equal_nan=True), "8 h box must be bit-identical"
+    print(f"PASS c1c: 20 h dip SNR {s0:.1f} with the 2 d window, {s1:.1f} with the 4.2 d window; depth {depth:.0f} ppm (injected 1000); 8 h scores identical")
+
+
 if __name__ == "__main__":
-    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window()
+    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window()

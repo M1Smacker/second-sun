@@ -53,8 +53,9 @@ class Prod:
 
     def scores(self, d):
         if d not in self.cache:
-            if "c1a" in V.ON:                                   # study switch c1a: own curve per box length (window 3 x box, at least 0.5 d)
-                tt, ff = detrend(self.t, self.f, window_d=max(3 * d / 24, 0.5))
+            w = max(3 * d / 24, 0.5) if "c1a" in V.ON else (5 * d / 24 if "c1c" in V.ON and 5 * d / 24 > 2.0 else None)
+            if w:                                               # study switches c1a (window 3 x box, at least 0.5 d) and c1c (window 5 x box, long boxes only): own curve per box length
+                tt, ff = detrend(self.t, self.f, window_d=w)
                 bd = bin_width(tt); bt, bf = bin10(tt, ff, bd)
                 self.meds[d] = np.nanmedian(bf); self.cache[d] = box_scores(bt, bf, d, bin_d=bd)
             else:
