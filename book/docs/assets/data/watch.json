@@ -1,0 +1,187 @@
+{
+ "label": "Development run (G2 dev, Vesper 0.7.1)",
+ "blind": false,
+ "phase": "finished",
+ "updated": "2026-10-30T13:30:24+00:00",
+ "progress": {
+  "search": [
+   3425,
+   3425
+  ],
+  "sap": [
+   2108,
+   2108
+  ],
+  "pdc": [
+   2108,
+   2108
+  ],
+  "stars": 301,
+  "per_min": 0.0,
+  "eta_min": null
+ },
+ "files": {
+  "read_ok": 12084,
+  "skipped": {
+   "no safe windows": 340
+  },
+  "products": {
+   "QLP": 3012,
+   "SPOC": 2711,
+   "TESS-SPOC": 2681,
+   "SPOC-SAP": 1805,
+   "TESS-SPOC-SAP": 1875
+  }
+ },
+ "events": {
+  "found": 6666,
+  "stopped_by": [
+   {
+    "flag": "gap_dump",
+    "text": "Near a data gap or a spacecraft momentum dump",
+    "n": 3997
+   },
+   {
+    "flag": "flipmatch",
+    "text": "The upside-down copy has the same wiggle",
+    "n": 34
+   },
+   {
+    "flag": "c5",
+    "text": "Sits at a catalogue eclipse phase",
+    "n": 353
+   },
+   {
+    "flag": "ecl_overlap",
+    "text": "Overlaps a predicted eclipse",
+    "n": 84
+   },
+   {
+    "flag": "repeater",
+    "text": "Many similar dips in the same light curve",
+    "n": 761
+   },
+   {
+    "flag": "step",
+    "text": "The baseline jumps across the dip",
+    "n": 890
+   },
+   {
+    "flag": "ramp",
+    "text": "Sits on a slow ramp after data resumes",
+    "n": 43
+   },
+   {
+    "flag": "dominated",
+    "text": "A stronger event of the other kind in the same curve",
+    "n": 54
+   },
+   {
+    "flag": "clean",
+    "text": "No flag fired",
+    "n": 450
+   }
+  ],
+  "tiers": {
+   "2": 6217,
+   "1B": 40,
+   "1A": 333,
+   "3": 68,
+   "1L": 8
+  },
+  "by_kind": {
+   "real": 3655,
+   "flip": 3011
+  }
+ },
+ "selftest": {
+  "fakes": 17966,
+  "second_product_sees": 17204
+ },
+ "ticker": [
+  {
+   "tic": 1992266045,
+   "sector": 68,
+   "events": 3,
+   "files": 3,
+   "at": "19:27:48"
+  },
+  {
+   "tic": 1992266045,
+   "sector": 28,
+   "events": 1,
+   "files": 3,
+   "at": "19:27:48"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 83,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 81,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1992266045,
+   "sector": 95,
+   "events": 0,
+   "files": 0,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 75,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 76,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 60,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 74,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 56,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1551345500,
+   "sector": 84,
+   "events": 5,
+   "files": 3,
+   "at": "19:27:47"
+  },
+  {
+   "tic": 1883519478,
+   "sector": 55,
+   "events": 0,
+   "files": 1,
+   "at": "19:27:47"
+  }
+ ]
+}
