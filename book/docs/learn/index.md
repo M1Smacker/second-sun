@@ -152,6 +152,9 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 ??? quiz "L6 check 8. Why is it a good sign that a published candidate says 'no statistical validation is claimed' and gives its predicted dip times in advance?"
     It tells readers exactly what is and is not shown, and it lets new data judge the claim fairly: if the star does not dim on time, the claim fails in public. That is the same idea as our preregistration and sealed stars.
 
+??? quiz "L6 check 9. Why does the sealed run go through a wrapper file that sits outside the frozen code?"
+    Changing any frozen file changes the version fingerprint. A wrapper outside that list can check the fingerprint, refuse to start if it differs, and still be edited, so the guard and the frozen rules cannot get in each other's way.
+
 **Next:** [After Level 6](#after): how the project runs.
 
 ## After Level 6 · Running the project { #after }

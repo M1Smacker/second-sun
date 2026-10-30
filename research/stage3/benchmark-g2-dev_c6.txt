@@ -1,0 +1,24 @@
+VESPER BENCHMARK on G2 run dev_73f62615e365 (dev_c6)   Vesper options ['c6']
+S1. Excess of real tier-1 dips over noise (preregistration section 5; PDCSAP half has the fair control, the SAP-only half is reported on its own line and is NEVER evidence)
+   bar  7: real  34, upside-down  20, noise-expected real  20.4, chance of at least the observed 0.004
+   bar  8: real  20, upside-down  18, noise-expected real  17.6, chance of at least the observed 0.318
+   bar 10: real  10, upside-down  12, noise-expected real  11.5, chance of at least the observed 0.715
+   bar 12: real   6, upside-down   8, noise-expected real   7.7, chance of at least the observed 0.779
+   VERDICT S1: NO EXCESS   [rule: chance <= 0.01 at bar 7 and real above expected at bars 8, 10, 12]   asymmetry file: asymmetry_g2_v5.txt
+   SAP-only half (no fair control, not evidence): real 9, upside-down 3
+S2. False alarms: upside-down tier-1 23 in 3253 star-sectors = 7.07 per 1,000 (95% interval 4.48 to 10.61); mark 8 or fewer: PASS (interval reaches above 8)
+S3. Mirror test, planted dips against planted bumps through the whole chain (K 8 to 14): dips 38.1%, bumps 39.9%, gap -1.8 points; mark within 3: PASS
+S4. Completeness, planted dips, tier-1 recovery by box length (K 8 to 14 pooled), 95% Wilson interval
+   4 h box:  46.5% (43.6 to 49.4), n 1136
+   8 h box:  48.5% (45.6 to 51.4), n 1136
+   14 h box:  36.1% (33.3 to 38.9), n 1136
+   20 h box:  21.3% (19.0 to 23.8), n 1136
+   4 h box by K (depth in noise multiples): 8: 27%, 10: 43%, 12: 55%, 14: 61%
+   8 h box by K (depth in noise multiples): 8: 30%, 10: 48%, 12: 57%, 14: 60%
+   14 h box by K (depth in noise multiples): 8: 21%, 10: 34%, 12: 45%, 14: 45%
+   20 h box by K (depth in noise multiples): 8: 10%, 10: 19%, 12: 27%, 14: 29%
+S5. Orbit-locked flag (c6): 49 events moved to tier 2 (47 real, 2 upside-down) on 7 stars
+   cost on planted dips (offline, the harness cannot see other sectors): 14 of 1731 tier-1 planted dips would be flagged by chance = 0.81% (development slice: 0.81%)
+S6. TOI-1338 b: expected-transit file not written yet (research/stage3/toi1338b-expected.json): NOT COMPUTED
+S7. Labels split (professionals' table, not in it, TOIs, none): research/stage3/g2-by-label-dev_c6.txt
+S8. Machine health: 3425 star-sectors read; file statuses: {'ok': 12084, 'no safe windows': 340}; 2545 events written; products: {'QLP': 3352, 'SPOC': 2711, 'TESS-SPOC': 2681, 'TESS-SPOC-SAP': 1875, 'SPOC-SAP': 1805}

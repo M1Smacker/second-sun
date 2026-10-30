@@ -10,6 +10,7 @@ import stage3_core as C, stage3_report as R
 
 T1 = ["1A", "1L", "1B"]
 OUT = []
+LABEL = ""
 P = lambda s="": (OUT.append(s), print(s, flush=True))
 CI = lambda k, n: tuple(np.array(binomtest(int(k), int(n)).proportion_ci(0.95, method="wilson")) * 100) if n else (np.nan, np.nan)
 
@@ -22,7 +23,7 @@ def pois(k, n):
 def s1(E):
     P("S1. Excess of real tier-1 dips over noise (preregistration section 5; PDCSAP half has the fair control, the SAP-only half is reported on its own line and is NEVER evidence)")
     t1 = E[E.tier.isin(T1)]; r1, f1 = R.pdc_half(t1[t1.kind == "real"]), R.pdc_half(t1[t1.kind == "flip"])
-    ratios, src = R.asym_ratios()
+    ratios, src = R.asym_ratios("sealed_v5" if LABEL.startswith("sealed") else "v5")       # sealed: asymmetry_g2_sealed_v5.txt, never the development file
     if not ratios:
         P("   asymmetry ratio file for this slice not found: S1 NOT COMPUTED (run asymmetry_test.py on this run first)"); return
     rows = []
@@ -86,8 +87,8 @@ def s6(E, tic=260128333):
     ex = json.load(open(f)); g = E[(E.tic == tic) & (E.kind == "real")]
     P(f"S6. TOI-1338 b (known circumbinary planet; ephemeris from {ex['source']}): {len(ex['epochs'])} expected transits fall in the downloaded sectors")
     for e in ex["epochs"]:
-        near = g[(g.center - e["btjd"]).abs() < 0.3]
-        P(f"   epoch BTJD {e['btjd']:.2f} (sector {e['sector']}): " + ("; ".join(f"found, box {r.dur_h:g} h, SNR {r.snr:.1f}, tier {r.tier}" + (f", flags {[k for k in ('gap_dump','common','flipmatch','c5','ecl_overlap','repeater','step','ramp','dominated','orbit_lock') if r.get(k)]}" if r.tier == "2" else "") for r in near.itertuples()) if len(near) else "no event within 0.3 d (missed, or inside an eclipse or a gap: look up why)"))
+        near = g[(g.center - e["btjd"]).abs() < 3 * e["sigma_d"] + 0.1]
+        P(f"   epoch BTJD {e['btjd']:.2f} +- {e['sigma_d']:.2f} d, {e['dur_h']:.1f} h, model transit share {e['p_transit_pct']:.0f}% ({'strong' if e['p_transit_pct'] >= 50 else 'weak'} test), sector {e['sector']}: " + ("; ".join(f"found, box {r.dur_h:g} h, SNR {r.snr:.1f}, tier {r.tier}" + (f", flags {[k for k in ('gap_dump','common','flipmatch','c5','ecl_overlap','repeater','step','ramp','dominated','orbit_lock') if r.get(k)]}" if r.tier == "2" else "") for r in near.itertuples()) if len(near) else "no event inside the window (missed, or inside an eclipse or a gap: look up why)"))
 
 
 def s8(meta, ev):
@@ -95,7 +96,7 @@ def s8(meta, ev):
 
 
 if __name__ == "__main__":
-    run, label = sys.argv[1], sys.argv[2]
+    run, label = sys.argv[1], sys.argv[2]; LABEL = label
     assert C.DS.NAME == "g2", "run with SS_SET=g2"
     ev, meta = R.load(str(C.DS.RUNS / run / "groups")); E = ev[ev.primary]
     rows = rows_of(sys.argv[3]) if len(sys.argv) > 3 else None
