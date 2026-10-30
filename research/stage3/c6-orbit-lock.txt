@@ -1,0 +1,56 @@
+g1 run fd788be04650:
+  variant A any primary event as partner:
+   real        tier-1: 21 before, 18 after (3 locked, on 3 stars; tier-1 events sit on 17 stars)
+   upside-down tier-1: 32 before, 30 after (2 locked, on 2 stars; tier-1 events sit on 30 stars)
+   real tier-1 by SNR bar, before-after: 7: 21-18 / 8: 13-11 / 10: 5-5 / 12: 2-2
+   upside-down tier-1 by SNR bar, before-after: 7: 32-30 / 8: 23-21 / 10: 9-7 / 12: 5-3
+   cost: injected dips that were tier-1 1788; flagged locked by chance 116 = 6.49%
+      binary period 5 to 10 d: 408 fakes, 11.76% flagged by chance
+      binary period 10 to 20 d: 554 fakes, 9.39% flagged by chance
+      binary period 20 to over d: 826 fakes, 1.94% flagged by chance
+  variant B tier-1 events only as partners:
+   real        tier-1: 21 before, 21 after (0 locked, on 0 stars; tier-1 events sit on 17 stars)
+   upside-down tier-1: 32 before, 32 after (0 locked, on 0 stars; tier-1 events sit on 30 stars)
+   real tier-1 by SNR bar, before-after: 7: 21-21 / 8: 13-13 / 10: 5-5 / 12: 2-2
+   upside-down tier-1 by SNR bar, before-after: 7: 32-32 / 8: 23-23 / 10: 9-9 / 12: 5-5
+   cost: injected dips that were tier-1 1788; flagged locked by chance 4 = 0.22%
+      binary period 5 to 10 d: 408 fakes, 0.00% flagged by chance
+      binary period 10 to 20 d: 554 fakes, 0.00% flagged by chance
+      binary period 20 to over d: 826 fakes, 0.48% flagged by chance
+  variant C tier-1 partners with matched box length (x1.6) and depth (x2):
+   real        tier-1: 21 before, 21 after (0 locked, on 0 stars; tier-1 events sit on 17 stars)
+   upside-down tier-1: 32 before, 32 after (0 locked, on 0 stars; tier-1 events sit on 30 stars)
+   real tier-1 by SNR bar, before-after: 7: 21-21 / 8: 13-13 / 10: 5-5 / 12: 2-2
+   upside-down tier-1 by SNR bar, before-after: 7: 32-32 / 8: 23-23 / 10: 9-9 / 12: 5-5
+   cost: injected dips that were tier-1 1788; flagged locked by chance 0 = 0.00%
+      binary period 5 to 10 d: 408 fakes, 0.00% flagged by chance
+      binary period 10 to 20 d: 554 fakes, 0.00% flagged by chance
+      binary period 20 to over d: 826 fakes, 0.00% flagged by chance
+g2 run dev_73f62615e365:
+  variant A any primary event as partner:
+   real        tier-1: 90 before, 20 after (70 locked, on 17 stars; tier-1 events sit on 29 stars)
+   upside-down tier-1: 25 before, 16 after (9 locked, on 7 stars; tier-1 events sit on 19 stars)
+   real tier-1 by SNR bar, before-after: 7: 90-20 / 8: 51-13 / 10: 29-3 / 12: 19-2
+   upside-down tier-1 by SNR bar, before-after: 7: 25-16 / 8: 20-14 / 10: 14-11 / 12: 9-7
+   cost: injected dips that were tier-1 1731; flagged locked by chance 573 = 33.10%
+      binary period 5 to 10 d: 808 fakes, 40.84% flagged by chance
+      binary period 10 to 20 d: 600 fakes, 31.83% flagged by chance
+      binary period 20 to over d: 323 fakes, 16.10% flagged by chance
+  variant B tier-1 events only as partners:
+   real        tier-1: 90 before, 42 after (48 locked, on 7 stars; tier-1 events sit on 29 stars)
+   upside-down tier-1: 25 before, 22 after (3 locked, on 1 stars; tier-1 events sit on 19 stars)
+   real tier-1 by SNR bar, before-after: 7: 90-42 / 8: 51-27 / 10: 29-14 / 12: 19-9
+   upside-down tier-1 by SNR bar, before-after: 7: 25-22 / 8: 20-20 / 10: 14-14 / 12: 9-9
+   cost: injected dips that were tier-1 1731; flagged locked by chance 44 = 2.54%
+      binary period 5 to 10 d: 808 fakes, 4.95% flagged by chance
+      binary period 10 to 20 d: 600 fakes, 0.67% flagged by chance
+      binary period 20 to over d: 323 fakes, 0.00% flagged by chance
+  variant C tier-1 partners with matched box length (x1.6) and depth (x2):
+   real        tier-1: 90 before, 43 after (47 locked, on 7 stars; tier-1 events sit on 29 stars)
+   upside-down tier-1: 25 before, 23 after (2 locked, on 1 stars; tier-1 events sit on 19 stars)
+   real tier-1 by SNR bar, before-after: 7: 90-43 / 8: 51-28 / 10: 29-15 / 12: 19-9
+   upside-down tier-1 by SNR bar, before-after: 7: 25-23 / 8: 20-20 / 10: 14-14 / 12: 9-9
+   cost: injected dips that were tier-1 1731; flagged locked by chance 14 = 0.81%
+      binary period 5 to 10 d: 808 fakes, 1.24% flagged by chance
+      binary period 10 to 20 d: 600 fakes, 0.67% flagged by chance
+      binary period 20 to over d: 323 fakes, 0.00% flagged by chance

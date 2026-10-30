@@ -1,0 +1,10 @@
+g2 run dev_73f62615e365: 3253 star-sectors; pool = tier-1 primary events with SNR >= 5 (90 real, 25 upside-down; of those below SNR 7: 0 real, 0 upside-down)
+   real        new links (all members below SNR 7), stars with a best link at combined SNR >= bar: 7: 0 / 8: 0 / 9: 0 / 10: 0 / 11: 0 / 12: 0
+   real        all links, stars with a best link at combined SNR >= bar: 7: 11 / 8: 11 / 9: 11 / 10: 11 / 11: 10 / 12: 10
+   upside-down new links (all members below SNR 7), stars with a best link at combined SNR >= bar: 7: 0 / 8: 0 / 9: 0 / 10: 0 / 11: 0 / 12: 0
+   upside-down all links, stars with a best link at combined SNR >= bar: 7: 2 / 8: 2 / 9: 2 / 10: 2 / 11: 1 / 12: 1
+g1 run fd788be04650: 5064 star-sectors; pool = tier-1 primary events with SNR >= 5 (21 real, 32 upside-down; of those below SNR 7: 0 real, 0 upside-down)
+   real        new links (all members below SNR 7), stars with a best link at combined SNR >= bar: 7: 0 / 8: 0 / 9: 0 / 10: 0 / 11: 0 / 12: 0
+   real        all links, stars with a best link at combined SNR >= bar: 7: 0 / 8: 0 / 9: 0 / 10: 0 / 11: 0 / 12: 0
+   upside-down new links (all members below SNR 7), stars with a best link at combined SNR >= bar: 7: 0 / 8: 0 / 9: 0 / 10: 0 / 11: 0 / 12: 0
+   upside-down all links, stars with a best link at combined SNR >= bar: 7: 2 / 8: 2 / 9: 2 / 10: 2 / 11: 2 / 12: 2
