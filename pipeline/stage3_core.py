@@ -76,7 +76,7 @@ GRID_V5 = GRID_V4 + (20,)           # v5: long circumbinary transits were never 
 def use_grid(S2, grid):
     """Make the Stage 2 search code score the given box lengths. stage2_search.py is not edited: its module-level name DURS_H is rebound (Prod.events and
     Prod.snr_near_any read it at call time). Dry runs use GRID_V4 to reproduce Stage 2 exactly; the v5 run uses GRID_V5."""
-    S2.DURS_H = tuple(grid)
+    S2.DURS_H = tuple(d for d in grid if not ("bf4" in V.ON and d < 4))   # study switch bf4: the 3 h box is dropped (plan section 8, C5a)
 
 
 def eb_widths():

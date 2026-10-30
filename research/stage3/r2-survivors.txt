@@ -1,0 +1,20 @@
+g1 run fd788be04650: 5064 star-sectors; upside-down primary events at SNR 7 or more: 1398 (all tiers), tier-1 survivors 32
+   SNR band | all upside-down | survivors | survivor share | white-noise expectation for the whole set
+     7 to  8 |   406 |   9 |  2.2% | 0.00023
+     8 to 10 |   426 |  14 |  3.3% | 1.1e-07
+    10 to 12 |   223 |   4 |  1.8% | 1.4e-15
+    12 to up |   343 |   5 |  1.5% | 3.2e-25
+   survivors just inside a flag threshold (one survivor can be near several): step lift 0.25 to 0.5 15, side cover 0.5 to 0.75 1, ramp distance 1 to 2 d 6, eclipse phase 0.35 to 0.7 d 2, repeat count 2 10, common count 2 4
+   survivors near at least one threshold 26 of 32; deep inside the clean zone 6; near at SNR 10 or more 5 of 9
+   share of ALL upside-down events (SNR 7 or more) that each flag blocks, and the same at SNR 10 or more: gap_dump 67% / 73%, flipmatch 0% / 0%, c5 10% / 9%, ecl_overlap 13% / 12%, repeater 40% / 54%, step 78% / 79%, ramp 30% / 33%, dominated 19% / 11%, common 63% / 70%
+   survivors by box length h: 3 h: 14, 4 h: 3, 5 h: 3, 6.5 h: 2, 8 h: 2, 10 h: 1, 15 h: 2, 20 h: 5; all upside-down by box length: 3 h: 298, 4 h: 109, 5 h: 147, 6.5 h: 126, 8 h: 109, 10 h: 132, 12 h: 109, 15 h: 116, 20 h: 252
+g2 run dev_73f62615e365: 3253 star-sectors; upside-down primary events at SNR 7 or more: 1040 (all tiers), tier-1 survivors 25
+   SNR band | all upside-down | survivors | survivor share | white-noise expectation for the whole set
+     7 to  8 |   255 |   5 |  2.0% | 0.00015
+     8 to 10 |   343 |   6 |  1.7% | 7.1e-08
+    10 to 12 |   149 |   5 |  3.4% | 8.7e-16
+    12 to up |   293 |   9 |  3.1% | 2e-25
+   survivors just inside a flag threshold (one survivor can be near several): step lift 0.25 to 0.5 9, side cover 0.5 to 0.75 5, ramp distance 1 to 2 d 5, eclipse phase 0.35 to 0.7 d 4, repeat count 2 7, common count 2 0
+   survivors near at least one threshold 20 of 25; deep inside the clean zone 5; near at SNR 10 or more 10 of 14
+   share of ALL upside-down events (SNR 7 or more) that each flag blocks, and the same at SNR 10 or more: gap_dump 75% / 78%, flipmatch 0% / 0%, c5 8% / 7%, ecl_overlap 6% / 6%, repeater 28% / 40%, step 90% / 87%, ramp 46% / 53%, dominated 28% / 20%, common 8% / 12%
+   survivors by box length h: 3 h: 16, 4 h: 4, 5 h: 1, 6.5 h: 1, 8 h: 1, 12 h: 1, 20 h: 1; all upside-down by box length: 3 h: 281, 4 h: 115, 5 h: 102, 6.5 h: 108, 8 h: 92, 10 h: 80, 12 h: 66, 15 h: 99, 20 h: 97

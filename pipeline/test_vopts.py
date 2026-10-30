@@ -98,5 +98,22 @@ def test_c1c_window():
     print(f"PASS c1c: 20 h dip SNR {s0:.1f} with the 2 d window, {s1:.1f} with the 4.2 d window; depth {depth:.0f} ppm (injected 1000); 8 h scores identical")
 
 
+def test_bf4_floor():
+    """bf4: a 3 h dip is found with the 3 h box by default; with the floor no event has a box under 4 h; the grid is restored afterwards."""
+    import stage3_core as C
+    rng = np.random.default_rng(11)
+    t = np.arange(0, 27, 2 / 1440)
+    f = 1 + 3e-4 * rng.normal(size=t.size); f -= 2e-3 * (np.abs(t - 13.0) * 24 < 1.5)
+    old = S2.DURS_H
+    try:
+        C.use_grid(S2, C.GRID_V5); d0 = [e["dur_h"] for e in S2.Prod(t, f).events()]
+        V.ON = frozenset({"bf4"}); C.use_grid(S2, C.GRID_V5); g = S2.DURS_H; d1 = [e["dur_h"] for e in S2.Prod(t, f).events()]
+    finally:
+        V.ON = frozenset(); S2.DURS_H = old
+    assert d0 and min(d0) == 3, d0
+    assert d1 and min(d1) >= 4 and 3 not in g and g == (4, 5, 6.5, 8, 10, 12, 15, 20), (d1, g)
+    print(f"PASS bf4: default finds the 3 h dip with box {min(d0)} h; with the floor the boxes are {g} and the event box is {min(d1)} h")
+
+
 if __name__ == "__main__":
-    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window()
+    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window(); test_bf4_floor()

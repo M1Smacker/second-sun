@@ -1,0 +1,26 @@
+g1: injected dips (K 8 to 14) 4784; found as primary 3266; tier-1 in the baseline run 1788
+   tier-1 fakes by the box length of the event that was found (rows) and the injected box (columns 4, 8, 14, 20 h):
+      found at  3.0 h: inj 4 h: 382, inj 8 h: 43, inj 14 h: 0, inj 20 h: 0
+      found at  4.0 h: inj 4 h: 14, inj 8 h: 51, inj 14 h: 1, inj 20 h: 0
+      found at  5.0 h: inj 4 h: 4, inj 8 h: 209, inj 14 h: 6, inj 20 h: 0
+      found at  6.5 h: inj 4 h: 1, inj 8 h: 212, inj 14 h: 24, inj 20 h: 0
+      found at  8.0 h: inj 4 h: 0, inj 8 h: 20, inj 14 h: 50, inj 20 h: 2
+      found at 10.0 h: inj 4 h: 0, inj 8 h: 1, inj 14 h: 191, inj 20 h: 15
+      found at 12.0 h: inj 4 h: 0, inj 8 h: 3, inj 14 h: 160, inj 20 h: 72
+      found at 15.0 h: inj 4 h: 0, inj 8 h: 0, inj 14 h: 16, inj 20 h: 209
+      found at 20.0 h: inj 4 h: 3, inj 8 h: 11, inj 14 h: 24, inj 20 h: 64
+   share of tier-1 fakes found at the 3 h box: 23.8% (upper bound on the loss if the 3 h box is dropped; the next-best box would often still find them)
+   control, tier-1 fakes near a threshold: step lift 0.25 to 0.5 35%, side cover 0.5 to 0.75 2%, ramp distance 1 to 2 d 14%, eclipse phase 0.35 to 0.7 d 5%, repeat count 2 5%, common count 2 7%; near at least one 55% of 1788 (survivors: see r2-survivors.txt)
+g2: injected dips (K 8 to 14) 4544; found as primary 3531; tier-1 in the baseline run 1731
+   tier-1 fakes by the box length of the event that was found (rows) and the injected box (columns 4, 8, 14, 20 h):
+      found at  3.0 h: inj 4 h: 499, inj 8 h: 45, inj 14 h: 0, inj 20 h: 0
+      found at  4.0 h: inj 4 h: 25, inj 8 h: 86, inj 14 h: 0, inj 20 h: 0
+      found at  5.0 h: inj 4 h: 0, inj 8 h: 261, inj 14 h: 11, inj 20 h: 0
+      found at  6.5 h: inj 4 h: 0, inj 8 h: 124, inj 14 h: 34, inj 20 h: 0
+      found at  8.0 h: inj 4 h: 0, inj 8 h: 20, inj 14 h: 62, inj 20 h: 4
+      found at 10.0 h: inj 4 h: 0, inj 8 h: 8, inj 14 h: 209, inj 20 h: 7
+      found at 12.0 h: inj 4 h: 4, inj 8 h: 7, inj 14 h: 83, inj 20 h: 72
+      found at 15.0 h: inj 4 h: 0, inj 8 h: 0, inj 14 h: 10, inj 20 h: 123
+      found at 20.0 h: inj 4 h: 0, inj 8 h: 0, inj 14 h: 1, inj 20 h: 36
+   share of tier-1 fakes found at the 3 h box: 31.4% (upper bound on the loss if the 3 h box is dropped; the next-best box would often still find them)
+   control, tier-1 fakes near a threshold: step lift 0.25 to 0.5 25%, side cover 0.5 to 0.75 5%, ramp distance 1 to 2 d 12%, eclipse phase 0.35 to 0.7 d 10%, repeat count 2 11%, common count 2 0%; near at least one 49% of 1731 (survivors: see r2-survivors.txt)
