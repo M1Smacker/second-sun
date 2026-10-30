@@ -1649,6 +1649,8 @@
       
         
       
+        
+      
     
     
     
@@ -1812,11 +1814,41 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
         
           
+        
+      
         
       
         
@@ -1848,7 +1880,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1870,14 +1902,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2100,6 +2132,34 @@
     
   
     29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
   
 
     
@@ -2620,6 +2680,14 @@
 <summary>L5 check 5. Name two things our completeness number does NOT cover.</summary>
 <p>Faint planets, and planets that cross near the edge of the data. (Also: the second-product check and some flags are not in the number.)</p>
 </details>
+<details class="quiz">
+<summary>L5 check 6. A new filter idea catches 3 points more fake planets. Why is that not enough to adopt it?</summary>
+<p>It must also stay inside the false-alarm budget written before the test (here at most 8 upside-down first-tier dips per 1,000 star-sectors). Catching more fakes while letting through more noise is moving the bar, not improving.</p>
+</details>
+<details class="quiz">
+<summary>L5 check 7. Most false alarms were found by the 3 hour box. We removed it, and they were found by the 4 hour box. What does that teach?</summary>
+<p>Where something is found is not what causes it. The cause was short glitches; the shortest box simply caught them first.</p>
+</details>
 <p><strong>Next:</strong> <a href="#l6">Level 6</a>, which starts with the rest of Chapter 10.</p>
 <h2 id="l6">L6 · Two-key vetting<a class="headerlink" href="#l6" title="Permanent link">&para;</a></h2>
 <p><strong>Read:</strong> <a href="../book/10-vetting/">Chapter 10</a> sections 10.3 to 10.6, then <a href="../book/11-pixels-and-neighbours/">Chapter 11</a>, then <a href="../book/12-stanley/">Chapter 12</a>. <strong>Do:</strong> <a href="../labs/lab7-pixels/">Lab 7</a>, <a href="../labs/lab9-your-star/">Lab 9</a>.</p>
@@ -2646,6 +2714,14 @@
 <details class="quiz">
 <summary>L6 check 6. A dip sits on a star that is a TESS Object of Interest. What do you do first?</summary>
 <p>Look the star up: TOIs, known hosts and catalogued eclipsing binaries are known objects, so a dip there is probably the known thing and not a discovery.</p>
+</details>
+<details class="quiz">
+<summary>L6 check 7. Two dips on one star, in different sectors, are exactly 12 binary orbits apart with the same length and depth. Planet?</summary>
+<p>Probably not. A leftover eclipse keeps the binary's clock; a planet keeps its own. v8's orbit-locked flag moves such dips to tier 2.</p>
+</details>
+<details class="quiz">
+<summary>L6 check 8. Why is it a good sign that a published candidate says 'no statistical validation is claimed' and gives its predicted dip times in advance?</summary>
+<p>It tells readers exactly what is and is not shown, and it lets new data judge the claim fairly: if the star does not dim on time, the claim fails in public. That is the same idea as our preregistration and sealed stars.</p>
 </details>
 <p><strong>Next:</strong> <a href="#after">After Level 6</a>: how the project runs.</p>
 <h2 id="after">After Level 6 · Running the project<a class="headerlink" href="#after" title="Permanent link">&para;</a></h2>
@@ -2737,6 +2813,8 @@
         <script src="../assets/eyes-cloud.js"></script>
       
         <script src="../assets/demos.js"></script>
+      
+        <script src="../assets/watch.js"></script>
       
     
   <script src="../assets/book.js" data-sw="../sw.js"></script>
