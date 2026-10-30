@@ -84,7 +84,8 @@ def main():
     S3.pdc_pass(dst, SEALED_STARS, n)                                     # the v7 PDCSAP check
     print("SEALED SEARCH DONE", flush=True)
     if watcher:
-        watcher.wait(timeout=300)
+        try: watcher.wait(timeout=300)
+        except subprocess.TimeoutExpired: watcher.terminate(); print("page exporter did not stop by itself: stopped by sealed_run", flush=True)
 
 
 if __name__ == "__main__":

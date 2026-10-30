@@ -17,8 +17,8 @@ REPO = "https://github.com/M1Smacker/second-sun.git"
 FLAGS = [("gap_dump", "Near a data gap or a spacecraft momentum dump"), ("flipmatch", "The upside-down copy has the same wiggle"), ("c5", "Sits at a catalogue eclipse phase"),
          ("ecl_overlap", "Overlaps a predicted eclipse"), ("repeater", "Many similar dips in the same light curve"), ("step", "The baseline jumps across the dip"),
          ("ramp", "Sits on a slow ramp after data resumes"), ("dominated", "A stronger event of the other kind in the same curve")]
-BANDS = [(7, 8, "7 to 8"), (8, 10, "8 to 10"), (10, 12, "10 to 12"), (12, 1e9, "12 and up")]
-CACHE = {}
+BANDS = [(7, 8, "7 to 8"), (8, 10, "8 to 10"), (10, 12, "10 to 12"), (12, float("inf"), "12 and up")]
+CACHE = {}; WARNED = set()
 
 
 def now_iso():
@@ -30,7 +30,7 @@ def summarise(path):
     ev = g["events"]; first = Counter(); tiers = Counter(); kinds = Counter(); boxes = Counter(); bands = Counter()
     for e in ev:
         kinds[e["kind"]] += 1; tiers[e.get("tier", "?")] += 1; boxes[str(e["dur_h"])] += 1
-        bands[next(l for lo, hi, l in BANDS if lo <= e["snr"] < hi)] += 1
+        bands[next((l for lo, hi, l in BANDS if lo <= e["snr"] < hi), BANDS[-1][2])] += 1
         first[next((k for k, _ in FLAGS if e.get(k)), "clean")] += 1
     inj = g.get("inj") or []
     meta = g["meta"]
@@ -50,7 +50,8 @@ def scan(folder):
         if c is None or c["mtime"] < m:
             try:
                 c = CACHE[p] = summarise(p)
-            except Exception:       # a file being written right now: try again next round
+            except Exception as ex:       # a file being written right now: try again next round
+                if p not in WARNED: WARNED.add(p); print("watch_export: cannot read", p, repr(ex), flush=True)
                 continue
         out[p] = c
     return out
