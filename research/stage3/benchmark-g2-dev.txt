@@ -1,0 +1,24 @@
+VESPER BENCHMARK on G2 run dev_73f62615e365 (dev)   Vesper options []
+S1. Excess of real tier-1 dips over noise (preregistration section 5; PDCSAP half has the fair control, the SAP-only half is reported on its own line and is NEVER evidence)
+   bar  7: real  78, upside-down  21, noise-expected real  21.4, chance of at least the observed 0.000
+   bar  8: real  43, upside-down  18, noise-expected real  17.6, chance of at least the observed 0.000
+   bar 10: real  24, upside-down  12, noise-expected real  11.5, chance of at least the observed 0.001
+   bar 12: real  16, upside-down   8, noise-expected real   7.7, chance of at least the observed 0.006
+   VERDICT S1: EXCESS (opens two-key vetting only; not a discovery)   [rule: chance <= 0.01 at bar 7 and real above expected at bars 8, 10, 12]   asymmetry file: asymmetry_g2_v5.txt
+   SAP-only half (no fair control, not evidence): real 12, upside-down 4
+S2. False alarms: upside-down tier-1 25 in 3253 star-sectors = 7.69 per 1,000 (95% interval 4.97 to 11.34); mark 8 or fewer: PASS (interval reaches above 8)
+S3. Mirror test, planted dips against planted bumps through the whole chain (K 8 to 14): dips 38.1%, bumps 39.9%, gap -1.8 points; mark within 3: PASS
+S4. Completeness, planted dips, tier-1 recovery by box length (K 8 to 14 pooled), 95% Wilson interval and the development slice beside it
+   4 h box:  46.5% (43.6 to 49.4), n 1136   | development  46.5% (43.6 to 49.4)
+   8 h box:  48.5% (45.6 to 51.4), n 1136   | development  48.5% (45.6 to 51.4)
+   14 h box:  36.1% (33.3 to 38.9), n 1136   | development  36.1% (33.3 to 38.9)
+   20 h box:  21.3% (19.0 to 23.8), n 1136   | development  21.3% (19.0 to 23.8)
+   4 h box by K (depth in noise multiples): 8: 27%, 10: 43%, 12: 55%, 14: 61%
+   8 h box by K (depth in noise multiples): 8: 30%, 10: 48%, 12: 57%, 14: 60%
+   14 h box by K (depth in noise multiples): 8: 21%, 10: 34%, 12: 45%, 14: 45%
+   20 h box by K (depth in noise multiples): 8: 10%, 10: 19%, 12: 27%, 14: 29%
+S5. Orbit-locked flag (c6): 0 events moved to tier 2 (0 real, 0 upside-down) on 0 stars
+   cost on planted dips (offline, the harness cannot see other sectors): 0 of 1731 tier-1 planted dips would be flagged by chance = 0.00% (development slice: 0.81%)
+S6. TOI-1338 b: expected-transit file not written yet (research/stage3/toi1338b-expected.json): NOT COMPUTED
+S7. Labels split (professionals' table, not in it, TOIs, none): research/stage3/g2-by-label-dev.txt
+S8. Machine health: 3425 star-sectors read; file statuses: {'ok': 12084, 'no safe windows': 340}; 2545 events written; products: {'QLP': 3352, 'SPOC': 2711, 'TESS-SPOC': 2681, 'TESS-SPOC-SAP': 1875, 'SPOC-SAP': 1805}
