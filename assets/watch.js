@@ -45,6 +45,14 @@
   const KIND = { real: "the star's real light", flip: "the upside-down copy (the star's light flipped, so noise shows as a dip)" };
   const card = (c) => `<figure class="sw-card">${pic(c)}<figcaption><b>TIC ${c.tic}, sector ${c.sector}</b> <small>${c.at} UTC</small><br>${c.dur} h dip, ${num(c.depth)} ppm deep, signal-to-noise ${c.snr}.<br>${["1A", "1L", "1B"].includes(c.tier) ? "<b>Kept (tier 1).</b> No check stopped it." : "<b>Set aside (tier " + esc(c.tier) + ").</b> " + esc(c.what)}${c.kind ? `<br><small>Drawn from ${KIND[c.kind]}.</small>` : ""}</figcaption></figure>`;
 
+  const funnel = (L) => { const mx = Math.max(1, ...L.stages.map((s) => s.both)); return L.stages.map((s) => `<div class="sw-flag"><div class="sw-lab"><span>${esc(s.label)}</span><b>${s.real == null ? num(s.both) : `${num(s.real)} real, ${num(s.flip)} upside-down`}</b></div><div class="sw-bar sw-keep"><i style="width:${pct(s.real == null ? s.both : s.real, mx)}%"></i></div>${s.real == null ? "" : `<div class="sw-bar"><i style="width:${pct(s.flip, mx)}%"></i></div>`}</div>`).join(""); };
+  const leadCard = (c) => `<figure class="sw-card">${c.x && c.x.length ? pic(c) : '<p class="sw-small">No picture could be drawn for this one.</p>'}<figcaption><b>Lead ${esc(c.id)}: TIC ${c.tic}, sector ${c.sector}</b> <small>BTJD ${c.center}</small><br>${c.dur} h dip, ${num(c.depth)} ppm deep, signal-to-noise ${c.snr}. This star has ${c.events} confirmed ${c.events === 1 ? "dip" : "dips"} in the run.<ul class="sw-checks">${c.checks.map((k) => `<li class="sw-c-${k.s}">${esc(k.t)}</li>`).join("")}</ul><b>Next check:</b> ${esc(c.next)}</figcaption></figure>`;
+  const leadsHtml = (d) => {
+    const L = d.leads;
+    if (!L) return "";
+    return `<h3>What the search found</h3><p class="sw-verdict">${esc(L.verdict)}</p>${L.scored ? `<p class="sw-verdict">${esc(L.scored)}</p>` : ""}${funnel(L)}<p class="sw-small">${L.blind ? "Real and upside-down are pooled while the run is blind." : (L.final ? "The upside-down numbers are how many false alarms to expect. These are the counts the scorecard uses: all checks applied, the best light curve of each star in each sector, the cleaned-light half of the search." : "The upside-down numbers are how many false alarms to expect. Running counts, before the last checks; each unit is a star in one sector.")}${L.known ? ` ${num(L.known)} confirmed ${L.known === 1 ? "star is" : "stars are"} already known TOI or planet hosts and not counted as leads.` : ""} A lead is not a planet. It passed every check, still needs 2 or 3 more, and becomes a candidate only with two keys (see the Candidates page).</p>${L.cards && L.cards.length ? `<div class="sw-cards">${L.cards.map(leadCard).join("")}</div>` : ""}`;
+  };
+
   function light() {
     if (!data) return ["off", "No data yet", ""];
     const age = (Date.now() - Date.parse(data.updated)) / 1000, w = data.machine && data.machine.workers, loop = data.loop_s || 60, stale = Math.max(180, 3 * loop + 60);
@@ -76,6 +84,7 @@
       ${d.notes && d.notes.length ? `<p class="sw-note"><small>${esc(d.notes[0].at.slice(11, 16))} UTC, note from Claude</small><br>${esc(d.notes[0].text)}</p>` : ""}
       <p class="sw-small">${esc(d.label)}</p>
       ${d.blind ? '<p class="sw-blind"><b>Blind run.</b> Real and upside-down dips are pooled, and pictures do not say which kind they are, until the final analysis is done. That keeps the test honest.</p>' : ""}
+      ${leadsHtml(d)}
       <h3>The path every star takes</h3>
       <div class="sw-flow">${STAGES.map((st, i) => `<div class="sw-stage${active(st)}"><small>${i + 1}</small><b>${esc(st[0])}</b><span>${esc(st[1](d))}</span></div>${i < STAGES.length - 1 ? '<div class="sw-arrow">&#8595;</div>' : ""}`).join("")}</div>
       <h3>Pictures from the search</h3>
