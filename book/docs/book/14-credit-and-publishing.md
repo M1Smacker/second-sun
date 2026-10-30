@@ -20,6 +20,9 @@
 ## What this means for our hunt
 Plan the write-up as part of vetting, not after it. The first candidate's timeline is: two keys, RNAAS draft, publication, then ExoFOP.
 
+## A case to learn from: TIC 4206066 (October 2026)
+In September 2026 an independent researcher in Spain, Pavel Rabtsevich, used AI coding agents to search TESS data for 126,000 stars and published a candidate: a possible planet of 1.4 Earth radii, every 3.18 days, around the star TIC 4206066. What makes it a good example is not the planet (it is **not confirmed**; TESS observes the star from 31 October to 26 November 2026) but the habits. He wrote the rules and the dip times down before the new data arrived, tried 74 times to break his own result, published the data and code, wrote "no statistical validation is claimed", and prepared a short note for the AAS Research Notes with a preprint on Zenodo. Professionals had also seen the signal earlier in their own filters, so the lesson is care and speed, not a signal nobody could see. Sources: [preprint record](https://zenodo.org/records/22967456), [Scientific American](https://www.scientificamerican.com/article/amateur-astronomer-harnesses-ai-to-find-a-possible-hidden-exoplanet/), [Gizmodo](https://gizmodo.com/did-claude-help-an-amateur-astronomer-discover-a-new-planet-2000824393).
+
 ## Open questions
 - Does citing published tools we use count as "a previously published method" for an RNAAS route? Only ExoFOP support can say.
 

@@ -1,0 +1,23 @@
+# Rabtsevich and TIC 4206066: what is actually reported (read 30 Oct 2026, at Ahmed's request)
+
+Method: research blueprint. Pages opened in the browser pane (HTML only; the manuscript PDF was NOT opened). Searches were leads, the pages below were read.
+
+## Questions and decisions
+1. What exactly was found, and how firm is it? Decides how we describe it to Ahmed and in the book.
+2. How was it found (method, vetting)? Decides what, if anything, Second Sun copies.
+3. Was it new to professionals? Decides how we word "discovery".
+4. How does it differ from our circumbinary hunt? Decides what we promise ourselves.
+
+## Findings
+- **CONFIRMED (Zenodo record, abstract, https://zenodo.org/records/22967456; published 25 Sep 2026):** a preprint of a Research Note prepared for the AAS Research Notes. Two transit-like signals on TIC 4206066, a late-K dwarf, found in Sector 98 and traced to Sectors 6 and 32. The 3.18 d signal (23 transits, about 500 ppm) gives 1.4 +/- 0.1 Earth radii if it orbits the target. A planet transiting an unresolved bound companion remains the main alternative; TRICERATOPS false-positive probability 0.03 to 0.04. A weaker 11.13 d signal (about 2.2 Earth radii, about 3 sigma in a post hoc test) has a tentative ephemeris. "No statistical validation is claimed." Data and code are public (https://zenodo.org/records/22967099, CC BY 4.0 and MIT).
+- **CONFIRMED (Gizmodo, 9 Oct 2026, https://gizmodo.com/did-claude-help-an-amateur-astronomer-discover-a-new-planet-2000824393):** a 28 year old product manager in Spain with no formal astronomy training; 126,000 stars from a narrow slice of TESS data, handed to several AI tools (Claude Code, Codex and another) in rounds; he says he decided which tests to run, judged whether a result was strong enough, and chose what to keep. Seventy-four tests to try to DISPROVE the candidate, including predicting the dips in a third dataset from two others (correct in all three cases). He submitted a report to MIT; TESS will observe the star every 2 minutes from 31 Oct to 26 Nov 2026; he published the predicted dip times beforehand and said he would also post a failure.
+- **CONFIRMED (Scientific American, 14 Oct 2026, https://www.scientificamerican.com/article/amateur-astronomer-harnesses-ai-to-find-a-possible-hidden-exoplanet/):** the 2018 dips tended to line up with TESS thruster firings, which may skew the result; a TESS-team member says the signal was picked up by a TESS detection filter in 2020 and rejected for lack of evidence, that a TESS-team deep-learning model has also flagged it, and that Michelle Kunimoto's LEO-Vetter search had selected it in early 2026 (told by that member, not public); the same member says it became effectively detectable only in January 2026. An outside astronomer calls the planet possibility "solid" (an opinion). Rabtsevich is quoted that models agreeing with each other is not evidence.
+- **LIKELY (secondary, not opened in full):** neoteo.com repeats the two signals and the TESS DDT program. Other outlets differ in small details (dates, wording); the Zenodo record is the authority for the numbers.
+- **UNCERTAIN / NOT TESTED:** whether the 3.18 d signal is a planet; the November result does not exist yet (the follow-up begins 31 Oct 2026). I did not rerun any of his numbers. The ExoFOP/TOI status of TIC 4206066 was NOT found.
+
+## Readings for Second Sun (what changes)
+1. He did the careful part: rules and predictions published before the new data, a control sample, 74 attempts to break it, and no validation claimed. That is our preregistration and sealed-slice design; nothing to change. LIKELY.
+2. His thruster-alignment worry is our `gap_dump` and `common` flags in another form. CONFIRMED same class.
+3. A bound companion hiding in the pixels is his main alternative; for us the binary is the star, so pixel and neighbour tests (Chapter 11) matter even more. TRICERATOPS appears in older review files (Compass) but is not built in; whether it fits a circumbinary geometry is UNCERTAIN, NOT TESTED.
+4. His case was findable by professional pipelines (a TESS filter in 2020, LEO-Vetter in 2026): the value was care and speed, not a signal nobody could see. His target is a small planet on a single star with ordinary transits; ours is circumbinary, with wandering transit times, and needs our own search. Do not promise ourselves the same result; promise ourselves the same discipline.
+5. Publication route: an RNAAS note plus a Zenodo preprint with data and code, plus a request to the TESS team to observe. Chapter 14 describes RNAAS and ExoFOP; the request to the TESS team is new to our notes and goes into the chapter as one route that was used (UNCERTAIN how general it is).
