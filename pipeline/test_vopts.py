@@ -128,6 +128,10 @@ def test_c6_lock():
     assert lock([("real", 10, 100.0, 300, "1A"), ("real", 11, 100.0 + 3 * P, 1000, "1B")]) == [False, False]
     assert lock([("real", 10, 100.0, 900, "1A"), ("real", 10, 100.0 + 3 * P, 1000, "1B")]) == [False, False]
     assert lock([("real", 10, 100.0, 900, "1A"), ("real", 11, 100.0 + 3 * P, 1000, "2")]) == [False, False]
+    odd = pd.DataFrame([dict(tic=1, kind="real", sector=10, center=100.0, dur_h=8.0, depth_ppm=900, tier="1A"), dict(tic=1, kind="real", sector=11, center=100.0 + 3 * P, dur_h=20.0, depth_ppm=1000, tier="1B")])
+    assert list(C.orbit_locked(odd, {1: [P]})) == [False, False], "box lengths 8 h and 20 h differ by more than 1.6: not a match"
+    same = pd.DataFrame([dict(tic=1, kind="real", sector=10, center=100.0, dur_h=8.0, depth_ppm=900, tier="1A"), dict(tic=1, kind="real", sector=11, center=100.0, dur_h=8.0, depth_ppm=1000, tier="1B")])
+    assert list(C.orbit_locked(same, {1: [P]})) == [False, False], "zero periods apart is not a lock"
     assert C.tier_of(dict(gap_dump=False, burst=False, flipmatch=False, c5=False, orbit_lock=True)) == "2"
     print("PASS c6: a locked pair is found; off-period, other kind, depth x3, same sector and tier-2 partners are not; a locked event is tier 2")
 
