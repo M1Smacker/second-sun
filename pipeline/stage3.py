@@ -230,6 +230,17 @@ if __name__ == "__main__":
         FROZEN.parent.mkdir(exist_ok=True)
         FROZEN.write_text(json.dumps(dict(hash=C.settings_hash(s), settings=s, provenance=pv), indent=1), encoding="utf-8")
         print("FROZEN", C.settings_hash(s))
+    elif mode == "freeze8":                                      # v8 (V8-DESIGN.md, approved by Ahmed 30 Oct 2026): the rules and code only; the data hashes belong to each run, not to the version
+        f8 = FROZEN.with_name("SETTINGS_FROZEN_V8.json")
+        if f8.exists():
+            sys.exit(f"already frozen: {f8}")
+        if V.ON != {"c6"}:
+            sys.exit("v8 is 0.7.1 plus c6: set VESPER_OPTS=c6 and nothing else")
+        s = {k: v for k, v in current_settings(STARS_ALL).items() if k not in ("stars", "manifest", "targets", "best_product", "base_run")}; pv = provenance()
+        if pv["pipeline_dirty"]:
+            sys.exit("pipeline or targets have uncommitted changes: commit first, then freeze")
+        f8.write_text(json.dumps(dict(version="Vesper 0.8.0", hash=C.settings_hash(s), settings=s, provenance=pv), indent=1), encoding="utf-8")
+        print("FROZEN v8", C.settings_hash(s))
     elif mode == "devrun":                                       # G2 preregistration sections 3 and 4: the whole chain on the 301 DEVELOPMENT stars only (development use, any number of times)
         if DS.NAME == "g2":
             tg = pd.read_csv(C.TARGETS, comment="#").drop_duplicates("tic")
