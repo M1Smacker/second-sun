@@ -2,7 +2,7 @@
  "label": "SEALED RUN: Vesper 0.8.0 on the 594 sealed G2 stars (blind)",
  "blind": true,
  "phase": "search",
- "updated": "2026-10-30T17:05:14+00:00",
+ "updated": "2026-10-30T17:06:20+00:00",
  "loop_s": 60,
  "run": {
   "folder": "sealed_5f73692944aa",
@@ -35,8 +35,8 @@
   }
  },
  "machine": {
-  "workers": 8,
-  "cpu": 28
+  "workers": 2,
+  "cpu": 7
  },
  "started": "2026-10-30T16:32:35+00:00",
  "progress": {
@@ -45,7 +45,7 @@
    6877
   ],
   "sap": [
-   4078,
+   4233,
    4233
   ],
   "pdc": [
@@ -57,7 +57,7 @@
   "eta_min": null
  },
  "files": {
-  "read_ok": 24346,
+  "read_ok": 24636,
   "skipped": {
    "no safe windows": 223,
    "too little data": 3
@@ -66,17 +66,17 @@
    "QLP": 6548,
    "SPOC": 5331,
    "TESS-SPOC": 5275,
-   "SPOC-SAP": 3542,
-   "TESS-SPOC-SAP": 3650
+   "SPOC-SAP": 3682,
+   "TESS-SPOC-SAP": 3800
   }
  },
  "events": {
-  "found": 12159,
+  "found": 12238,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 7623
+    "n": 7670
    },
    {
     "flag": "flipmatch",
@@ -86,7 +86,7 @@
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 582
+    "n": 584
    },
    {
     "flag": "ecl_overlap",
@@ -96,17 +96,17 @@
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 1347
+    "n": 1355
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 1817
+    "n": 1835
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 51
+    "n": 52
    },
    {
     "flag": "dominated",
@@ -116,37 +116,37 @@
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 561
+    "n": 564
    }
   ],
   "tiers": {
-   "2": 11637,
-   "1A": 372,
+   "2": 11713,
+   "1A": 374,
    "3": 79,
-   "1B": 51,
+   "1B": 52,
    "1L": 20
   },
   "boxes": {
-   "3": 3384,
-   "4": 1192,
-   "5": 1195,
-   "6.5": 951,
-   "8": 1112,
-   "10": 946,
-   "12": 886,
-   "15": 1014,
-   "20": 1479
+   "3": 3404,
+   "4": 1196,
+   "5": 1202,
+   "6.5": 955,
+   "8": 1116,
+   "10": 952,
+   "12": 892,
+   "15": 1027,
+   "20": 1494
   },
   "bands": {
-   "7 to 8": 3468,
-   "8 to 10": 3684,
-   "10 to 12": 1780,
-   "12 and up": 3227
+   "7 to 8": 3499,
+   "8 to 10": 3706,
+   "10 to 12": 1796,
+   "12 and up": 3237
   }
  },
  "selftest": {
-  "fakes": 36002,
-  "second_product_sees": 34691
+  "fakes": 36272,
+  "second_product_sees": 34959
  },
  "history": [
   {
@@ -333,6 +333,12 @@
    "t": 1793379917,
    "done": 6876,
    "events": 12159,
+   "per_min": 0.0
+  },
+  {
+   "t": 1793379982,
+   "done": 6876,
+   "events": 12238,
    "per_min": 0.0
   }
  ],
