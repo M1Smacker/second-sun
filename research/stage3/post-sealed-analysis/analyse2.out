@@ -1,0 +1,69 @@
+# Fix: analyse2 crashed on the sealed run at the depth quantile line (object dtype); analyse4 repeats it with numeric conversion. Outputs are verbatim.
+== sealed_5f73692944aa options=c6: primary PDCSAP-half events 2764; star-sectors in meta 6877; stars 390
+  all events SNR>=7 real: 1265 events on 293 stars; max per star 56; top3 stars hold 123 (10%); top10 hold 278 (22%)
+  all events SNR>=7 flip: 1499 events on 339 stars; max per star 56; top3 stars hold 118 (8%); top10 hold 253 (17%)
+  tier-1 real: 26 events on 17 stars; max per star 5; top3 stars hold 11 (42%); top10 hold 19 (73%)
+  tier-1 flip: 59 events on 36 stars; max per star 11; top3 stars hold 20 (34%); top10 hold 33 (56%)
+  tier-1A real: 17 events on 10 stars; max per star 5; top3 stars hold 10 (59%); top10 hold 17 (100%)
+  tier-1A flip: 48 events on 30 stars; max per star 11; top3 stars hold 19 (40%); top10 hold 28 (58%)
+  flag shares among ALL events (a flag can overlap others), real vs flip:
+    gap_dump    real  53.6%  flip  70.6%
+    flipmatch   real   2.5%  flip   0.0%
+    c5          real  12.9%  flip   7.2%
+    ecl_overlap real   8.1%  flip   4.3%
+    repeater    real  33.0%  flip  32.7%
+    step        real  81.6%  flip  90.3%
+    ramp        real  29.6%  flip  41.5%
+    dominated   real  26.6%  flip  21.5%
+    orbit_lock  real   1.0%  flip   0.0%
+  tier split real/flip: {'2': 1228, '1A': 17, '3': 11, '1B': 5, '1L': 4} {'2': 1432, '1A': 48, '3': 8, '1B': 8, '1L': 3}
+Traceback (most recent call last):
+  File "C:\Users\hanzl\AppData\Local\Temp\claude\D--second-sun\0aeb43a8-3800-4afc-88e0-90d80e5e575e\scratchpad\analyse2.py", line 38, in <module>
+    print("  tier-1 real depth_ppm quantiles", t1r.depth_ppm.quantile([0, .25, .5, .75, 1]).round().tolist(), "durations", t1r.dur_h.value_counts().sort_index().to_dict(), "snr", t1r.snr.quantile([0, .5, 1]).round(1).tolist())
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\pandas\core\series.py", line 2821, in round
+    raise TypeError("Expected numeric dtype, got object instead.")
+TypeError: Expected numeric dtype, got object instead.
+== dev_73f62615e365 options=c6: primary PDCSAP-half events 1484; star-sectors in meta 3425; stars 218
+  all events SNR>=7 real: 773 events on 165 stars; max per star 73; top3 stars hold 154 (20%); top10 hold 316 (41%)
+  all events SNR>=7 flip: 711 events on 177 stars; max per star 34; top3 stars hold 84 (12%); top10 hold 191 (27%)
+  tier-1 real: 34 events on 18 stars; max per star 6; top3 stars hold 14 (41%); top10 hold 26 (76%)
+  tier-1 flip: 20 events on 16 stars; max per star 4; top3 stars hold 7 (35%); top10 hold 14 (70%)
+  tier-1A real: 23 events on 13 stars; max per star 6; top3 stars hold 11 (48%); top10 hold 20 (87%)
+  tier-1A flip: 17 events on 13 stars; max per star 4; top3 stars hold 7 (41%); top10 hold 14 (82%)
+  flag shares among ALL events (a flag can overlap others), real vs flip:
+    gap_dump    real  48.4%  flip  72.6%
+    flipmatch   real   2.2%  flip   0.0%
+    c5          real  15.0%  flip   7.6%
+    ecl_overlap real  11.6%  flip   6.0%
+    repeater    real  34.8%  flip  31.6%
+    step        real  67.4%  flip  87.8%
+    ramp        real  26.8%  flip  47.7%
+    dominated   real  22.9%  flip  21.7%
+    orbit_lock  real   5.7%  flip   0.1%
+  tier split real/flip: {'2': 728, '1A': 23, '3': 11, '1B': 10, '1L': 1} {'2': 685, '1A': 17, '3': 6, '1B': 3}
+  tier-1 real depth_ppm quantiles [408.0, 1063.0, 1634.0, 4493.0, 20005.0] durations {3.0: 18, 4.0: 6, 5.0: 4, 6.5: 2, 8.0: 1, 12.0: 2, 20.0: 1} snr [7.0, 8.2, 21.8]
+  tier-1 real deeper than 1%: 5 deeper than 0.3%: 12
+  tier-1 flip depth_ppm quantiles [664.0, 4301.0, 9432.0, 16442.0, 47482.0] durations {3.0: 13, 4.0: 3, 6.5: 1, 8.0: 1, 12.0: 1, 20.0: 1}
+  QLP-only stars among tier-1 real/flip: 0 0
+== dev_73f62615e365 options=none: primary PDCSAP-half events 1484; star-sectors in meta 3425; stars 218
+  all events SNR>=7 real: 773 events on 165 stars; max per star 73; top3 stars hold 154 (20%); top10 hold 316 (41%)
+  all events SNR>=7 flip: 711 events on 177 stars; max per star 34; top3 stars hold 84 (12%); top10 hold 191 (27%)
+  tier-1 real: 78 events on 21 stars; max per star 14; top3 stars hold 35 (45%); top10 hold 65 (83%)
+  tier-1 flip: 21 events on 16 stars; max per star 4; top3 stars hold 8 (38%); top10 hold 15 (71%)
+  tier-1A real: 63 events on 17 stars; max per star 13; top3 stars hold 31 (49%); top10 hold 56 (89%)
+  tier-1A flip: 17 events on 13 stars; max per star 4; top3 stars hold 7 (41%); top10 hold 14 (82%)
+  flag shares among ALL events (a flag can overlap others), real vs flip:
+    gap_dump    real  48.4%  flip  72.6%
+    flipmatch   real   2.2%  flip   0.0%
+    c5          real  15.0%  flip   7.6%
+    ecl_overlap real  11.6%  flip   6.0%
+    repeater    real  34.8%  flip  31.6%
+    step        real  67.4%  flip  87.8%
+    ramp        real  26.8%  flip  47.7%
+    dominated   real  22.9%  flip  21.7%
+  tier split real/flip: {'2': 684, '1A': 63, '1B': 12, '3': 11, '1L': 3} {'2': 684, '1A': 17, '3': 6, '1B': 3, '1L': 1}
+  tier-1 real depth_ppm quantiles [408.0, 743.0, 1088.0, 2657.0, 29269.0] durations {3.0: 27, 4.0: 12, 5.0: 12, 6.5: 8, 8.0: 4, 10.0: 3, 12.0: 6, 15.0: 5, 20.0: 1} snr [7.0, 8.2, 25.2]
+  tier-1 real deeper than 1%: 12 deeper than 0.3%: 19
+  tier-1 flip depth_ppm quantiles [664.0, 3238.0, 8465.0, 16366.0, 47482.0] durations {3.0: 14, 4.0: 3, 6.5: 1, 8.0: 1, 12.0: 1, 20.0: 1}
+  QLP-only stars among tier-1 real/flip: 0 0

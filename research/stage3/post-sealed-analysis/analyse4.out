@@ -1,0 +1,15 @@
+== sealed_5f73692944aa options=c6: stars in slice 594; tier-1 real 26 events on 17 stars; flip 59 on 36 stars; noise-expected real 41.8 (ratio 1.41)
+   cluster bootstrap over stars (20,000 draws): real minus expected = -15.8, 95% interval -42.2 to +8.3; share of draws with real <= expected 89.7%
+   stars with a real tier-1 event 17 vs stars with an upside-down one 36 (ratio-free, per-star view)
+   tier-1 real: depth ppm quantiles [358.0, 1953.0, 2671.0, 4156.0, 265216.0]; durations {3.0: 16, 4.0: 1, 5.0: 3, 6.5: 2, 10.0: 1, 12.0: 1, 15.0: 2}; deeper than 1%: 3
+   tier-1 flip: depth ppm quantiles [518.0, 2746.0, 7182.0, 16650.0, 10132959.0]; durations {3.0: 44, 4.0: 3, 8.0: 5, 10.0: 3, 15.0: 2, 20.0: 2}; deeper than 1%: 23
+== dev_73f62615e365 options=c6: stars in slice 301; tier-1 real 34 events on 18 stars; flip 20 on 16 stars; noise-expected real 20.4 (ratio 0.98)
+   cluster bootstrap over stars (20,000 draws): real minus expected = +13.6, 95% interval -8.4 to +37.6; share of draws with real <= expected 11.8%
+   stars with a real tier-1 event 18 vs stars with an upside-down one 16 (ratio-free, per-star view)
+   tier-1 real: depth ppm quantiles [408.0, 1063.0, 1634.0, 4493.0, 20005.0]; durations {3.0: 18, 4.0: 6, 5.0: 4, 6.5: 2, 8.0: 1, 12.0: 2, 20.0: 1}; deeper than 1%: 5
+   tier-1 flip: depth ppm quantiles [664.0, 4301.0, 9432.0, 16442.0, 47482.0]; durations {3.0: 13, 4.0: 3, 6.5: 1, 8.0: 1, 12.0: 1, 20.0: 1}; deeper than 1%: 10
+== dev_73f62615e365 options=none: stars in slice 301; tier-1 real 78 events on 21 stars; flip 21 on 16 stars; noise-expected real 21.4 (ratio 0.98)
+   cluster bootstrap over stars (20,000 draws): real minus expected = +56.6, 95% interval +13.2 to +108.6; share of draws with real <= expected 0.2%
+   stars with a real tier-1 event 21 vs stars with an upside-down one 16 (ratio-free, per-star view)
+   tier-1 real: depth ppm quantiles [408.0, 743.0, 1088.0, 2657.0, 29269.0]; durations {3.0: 27, 4.0: 12, 5.0: 12, 6.5: 8, 8.0: 4, 10.0: 3, 12.0: 6, 15.0: 5, 20.0: 1}; deeper than 1%: 12
+   tier-1 flip: depth ppm quantiles [664.0, 3238.0, 8465.0, 16366.0, 47482.0]; durations {3.0: 14, 4.0: 3, 6.5: 1, 8.0: 1, 12.0: 1, 20.0: 1}; deeper than 1%: 10

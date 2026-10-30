@@ -1,0 +1,32 @@
+== planted rows sealed: 9472 (K 8 to 14), sign counts {1.0: 4736, -1.0: 4736}
+  DIPS: found at all 80.7%, found in the primary product 76.8%, tier-1 37.5%
+  BUMPS: found at all 80.1%, found in the primary product 76.6%, tier-1 37.3%
+  DIPS by duration: n, found_any%, tier1%
+     4.0 h  n 1184  any  73.3  primary  69.3  tier1  41.0
+     8.0 h  n 1184  any  84.8  primary  79.5  tier1  46.8
+    14.0 h  n 1184  any  83.5  primary  80.2  tier1  34.1
+    20.0 h  n 1184  any  81.3  primary  78.0  tier1  28.0
+  DIPS by K: n, any, tier1
+    K  8.0  n 1184  any  51.0  tier1  20.9
+    K 10.0  n 1184  any  79.1  tier1  36.4
+    K 12.0  n 1184  any  94.8  tier1  44.8
+    K 14.0  n 1184  any  98.1  tier1  47.6
+  found but NOT tier-1: 2050 of 3824 found; tier values {'2': 1836, '': 189, '3': 25}
+  among those, flag shares: {'gap_dump': 34.0, 'flipmatch': 0.0, 'c5': 10.7, 'ecl_overlap': 6.6, 'repeater': 9.1, 'step': 51.4, 'ramp': 18.0, 'dominated': 14.8, 'common': 1.2}
+  tier-1 fraction by tmag tercile (dips): {'(4.911, 9.869]': 37.3, '(9.869, 11.082]': 40.4, '(11.082, 13.458]': 34.6}
+== planted rows dev: 9088 (K 8 to 14), sign counts {1.0: 4544, -1.0: 4544}
+  DIPS: found at all 81.4%, found in the primary product 77.7%, tier-1 38.1%
+  BUMPS: found at all 82.4%, found in the primary product 78.7%, tier-1 39.9%
+  DIPS by duration: n, found_any%, tier1%
+     4.0 h  n 1136  any  76.8  primary  72.0  tier1  46.5
+     8.0 h  n 1136  any  85.8  primary  82.8  tier1  48.5
+    14.0 h  n 1136  any  85.0  primary  81.6  tier1  36.1
+    20.0 h  n 1136  any  77.7  primary  74.4  tier1  21.3
+  DIPS by K: n, any, tier1
+    K  8.0  n 1136  any  52.9  tier1  21.8
+    K 10.0  n 1136  any  80.2  tier1  35.9
+    K 12.0  n 1136  any  93.8  tier1  46.0
+    K 14.0  n 1136  any  98.6  tier1  48.7
+  found but NOT tier-1: 1966 of 3697 found; tier values {'2': 1783, '': 166, '3': 17}
+  among those, flag shares: {'gap_dump': 31.2, 'flipmatch': 0.2, 'c5': 10.8, 'ecl_overlap': 9.2, 'repeater': 11.6, 'step': 50.1, 'ramp': 16.4, 'dominated': 9.8, 'common': 0.3}
+  tier-1 fraction by tmag tercile (dips): {'(3.427, 9.585]': 39.4, '(9.585, 10.782]': 38.8, '(10.782, 13.243]': 36.0}
