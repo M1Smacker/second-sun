@@ -1,0 +1,7 @@
+Vesper study C5a follow-up (30 Oct 2026): upside-down events at SNR 7 or more, all tiers (found) and tier-1 (survivors), by box length. Aggregates only.
+g1 baseline-0.7.1 (run fd788be04650): upside-down found 1398 [3 h: 298, 4 h: 109, 5 h: 147, 6.5 h: 126, 8 h: 109, 10 h: 132, 12 h: 109, 15 h: 116, 20 h: 252]; tier-1 survivors 32 [3 h: 14, 4 h: 3, 5 h: 3, 6.5 h: 2, 8 h: 2, 10 h: 1, 15 h: 2, 20 h: 5]
+g1 bf4 (run g1opt_35a004cf05b1): upside-down found 1334 [4 h: 302, 5 h: 170, 6.5 h: 130, 8 h: 118, 10 h: 134, 12 h: 110, 15 h: 117, 20 h: 253]; tier-1 survivors 35 [4 h: 17, 5 h: 5, 6.5 h: 2, 8 h: 2, 10 h: 2, 15 h: 2, 20 h: 5]
+g1 bf4+c2 (run g1opt_bff6de851f27): upside-down found 1334 [4 h: 302, 5 h: 170, 6.5 h: 130, 8 h: 118, 10 h: 134, 12 h: 110, 15 h: 117, 20 h: 253]; tier-1 survivors 51 [4 h: 19, 5 h: 7, 6.5 h: 3, 8 h: 2, 10 h: 7, 15 h: 6, 20 h: 7]
+g2 baseline-0.7.1 (run dev_73f62615e365): upside-down found 1040 [3 h: 281, 4 h: 115, 5 h: 102, 6.5 h: 108, 8 h: 92, 10 h: 80, 12 h: 66, 15 h: 99, 20 h: 97]; tier-1 survivors 25 [3 h: 16, 4 h: 4, 5 h: 1, 6.5 h: 1, 8 h: 1, 12 h: 1, 20 h: 1]
+g2 bf4 (run dev_03085648d90d): upside-down found 988 [4 h: 315, 5 h: 120, 6.5 h: 118, 8 h: 92, 10 h: 80, 12 h: 67, 15 h: 99, 20 h: 97]; tier-1 survivors 22 [4 h: 16, 5 h: 1, 6.5 h: 2, 8 h: 1, 12 h: 1, 20 h: 1]
+g2 bf4+c2 (run dev_53de1d854920): upside-down found 988 [4 h: 315, 5 h: 120, 6.5 h: 118, 8 h: 92, 10 h: 80, 12 h: 67, 15 h: 99, 20 h: 97]; tier-1 survivors 38 [4 h: 18, 5 h: 2, 6.5 h: 4, 8 h: 3, 10 h: 6, 12 h: 2, 20 h: 3]

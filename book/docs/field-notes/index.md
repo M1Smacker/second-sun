@@ -17,3 +17,4 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [27 October 2026](2026-10-27.md) | Measure the advice before you take it: contrast numbers, a font file's character list, one learning path, and a plain score line |
 | [28 October 2026](2026-10-28.md) | Check the rival before you copy it: a professional tool, its licence, how few stars we truly share, and how faint a dip our own search can see |
 | [29 October 2026](2026-10-29.md) | How small a planet could we have found? Fake dips through the whole chain, a mislabelled half, and a guess that was seven times off |
+| [30 October 2026](2026-10-30.md) | Why the filter will not improve for free: a rule written first, stacking skipped, and a box floor that only moved the false alarms |
