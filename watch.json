@@ -1,0 +1,232 @@
+{
+ "label": "TEST run",
+ "blind": true,
+ "phase": "search",
+ "updated": "2026-10-30T13:49:22+00:00",
+ "run": {
+  "folder": "fakerun",
+  "version": "Vesper 0.7.1 (development use)",
+  "settings": {
+   "snr_bar": null,
+   "boxes_h": null,
+   "bin_days": null,
+   "options": null,
+   "flags": {
+    "common_stars": null,
+    "step_lift": null,
+    "ramp_days": null,
+    "repeat_n": null
+   }
+  }
+ },
+ "machine": {
+  "workers": 0,
+  "cpu": 7
+ },
+ "started": "2026-10-30T13:32:39+00:00",
+ "progress": {
+  "search": [
+   200,
+   3425
+  ],
+  "sap": [
+   0,
+   2108
+  ],
+  "pdc": [
+   0,
+   2108
+  ],
+  "stars": 301,
+  "per_min": 0.0,
+  "eta_min": null
+ },
+ "files": {
+  "read_ok": 490,
+  "skipped": {
+   "no safe windows": 14
+  },
+  "products": {
+   "QLP": 174,
+   "SPOC": 171,
+   "TESS-SPOC": 145
+  }
+ },
+ "events": {
+  "found": 323,
+  "stopped_by": [
+   {
+    "flag": "gap_dump",
+    "text": "Near a data gap or a spacecraft momentum dump",
+    "n": 168
+   },
+   {
+    "flag": "flipmatch",
+    "text": "The upside-down copy has the same wiggle",
+    "n": 0
+   },
+   {
+    "flag": "c5",
+    "text": "Sits at a catalogue eclipse phase",
+    "n": 20
+   },
+   {
+    "flag": "ecl_overlap",
+    "text": "Overlaps a predicted eclipse",
+    "n": 0
+   },
+   {
+    "flag": "repeater",
+    "text": "Many similar dips in the same light curve",
+    "n": 47
+   },
+   {
+    "flag": "step",
+    "text": "The baseline jumps across the dip",
+    "n": 48
+   },
+   {
+    "flag": "ramp",
+    "text": "Sits on a slow ramp after data resumes",
+    "n": 8
+   },
+   {
+    "flag": "dominated",
+    "text": "A stronger event of the other kind in the same curve",
+    "n": 0
+   },
+   {
+    "flag": "clean",
+    "text": "No flag fired",
+    "n": 32
+   }
+  ],
+  "tiers": {
+   "2": 291,
+   "1B": 1,
+   "1A": 29,
+   "3": 2
+  },
+  "boxes": {
+   "3": 98,
+   "4": 75,
+   "5": 28,
+   "6.5": 16,
+   "8": 21,
+   "10": 25,
+   "12": 24,
+   "15": 10,
+   "20": 26
+  },
+  "bands": {
+   "7 to 8": 86,
+   "8 to 10": 104,
+   "10 to 12": 43,
+   "12 and up": 90
+  }
+ },
+ "selftest": {
+  "fakes": 860,
+  "second_product_sees": 821
+ },
+ "history": [
+  {
+   "t": 1793368148,
+   "done": 200,
+   "events": 323,
+   "per_min": 0.0
+  }
+ ],
+ "notes": [
+  {
+   "at": "2026-10-30T13:49:05+00:00",
+   "text": "Test note: building the Search window (not a real run)"
+  }
+ ],
+ "ticker": [
+  {
+   "tic": 141124793,
+   "sector": 13,
+   "events": 0,
+   "files": 3,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 141124793,
+   "sector": 12,
+   "events": 0,
+   "files": 3,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 141124793,
+   "sector": 11,
+   "events": 0,
+   "files": 3,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 141124793,
+   "sector": 10,
+   "events": 0,
+   "files": 1,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 141124793,
+   "sector": 1,
+   "events": 0,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 98,
+   "events": 5,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 97,
+   "events": 0,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 96,
+   "events": 0,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 95,
+   "events": 0,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 93,
+   "events": 1,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 90,
+   "events": 0,
+   "files": 2,
+   "at": "13:32:39"
+  },
+  {
+   "tic": 140760434,
+   "sector": 9,
+   "events": 0,
+   "files": 1,
+   "at": "13:32:39"
+  }
+ ]
+}
