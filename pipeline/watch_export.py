@@ -73,7 +73,7 @@ def machine():
     """Python workers of the Second Sun scripts and the whole-machine CPU load (Windows; None if it cannot be read)."""
     try:
         r = subprocess.run(["powershell", "-NoProfile", "-Command",
-                            "$p=@(Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -match 'stage3|stage2|paired_recovery|chain_recovery|audit_all' -and $_.CommandLine -notmatch 'watch_export' }).Count;"
+                            "$p=@(Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -match 'stage3|stage2|sealed_run|spawn_main|paired_recovery|chain_recovery|audit_all' -and $_.CommandLine -notmatch 'watch_export' }).Count;"
                             "$c=(Get-CimInstance Win32_Processor | Measure-Object LoadPercentage -Average).Average; \"$p $c\""], capture_output=True, text=True, timeout=40)
         w, c = r.stdout.split()[:2]
         return dict(workers=int(w), cpu=int(float(c)))
