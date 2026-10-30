@@ -2,7 +2,7 @@
  "label": "SEALED RUN: Vesper 0.8.0 on the 594 sealed G2 stars (blind)",
  "blind": true,
  "phase": "search",
- "updated": "2026-10-30T17:18:27+00:00",
+ "updated": "2026-10-30T17:19:33+00:00",
  "loop_s": 60,
  "run": {
   "folder": "sealed_5f73692944aa",
@@ -35,8 +35,8 @@
   }
  },
  "machine": {
-  "workers": 8,
-  "cpu": 23
+  "workers": 2,
+  "cpu": 5
  },
  "started": "2026-10-30T16:32:35+00:00",
  "progress": {
@@ -49,7 +49,7 @@
    4233
   ],
   "pdc": [
-   3937,
+   4233,
    4233
   ],
   "stars": 594,
@@ -403,6 +403,12 @@
   },
   {
    "t": 1793380709,
+   "done": 6876,
+   "events": 12238,
+   "per_min": 0.0
+  },
+  {
+   "t": 1793380775,
    "done": 6876,
    "events": 12238,
    "per_min": 0.0
