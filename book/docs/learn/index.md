@@ -116,6 +116,12 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 ??? quiz "L5 check 5. Name two things our completeness number does NOT cover."
     Faint planets, and planets that cross near the edge of the data. (Also: the second-product check and some flags are not in the number.)
 
+??? quiz "L5 check 6. A new filter idea catches 3 points more fake planets. Why is that not enough to adopt it?"
+    It must also stay inside the false-alarm budget written before the test (here at most 8 upside-down first-tier dips per 1,000 star-sectors). Catching more fakes while letting through more noise is moving the bar, not improving.
+
+??? quiz "L5 check 7. Most false alarms were found by the 3 hour box. We removed it, and they were found by the 4 hour box. What does that teach?"
+    Where something is found is not what causes it. The cause was short glitches; the shortest box simply caught them first.
+
 **Next:** [Level 6](#l6), which starts with the rest of Chapter 10.
 
 ## L6 · Two-key vetting { #l6 }
@@ -139,6 +145,9 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 
 ??? quiz "L6 check 6. A dip sits on a star that is a TESS Object of Interest. What do you do first?"
     Look the star up: TOIs, known hosts and catalogued eclipsing binaries are known objects, so a dip there is probably the known thing and not a discovery.
+
+??? quiz "L6 check 7. Two dips on one star, in different sectors, are exactly 12 binary orbits apart with the same length and depth. Planet?"
+    Probably not. A leftover eclipse keeps the binary's clock; a planet keeps its own. v8's orbit-locked flag moves such dips to tier 2.
 
 **Next:** [After Level 6](#after): how the project runs.
 

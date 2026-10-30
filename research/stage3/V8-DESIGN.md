@@ -24,7 +24,10 @@ Rules unchanged: settings frozen per version and never tuned on results; v8 is c
 ## 4. Known limit (filed, not hidden)
 The injection harness (`chain_recovery.py`) judges one star-sector against the real events of the same sector, so it cannot see a partner in another sector: run with c6 on, it would show no c6 cost. v8 completeness must therefore be quoted as the harness number minus the offline c6 cost (0.81% of tier-1 fakes on G2 dev). LIKELY small; the exact share at the sealed stars is NOT TESTED until the sealed run.
 
-## 5. Freeze recipe (needs Ahmed's go; not done)
+## 5. FROZEN 30 Oct 2026 (Ahmed: "You have my approval")
+Vesper 0.8.0 = 0.7.1 + c6, frozen in `SETTINGS_FROZEN_V8.json`, hash 5f73692944aa (rules and code only; each run records its own data hashes), commit 12733c2, pipeline clean. Regression re-proved with c6 on (`v8-regression-zero-diff.txt`): zero-difference 300 of 300 star-sectors on G1, 0 errors, mutation caught 7 of 15; `test_vopts.py` 7 of 7; `test_stage3_prep.py` 20 of 20 (c6 off and on). Book: chapters 9 and 10 and learning-track checks updated; Vesper rename and F-090 update still open. NOT done: the sealed run (step 4 below), which needs Ahmed's separate go and a sealed-run mode that refuses to run unless the code hash equals the frozen one.
+
+### Freeze recipe (as planned)
 1. Make `c6` part of the frozen setting (VESPER_OPTS=c6 recorded in the run file, or default on in v8 code) and record the code hash.
 2. Re-prove: zero-difference on G1 (300 star-sectors, whole chain), Stage 2 dry runs, `test_vopts.py`, mutation check.
 3. Book: Vesper rename, F-090 update, v8 page.

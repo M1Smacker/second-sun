@@ -1,0 +1,64 @@
+{
+ "version": "Vesper 0.8.0",
+ "hash": "5f73692944aad8ee9df795100488ee1522b8e7f0c8cfeb3d898fc2e9bf653d0a",
+ "settings": {
+  "options": [
+   "c6"
+  ],
+  "v7": {
+   "common_d": 0.1,
+   "common_n": 3,
+   "pdc_min": 3.0,
+   "common_moment": "a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); it replaces the Stage 2 burst flag in the tiers, which counted only upside-down events",
+   "pdc_check": "a SAP-only dip whose PDCSAP flux (same file, same box length, nothing filled from SAP: sap_twin.load_pdc) shows SNR under pdc_min is tier 3; not measurable (PDC dropped those cadences) means no judgement (stage3.pdc_pass writes pdc_snr into groups_sap)"
+  },
+  "sap_twin": "v6: the SAP flux (crowding fixed, hard quality mask, nothing filled) of every SPOC and TESS-SPOC file in star-sectors whose best product is one of them, searched with the v5 settings; a dip PDCSAP also found keeps its v5 version, a SAP-only dip is added (merge in stage3_report.load)",
+  "snr_threshold": 7.0,
+  "durs_h": [
+   3,
+   4,
+   5,
+   6.5,
+   8,
+   10,
+   12,
+   15,
+   20
+  ],
+  "bin_d": 0.006944444444444444,
+  "burst_d": 0.1,
+  "flip_burst_min": 3,
+  "c5_ph_d": 0.35,
+  "ecl_mtot": 2.0,
+  "ecl_rfac": 2.0,
+  "ecl_max_frac": 0.4,
+  "repeat_n": 3,
+  "step_lift": 0.5,
+  "ramp_d": 1.0,
+  "dominance": "strongest other-kind event in the same light curve >= this event",
+  "eb_widths": "933e635c0370ee436fafbca250869e13067ddad22b13aecfd1d9e44f1e5d4087",
+  "step_cover": 0.5,
+  "burst_min": 3,
+  "c8_strict": 4.0,
+  "c8_lenient": 3.0,
+  "injection": "12 x 8 h noise, clipped to 1500..40000 ppm, 8 h wide, middle of the longest segment (stage2_search.do_group)",
+  "code": {
+   "stage2_search.py": "c91aad0cbb58166567f8354ceb3a8dffed7d8f521af1f91704236e2202b015cb",
+   "detect_v2.py": "266b1ae18ec5d7d61cfe06e3bccd099111e8bed3faf2642a56bbbc8e2525088d",
+   "audit_all.py": "3d1127fbbc6b0bcbdc710eda59f16221b92e3911c01cb279661819058fd6bcd2",
+   "audit_paths.py": "36ef6c98abf2482ba20c6ce5372d437d84535ddc41bb07ade404639a8b7e6128",
+   "common_time.py": "edd7c2b11a1b2d0612ee4d3402b4da43601f04d1a64b1c2f65f58807e44c2f91",
+   "stage3_core.py": "feaae4c80d4f9e6700f62a8e9a23c1bfcbdce86e460efa60d319c48d1be263ca",
+   "stage3.py": "63a912e4f8618fea086e00ad7f0b6cf83d1c86478b97bf36235f681e6c61d281",
+   "sap_twin.py": "094aa68179ac3c3424f04ba71ca88ab5cd71d36c3db9e04d8aaf2e64e4d7be3f",
+   "stage3_report.py": "2a039ce06a79fca80de41ecb5c6bc4188afbbd3ef8e04fb0c94cf9a4b60e07f2",
+   "dataset.py": "4acdab92a6eb6aba9e42c3c00cb08891be46258883383ae0f6e56d8d6702cab0",
+   "vopts.py": "544e2e50eb4b0e7dec40863886a9590cb036498a2d7354c388284541ce0c9aaf"
+  }
+ },
+ "provenance": {
+  "git_commit": "12733c29290630e10c851116af9d38c1aeff07a6",
+  "pipeline_dirty": false,
+  "when": "2026-10-30T12:34:52+00:00"
+ }
+}

@@ -79,6 +79,16 @@ And one new loss: **3 of 33** realistic crossings fell inside the stars' eclipse
 
 **Completeness** is the share of real planets a search would catch. We measure it by hiding fake planets, as above. For our flag chain we hid 1,548 strong fake dips (boxes and gently sloped ones, 4 to 14 hours) in 160 random star-months: 1,120 were found at signal-to-noise 7 or more, and **82.7%** of those got through the step test, the eclipse flags and the dominance flag {{claim:F-063}}. The orbit-start flag takes about 14% more of the time {{claim:F-064}}, so roughly 7 in 10 strong planets would survive. Two honest limits: faint planets are not tested yet, and neither are planets that cross near the edge of the data.
 
+### Testing a change fairly: the Vesper study (29 to 30 October 2026)
+
+When we tried to make the filter better, fakes became the judge. Three ideas carried the whole study:
+
+- **Paired tests.** Every new idea ran on exactly the same fake dips as the old filter: same stars, same times, same depths. Then we count only the dips one version caught and the other missed. Pairing removes luck, so even a change of one or two points shows.
+- **A false-alarm budget, written first.** A filter that catches more fakes but also lets through more upside-down dips has not improved; it has only moved its bar. Before any test we set the limit: at most 8 upside-down first-tier dips per 1,000 star-sectors.
+- **An exchange rate.** Every idea that caught more fakes also let through more false alarms, at about one extra point of recovery for each extra false alarm per 1,000. When a filter sits at a balance like that, the question is no longer "which trick?" but "how many false alarms will we pay for how many planets?" That choice belongs to the person running the project.
+
+One lesson in reasoning came out of it. Most leftover false alarms were caught by our shortest box (3 hours), so we removed that box. They did not go away: the 4 hour box caught the same short glitches. **Where something is found is not what causes it.** To find a cause, ask what happens if you remove it. The day's full story is in the [30 October field note](../field-notes/2026-10-30.md).
+
 ## 9.6 What this lets us conclude, and what it doesn't
 
 - **We can say:** "for TOI-1338-like stars, nothing bigger than about 6 Earth radii crossed in the searched data, apart from the known planet, with about 1 crossing in 11 hidden by eclipses".

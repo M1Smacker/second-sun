@@ -81,6 +81,10 @@ Verdict: impostor. The lesson for us: the rule was right, but our code checked "
 
 Before anyone studies a dip, look the star up in NASA's lists: **TOIs** (TESS Objects of Interest, dips that TESS itself flagged; the code KP means "known planet"), the known circumbinary hosts, and the TESS eclipsing binary catalogue. Six of our 549 stars are TOIs, six are known hosts and 53 are in the eclipsing binary catalogue {{claim:F-069}}. None of the dips that survived our rules sits on one of them {{claim:F-061}}. A star with many repeated dips of similar depth is probably a second eclipsing pair hiding in the same pixels, not a planet.
 
+### Leftover eclipses that keep the binary's clock
+
+Some dips survive every flag and still are not planets: they are faint leftover eclipses of the binary itself, for example a shallow second eclipse of a pair on an oval orbit. Their tell is timing. The binary's eclipses repeat on the binary's own clock; a planet orbits more slowly on its own clock, so its crossings land on a whole number of binary orbits only by chance. Vesper v8 adds the **orbit-locked flag**: a dip moves to tier 2 if another first-tier dip on the same star, in a different sector, sits a whole number of binary periods away with a similar length (within 1.6 times) and depth (within 2 times). On the 301 development stars of our second list it moved 49 dips on 7 stars, and the real dips' excess over the upside-down control fell from +65 to +20. Its price is about 0.8% of planted fake planets, flagged by bad luck.
+
 ## 10.6 What this lets us conclude, and what it doesn't
 
 - **Passing vetting does not make a planet.** It makes a **candidate**: a dip with no known innocent explanation. Confirmation needs more data, usually from other telescopes.
