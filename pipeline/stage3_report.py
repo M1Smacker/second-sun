@@ -58,6 +58,12 @@ def apply_v7(ev):
     ev["pdc_snr"] = pd.to_numeric(ev["pdc_snr"], errors="coerce").where(ev["seen_by"] == "SAP only")
     for i in ev.index[P]:
         ev.at[i, "tier"] = C.tier_of(ev.loc[i].to_dict())
+    if "c6" in C.V.ON:                      # v8 candidate: orbit-locked flag, judged on the tiers above (partners must be tier 1)
+        ep = C.Ephem(pd.read_csv(C.TARGETS, comment="#"), C.eb_widths())
+        E = ev[P]; ev["orbit_lock"] = False
+        ev.loc[P, "orbit_lock"] = C.orbit_locked(E, {int(t): [p for _, p, _ in ep.by.get(int(t), [])] for t in set(E.tic)})
+        for i in ev.index[P & ev["orbit_lock"].values]:
+            ev.at[i, "tier"] = C.tier_of(ev.loc[i].to_dict())
     return ev
 
 

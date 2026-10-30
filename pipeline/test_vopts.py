@@ -115,5 +115,22 @@ def test_bf4_floor():
     print(f"PASS bf4: default finds the 3 h dip with box {min(d0)} h; with the floor the boxes are {g} and the event box is {min(d1)} h")
 
 
+def test_c6_lock():
+    """c6: two tier-1 dips on one star, other sectors, 3 binary periods apart, same box and depth, are locked; off by 0.3 period, other kind, depth x3, same sector or a tier-2 partner are not."""
+    import pandas as pd
+    P = 7.3
+    def E(rows):
+        return pd.DataFrame([dict(tic=1, kind=k, sector=s, center=c, dur_h=8.0, depth_ppm=dp, tier=t) for k, s, c, dp, t in rows])
+    lock = lambda rows: list(C.orbit_locked(E(rows), {1: [P]}))
+    assert lock([("real", 10, 100.0, 900, "1A"), ("real", 11, 100.0 + 3 * P, 1000, "1B")]) == [True, True]
+    assert lock([("real", 10, 100.0, 900, "1A"), ("real", 11, 100.0 + 3.3 * P, 1000, "1B")]) == [False, False]
+    assert lock([("real", 10, 100.0, 900, "1A"), ("flip", 11, 100.0 + 3 * P, 1000, "1B")]) == [False, False]
+    assert lock([("real", 10, 100.0, 300, "1A"), ("real", 11, 100.0 + 3 * P, 1000, "1B")]) == [False, False]
+    assert lock([("real", 10, 100.0, 900, "1A"), ("real", 10, 100.0 + 3 * P, 1000, "1B")]) == [False, False]
+    assert lock([("real", 10, 100.0, 900, "1A"), ("real", 11, 100.0 + 3 * P, 1000, "2")]) == [False, False]
+    assert C.tier_of(dict(gap_dump=False, burst=False, flipmatch=False, c5=False, orbit_lock=True)) == "2"
+    print("PASS c6: a locked pair is found; off-period, other kind, depth x3, same sector and tier-2 partners are not; a locked event is tier 2")
+
+
 if __name__ == "__main__":
-    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window(); test_bf4_floor()
+    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window(); test_bf4_floor(); test_c6_lock()

@@ -180,13 +180,38 @@ def common_moment_n(E):
     return out
 
 
+# v8 candidate (switch c6; VESPER-STUDY-PLAN section 7, C6 variant C; FIX-QUEUE 30): a planet's transits are not locked to the binary's clock, a leftover eclipse is.
+LOCK_BOX, LOCK_DEPTH = 1.6, 2.0     # the stack-link matching numbers, not tuned
+
+
+def lock_pair(c1, d1, c2, d2, P):
+    """True if two event centres (d) sit a whole number (1 or more) of periods P apart, within the chain's match window 0.5 x the longer box (h) + 0.1 d."""
+    r = abs(c1 - c2) / P
+    return round(r) >= 1 and abs(r - round(r)) * P <= 0.5 * max(d1, d2) / 24 + 0.1
+
+
+def orbit_locked(E, periods):
+    """E = primary events of a run (columns tic, kind, sector, center, dur_h, depth_ppm, tier); periods = {tic: [binary periods d]}. Returns a bool array: the event is tier 1 and has a tier-1
+    partner of the same kind on the same star, in another sector, with box length within LOCK_BOX and depth within LOCK_DEPTH, at a whole number of one of the star's periods."""
+    out = np.zeros(len(E), bool); pos = {ix: n for n, ix in enumerate(E.index)}
+    T = E[E.tier.isin(["1A", "1L", "1B"])]
+    for (tic, _), g in T.groupby(["tic", "kind"]):
+        Ps = periods.get(int(tic)) or []
+        ix, c, d, s, dp = g.index.values, g.center.values, g.dur_h.values, g.sector.values, g.depth_ppm.values
+        for a in range(len(g)):
+            for b in range(a + 1, len(g)):
+                if s[a] != s[b] and 1 / LOCK_BOX <= d[a] / d[b] <= LOCK_BOX and 1 / LOCK_DEPTH <= dp[a] / dp[b] <= LOCK_DEPTH and any(lock_pair(c[a], d[a], c[b], d[b], P) for P in Ps):
+                    out[pos[ix[a]]] = out[pos[ix[b]]] = True
+    return out
+
+
 def tier_of(e):
     """2 = flagged (kept, lower priority); 1A second product agrees at SNR >= 4; 1L agrees at 3 to 4; 1B no second product (cannot be confirmed
     by this check, includes every QLP-only star); 3 = a second product exists and disagrees (SNR < 3), kept and labelled. Stage 2's 'survivors'
     are exactly 1A + 1L + 1B. v7: if the event carries `common` (the common-moment flag) it replaces `burst`; if it carries `pdc_snr` (SAP-only dips) a value under PDC_MIN makes it tier 3."""
     c = e.get("common")
     bad_moment = e["burst"] if c is None or c != c else c
-    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("step") or e.get("ramp") or e.get("dominated"):
+    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("orbit_lock") or e.get("step") or e.get("ramp") or e.get("dominated"):
         return "2"
     p = e.get("pdc_snr")
     if p is not None and p == p and p < PDC_MIN:

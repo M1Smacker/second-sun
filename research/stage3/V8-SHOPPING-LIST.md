@@ -3,7 +3,7 @@
 Rules for v8 are still: settings frozen per version, never tuned on results, the 594 sealed G2 stars untouched until v8 is frozen, the preregistration is met and Ahmed says go. Every item below has its evidence in `VESPER-STUDY-PLAN.md` (sections 6 to 8) and `VESPER-VERSIONS.md`.
 
 ## A. Ready to take (measured)
-1. **C6 orbit-locked flag, variant C** (tier-1 partners with matched box length and depth). Removes 47 locked real tier-1 events on 7 stars on G2 dev; real minus upside-down excess goes +65 to +20 (bar 7) and 0 (bar 12). Cost 0.81% of injected tier-1 dips. G1 unchanged. Purity option, not a sensitivity one. Build as switch `c6` with a golden test (G1 events and tiers change only for locked events: none).
+1. **C6 orbit-locked flag, variant C** (tier-1 partners with matched box length and depth). Removes 47 locked real tier-1 events on 7 stars on G2 dev; real minus upside-down excess goes +65 to +20 (bar 7) and 0 (bar 12). Cost 0.81% of injected tier-1 dips. G1 unchanged. Purity option, not a sensitivity one. BUILT 30 Oct as switch `c6` (stage3_report.apply_v7); reproduces the offline numbers exactly; G1 unchanged; tests PASS. See `V8-DESIGN.md`.
 (C5a box floor `bf4` was here: tested 30 Oct, NOT ACCEPTED, see section C.)
 
 ## B. Real forks for Ahmed (policy, not science)
