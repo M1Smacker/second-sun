@@ -183,7 +183,7 @@ def test_sap_twin_hook_routes_both_suffixes():
 
 def sap_rows():
     row = lambda kind, product, center, tic=1, dur=8, tier="1B", sector=1: dict(
-        kind=kind, product=product, best="SPOC", center=center, dur_h=dur, snr=8.0, tic=tic, sector=sector, camera=1, tier=tier, c8_n=0, c8_best=np.nan, gap_dump=False,
+        kind=kind, product=product, best="SPOC", center=center, dur_h=dur, snr=8.0, depth_ppm=1000.0, tic=tic, sector=sector, camera=1, tier=tier, c8_n=0, c8_best=np.nan, gap_dump=False,
         burst=False, flipmatch=False, c5=False, ecl_overlap=False, repeater=False, step=False, ramp=False, dominated=False)
     return row
 
