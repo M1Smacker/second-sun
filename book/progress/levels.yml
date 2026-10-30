@@ -1,3 +1,4 @@
+# Learning track version 1.3 (30 Oct 2026). When a level is marked done, write the track version next to the date. See docs/versions.md.
 # Ahmed's learning track. L0 is a warm-up; progress counts L1-L6 ("Level 2 of 6"). Set done: to the date a level is finished.
 - {level: L0, title: "What a light curve is",           done: null}
 - {level: L1, title: "How big is the dip?",             done: null}
