@@ -34,7 +34,9 @@ def summarise(path):
         first[next((k for k, _ in FLAGS if e.get(k)), "clean")] += 1
     inj = g.get("inj") or []
     meta = g["meta"]
-    return dict(tic=g["tic"], sector=g["sector"], mtime=os.path.getmtime(path), n=len(ev), kinds=dict(kinds), first=dict(first), tiers=dict(tiers), boxes=dict(boxes), bands=dict(bands),
+    evs = [dict(kind=e["kind"], product=e["product"], center=e["center"], dur_h=e["dur_h"], snr=e["snr"], depth_ppm=e["depth_ppm"], tier=e.get("tier", "?"),
+                flags=[k for k, _ in FLAGS if e.get(k)]) for e in ev]
+    return dict(tic=g["tic"], sector=g["sector"], mtime=os.path.getmtime(path), n=len(ev), evs=evs, files={m["product"]: m["file"] for m in meta if m["status"] == "ok"}, kinds=dict(kinds), first=dict(first), tiers=dict(tiers), boxes=dict(boxes), bands=dict(bands),
                 files_ok=sum(m["status"] == "ok" for m in meta), files_bad=Counter(m["status"] for m in meta if m["status"] != "ok"),
                 products=sorted({m["product"] for m in meta if m["status"] == "ok"}),
                 inj_n=len(inj), inj_second=sum(1 for i in inj if (i.get("snr_B") or 0) >= 4), pdc=g.get("pdc_check") == "v7u")
@@ -71,7 +73,7 @@ def machine():
     """Python workers of the Second Sun scripts and the whole-machine CPU load (Windows; None if it cannot be read)."""
     try:
         r = subprocess.run(["powershell", "-NoProfile", "-Command",
-                            "$p=@(Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -match 'stage3|stage2|paired_recovery|chain_recovery|audit_all' }).Count;"
+                            "$p=@(Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -match 'stage3|stage2|paired_recovery|chain_recovery|audit_all' -and $_.CommandLine -notmatch 'watch_export' }).Count;"
                             "$c=(Get-CimInstance Win32_Processor | Measure-Object LoadPercentage -Average).Average; \"$p $c\""], capture_output=True, text=True, timeout=40)
         w, c = r.stdout.split()[:2]
         return dict(workers=int(w), cpu=int(float(c)))
@@ -110,6 +112,65 @@ def add_note(text):
     n = notes(); n.append(dict(at=now_iso(), text=text)); NOTES.parent.mkdir(exist_ok=True); json.dump(n[-30:], open(NOTES, "w"), indent=1)
 
 
+WHAT = {"gap_dump": "Right next to a data gap or a momentum dump. The dashed lines mark gaps. The instrument is settling there, so the dip is probably not the star.",
+        "flipmatch": "The upside-down copy of this star has a matching wiggle at the same time, so this is not a one-way dip.",
+        "c5": "It falls where one of the binary's own eclipses should be.",
+        "ecl_overlap": "It overlaps an eclipse of the binary.",
+        "repeater": "This light curve has many similar dips, so it is probably another eclipsing pair in the same pixels.",
+        "step": "The brightness level is different before and after, so it is a step, not a dip that comes back.",
+        "ramp": "Slow ramp just after data resumes, a known instrument effect.",
+        "dominated": "A stronger event of the opposite kind sits in the same light curve.",
+        "clean": "No safety check fired here."}
+GAL = {}
+
+
+def card(tic, sec, e, blind, mtime):
+    """One picture: the star's own binned light 36 h either side of the event, in ppm from its median. An upside-down event is drawn from the flipped curve, so every picture shows a dip."""
+    import numpy as np
+    import dataset as DS, stage2_search as S2
+    if "init" not in GAL:
+        S2._init(); GAL["init"] = 1
+    f = DS.DATA / str(tic) / GAL["files"][(tic, sec)][e["product"]]
+    d, _ = S2.prepare(f)
+    if d is None:
+        return None
+    P = S2.Prod(d["t"], d["f"], 1 if e["kind"] == "real" else -1)
+    x = (P.bt - e["center"]) * 24; k = np.abs(x) <= 36
+    if k.sum() < 20:
+        return None
+    y = (P.bf[k] / P.med - 1) * 1e6; ok = np.isfinite(y)
+    gaps = [round(float((g - e["center"]) * 24), 1) for g in d["edges"] if abs(g - e["center"]) * 24 <= 36]
+    first = next((f_ for f_ in e["flags"]), "clean")
+    c = dict(tic=tic, sector=sec, product=e["product"], tier=e["tier"], snr=round(e["snr"], 1), depth=round(e["depth_ppm"]), dur=e["dur_h"], flags=e["flags"], first=first, what=WHAT[first],
+             at=datetime.datetime.fromtimestamp(mtime, datetime.timezone.utc).strftime("%H:%M"), x=[round(float(v), 1) for v in x[k][ok]], y=[int(round(v)) for v in y[ok]], gaps=gaps)
+    if not blind:
+        c["kind"] = e["kind"]
+    return c
+
+
+def gallery(run, A, blind, per_loop=3):
+    """Keeps the last 8 kept (tier 1) and the last 8 stopped events as pictures; new ones come from the groups finished since the last call. Persisted in the run folder."""
+    f = run / "watch_gallery.json"
+    st = json.load(open(f)) if f.exists() else dict(last=0, kept=[], stopped=[])
+    new = sorted([r for r in A.values() if r["mtime"] > st["last"]], key=lambda r: -r["mtime"])[:30]
+    if new:
+        st["last"] = max(r["mtime"] for r in new)
+        GAL["files"] = {(r["tic"], r["sector"]): r["files"] for r in A.values()}
+        pool = [(r, e) for r in new for e in r["evs"] if "SAP" not in e["product"]]
+        kept = [x for x in pool if x[1]["tier"] in ("1A", "1L", "1B")][:per_loop]
+        stopped = sorted([x for x in pool if x not in kept], key=lambda x: -x[1]["snr"])[:per_loop]
+        for key, picks in (("kept", kept), ("stopped", stopped)):
+            for r, e in picks:
+                try:
+                    c = card(r["tic"], r["sector"], e, blind, r["mtime"])
+                except Exception as ex:
+                    print("gallery skip", r["tic"], r["sector"], type(ex).__name__, str(ex)[:80], flush=True); c = None
+                if c:
+                    st[key] = ([c] + st[key])[:8]
+        json.dump(st, open(f, "w"))
+    return dict(kept=st["kept"], stopped=st["stopped"])
+
+
 def build(run, blind, label, loop=0):
     run = pathlib.Path(run)
     plan = totals(run)
@@ -136,7 +197,7 @@ def build(run, blind, label, loop=0):
              events=dict(found=nev, stopped_by=[dict(flag=k, text=t, n=first.get(k, 0)) for k, t in FLAGS] + [dict(flag="clean", text="No flag fired", n=first.get("clean", 0))],
                          tiers=dict(tiers), boxes={k: boxes[k] for k in sorted(boxes, key=float)}, bands={l: bands.get(l, 0) for _, _, l in BANDS}),
              selftest=dict(fakes=inj_n, second_product_sees=inj_s),
-             history=history(run, done, nev, round(rate, 1)), notes=notes()[-8:][::-1],
+             history=history(run, done, nev, round(rate, 1)), notes=notes()[-8:][::-1], gallery=gallery(run, A, blind),
              ticker=[dict(tic=r["tic"], sector=r["sector"], events=r["n"], files=r["files_ok"], at=datetime.datetime.fromtimestamp(r["mtime"], datetime.timezone.utc).strftime("%H:%M:%S"))
                      for r in rows[-12:][::-1]])
     if not blind:

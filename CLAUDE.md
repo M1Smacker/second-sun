@@ -14,6 +14,6 @@ Every research task follows `research/RESEARCH-BLUEPRINT.md`: questions tied to 
 ## Other standing rules (details in memory and the files named)
 - File obvious follow-ups yourself in the project's queue (Stage 3: `research/stage3/FIX-QUEUE.md`) and do them when best, inside the weekly cap; ask only real forks.
 - Weekly cap and stop line are set by Ahmed in chat (25% and 23% on 27 Oct 2026); log every task in `research/usage-ledger.md`.
-- Never click the live Eyes page; real events stay in `data\` (aggregates only are published); settings are frozen per version and never tuned on results.
+- Never click the live Eyes page; real events stay in `data\`, EXCEPT pictures on the Search window page, which Ahmed allowed on 30 Oct 2026 so he can learn from them (real TESS light around a dip; in the sealed run the pictures are BLIND: real and upside-down mixed, kind not labelled until the preregistered analysis); no event lists, tables or candidate claims are published; settings are frozen per version and never tuned on results.
 - No en or em dashes in book text or replies; phone-first, short replies.
 - End every reply that finishes work with a "Next:" line: the next concrete step, why it is next, its usage cost, and whether Claude starts it now or needs Ahmed (a real fork only). He had to ask twice.
