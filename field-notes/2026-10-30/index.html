@@ -16,7 +16,7 @@
         <link rel="prev" href="../2026-10-29/">
       
       
-        <link rel="next" href="../../reference/for-astronomers/">
+        <link rel="next" href="../../versions/">
       
       
         
@@ -1473,6 +1473,8 @@
       
         
       
+        
+      
     
     
     
@@ -2129,6 +2131,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#late-night-getting-the-sealed-run-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Late night: getting the sealed run ready
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2141,6 +2154,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2478,6 +2519,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#late-night-getting-the-sealed-run-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Late night: getting the sealed run ready
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2608,6 +2660,8 @@
 <p>Ahmed asked to watch the search happen. We built a <strong>Search window</strong> page in the book. While a run goes, a small script counts what the search has written (stars done, dips stopped by each safety check, the self-test of fake planets, files skipped) and publishes only those counts. It never shows a real dip. For the one-time sealed search it runs in <strong>blind mode</strong>: real and upside-down dips are pooled, so nobody sees the answer before the analysis we wrote down in advance. Tested on the finished development run (3,425 star-sectors) and on a partial copy for the "running" state. Honest limit: I do not look at stars by eye; every star gets the same checks, and the page lets you watch them work.</p>
 <p>Later that night Ahmed asked that the page update by itself, show whether the search is working, and say what is happening. The page now has a live light (running, no process found, not updating, finished), a path diagram where the working step glows, speed charts, counts by dip length and strength, a notes line from Claude, and a collapsed "for the curious" panel with the technical settings. It reads its numbers from a separate data branch on GitHub every minute, so nothing needs a tap and the book does not have to be published again for each update. We tested it with a fake run that grew while the page stayed open: the numbers changed with no reload.</p>
 <p>Ahmed then allowed pictures of real stars and real dips on the Search window so he can learn from them. The page now draws real TESS light, 36 hours either side of an event, with the dip marked and the data gaps dashed, and says in one sentence why a stopped dip was stopped. In the sealed run the pictures are blind: real and upside-down events are mixed, the kind is not even stored in the exported file, and the labels are revealed only in the analysis we wrote down in advance. Still unpublished: event tables, candidate claims, any verdict. He also asked us to cut generic lines from the page, which is now a rule for new pages.</p>
+<h2 id="late-night-getting-the-sealed-run-ready">Late night: getting the sealed run ready<a class="headerlink" href="#late-night-getting-the-sealed-run-ready" title="Permanent link">&para;</a></h2>
+<p>Ahmed approved the next step, and said not to stop before the download. Before any sealed file was fetched we wrote the permission into the locked rules as Amendment 1, so the order of events is on record: rules, freeze, approval, download. Then we built four things that touch no result. A <strong>runner that refuses to start</strong> unless the code on disk has exactly the frozen fingerprint (we tested it with the wrong switch, the wrong star set and the right one). A <strong>scorecard</strong> that prints the eight benchmark lines with their pass marks written beforehand; we tried it on the development stars, where it shows why the new orbit-locked check matters: without it the development stars look like an excess, with it they do not. The <strong>expected transits of the known planet TOI-1338 b</strong>, taken from the discovery paper's prediction table and checked cell by cell against the page, so that later we can say which of its transits our search should have caught. And a <strong>download script</strong> for the 594 sealed stars, now running in the background. The search itself has not started and waits for a separate yes.</p>
 
 
 
@@ -2643,7 +2697,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 2.4.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
