@@ -150,3 +150,6 @@ The question: does our HARD quality filter throw away useful cadences? Facts alr
 2. `git log --oneline -8` and `git status --short`; the book should say "0 commits behind" from `teach_check.py`.
 3. Check usage; confirm the weekly figure is under 35% (after the reset it will be near 0).
 4. Continue with the first task above that is not done. Update the table and write the Field Note as you finish each one.
+
+## 30 Oct night: the sealed search is done and scored
+Result: NO EXCESS (measured null); S2 false alarms 8.91 per 1,000 against a mark of 8 (borderline FAIL); TOI-1338 b 1 of 7 strong tests. Files: research/stage3/benchmark-g2-sealed.txt, g2-by-label-sealed.txt, asymmetry_g2_sealed_v5.txt, VESPER-VERSIONS.md (benchmark baseline), field note 2026-10-30. New: pipeline/leads_export.py plus test_leads.py, LEADS-RULES.md (Amendment 1 written after the scorecard, see it), "What the search found" on the Search window. Book 2.5.0 once published (Ahmed says publish; then run the final unblinded export with --push for the live data branch). Open: FIX-QUEUE section "After the sealed search".

@@ -4,9 +4,9 @@ A version number says which exact rules or pages a result, a score or a progress
 
 | Thing | Version now | Baseline (frozen reference) | Why it has one |
 |---|---|---|---|
-| Vesper, the search | 0.8.0 | 0.7.1, and 0.8.0 once the sealed search is scored | every result depends on its exact rules |
+| Vesper, the search | 0.8.0 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) from now | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.4.0 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.5.0 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.3 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -26,7 +26,7 @@ Earlier names: Stage 2 and "v1 to v7". The full record, with fingerprints of eac
 | 0.6.0 | 28 Oct | The raw-light (SAP) twin is searched too |
 | 0.7.0 | 28 Oct | One shared-moment check for both kinds replaces the old burst check; raw-light dips must show in the cleaned light |
 | 0.7.1 | 29 Oct | A switch between the two star lists, no rule changed. **Baseline of the improvement study** |
-| 0.8.0 | 30 Oct | The orbit-locked check. Frozen (fingerprint 5f73692944aa) and used for the one-time search of the sealed G2 stars |
+| 0.8.0 | 30 Oct | The orbit-locked check. Frozen (fingerprint 5f73692944aa) and used for the one-time search of the sealed G2 stars. Result: no excess of real dips over noise |
 
 Tested in the study and not taken: wider smoothing windows, a looser step test, retrained check weights, a waiver for strong dips, and dropping the 3 hour box. None gave more real dips without more false alarms than our budget allows.
 
@@ -54,6 +54,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.2.0 | 27 Oct | One learning path; new type and the chapter rail on large screens |
 | 2.3.0 | 28 Oct | The first real search page; new sections in chapters 7 to 10 |
 | 2.4.0 | 30 Oct | The Search window with live counts and pictures; additions to chapters 9, 10 and 14; this page |
+| 2.5.0 | 30 Oct | The Search window opens with "What the search found": a plain verdict, a funnel and lead cards; the sealed search result |
 
 ## Learning track
 

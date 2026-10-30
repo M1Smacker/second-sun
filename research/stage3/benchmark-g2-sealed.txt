@@ -1,0 +1,35 @@
+VESPER BENCHMARK on G2 run sealed_5f73692944aa (sealed)   Vesper options ['c6']
+S1. Excess of real tier-1 dips over noise (preregistration section 5; PDCSAP half has the fair control, the SAP-only half is reported on its own line and is NEVER evidence)
+   bar  7: real  26, upside-down  59, noise-expected real  41.8, chance of at least the observed 0.997
+   bar  8: real  20, upside-down  48, noise-expected real  32.2, chance of at least the observed 0.992
+   bar 10: real   7, upside-down  35, noise-expected real  19.7, chance of at least the observed 1.000
+   bar 12: real   5, upside-down  24, noise-expected real  13.5, chance of at least the observed 0.997
+   VERDICT S1: NO EXCESS   [rule: chance <= 0.01 at bar 7 and real above expected at bars 8, 10, 12]   asymmetry file: asymmetry_g2_sealed_v5.txt
+   SAP-only half (no fair control, not evidence): real 12, upside-down 1
+S2. False alarms: upside-down tier-1 60 in 6734 star-sectors = 8.91 per 1,000 (95% interval 6.80 to 11.47); mark 8 or fewer: FAIL (v8 did not generalise)
+S3. Mirror test, planted dips against planted bumps through the whole chain (K 8 to 14): dips 37.5%, bumps 37.3%, gap +0.1 points; mark within 3: PASS
+S4. Completeness, planted dips, tier-1 recovery by box length (K 8 to 14 pooled), 95% Wilson interval and the development slice beside it
+   4 h box:  41.0% (38.2 to 43.8), n 1184   | development  46.5% (43.6 to 49.4)
+   8 h box:  46.8% (44.0 to 49.6), n 1184   | development  48.5% (45.6 to 51.4)
+   14 h box:  34.1% (31.5 to 36.9), n 1184   | development  36.1% (33.3 to 38.9)
+   20 h box:  28.0% (25.5 to 30.6), n 1184   | development  21.3% (19.0 to 23.8)   DID NOT GENERALISE
+   4 h box by K (depth in noise multiples): 8: 22%, 10: 38%, 12: 49%, 14: 55%
+   8 h box by K (depth in noise multiples): 8: 27%, 10: 46%, 12: 56%, 14: 58%
+   14 h box by K (depth in noise multiples): 8: 18%, 10: 35%, 12: 42%, 14: 43%
+   20 h box by K (depth in noise multiples): 8: 17%, 10: 27%, 12: 33%, 14: 35%
+S5. Orbit-locked flag (c6): 13 events moved to tier 2 (13 real, 0 upside-down) on 4 stars
+   cost on planted dips (offline, the harness cannot see other sectors): 9 of 1774 tier-1 planted dips would be flagged by chance = 0.51% (development slice: 0.81%)
+S6. TOI-1338 b (known circumbinary planet; ephemeris from Kostov et al. 2020, AJ 159, 253 (arXiv:2004.07783), Table 6, BJD-2455000 converted to BTJD (BJD-2457000) by subtracting 2000): 11 expected transits fall in the downloaded sectors
+   epoch BTJD 2049.69 +- 0.02 d, 7.9 h, model transit share 100% (strong test), sector 27: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 2142.40 +- 0.02 d, 7.5 h, model transit share 100% (strong test), sector 30: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 2237.92 +- 0.02 d, 9.7 h, model transit share 100% (strong test), sector 34: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 2331.00 +- 0.03 d, 6.3 h, model transit share 100% (strong test), sector 37: found, box 3 h, SNR 8.0, tier 1L
+   epoch BTJD 2989.35 +- 0.05 d, 6.0 h, model transit share 85% (strong test), sector 62: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 3084.82 +- 0.07 d, 8.2 h, model transit share 73% (strong test), sector 65: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 3177.98 +- 0.06 d, 4.9 h, model transit share 70% (strong test), sector 68: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 3743.62 +- 0.14 d, 6.3 h, model transit share 36% (weak test), sector 89: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 3836.04 +- 0.15 d, 4.9 h, model transit share 34% (weak test), sector 93: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 3931.42 +- 0.22 d, 8.4 h, model transit share 31% (weak test), sector 96: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+   epoch BTJD 4024.62 +- 0.16 d, 4.7 h, model transit share 28% (weak test), sector 98: no event inside the window (missed, or inside an eclipse or a gap: look up why)
+S7. Labels split (professionals' table, not in it, TOIs, none): research/stage3/g2-by-label-sealed.txt
+S8. Machine health: 6877 star-sectors read; file statuses: {'ok': 24639, 'no safe windows': 223, 'too little data': 3}; 4796 events written; products: {'QLP': 6775, 'SPOC': 5332, 'TESS-SPOC': 5276, 'TESS-SPOC-SAP': 3800, 'SPOC-SAP': 3682}

@@ -17,6 +17,14 @@
 .sw-note { background: var(--ss-surface); border-left: 4px solid var(--ss-accent); padding: 8px 14px; border-radius: var(--ss-radius); }
 .sw-blind { background: var(--ss-surface); border-left: 4px solid var(--ss-accent); padding: 10px 14px; border-radius: var(--ss-radius); }
 .sw h3 { margin-top: 1.6em; }
+.sw-verdict { font-size: 18px; font-weight: 600; margin: .4em 0 .8em; }
+.sw-checks { list-style: none; padding: 0; margin: 8px 0; }
+.sw-checks li { position: relative; padding-left: 1.5em; margin: 2px 0; }
+.sw-checks li::before { position: absolute; left: 0; color: var(--ss-text-3); }
+.sw-c-done::before { content: "\2713"; color: var(--ss-accent); }
+.sw-c-pending::before { content: "\25CB"; }
+.sw-c-notbuilt::before { content: "\2715"; }
+.sw-c-info::before { content: "\2022"; }
 .sw-row, .sw-flag { margin: 10px 0; }
 .sw-lab { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
 .sw-bar { background: var(--ss-surface); border: 1px solid var(--ss-line); border-radius: 4px; height: 12px; overflow: hidden; }
@@ -50,6 +58,7 @@
 ## Notes
 
 - The light at the top is green and pulsing when numbers are arriving and search processes are running. Amber: the exporter is up but no search process is found. Red: no new numbers for a few minutes.
+- "What the search found" sits right under the light. It starts with one plain verdict, then a funnel from all dips to leads, real beside upside-down. A lead is a star with a confirmed real dip and no known planet, one card per star, with the checks done, the checks waiting, and the next one. The rules were written before any sealed result was read (LEADS-RULES.md in the project).
 - Every star goes through the same path. The step that is working glows.
 - The nine safety checks are asked in order, and a dip stopped by the first one never reaches the next. Most dips are stopped by the spacecraft-settling check, because that is where TESS data is worst.
 - Tier 1 is the group we keep: dips with no known innocent cause. It is a list to study, not a list of planets.

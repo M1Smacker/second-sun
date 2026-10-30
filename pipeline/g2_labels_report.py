@@ -21,7 +21,7 @@ pr["cbp"] = pr.tic.map(lab.known_cbp_host).fillna(False).astype(bool)
 groups = {"(a) in the professionals' table": lambda d: d.inT, "(b) not in their table": lambda d: ~d.inT, "(c) TOI hosts": lambda d: d.toi,
           "(d) none of the three": lambda d: ~d.inT & ~d.toi & ~d.cbp, "all": lambda d: d.tic == d.tic}
 T1 = ["1A", "1L", "1B"]
-ratios, src = R.asym_ratios()
+ratios, src = R.asym_ratios("sealed_v5" if label.startswith("sealed") else "v5")
 out = [f"G2 {label} run {run}: tier-1 events split by the labels clause (counts only; DEVELOPMENT USE; best product per star-sector; PDCSAP half and SAP half together as in the aggregate report)."]
 out.append(f"Asymmetry ratio file used for the noise-expected line: {src or 'none yet'}")
 out.append("group | stars | star-sectors | tier-1 real | tier-1 upside-down | by SNR bar 7 / 8 / 10 / 12: real - upside-down")

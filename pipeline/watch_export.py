@@ -7,6 +7,7 @@ Usage: python watch_export.py RUN_FOLDER [--blind] [--label TEXT] [--out PATH] [
 updates by itself, with no new book publish. RUN_FOLDER is e.g. ..\\data\\stage3_g2\\dev_73f62615e365. Totals come from the star list (S2.groups), cached in watch_plan.json."""
 import sys, os, json, glob, time, pathlib, subprocess, datetime, argparse, shutil
 from collections import Counter
+import leads_export as LE
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -199,6 +200,7 @@ def build(run, blind, label, loop=0):
                          tiers=dict(tiers), boxes={k: boxes[k] for k in sorted(boxes, key=float)}, bands={l: bands.get(l, 0) for _, _, l in BANDS}),
              selftest=dict(fakes=inj_n, second_product_sees=inj_s),
              history=history(run, done, nev, round(rate, 1)), notes=notes()[-8:][::-1], gallery=gallery(run, A, blind),
+             leads=LE.build(run, A, B, ph == "finished", blind, card, GAL),
              ticker=[dict(tic=r["tic"], sector=r["sector"], events=r["n"], files=r["files_ok"], at=datetime.datetime.fromtimestamp(r["mtime"], datetime.timezone.utc).strftime("%H:%M:%S"))
                      for r in rows[-12:][::-1]])
     if not blind:

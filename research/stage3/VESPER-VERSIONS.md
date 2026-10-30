@@ -54,3 +54,6 @@ Sources: `aggregate_v7.txt`, `chain_recovery_v7.txt`, `aggregate_g2dev.txt`, `ch
 | C5a + C1b + C2 (`bf4,c1b,c2`) | 0.7.2 candidate | 8 h dips +13, +12; 4 h dips -76, -67 | 14 and 20 h: +93 net (160 gained, 67 lost, G1), +203 net (254, 51; G2 dev) | 9.3 (G1), 11.7 (G2 dev) | pass (+2.0, +2.9) | NOT ACCEPTED: above the budget on both sets |
 
 Known weak spots of 0.7.1 found by the study's phase A (details in `VESPER-STUDY-PLAN.md` section 6): flags lose 38 to 45% of planet-shaped fakes; the step flag is the largest cost (alone 5.8 to 11.3% of fakes) and the largest guard; for 8 h dips it fires only through its data-cover rule near gaps; for 20 h dips the 2 d smoothing leaves raised shoulders (median +0.21 of the depth) and keeps only 68% of the depth.
+
+## Benchmark baseline: Vesper 0.8.0 on G2 sealed (30 Oct 2026)
+Run sealed_5f73692944aa, option c6, fingerprint 5f73692944aa. S1 NO EXCESS (real 26, upside-down 59, noise-expected 41.8 at bar 7). S2 8.91 per 1,000 (mark 8, FAIL on the mark; interval 6.80 to 11.47). S3 PASS (gap +0.1 points). S4 planted-dip recovery 4 h 41.0%, 8 h 46.8%, 14 h 34.1%, 20 h 28.0% (K 8 to 14). S5 13 events moved to tier 2, 0.51% cost. S6 TOI-1338 b: 1 of 7 strong tests (preregistered window). Full scorecard: research/stage3/benchmark-g2-sealed.txt. Later Vesper versions are compared against these numbers.

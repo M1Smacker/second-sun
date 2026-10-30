@@ -35,4 +35,4 @@ Every funnel stage shows real and upside-down side by side (pooled while the run
 - Lead cards are leads, never claims. The card wording never says planet.
 
 ## Amendments
-(none)
+**Amendment 1 (30 Oct 2026, written AFTER the sealed scorecard was read).** The first build counted the first-pass group files. On the sealed run it showed 129 real against 72 upside-down Confirmed and 53 leads, while the scorecard said NO EXCESS (26 real, 59 upside-down kept). The difference is the last checks (union, the c6 flag, the PDCSAP check) and counting only the best light curve of each star-sector. This was a counting error, not a change in what a lead is. Changes: (1) a finished run is counted from the scorecard's own events (stage3_report.load, best product, PDCSAP half), so the funnel reproduces the scorecard; (2) a lead is one per star, its strongest Confirmed event, with the number of Confirmed dips; (3) the page also shows the scored S1 verdict line when the scorecard exists. The definition of a lead (tier 1A, real, not a known host) is unchanged. While a run is still going the page shows running counts, labelled as such.
