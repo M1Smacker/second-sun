@@ -81,7 +81,7 @@ The old "open build items" line was eight different builds; each is its own task
 - [ ] **T107. Host radius and dilution in the efficiency table** (TIC radii from the headers for all 895 stars; two leads have none) so a limit can be set against Armstrong 2014 (Q2). Needs: T105. Cost: about 0.3. Who: Claude. Kind: S.
 - [ ] **T108. Go-professional playbook page** (private draft): ExoFOP takes only published candidates, so the route is a collaborator or a refereed paper first; what leaves the public book at that moment (Q14). Cost: about 0.5. Who: Claude, Ahmed decides. Kind: B.
 - [ ] **T109. Larger known-planet test:** add Kepler-field circumbinary hosts with TESS light curves (Q7); needs a download, so Ahmed's yes first. Cost: about 2. Who: Claude, Ahmed for the download. Kind: S.
-- [ ] **T110. Open Planet Hunters TESS II and Davenport 2014** (Q13, Q3): individual volunteer accuracy against our Eyes pass line, and the flare template against the T33 switch. Cost: about 0.5. Who: Claude. Kind: B.
+- [ ] **T110. Compare the Eyes pass line with our own sittings** (Q13): both papers are read (PHT II has no single-volunteer accuracy; Davenport confirms the flare template). What is left is to set the clear-hit and false-alarm lines from our own Eyes data and keep feedback in training. Cost: about 0.3. Who: Claude, needs Ahmed's sittings. Kind: B.
 
 ## Where the old lines went
 

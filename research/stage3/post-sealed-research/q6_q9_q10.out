@@ -1,0 +1,22 @@
+Q10: stars 594; QLP-only stars (all their ok products are QLP): 0 (0%)
+   QLP-only=False: stars with events 390; raw events real 1265, flip 1499; tier-1 real 26 flip 59; per 100 stars tier-1 real 6.7, flip 15.1
+
+Q9: 12 heaviest stars by raw events (real, flip, tier-1 real, tier-1 flip, binary period d if known, orbit_lock events):
+   142105299: 66 events (real 10, flip 56); t1 real 0, t1 flip 2; P [80.05]; orbit_lock 0
+   300446210: 62 events (real 56, flip 6); t1 real 5, t1 flip 0; P [7.87]; orbit_lock 4
+   140659978: 58 events (real 20, flip 38); t1 real 0, t1 flip 0; P [9.44]; orbit_lock 0
+   356015357: 54 events (real 36, flip 18); t1 real 0, t1 flip 0; P [11.26]; orbit_lock 0
+   103605167: 42 events (real 22, flip 20); t1 real 0, t1 flip 1; P [8.46]; orbit_lock 0
+   55497281: 40 events (real 27, flip 13); t1 real 0, t1 flip 0; P [14.91]; orbit_lock 0
+   198537349: 32 events (real 22, flip 10); t1 real 0, t1 flip 0; P [9.58]; orbit_lock 0
+   335484090: 32 events (real 31, flip 1); t1 real 0, t1 flip 0; P [7.5]; orbit_lock 0
+   140830390: 31 events (real 7, flip 24); t1 real 0, t1 flip 1; P [12.84]; orbit_lock 0
+   260128333: 30 events (real 12, flip 18); t1 real 3, t1 flip 0; P [14.61]; orbit_lock 0
+   293689267: 30 events (real 8, flip 22); t1 real 0, t1 flip 0; P [14.81]; orbit_lock 0
+   238197709: 28 events (real 8, flip 20); t1 real 0, t1 flip 0; P [13.73]; orbit_lock 0
+   25 heaviest stars: raw real 436 flip 374 (ratio 0.86); the other 365 stars: real 829 flip 1125 (ratio 1.36); heavy stars with a known binary period: 25 of 25
+
+Q6: stars with tier-1 real events in 2+ sectors: 3
+   260128333: sectors [37, 89, 93], events 3, centre gaps (d) [1413.4, 92.5], box h [3.0, 6.5], P_binary [14.61], orbit_lock events 0
+   300446210: sectors [29, 30, 32, 93], events 5, centre gaps (d) [27.8, 44.5, 5.6, 1650.5], box h [3.0], P_binary [7.87], orbit_lock events 0
+   441794509: sectors [49, 73, 83], events 3, centre gaps (d) [649.0, 266.1], box h [3.0], P_binary [14.82], orbit_lock events 0

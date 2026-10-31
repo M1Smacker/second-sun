@@ -1,6 +1,6 @@
 # Research questions after the sealed search (30 Oct 2026)
 
-**Status 31 Oct 2026: approved by Ahmed (weekly cap 83%). Answered: Q1, Q2, Q3, Q4, Q5, Q8, Q12, Q14. Partly answered: Q6, Q7, Q9, Q10, Q11, Q13. Findings, labels and links: `research/stage3/post-sealed-literature-2026-10-31.md`. The text below is the original plan, left as written.**
+**Status 31 Oct 2026: approved by Ahmed (weekly cap 83%). Answered: Q1, Q2, Q3, Q4, Q5, Q8, Q9, Q10, Q12, Q13, Q14. Partly answered: Q6, Q7, Q11. Findings, labels and links: `research/stage3/post-sealed-literature-2026-10-31.md`. The text below is the original plan, left as written.**
 
 Nothing in this file has been researched yet. Each question follows `research/RESEARCH-BLUEPRINT.md`: it names the decision it feeds, what our own data already says (with the file), what would change the plan, and how the hour would be spent (own data first, then primary sources, exact sentences, labels, filed). On approval, each approved question gets at least one hour of focused work and a section in `research/stage3/post-sealed-literature-<date>.md`; every finding becomes a plan change, a task in `research/stage3/BUILD-QUEUE.md` (T31 to T60) or, if it is a bug, an item in `research/stage3/FIX-QUEUE.md`. Evidence behind every question: `research/stage3/DEEP-ANALYSIS-AFTER-SEALED-2026-10-30.md`.
 
