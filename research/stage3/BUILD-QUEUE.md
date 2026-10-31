@@ -83,6 +83,11 @@ The old "open build items" line was eight different builds; each is its own task
 - [ ] **T109. Larger known-planet test:** add Kepler-field circumbinary hosts with TESS light curves (Q7); needs a download, so Ahmed's yes first. Cost: about 2. Who: Claude, Ahmed for the download. Kind: S.
 - [ ] **T110. Compare the Eyes pass line with our own sittings** (Q13): both papers are read (PHT II has no single-volunteer accuracy; Davenport confirms the flare template). What is left is to set the clear-hit and false-alarm lines from our own Eyes data and keep feedback in training. Cost: about 0.3. Who: Claude, needs Ahmed's sittings. Kind: B.
 
+## G. The next star list (31 Oct 2026; opinion in `research/stage3/NEXT-HUNT-OPINION-2026-10-31.md`)
+
+- [ ] **T111. Find the new star list:** pull a post-sector-26 eclipsing-binary catalogue (Villanova live portal or Gaia DR3 candidates; a small file, Ahmed's yes first), count the detached, P over 7 d, Tmag 13 or brighter stars and their sectors, with no light curve touched. Needs: Ahmed's yes. Cost: about 0.7. Who: Claude. Kind: B.
+- [ ] **T112. Write the G3 rule, count and split before any download:** star rule, number of stars, ranking by sectors, preregistration committed with its hash (as G2 was). Needs: T111, T37. Cost: about 0.5. Who: Claude. Kind: S.
+
 ## Where the old lines went
 
 The four lines under "After the sealed search" in the fix list: TOI-1338 b ephemeris drift is Q1 and T44; the chapter and learning-track check is T57a to T57d; the near-zero noise guard is T32; lead checks 5 and 6 (by-eye record, pixel check) are T46 and T47.
