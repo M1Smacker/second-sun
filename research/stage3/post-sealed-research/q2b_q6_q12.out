@@ -1,0 +1,28 @@
+Q2: sectors per star with data (sealed 594 stars): mean 11.3, median 6, 25-75% 4-10; star-sectors 6734
+noise per 8 h box median 329 ppm; tier-1 completeness (8 h box) by K: K6 12%, K8 28%, K10 47%, K12 57%, K14 59%, K18 60%
+depth ppm (what planet) | K | completeness | expected tier-1 detections per planet-bearing star over all its sectors at P = 60 / 95 / 150 / 300 d | limit on (planets per binary x geometry g) at P=95 and 300 d: N_ul 8.3 | N_ul 1.0
+    1000 (~4 Re, 1 Rsun) |  3.0 |   6% | 0.30 / 0.19 / 0.12 / 0.06 | P95: 7.4% | 0.89%   P300: 23.3% | 2.81%
+    2300 (TOI-1338 b as seen (median depth of its events)) |  7.0 |  20% | 0.99 / 0.62 / 0.40 / 0.20 | P95: 2.2% | 0.27%   P300: 7.1% | 0.85%
+    4000 (6.85 Re, 1 Rsun, undiluted) | 12.1 |  57% | 2.79 / 1.76 / 1.11 / 0.56 | P95: 0.8% | 0.10%   P300: 2.5% | 0.30%
+   10000 (Jupiter, 1 Rsun) | 30.4 |  60% | 2.93 / 1.85 / 1.17 / 0.59 | P95: 0.8% | 0.09%   P300: 2.4% | 0.29%
+Q6: tier-1 real: stars with events in 1 sector 21, 2 sectors 2, 3+ sectors 3; max sectors on one star 4
+Q6: tier-1 flip: stars with events in 1 sector 29, 2 sectors 5, 3+ sectors 3; max sectors on one star 10
+Q12 leads json keys: ['keys', 'cards']
+  TIC 151267228 hlsp_qlp_tess_ffi_s0007-0000000151267228_tess_v01_ll: TESSMAG=12.7253, RADIUS=0.285682, TEFF=3288.0
+  TIC 151267228 hlsp_qlp_tess_ffi_s0008-0000000151267228_tess_v01_ll: TESSMAG=12.7253, RADIUS=0.285682, TEFF=3288.0
+  TIC 151267228 hlsp_qlp_tess_ffi_s0034-0000000151267228_tess_v01_ll: TESSMAG=12.7253, RADIUS=0.285682, TEFF=3288.0
+  TIC 267542728 hlsp_qlp_tess_ffi_s0014-0000000267542728_tess_v01_ll: TESSMAG=10.2521, RADIUS=4.88886, TEFF=4683.0
+  TIC 267542728 hlsp_qlp_tess_ffi_s0015-0000000267542728_tess_v01_ll: TESSMAG=10.2521, RADIUS=4.88886, TEFF=4683.0
+  TIC 267542728 hlsp_qlp_tess_ffi_s0016-0000000267542728_tess_v01_ll: TESSMAG=10.2521, RADIUS=4.88886, TEFF=4683.0
+  TIC 300446210 hlsp_qlp_tess_ffi_s0001-0000000300446210_tess_v01_ll: TESSMAG=11.021, RADIUS=2.11414, TEFF=5722.78
+  TIC 300446210 hlsp_qlp_tess_ffi_s0002-0000000300446210_tess_v01_ll: TESSMAG=11.021, RADIUS=2.11414, TEFF=5722.78
+  TIC 300446210 hlsp_qlp_tess_ffi_s0004-0000000300446210_tess_v01_ll: TESSMAG=11.0755, RADIUS=2.62482, TEFF=5722.78
+  TIC 332079835 hlsp_qlp_tess_ffi_s0007-0000000332079835_tess_v01_ll: TESSMAG=9.179, RADIUS=-1.0, TEFF=12624.0
+  TIC 332079835 hlsp_qlp_tess_ffi_s0034-0000000332079835_tess_v01_ll: TESSMAG=9.179, RADIUS=-1.0, TEFF=12624.0
+  TIC 332079835 hlsp_qlp_tess_ffi_s0061-0000000332079835_tess_v01_ll: TESSMAG=9.179, RADIUS=-1, TEFF=12624.0
+  TIC 332607409 hlsp_qlp_tess_ffi_s0011-0000000332607409_tess_v01_ll: TESSMAG=12.785, RADIUS=-1.0, TEFF=3625.0
+  TIC 332607409 hlsp_qlp_tess_ffi_s0038-0000000332607409_tess_v01_ll: TESSMAG=12.785, RADIUS=-1.0, TEFF=3625.0
+  TIC 332607409 hlsp_qlp_tess_ffi_s0065-0000000332607409_tess_v01_ll: TESSMAG=12.785, RADIUS=-1, TEFF=3625.0
+  TIC 441794509 hlsp_qlp_tess_ffi_s0015-0000000441794509_tess_v01_ll: TESSMAG=12.1783, RADIUS=2.05806, TEFF=6221.0
+  TIC 441794509 hlsp_qlp_tess_ffi_s0016-0000000441794509_tess_v01_ll: TESSMAG=12.1783, RADIUS=2.05806, TEFF=6221.0
+  TIC 441794509 hlsp_qlp_tess_ffi_s0017-0000000441794509_tess_v01_ll: TESSMAG=12.1783, RADIUS=2.05806, TEFF=6221.0

@@ -146,3 +146,9 @@ One star-sector (TIC 392536805, sector 76, QLP product, 15 h box) has a dip scor
 - Scripts and raw outputs of the exploratory analyses: `research/stage3/post-sealed-analysis/` (`analyse2.py` flag and cluster tables, `analyse3.py` planted-dip fate, `analyse4.py` star-level bootstrap, `toi1338_why.py` events near each expected transit; outputs next to them).
 - Rules for the lead cards and their amendment: `research/stage3/LEADS-RULES.md`.
 - Builds and studies: `research/stage3/BUILD-QUEUE.md`, tasks T31 to T60. Bugs: `research/stage3/FIX-QUEUE.md`, items 61 to 69. Research questions waiting for approval: `research/RESEARCH-QUESTIONS-2026-10-30.md`.
+
+## Addendum, 31 Oct 2026 (after the research; details and links in `post-sealed-literature-2026-10-31.md`)
+- Section 3.7 (TOI-1338 b): the preregistered epochs were the Kostov 2020 forecast, which Wang and Liu 2024 show was off by 0.3 to 1.3 days in later sectors. Re-scored post hoc against their published times, 7 of 10 transits hold a real event (4 at tier 1; 4 of 4 forecast sectors hit), so "1 of 7" mostly measured the ephemeris, not the search. The preregistered line is unchanged.
+- Section 3.4 (the control): the surviving upside-down false alarms are flare-shaped (half show an abrupt start and slow recovery against 12% of real tier-1 events, p = 0.0001). Cause LIKELY flares.
+- Section 3.5: the clustering inflates the variance 1.9 to 2.6 times in the sealed slice and up to 5 times in development under 0.7.1; the real light keeps significantly fewer dips than the control predicts at bars 10 and 12.
+- Section 4: the null's detectable excess (80% power) is 33 kept dips at the main bar; per planet-bearing star a TOI-1338 b-like planet gives about 0.6 tier-1 detections at P = 95 d. The sentence "what the null rules out" is still limited to: nothing below 4 Earth radii, and no statement against the Kepler rate until the geometry factor is known.

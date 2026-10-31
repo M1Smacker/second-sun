@@ -55,6 +55,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.3.0 | 28 Oct | The first real search page; new sections in chapters 7 to 10 |
 | 2.4.0 | 30 Oct | The Search window with live counts and pictures; additions to chapters 9, 10 and 14; this page |
 | 2.5.0 | 30 Oct | The Search window opens with "What the search found": a plain verdict, a funnel and lead cards; the sealed search result |
+| 2.6.0 | 31 Oct | A field note on the research after the sealed search; the Read, Hunt and Reference tabs stay visible when you scroll on a PC |
 
 ## Learning track
 

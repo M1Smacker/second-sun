@@ -1,0 +1,8 @@
+{'flip tier-1': 43, 'real tier-1': 26, 'flip other, good coverage, box<=6.5 h': 150, 'real other, good coverage, box<=6.5 h': 150} fast-cadence events: 3614
+group | n measured | asym median [IQR] | share asym>0.5 | peak position median | share peak<0.25 | median box h | median depth ppm
+flip other, good coverage, box<=6.5 h | 130 | +0.02 [-0.24, +0.35] | 20% | 0.42 | 40% | 3.0 | 3942
+flip tier-1 | 42 | +0.52 [+0.05, +1.78] | 50% | 0.23 | 55% | 3.0 | 7777
+real other, good coverage, box<=6.5 h | 128 | -0.03 [-0.37, +0.20] | 14% | 0.52 | 27% | 3.0 | 1866
+real tier-1 | 26 | -0.04 [-0.42, +0.22] | 12% | 0.54 | 23% | 6.5 | 1680
+tier-1 flip: deep (>1%) n 16, asym>0.5 among deep 9; shallow n 26, asym>0.5 among shallow 12
+tier-1 real: deep (>1%) n 2, asym>0.5 among deep 0; shallow n 24, asym>0.5 among shallow 3

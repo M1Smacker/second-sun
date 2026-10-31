@@ -1,0 +1,34 @@
+sealed events SNR>=7 (primary PDC half): 2764; tier 1 now: real 26, flip 59
+planted dips K 8-14 (both slices): 9280, found 81.0%, tier 1 37.8%
+
+check | planted: gain in tier-1 points if dropped alone (sealed / dev) | sealed events added to tier 1: real, upside-down | planted points per added upside-down event | share of ALL raw events carrying it: real, flip
+gap_dump   | +4.3 / +4.9 | real +13, flip +8 | 0.58 | 54%, 71%
+flipmatch  | +0.0 / +0.0 | real +0, flip +0 | inf | 2%, 0%
+c5         | +0.8 / +0.7 | real +11, flip +0 | inf | 13%, 7%
+ecl_overlap | +0.3 / +1.1 | real +3, flip +0 | inf | 8%, 4%
+repeater   | +1.9 / +2.8 | real +23, flip +10 | 0.23 | 33%, 33%
+step       | +9.8 / +10.1 | real +94, flip +68 | 0.15 | 82%, 90%
+ramp       | +2.0 / +2.4 | real +5, flip +3 | 0.73 | 30%, 41%
+dominated  | +2.5 / +1.6 | real +7, flip +4 | 0.50 | 27%, 22%
+common     | +0.0 / +0.0 | real +2, flip +1 | 0.00 | -
+
+step check components on all raw events SNR>=7 (share of events): cover<0.5 on a side | a lift missing | |lift|>0.5 | step fired
+  real 3 h      n  351 |   65% |   46% |   35% |   75%
+  real 4-6.5 h  n  335 |   79% |   57% |   40% |   86%
+  real 8-12 h   n  347 |   66% |   47% |   36% |   81%
+  real 15-20 h  n  232 |   69% |   37% |   53% |   87%
+  flip 3 h      n  490 |   66% |   54% |   40% |   83%
+  flip 4-6.5 h  n  450 |   80% |   59% |   47% |   96%
+  flip 8-12 h   n  302 |   75% |   60% |   34% |   92%
+  flip 15-20 h  n  257 |   69% |   49% |   48% |   91%
+lift size when measured, units of the dip depth (median |lift|, 75th, 90th pct) by SNR bin, flip events:
+  SNR 7-8: n 764, |lift| median 0.34, p75 0.65, p90 1.21; step fired 88%
+  SNR 8-10: n 834, |lift| median 0.33, p75 0.61, p90 1.20; step fired 89%
+  SNR 10-15: n 713, |lift| median 0.29, p75 0.57, p90 0.95; step fired 83%
+  SNR 15-+: n 452, |lift| median 0.17, p75 0.49, p90 1.10; step fired 84%
+
+Q10: tier-1 by QLP-only star (sealed, bar 7):
+  QLP-only=False: events real 1265, flip 1499; tier-1 real 26, flip 59; tier 1A real 17
+  planted (sealed, K 8-14) tier-1 % by product: {'QLP': 35.9, 'SPOC': 35.8, 'TESS-SPOC': 40.6} {'QLP': 1648, 'SPOC': 1488, 'TESS-SPOC': 1600}
+
+Q11: tier-1 events by box (real, flip): {'3 h': (16, 44), '4-6.5 h': (6, 3), '8-12 h': (2, 8), '15-20 h': (2, 4)}

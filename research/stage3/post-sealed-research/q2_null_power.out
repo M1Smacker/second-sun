@@ -1,0 +1,24 @@
+  cK = P[P.dur == 8].groupby("K").apply(lambda v: v.tier1.astype(bool).mean())
+planted dips with K: 13920 K values: [6.0, 8.0, 10.0, 12.0, 14.0, 18.0]
+noise per box (sigma, ppm) = depth / K, by box length: median, 25%, 75% | tier-1 completeness by K (all stars)
+     4 h box: sigma median    329  [   154,    730]  tier-1 % by K {6: 11.0, 8: 24.0, 10: 41.0, 12: 52.0, 14: 58.0, 18: 61.0}
+     8 h box: sigma median    329  [   154,    730]  tier-1 % by K {6: 12.0, 8: 28.0, 10: 47.0, 12: 57.0, 14: 59.0, 18: 60.0}
+    14 h box: sigma median    329  [   154,    730]  tier-1 % by K {6: 8.0, 8: 19.0, 10: 34.0, 12: 43.0, 14: 44.0, 18: 41.0}
+    20 h box: sigma median    329  [   154,    730]  tier-1 % by K {6: 6.0, 8: 14.0, 10: 23.0, 12: 30.0, 14: 32.0, 18: 31.0}
+
+Window: one sector has ~26 d of data; a planet of period P puts at least one transit in it with probability min(1, 26/P) (random phase).
+Efficiency eps = P(window) x tier-1 completeness at K = depth/sigma (8 h box, median sigma 329 ppm; terciles 194 / 551). Depth = (Rp/R*)^2, no dilution, R* = 1 Rsun.
+
+Rp (Re) | depth ppm | K at median sigma | tier-1 completeness | eps at P = 30 / 60 / 95 / 150 / 300 d
+   2.00 |     335 |   1.0 |    2% |  1.8% /  0.9% /  0.6% /  0.4% /  0.2%
+   4.00 |    1342 |   4.1 |    8% |  7.1% /  3.6% /  2.2% /  1.4% /  0.7%
+   6.85 |    3935 |  11.9 |   56% | 48.8% / 24.4% / 15.4% /  9.8% /  4.9%
+  11.00 |   10147 |  30.8 |   60% | 51.7% / 25.9% / 16.3% / 10.3% /  5.2%
+
+Upper limit on (planets per star) x (geometry factor g): N_ul / (594 stars x eps); N_ul = 8.3 (preregistered-ratio cluster interval upper end) or 1.0 (full-run ratio) kept dips above expectation, 95%.
+  Rp 4 Re, P 95 d: eps 2.2%; N_ul 8.3 -> eta*g <= 0.62; N_ul 1.0 -> 0.08  (values above 1 mean no constraint)
+  Rp 4 Re, P 300 d: eps 0.7%; N_ul 8.3 -> eta*g <= 1.97; N_ul 1.0 -> 0.24  (values above 1 mean no constraint)
+  Rp 6.85 Re, P 95 d: eps 15.4%; N_ul 8.3 -> eta*g <= 0.09; N_ul 1.0 -> 0.01  (values above 1 mean no constraint)
+  Rp 6.85 Re, P 300 d: eps 4.9%; N_ul 8.3 -> eta*g <= 0.29; N_ul 1.0 -> 0.03  (values above 1 mean no constraint)
+  Rp 11 Re, P 95 d: eps 16.3%; N_ul 8.3 -> eta*g <= 0.09; N_ul 1.0 -> 0.01  (values above 1 mean no constraint)
+  Rp 11 Re, P 300 d: eps 5.2%; N_ul 8.3 -> eta*g <= 0.27; N_ul 1.0 -> 0.03  (values above 1 mean no constraint)

@@ -1,0 +1,5 @@
+53 rows; 35 distinct TIC hosts; in sealed: 2 in dev: 0
+   pl_name         tic  pl_orbper  sealed   dev
+TOI-1338 b 260128333.0    95.4001    True False
+TOI-1338 c 260128333.0   215.7900    True False
+hosts with TIC in neither list: ['HD 143811 AB b', 'Kepler-47 d', 'Kepler-16 b', 'NN Ser c', 'Ross 458 c', 'HU Aqr AB b', 'OGLE-2018-BLG-1700L b', '2MASS J0249-0557 c', 'Kepler-451 c', 'WISPIT 1 b', 'Kepler-47 c', 'UZ For b', 'DP Leo b', 'MXB 1658-298 b', 'NN Ser d', 'WISPIT 1 c', 'b Cen AB b', 'NSVS 14256825 b', 'BEBOP-4 AB b', 'Kepler-38 b', 'OGLE-2019-BLG-1470L AB c', 'Kepler-47 b', 'HIP 79098 AB b', 'BEBOP-3 b', 'HD 284149 AB b', 'Kepler-413 b', 'Kepler-34 b', 'KMT-2016-BLG-1337L b', 'OGLE-2016-BLG-0613L AB b', 'SR 12 AB c', '2MASS J19383260+4603591 b', '2MASS J01033563-5515561 AB b', 'VHS J125601.92-125723.9 b', 'NY Vir b', 'Kepler-35 b', 'Kepler-1661 b', 'DE CVn b', 'NY Vir c', 'RR Cae b', 'Kepler-453 b', 'Kepler-1647 b', 'HU Aqr AB c', 'PSR B1620-26 b', 'OGLE-2007-BLG-349L AB c', 'PH1 b', 'TIC 172900988 b', 'UZ For c', 'ROXs 42 B b', 'OGLE-2023-BLG-0836L b', 'Kepler-451 d', 'Kepler-1660 AB b']

@@ -166,6 +166,7 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 /* Material hides inactive controls with the hidden attribute; the display rules below must never override it
    (bug found in screenshots: both theme icons showed at once). */
 [hidden] { display: none !important; }
+.md-tabs[hidden] { display: block !important; }   /* bug 61: Material only fades the links with this attribute; display:none collapsed the row and it never came back */
 .md-header__button { min-width: var(--ss-tap); min-height: var(--ss-tap); display: inline-flex; align-items: center; justify-content: center; }
 .md-tabs__item { height: auto; }
 .md-tabs__link { display: flex; align-items: center; min-height: var(--ss-tap); margin-top: 0; }

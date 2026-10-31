@@ -1,0 +1,15 @@
+Mann-Whitney one-sided (flip tier-1 asym > real tier-1 asym): p = 0.0001; (flip tier-1 > flip other): p = 0.0000; (flip tier-1 > real other): p = 0.00000
+threshold | flip tier-1 above (of 42) | real tier-1 above (of 26) | real other above (of 128) | flip other above (of 130)
+asym > 0.5 | 21 (50%) | 3 (12%) | 18 (14%) | 26 (20%)
+asym > 0.75 | 20 (48%) | 2 (8%) | 14 (11%) | 20 (15%)
+asym > 1.0 | 18 (43%) | 1 (4%) | 11 (9%) | 13 (10%)
+asym > 1.5 | 15 (36%) | 1 (4%) | 6 (5%) | 9 (7%)
+asym > 2.0 | 10 (24%) | 0 (0%) | 3 (2%) | 3 (2%)
+TOI-1338 (TIC 260128333) events measured:                                 group  sector  dur_h  asym  peak  depth_ppm
+                          real tier-1      89    6.5 -0.09  0.98    1988.80
+                          real tier-1      93    6.5  0.13  0.09    2271.95
+real other, good coverage, box<=6.5 h      98    5.0 -0.02  0.09    2221.45
+Q8 sealed: events (all products, SNR>=7) 12261; depth>10% 147 (real 46, flip 101); depth>=100% 25; snr>100 129; snr>1000 13; max snr 3.53e+26; tier-1 with depth>10%: 6
+   by product and kind: {('QLP', 'flip'): 88, ('QLP', 'real'): 31, ('SPOC', 'flip'): 4, ('SPOC', 'real'): 5, ('SPOC-SAP', 'flip'): 17, ('SPOC-SAP', 'real'): 23, ('TESS-SPOC', 'flip'): 11, ('TESS-SPOC', 'real'): 10, ('TESS-SPOC-SAP', 'flip'): 9, ('TESS-SPOC-SAP', 'real'): 13}
+Q8 dev: events (all products, SNR>=7) 6666; depth>10% 88 (real 62, flip 26); depth>=100% 7; snr>100 162; snr>1000 27; max snr 3.21e+03; tier-1 with depth>10%: 0
+   by product and kind: {('QLP', 'flip'): 33, ('QLP', 'real'): 53, ('SPOC', 'flip'): 3, ('SPOC', 'real'): 42, ('SPOC-SAP', 'flip'): 5, ('SPOC-SAP', 'real'): 24, ('TESS-SPOC', 'flip'): 9, ('TESS-SPOC', 'real'): 18, ('TESS-SPOC-SAP', 'flip'): 5, ('TESS-SPOC-SAP', 'real'): 15}
