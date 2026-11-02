@@ -28,3 +28,14 @@
 
 ## Questions asked of Ahmed at 04:55 and their defaults
 Q1 G3 rule: P over 7 d, Tmag 13.5 or brighter, not searched before, all 612, no RUWE cut, all held back as the untouched test (default). Q2 lock and download G3 light curves tonight: default NO (write and hash only). Q3 freeze 0.9 tonight: default NO. Q4 G3 search: never without his explicit go. Q5 item 70 fix as a default-off switch: default YES. Q6 bugs 63 to 68 tonight: default YES. Q7 builds: default T59a, T57/T58, T59h. Q8 caps: stop 95% until reset, new week stop at 25%. Q9 helpers: default NO. Q10 Loom: thoughts file only.
+
+## Ahmed's answers (about 05:00) and the stop he ordered
+- "All of your questions go with what you think is right": every bold default above is approved (Q1 yes, Q3 no freeze, Q4 no G3 search without an explicit go, Q5 yes, Q6 yes except bug 69, Q7 yes without F4, Q8 caps as written, Q9 no helpers, Q10 thoughts file only).
+- Q2 CHANGED to YES: "you can download them tonight. It's fine ... Download it when you can, when you like": the G3 list is treated as locked by him for the download (rule file and list hash written and committed BEFORE the first light-curve download; no G3 light curve is read or searched, and the G3 search stays one-shot and needs his explicit go).
+- CPU: up to 70% of the CPU at NORMAL priority, not BelowNormal (8 workers on 12 logical cores, NUMBA_NUM_THREADS=1; memory feedback_cpu_70_percent_when_away). Back to BelowNormal when he is at the PC.
+- He ordered: list the night's tasks and the extras, then STOP and do not work. State when I stopped: after the list. Work resumes when he sends any message that says go (for example "go tonight"); then run the order below to the stop line with no questions.
+- The 0.9 baseline planted run (detached, BelowNormal, 5 processes) keeps running by itself and ends about 05:05; nothing else is running.
+
+## Night list (main, in order) and extras (only if the stop line allows)
+MAIN: 1 0.9 verdict by the written rules, zero-difference test; 2 fill the field note, publish book 2.7.1; 3 G3 rule file and list hash committed, then G3 light-curve download at full speed, integrity check, data prep up to but not including the search; 4 bug-test round, ledger, Loom thoughts file; 5 item 70 fix as a default-off switch with proof; 6 bugs 63 to 68, one at a time, tested, published.
+EXTRAS: T59a Downloads page; T57a to d and T58 quiz checks and teaching notes; T59h readiness cells; T108 go-professional playbook (private draft); T110 Eyes pass line vs our sittings; small cleanups T51, T53, T54, T55.
