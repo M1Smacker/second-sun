@@ -893,7 +893,63 @@ async function rehearsalTest() {
   return out;
 }
 
-const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest };
+// The rehearsal's cloud wiring end to end against a mock of Firestore (same mock rules as eyescloud): a visitor sends nothing; Ahmed's device sends one finished session, once, in the shape the published rules accept.
+async function rehearsalCloudTest() {
+  const http = await import("node:http");
+  const mock = { calls: [], docs: new Map() };
+  const rulesOk = (f, id) => JSON.stringify(Object.keys(f).sort()) === JSON.stringify(["a", "device", "id", "mode", "n", "s", "source", "status", "t0", "t1", "v"])
+    && f.v.integerValue === "1" && f.id.stringValue === id && ["practice", "test", "real"].includes(f.mode.stringValue) && Number(f.n.integerValue) <= 200 && !!f.a.arrayValue && (f.a.arrayValue.values || []).length <= 200;
+  const server = http.createServer((req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*"); res.setHeader("Access-Control-Allow-Headers", "content-type"); res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    if (req.method === "OPTIONS") { res.statusCode = 204; return res.end(); }
+    let raw = ""; req.on("data", (c) => (raw += c)); req.on("end", () => {
+      const u = new URL(req.url, "http://x"), id = u.searchParams.get("documentId"); let code = 200;
+      try {
+        const body = JSON.parse(raw), good = req.method === "POST" && u.pathname === "/v1/projects/second-sun-faea5/databases/(default)/documents/eyes_rounds" && u.searchParams.get("key") === "AIzaSyBogX_Jte_4fahJ1Ovp3y-twCmxheLTSxY" && rulesOk(body.fields, id);
+        mock.calls.push({ id, good });
+        if (!good) code = 403; else if (mock.docs.has(id)) code = 409; else mock.docs.set(id, body);
+      } catch (e) { code = 400; }
+      res.statusCode = code; res.setHeader("Content-Type", "application/json"); res.end("{}");
+    });
+  });
+  await new Promise((r) => server.listen(0, "127.0.0.1", r));
+  const port = server.address().port;
+  const b = await launch("rehearsalcloud"), out = { mode: "rehearsalcloud", checks: 0, fails: [] };
+  const ok = (c, m) => { out.checks++; if (!c) out.fails.push(m); };
+  const playSession = async () => {
+    ok(await waitFor(b, `!!document.querySelector(".ss-rh__go")`, 15000), "the start button did not appear");
+    await b.evaluate(`document.querySelector(".ss-rh__go").click()`);
+    for (let i = 0; i < 20; i++) {
+      await waitFor(b, `document.querySelectorAll(".ss-rh__a").length === 6 && !document.querySelector(".ss-rh__a").disabled`, 5000);
+      await b.evaluate(`document.querySelector('.ss-rh__a[data-a="noise"]').click(); document.querySelector(".ss-rh__lock").click(); document.querySelector(".ss-rh__next").click()`);
+    }
+    ok(await waitFor(b, `/Session \\d+ finished/.test(document.body.innerText)`, 8000), "a whole session of 20 reaches the end screen");
+  };
+  try {
+    await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `window.SSEYES_CLOUD_BASE = "http://127.0.0.1:${port}";` });
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+    await goto(b, base + "rehearsal/"); await b.evaluate(`localStorage.clear()`); await goto(b, base + "rehearsal/");
+    await playSession(); await sleep(2500);
+    ok(mock.calls.length === 0 && mock.docs.size === 0, `a visitor's finished session must be sent nowhere (${mock.calls.length} calls)`);
+    ok(/visitor/i.test(await b.evaluate(`document.querySelector(".ss-rh__cloud").innerText`)), "a visitor is told nothing is sent");
+    await b.evaluate(`localStorage.clear()`);
+    await goto(b, base + "rehearsal/?o=1#owner");
+    ok((await b.evaluate(`localStorage.getItem("ss-eyes-owner")`)) === "1", "the owner link makes this device Ahmed's");
+    await playSession();
+    ok(await waitFor(b, `/safe in the cloud/.test(document.querySelector(".ss-rh__cloud").innerText)`, 15000), "the page should say the finished session is safe in the cloud");
+    ok(mock.docs.size === 1 && mock.calls.every((c) => c.good), `exactly one document, in the shape the rules accept (${mock.docs.size} docs, ${mock.calls.filter((c) => !c.good).length} refused)`);
+    const f = [...mock.docs.values()][0].fields;
+    ok(f.source.stringValue === "rehearsal-v1" && f.mode.stringValue === "practice" && f.status.stringValue === "done" && f.n.integerValue === "20" && f.a.arrayValue.values.length === 20, "the document is a finished 20-answer rehearsal round");
+    ok(f.a.arrayValue.values[0].mapValue.fields.cls !== undefined && f.s.mapValue !== undefined, "each answer carries its class and the round carries a summary");
+    await sleep(1500);
+    ok(mock.calls.length === 1, `the round is sent once, not repeated (${mock.calls.length} calls)`);
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length;
+  } finally { await b.close(); server.close(); }
+  return out;
+}
+
+const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));
