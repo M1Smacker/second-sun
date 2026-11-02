@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.0 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) from now | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.8.1 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.8.2 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.4 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -60,6 +60,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.7.0 | 2 Nov | A new page, Rehearsal: the real-candidate layout (three panels, six answers, lock then truth) with fake planets hidden in real light, eight sessions of 20 and a written pass line; the Eyes page points to it |
 | 2.8.0 | 2 Nov | A field note for 2 Nov; a fifth row in the first lesson of chapter 15 (a baseline made under different conditions); a fourth check after level 6 in the learning track (track 1.4); the field notes index now lists 31 Oct |
 | 2.8.1 | 2 Nov | Fixes: the header keeps the site name while you scroll; the Search window no longer piles up refresh timers or shows blank after a revisit, and refreshes every 90 s instead of 60 |
+| 2.8.2 | 2 Nov | The "Updated. Reload" line can be dismissed and no longer covers the last text |
 
 ## Learning track
 
