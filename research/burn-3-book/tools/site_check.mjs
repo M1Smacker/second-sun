@@ -949,7 +949,56 @@ async function rehearsalCloudTest() {
   return out;
 }
 
-const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest };
+// FIX-QUEUE 64: the Search window must keep ONE refresh loop however often the page is visited by instant navigation, and none once the reader has left it. Counts requests for watch.json.
+async function watchTimersTest() {
+  const b = await launch("watchtimers"), out = { mode: "watchtimers", checks: 0, fails: [] };
+  const ok = (c, m) => { out.checks++; if (!c) out.fails.push(m); };
+  try {
+    await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `window.__wj = []; const of = window.fetch.bind(window); window.fetch = (u, o) => { if (String(u).includes("watch.json")) window.__wj.push(Date.now()); return of(u, o); };` });
+    await goto(b, base + `watch/?src=${encodeURIComponent(base + "assets/data/watch.json")}&every=5`);
+    ok(await waitFor(b, `!!document.getElementById("ss-watch") && document.querySelectorAll("#ss-watch *").length > 3`, 15000), "the Search window did not draw from the snapshot");
+    // Instant navigation only runs on the real host (a local copy loads every page afresh), so a visit is simulated the way Material does it: a fresh page element, then document$ emits.
+    ok(await b.evaluate(`typeof document$ !== "undefined" && typeof document$.next === "function"`), "Material's document$ is not available to simulate instant navigation");
+    const revisit = `(() => { const old = document.getElementById("ss-watch"); const fresh = document.createElement(old.tagName); fresh.id = "ss-watch"; old.replaceWith(fresh); document$.next(document); })()`;
+    const leave = async () => { await b.evaluate(`(() => { const old = document.getElementById("ss-watch"); if (old) old.remove(); document$.next(document); })()`); await sleep(400); };
+    for (let i = 0; i < 3; i++) {
+      await b.evaluate(revisit);
+      ok(await waitFor(b, `document.querySelectorAll("#ss-watch *").length > 3`, 8000), `visit ${i + 2}: the window did not draw`); await sleep(400);
+    }
+    await b.evaluate(`window.__wj.length = 0`); await sleep(16000);
+    const here = await b.evaluate(`window.__wj.length`);
+    ok(here >= 2 && here <= 5, `on the page after 4 visits: ${here} requests in 16 s at every=5 (one loop gives 3 to 4; one loop per visit would give 12 or more)`);
+    await leave(); await b.evaluate(`window.__wj.length = 0`); await sleep(12000);
+    const away = await b.evaluate(`window.__wj.length`);
+    ok(away <= 1, `after leaving the page ${away} requests in 12 s (should be none)`);
+    out.requests = { onPageIn16s: here, awayIn12s: away };
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length;
+  } finally { await b.close(); }
+  return out;
+}
+
+// FIX-QUEUE 63: the header shows the site name only, before and after the page heading scrolls away (Material used to swap in the page title in another style).
+async function headerTitleTest() {
+  const b = await launch("headertitle"), out = { mode: "headertitle", checks: 0, fails: [], pages: {} };
+  const ok = (c, m) => { out.checks++; if (!c) out.fails.push(m); };
+  try {
+    for (const path of ["book/02-light-curves/", "book/10-vetting/", "field-notes/2026-11-02/"]) {
+      await goto(b, base + path); await sleep(500);
+      const read = () => b.evaluate(`(() => { const t = [...document.querySelectorAll(".md-header__topic")]; const vis = (e) => e && getComputedStyle(e).display !== "none" && Number(getComputedStyle(e).opacity) > 0.5; return { n: t.length, first: vis(t[0]), second: vis(t[1]), text: t[0] ? t[0].innerText.trim() : "" }; })()`);
+      const top = await read();
+      await b.evaluate(`window.scrollTo(0, 1400)`); await sleep(900);
+      const down = await read();
+      out.pages[path] = { top, down };
+      ok(top.first && !top.second && down.first && !down.second && /second sun/i.test(down.text), `${path}: the site name must stay and the page title must never show (top ${JSON.stringify(top)}, scrolled ${JSON.stringify(down)})`);
+    }
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length;
+  } finally { await b.close(); }
+  return out;
+}
+
+const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));
