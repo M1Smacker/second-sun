@@ -18,3 +18,5 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [28 October 2026](2026-10-28.md) | Check the rival before you copy it: a professional tool, its licence, how few stars we truly share, and how faint a dip our own search can see |
 | [29 October 2026](2026-10-29.md) | How small a planet could we have found? Fake dips through the whole chain, a mislabelled half, and a guess that was seven times off |
 | [30 October 2026](2026-10-30.md) | Why the filter will not improve for free: a rule written first, stacking skipped, and a box floor that only moved the false alarms |
+| [31 October 2026](2026-10-31.md) | The search did see the known planet: our test used an old calendar. Flares, the price of each safety check, and counting in stars instead of events |
+| [2 November 2026](2026-11-02.md) | Compare like with like: a consistency check stopped a comparison against an older run made under different conditions; the rehearsal for real candidates went live |

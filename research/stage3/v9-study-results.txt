@@ -1,0 +1,44 @@
+VESPER 0.9 STUDY RESULTS (development slice only; rules fixed in V9-STUDY-PLAN.md; reading of the guard rule written in this script's header before any number was read)
+events (primary): baseline run 2511, new run 2511; unique keys True
+same events in both runs: 2511; only in baseline 0; only in new 0
+machinery check: tier recomputed for the baseline run agrees on 2511 of 2511; for the all-on run on 2511 of 2511
+   OK
+star-sectors in the development run: 3253
+
+1. FULL DEVELOPMENT RUN, tier-1 events (primary).  0.8.0: real 43, upside-down 22 (6.76 per 1,000 star-sectors).  All switches on (fl 1.0): real 42, upside-down 15 (4.61 per 1,000)
+
+2. dg (depth guard): events over 30% or not finite: 2 (1 real, 1 upside-down); flagged too_deep: 2 (must equal the first number: yes)
+   events whose tier changes because of dg alone: 0; of them with depth 30% or less and finite: 0 (must be 0)
+   tier-1 events removed by dg alone: real 0, upside-down 0
+
+3. nd (unphysical events leave the dominance comparison): events whose dominated flag changes 0: released 0, newly dominated 0 (must be 0); in a light curve with an unphysical event: 0 of 0
+   tier changes from nd alone: 0; real 0, upside-down 0; to tier 1: 0
+
+4. PLANTED DIPS AND BUMPS (same 300 star-sectors, same seed): rows in both 13632; only baseline 0; only new 0
+   machinery check: 0.8.0 tier-1 minus the flare flag at 1.0 equals the all-on tier-1 on 13632 of 13632 planted rows (OK)
+   deep planted events (too_deep) in the new run: 0; planted tier-1 points lost that the flare flag at 1.0 does not explain (dg, nd or anything else): 0 (must be 0)
+   K 8 to 14 pooled, tier-1 recovery: 0.8.0 dips 38.2% bumps 40.1% gap -1.9 points; all on (fl 1.0): dips 37.7% bumps 39.7% gap -2.0
+
+5. fl (flare shape) by threshold, each ALONE against 0.8.0 on the development slice (the plan's four conditions)
+   thr | upside-down tier-1 removed (of 0.8.0 total) = fall | real tier-1 removed | planted dips lost (points, K 8-14) | flips removed per planted point | K50 8 h (0.8.0 -> fl) | K50 14-20 h (0.8.0 -> fl) | mirror gap | 1 fall>=20% | 2 price>=6.8 | 3 K50 within 10% | 4 mirror
+   0.5 | 11 of 22 = 50% (on 8 of 18 stars) | 2 of 43 | 1.06 | 10.4 (per 1,000 star-sectors: 3.4 flips) | 8 h: K50 10.4 -> 10.6 | 14-20 h: K50 not reached; recovery 26.1% -> 25.3% (fallback rule: at most 10% lost) | -2.3 | yes | yes | yes | yes
+   1.0 | 7 of 22 = 32% (on 5 of 18 stars) | 1 of 43 | 0.44 | 15.9 (per 1,000 star-sectors: 2.2 flips) | 8 h: K50 10.4 -> 10.5 | 14-20 h: K50 not reached; recovery 26.1% -> 26.1% (fallback rule: at most 10% lost) | -2.0 | yes | yes | yes | yes
+   1.5 | 6 of 22 = 27% (on 4 of 18 stars) | 1 of 43 | 0.18 | 34.1 (per 1,000 star-sectors: 1.8 flips) | 8 h: K50 10.4 -> 10.4 | 14-20 h: K50 not reached; recovery 26.1% -> 26.1% (fallback rule: at most 10% lost) | -2.0 | yes | yes | yes | yes
+
+6. T34 STEP CHECK, its two parts priced on the development run (report only; no switch). A part is 'dropped alone' for events where the step flag is set and that part is the only reason; planted points regained / upside-down events let in
+   coverage rule (too little data beside the event): planted points regained 2.11; upside-down let in 1, real let in 16; flips per point 0.5
+   lift rule (flux beside the event is lifted): planted points regained 4.49; upside-down let in 6, real let in 10; flips per point 1.3
+
+7. T35 BOX LENGTH: tier-1 events of the development run by box length (0.8.0 tiers; report only; the planted rows do not record which box found them, so no planted split)
+   box 3 h: real 20, upside-down 14
+   box 4 h: real 7, upside-down 3
+   box 5 h: real 4, upside-down 1
+   box 6.5 h: real 2, upside-down 1
+   box 8 h: real 1, upside-down 1
+   box 12 h: real 3, upside-down 1
+   box 20 h: real 6, upside-down 1
+
+DECISION BY THE PLAN'S OWN RULES (mechanical; the numbers above are the evidence)
+   dg: ACCEPT (no event of 30% or less changed tier: True; mirror gap within 3)
+   nd: ACCEPT (every changed event in a light curve with an unphysical event, released only: True)
+   fl: ACCEPT at threshold 0.5

@@ -172,6 +172,9 @@ These three chapters are not part of the readiness bar. They are how a careful p
 ??? quiz "After L6, check 3. Chapter 15 groups fifteen mistakes into five patterns and keeps a rule for each. Why write a rule instead of just fixing the mistake?"
     A fix repairs one case. A written rule stops the same pattern coming back, anywhere in the work.
 
+??? quiz "After L6, check 4. You want to judge a new setting of the search. You have an older run to compare it with. What do you check before you read any score?"
+    That the older run was made under the same conditions: the same data, the same files and the same settings apart from the one you are testing. Compare the two outputs event by event first. On 2 November 2026 one kind of star-sector (those that borrow good stretches of data from neighbouring stars) gave different events in 13% of cases, because the list of neighbours had grown since the old run. The honest fix was to rerun the baseline under today's conditions.
+
 That is the end of the track. The Hunt tab shows where the project stands now.
 
 ## Sources

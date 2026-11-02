@@ -15,8 +15,9 @@
 | Kepler-16's one-hour noise was quoted as 236 ppm. Measured the way our search sees the data, it's about 900 {{claim:F-039}} | Measure noise like the detector does; compare with the file's own estimate (Chapter 7) |
 | STANLEY's best orbit was reported at 93.8 days; it's 96.1 {{claim:F-045}} | Read an array's order from the data file, not a log message (Lab 8) |
 | The G1 rule "morph < 0.5" also let in 136 stars with morph = −1, meaning "not measured" {{claim:F-052}} | Handle missing-value codes on purpose in every selection rule |
+| On 2 November 2026 a new search run was about to be compared with an older one as if both had been made the same way. They had not: one kind of star-sector borrows good stretches of data from neighbouring stars, and the list of neighbours had grown since. 13% of that kind gave different events | A baseline must be made under the same conditions as what it is compared with. Compare the two outputs event by event before reading any score |
 
-**The pattern:** each number looked reasonable, so nobody checked it with a tool that could say "no". Three of these four were caught while **writing this book's labs**, because a lab has to show real output. Teaching is a form of testing.
+**The pattern:** each number looked reasonable, so nobody checked it with a tool that could say "no". Three of the first four were caught while **writing this book's labs**, because a lab has to show real output. Teaching is a form of testing. The fifth was caught by the study's own consistency check, which refused to give a verdict until the two runs agreed.
 
 ## Lesson 2: test automation before trusting it
 

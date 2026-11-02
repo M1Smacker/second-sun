@@ -6,8 +6,8 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.0 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) from now | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.7.0 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
-| Learning track | 1.3 | 1.3 | a "level done" mark means what the level contained that day |
+| The book | 2.8.0 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| Learning track | 1.4 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
 Version numbers follow one rule: the first number changes when the old and new results or pages are no longer directly comparable, the second when something is added, the third for fixes that change no result.
@@ -58,6 +58,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.6.0 | 31 Oct | A field note on the research after the sealed search; the Read, Hunt and Reference tabs stay visible when you scroll on a PC |
 | 2.6.1 | 2 Nov | A refresh now brings the newest book when you are online (it used to keep showing the old copy until you tapped Reload); offline reading works as before |
 | 2.7.0 | 2 Nov | A new page, Rehearsal: the real-candidate layout (three panels, six answers, lock then truth) with fake planets hidden in real light, eight sessions of 20 and a written pass line; the Eyes page points to it |
+| 2.8.0 | 2 Nov | A field note for 2 Nov; a fifth row in the first lesson of chapter 15 (a baseline made under different conditions); a fourth check after level 6 in the learning track (track 1.4); the field notes index now lists 31 Oct |
 
 ## Learning track
 
@@ -67,6 +68,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 1.1 | 27 Oct | One path through the levels; chapter 3 moved into level 0; a last step after level 6 |
 | 1.2 | 28 Oct | Checks added for the first real search |
 | 1.3 | 30 Oct | Two checks in level 5 and three in level 6 |
+| 1.4 | 2 Nov | One check after level 6: a baseline must be made under the same conditions as what it is compared with |
 
 From now on, when a level is marked done, the track version is written next to the date.
 
