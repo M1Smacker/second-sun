@@ -236,8 +236,11 @@
     const bar = document.createElement("div");
     bar.className = "ss-update";
     bar.setAttribute("role", "status");
-    bar.innerHTML = '<span>Updated.</span><button type="button">Reload</button>';
-    bar.querySelector("button").addEventListener("click", () => {
+    bar.innerHTML = '<span>Updated.</span><button type="button" class="ss-update__reload">Reload</button><button type="button" class="ss-update__close" aria-label="Dismiss">×</button>';
+    // FIX-QUEUE 65: the line can be dismissed, and the page gets room at the bottom so it never covers the last text while it is shown.
+    bar.querySelector(".ss-update__close").addEventListener("click", () => { bar.remove(); document.body.classList.remove("ss-has-update"); });
+    document.body.classList.add("ss-has-update");
+    bar.querySelector(".ss-update__reload").addEventListener("click", () => {
       userAsked = true;
       if (reg && reg.waiting) reg.waiting.postMessage({ type: "SKIP_WAITING" });   // controllerchange then reloads
       else reloadOnce();                                                             // new worker already active
