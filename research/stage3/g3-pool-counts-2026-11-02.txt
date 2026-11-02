@@ -1,0 +1,18 @@
+G3 pool counts from the TESS Ten Thousand Catalog (Kostov et al. 2025): table 3 7936 new eclipsing binaries, table 4 2065 known ones. Searched before: G1 549 stars, G2 895 stars; saved Prsa 2022 table 4578 stars.
+overlap of table 3 with G1 0, G2 0, Prsa 0; table 4 with G1 0, G2 4, Prsa 50; table 3 with table 4 0
+table 3 Tmag quantiles (5, 25, 50, 75, 95%): 11.7, 13.1, 13.8, 14.4, 14.9; period quantiles (d): 1.21, 2.07, 3.55, 5.94, 11.76, 17.23
+table 4 periods (TESS): over 7 d 164 of 2065; no Tmag in this table (a TIC join would be needed)
+
+Pools of table 3 (all stars, then the part NOT in G1, G2 or the saved Prsa table):
+   rule | all | not searched before | of those: RUWE <= 1.4 | 2 or more sectors | 4 or more sectors | duration share of orbit <= 0.1 (detached proxy)
+   P > 7 d, Tmag <= 13.5 | 612 | 612 | 451 | 605 | 370 | 612
+   P > 7 d, Tmag <= 13.0 | 363 | 363 | 254 | 360 | 216 | 363
+   P > 7 d, Tmag <= 12.5 | 197 | 197 | 141 | 196 | 116 | 197
+   P > 7 d, Tmag <= 14.0 | 867 | 867 | 659 | 858 | 552 | 867
+   P > 7 d, Tmag <= 14.5 | 1160 | 1160 | 894 | 1145 | 735 | 1160
+   P > 7 d, any Tmag | 1397 | 1397 | 1105 | 1378 | 882 | 1397
+   P > 5 d, Tmag <= 13.5 | 1107 | 1107 | 804 | 1097 | 670 | 1107
+   P > 10 d, Tmag <= 13.5 | 276 | 276 | 200 | 274 | 173 | 276
+   P > 15 d, Tmag <= 14.0 | 112 | 112 | 80 | 111 | 65 | 112
+
+For the main candidate rule (P > 7 d, Tmag <= 13.5, not searched before): 612 stars; sectors observed quantiles (25, 50, 75, max): 3, 4, 7, 43; Tmag median 12.8; period median 9.5 d, max 39.8 d; duration share of orbit median 0.021; Comments filled 35

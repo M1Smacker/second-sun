@@ -1,0 +1,30 @@
+# Overnight anchor, 2 to 3 Nov 2026 (written 04:55 Kuwait, Ahmed going to sleep; read this first after any compaction)
+
+## Standing rules locked by Ahmed on 2 Nov 2026 (about 04:45)
+- Auto-compact is set to 600,000 tokens (`autoCompactWindow` in `C:\Users\hanzl\.claude\settings.json`, valid JSON checked). After a compaction I CONTINUE BY MYSELF, with no "go" from Ahmed: read this file, `research/stage3/BUILD-QUEUE.md`, the status file and `git log`, then take the next step below.
+- Tonight I may download data that is related to Second Sun only (his words). The two G3 catalogue tables are downloaded (below). Anything else that is a download goes on the job list first (`research/jobs.md`) and is shown to him in the morning report.
+- Overnight work is the go: state defaults, keep working, never end a turn on a bare question (memory: feedback_dont_end_overnight_on_a_question). Questions he did not answer take the DEFAULT written below.
+- Sonnet 5.5 Extra for everything. No helpers (sub-agents) unless he says yes (default no). Phone-first, short, no en or em dashes, "Next:" line at the end of every reply that finishes work. Book publishes: autonomous (publish_book.ps1 -Test), book only. Never click the live Eyes or rehearsal pages. Real events stay in `data\`.
+- Stop line: weekly 95% (cap 96%) until the reset on Tue 3 Nov at 01:00 Kuwait. New week default: stop at 25% weekly and wait for his word.
+
+## State at 04:55
+- Live: book 2.7.0 (Rehearsal page). Committed and pushed: everything except the uncommitted book edits listed next.
+- UNCOMMITTED book edits (hold until the study line in the field note is filled, then commit and publish as book 2.7.1): field note `book/docs/field-notes/2026-11-02.md` (has the placeholder `<<STUDY RESULT>>`), field-notes index rows (31 Oct and 2 Nov), `mkdocs.yml` nav row, chapter 15 row, learning track check 4 (track 1.4: `learn/index.md`, `progress/levels.yml`, `versions.md`). A strict local build of these passed.
+- 0.9 study: new run `dev_8bbb1568d6a3` (c6,dg,nd,fl), rows `rows_v9dev.pkl`; fresh 0.8.0 baseline `dev_428c5fb454cd` (done 04:37), planted rows `rows_v9base.pkl` (running, ETA about 05:05; DONE line appears in `research/stage3/v9-study-status.txt`). Analysis: `cd pipeline; SS_SET=g2 python v9_study_analysis.py` (writes `research/stage3/v9-study-results.txt`). Event half already clean: identical event sets, machinery checks OK, 0.8.0 tier-1 real 43 and upside-down 22; all on 42 and 15. Decision is mechanical by the plan and its Addendum 1 (K50 fallback, guard reading). Report the result honestly, including that fl was first seen in a non-like-for-like preliminary run.
+- G3: tables downloaded 04:5x (`data/g3/catalog_ttc`, MANIFEST.txt; table 3 2,002,473 bytes, table 4 309,972 bytes, rows in downloads.csv). Counts in `research/stage3/g3-pool-counts-2026-11-02.txt`: table 3 has 7,936 EBs, none in G1, G2 or the Prsa table; P over 7 d and Tmag 13.5 or brighter = 612 stars (451 with RUWE 1.4 or less; 605 have 2 or more sectors); P over 7 d and Tmag 14.0 or brighter = 867. No rule is locked and no light curve is downloaded.
+- T43 (census) is DONE by a by-product: all 895 stars now have 0.8.0 events under today's manifest (dev baseline plus sealed).
+- Item 70 (FIX-QUEUE): QLP-only star-sectors borrow windows from neighbours in the manifest; matters for G3 because most G3 stars are faint, so mostly QLP-only.
+
+## Order of work tonight (stop at each gate, defaults apply)
+1. When the study DONE line appears: run the analysis, read the mechanical decision, write the study result into `research/stage3/v9-study-results.txt` (done by the script), the plan addendum result paragraph, the field note line, `usage-ledger.md`. Zero-difference test (300 of 300) after the study finishes (CPU is then free).
+2. Fill `<<STUDY RESULT>>` in the field note, run a strict local build, commit the book files, publish as book 2.7.1 (versions row, footer), live check by HTTP.
+3. Q3 default: do NOT freeze 0.9 without Ahmed's yes; prepare everything (zero-difference, mutation test, amendment text) and stop before the freeze. If he said yes in the morning message: run the freeze steps (V9-STUDY-PLAN "After the runs") and tag.
+4. G3 (Q1, Q2 defaults): write the G3 rule file with the count and the list hash (counts only, no light curve read), commit it as a DRAFT preregistration; do not download light curves and do not treat it as locked until he says yes.
+5. Item 70 fix (Q5 default yes): a switch that defaults off, hashed neighbour-window table per star list, zero-difference proof that 0.8.0 results do not change; add the manifest hash and windows hash to the run settings.
+6. Bugs 63 to 68 (Q6 default yes; 69 skipped, uncertain, dev only): one at a time, each with a test, publish autonomously, log in the ledger.
+7. Builds (Q7 default): T59a Downloads page first, then T57a to d and T58, then T59h. No F4 (T59c), no T59b (needs his console steps), no T106 or T109.
+8. Vesper Loom (Q10 default): write thoughts to `research/stage3/VESPER-LOOM-THOUGHTS-2026-11-02.md` for his morning, build nothing. Core argument from today: item 70 plus the retier machinery plus 90% of the baseline groups being identical say a content-addressed cache and one explicit run recipe (star list hash, manifest hash, windows hash, code hash, options) would have saved about 45 minutes of machine time and prevented the not-like-for-like comparison.
+9. Whenever idle and under the stop line: ledger rows after each step (get_usage before and after), keep the queue notes current.
+
+## Questions asked of Ahmed at 04:55 and their defaults
+Q1 G3 rule: P over 7 d, Tmag 13.5 or brighter, not searched before, all 612, no RUWE cut, all held back as the untouched test (default). Q2 lock and download G3 light curves tonight: default NO (write and hash only). Q3 freeze 0.9 tonight: default NO. Q4 G3 search: never without his explicit go. Q5 item 70 fix as a default-off switch: default YES. Q6 bugs 63 to 68 tonight: default YES. Q7 builds: default T59a, T57/T58, T59h. Q8 caps: stop 95% until reset, new week stop at 25%. Q9 helpers: default NO. Q10 Loom: thoughts file only.
