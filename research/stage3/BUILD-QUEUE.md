@@ -67,7 +67,7 @@ The old "open build items" line was eight different builds; each is its own task
 - [ ] **T59e. Eye-training record page** (unbuilt). Cost: about 1. Who: Claude.
 - [ ] **T59f. Real-layout rehearsal page** (unbuilt). Cost: about 1. Who: Claude.
 - [ ] **T59g. Eyes sittings still needed.** Ahmed's own time on the Eyes pages. Cost: none of mine. Who: Ahmed.
-- [ ] **T59h. Mission readiness cells** (44 work commits behind). Cost: about 0.5. Who: Claude.
+- [x] **T59h. Mission readiness cells** (44 work commits behind). Cost: about 0.5. Who: Claude. **DONE 2 Nov 2026 (book 2.8.3): the six status cells refreshed; the stage credits were not touched (credits need evidence and a `changes` line; the next honest review of them is a separate task).**
 - [ ] **T60. Rabtsevich / TIC 4206066:** report the TESS follow-up outcome honestly after 26 Nov 2026 (memory: reference_rabtsevich_tic4206066). Cost: about 0.2. Who: Claude. Date-driven, not research-driven.
 
 ## F. New tasks from the 31 Oct 2026 research (each its own task; details in `research/stage3/post-sealed-literature-2026-10-31.md`)

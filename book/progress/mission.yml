@@ -4,13 +4,13 @@
 # To move the number: edit a credit, add the evidence, and add a line to `changes` saying why. It can go down.
 # Weights are Claude's first draft (2026-10-21), approved as the starting point by Ahmed; change them here any time.
 
-status:                                   # the six cells of the home-page status panel; edit them in the same commit as the credits
-  - {label: "Phase", value: "Trial search done (50 stars)", note: "all 549 stars measured; the full search needs Ahmed's go"}
-  - {label: "First campaign", value: "G1: Kepler's binaries", note: "549 stars; 136 need a decision (Chapter 1)"}
-  - {label: "Detector", value: "v2 (box search)", note: "floor ~6 Earth radii; raw vs cleaned flux differs (Ch 8)"}
-  - {label: "Known-planet test", value: "7 of 8 sectors in raw flux", note: "4 of 8 in cleaned flux (the baseline)"}
-  - {label: "Filter test", value: "One star done", note: "finds S30 and S62 crossings, costs sensitivity"}
-  - {label: "Next milestone", value: "Your learning track", note: "then Ahmed decides the next science step"}
+status:                                   # the six cells of the home-page status panel; edit them in the same commit as the credits (refreshed 2 Nov 2026, T59h)
+  - {label: "Phase", value: "Sealed search done, G3 next", note: "clean null on 594 sealed stars; 612 new stars listed"}
+  - {label: "Campaign", value: "G2: TESS binaries (895)", note: "G3 list of 612 faint binaries locked 2 Nov"}
+  - {label: "Detector", value: "Vesper 0.8.0 (frozen)", note: "0.9 passed on development stars; not frozen"}
+  - {label: "Known-planet test", value: "TOI-1338 b: 7 of 10 passes", note: "seen near its 2024 dates; 4 of 10 kept as strong"}
+  - {label: "Your eye test", value: "Standard line close", note: "27 of 30 on 1 Nov; rehearsal is next"}
+  - {label: "Next milestone", value: "G3 decision (your word)", note: "windows table first, then the one-shot search"}
 
 stages:
   - id: sky
