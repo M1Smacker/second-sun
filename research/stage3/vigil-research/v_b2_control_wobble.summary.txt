@@ -1,0 +1,6 @@
+G2 development (0.7.1 run): 95 sectors with enough star-sectors, 3189 star-sectors, tier-1 SNR 7+ events: real 90, upside-down 24
+  pooled real share of tier-1 events 0.789; dispersion index of the real share 1.18 (chi2 64.7, df 55)
+  upside-down tier-1 per 1,000 star-sectors: pooled 7.53; per-sector min 0.0, median 0.0, max 187.5; dispersion index 2.28 (chi2 214.1, df 94)
+G2 sealed (0.8.0 run, opened after scoring): 86 sectors with enough star-sectors, 6373 star-sectors, tier-1 SNR 7+ events: real 46, upside-down 53
+  pooled real share of tier-1 events 0.465; dispersion index of the real share 1.03 (chi2 58.6, df 57)
+  upside-down tier-1 per 1,000 star-sectors: pooled 8.32; per-sector min 0.0, median 0.0, max 54.5; dispersion index 1.12 (chi2 95.3, df 85)

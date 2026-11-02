@@ -8,14 +8,18 @@ Why: Ahmed asked (3 Nov 2026) that every research stint gets a number and a shor
 - Numbering: RS-001 and up, never reused. Research done before 3 Nov is listed below without numbers.
 
 ## Sessions
-| No | Date | What we searched (short) | Cap | Used | Asked | Answered | Open | Model | File |
-|---|---|---|---|---|---|---|---|---|---|
-| RS-001 | planned 3 Nov | Vigil gates: cloud runner limits, data release lag, QLP reprocessing, mission end, trustworthy timestamps, repeated-look error control, prediction windows | 5 | | 89 in all across RS-001 to RS-004 | | | Sonnet 5.5 Extra | (to come) |
-| RS-002 | planned 3 Nov | Horizon: stability limit, Kepler-16 numbers, host radii in the catalogue, closest published model (Oddo et al.), planting code | 3 | | | | | Sonnet 5.5 Extra | (to come) |
-| RS-003 | planned 3 Nov | Witness: own-data kill test (do false alarms coincide with background and centroid excursions), novelty versus standard decorrelation, Hveto method | 1.5 | | | | | Sonnet 5.5 Extra | (to come) |
-| RS-004 | planned 3 Nov | The rest of the brief and the parked ideas (Twin Test, Numbers Desk, state pack) and the cross-cutting questions | 1.5 | | | | | Sonnet 5.5 Extra | (to come) |
+| No | Date | What we searched (short) | Cap | Used | Asked | Answered | Partly | Open | Model | File |
+|---|---|---|---|---|---|---|---|---|---|---|
+| RS-001 | 3 Nov | Vigil gates: MAST metadata backtest of data supply and release lag for the 2,056 stars of G1, G2, G3; QLP method change at S94 and its timing correction; TESS schedule to Sept 2028; GitHub Actions, n8n, Oracle, PythonAnywhere limits; online FDR papers; control wobble per sector on the G2 runs; period ratios of known circumbinary planets; git dates versus OpenTimestamps; alert services | 5 | about 1 (with RS-002, see below) | 49 (the Vigil block) | 16 | 5 | 28 | Sonnet 5.5 Extra | `research/stage3/vigil-literature-2026-11-03.md` |
+| RS-002 | 3 Nov | Horizon: Oddo et al. 2026 (found, read), Holman and Wiegert stability formula, Armstrong 2014 occurrence, Feldman-Cousins, TTC table columns (no radii), planting code and eclipse share of time, ceiling statistics, slice check (dev only) | 3 | about 1 | 14 (the Horizon block) | 11 | 2 | 1 | Sonnet 5.5 Extra | `research/stage3/horizon-literature-2026-11-03.md` |
+| RS-003 | planned | Witness: own-data kill test first (do control false alarms coincide with background and centroid excursions), novelty versus standard decorrelation, Hveto method | 1.5 | | 12 | | | | Sonnet 5.5 Extra | |
+| RS-004 | planned | Parked ideas (Twin Test, Numbers Desk, state pack), cross-cutting questions, and the open Vigil and Horizon items Ahmed wants closed | 1.5 | | 7 + 7 | | | | Sonnet 5.5 Extra | |
 
-Planned rows show the intended order and caps; none has started. The question brief is `research/stage3/NEW-SYSTEMS-RESEARCH-BRIEF-2026-11-02.md` (89 questions, task T122 in the build queue).
+**Tally after RS-002 (3 Nov):** of the 89 questions of the brief, 27 answered, 7 partly answered, 29 open inside the two researched blocks, 26 not yet researched (Witness 12, parked 7, cross-cutting 7). The two P1 questions still open in the researched blocks: V-C3 (needs a runner test and Ahmed's GitHub step) and V-D1 (Ahmed's call).
+
+## Cost record (to size questions later; estimates from the readings, the weekly meter has 1-point steps)
+- RS-001 and RS-002 together, with the G3 download fix and restart, 3 Nov 02:29 to about 02:55 Kuwait: weekly 2% to 4%, 5-hour meter 13% to 24% (about 8 five-hour points per weekly point, so about 1.4 weekly points by that ruler), context 226K to 425K tokens. About 63 questions touched, 34 answered or partly answered: roughly 0.04 to 0.06 weekly point per answered question on average.
+- Size classes (my estimate from this stint, NOT precise): S = one own-data lookup or one fact from a page already open, about 0.02; M = one primary page opened and the exact sentences pulled, about 0.05 to 0.08; L = an own-data script plus sources (supply backtest, control wobble), about 0.15 to 0.25. Wall time was short because pages are read with one small script each; the context grew about 100K tokens per heavy batch, which is what drives the cost.
 
 ## Research before numbering (files only; summaries not rewritten here)
 - 23 Oct: `research/deep-research-brief-2026-10-23.md`, `research/vetting-page-research-2026-10-23/`

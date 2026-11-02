@@ -70,3 +70,12 @@ It turns "we found nothing" into "we could have seen planets this big, this far 
 ## 9. Related
 
 Loom phase 0 windows table; bug 70; `g3-window-feasibility-2026-11-02.txt`; V9 study rules (nothing in Horizon changes frozen settings); `research/learning-and-checking-literature-2026-11-02.md` (negative controls and known-answer tests are the same family of checks).
+
+## 10. Addendum 3 Nov 2026: what RS-002 found (full file: `horizon-literature-2026-11-03.md`)
+
+- Verdict: GO, cheaper. `pipeline/chain_recovery.py` already plants a trapezoid (20% ingress and egress) through the whole frozen chain and `scorecard_plus.py` section C already holds a crude ceiling calculator. Horizon becomes a mapping layer plus a grid runner in new files; estimate about 3.0 points (range 2.5 to 4), after task T107 (host radii from the FITS headers, about 0.3), because `g2_chain_targets.csv` has a TIC radius for 1 of 897 rows and the TTC table has no radii or light ratios.
+- Closed UNCERTAIN lines: Holman and Wiegert 1999 equation 3 read (ar5iv); critical period ratio runs 2.75 to 6.16 for e up to 0.3 and mu 0.1 to 0.5; the observed minimum ratio is 5.57 (Kepler-16 b), seven of ten transiting planets sit at 5.6 to 6.9 (own table). The "ratio near 5.6" in section 3 is the observed minimum, not the stability floor.
+- Oddo et al. 2026 (arXiv:2610.22625) found and read: same method, 7 by 7 grid (radius 2 to 16 Earth radii, period 10 to 600 d), completeness = recovery fraction times window function, zero-detection ceiling f = -ln(alpha) / sum of detection chance (our rule), limits 33.0% coplanar and 40.2% isotropic. Copy the grid for comparability.
+- New requirement for R0: the reality check. Section C of the sealed scorecard implies 0.8% (planets per binary times g) at P = 95 d for 6.85 Earth radii, about 12 times below Armstrong 2014's 10% (R > 6 Earth radii, P < 300 d, coplanar). Before publishing, compare the planted recovery with the real recovery of TOI-1338 b (4 of 10 sectors at tier 1 against 20% planted completeness at its depth) and label the map "upper bound on reach".
+- Floor ratio is a stated choice (publish the pessimistic one, show sensitivity to floors 3 and 5.6). R1 must filter `slice == "dev"` and assert it (the chain target list holds 301 dev and 594 sealed).
+- Still open: compute time (time one star first), the transit-probability formula for non-coplanar planets, Li 2016.

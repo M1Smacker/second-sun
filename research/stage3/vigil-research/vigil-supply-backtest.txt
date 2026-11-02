@@ -1,0 +1,56 @@
+MAST metadata backtest, 2026-11-03 02:40 Kuwait. Stars in the union of G1, G2, G3: 2056. Rows: 43552. Aggregates only.
+sector | product | stars with a file | share of union list | median days from sector end to release | 10th to 90th percentile
+ 85 | QLP       |   189 |  9.2% |  102.3 |  102.1 to  102.5
+ 85 | SPOC      |    87 |  4.2% |   26.5 |   26.5 to   26.5
+ 85 | TESS-SPOC |   119 |  5.8% |  606.9 |  606.1 to  607.1
+ 86 | QLP       |   177 |  8.6% |   82.1 |   79.3 to   82.3
+ 86 | SPOC      |   323 | 15.7% |  140.7 |   34.7 to  140.7
+ 87 | QLP       |   198 |  9.6% |   57.3 |   57.1 to   58.2
+ 87 | SPOC      |   109 |  5.3% |   29.6 |   29.6 to   29.6
+ 88 | QLP       |   184 |  8.9% |   39.4 |   39.1 to   39.6
+ 88 | SPOC      |    92 |  4.5% |   16.6 |   16.6 to   16.6
+ 89 | QLP       |   172 |  8.4% |   26.2 |   25.5 to   26.5
+ 89 | SPOC      |   104 |  5.1% |   14.6 |   14.6 to   14.6
+ 90 | QLP       |   172 |  8.4% |   36.4 |   36.2 to   38.0
+ 90 | SPOC      |    99 |  4.8% |   22.4 |   22.4 to   22.4
+ 91 | QLP       |     6 |  0.3% |   23.3 |   23.2 to   23.8
+ 91 | SPOC      |     1 |  0.0% |   22.7 |   22.7 to   22.7
+ 92 | QLP       |    11 |  0.5% |   29.8 |   29.3 to   30.7
+ 92 | SPOC      |     6 |  0.3% |   49.4 |   15.9 to   82.9
+ 93 | QLP       |   150 |  7.3% |   39.9 |   39.4 to   41.1
+ 93 | SPOC      |    99 |  4.8% |   25.5 |   25.5 to   25.5
+ 94 | QLP       |   122 |  5.9% |   46.3 |   46.1 to   46.6
+ 94 | SPOC      |    92 |  4.5% |   12.4 |   12.4 to   12.4
+ 95 | QLP       |   155 |  7.5% |   37.7 |   37.6 to   37.8
+ 95 | SPOC      |   110 |  5.4% |   14.9 |   14.9 to   14.9
+ 96 | QLP       |   139 |  6.8% |   16.6 |   16.5 to   16.7
+ 96 | SPOC      |   221 | 10.7% |  249.1 |   18.1 to  249.1
+ 97 | QLP       |   106 |  5.2% |   22.8 |   22.7 to   22.9
+ 97 | SPOC      |    54 |  2.6% |   29.2 |   29.2 to   29.2
+ 98 | QLP       |   198 |  9.6% |   24.3 |   24.2 to   25.1
+ 98 | SPOC      |    82 |  4.0% |   31.6 |   31.6 to   31.6
+ 99 | QLP       |   113 |  5.5% |   45.2 |   44.2 to   46.5
+ 99 | SPOC      |    33 |  1.6% |   23.7 |   23.7 to   23.7
+100 | QLP       |   107 |  5.2% |   38.9 |   37.7 to   40.6
+100 | SPOC      |    32 |  1.6% |   26.0 |   26.0 to   26.0
+101 | QLP       |    84 |  4.1% |   51.7 |   51.7 to   51.7
+101 | SPOC      |    29 |  1.4% |   23.7 |   23.7 to   23.7
+102 | QLP       |    80 |  3.9% |   77.2 |   76.3 to   78.3
+102 | SPOC      |    28 |  1.4% |   30.7 |   30.7 to   30.7
+103 | QLP       |    79 |  3.8% |   59.9 |   58.8 to   60.9
+103 | SPOC      |    29 |  1.4% |   38.1 |   38.1 to   38.1
+104 | QLP       |    71 |  3.5% |   45.0 |   44.8 to   45.9
+104 | SPOC      |    28 |  1.4% |   29.3 |   29.3 to   29.3
+105 | SPOC      |    23 |  1.1% |   36.4 |   36.4 to   36.4
+106 | SPOC      |    32 |  1.6% |   31.6 |   31.6 to   31.6
+107 | SPOC      |    35 |  1.7% |   23.7 |   23.7 to   23.7
+1751 | SPOC      |     1 |  0.0% |    4.5 |    4.5 to    4.5
+1751 | TESS-SPOC |    13 |  0.6% |  136.5 |  136.5 to  136.5
+
+All sectors (any year), median release lag by product in days from the sector end (first number: all sectors; second: sectors 70 and later):
+  QLP      :   309.4 |   143.2   (files 19283)
+  SPOC     :    34.4 |    35.8   (files 13464)
+  TESS-SPOC:   374.9 |   520.7   (files 10805)
+Latest sector on MAST per product: QLP S104, SPOC S1751, TESS-SPOC S1751
+Sector end dates (UTC), latest 6 sectors: S103 2026-05-17, S104 2026-06-13, S105 2026-07-11, S106 2026-08-09, S107 2026-09-07, S1751 2026-01-22
+Latest release date seen per product: QLP 2026-07-30, SPOC 2026-10-01, TESS-SPOC 2026-07-21
