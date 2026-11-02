@@ -6,10 +6,13 @@ exactly Vesper 0.7.1 (proved by zero_diff.py). The set is read at import, so wor
   bf4  box floor: the 3 h box is dropped from the grid (4 to 20 h remain); a physical floor, plan section 8 (C5a)
   c6   orbit-locked flag (v8 candidate, plan section 7, variant C): a tier-1 event with a tier-1 partner of the same kind on the same star, in another sector, at a whole number of
        catalogue binary periods, with matched box length (x1.6) and depth (x2), goes to tier 2; applied on the union in stage3_report.apply_v7
+  dg   (v9 candidate, 2 Nov 2026, task T31) depth guard: an event deeper than 30% of the flux, or with a depth that is not a finite number, goes to tier 2 (flag too_deep)
+  nd   (v9 candidate, task T32, re-scoped) an unphysical event (the dg test) is left out of the dominance comparison, so a broken light curve's absurd SNR cannot mark real events as dominated
+  fl   (v9 candidate, task T33) flare-shape check: the asymmetry of the dip, (late third - early third) / depth in the search's orientation, is stored for every event (asym) and an event above 1.0 goes to tier 2 (flag flare)
   c2   step test without its data-cover rule (that duplicates the gap rule; phase A showed every 8 h step flag came from it); a side with no data is not judged
 """
 import os
 
 ON = frozenset(x for x in os.environ.get("VESPER_OPTS", "").replace("+", ",").split(",") if x)
-KNOWN = {"bf4", "c1a", "c1b", "c1c", "c2", "c6"}
+KNOWN = {"bf4", "c1a", "c1b", "c1c", "c2", "c6", "dg", "nd", "fl"}
 assert ON <= KNOWN, f"unknown VESPER_OPTS switch: {sorted(ON - KNOWN)}"

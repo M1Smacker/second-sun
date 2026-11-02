@@ -75,6 +75,8 @@ def add_step(g, paths):
             cache[key] = S2.Prod(d["t"], d["f"], key[1])
         P = cache[key]
         e.update(C.step_stats(P.bt, P.bf, P.bd, P.med, e["center"], e["dur_h"], e["depth_ppm"]))
+        if "fl" in V.ON:                                         # study switch fl: the asymmetry of the dip (stage3_core.shape_stats), measured on the same binned flux
+            e.update(C.shape_stats(P.bt, P.bf, P.bd, P.med, e["center"], e["dur_h"], e["depth_ppm"]))
         if "c1b" in V.ON:                                        # study switch: the same measurements on a curve smoothed without the event (stage3_core.resmooth_stats)
             r = C.resmooth_stats(P.t, P.f, e["center"], e["dur_h"], P.bd)
             if r is not None:

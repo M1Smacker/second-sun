@@ -23,6 +23,8 @@ KS = (6.0, 8.0, 10.0, 12.0, 14.0, 18.0)                      # injected depth in
 DURS = (4.0, 8.0, 14.0, 20.0)
 TIER1 = ("1A", "1L", "1B")
 FLAGS = ("gap_dump", "flipmatch", "c5", "ecl_overlap", "repeater", "step", "ramp", "dominated", "common")
+V9_FLAGS = ("too_deep", "flare")                              # exist only when the dg / fl study switches are on; False otherwise
+MEASURES = {"ev_depth_ppm": "depth_ppm", "cover_pre": "cover_pre", "cover_post": "cover_post", "lift_pre": "lift_pre", "lift_post": "lift_post", "asym": "asym"}   # row column: event key. Kept in every row so a flag can be re-judged offline (task T104); asym only with switch fl. (depth_ppm in a row is the INJECTED depth.)
 R_EARTH_PER_RSUN = 109.076
 INJ, CACHE, W = {}, {}, {}
 
@@ -116,10 +118,11 @@ def row_of(ev, kind, tc, dur, **meta):
     if len(near):
         near = near[np.abs(near.center - tc) <= 0.5 * np.maximum(dur, near.dur_h) / 24 + 0.1]
     prim = near[near.primary] if len(near) else near
-    row = dict(meta, dur=dur, tc=tc, found_any=len(near) > 0, found_primary=len(prim) > 0, tier="", seen_by="", snr=np.nan, **{f: False for f in FLAGS})
+    row = dict(meta, dur=dur, tc=tc, found_any=len(near) > 0, found_primary=len(prim) > 0, tier="", seen_by="", snr=np.nan, **{f: False for f in FLAGS}, **{c: np.nan for c in MEASURES}, **{f: False for f in V9_FLAGS})
     if len(prim):
         r = prim.sort_values("snr", ascending=False).iloc[0]
-        row.update(tier=r["tier"], seen_by=r["seen_by"], snr=float(r["snr"]), **{f: b(r.get(f)) for f in FLAGS})
+        row.update(tier=r["tier"], seen_by=r["seen_by"], snr=float(r["snr"]), **{f: b(r.get(f)) for f in FLAGS + V9_FLAGS},
+                   **{c: (float(r[k]) if k in r.index and r[k] is not None and r[k] == r[k] else np.nan) for c, k in MEASURES.items()})   # T104 (2 Nov 2026): the numbers behind the step and shape flags are kept
     row["tier1"] = row["tier"] in TIER1
     return row
 

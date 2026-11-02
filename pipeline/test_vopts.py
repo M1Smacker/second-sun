@@ -136,5 +136,74 @@ def test_c6_lock():
     print("PASS c6: a locked pair is found; off-period, other kind, depth x3, same sector and tier-2 partners are not; a locked event is tier 2")
 
 
+class _Eph:
+    """Stub for the catalogue ephemeris: no eclipse anywhere."""
+    def dist(self, tic, center): return float("nan")
+    def overlap(self, tic, center, dur_h): return False
+
+
+def _ev(kind="real", snr=9.0, depth=2000.0, center=10.0, **k):
+    return dict(tic=1, center=center, dur_h=6.0, kind=kind, product="SPOC", snr=snr, depth_ppm=depth, flags="", burst_n=0, c8_n=1, c8_best=5.0, **k)
+
+
+def test_dg_depth_guard():
+    assert C.unphysical(_ev(depth=300_001.0)) and C.unphysical(_ev(depth=float("inf"))) and C.unphysical(_ev(depth=float("nan"))) and C.unphysical(_ev(depth=None))
+    assert not C.unphysical(_ev(depth=265_216.0)) and not C.unphysical(_ev(depth=300_000.0)), "the deepest real event of the first sealed run (26.5%) must stay"
+    deep = _ev(depth=370415380273019399184983261184.0, snr=3.5e26, kind="flip")
+    assert "too_deep" not in C.enrich_event(deep, _Eph(), set()), "default: no new key, so a default run writes exactly what it always wrote"
+    V.ON = frozenset({"dg"})
+    try:
+        out = C.enrich_event(deep, _Eph(), set())
+        assert out["too_deep"] is True and out["tier"] == "2", out
+        ok = C.enrich_event(_ev(), _Eph(), set())
+        assert ok["too_deep"] is False and ok["tier"] == "1A", ok
+    finally:
+        V.ON = frozenset()
+    assert C.tier_of(dict(gap_dump=False, burst=False, flipmatch=False, c5=False, too_deep=float("nan"), flare=None, c8_n=0, c8_best=None)) == "1B", "a missing flag (NaN or None in an offline table) is not set"
+    print("PASS dg: over 30% or not a number goes to tier 2, 26.5% stays, off by default, NaN flags in tables are not set")
+
+
+def test_nd_dominance():
+    junk = _ev(kind="flip", snr=3.5e26, depth=3.7e29, center=11.0)
+    real = _ev(kind="real", snr=9.0, center=10.0)
+    off = {e["kind"]: e for e in C.enrich_group({"events": [dict(junk), dict(real)]}, _Eph(), set())}
+    assert off["real"]["dominated"] is True and off["real"]["tier"] == "2", "default: the broken curve's absurd SNR marks the real event as dominated (the bug nd fixes)"
+    V.ON = frozenset({"nd"})
+    try:
+        on = {e["kind"]: e for e in C.enrich_group({"events": [dict(junk), dict(real)]}, _Eph(), set())}
+        assert on["real"]["dominated"] is False and on["real"]["tier"] == "1A", on["real"]
+        strong = _ev(kind="flip", snr=20.0, depth=3000.0, center=11.0)       # a normal, stronger event of the other kind still dominates
+        on2 = {e["kind"]: e for e in C.enrich_group({"events": [dict(strong), dict(real)]}, _Eph(), set())}
+        assert on2["real"]["dominated"] is True, "nd must not weaken the dominance test for physical events"
+    finally:
+        V.ON = frozenset()
+    print("PASS nd: an unphysical event no longer makes real events dominated; a normal stronger event still does; off by default it behaves as before")
+
+
+def test_fl_shape():
+    t = np.arange(0, 27, 10 / 1440); tc, dur = 13.0, 3.0
+    d = dur / 24; start = tc - d / 2
+    box = np.where(np.abs(t - tc) <= d / 2, -2000e-6, 0.0)                                  # a box
+    flare = np.where((t >= start) & (t <= tc + d / 2), -6000e-6 * np.exp(-(t - start) * 24 / 1.0), 0.0)   # abrupt start, 1 h recovery
+    for name, shape, lo, hi in (("box", box, -0.3, 0.3), ("flare", flare, 1.0, 3.0)):
+        f = 1 + shape + 1e-5 * np.random.default_rng(5).normal(size=t.size)
+        P = S2.Prod(t, f)
+        depth = float(-np.mean(shape[(t >= start) & (t <= tc + d / 2)]) * 1e6)
+        a = C.shape_stats(P.bt, P.bf, P.bd, P.med, tc, dur, depth)["asym"]
+        assert a is not None and lo < a < hi, f"{name}: asym {a} not in ({lo}, {hi})"
+        print(f"   {name}: asym {a:+.2f}")
+    assert C.shape_stats(P.bt, P.bf, P.bd, P.med, tc, dur, 0.0)["asym"] is None and C.shape_stats(P.bt[:3], P.bf[:3], P.bd, P.med, tc, dur, 2000.0)["asym"] is None, "no depth or no bins: not measured"
+    assert C.flare_flag(dict(asym=1.2)) and not C.flare_flag(dict(asym=0.9)) and not C.flare_flag(dict(asym=None)) and not C.flare_flag(dict(asym=float("nan"))) and not C.flare_flag({})
+    base = _ev(asym=1.8)
+    assert "flare" not in C.enrich_event(base, _Eph(), set())
+    V.ON = frozenset({"fl"})
+    try:
+        o = C.enrich_event(base, _Eph(), set()); assert o["flare"] is True and o["tier"] == "2", o
+        o2 = C.enrich_event(_ev(asym=0.1), _Eph(), set()); assert o2["flare"] is False and o2["tier"] == "1A", o2
+    finally:
+        V.ON = frozenset()
+    print("PASS fl: a box reads near 0, a flare shape above 1; too few points or no depth is not measured; the flag moves an event to tier 2 only when the switch is on")
+
+
 if __name__ == "__main__":
-    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window(); test_bf4_floor(); test_c6_lock()
+    test_shoulders(); test_guard_stays(); test_c2_rules(); test_c1a_window(); test_c1c_window(); test_bf4_floor(); test_c6_lock(); test_dg_depth_guard(); test_nd_dominance(); test_fl_shape()

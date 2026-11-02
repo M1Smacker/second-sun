@@ -124,6 +124,40 @@ def step_flag(e):
     return any(l is None or abs(l) > STEP_LIFT for l in (e["lift_pre"], e["lift_post"]))
 
 
+# v9 study switches dg, nd, fl (vopts.py; 2 Nov 2026). Physics, not tuned on results: a transit cannot remove more than about 30% of a star's light (the deepest real
+# event in the first sealed run is 26.5%); a flare read upside down starts abruptly and recovers slowly (Davenport et al. 2014, arXiv:1411.3723), a box transit has asymmetry near 0.
+DEPTH_MAX_PPM = 300_000
+FLARE_ASYM = 1.0                                    # starting value for the study (candidates 0.5, 1.0, 1.5 are judged on the development slice only)
+
+
+def unphysical(e):
+    """dg, nd: the depth is over 30% of the flux, or it is not a finite number (the flux baseline reached zero or below: a broken light curve)."""
+    d = e.get("depth_ppm")
+    return d is None or d != d or not np.isfinite(d) or d > DEPTH_MAX_PPM
+
+
+def shape_stats(bt, bf, bd, med, center, dur_h, depth_ppm):
+    """fl: asymmetry of a dip in the search's own orientation (dip down) = (mean flux of the late third of the box - mean flux of the early third) / depth.
+    About 0 for a box; positive for an abrupt start with a slow recovery (a flare read upside down). asym is None when a third holds fewer than 2 binned
+    points or the depth is not positive."""
+    d = dur_h / 24
+    early = (bt >= center - d / 2) & (bt < center - d / 6) & np.isfinite(bf)
+    late = (bt > center + d / 6) & (bt <= center + d / 2) & np.isfinite(bf)
+    if early.sum() < 2 or late.sum() < 2 or not (depth_ppm and depth_ppm > 0):
+        return dict(asym=None)
+    return dict(asym=float((np.mean(bf[late]) - np.mean(bf[early])) / (depth_ppm * 1e-6)))
+
+
+def flare_flag(e):
+    a = e.get("asym")
+    return a is not None and a == a and a > FLARE_ASYM
+
+
+def _set(v):
+    """A flag that may be missing, None or NaN (offline tables): set only when truly true."""
+    return bool(v) and v == v
+
+
 C1B_MASK, C1B_WIN, C1B_MIN_D = 0.75, 3.0, 0.5       # study switch c1b: mask half-width and window as multiples of the box length; shortest window in days
 
 
@@ -211,7 +245,7 @@ def tier_of(e):
     are exactly 1A + 1L + 1B. v7: if the event carries `common` (the common-moment flag) it replaces `burst`; if it carries `pdc_snr` (SAP-only dips) a value under PDC_MIN makes it tier 3."""
     c = e.get("common")
     bad_moment = e["burst"] if c is None or c != c else c
-    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("orbit_lock") or e.get("step") or e.get("ramp") or e.get("dominated"):
+    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("orbit_lock") or e.get("step") or e.get("ramp") or e.get("dominated") or _set(e.get("too_deep")) or _set(e.get("flare")):
         return "2"
     p = e.get("pdc_snr")
     if p is not None and p == p and p < PDC_MIN:
@@ -231,6 +265,10 @@ def enrich_event(e, ephem, qlp_only, n_same=0, extra=True, dominated=False):
                qlp_only_star=int(e["tic"]) in qlp_only, repeat_n=int(n_same),
                ecl_overlap=bool(extra and ephem.overlap(e["tic"], e["center"], e.get("dur_h") or 0)), repeater=bool(extra and n_same >= REPEAT_N), step=bool(extra and step_flag(e)),
                ramp=bool(extra and e.get("ramp_d") is not None and e["ramp_d"] == e["ramp_d"] and e["ramp_d"] < RAMP_D), dominated=bool(extra and dominated))
+    if extra and "dg" in V.ON:                                    # study switches (vopts.py): the keys exist only when the switch is on, so a default run writes exactly what it always wrote
+        out["too_deep"] = unphysical(e)
+    if extra and "fl" in V.ON:
+        out["flare"] = flare_flag(e)
     out["tier"] = tier_of({**e, **out})
     return out
 
@@ -241,6 +279,8 @@ def enrich_group(g, ephem, qlp_only, extra=True):
     n = Counter((e["kind"], e["product"]) for e in g["events"])
     mx = {}
     for e in g["events"]:
+        if "nd" in V.ON and unphysical(e):                       # study switch nd: a broken light curve's absurd event cannot make real events look dominated
+            continue
         mx[(e["product"], e["kind"])] = max(mx.get((e["product"], e["kind"]), 0.0), e.get("snr") or 0.0)
     # v4 local false alarm calibration: an event is dominated if the strongest event of the OTHER kind (real vs upside-down) in the same light curve is at
     # least as strong. Symmetric, no setting: under noise alone real and upside-down dominate each other equally often.
