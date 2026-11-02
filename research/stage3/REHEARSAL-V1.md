@@ -1,6 +1,6 @@
 # Rehearsal in the real layout, version 1 (Eyes ladder rung 3; asked by Ahmed 2 Nov 2026)
 
-**STATUS at the moment work was parked (2 Nov 2026, about 04:00): BUILT AND UNIT-TESTED, NOT YET BROWSER-TESTED, NOT COMMITTED TO THE BOOK, NOT PUBLISHED.** Nothing here is live.
+**STATUS (2 Nov 2026, about 04:45): LIVE as book 2.7.0** (https://m1smacker.github.io/second-sun/rehearsal/), published by `publish_book.ps1 -Test` with every check passing, live page and deck checked by HTTP (the live Eyes and rehearsal pages were not clicked). Tested: 38 unit checks, browser test at three screen sizes (73 checks), a whole session played as Ahmed's device against a mock of the cloud (12 checks), one real rehearsal round posted to the real cloud rules and deleted at once (accepted; change and delete from outside refused; admin read gives all 20 answers), deck regenerated bit-identical from its seed. NOT TESTED: Safari on a real iPhone, real touch gestures, screen readers.
 
 ## What it is
 Step 3 of the ladder written in `research/decisions.md`: a rehearsal in the layout the real candidates will use, with hidden fake planets, before any real lead is shown. Pass line (fixed before the page existed): 8 sessions of 20 items on at least 4 different days; at least 80% of the clearly visible fake planets called planet-like; at most 15% of everything else called planet-like; d-prime at least 2. Claude decides whether the numbers are enough; the page does the arithmetic.
@@ -12,12 +12,9 @@ Step 3 of the ladder written in `research/decisions.md`: a rehearsal in the layo
 - `book/tools/test_rehearsal.mjs`: 38 checks pass (statistics, pass line, order, store, locked answers, cloud document shape, panels cannot leak the truth, deck integrity, a mutation). It already caught one real defect (neighbouring items from one star) which is fixed.
 - `research/burn-3-book/tools/site_check.mjs`: new browser mode `rehearsal` (three screen sizes, six answers, targets 44 px or more, lock then truth, saved at once, keyboard, abandoned session, a whole session of 20). Written, syntax-checked, NOT RUN yet.
 
-## What is left before it can go live
-1. Build the book locally (strict), run `site_check.mjs rehearsal` and the layout, offline and JavaScript-off modes against it; fix what they find.
-2. Add `test_rehearsal.mjs` and the `rehearsal` browser mode to `publish_book.ps1`.
-3. `pipeline/eyes_scores.py`: read rounds with source `rehearsal-v1` separately (today they would be mixed into the practice stats) and print the rung 3 line. Its test must cover it.
-4. Book 2.7.0 (a page added): versions row, footer, a field note, a learning-track mention.
-5. Commit, then the autonomous publish, then a live check.
+## What is left
+1. Ahmed plays the eight sessions on at least four different days. `pipeline/eyes_scores.py` reads them apart from his practice rounds (file `research/eyes-scores/rehearsal-rounds.jsonl`) and prints the rung 3 line with the page's own arithmetic; Claude decides whether the numbers are enough.
+2. A later version adds the second light-curve product, background and centroid panels (BUILD-QUEUE).
 
 ## Limits (said now)
 Only panels 1 to 3; the second product, background and centroid panels are for a later version. Fake planets are trapezoids in real light, so passing is necessary, not sufficient. After the eighth session the same 160 items return. The deck uses development-slice stars only; no candidate and no hunt event appears in it.

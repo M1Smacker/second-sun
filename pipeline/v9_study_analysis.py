@@ -124,6 +124,9 @@ def main():
     nd_ok = int(rev.sum()) == 0 and int((dch & ~inlc).sum()) == 0
 
     # --- planted dips
+    done = (ROOT / "research" / "stage3" / "v9-study-status.txt").read_text(encoding="utf-8", errors="ignore")
+    if f"DONE run={BASE_RUN} rows={BASE_ROWS.name}" not in done:                      # the rows file is written while the run goes on: only a DONE line means it is complete
+        P(""); P(f"the planted-dip baseline ({BASE_ROWS.name}) is not finished yet: sections 4 to 7 and the decision are NOT computed"); return
     pb, pn = rows_of(BASE_ROWS), rows_of(NEW_ROWS)
     kk = lambda d: d.tic.astype(int).astype(str) + "|" + d.sector.astype(int).astype(str) + "|" + d.K.astype(str) + "|" + d.dur.astype(str) + "|" + d.sign.astype(int).astype(str) + "|" + d.tc.round(3).astype(str)
     pb["k"], pn["k"] = kk(pb), kk(pn)
@@ -153,6 +156,7 @@ def main():
         rm = was & ~now
         rm_flip, rm_real = int((rm & (X.kind == "flip")).sum()), int((rm & (X.kind == "real")).sum())
         fall = 100 * rm_flip / max(cb["flip"], 1)
+        st_rm, st_all = X[rm & (X.kind == "flip")].tic.nunique(), X[was & (X.kind == "flip")].tic.nunique()       # events cluster on stars (31 Oct finding): count stars too
         flare_p = pj.asym.gt(thr).fillna(False)
         pj["t1_fl"] = pj.t1_base & ~flare_p
         dd = pj[pj.K.isin((8., 10., 12., 14.)) & (pj.sign == 1)]; bb = pj[pj.K.isin((8., 10., 12., 14.)) & (pj.sign == -1)]
@@ -170,7 +174,7 @@ def main():
         c1, c2, c3, c4 = fall >= 20, price >= PRICE_STEP, ok8 and okl, abs(gap) <= 3
         verdicts.append((thr, fall, c1, c2, c3, c4))
         fmt = lambda x: "inf" if x == np.inf else f"{x:.1f}"
-        P(f"   {thr:.1f} | {rm_flip} of {cb['flip']} = {fall:.0f}% | {rm_real} of {cb['real']} | {lost_pts:.2f} | {fmt(price)} (per 1,000 star-sectors: {1000 * rm_flip / n_ss:.1f} flips) | 8 h: {t8} | 14-20 h: {tl} | {gap:+.1f} | {'yes' if c1 else 'NO'} | {'yes' if c2 else 'NO'} | {'yes' if c3 else 'NO'} | {'yes' if c4 else 'NO'}")
+        P(f"   {thr:.1f} | {rm_flip} of {cb['flip']} = {fall:.0f}% (on {st_rm} of {st_all} stars) | {rm_real} of {cb['real']} | {lost_pts:.2f} | {fmt(price)} (per 1,000 star-sectors: {1000 * rm_flip / n_ss:.1f} flips) | 8 h: {t8} | 14-20 h: {tl} | {gap:+.1f} | {'yes' if c1 else 'NO'} | {'yes' if c2 else 'NO'} | {'yes' if c3 else 'NO'} | {'yes' if c4 else 'NO'}")
     good = [v for v in verdicts if v[2] and v[3] and v[4] and v[5]]
     pick = max(good, key=lambda v: v[1])[0] if good else None
 
