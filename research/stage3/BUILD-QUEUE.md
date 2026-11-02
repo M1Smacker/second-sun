@@ -91,3 +91,12 @@ The old "open build items" line was eight different builds; each is its own task
 ## Where the old lines went
 
 The four lines under "After the sealed search" in the fix list: TOI-1338 b ephemeris drift is Q1 and T44; the chapter and learning-track check is T57a to T57d; the near-zero noise guard is T32; lead checks 5 and 6 (by-eye record, pixel check) are T46 and T47.
+
+## H. From the learning and checking research (2 Nov 2026; note `research/learning-and-checking-literature-2026-11-02.md`; all wait for Ahmed's go)
+
+- [ ] **T113. Rehearsal training mode (unscored):** a worked example per class with the tell marked, then unmarked, with a share of clear known fakes early that tapers (as Planet Hunters TESS does). Needs Ahmed's yes: the ladder fixes the rehearsal rules. Cost: about 1.5. Who: Claude. Kind: B.
+- [ ] **T114. Miss-to-lesson link in the rehearsal report:** on a wrong answer show the pair confused and the chapter section; strongest after a high-confidence miss; a 6 by 6 confusion table per session. Cost: about 0.8. Who: Claude. Kind: B.
+- [ ] **T115. Spaced re-ask in the learning track:** each level check also draws two items from earlier levels. Cost: about 0.6. Who: Claude. Kind: B.
+- [ ] **T116. Calibration readout from Ahmed's own rehearsal data** (how often "sure" is right; measurement only, no training claim). Cost: about 0.3. Who: Claude. Kind: B.
+- [ ] **T117. Evidence ladder in RESEARCH-BLUEPRINT.md** (E1 ground truth, E2 control that could fail, E3 primary source, E4 my reasoning). Cost: about 0.1. Who: Claude. Kind: B.
+- [ ] **T118. Negative-control list for Vesper and the Loom,** folded into Loom phase 2 metamorphic tests. Cost: about 0.4. Who: Claude. Kind: B.
