@@ -114,3 +114,16 @@ Ahmed uses Opus 5.5 (high on 29 Oct, medium from phase B on) for the Vesper stud
 | 31 Oct, later (Ahmed: "publish books yourself from now on; what is next; list what is undone; your opinion as second key on when to resume and which stars") | Published book 2.6.0 with publish_book.ps1 -Test (all checks and browser tests passed, live after 2 checks), live check of the tabs fix, new rule in CLAUDE.md and memory, EB pool counts from our own catalogue, one search on short-binary planets, hunt opinion file, build tasks T111 and T112, bug 61 note. Estimate not written first (lapse; gut 0.7) | none | 79 | 33 | n/a | 80 weekly, 41 five-hour | **about 1 point (5-hour ruler: 8; weekly meter moved 79 to 80)** |
 | 2 Nov, 02:26 Kuwait (Ahmed: "weekly cap 96%, list everything to do or build in the order you recommend, realistic points and duration, some overnight") | Planning turn: usage and ledger read, disk and process check, DAY-PLAN-2026-11-02.md written with points and times per task. Estimate not written first (lapse; gut 0.4) | none | 83 | 8 | 200K | 83 weekly (unchanged), 10 five-hour, 244K | **about 0.25 (5-hour ruler 2 = 0.25)** |
 | 2 Nov SITTING (Ahmed: "Go, start step"; weekly cap 96%, Sonnet 5.5 extra for everything) | Steps 1 to 8 of DAY-PLAN-2026-11-02 plus the Eyes real-layout rehearsal, then a rigorous bug test, field note, Loom thoughts, stop. Per-step estimates written first (below). Per-step actuals are read from get_usage at each boundary and filled in the table "2 Nov sitting, per step" at the end of this file | mixed | est mid 12.5 (10.5 to 14.5); steps: 1 sitting 0.3, 2 bug 62 0.6, 3 star list 1.3, 4 scorecard 2.3, 5 switches 2.7, 6 study launch 0.9, 7 rehearsal 1.4, 8 bug test 2.5, 9 notes 0.5 | 83 | 12 | 262K | filled at the end | filled at the end |
+
+## 2 Nov sitting, per step (readings at boundaries; weekly meter / 5-hour meter / context tokens)
+| Step | Estimate (written first) | Reading after | Note |
+|---|---|---|---|
+| start | | 83 / 12 / 262K | |
+| 1 read sitting + 2 bug 62 (+ publish 2.6.1) | 0.9 | 84 / 16 / 318K | control run on the old worker first; 5-hour ruler 0.5 |
+| 3a G3 source research (two fetch helpers) | 0.5 | 84 / 19 / 348K | table location needed a second helper |
+| 4 scorecard plus (A to E, 17 checks) | 2.3 | 85 / 22 / 402K | the 31 Oct scripts were ported, not re-thought: about 0.5 |
+| 5 switches dg, nd, fl + tests + zero-difference + study plan | 2.7 | about 86 / (window reset) / about 500K | includes one wrong diagnosis corrected (T32) |
+| 6 launch 0.9 study (background) | 0.9 | | machine time free |
+| 7 rehearsal (deck generator, page, styles, 38 unit checks) so far | 1.4 | 87 / 8 / 597K | much bigger than guessed: new page, new deck, new tests |
+| parked at | | 87 / 8 / 597K | steps 1 to 7 (partly) cost about 4 weekly points against about 9.9 estimated |
+Reading: porting and re-using existing scripts ran 0.2 to 0.4 of the estimate again; a genuinely new page with a new data deck is the first piece that ran close to or above its estimate. Context is now 66% of the window: remaining steps will cost more per turn unless the session is compacted or started fresh.

@@ -819,7 +819,81 @@ async function eyesLayout() {
   return out;
 }
 
-const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal };
+async function rehearsalTest() {
+  const b = await launch("rehearsal");
+  const out = { mode: "rehearsal", checks: 0, fails: [], sizes: [] };
+  const fail = (m) => out.fails.push(m), ok = (c, m) => { out.checks++; if (!c) fail(m); };
+  const press = (k) => b.evaluate(`document.dispatchEvent(new KeyboardEvent("keydown", { key: ${JSON.stringify(k)}, bubbles: true }))`);
+  const saved = () => b.evaluate(`JSON.parse(localStorage.getItem("ss-rehearsal-v1") || "{\\"rounds\\":[]}").rounds`);
+  const MEASURE = `(() => { const r = (e) => { const x = e.getBoundingClientRect(); return { w: x.width, h: x.height, l: x.left, r: x.right, t: x.top, b: x.bottom }; };
+    const btns = [...document.querySelectorAll(".ss-rh button")].filter((e) => !e.hidden && e.offsetParent);
+    return { over: document.documentElement.scrollWidth - window.innerWidth, vw: window.innerWidth, svgs: [...document.querySelectorAll(".ss-rh__panel svg")].map((s) => r(s)),
+      ans: [...document.querySelectorAll(".ss-rh__a")].map((e) => ({ ...r(e), dis: e.disabled, on: e.getAttribute("aria-pressed") })), small: btns.filter((e) => r(e).h < 44).map((e) => e.textContent.trim().slice(0, 14)),
+      lock: (() => { const l = document.querySelector(".ss-rh__lock"); return l ? { dis: l.disabled, hid: l.hidden, h: r(l).h } : null; })(), out: (document.querySelector(".ss-rh__out") || {}).innerText || "",
+      next: (() => { const n = document.querySelector(".ss-rh__next"); return n && !n.hidden ? r(n) : null; })(), prog: (document.querySelector(".ss-rh__prog") || {}).innerText || "", caps: document.querySelectorAll(".ss-rh__cap").length }; })()`;
+  try {
+    for (const [w, h] of [[390, 844], [768, 1024], [1440, 900]]) {
+      const tag = `${w}x${h}`;
+      await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 768 });
+      await goto(b, base + "rehearsal/");
+      await b.evaluate(`localStorage.removeItem("ss-rehearsal-v1")`);
+      await goto(b, base + "rehearsal/");
+      ok(await waitFor(b, `!!document.querySelector(".ss-rh__go")`, 15000), `${tag}: the start button did not appear (deck not loaded?)`);
+      ok(/Start session 1 of 8/.test(await b.evaluate(`document.querySelector(".ss-rh__go").textContent`)), `${tag}: the first button should offer session 1 of 8`);
+      await b.evaluate(`document.querySelector(".ss-rh__go").click()`);
+      ok(await waitFor(b, `document.querySelectorAll(".ss-rh__a").length === 6`, 8000), `${tag}: six answer buttons expected`);
+      await sleep(300);
+      const q = await b.evaluate(MEASURE);
+      ok(q.over <= 1, `${tag}: sideways scroll +${q.over}`);
+      ok(q.svgs.length === 3 && q.svgs.every((s) => s.w > 100), `${tag}: three panels expected, got ${q.svgs.length}`);
+      ok(q.svgs[1] && q.svgs[1].h >= 130 && q.svgs[1].h > q.svgs[0].h && q.svgs[0].h > q.svgs[2].h, `${tag}: panel heights should run P2 > P1 > P3 (${q.svgs.map((s) => Math.round(s.h)).join(", ")})`);
+      ok(q.ans.length === 6 && q.ans.every((a) => a.on === "false"), `${tag}: six answers, none pre-selected`);
+      ok(!q.small.length, `${tag}: targets under 44 px: ${q.small.join(", ")}`);
+      ok(q.lock && q.lock.dis === true, `${tag}: Lock must be disabled until an answer is chosen`);
+      ok(q.ans.every((a) => a.r <= q.vw + 1 && a.l >= -1), `${tag}: an answer sticks out of the window`);
+      ok(/Item 1 of 20/.test(q.prog) && q.caps === 3 && q.out === "", `${tag}: item 1 of 20, three captions, nothing revealed yet ("${q.prog}")`);
+      if (w >= 900) ok(Math.abs(q.ans[0].t - q.ans[5].t) <= 1, `${tag}: on a wide screen the six answers should share one row`);
+      await b.evaluate(`document.querySelector('.ss-rh__a[data-a="planet"]').click()`);
+      await b.evaluate(`[...document.querySelectorAll(".ss-rh__c")].find((e) => e.textContent === "medium").click()`);
+      const mid = await b.evaluate(MEASURE);
+      ok(mid.lock.dis === false && mid.ans[0].on === "true", `${tag}: choosing an answer should enable Lock and mark the choice`);
+      await b.evaluate(`document.querySelector(".ss-rh__lock").click()`); await sleep(200);
+      const a = await b.evaluate(MEASURE);
+      ok(/THIS WAS:/.test(a.out) && /You said Planet-like/.test(a.out) && /hit|miss|false alarm|correct/.test(a.out), `${tag}: the truth and your answer should be shown ("${a.out.slice(0, 60)}")`);
+      ok(a.ans.every((x) => x.dis) && a.lock.hid === true && !!a.next && a.next.h >= 44, `${tag}: after locking the answers are disabled, Lock is gone, Next is there`);
+      ok(a.over <= 1 && !a.small.length, `${tag}: sideways scroll or small targets after locking (+${a.over}, ${a.small.join(",")})`);
+      let r = await saved();
+      ok(r.length === 1 && r[0].status === "open" && r[0].a.length === 1 && r[0].a[0].conf === "medium" && r[0].mode === "practice" && r[0].source === "rehearsal-v1", `${tag}: the answer must be saved at once as an open round`);
+      await b.evaluate(`document.querySelector(".ss-rh__next").click()`); await sleep(250);
+      ok(/Item 2 of 20/.test((await b.evaluate(MEASURE)).prog), `${tag}: Next should move to item 2`);
+      await press("3"); await press("Enter"); await sleep(200);
+      ok(/THIS WAS:/.test((await b.evaluate(MEASURE)).out), `${tag}: keys 3 then Enter should lock an answer`);
+      await press("Enter"); await sleep(250);
+      ok(/Item 3 of 20/.test((await b.evaluate(MEASURE)).prog), `${tag}: Enter after the truth should move to item 3`);
+      r = await saved(); ok(r[0].a.length === 2 && r[0].a[1].ans === "flare", `${tag}: the keyboard answer should be saved (${r[0].a.map((x) => x.ans)})`);
+      await goto(b, base + "rehearsal/");
+      ok(await waitFor(b, `!!document.querySelector(".ss-rh__go")`, 15000), `${tag}: no start button after coming back`);
+      r = await saved(); ok(r.length === 1 && r[0].status === "abandoned" && r[0].a.length === 2, `${tag}: the half-done session must be kept as abandoned with its 2 answers`);
+      ok(/Start session 1 of 8/.test(await b.evaluate(`document.querySelector(".ss-rh__go").textContent`)) && /Sessions 0 of 8/.test(await b.evaluate(`document.querySelector(".ss-rh__results").innerText`)), `${tag}: an abandoned session does not count`);
+      out.sizes.push({ tag, p1: Math.round(q.svgs[0].h), p2: Math.round(q.svgs[1].h), p3: Math.round(q.svgs[2].h) });
+    }
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+    await goto(b, base + "rehearsal/"); await b.evaluate(`localStorage.removeItem("ss-rehearsal-v1")`); await goto(b, base + "rehearsal/");
+    await waitFor(b, `!!document.querySelector(".ss-rh__go")`, 15000); await b.evaluate(`document.querySelector(".ss-rh__go").click()`);
+    for (let i = 0; i < 20; i++) {
+      await waitFor(b, `document.querySelectorAll(".ss-rh__a").length === 6 && !document.querySelector(".ss-rh__a").disabled`, 5000);
+      await b.evaluate(`document.querySelector('.ss-rh__a[data-a="noise"]').click(); document.querySelector(".ss-rh__lock").click(); document.querySelector(".ss-rh__next").click()`);
+    }
+    ok(await waitFor(b, `/Session 1 finished/.test(document.body.innerText)`, 8000), "a whole session of 20 reaches the end screen");
+    const fin = await saved(); ok(fin.length === 1 && fin[0].status === "done" && fin[0].a.length === 20 && fin[0].s.n === 20, "a finished session is saved as done with 20 answers and a summary");
+    ok(await b.evaluate(`/Sessions 1 of 8/.test(document.body.innerText)`), "the pass line counts the finished session");
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length && out.checks >= 40;
+  } finally { await b.close(); }
+  return out;
+}
+
+const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));

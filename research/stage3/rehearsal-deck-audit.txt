@@ -1,0 +1,11 @@
+Rehearsal deck audit (seed 20261102): 8 sessions x 20 items; planets 48, others 112; star-sectors used 83; deck 1.02 MB
+AUC of one simple feature separating planets from all other items (0.5 = cannot tell; the dip's own depth in noise units, nmin, is allowed to separate, it is the signal):
+  box      AUC 0.50
+  sigma    AUC 0.50
+  gapfrac  AUC 0.33
+  phase    AUC 0.52
+  pos      AUC 0.46
+  p1gap    AUC 0.47
+  nmin     AUC 0.51
+  nrange   AUC 0.40
+classes per session (should be 3+3 planets, 3 eclipse, 3 instrument, 2 flare, 2 step, 4 noise): {'planet': 6, 'eclipse': 3, 'instrument': 3, 'flare': 2, 'step': 2, 'noise': 4}
