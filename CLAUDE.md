@@ -9,7 +9,7 @@
 - Cheapest check first: our own data and code (a script that can contradict me) before the web; the web before a guess. Keep it proportionate to the usage cap: verify what a conclusion or a published sentence rests on, and record what stays UNCERTAIN in the relevant notes file.
 
 ## How to research (Ahmed, 29 Oct 2026)
-Every research task follows `research/RESEARCH-BLUEPRINT.md`: questions tied to decisions, our own data and the precision of our measures first, then primary sources (arXiv abstract and HTML pages, never file links in the browser), the exact sentence pulled out, labels, and every finding turned into a plan change and filed. Spend at least about 10 minutes on a serious question.
+Every research task follows `research/RESEARCH-BLUEPRINT.md`: questions tied to decisions, our own data and the precision of our measures first, then primary sources (arXiv abstract and HTML pages, never file links in the browser), the exact sentence pulled out, labels, and every finding turned into a plan change and filed. Spend at least about 10 minutes on a serious question. It applies automatically, without being told (Ahmed, 3 Nov 2026): no fixed number of questions, only the research stint's own usage cap written down before it starts; every stint is numbered (RS-001 on) in `research/research-sessions.md`.
 
 ## Other standing rules (details in memory and the files named)
 - File obvious follow-ups yourself and do them when best, inside the weekly cap; ask only real forks. **Two queues, never mixed (Ahmed, 30 Oct 2026): bugs go in `research/stage3/FIX-QUEUE.md`; builds, studies and features go in `research/stage3/BUILD-QUEUE.md`, one task each. The build queue waits until the research is done and he says go.**

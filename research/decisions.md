@@ -129,3 +129,12 @@ Spine (review: research/compass-reviews/2026-10-27-learning-spine.md): YES to al
 OMS (review: research/compass-reviews/2026-11-03-observatory-memory-system.md): Compass verdict REVISE, DEFER on the proposal's own scale. Ahmed agreed with the reduced scope (an evidence index inside Loom phase 4, T124) and the reopen rule. The full concept is saved in research/stage3/OMS-DESIGN.md (T123, deferred).
 Next three weeks (3 to 23 Nov): finish and measure the systems we have. No new system gets a design until the T122 research verdicts are in and the G3 result is read; new ideas go on a one-line parking list, no design work.
 Answers: yes to resuming the G3 download (registered job; fix item 72 first); research model Sonnet 5.5 Extra; this week's cap 14% (reading 1% at 01:39, so about 13 points). He said NOT to start any of it yet: work begins on his word.
+
+## 2026-11-03 (about 02:45 Kuwait): correction of the cap, and new rules from Ahmed
+The 14% is TODAY's cap (the weekly-meter reading to reach and stop at on 3 Nov), not a cap for the week. This supersedes the words "this week's cap 14%" in the entry above. The day follows the existing order; when 3 Nov's items are done, work is pulled from the following days, in the plan's order, to reach 14% today. The cap for each later day is set by him; weeks 2 and 3 are not planned ahead.
+Research blueprint changed: no fixed number of questions; any number inside the research stint's own cap (a share of weekly usage written before it starts, for example 5%); small questions go in the same stint as bigger ones. The blueprint applies to every research task automatically, without being told.
+Research sessions get a number (RS-001 on) and a short summary in research/research-sessions.md.
+All 89 questions of the T122 brief are to be answered inside the T122 research stints as far as their caps allow. Claude reports how many stay open and proposes a time for them, agreed with Ahmed together with the other work.
+Q1 to Q4 (G3 reference windows, version, bug 68 text size, Loom phases) are asked when the G3 stage is reached, not tied to Thursday.
+Model: Sonnet 5.5 Extra stays (cost); Ahmed still wants Claude's opinion on the model's limits stated in the verdicts.
+Still NOT started: Ahmed said do not resume (G3 download or research) without his word.

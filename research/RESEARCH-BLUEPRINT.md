@@ -2,8 +2,10 @@
 
 Written 29 Oct 2026 after the Vesper study, at Ahmed's request. The first research pass that day took about 5 minutes and leaned on search-engine summaries; the second pass (about 10 minutes, primary pages opened and searched) found four things the first missed: our pass rule sat inside the measurement noise, a 2026 paper that solves our exact problem, a second failure mode of our smoothing, and that our planned test planet was in the sealed slice. This file is the method of the second pass. Use it for every research task in Second Sun.
 
+**Applies automatically (Ahmed, 3 Nov 2026):** every research task follows this blueprint, inside any other task too, without being told. Every research stint also gets a number and a line in `research/research-sessions.md`.
+
 ## 1. Before searching: write the questions
-- Write 3 to 6 questions. Each one names the **decision it feeds** ("this decides the smoothing window of C1"). A question that feeds no decision is dropped.
+- No fixed number of questions (changed by Ahmed, 3 Nov 2026; it used to say 3 to 6). Ask as many as fit inside the research stint's own usage cap, and put small questions in the same stint as the bigger ones. **The cap is a share of weekly usage, written down before the stint starts (for example 5%); stay inside it.** Each question names the **decision it feeds** ("this decides the smoothing window of C1"). A question that feeds no decision is dropped.
 - Write what our own data already says on each question, with the file. **Cheapest check first:** our files and a script that can contradict me, then the web.
 - Write what answer would change the plan. If no possible answer would change it, skip the question.
 
@@ -32,13 +34,15 @@ Written 29 Oct 2026 after the Vesper study, at Ahmed's request. The first resear
 
 ## 6. When to stop
 - Stop when every question has an answer that feeds its decision, at CONFIRMED or with a clear reason why not.
+- Stop also when the stint's usage cap is reached. Count the questions still open, tell Ahmed the number, and agree a time for them together with the other work (Ahmed, 3 Nov 2026).
 - Spend at least about 10 minutes on a serious question even if the first summary looks good; the first pass usually misses the method details.
 - Do not pad: if a question is answered in our own data, the web is not needed.
 
 ## 7. File it
 - One literature file per study (`research/stage3/<study>-literature-<date>.md`): one section per question, each with the source link, the label and the decision fed; an addendum for a second pass.
 - Update the study plan's results section, the version notes if a baseline fact changed, the fix queue, the usage ledger (estimate first, measured after) and RESUME.
+- Give the stint a number and a line in `research/research-sessions.md` (RS-NNN, date, short summary, cap and used, questions asked, answered, open, file, model).
 - Commit and push the same session.
 
 ## 8. Choosing the model
-Deep research and design (reading methods, judging statistics, writing designs) on the strongest model Ahmed picks (Opus 5.5 on 29 Oct); building and long machine runs on Sonnet 5.5 extra. Stop and tell Ahmed at each switch point.
+Deep research and design (reading methods, judging statistics, writing designs) on the strongest model Ahmed picks (Opus 5.5 on 29 Oct); building and long machine runs on Sonnet 5.5 extra. Stop and tell Ahmed at each switch point. Ahmed chose Sonnet 5.5 Extra for the T122 stints (3 Nov 2026) to save usage; the verdicts still say where the model's limits make a judgment weaker.
