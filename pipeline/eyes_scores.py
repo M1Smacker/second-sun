@@ -1,6 +1,7 @@
 """Claude's reader for Ahmed's Eyes rounds: pulls every round from the private Firebase project with the service-account key, saves them, prints the scores.
 Ahmed never sends anything: rounds arrive by themselves when he finishes them (book/docs/assets/eyes-cloud.js). Run whenever he says "look at my eye test scores".
   practice and test rounds  -> research/eyes-scores/rounds.jsonl   (fake data, safe to publish; the repo copy is the permanent record)
+  rehearsal rounds (source rehearsal-v1, rung 3) -> research/eyes-scores/rehearsal-rounds.jsonl   (fake data; not mixed into the practice stats)
   real-candidate rounds     -> data/eyes-real/rounds.jsonl          (git-ignored until Ahmed and Claude decide otherwise)
 Rounds from end-to-end tests (device label or source starting with 'e2e') are ignored.
 Usage: python eyes_scores.py [--commit]     (--commit also commits and pushes research/eyes-scores when something is new; used by the daily task)"""
@@ -9,6 +10,7 @@ import eyes_firestore as F
 
 ROOT = pathlib.Path(r"D:\second-sun")
 PUBLIC, LOCAL = ROOT / "research" / "eyes-scores" / "rounds.jsonl", ROOT / "data" / "eyes-real" / "rounds.jsonl"
+REHEARSAL = ROOT / "research" / "eyes-scores" / "rehearsal-rounds.jsonl"   # rung 3 rounds (book/docs/rehearsal.md): mode "practice" in the cloud, kept apart so they never mix into the practice stats
 
 
 # Devices that are Claude's own browser, not Ahmed's phone. The cloud copy is create-only, so a test round that reached it cannot be deleted; it is ignored here instead.
@@ -19,6 +21,10 @@ TEST_DEVICES = {"g5hko8"}
 def is_test(r):
     return (str(r.get("source", "")).startswith("e2e") or str((r.get("device") or {}).get("label", "")).lower().startswith("e2e")
             or str((r.get("device") or {}).get("id", "")) in TEST_DEVICES)
+
+
+def is_rehearsal(r):
+    return r.get("source") == "rehearsal-v1"
 
 
 def save(path, rounds):
@@ -39,19 +45,25 @@ def git(*a):
 def main():
     rounds = [r for r in F.list_rounds() if not is_test(r)]
     real = [r for r in rounds if r.get("mode") == "real"]
-    plain = [r for r in rounds if r.get("mode") != "real"]
+    reh = [r for r in rounds if r.get("mode") != "real" and is_rehearsal(r)]
+    plain = [r for r in rounds if r.get("mode") != "real" and not is_rehearsal(r)]
     changed_public = save(PUBLIC, plain)
+    changed_reh = save(REHEARSAL, reh)
     save(LOCAL, real) if real or LOCAL.exists() else None
-    print(f"read {len(rounds)} round(s) from the cloud: {len(plain)} practice/test, {len(real)} real. Public file {'updated' if changed_public else 'unchanged'}.")
+    print(f"read {len(rounds)} round(s) from the cloud: {len(plain)} practice/test, {len(reh)} rehearsal, {len(real)} real. Public file {'updated' if changed_public else 'unchanged'}.")
     devs = {}
     for r in rounds:                                            # the book only uploads from Ahmed's devices; a device that is not his would show up here
         d = str((r.get("device") or {}).get("id", "?")); devs[d] = devs.get(d, 0) + 1
     print("devices that uploaded: " + ", ".join(f"{d} ({n})" for d, n in sorted(devs.items())) + "\n")
     rep = subprocess.run(["node", str(ROOT / "book" / "tools" / "eyes_report.mjs"), str(PUBLIC)], capture_output=True, text=True, encoding="utf-8")
     print(rep.stdout or rep.stderr)
-    if "--commit" in sys.argv and changed_public:
-        git("add", str(PUBLIC.relative_to(ROOT)))
-        c = git("commit", "-m", f"Eyes scores: {len(plain)} round(s) pulled from the cloud\n\nCo-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>")
+    rr = subprocess.run(["node", str(ROOT / "book" / "tools" / "rehearsal_report.mjs"), str(REHEARSAL)], capture_output=True, text=True, encoding="utf-8")
+    print(rr.stdout or rr.stderr)
+    if "--commit" in sys.argv and (changed_public or changed_reh):
+        for f in (PUBLIC, REHEARSAL):
+            if f.exists():
+                git("add", str(f.relative_to(ROOT)))
+        c = git("commit", "-m", f"Eyes scores: {len(plain)} round(s) pulled from the cloud ({len(reh)} rehearsal)\n\nCo-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>")
         p = git("push", "origin", "main")
         print("committed and pushed" if p.returncode == 0 else f"commit/push problem: {c.stderr.strip()} {p.stderr.strip()}")
 

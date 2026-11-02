@@ -851,7 +851,7 @@ async function rehearsalTest() {
       ok(!q.small.length, `${tag}: targets under 44 px: ${q.small.join(", ")}`);
       ok(q.lock && q.lock.dis === true, `${tag}: Lock must be disabled until an answer is chosen`);
       ok(q.ans.every((a) => a.r <= q.vw + 1 && a.l >= -1), `${tag}: an answer sticks out of the window`);
-      ok(/Item 1 of 20/.test(q.prog) && q.caps === 3 && q.out === "", `${tag}: item 1 of 20, three captions, nothing revealed yet ("${q.prog}")`);
+      ok(/Item 1 of 20/i.test(q.prog) && q.caps === 3 && q.out === "", `${tag}: item 1 of 20, three captions, nothing revealed yet ("${q.prog}")`);
       if (w >= 900) ok(Math.abs(q.ans[0].t - q.ans[5].t) <= 1, `${tag}: on a wide screen the six answers should share one row`);
       await b.evaluate(`document.querySelector('.ss-rh__a[data-a="planet"]').click()`);
       await b.evaluate(`[...document.querySelectorAll(".ss-rh__c")].find((e) => e.textContent === "medium").click()`);
@@ -865,11 +865,11 @@ async function rehearsalTest() {
       let r = await saved();
       ok(r.length === 1 && r[0].status === "open" && r[0].a.length === 1 && r[0].a[0].conf === "medium" && r[0].mode === "practice" && r[0].source === "rehearsal-v1", `${tag}: the answer must be saved at once as an open round`);
       await b.evaluate(`document.querySelector(".ss-rh__next").click()`); await sleep(250);
-      ok(/Item 2 of 20/.test((await b.evaluate(MEASURE)).prog), `${tag}: Next should move to item 2`);
+      ok(/Item 2 of 20/i.test((await b.evaluate(MEASURE)).prog), `${tag}: Next should move to item 2`);
       await press("3"); await press("Enter"); await sleep(200);
       ok(/THIS WAS:/.test((await b.evaluate(MEASURE)).out), `${tag}: keys 3 then Enter should lock an answer`);
       await press("Enter"); await sleep(250);
-      ok(/Item 3 of 20/.test((await b.evaluate(MEASURE)).prog), `${tag}: Enter after the truth should move to item 3`);
+      ok(/Item 3 of 20/i.test((await b.evaluate(MEASURE)).prog), `${tag}: Enter after the truth should move to item 3`);
       r = await saved(); ok(r[0].a.length === 2 && r[0].a[1].ans === "flare", `${tag}: the keyboard answer should be saved (${r[0].a.map((x) => x.ans)})`);
       await goto(b, base + "rehearsal/");
       ok(await waitFor(b, `!!document.querySelector(".ss-rh__go")`, 15000), `${tag}: no start button after coming back`);

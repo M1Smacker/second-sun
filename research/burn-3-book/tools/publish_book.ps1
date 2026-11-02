@@ -72,6 +72,9 @@ Run node "$src\book\tools\test_eyes_strength.mjs"
 Step "2h. Eyes feedback text: 36 to 44 words, only measured numbers, the lead never looks at the label, no 'missed' on a false alarm, near misses never called plain noise, no repeats"
 Run node "$src\book\tools\test_eyes_feedback.mjs"
 
+Step "2i. Rehearsal (rung 3): statistics, pass line, locked answers, cloud document shape, no leak in the pictures, deck integrity"
+Run node "$src\book\tools\test_rehearsal.mjs"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build
@@ -102,7 +105,7 @@ if ($Test) {
     $srv = Start-Process node -ArgumentList "$tools\serve.mjs", "--dir=$build", "--port=8490" -PassThru -WindowStyle Hidden
     Start-Sleep -Seconds 2
     try {
-        foreach ($m in "layout", "chapter", "eyeslayout", "offline", "jsoff", "eyes", "eyescloud") {
+        foreach ($m in "layout", "chapter", "eyeslayout", "offline", "jsoff", "eyes", "eyescloud", "rehearsal") {
             # Headless Chrome occasionally fails to start or to clean up its profile (seen twice, never a real defect). One retry is allowed, and the
             # first failure is PRINTED, never hidden; a second failure stops the publish.
             $ok = $false

@@ -32,4 +32,36 @@ nothing = D / "nothing.jsonl"
 assert S.save(nothing, []) is False and not nothing.exists(), "no rounds must not create an empty file"
 empty = subprocess.run(["node", r"D:\second-sun\book\tools\eyes_report.mjs", str(D / "none.jsonl")], capture_output=True, text=True).stdout
 assert "No Eyes rounds in the cloud yet" in empty
-print("eyes_scores checks passed: test rounds ignored, deterministic file, report numbers right, empty case handled")
+
+# ---- rehearsal (rung 3): kept apart from the practice stats, and its pass line is read with the page's own code ----
+def rh_entry(i, cls, tier, ans):
+    return dict(i=i, cls=cls, tier=tier, ans=ans, ok=ans == cls, pc=ans == "planet", conf="medium", ms=1000, st=None, bx=6)
+
+
+def rh_round(rid, day, status="done", planet_miss=0):
+    es = [rh_entry(i, "planet", "clear", "planet") for i in range(3)] + [rh_entry(3 + i, "planet", "near", "planet" if i >= planet_miss else "noise") for i in range(3)]
+    es += [rh_entry(6 + i, "eclipse", None, "eclipse") for i in range(14)]
+    t0 = 1762000000000 + day * 86400000
+    return rnd(rid, t0, "practice", es, status=status, source="rehearsal-v1")
+
+
+rh = [rh_round(f"r{d}", d) for d in range(8)]
+assert [S.is_rehearsal(r) for r in rh + keep] == [True] * 8 + [False] * 2, "only source rehearsal-v1 counts as a rehearsal round"
+rf = D / "rehearsal.jsonl"
+S.save(rf, rh + [rh_round("open", 9, status="open")])
+rout = subprocess.run(["node", r"D:\second-sun\book\tools\rehearsal_report.mjs", str(rf)], capture_output=True, text=True, encoding="utf-8").stdout
+for want in ["9 round(s) read, 1 not finished", "Sessions 8 of 8", "Clearly visible fake planets found: 24 of 24", "Not-planets called planet-like: 0 of 112"]:
+    assert want in rout, f"rehearsal report is missing: {want!r}\n{rout}"
+assert "On the numbers you meet the line" in rout, f"eight good sessions on eight days must meet the line\n{rout}"
+worse = D / "rehearsal_bad.jsonl"
+S.save(worse, [rh_round(f"b{d}", d) for d in range(7)] + [rh_round("b7", 7, planet_miss=0)])
+bad_entries = [json.loads(l) for l in worse.read_text(encoding="utf-8").splitlines()]
+for r in bad_entries[:7]:                                       # calling everything else a planet must turn the verdict to "below"
+    for e in r["a"][6:]:
+        e["ans"], e["ok"], e["pc"] = "planet", False, True
+worse.write_text("".join(json.dumps(r) + "\n" for r in bad_entries), encoding="utf-8")
+bout = subprocess.run(["node", r"D:\second-sun\book\tools\rehearsal_report.mjs", str(worse)], capture_output=True, text=True, encoding="utf-8").stdout
+assert "Below the line" in bout, f"false alarms must show below the line\n{bout}"
+none = subprocess.run(["node", r"D:\second-sun\book\tools\rehearsal_report.mjs", str(D / "nope.jsonl")], capture_output=True, text=True, encoding="utf-8").stdout
+assert "no rehearsal rounds in the cloud yet" in none
+print("eyes_scores checks passed: test rounds ignored, deterministic file, report numbers right, empty case handled, rehearsal rounds kept apart with the page's own pass line")
