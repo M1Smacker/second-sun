@@ -161,6 +161,8 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
   min-height: var(--ss-tap); min-width: var(--ss-tap); padding: 0 16px; border: 0; border-radius: 4px; cursor: pointer;
   background: var(--ss-accent); color: var(--ss-on-accent); font: 600 15px var(--md-text-font-family);
 }
+.ss-update button.ss-update__close { background: transparent; color: var(--ss-text); font-size: 22px; padding: 0 12px; }
+body.ss-has-update { padding-bottom: 76px; }          /* room for the line below the last text (FIX-QUEUE 65) */
 
 /* ---------- Tap targets >= 44 px (Material defaults are smaller) ---------- */
 /* Material hides inactive controls with the hidden attribute; the display rules below must never override it

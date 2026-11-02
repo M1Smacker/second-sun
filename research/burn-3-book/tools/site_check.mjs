@@ -321,6 +321,7 @@ async function update() {
     out.lineShown = await waitFor(b, `document.querySelectorAll(".ss-update").length === 1`);
     await sleep(2000);
     out.linesAfter2s = await b.evaluate(`document.querySelectorAll(".ss-update").length`);
+    out.barDismissible = await b.evaluate(`(() => { const c = document.querySelector(".ss-update .ss-update__close"); if (!c || !document.body.classList.contains("ss-has-update") || c.getBoundingClientRect().height < 44) return false; c.click(); return !document.querySelector(".ss-update") && !document.body.classList.contains("ss-has-update"); })()`);   // FIX-QUEUE 65: a 44 px close button, room for the line, and it goes away
     out.navigationsForB = b.navigations.length - navBefore;        // the reopen itself: 1, no extra reload
     out.cachesWithB = await shells();                               // A (running) and B (waiting)
     // C is published before anyone tapped Reload: B never ran, so its saved copy must be deleted when C installs.
@@ -341,7 +342,7 @@ async function update() {
     await goto(b, base + "glossary/");
     out.offlineAfter = await b.evaluate(PAGE_STATE);
     out.errors = b.errors.filter((e) => !/ERR_INTERNET_DISCONNECTED/.test(e));
-    out.pass = out.aReady && out.freshB && out.lineShown && out.linesAfter2s === 1 && out.navigationsForB === 1
+    out.pass = out.barDismissible && out.aReady && out.freshB && out.lineShown && out.linesAfter2s === 1 && out.navigationsForB === 1
       && out.cachesWithB.length === 2 && out.cachesWithB.includes(a) && out.cachesWithB.includes(vb)
       && out.freshC && out.prunedB && out.reloadsAfterClick === 1 && out.onC
       && out.cachesAfter.length === 1 && out.cachesAfter[0] === vc && out.lineAfterReload === 0
