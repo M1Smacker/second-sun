@@ -2,19 +2,27 @@
 // 1. Shell: every HTML page + CSS/JS/icons/search index, fetched in small batches at install.
 //    A file that fails is skipped (and fetched at runtime later), so one bad file never kills offline mode.
 // 2. Images: cached the first time they are viewed, capped at IMAGE_CAP entries, oldest out first.
-// 3. Updates: a new worker WAITS. The page shows "Updated. Reload"; the worker takes over only when
-//    the reader taps it (message SKIP_WAITING). No forced reloads mid-read.
+// 3. Fresh first (bug 62, 2 Nov 2026): every page, style, script and data file asks the network first
+//    (revalidating, so GitHub's 10 minute browser copy never wins) and waits at most FRESH_MS; offline or
+//    slow, the saved copy answers exactly as before. So a refresh always brings the newest book while online.
+//    Fonts stay cache-first (they never change in place); images keep their own cache.
+// 4. Updates: a new worker WAITS. The page shows "Updated. Reload"; the worker takes over only when
+//    the reader taps it (message SKIP_WAITING). No forced reloads mid-read. A worker that installs deletes the
+//    shell caches of workers that were replaced before they ever ran (only the active worker's cache and its own stay).
 const VERSION = "__VERSION__";
 const IMG_VERSION = "__IMG_VERSION__";
 const SHELL = __SHELL__;
 const SHELL_CACHE = "ss-shell-" + VERSION;
 const IMAGE_CACHE = "ss-images-" + IMG_VERSION;
+const META_CACHE = "ss-meta";                       // one entry: the shell cache of the worker that is running
 const IMAGE_CAP = 150;
 const BATCH = 8;
+const FRESH_MS = 3000;
 
 const abs = (p) => new URL(p, self.registration.scope).href;
 const SHELL_SET = new Set(SHELL.map(abs));
 const isImage = (url) => /\.(png|jpe?g|gif|webp|avif|svg)$/i.test(url.pathname);
+const isFont = (url) => /\.(woff2?|ttf|otf)$/i.test(url.pathname);
 
 async function precache() {
   const cache = await caches.open(SHELL_CACHE);
@@ -27,14 +35,26 @@ async function precache() {
   }
 }
 
-self.addEventListener("install", (e) => e.waitUntil(precache()));
+// Delete the shell caches of workers that were replaced while waiting. Needs the note the running worker left
+// at activation; with no note (first install, or the worker before this change) nothing is deleted.
+async function pruneReplaced() {
+  const note = await (await caches.open(META_CACHE)).match("active");
+  if (!note) return;
+  const running = await note.text();
+  const keys = await caches.keys();
+  await Promise.all(keys.filter((k) => k.startsWith("ss-shell-") && k !== SHELL_CACHE && k !== running).map((k) => caches.delete(k)));
+}
+
+self.addEventListener("install", (e) => e.waitUntil(precache().then(pruneReplaced)));
 
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(keys
-        .filter((k) => k.startsWith("ss-") && k !== SHELL_CACHE && k !== IMAGE_CACHE)
+        .filter((k) => k.startsWith("ss-") && k !== SHELL_CACHE && k !== IMAGE_CACHE && k !== META_CACHE)
         .map((k) => caches.delete(k))))
+      .then(() => caches.open(META_CACHE))
+      .then((meta) => meta.put("active", new Response(SHELL_CACHE)))
       .then(() => self.clients.claim())
   );
 });
@@ -67,6 +87,23 @@ async function fromShell(req) {
   }
 }
 
+// Network first, with the saved copy as the fallback (offline, a server error, or slower than FRESH_MS).
+// A late network answer still refreshes the saved copy. Redirects (/learn -> /learn/) pass straight through.
+async function freshFirst(e, req) {
+  let saved = Promise.resolve();
+  const net = fetch(req, { cache: "no-cache" }).then((res) => {
+    if (res.status >= 500) throw new Error(String(res.status));
+    if (res.ok && res.type === "basic" && !res.redirected) {
+      const copy = res.clone();
+      saved = caches.open(SHELL_CACHE).then((c) => c.put(req, copy)).catch(() => {});
+    }
+    return res;
+  });
+  e.waitUntil(net.then(() => saved, () => {}));
+  const first = await Promise.race([net.then((r) => r, () => null), new Promise((done) => setTimeout(done, FRESH_MS, null))]);
+  return first || fromShell(req);                   // null = offline, a server error, or too slow
+}
+
 async function trimImages(cache) {
   const keys = await cache.keys();                  // insertion order = oldest first
   for (let i = 0; i < keys.length - IMAGE_CAP; i++) await cache.delete(keys[i]);
@@ -96,5 +133,5 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   const url = new URL(req.url);
   if (req.method !== "GET" || url.origin !== self.location.origin || url.pathname.endsWith("/sw.js")) return;
-  e.respondWith(isImage(url) && !SHELL_SET.has(url.href) ? fromImages(req) : fromShell(req));
+  e.respondWith(isImage(url) && !SHELL_SET.has(url.href) ? fromImages(req) : isFont(url) ? fromShell(req) : freshFirst(e, req));
 });

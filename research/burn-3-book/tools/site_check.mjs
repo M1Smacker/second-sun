@@ -305,32 +305,47 @@ async function update() {
   const index = path.join(opt.proto, "docs", "index.md");
   const original = fs.readFileSync(index, "utf8");
   const build = () => execFileSync(opt.mkdocs, ["build", "--strict", "-q"], { cwd: opt.proto, env: { ...process.env, XDG_CACHE_HOME: "D:/second-sun/.cache" }, stdio: "pipe" });
-  const version = () => b.evaluate(`caches.keys().then((k) => k.filter((x) => x.startsWith("ss-shell-")).sort().join(","))`);
+  const shells = () => b.evaluate(`caches.keys().then((k) => k.filter((x) => x.startsWith("ss-shell-")).sort())`);
+  const versionOf = () => "ss-shell-" + fs.readFileSync(path.join(opt.site, "sw.js"), "utf8").match(/const VERSION = "([0-9a-f]+)"/)[1];
+  const publish = (letter) => { fs.writeFileSync(index, original + `\n\nUpdate test marker: version ${letter}.\n`); build(); return versionOf(); };
   try {
     await goto(b, base);
     out.aReady = await waitFor(b, `navigator.serviceWorker.controller && ${SHELL_COUNT}.then((n) => n >= ${shellLength()})`);
-    out.versionA = await version();
-    fs.writeFileSync(index, original + "\n\nUpdate test marker: version B.\n");
-    build();
-    out.versionBExpected = "ss-shell-" + fs.readFileSync(path.join(opt.site, "sw.js"), "utf8").match(/const VERSION = "([0-9a-f]+)"/)[1];
+    const a = (await shells())[0];
+    out.versionA = a;
+    // B is published. Reopening the book must show B at once (bug 62: it used to stay on A until Reload was tapped) and offer the update.
+    const vb = publish("B");
     const navBefore = b.navigations.length;
-    await goto(b, base);                                            // reopen: browser checks sw.js, B installs and waits
+    await goto(b, base);
+    out.freshB = await waitFor(b, `document.body.innerText.includes("version B")`, 15000);
     out.lineShown = await waitFor(b, `document.querySelectorAll(".ss-update").length === 1`);
     await sleep(2000);
     out.linesAfter2s = await b.evaluate(`document.querySelectorAll(".ss-update").length`);
-    out.stillOnA = !(await b.evaluate(`document.body.innerText.includes("version B")`));
+    out.navigationsForB = b.navigations.length - navBefore;        // the reopen itself: 1, no extra reload
+    out.cachesWithB = await shells();                               // A (running) and B (waiting)
+    // C is published before anyone tapped Reload: B never ran, so its saved copy must be deleted when C installs.
+    const vc = publish("C");
+    await goto(b, base);
+    out.freshC = await waitFor(b, `document.body.innerText.includes("version C")`, 15000);
+    out.prunedB = await waitFor(b, `caches.keys().then((k) => { const s = k.filter((x) => x.startsWith("ss-shell-")); return s.length === 2 && s.includes(${JSON.stringify(vc)}) && s.includes(${JSON.stringify(a)}); })`, 30000);
+    out.cachesWithC = await shells();
     const navAtClick = b.navigations.length;
     await b.evaluate(`document.querySelector(".ss-update button").click()`);
-    await waitFor(b, `document.body.innerText.includes("version B")`, 15000);
+    await waitFor(b, `caches.keys().then((k) => k.filter((x) => x.startsWith("ss-shell-")).length === 1)`, 30000);
     await sleep(5000);                                              // watch for any extra reloads
     out.reloadsAfterClick = b.navigations.length - navAtClick;      // must be exactly 1
-    out.navigationsWithoutClick = navAtClick - navBefore;           // the reopen itself: 1
-    out.onB = await b.evaluate(`document.body.innerText.includes("version B")`);
-    out.versionAfter = await version();
+    out.onC = await b.evaluate(`document.body.innerText.includes("version C")`);
+    out.cachesAfter = await shells();
     out.lineAfterReload = await b.evaluate(`document.querySelectorAll(".ss-update").length`);
-    out.errors = b.errors;
-    out.pass = out.aReady && out.lineShown && out.linesAfter2s === 1 && out.stillOnA && out.reloadsAfterClick === 1 && out.onB
-      && out.versionAfter === out.versionBExpected && out.lineAfterReload === 0 && out.navigationsWithoutClick === 1 && !out.errors.length;
+    await offline(b, true);                                         // the new worker must still work offline
+    await goto(b, base + "glossary/");
+    out.offlineAfter = await b.evaluate(PAGE_STATE);
+    out.errors = b.errors.filter((e) => !/ERR_INTERNET_DISCONNECTED/.test(e));
+    out.pass = out.aReady && out.freshB && out.lineShown && out.linesAfter2s === 1 && out.navigationsForB === 1
+      && out.cachesWithB.length === 2 && out.cachesWithB.includes(a) && out.cachesWithB.includes(vb)
+      && out.freshC && out.prunedB && out.reloadsAfterClick === 1 && out.onC
+      && out.cachesAfter.length === 1 && out.cachesAfter[0] === vc && out.lineAfterReload === 0
+      && out.offlineAfter.controlled && out.offlineAfter.css > 900 && out.offlineAfter.text > 100 && !out.errors.length;
   } finally {
     fs.writeFileSync(index, original);
     build();

@@ -14,6 +14,7 @@ const get = (k, d) => (args.find((a) => a.startsWith(`--${k}=`)) || `=${d}`).spl
 const root = path.resolve(get("dir", "."));
 const port = Number(get("port", 8471));
 const host = get("host", "127.0.0.1");   // use --host=<LAN ip> to open the site on a phone on the same Wi-Fi
+const maxage = get("maxage", "");        // --maxage=600 answers like GitHub Pages (the browser may reuse a copy for 10 minutes); default is no-cache
 const fail = new Set(args.filter((a) => a.startsWith("--fail=")).map((a) => a.slice(7)));
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".json": "application/json",
   ".png": "image/png", ".svg": "image/svg+xml", ".xml": "application/xml", ".webmanifest": "application/manifest+json", ".gz": "application/gzip" };
@@ -21,7 +22,7 @@ const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": 
 function send(res, status, file) {
   fs.readFile(file, (err, data) => {
     if (err) { res.writeHead(500); res.end("read error"); return; }
-    res.writeHead(status, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream", "Cache-Control": "no-cache" });
+    res.writeHead(status, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream", "Cache-Control": maxage ? `max-age=${maxage}` : "no-cache" });
     res.end(data);
   });
 }
