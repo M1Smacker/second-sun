@@ -1,4 +1,4 @@
-// Search window: draws the JSON made by pipeline/watch_export.py (counts, charts and event pictures). It fetches again every 60 s and redraws; nothing to tap.
+// Search window: draws the JSON made by pipeline/watch_export.py (counts, charts and event pictures). It fetches again every 90 s and redraws; nothing to tap.
 // Source order: GitHub API on the data branch (about 1 min behind the search), then raw.githubusercontent (up to 5 min behind), then the snapshot shipped with the book.
 (() => {
   const REPO = "M1Smacker/second-sun";
@@ -19,8 +19,8 @@
     ["Ask a second light curve of the same star", (d) => `self-test: ${pct(d.selftest.second_product_sees, d.selftest.fakes)}% of fake planets seen`, ["pdc"]],
     ["Sort into tiers", (d) => `tier 1 kept: ${num(["1A", "1L", "1B"].reduce((a, k) => a + ((d.events.tiers || {})[k] || 0), 0))}`, []],
   ];
-  const EVERY = Math.max(5, Number(new URLSearchParams(location.search).get("every")) || 60);   // seconds between checks; 60 keeps us inside GitHub's rate limit
-  let data = null, fetchedAt = 0, lastError = "";
+  const EVERY = Math.max(5, Number(new URLSearchParams(location.search).get("every")) || 90);   // seconds between checks; 90 is 40 requests an hour, which leaves room under GitHub's 60 an hour per address for a second tab (FIX-QUEUE 66)
+  let data = null, fetchedAt = 0, lastError = "", drawnEl = null;
 
   const bar = (name, a, b, note, keep) => `<div class="sw-row"><div class="sw-lab"><b>${esc(name)}</b><span>${num(a)} of ${num(b)} (${pct(a, b)}%)</span></div><div class="sw-bar ${keep ? "sw-keep" : ""}"><i style="width:${pct(a, b)}%"></i></div>${note ? `<small>${note}</small>` : ""}</div>`;
   const row = (txt, n, max, keep) => `<div class="sw-flag"><div class="sw-lab"><span>${esc(txt)}</span><b>${num(n)}</b></div><div class="sw-bar ${keep ? "sw-keep" : ""}"><i style="width:${pct(n, max)}%"></i></div></div>`;
@@ -128,7 +128,7 @@
           <tr><td>Box lengths (h)</td><td>${esc((s.boxes_h || []).join(", ") || "n/a")}</td></tr>
           <tr><td>Time bin (days)</td><td>${num(s.bin_days)}</td></tr>
           <tr><td>Study switches</td><td>${esc((s.options || []).join(", ") || "none")}</td></tr>
-          <tr><td>Refresh</td><td>every 60 s; the numbers run 1 to 2 minutes behind the computer</td></tr>
+          <tr><td>Refresh</td><td>every 90 s; the numbers run 1 to 3 minutes behind the computer</td></tr>
           <tr><td>Computer</td><td>${m.workers == null ? "n/a" : m.workers + " search processes"}, CPU ${m.cpu == null ? "n/a" : m.cpu + "%"}</td></tr>
         </table>
         <p class="sw-small"><b>Words.</b> <i>SNR</i>: how many times stronger a dip is than the noise. <i>Box</i>: a flat-bottomed dip of fixed length that we slide along the star's light. <i>Upside-down copy</i>: the same light flipped, so noise makes bumps instead of dips; it counts how often noise alone fakes a dip. <i>Tier 1</i>: no known innocent cause. <i>Union</i>: merging the cleaned light and the raw-light twin into one list. <i>Blind</i>: real and fake-direction counts pooled.</p>
@@ -149,17 +149,20 @@
     const urls = custom ? [[custom, { cache: "no-store" }]] : [[API, { cache: "no-cache", headers: { Accept: "application/vnd.github.raw+json" } }], [RAW + "?t=" + Math.floor(Date.now() / 60000), { cache: "no-store" }], [own, { cache: "no-store" }]];
     const d = await grab(urls);
     fetchedAt = Date.now();
-    if (d) { lastError = ""; if (!data || d.updated !== data.updated) { data = d; draw(el, d); } else data = d; }
+    if (d) { lastError = ""; if (!data || d.updated !== data.updated || drawnEl !== el) { data = d; draw(el, d); drawnEl = el; } else data = d; }   // drawnEl: a new page element after instant navigation must be drawn even when the numbers have not changed
     else if (!data) el.textContent = "No search is running yet.";
     paintLight();
   }
 
+  let timers = [];
+  const stop = () => { timers.forEach(clearInterval); timers = []; };
   const start = () => {
+    stop();                                                  // FIX-QUEUE 64: instant navigation builds a new page element on every visit; the old timers must never outlive it
     const el = document.getElementById("ss-watch");
     if (!el || el.dataset.ready) return;
     el.dataset.ready = "1"; load(el);
-    setInterval(() => load(el), EVERY * 1000);
-    setInterval(paintLight, 1000);
+    const alive = (f) => () => { if (el.isConnected) f(); else stop(); };
+    timers.push(setInterval(alive(() => load(el)), EVERY * 1000), setInterval(alive(paintLight), 1000));
   };
   if (typeof document$ !== "undefined") document$.subscribe(start); else document.addEventListener("DOMContentLoaded", start);
 })();

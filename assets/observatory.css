@@ -45,6 +45,9 @@
 
 /* ---------- Header: a quiet nameplate ---------- */
 .md-header__topic:first-child .md-ellipsis { font-family: var(--ss-label); font-weight: 600; font-size: 14px; letter-spacing: .22em; text-transform: uppercase; }
+/* The header keeps the site name. Material swaps it for the page title once the page heading scrolls away, in a second style (FIX-QUEUE 63). */
+.md-header__title--active .md-header__topic:first-child { opacity: 1; transform: none; pointer-events: auto; z-index: 0; }
+.md-header__topic + .md-header__topic { display: none; }
 .md-tabs__link { font: 600 12.5px/1 var(--ss-label); letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
 .md-tabs__item--active .md-tabs__link { opacity: 1; color: var(--ss-accent); }
 
