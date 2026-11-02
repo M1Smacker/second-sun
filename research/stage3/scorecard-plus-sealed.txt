@@ -1,0 +1,50 @@
+VESPER SCORECARD PLUS on sealed_5f73692944aa (sealed), options ['c6']. Post hoc for the first sealed run (written 2 Nov 2026, Amendment 2); S1 to S8 are in benchmark-g2-sealed.txt and are not changed.
+A. STAR LEVEL (post hoc for the first sealed run): the unit is the star, not the event; events cluster on stars (deff = variance inflation from clustering)  [sealed]
+   bar | tier-1 real (stars) | tier-1 upside-down (stars) | ratio, full run [95% star bootstrap] | expected real | real - expected [95%] | upper limit (95%, one-sided) | deff | detectable excess (80% power)
+     7 | 26 (17) | 59 (36) | 1.18 [1.01 to 1.40] | 49.8 | -23.8 [-51.0 to +1.0] | -3.0 | 2.6 | 32.9
+     8 | 20 (14) | 48 (30) | 1.28 [1.07 to 1.53] | 37.6 | -17.6 [-40.2 to +3.2] | +0.0 | 2.5 | 27.4
+    10 | 7 (6) | 35 (24) | 1.39 [1.10 to 1.77] | 25.2 | -18.2 [-32.9 to -5.7] | -7.5 | 1.9 | 17.3
+    12 | 5 (4) | 24 (16) | 1.54 [1.17 to 2.07] | 15.6 | -10.6 [-21.8 to -0.9] | -2.3 | 1.9 | 13.3
+   bar 7 raw events: real on 293 stars, upside-down on 339 stars (star-level ratio 1.16, event-level 1.18)
+   ratio after dropping the heaviest stars: 1: 1.15 (they hold 2% of raw events); 5: 1.21 (they hold 10% of raw events); 10: 1.26 (they hold 16% of raw events); 25: 1.36 (they hold 29% of raw events)
+   read: the limit says what the data allow; the detectable excess says what this run could have shown. A result is never stated from the event count alone.
+B. PRICE OF EVERY SAFETY CHECK (post hoc for the first sealed run): drop one check alone; planted dips regained (tier-1 points, sealed / development) against events let into tier 1 on the sealed run
+   check | planted points regained (sealed / dev) | real events added | upside-down events added | upside-down added per planted point | share of all raw events carrying it (real, upside-down)
+   gap_dump    | +4.3 / +4.9 | +13 | +8 | 1.7 | 54%, 71%
+   flipmatch   | +0.0 / +0.0 | +0 | +0 | no gain | 2%, 0%
+   c5          | +0.8 / +0.7 | +11 | +0 | 0.0 | 13%, 7%
+   ecl_overlap | +0.3 / +1.1 | +3 | +0 | 0.0 | 8%, 4%
+   repeater    | +1.9 / +2.8 | +23 | +10 | 4.3 | 33%, 33%
+   step        | +9.8 / +10.1 | +94 | +68 | 6.8 | 82%, 90%
+   ramp        | +2.0 / +2.4 | +5 | +3 | 1.4 | 30%, 41%
+   dominated   | +2.5 / +1.6 | +7 | +4 | 2.0 | 27%, 22%
+   common      | +0.0 / +0.0 | +2 | +1 | no gain | -
+   read: a check is cheap to keep when it lets few upside-down events in per planted point it would give back. The step check is the biggest single cost and the largest source of kept false alarms if dropped.
+C. EFFICIENCY (post hoc for the first sealed run): noise per 8 h box median 329 ppm; tier-1 completeness (8 h box) by K: K6 12%, K8 28%, K10 47%, K12 57%, K14 59%, K18 60%
+   one planet-bearing star with 11.3 sectors of data on average; expected tier-1 detections at P = 60 / 95 / 150 / 300 d, and the limit on (planets per binary x geometry factor g) at P = 95 and 300 d for the two excess limits (8.3 = preregistered-ratio upper end, 1.0 = full-run ratio)
+     1000 ppm (about 4 Earth radii, 1 solar radius): K 3.0, completeness 6% | 0.30 / 0.19 / 0.12 / 0.06 | P95: 7.4% | 0.89%   P300: 23.3% | 2.81%
+     2300 ppm (TOI-1338 b as seen (median depth of its events)): K 7.0, completeness 20% | 0.99 / 0.62 / 0.40 / 0.20 | P95: 2.2% | 0.27%   P300: 7.1% | 0.85%
+     4000 ppm (6.85 Earth radii, undiluted): K 12.1, completeness 57% | 2.79 / 1.76 / 1.11 / 0.56 | P95: 0.8% | 0.10%   P300: 2.5% | 0.30%
+    10000 ppm (Jupiter, 1 solar radius): K 30.4, completeness 60% | 2.93 / 1.85 / 1.17 / 0.59 | P95: 0.8% | 0.09%   P300: 2.4% | 0.29%
+   caveat: depth = (Rp/R*)^2 with R* = 1 solar radius, no dilution, window = 26 d per sector; the real host radii are not used yet (task T107). Limits above 100% mean no constraint. Stars searched: 594.
+D. WORDING RULES (post hoc for the first sealed run)
+   S2 reading: 8.76 per 1,000 (95% interval 6.67 to 11.30) against a mark of 8: BORDERLINE: the 95% interval includes the mark, so neither a pass nor a fail is claimed
+   pooled rate over all 895 stars: NOT COMPUTED until the development slice has been re-run with this version (census run, task T43)
+   S4 with 'found at all' beside 'kept' (planted dips, K 8 to 14, sealed | development; 95% Wilson intervals); the gap between the two is what the safety checks cost
+   4 h box: found 73.3% (70.7 to 75.8), kept 41.0% (38.2 to 43.8), n 1184 | development found 76.8%, kept 46.5% | kept, sealed against development: no clear difference
+   8 h box: found 84.8% (82.6 to 86.7), kept 46.8% (44.0 to 49.6), n 1184 | development found 85.8%, kept 48.5% | kept, sealed against development: no clear difference
+   14 h box: found 83.5% (81.3 to 85.5), kept 34.1% (31.5 to 36.9), n 1184 | development found 85.0%, kept 36.1% | kept, sealed against development: no clear difference
+   20 h box: found 81.3% (79.0 to 83.5), kept 28.0% (25.5 to 30.6), n 1184 | development found 77.7%, kept 21.3% | kept, sealed against development: better in this slice
+E. TOI-1338 b (known circumbinary planet) against the LATER published times (post hoc; the preregistered S6 line, Kostov 2020 epochs, 1 of 7 strong, is unchanged)
+   sector | source | shift from the Kostov 2020 time (d) | events within 3 sigma + 0.1 d of the updated time: kind, product, tier, offset (h), length (h), SNR, flags that fired
+   27 | observed | +0.262 | real SPOC-SAP tier 2 -0.1 h 6.5 h snr 7.2 flags [ramp]
+   34 | observed | +0.306 | none
+   37 | observed | +0.015 | real QLP tier 1L +0.7 h 3 h snr 8.0 flags [none]
+   62 | observed | +0.286 | none
+   65 | observed | +0.604 | real SPOC tier 1A -0.7 h 6.5 h snr 9.2 flags [none]; real TESS-SPOC tier 1A -0.4 h 8 h snr 10.0 flags [none]; real QLP tier 2 -0.1 h 8 h snr 15.8 flags [dominated]
+   68 | observed | +0.305 | none
+   89 | forecast | +0.833 | real QLP tier 1A +0.6 h 8 h snr 9.3 flags [none]; real SPOC tier 1A +0.7 h 6.5 h snr 8.4 flags [none]; real SPOC-SAP tier 1B +0.7 h 6.5 h snr 15.7 flags [none]
+   93 | forecast | +0.880 | real SPOC tier 1A +1.0 h 6.5 h snr 10.8 flags [none]; real SPOC-SAP tier 1B +1.0 h 6.5 h snr 13.1 flags [none]; real QLP tier 2 +1.0 h 6.5 h snr 9.0 flags [step]
+   96 | forecast | +1.312 | real QLP tier 2 +1.3 h 3 h snr 7.1 flags [gap_dump, dominated]; real SPOC tier 2 +0.8 h 8 h snr 15.2 flags [gap_dump, step]; real SPOC-SAP tier 2 +1.7 h 6.5 h snr 18.7 flags [gap_dump, step]
+   98 | forecast | +0.973 | real QLP tier 2 +0.9 h 5 h snr 10.2 flags [dominated]; real SPOC tier 2 +1.1 h 5 h snr 8.5 flags [dominated]
+   sectors with an updated time: 10; with an event in the window: 7 (chance 5.0e-10); forecast sectors 4 of 4 (chance 5.7e-07); real event at tier 1: 4, tier 2 only: 3, none: 3
