@@ -81,7 +81,13 @@ def use_grid(S2, grid):
 
 def eb_widths():
     """{tic: (primary width, secondary width)} in phase units of the Kepler period, from the TESS eclipsing binary catalogue (Prsa et al. 2022; columns
-    Wp-pf, Ws-pf) for stars whose TESS period equals the Kepler period within 2%. Empty if the table is not on this machine."""
+    Wp-pf, Ws-pf) for stars whose TESS period equals the Kepler period within 2%. Empty if the table is not on this machine.
+    G3 (Vesper 0.8.1): the G3 stars are not in the Prsa table, so the same rule reads the catalogue they were drawn from: the TESS Ten Thousand Catalog median eclipse durations (hours, columns
+    dur_pri_h and dur_sec_h of the G3 chain table) over the period; a missing secondary duration takes the primary one, as above."""
+    if DS.NAME == "g3":
+        tg = pd.read_csv(TARGETS, comment="#").drop_duplicates("tic")
+        return {int(r.tic): (r.dur_pri_h / 24 / r.p_bin_d, (r.dur_sec_h if np.isfinite(r.dur_sec_h) and r.dur_sec_h > 0 else r.dur_pri_h) / 24 / r.p_bin_d)
+                for r in tg.itertuples() if np.isfinite(r.dur_pri_h) and r.dur_pri_h > 0}
     if not EBS.exists():
         return {}
     tg = pd.read_csv(TARGETS, comment="#").drop_duplicates("tic").set_index("tic")

@@ -61,6 +61,7 @@ def sample(real, n):
 if __name__ == "__main__":
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 300
     procs = int(sys.argv[2]) if len(sys.argv) > 2 else 6
+    label = sys.argv[3] if len(sys.argv) > 3 else ""
     assert DS.NAME == "g1", "the zero-difference test runs on G1 (leave SS_SET unset)"
     t0 = time.time()
     lit = {"TARGETS": (C.TARGETS, r"D:\second-sun\targets\g1_targets.csv"), "MANIFEST": (C.MANIFEST, r"D:\second-sun\data\g1\manifest.csv"),
@@ -91,7 +92,7 @@ if __name__ == "__main__":
     withev = [j for j in jobs if j[2]][:15]
     caught = sum(1 for r in map(check, withev) if not (r[3] and r[4]))
     C.STEP_LIFT = 0.5
-    txt = [f"Zero-difference test of the dataset switch, G1, 29 Oct 2026 (SS_SET unset, frozen run {X.RUN.name}).",
+    txt = [f"Zero-difference test of the dataset switch, G1, {time.strftime('%d %b %Y') if label else '29 Oct 2026'}{' (' + label + ')' if label else ''} (SS_SET unset, frozen run {X.RUN.name}).",
            f"Paths: all {len(lit)} paths read by the edited code equal the old literal G1 paths.",
            f"Sample: {len(df)} random star-sectors (seed 20261029), stratified (SPOC family best / QLP best x with events / without events), {nev} events re-made by the whole chain.",
            f"Every field of every event equal to the frozen group files: {int(df.fields_equal.sum())} of {len(df)} star-sectors.",
@@ -101,4 +102,4 @@ if __name__ == "__main__":
            f"Not tested: the other {5082 - len(df)} star-sectors of the frozen run (the code paths are the same; only the sample was re-run). Time {time.time() - t0:.0f} s."]
     print("\n".join(txt))
     bad.to_csv(X.PREP / "zero_diff_bad_LOCAL.csv", index=False)
-    (C.ROOT / "research" / "stage3" / "zero-diff-dataset-switch.txt").write_text("\n".join(txt), encoding="utf-8")
+    (C.ROOT / "research" / "stage3" / (f"zero-diff-{label}.txt" if label else "zero-diff-dataset-switch.txt")).write_text("\n".join(txt), encoding="utf-8")

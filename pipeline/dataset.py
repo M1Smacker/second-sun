@@ -18,7 +18,14 @@ elif NAME == "g2":
     RUNS = ROOT / "data" / "stage3_g2"
     PREP = ROOT / "data" / "stage3_g2_prep"
     TIC_LIST = ROOT / "targets" / "g2_targets.csv"
+elif NAME == "g3":                                              # Vesper 0.8.1: the third star list, one-shot (research/stage3/G3-PREREGISTRATION.md); data paths only, no rule
+    DATA = ROOT / "data" / "g3"
+    TARGETS = ROOT / "targets" / "g3_chain_targets.csv"     # g3_targets.csv plus the catalogue ephemeris, radii and eclipse durations, made by targets_g3_chain.py
+    AUDIT = DATA / "audit"                                  # spoc_windows.pkl here is the hashed UNION reference windows table (G3 + G2 + G1 SPOC 2-minute files)
+    RUNS = ROOT / "data" / "stage3_g3"
+    PREP = ROOT / "data" / "stage3_g3_prep"
+    TIC_LIST = ROOT / "targets" / "g3_targets.csv"
 else:
-    raise SystemExit(f"SS_SET must be g1 or g2, not {NAME!r}")
+    raise SystemExit(f"SS_SET must be g1, g2 or g3, not {NAME!r}")
 MANIFEST = DATA / "manifest.csv"
 BEST = AUDIT / "best_per_star_sector.csv"

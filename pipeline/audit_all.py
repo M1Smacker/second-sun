@@ -49,6 +49,14 @@ def g2_tables():
     return rad, {k: sorted(v, reverse=True) for k, v in per.items()}
 
 
+def g3_tables():
+    """Same two tables for the G3 stars (Vesper 0.8.1): the radius from the TIC header (nan where the header has none) and the catalogue period of the star (B3) from the TESS Ten Thousand Catalog row the G3 list was drawn from (one row per TIC)."""
+    import pandas as pd
+    tg = pd.read_csv(DS.TARGETS, comment="#").drop_duplicates("tic")
+    rad = {int(t): (float(r) if r == r else float("nan")) for t, r in zip(tg.tic, tg.tic_radius_rsun)}
+    return rad, {int(t): [round(float(p), 6)] for t, p in zip(tg.tic, tg.p_bin_d) if float(p) > 0.2}
+
+
 def tic_of(name):
     m = re.search(r"(?:s\d{4}-|[-_])(\d{16})", name)
     return int(m.group(1)) if m else None
@@ -93,7 +101,7 @@ DB, RAD, PER = {}, {}, {}
 
 def _init():
     global DB, RAD, PER
-    DB = pickle.load(open(WIN_DB, "rb")); RAD, PER = g1_tables() if DS.NAME == "g1" else g2_tables()
+    DB = pickle.load(open(WIN_DB, "rb")); RAD, PER = g1_tables() if DS.NAME == "g1" else g3_tables() if DS.NAME == "g3" else g2_tables()
 
 
 def neighbour_windows(sec, cam, ccd, exclude):

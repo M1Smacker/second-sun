@@ -1,0 +1,31 @@
+{
+ "built": "3 Nov 2026",
+ "pools": {
+  "g1": {
+   "file": "D:\\second-sun\\research\\audit-2026-10-23\\spoc_windows.pkl",
+   "sha256": "5a199933f2005d523e7b031e3c320e7a4b8c4c1f0603c85b7f32aae1a1512396",
+   "groups": 44,
+   "star_sector_windows": 1304
+  },
+  "g2": {
+   "file": "D:\\second-sun\\data\\g2\\audit\\spoc_windows.pkl",
+   "sha256": "9d4624c8bb07aa959b6ae2079ab5a03d74ffcd8d87bea99266b991decc7cac53",
+   "groups": 1459,
+   "star_sector_windows": 8043
+  },
+  "g3": {
+   "file": "D:\\second-sun\\data\\g3\\audit\\spoc_windows_g3only.pkl",
+   "sha256": "147b770851b148dbede138cd792727fe498c9a3f065c124103f086c7c1fb84a1",
+   "groups": 109,
+   "star_sector_windows": 126
+  }
+ },
+ "union": {
+  "file": "D:\\second-sun\\data\\g3\\audit\\spoc_windows.pkl",
+  "sha256": "92f3cc64f7009787f0f551bbadc475ad9363e64f3378f0dd2f77b00f56d225b7",
+  "groups": 1465,
+  "distinct_tics": 1191,
+  "star_sector_windows": 9473,
+  "groups_with_2_or_more": 1193
+ }
+}
