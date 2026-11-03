@@ -1,0 +1,14 @@
+g1: data folder D:\second-sun\data\g1; SPOC and SPOC-SAP events at SNR 7+ after de-duplication: real 577, upside-down 769; upside-down tier 1 (all products, SNR 7+, primary): 32
+events with a usable file and enough null windows: 1302
+  upside-down, tier 1       : n   10; p < 0.05 in 0 (0.0%, 5% expected); one-sided binomial p 1; by channel p < 0.05: SAP_BKG 0, POS_CORR1 1, POS_CORR2 0, MOM_CENTR1 2, MOM_CENTR2 3
+  upside-down, tier 2 or 3  : n  736; p < 0.05 in 335 (45.5%, 5% expected); one-sided binomial p 9.81e-227; by channel p < 0.05: SAP_BKG 146, POS_CORR1 319, POS_CORR2 313, MOM_CENTR1 316, MOM_CENTR2 313
+  upside-down, all          : n  746; p < 0.05 in 335 (44.9%, 5% expected); one-sided binomial p 2.4e-224; by channel p < 0.05: SAP_BKG 146, POS_CORR1 320, POS_CORR2 313, MOM_CENTR1 318, MOM_CENTR2 316
+  real, tier 1              : n   13; p < 0.05 in 2 (15.4%, 5% expected); one-sided binomial p 0.135; by channel p < 0.05: SAP_BKG 2, POS_CORR1 2, POS_CORR2 1, MOM_CENTR1 3, MOM_CENTR2 3
+  real, all                 : n  556; p < 0.05 in 212 (38.1%, 5% expected); one-sided binomial p 3.99e-125; by channel p < 0.05: SAP_BKG 103, POS_CORR1 209, POS_CORR2 187, MOM_CENTR1 188, MOM_CENTR2 182
+g2dev: data folder D:\second-sun\data\g2; SPOC and SPOC-SAP events at SNR 7+ after de-duplication: real 1450, upside-down 926; upside-down tier 1 (all products, SNR 7+, primary): 25
+events with a usable file and enough null windows: 2091
+  upside-down, tier 1       : n   30; p < 0.05 in 6 (20.0%, 5% expected); one-sided binomial p 0.00328; by channel p < 0.05: SAP_BKG 9, POS_CORR1 5, POS_CORR2 4, MOM_CENTR1 10, MOM_CENTR2 7
+  upside-down, tier 2 or 3  : n  731; p < 0.05 in 335 (45.8%, 5% expected); one-sided binomial p 6.01e-228; by channel p < 0.05: SAP_BKG 267, POS_CORR1 310, POS_CORR2 302, MOM_CENTR1 277, MOM_CENTR2 269
+  upside-down, all          : n  761; p < 0.05 in 341 (44.8%, 5% expected); one-sided binomial p 6.09e-228; by channel p < 0.05: SAP_BKG 276, POS_CORR1 315, POS_CORR2 306, MOM_CENTR1 287, MOM_CENTR2 276
+  real, tier 1              : n   89; p < 0.05 in 8 (9.0%, 5% expected); one-sided binomial p 0.0773; by channel p < 0.05: SAP_BKG 12, POS_CORR1 3, POS_CORR2 6, MOM_CENTR1 2, MOM_CENTR2 7
+  real, all                 : n 1330; p < 0.05 in 369 (27.7%, 5% expected); one-sided binomial p 1.14e-162; by channel p < 0.05: SAP_BKG 293, POS_CORR1 358, POS_CORR2 388, MOM_CENTR1 316, MOM_CENTR2 358
