@@ -18,8 +18,10 @@ R_E = 109.076                                                    # Earth radii p
 FAMILY = ("SPOC", "TESS-SPOC")                                   # the products a second 2-minute or FFI SPOC file backs up (sap_twin.FAMILY)
 
 
-def recovery_tables():
-    d = pd.read_pickle(f"{ROOT}/data/chain_recovery_g2/rows_v9base.pkl"); d = d[d.K.notna() & (d.sign == 1)]
+def recovery_tables(d=None):
+    if d is None:
+        d = pd.read_pickle(f"{ROOT}/data/chain_recovery_g2/rows_v9base.pkl")
+    d = d[d.K.notna() & (d.sign == 1)]
     tg = pd.read_csv(f"{ROOT}/targets/g2_chain_targets.csv", comment="#").drop_duplicates("tic").set_index("tic")
     assert set(tg.loc[d.tic.unique(), "slice"]) == {"dev"}, "R1 uses the development split only"
     d = d.assign(fam=d.best.isin(FAMILY), tier1=d.tier1.astype(bool))
@@ -58,7 +60,7 @@ def sector_table(sset):
     return star, b[["tic", "sector", "fam", "noise8", "covered_d"]], nvalid, med
 
 
-def reach(star, ss, tabs, floor=5.6, dilution=1.0):
+def reach(star, ss, tabs, floor=5.6, dilution=1.0, store=None):
     """Sum over stars of the chance of a tier-1 detection, per (radius, period) cell. Returns (sum, number of stars allowed in the cell)."""
     S = np.zeros((len(RAD_C), len(PER_C))); NS = np.zeros_like(S)
     sec = {t: g for t, g in ss.groupby("tic")}
@@ -84,6 +86,8 @@ def reach(star, ss, tabs, floor=5.6, dilution=1.0):
                     w = np.minimum(1.0, gg.covered_d.values / P)
                     miss *= float(np.prod(1 - w * s))
                 S[i, j] += 1 - miss
+                if store is not None:
+                    store.setdefault(tic, np.full((len(RAD_C), len(PER_C)), np.nan))[i, j] = 1 - miss     # NaN = the star is not allowed in this cell
     return S, NS
 
 

@@ -16,7 +16,7 @@ import dataset as DS
 from audit_paths import noise
 
 RUN = C.ROOT / "data" / "stage3" / "fd788be04650" if DS.NAME == "g1" else DS.RUNS / os.environ["SS_RUN"]    # G2: SS_RUN = the run folder name, e.g. dev_ab12cd34ef56
-PREP = C.ROOT / "data" / ("chain_recovery" if DS.NAME == "g1" else "chain_recovery_g2")
+PREP = C.ROOT / "data" / ("chain_recovery" if DS.NAME == "g1" else f"chain_recovery_{DS.NAME}")    # g2 -> chain_recovery_g2 as before; g3 -> chain_recovery_g3
 TMP = PREP / "tmp"
 G1 = DS.DATA                                                 # the data folder of the active set (the name is kept from the G1 days)
 KS = (6.0, 8.0, 10.0, 12.0, 14.0, 18.0)                      # injected depth in units of the 8 h box noise
