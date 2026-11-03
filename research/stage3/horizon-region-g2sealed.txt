@@ -1,0 +1,13 @@
+Horizon region integral, star set g2sealed: planets above 6 Earth radii, 10 to 334 days (Armstrong 2014 region: R > 6 Earth radii, P < 300 d). Assumptions in the file header of pipeline/horizon_region.py. Aggregates only.
+
+main (F 5.6, no dilution): stars with an allowed cell in the region 585; D = 144.3 stars-equivalent (95% band 140.4 to 148.3, 30 resamples)
+   95% ceiling on the occurrence, zero found: 2.1% (band 2.0% to 2.1%); with the known planet counted (k = 1): 3.3% (band 3.2% to 3.4%)
+F 3: stars with an allowed cell in the region 590; D = 180.7 stars-equivalent (95% band 176.5 to 185.2, 30 resamples)
+   95% ceiling on the occurrence, zero found: 1.7% (band 1.6% to 1.7%); with the known planet counted (k = 1): 2.6% (band 2.6% to 2.7%)
+F 6.9: stars with an allowed cell in the region 574; D = 130.3 stars-equivalent (95% band 126.1 to 133.3, 30 resamples)
+   95% ceiling on the occurrence, zero found: 2.3% (band 2.3% to 2.4%); with the known planet counted (k = 1): 3.6% (band 3.6% to 3.8%)
+dilution 0.5: stars with an allowed cell in the region 585; D = 106.7 stars-equivalent (95% band 102.4 to 109.6, 30 resamples)
+   95% ceiling on the occurrence, zero found: 2.8% (band 2.7% to 2.9%); with the known planet counted (k = 1): 4.4% (band 4.3% to 4.6%)
+
+Read: Armstrong 2014 reports about 10% for this region (coplanar, from Kepler eclipsing binaries; UNCERTAIN how it maps onto our TESS binaries). A ceiling below 10% would be in tension with it; a ceiling above 10% is no constraint.
+Caveats: UNCERTAIN window function and independent epochs (R0 Amendment 1); depth uses the TIC radius with no dilution unless stated; recovery table from the development split only; band covers the table only.

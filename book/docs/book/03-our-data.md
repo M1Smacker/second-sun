@@ -63,7 +63,7 @@ On Kepler-16, a fairly bright star in our G1 field (TESS magnitude 10.94), a qui
 
 ### Known troublemakers in the data
 
-- **Momentum dumps:** every 2-6 days TESS fires thrusters; the cadences are flagged (quality bit 32) {{claim:F-028}}. Chapter 8 showed fakes cluster near them.
+- **Momentum dumps:** every 2 to 8 days in most sectors (6 days in Sector 82) TESS fires thrusters; the cadences are flagged (quality bit 32) {{claim:F-028}}. Chapter 8 showed fakes cluster near them.
 - **Data gaps:** downlinks to Earth every orbit leave holes; edges of holes are where detrending goes wrong.
 - **Scattered light** from the Earth and Moon near the ends of orbits.
 

@@ -1,0 +1,20 @@
+H1 window-function test: 80 G2 development stars (seed 11), 1179 star-sectors; coverage only (S = 1); aggregates only.
+Per star-sector: mean of fold coverage W_fold and of the approximation min(1, covered/P); ratio approx/fold of the means.
+P centre (d) | W_fold | W_approx | approx/fold
+      13.4   | 0.905  | 0.999   | 1.10
+      24.0   | 0.885  | 0.908   | 1.03
+      43.2   | 0.531  | 0.525   | 0.99
+      77.5   | 0.299  | 0.292   | 0.98
+     139.0   | 0.167  | 0.163   | 0.98
+     249.5   | 0.093  | 0.091   | 0.98
+     447.9   | 0.052  | 0.051   | 0.98
+
+Per star (all its sectors together): coverage by folding all windows vs 1 - prod(1 - W_i) from fold W and from approximate W; stars with 2 or more sectors only (n shown).
+P centre (d) | n | star fold | independent (fold W) | independent (approx W) | approx/star-fold
+      13.4   | 80 | 0.996     | 1.000                | 1.000                  | 1.00
+      24.0   | 80 | 0.999     | 1.000                | 1.000                  | 1.00
+      43.2   | 80 | 0.932     | 0.985                | 0.985                  | 1.06
+      77.5   | 80 | 0.838     | 0.914                | 0.909                  | 1.08
+     139.0   | 80 | 0.685     | 0.772                | 0.766                  | 1.12
+     249.5   | 80 | 0.480     | 0.604                | 0.597                  | 1.24
+     447.9   | 80 | 0.380     | 0.442                | 0.436                  | 1.15
