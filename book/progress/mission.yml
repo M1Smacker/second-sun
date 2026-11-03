@@ -5,12 +5,12 @@
 # Weights are Claude's first draft (2026-10-21), approved as the starting point by Ahmed; change them here any time.
 
 status:                                   # the six cells of the home-page status panel; edit them in the same commit as the credits (refreshed 2 Nov 2026, T59h)
-  - {label: "Phase", value: "Sealed search done, G3 next", note: "clean null on 594 sealed stars; 612 new stars listed"}
+  - {label: "Phase", value: "Sealed search done, G3 ready", note: "clean null on 594 sealed stars; G3 version frozen, search waits for your word"}
   - {label: "Campaign", value: "G2: TESS binaries (895)", note: "G3 list of 612 faint binaries locked 2 Nov"}
-  - {label: "Detector", value: "Vesper 0.8.0 (frozen)", note: "0.9 passed on development stars; not frozen"}
+  - {label: "Detector", value: "Vesper 0.8.1 (frozen)", note: "the 0.8.0 rules, able to read the G3 list; 0.9 not frozen"}
   - {label: "Known-planet test", value: "TOI-1338 b: 7 of 10 passes", note: "seen near its 2024 dates; 4 of 10 kept as strong"}
   - {label: "Your eye test", value: "Standard line close", note: "27 of 30 on 1 Nov; rehearsal is next"}
-  - {label: "Next milestone", value: "G3 decision (your word)", note: "windows table first, then the one-shot search"}
+  - {label: "Next milestone", value: "G3 search (your word)", note: "windows table fixed, audit done; then the one-shot search"}
 
 stages:
   - id: sky
