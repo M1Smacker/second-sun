@@ -178,6 +178,9 @@ These three chapters are not part of the readiness bar. They are how a careful p
 ??? quiz "After L6, check 5. We try to freeze a new version of the search and the freeze refuses, saying more code files changed than we expected. What do you do?"
     Do not edit the fingerprint and do not assume the extra changes are harmless. List exactly which files differ, then re-run old results through the new code and compare every event and tier. If a few differ, find out whether the code or the test is wrong before you change either. On 3 November 2026 five files differed; the old results were reproduced 300 of 300 in three tests once a test that looked at one sector at a time was widened (it could not see a partner event in another sector).
 
+??? quiz "After L6, check 6. A lab reports a candidate that was picked after looking at the data. What makes a later test of it fair?"
+    The predictions and the decision rules are written down, hashed and published before the new data exist, and a missing signal counts as excluded only if the test would have caught it at least 95% of the time. Otherwise almost any result can be made to look like a confirmation. This is how Pavel Rabtsevich preregistered his TESS Sector 110 test (3 November 2026 reading).
+
 That is the end of the track. The Hunt tab shows where the project stands now.
 
 ## Sources

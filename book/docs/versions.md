@@ -6,8 +6,8 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.1 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.9.2 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
-| Learning track | 1.5 | 1.3 | a "level done" mark means what the level contained that day |
+| The book | 2.9.3 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| Learning track | 1.6 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
 Version numbers follow one rule: the first number changes when the old and new results or pages are no longer directly comparable, the second when something is added, the third for fixes that change no result.
@@ -67,6 +67,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.9.0 | 3 Nov | A field note for 3 Nov; a sentence on the refused freeze in chapter 8; a fifth check after level 6 in the learning track (track 1.5) |
 | 2.9.1 | 3 Nov | The home-page status panel shows Vesper 0.8.1 and that the G3 search waits for your word |
 | 2.9.2 | 3 Nov | Uncertainty audit: ten facts-page claims confirmed against the sources (85 verified, 12 likely, 1 unverified), the momentum-dump interval corrected from "every 2 to 6 days" to 2 to 8 days in most sectors, and a pointer on the eclipse-length line of the 3 Nov field note |
+| 2.9.3 | 3 Nov | A section in the 3 Nov field note on what a public amateur planet-candidate package teaches us (six practices, none built yet); a sixth check after level 6 in the learning track (track 1.6) |
 
 ## Learning track
 
@@ -78,6 +79,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 1.3 | 30 Oct | Two checks in level 5 and three in level 6 |
 | 1.4 | 2 Nov | One check after level 6: a baseline must be made under the same conditions as what it is compared with |
 | 1.5 | 3 Nov | One more check after level 6: what to do when a freeze refuses |
+| 1.6 | 3 Nov | One more check after level 6: what makes a later test of a post hoc candidate fair |
 
 From now on, when a level is marked done, the track version is written next to the date.
 
