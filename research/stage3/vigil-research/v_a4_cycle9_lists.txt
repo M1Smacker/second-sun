@@ -1,0 +1,23 @@
+our stars: 2056
+sector | 2-minute list size | of our stars on it | share
+S107 |  13000 |   35 | 1.7%
+S108 |  10802 |   43 | 2.1%
+S109 |  11067 |   47 | 2.3%
+S110 |  11977 |   51 | 2.5%
+S111 |  11775 |   35 | 1.7%
+GI priority lists: sector | stars on list | of our stars on it
+S108 |   6467 |   38
+S109 |   6724 |   42
+S110 |   7009 |   46
+S111 |   6834 |   32
+S112 |   7570 |   28
+S113 |   7219 |   30
+S114 |   7391 |   26
+S115 |   5095 |    0
+S116 |   5729 |    5
+S117 |   6439 |   30
+S118 |   7083 |   35
+S119 |   8977 |   76
+S120 |   9407 |   83
+S121 |   7471 |   60
+our stars on at least one GI priority list S108 to S121: 238
