@@ -1,0 +1,4 @@
+G3 GO. Ahmed's explicit go, 4 Nov 2026, about 01:09 Kuwait time, in chat.
+His words: "start g3. dont run it on low priority. use 70% of the cpu. i am not gonna be using my pc. ... Stop when g3 is done and be straight with me what we found. take as long as u want."
+Run: Vesper 0.8.1 (frozen, hash e7886a71a61f), the 612 G3 stars, one shot, no tuning.
+Settings: Normal priority, 8 workers (about 70 percent of 12 cores), counts-only blind Search window feed.
