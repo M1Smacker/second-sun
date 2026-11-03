@@ -999,7 +999,28 @@ async function headerTitleTest() {
   return out;
 }
 
-const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest };
+// FIX-QUEUE 68 (3 Nov 2026, Ahmed: "u handle it"): no readable text under 14 px on a phone (375 px wide). Every visible HTML text node is judged by its computed size; SVG text scales with its figure and is covered by the layout checks.
+async function textFloorTest() {
+  const b = await launch("textfloor"), out = { mode: "textfloor", checks: 0, fails: [], pages: {} };
+  try {
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 375, height: 844, deviceScaleFactor: 1, mobile: true });
+    for (const path of [...new Set([...PAGES, "watch/", "versions/", "glossary/"])]) {
+      await goto(b, base + path); await sleep(700);
+      const bad = await b.evaluate(`(() => { const bad = {}; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        while (w.nextNode()) { const n = w.currentNode; if (!n.nodeValue.trim()) continue; const e = n.parentElement; if (!e || e.closest("svg,script,style,noscript,template,[hidden]")) continue;
+          const cs = getComputedStyle(e); if (cs.visibility !== "visible" || cs.display === "none") continue; const r = e.getBoundingClientRect(); if (r.width < 1 || r.height < 1) continue;
+          const px = parseFloat(cs.fontSize); if (px < 13.99) { const k = e.tagName.toLowerCase() + (typeof e.className === "string" && e.className.trim() ? "." + e.className.trim().split(/\s+/).join(".") : ""); (bad[k] = bad[k] || { n: 0, px }).n++; } }
+        return bad; })()`);
+      out.checks++;
+      if (Object.keys(bad).length) { out.pages[path] = bad; out.fails.push(path + ": " + Object.entries(bad).slice(0, 6).map(([k, v]) => `${k} ${v.px}px x${v.n}`).join("; ")); }
+    }
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && !out.errors.length;
+  } finally { await b.close(); }
+  return out;
+}
+
+const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));
