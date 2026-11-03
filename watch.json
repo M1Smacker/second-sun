@@ -1,8 +1,8 @@
 {
  "label": "G3 SEARCH: Vesper 0.8.1 on the 612 G3 stars (blind, counts only)",
  "blind": true,
- "phase": "pdc",
- "updated": "2026-11-03T22:20:22+00:00",
+ "phase": "finished",
+ "updated": "2026-11-03T22:21:28+00:00",
  "loop_s": 60,
  "run": {
   "folder": "g3_e7886a71a61f",
@@ -36,7 +36,7 @@
  },
  "machine": {
   "workers": 10,
-  "cpu": 67
+  "cpu": 59
  },
  "started": "2026-11-03T22:17:11+00:00",
  "progress": {
@@ -49,7 +49,7 @@
    513
   ],
   "pdc": [
-   212,
+   513,
    513
   ],
   "stars": 611,
@@ -172,6 +172,12 @@
    "done": 4080,
    "events": 1974,
    "per_min": 408.0
+  },
+  {
+   "t": 1793744490,
+   "done": 4080,
+   "events": 1974,
+   "per_min": 408.0
   }
  ],
  "notes": [
@@ -195,24 +201,24 @@
  "leads": {
   "schema": 1,
   "blind": true,
-  "final": false,
-  "verdict": "Not finished. No verdict yet.",
+  "final": true,
+  "verdict": "Finished. Counts only until the scoring is filed.",
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 1125
+    "both": 0
    },
    {
     "label": "Kept: no safety check fired",
-    "both": 64
+    "both": 0
    },
    {
     "label": "Confirmed: a second light curve agrees",
-    "both": 8
+    "both": 0
    },
    {
     "label": "Leads: stars with a confirmed real dip, no known planet",
-    "both": 7
+    "both": 0
    }
   ],
   "known": null,
