@@ -10,12 +10,12 @@
   const pct = (a, b) => (b ? Math.min(100, Math.round((100 * a) / b)) : 0);
   const num = (n) => (n == null ? "n/a" : Number(n).toLocaleString());
   const dur = (s) => (s < 90 ? Math.round(s) + " s" : s < 5400 ? Math.round(s / 60) + " min" : (s / 3600).toFixed(1) + " h");
-  const PHASE = { search: "Pass 1 of 3: searching the light curves", sap: "Pass 2 of 3: searching the raw-light twins", pdc: "Pass 3 of 3: second look at the raw-light dips", finished: "All three passes finished" };
+  const PHASE = { ready: "Prepared, not started", search: "Pass 1 of 3: searching the light curves", sap: "Pass 2 of 3: searching the raw-light twins", pdc: "Pass 3 of 3: second look at the raw-light dips", finished: "All three passes finished" };
   const STAGES = [
     ["Read the light-curve files", (d) => `${num(d.files.read_ok)} files read`, ["search", "sap"]],
     ["Hide the star's own eclipses, flatten slow drifts", () => "10-minute bins, 2-day smoothing", ["search", "sap"]],
     ["Look for dips: 9 box lengths, real and upside-down", (d) => `${num(d.events.found)} dips and dents found`, ["search", "sap"]],
-    ["Nine safety checks, one after another", (d) => `${num((d.events.stopped_by.find((x) => x.flag === "clean") || {}).n)} passed them all`, ["search", "sap"]],
+    ["Safety checks: eight are listed here", (d) => `${num((d.events.stopped_by.find((x) => x.flag === "clean") || {}).n)} event records had none of the listed flags`, ["search", "sap"]],
     ["Ask a second light curve of the same star", (d) => `self-test: ${pct(d.selftest.second_product_sees, d.selftest.fakes)}% of fake planets seen`, ["pdc"]],
     ["Sort into tiers", (d) => `tier 1 kept: ${num(["1A", "1L", "1B"].reduce((a, k) => a + ((d.events.tiers || {})[k] || 0), 0))}`, []],
   ];
@@ -56,6 +56,7 @@
   function light() {
     if (!data) return ["off", "No data yet", ""];
     const age = (Date.now() - Date.parse(data.updated)) / 1000, w = data.machine && data.machine.workers, loop = data.loop_s || 60, stale = Math.max(180, 3 * loop + 60);
+    if (data.phase === "ready") return ["ready", "PREPARED, NOT STARTED", "Nothing is running. The search starts only on Ahmed's word, then this page fills in by itself."];
     if (data.phase === "finished") return ["done", "FINISHED", "All three passes are complete."];
     if (age > stale) return ["stale", "NOT UPDATING", `No new numbers for ${dur(age)}. The search is paused, the computer is asleep, or this is old data.`];
     if (w === 0) return ["warn", "WATCHING, NO SEARCH PROCESS FOUND", "No search process is running on the computer."];
@@ -80,27 +81,27 @@
       <div id="sw-light" class="sw-light"></div>
       <p class="sw-small" id="sw-age"></p>
       <h3>Right now</h3>
-      <p class="sw-now"><b>${esc(PHASE[d.phase] || d.phase)}.</b> ${p.eta_min != null ? `About ${p.per_min} star-sectors a minute, roughly ${p.eta_min} minutes left in this pass.` : ""}</p>
+      <p class="sw-now"><b>${esc(PHASE[d.phase] || d.phase)}.</b> ${d.phase === "ready" ? `The list has ${num(p.list_stars || p.stars)} stars; ${num(p.stars)} of them have light-curve files to search, in ${num(p.search[1])} star-sectors. The version is frozen and checked. Every number below is zero because no search has run.` : ""} ${p.eta_min != null ? `About ${p.per_min} star-sectors a minute, roughly ${p.eta_min} minutes left in this pass.` : ""}</p>
       ${d.notes && d.notes.length ? `<p class="sw-note"><small>${esc(d.notes[0].at.slice(11, 16))} UTC, note from Claude</small><br>${esc(d.notes[0].text)}</p>` : ""}
       <p class="sw-small">${esc(d.label)}</p>
-      ${d.blind ? '<p class="sw-blind"><b>Blind run.</b> Real and upside-down dips are pooled, and pictures do not say which kind they are, until the final analysis is done. That keeps the test honest.</p>' : ""}
+      ${d.blind ? (d.counts_only ? '<p class="sw-blind"><b>Blind run, counts only.</b> Real and upside-down dips are pooled, and this page shows no pictures, no star list and no per-star counts, until the final analysis is done. That keeps the one-shot test honest.</p>' : '<p class="sw-blind"><b>Blind run.</b> Real and upside-down dips are pooled, and pictures do not say which kind they are, until the final analysis is done. That keeps the test honest.</p>') : ""}
       ${leadsHtml(d)}
       <h3>The path every star takes</h3>
       <div class="sw-flow">${STAGES.map((st, i) => `<div class="sw-stage${active(st)}"><small>${i + 1}</small><b>${esc(st[0])}</b><span>${esc(st[1](d))}</span></div>${i < STAGES.length - 1 ? '<div class="sw-arrow">&#8595;</div>' : ""}`).join("")}</div>
-      <h3>Pictures from the search</h3>
+      ${d.counts_only ? "" : `<h3>Pictures from the search</h3>
       <p class="sw-small">Real TESS light from the star, 36 hours either side of a dip, in 10-minute bins. The shaded box is where the search saw the dip. Dashed lines are gaps in the data. Up is brighter, down is dimmer; the numbers on the left are ppm from the star's usual level.${d.blind ? " In the sealed run some pictures are the upside-down copy, drawn the same way and not labelled, so the final test stays fair." : ""}</p>
       ${d.gallery && d.gallery.kept.length ? `<h4>Kept</h4><div class="sw-cards">${d.gallery.kept.map(card).join("")}</div>` : ""}
-      ${d.gallery && d.gallery.stopped.length ? `<h4>Stopped by a check</h4><div class="sw-cards">${d.gallery.stopped.map(card).join("")}</div>` : ""}
+      ${d.gallery && d.gallery.stopped.length ? `<h4>Stopped by a check</h4><div class="sw-cards">${d.gallery.stopped.map(card).join("")}</div>` : ""}`}
       <h3>How far along</h3>
       ${bar("Pass 1: search", p.search[0], p.search[1], "")}
       ${bar("Pass 2: raw-light twin", p.sap[0], p.sap[1], "")}
       ${bar("Pass 3: second look", p.pdc[0], p.pdc[1], "")}
       <p class="sw-small">Each unit is one star in one TESS sector. ${num(p.stars)} stars in this run.</p>
-      <h3>Speed</h3>
+      ${d.phase === "ready" ? "" : `<h3>Speed</h3>
       ${chart(d.history, "per_min", "star-sectors per minute")}
-      ${chart(d.history, "done", "star-sectors finished")}
-      <h3>The nine safety checks</h3>
-      <p class="sw-small">${num(ev.found)} dips and dents were found. Each one is stopped by the <b>first</b> check that fires, in this order. First-pass counts, before the final union step.</p>
+      ${chart(d.history, "done", "star-sectors finished")}`}
+      <h3>The safety checks (first-pass counts)</h3>
+      <p class="sw-small">${num(ev.found)} event records, counted over every light-curve product and pass, before the union step. Every record is tested against all checks; here each is filed under the <b>first listed</b> flag that fired, in this order, so the rows add up to the total and are not independent counts. This is a different sample from the funnel above, which counts the scorecard's detections (best product of each star-sector, cleaned light only). Two checks that can also set a dip aside (the burst check, and the orbit-locked check of the final report) are not listed, so some set-aside records sit under "No flag fired".</p>
       ${ev.stopped_by.map((x) => row(x.text, x.n, max, x.flag === "clean")).join("")}
       <h3>Where they end up (first pass)</h3>
       ${tiers.map(([k, txt]) => row(`Tier ${k}. ${txt}`, t[k] || 0, tot, k[0] === "1")).join("")}
@@ -111,11 +112,11 @@
       <p class="sw-small">By strength (signal-to-noise; 7 is the bar):</p>
       ${Object.entries(ev.bands || {}).map(([k, v]) => row(k, v, bandMax)).join("")}
       <h3>The built-in self-test</h3>
-      <p>Every star-sector gets fake planets pasted in as a test. The second light curve sees <b>${num(d.selftest.second_product_sees)}</b> of <b>${num(d.selftest.fakes)}</b> (${pct(d.selftest.second_product_sees, d.selftest.fakes)}%) clearly enough (signal-to-noise 4 or more). A sudden drop here means something is broken.</p>
+      <p>${d.phase === "ready" ? "Not run yet." : `Every star-sector gets fake planets pasted in as a test. The second light curve sees <b>${num(d.selftest.second_product_sees)}</b> of <b>${num(d.selftest.fakes)}</b> (${pct(d.selftest.second_product_sees, d.selftest.fakes)}%) clearly enough (signal-to-noise 4 or more). This only checks that the second light curve still shows a pasted-in dip; it is not the search's sensitivity. A sudden drop here means something is broken.`}</p>
       <h3>Files</h3>
       <p>${num(d.files.read_ok)} light-curve files read. Skipped: ${Object.keys(d.files.skipped).length ? Object.entries(d.files.skipped).map(([k, v]) => num(v) + " (" + esc(k) + ")").join(", ") : "none"}. Products searched: ${Object.entries(d.files.products).map(([k, v]) => esc(k) + " " + num(v)).join(", ")}.</p>
-      <h3>Latest finished</h3>
-      <table class="sw-tick"><tr><th>Time (UTC)</th><th>Star (TIC)</th><th>Sector</th><th>Files</th><th>Dips and dents</th></tr>${d.ticker.map((x) => `<tr><td>${x.at}</td><td>${x.tic}</td><td>${x.sector}</td><td>${x.files}</td><td>${x.events}</td></tr>`).join("")}</table>
+      ${d.counts_only ? "" : `<h3>Latest finished</h3>
+      <table class="sw-tick"><tr><th>Time (UTC)</th><th>Star (TIC)</th><th>Sector</th><th>Files</th><th>Dips and dents</th></tr>${d.ticker.map((x) => `<tr><td>${x.at}</td><td>${x.tic}</td><td>${x.sector}</td><td>${x.files}</td><td>${x.events}</td></tr>`).join("")}</table>`}
       ${d.notes && d.notes.length > 1 ? `<h3>Notes from Claude</h3>${d.notes.map((n) => `<p class="sw-small"><b>${esc(n.at.slice(5, 16).replace("T", " "))}</b> ${esc(n.text)}</p>`).join("")}` : ""}
       <details data-k="tech" class="sw-tech"><summary>Technical details</summary>
         <table class="sw-tick">

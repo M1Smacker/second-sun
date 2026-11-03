@@ -2840,6 +2840,10 @@
 <summary>L5 check 7. Most false alarms were found by the 3 hour box. We removed it, and they were found by the 4 hour box. What does that teach?</summary>
 <p>Where something is found is not what causes it. The cause was short glitches; the shortest box simply caught them first.</p>
 </details>
+<details class="quiz">
+<summary>L5 check 8. The Search window shows 12,261 event records in its safety-check rows and 2,764 detections in its funnel for the same run. Why two numbers, and can you add the rows up as separate rejections?</summary>
+<p>They are different samples. The 12,261 count every dip record in every light-curve product and pass; the 2,764 are the scorecard's detections (the best product of each star-sector, cleaned light only). A dip is tested against all the checks, and the page files it under the first listed flag that fired, so the rows add up to the total but are not independent rejection counts.</p>
+</details>
 <p><strong>Next:</strong> <a href="#l6">Level 6</a>, which starts with the rest of Chapter 10.</p>
 <h2 id="l6">L6 · Two-key vetting<a class="headerlink" href="#l6" title="Permanent link">&para;</a></h2>
 <p><strong>Read:</strong> <a href="../book/10-vetting/">Chapter 10</a> sections 10.3 to 10.6, then <a href="../book/11-pixels-and-neighbours/">Chapter 11</a>, then <a href="../book/12-stanley/">Chapter 12</a>. <strong>Do:</strong> <a href="../labs/lab7-pixels/">Lab 7</a>, <a href="../labs/lab9-your-star/">Lab 9</a>.</p>
@@ -2945,7 +2949,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 2.9.4 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 2.9.5 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
