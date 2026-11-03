@@ -154,3 +154,5 @@ His note: my usage predictions have been too high; the ledger now carries a cost
 - **Bug 68 (his "u handle it"):** decided phone-first, raised every readable text style to 14 px (book 2.8.4), new permanent browser test `textfloor`. **Item 67** closed as not a defect (the 33 px Clear button was its idle animation state; 44 px when shown).
 - **Horizon:** R0 rule locked (HORIZON-R0-RULE.md, amendment 1); R1 reused the 0.9 study's planted-dip rows (no new injections); first reach maps and zero-found ceilings written for G2 dev, G2 sealed and G3 (provisional).
 - **Book:** 2.9.1 published with the 3 Nov field note, chapter 8 sentence, learning-track check 5 (track 1.5), status panel refreshed.
+
+- **Name (Ahmed, 3 Nov 2026, evening):** he wants **Petrova** as the name of the filter (now Vesper); his other new names are Astrion (Asterion) and Noctis (not Noctic); the systems for them are not chosen. Overview only, nothing renamed: research/stage3/RENAME-PETROVA-OVERVIEW-2026-11-03.md. Recommended: display name now (about 0.6 points), code name kept inside frozen files, code rename folded into the 0.9 freeze. Waiting for his go.
