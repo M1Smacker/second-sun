@@ -29,6 +29,20 @@ def key(ev):
     return sorted((r.kind, r.product, round(float(r.center), 3), round(float(r.snr), 2), str(r.tier), bool(r.primary), str(r.seen_by), bool(r.common)) for r in ev.itertuples())
 
 
+def merged_star(evs, tic, sec, best):
+    """As chain_recovery.merged, but apply_v7 also sees the star's STORED events in its other sectors: c6 (orbit lock) is a cross-sector rule and needs its partner (the two tier differences of the
+    first G2 sealed check, 3 Nov 2026, were exactly this and nothing else)."""
+    if not evs:
+        return pd.DataFrame()
+    new = pd.DataFrame(evs); new["best"] = best; new["primary"] = new["product"] == best
+    new["c8_best"] = pd.to_numeric(new.c8_best, errors="coerce")
+    base = X.W["raw"].get((sec, int(new.camera.iloc[0])))
+    others = [d[d.tic == tic] for (s, c), d in X.W["raw"].items() if s != sec and (d.tic == tic).any()]
+    sub = pd.concat(([] if base is None else [base[base.tic != tic]]) + [new] + others, ignore_index=True)
+    ev = R.apply_v7(R.merge_sap(sub))
+    return ev[(ev.tic == tic) & (ev.sector == sec)]
+
+
 def check(args):
     tic, sec, want_key = args
     try:
@@ -36,7 +50,7 @@ def check(args):
         paths = sorted(glob.glob(rf"{X.G1}\{tic}\*s{sec:04d}*.fits")); best = X.W["best"].get((tic, sec))
         evs, _ = X.chain(tic, sec, paths, best)
         ok_fields = same_events(evs, frozen_events(tic, sec))
-        ok_tiers = key(X.merged(evs, tic, sec, best)) == want_key if len(evs) or want_key else True
+        ok_tiers = key(merged_star(evs, tic, sec, best)) == want_key if len(evs) or want_key else True
         return (tic, sec, len(evs), ok_fields, ok_tiers, "")
     except Exception as e:
         return (tic, sec, -1, False, False, f"{type(e).__name__}: {str(e)[:100]}")
@@ -62,14 +76,14 @@ if __name__ == "__main__":
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 300
     procs = int(sys.argv[2]) if len(sys.argv) > 2 else 6
     label = sys.argv[3] if len(sys.argv) > 3 else ""
-    assert DS.NAME == "g1", "the zero-difference test runs on G1 (leave SS_SET unset)"
+    assert DS.NAME in ("g1", "g2"), "the zero-difference test runs on G1 (leave SS_SET unset) or, for a stored G2 run, SS_SET=g2 SS_RUN=<run folder> VESPER_OPTS=<the options that run used>"
     t0 = time.time()
     lit = {"TARGETS": (C.TARGETS, r"D:\second-sun\targets\g1_targets.csv"), "MANIFEST": (C.MANIFEST, r"D:\second-sun\data\g1\manifest.csv"),
            "BEST": (C.BEST, r"D:\second-sun\research\audit-2026-10-23\best_per_star_sector.csv"), "DATA": (DS.DATA, r"D:\second-sun\data\g1"),
            "AUDIT": (DS.AUDIT, r"D:\second-sun\research\audit-2026-10-23"), "RUNS": (DS.RUNS, r"D:\second-sun\data\stage3"), "PREP": (DS.PREP, r"D:\second-sun\data\stage3_prep")}
-    for k, (now, old) in lit.items():
+    for k, (now, old) in (lit.items() if DS.NAME == "g1" else []):
         assert str(now) == old, f"{k}: {now} is not the old literal {old}"
-    print("paths: all", len(lit), "equal the old literal G1 paths", flush=True)
+    print("paths: all", len(lit), "equal the old literal G1 paths" if DS.NAME == "g1" else "not compared (G2 run)", flush=True)
     X.PREP.mkdir(parents=True, exist_ok=True); X.TMP.mkdir(parents=True, exist_ok=True)
     raw = X.PREP / f"raw_{X.RUN.name}.pkl"
     if not raw.exists():
@@ -92,14 +106,14 @@ if __name__ == "__main__":
     withev = [j for j in jobs if j[2]][:15]
     caught = sum(1 for r in map(check, withev) if not (r[3] and r[4]))
     C.STEP_LIFT = 0.5
-    txt = [f"Zero-difference test of the dataset switch, G1, {time.strftime('%d %b %Y') if label else '29 Oct 2026'}{' (' + label + ')' if label else ''} (SS_SET unset, frozen run {X.RUN.name}).",
-           f"Paths: all {len(lit)} paths read by the edited code equal the old literal G1 paths.",
+    txt = [f"Zero-difference test of the dataset switch, {DS.NAME.upper()}, {time.strftime('%d %b %Y') if label else '29 Oct 2026'}{' (' + label + ')' if label else ''} (SS_SET {os.environ.get('SS_SET') or 'unset'}, VESPER_OPTS {os.environ.get('VESPER_OPTS') or 'unset'}, stored run {X.RUN.name}).",
+           f"Paths: all {len(lit)} paths read by the edited code equal the old literal G1 paths." if DS.NAME == "g1" else "Paths: not compared (G2 run).",
            f"Sample: {len(df)} random star-sectors (seed 20261029), stratified (SPOC family best / QLP best x with events / without events), {nev} events re-made by the whole chain.",
            f"Every field of every event equal to the frozen group files: {int(df.fields_equal.sum())} of {len(df)} star-sectors.",
            f"Tiers, union and v7 flags equal to stage3_report.load of the frozen run: {int(df.tiers_equal.sum())} of {len(df)} star-sectors.",
            f"Errors: {int((df.error != '').sum())}. Star-sectors that differ: {len(bad)}.",
            f"Mutation (flat-baseline lift 0.5 changed to 0.05, {len(withev)} star-sectors with events): the comparison caught {caught} of {len(withev)}.",
-           f"Not tested: the other {5082 - len(df)} star-sectors of the frozen run (the code paths are the same; only the sample was re-run). Time {time.time() - t0:.0f} s."]
+           f"Not tested: the other {len(list((X.RUN / 'groups').glob('*.json'))) - len(df)} star-sectors of the stored run (the code paths are the same; only the sample was re-run). Time {time.time() - t0:.0f} s."]
     print("\n".join(txt))
     bad.to_csv(X.PREP / "zero_diff_bad_LOCAL.csv", index=False)
     (C.ROOT / "research" / "stage3" / (f"zero-diff-{label}.txt" if label else "zero-diff-dataset-switch.txt")).write_text("\n".join(txt), encoding="utf-8")

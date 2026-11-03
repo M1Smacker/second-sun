@@ -1,0 +1,8 @@
+Zero-difference test of the dataset switch, G2, 03 Nov 2026 (0.8.1-g2-sealed-c6) (SS_SET g2, VESPER_OPTS c6, stored run sealed_5f73692944aa).
+Paths: not compared (G2 run).
+Sample: 300 random star-sectors (seed 20261029), stratified (SPOC family best / QLP best x with events / without events), 714 events re-made by the whole chain.
+Every field of every event equal to the frozen group files: 300 of 300 star-sectors.
+Tiers, union and v7 flags equal to stage3_report.load of the frozen run: 300 of 300 star-sectors.
+Errors: 0. Star-sectors that differ: 0.
+Mutation (flat-baseline lift 0.5 changed to 0.05, 15 star-sectors with events): the comparison caught 6 of 15.
+Not tested: the other 6577 star-sectors of the stored run (the code paths are the same; only the sample was re-run). Time 98 s.

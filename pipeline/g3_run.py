@@ -1,7 +1,8 @@
 """The ONE way to search the 612 G3 stars (research/stage3/G3-PREREGISTRATION.md and its Amendment 1, 3 Nov 2026). A wrapper that lives OUTSIDE the hashed file list, modelled on sealed_run.py.
-Vesper 0.8.1 = Vesper 0.8.0 (0.7.1 + c6) with the G3 data paths added in dataset.py, audit_all.py and stage3_core.py; no rule changed (zero-difference test on G1: research/stage3/zero-diff-0.8.1.txt).
+Vesper 0.8.1 = Vesper 0.8.0 (0.7.1 + c6) with the G3 data paths added in dataset.py, audit_all.py and stage3_core.py, and the dormant 0.9 study switches (dg, nd, fl; off under c6) that were added to
+stage3.py, stage3_core.py and vopts.py on 2 Nov; no rule changed (proofs: research/stage3/zero-diff-0.8.1.txt on G1 and zero-diff-0.8.1-g2-sealed-c6.txt on the stored sealed G2 run).
 It refuses to do anything unless: SS_SET=g3, VESPER_OPTS is exactly c6, and the rules-and-code hash of the code on disk equals the frozen v8.1 hash in research/stage3/SETTINGS_FROZEN_V81.json.
-Modes:  python g3_run.py freeze           once: write SETTINGS_FROZEN_V81.json after proving the settings equal the frozen v8 settings except the three data-path files; needs a committed tree
+Modes:  python g3_run.py freeze           once: write SETTINGS_FROZEN_V81.json after proving the settings equal the frozen v8 settings except the code of five files and both zero-difference proofs read 300 of 300; needs a committed tree
         python g3_run.py check            guard + prerequisites (download complete, audit tables cover every file, hashed union windows table, ephemeris); changes nothing, reads no light curve
         python g3_run.py run N            the one G3 search with N workers; ALSO needs research/stage3/G3-GO.txt (Ahmed's explicit go, written only after he says it)
 Resumable: a group already written is skipped (stage2_search.do_group), so a crashed run continues with the same hash. A fixed version has a different hash and a different folder; both are then reported.
@@ -18,7 +19,9 @@ FROZEN8, FROZEN81, GO = STAGE3 / "SETTINGS_FROZEN_V8.json", STAGE3 / "SETTINGS_F
 G3_STARS = DS.PREP / "g3_stars_LOCAL.csv"
 UNION_REC = STAGE3 / "g3-union-windows.json"
 DROP = ("stars", "manifest", "targets", "best_product", "base_run")        # data-dependent keys, left out of the version hash exactly as in `stage3.py freeze8`
-DATA_PATH_FILES = {"dataset.py", "audit_all.py", "stage3_core.py"}         # the only files the 0.8.1 patch changed
+DATA_PATH_FILES = {"dataset.py", "audit_all.py", "stage3_core.py"}         # changed by the 0.8.1 patch (G3 data paths, ephemeris and eclipse widths)
+DORMANT_STUDY_FILES = {"stage3.py", "vopts.py", "stage3_core.py"}          # changed on 2 Nov by the 0.9 study: switches dg, nd, fl, OFF unless VESPER_OPTS names them (nothing writes their keys otherwise)
+PROOFS = ("zero-diff-0.8.1.txt", "zero-diff-0.8.1-c6.txt", "zero-diff-0.8.1-g2-sealed-c6.txt")      # G1 chain with options off and with c6 against the stored v7 run (as the 0.8.0 regression of 30 Oct); G2 sealed chain with c6 against the stored 0.8.0 sealed run
 norm = lambda x: json.loads(json.dumps(x, default=str))
 
 
@@ -47,9 +50,13 @@ def freeze():
     f8 = json.load(open(FROZEN8)); a, b = norm(s), f8["settings"]
     other = sorted(k for k in set(a) | set(b) if k != "code" and a.get(k) != b.get(k))
     changed = sorted(k for k in set(a["code"]) | set(b["code"]) if a["code"].get(k) != b["code"].get(k))
-    if other or set(changed) != DATA_PATH_FILES:
-        sys.exit(f"0.8.1 must equal 0.8.0 except the code of {sorted(DATA_PATH_FILES)}: other settings differ {other}; code files that differ {changed}")
-    FROZEN81.write_text(json.dumps(dict(version="Vesper 0.8.1", based_on="Vesper 0.8.0", based_on_hash=f8["hash"], hash=h, code_files_changed_from_0_8_0=changed,
+    if other or set(changed) != DATA_PATH_FILES | DORMANT_STUDY_FILES:
+        sys.exit(f"0.8.1 must equal 0.8.0 except the code of {sorted(DATA_PATH_FILES | DORMANT_STUDY_FILES)}: other settings differ {other}; code files that differ {changed}")
+    for name in PROOFS:
+        t = (STAGE3 / name).read_text(encoding="utf-8") if (STAGE3 / name).exists() else ""
+        if not ("equal to the frozen group files: 300 of 300" in t and "stage3_report.load of the frozen run: 300 of 300" in t and "Errors: 0. Star-sectors that differ: 0." in t):
+            sys.exit(f"proof missing or not 300 of 300 with no difference: {name}")
+    FROZEN81.write_text(json.dumps(dict(version="Vesper 0.8.1", based_on="Vesper 0.8.0", based_on_hash=f8["hash"], hash=h, code_files_changed_from_0_8_0=changed, data_path_files=sorted(DATA_PATH_FILES), dormant_study_files=sorted(DORMANT_STUDY_FILES), proofs=list(PROOFS),
                                         every_other_setting_equal_to_0_8_0=True, settings=s, provenance=pv), indent=1), encoding="utf-8")
     print("FROZEN v8.1", h, "| differs from 0.8.0 only in:", changed)
 
