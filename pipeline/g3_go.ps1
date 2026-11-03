@@ -22,3 +22,6 @@ Remove-Item Env:SS_RUN -ErrorAction SilentlyContinue
 Say "4 scorecard start"
 & $py -W ignore benchmark_g3.py $run g3 "D:\second-sun\data\chain_recovery_g3\rows_g3.pkl" 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\g3_benchmark_log.txt" -Encoding utf8
 Say "4 scorecard exit $LASTEXITCODE; ALL STEPS DONE"
+Say "5 scorecard plus start"
+& $py -W ignore scorecard_plus_g3.py $run g3 611 g3 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\g3_scorecard_plus_log.txt" -Encoding utf8
+Say "5 scorecard plus exit $LASTEXITCODE; ALL STEPS DONE (steps 1 to 5)"
