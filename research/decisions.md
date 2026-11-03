@@ -138,3 +138,10 @@ All 89 questions of the T122 brief are to be answered inside the T122 research s
 Q1 to Q4 (G3 reference windows, version, bug 68 text size, Loom phases) are asked when the G3 stage is reached, not tied to Thursday.
 Model: Sonnet 5.5 Extra stays (cost); Ahmed still wants Claude's opinion on the model's limits stated in the verdicts.
 Still NOT started: Ahmed said do not resume (G3 download or research) without his word.
+
+## 2026-11-03 (about 03:45 Kuwait): Ahmed's answers Q1 to Q4 and new rules
+Q1 (G3 reference windows): yes, "do what you think is right": a fixed, hashed reference windows table from the union of G3, G2 and G1 SPOC 2-minute star-sectors (80% of G3 QLP groups searched, against 1% with a G3-only pool; research/stage3/g3-window-feasibility-2026-11-02.txt, rerun 3 Nov). Q2: G3 runs on the FROZEN 0.8.0 rules, no 0.9. Q3 (bug 68 text size): Claude decides. Q4: Loom phases 1 to 4 come AFTER G3.
+He agrees with all the RS-001 to RS-005 verdicts (Horizon go and cheaper, Vigil changed, Witness no-go for now, OMS deferred with the evidence index kept).
+New rule: anything related to Second Sun may be downloaded without asking, but Claude tells him every time. First use: the TESS Cycle 9 target lists (V-A4).
+Today's plan (cap 14%): Cycle 9 target lists; T107 host radii; G3 preparation on 0.8.0 with the union windows table (zero-difference proof first); bug 68; Horizon R0 text; G3 preregistration addendum; then STOP before the G3 search, which needs his explicit go. He asked to be pinged when the work is done (he is on his iPhone via Remote Control).
+His note: my usage predictions have been too high; the ledger now carries a cost per answered question (research-sessions.md).
