@@ -1,0 +1,35 @@
+Horizon reach and zero-found ceiling (R0 rule locked 3 Nov 2026, commit cc6604e). An UPPER BOUND on what the frozen search could have seen, not a measurement of how common planets are.
+Recovery table: planted dips on the G2 development split, 0.8.0 rules (c6), rows_v9base.pkl; share of planted dips that end as tier 1, by product family (K = depth / 8 h box noise).
+  QLP (injections per cell 107 to 107); rows duration 4, 8, 14, 20 h; columns K = 6, 8, 10, 12, 14, 18:
+     0.16  0.30  0.41  0.49  0.54  0.56
+     0.21  0.36  0.53  0.56  0.58  0.58
+     0.11  0.22  0.25  0.35  0.35  0.30
+     0.08  0.11  0.16  0.17  0.19  0.17
+  SPOC family (injections per cell 177 to 177); rows duration 4, 8, 14, 20 h; columns K = 6, 8, 10, 12, 14, 18:
+     0.10  0.25  0.45  0.58  0.65  0.68
+     0.11  0.26  0.45  0.59  0.62  0.62
+     0.07  0.20  0.40  0.51  0.51  0.49
+     0.05  0.10  0.20  0.32  0.34  0.34
+
+STAR SET g2dev: 301 stars, 301 with a usable star-sector, 3253 star-sectors; positive TIC radius for 277 stars, the rest use the set median 1.60 Rsun.
+Scenario floor3: stability floor F = 3.0, dilution (share of light from the crossed star) = 1.0.
+
+rows: planet radius bin centre (Earth radii); columns: period bin centre (days)
+sum of detection chance over stars  |  95% ceiling for zero found = 3.0 / sum, as a share of stars (blank: no star allowed)
+      R \ P |     13 |     24 |     43 |     77 |    139 |    250 |    448
+       3    |   0.00 |   3.76 |   8.17 |   9.80 |   8.27 |   5.61 |   3.43
+       5    |   0.00 |  14.30 |  31.39 |  33.96 |  25.36 |  17.80 |  11.74
+       7    |   0.00 |  24.20 |  55.63 |  59.94 |  44.88 |  30.35 |  19.06
+       9    |   0.00 |  39.96 |  79.64 |  82.67 |  60.81 |  40.26 |  24.75
+      11    |   0.00 |  52.51 |  97.92 |  98.59 |  71.96 |  47.31 |  28.82
+      13    |   0.00 |  62.18 | 111.51 | 110.17 |  79.65 |  52.01 |  31.50
+      15    |   0.00 |  68.44 | 120.36 | 117.95 |  84.92 |  55.41 |  33.44
+      ceiling |     13 |     24 |     43 |     77 |    139 |    250 |    448
+       3    |       - |  0.798 |  0.367 |  0.306 |  0.363 |  0.534 |  0.875
+       5    |       - |  0.210 |  0.096 |  0.088 |  0.118 |  0.169 |  0.256
+       7    |       - |  0.124 |  0.054 |  0.050 |  0.067 |  0.099 |  0.157
+       9    |       - |  0.075 |  0.038 |  0.036 |  0.049 |  0.075 |  0.121
+      11    |       - |  0.057 |  0.031 |  0.030 |  0.042 |  0.063 |  0.104
+      13    |       - |  0.048 |  0.027 |  0.027 |  0.038 |  0.058 |  0.095
+      15    |       - |  0.044 |  0.025 |  0.025 |  0.035 |  0.054 |  0.090
+      stars allowed |      0 |    109 |    219 |    280 |    292 |    298 |    301
