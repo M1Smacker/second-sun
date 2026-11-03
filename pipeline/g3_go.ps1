@@ -7,9 +7,17 @@ $env:SS_SET = "g3"; $env:VESPER_OPTS = "c6"
 $py = "D:\second-sun\.venv\Scripts\python.exe"; $log = "D:\second-sun\data"; Set-Location D:\second-sun\pipeline
 $fz = Get-Content D:\second-sun\research\stage3\SETTINGS_FROZEN_V81.json -Raw | ConvertFrom-Json; $run = "g3_" + $fz.hash.Substring(0, 12)
 function Say($m) { "$(Get-Date -Format HH:mm:ss) $m" | Add-Content "$log\g3_steps_log.txt" }
+# T128 (Ahmed's yes, 4 Nov 2026): record the exact library versions BEFORE the search starts; it is copied into the run folder once that exists. Touches none of the 11 fingerprinted files.
+$fr = "$log\g3_pip_freeze.txt"
+("python " + (& $py -c "import sys,platform;print(sys.version.split()[0], platform.platform())")) | Out-File $fr -Encoding utf8
+& $py -m pip freeze 2>$null | Add-Content $fr -Encoding utf8
+$frh = (Get-FileHash $fr -Algorithm SHA256).Hash.Substring(0, 16); Say "0 library versions saved to $fr (sha256 $frh, $((Get-Content $fr).Count) lines)"
+# the Search window feed: counts only, blind, waits for the run folder (watch_export.py --wait); stops by itself when all three passes are done
+Start-Process -FilePath $py -ArgumentList "-W", "ignore", "D:\second-sun\pipeline\watch_export.py", "D:\second-sun\data\stage3_g3\$run", "--blind", "--counts-only", "--wait", "--loop", "60", "--push", "--label", "G3 SEARCH: Vesper 0.8.1 on the 612 G3 stars (blind, counts only)" -WindowStyle Hidden -RedirectStandardOutput "$log\g3_watch_log.txt" -RedirectStandardError "$log\g3_watch_err.txt"
 Say "1 G3 search start ($run, $n workers)"
 & $py -W ignore g3_run.py run $n 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\g3_run_log.txt" -Encoding utf8
 Say "1 G3 search exit $LASTEXITCODE"
+if (Test-Path "$log\stage3_g3\$run") { Copy-Item $fr "$log\stage3_g3\$run\pip-freeze.txt" -Force; Say "0 library versions copied into the run folder" }
 if (-not (Select-String -Path "$log\g3_run_log.txt" -Pattern "G3 SEARCH DONE" -Quiet)) { Say "STOP: the search did not finish"; exit 1 }
 Say "2 asymmetry start"
 & $py -W ignore asymmetry_test.py 1500 v5 $run 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\g3_asym_log.txt" -Encoding utf8

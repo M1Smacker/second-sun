@@ -75,7 +75,7 @@ def machine():
     """Python workers of the Second Sun scripts and the whole-machine CPU load (Windows; None if it cannot be read)."""
     try:
         r = subprocess.run(["powershell", "-NoProfile", "-Command",
-                            "$p=@(Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -match 'stage3|stage2|sealed_run|spawn_main|paired_recovery|chain_recovery|audit_all' -and $_.CommandLine -notmatch 'watch_export' }).Count;"
+                            "$p=@(Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -match 'stage3|stage2|sealed_run|g3_run|spawn_main|paired_recovery|chain_recovery|audit_all' -and $_.CommandLine -notmatch 'watch_export' }).Count;"
                             "$c=(Get-CimInstance Win32_Processor | Measure-Object LoadPercentage -Average).Average; \"$p $c\""], capture_output=True, text=True, timeout=40)
         w, c = r.stdout.split()[:2]
         return dict(workers=int(w), cpu=int(float(c)))
@@ -90,7 +90,7 @@ def run_info(run):
         j = json.load(open(run / "settings.json")); s = j.get("settings", {}); info["hash"] = j.get("hash")
         info["git_commit"] = (j.get("provenance") or {}).get("git_commit", "")[:7]
         if s.get("options") == ["c6"]:
-            info["version"] = "Vesper 0.8.0 (frozen)"
+            info["version"] = "Vesper 0.8.1 (frozen)" if j.get("frozen_v81") else "Vesper 0.8.0 (frozen)"       # g3_run.py writes frozen_v81 into the run's settings.json
     info["settings"] = dict(snr_bar=s.get("snr_threshold"), boxes_h=s.get("durs_h"), bin_days=s.get("bin_d"), options=s.get("options"),
                             flags=dict(common_stars=s.get("v7", {}).get("common_n"), step_lift=s.get("step_lift"), ramp_days=s.get("ramp_d"), repeat_n=s.get("repeat_n")))
     return info
@@ -173,7 +173,31 @@ def gallery(run, A, blind, per_loop=3):
     return dict(kept=st["kept"], stopped=st["stopped"])
 
 
-def build(run, blind, label, loop=0):
+def ready(label):
+    """A campaign that is prepared but has not started: there is no run folder, so nothing is read from one. Shows the frozen version and the size of the list, never an event.
+    Needs SS_SET and VESPER_OPTS set as for the search (the same star-sector grouping as g3_run.py)."""
+    sys.path.insert(0, str(HERE))
+    import dataset as DS, stage3 as S3, stage2_search as S2
+    fz = json.load(open(ROOT / "research" / "stage3" / "SETTINGS_FROZEN_V81.json")); s = fz["settings"]
+    S2.STARS = DS.PREP / "g3_stars_LOCAL.csv"
+    cache = DS.PREP / "watch_plan_ready.json"                                   # S2.groups() takes about two minutes; the list and the files on disk do not change while the campaign waits
+    if cache.exists():
+        plan = json.load(open(cache))
+    else:
+        gl = S2.groups(); plan = dict(groups=len(gl), sap=len(S3.sap_pass_groups(gl)), stars=len({g[0] for g in gl}), list_stars=sum(1 for _ in open(S2.STARS, encoding="utf-8")) - 1)
+        json.dump(plan, open(cache, "w"))
+    n = notes()
+    return dict(label=label, blind=True, counts_only=True, phase="ready", updated=now_iso(), loop_s=0, machine=dict(workers=None, cpu=None), started=None,
+                run=dict(folder="g3_" + fz["hash"][:12], version="Vesper 0.8.1 (frozen)", hash=fz["hash"], git_commit="",
+                         settings=dict(snr_bar=s.get("snr_threshold"), boxes_h=s.get("durs_h"), bin_days=s.get("bin_d"), options=s.get("options"), flags={})),
+                progress=dict(search=[0, plan["groups"]], sap=[0, plan["sap"]], pdc=[0, plan["sap"]], stars=plan["stars"], list_stars=plan.get("list_stars"), per_min=0.0, eta_min=None),
+                files=dict(read_ok=0, skipped={}, products={}),
+                events=dict(found=0, stopped_by=[dict(flag=k, text=t, n=0) for k, t in FLAGS] + [dict(flag="clean", text="No flag fired", n=0)], tiers={}, boxes={}, bands={l: 0 for _, _, l in BANDS}),
+                selftest=dict(fakes=0, second_product_sees=0), history=[], notes=n[-1:], gallery=dict(kept=[], stopped=[]),
+                leads=dict(schema=1, blind=True, final=False, verdict="Not started. No search has run on this list.", stages=[], known=None, cards=[]), ticker=[])
+
+
+def build(run, blind, label, loop=0, counts_only=False):
     run = pathlib.Path(run)
     plan = totals(run)
     A = scan(run / "groups"); B = scan(run / "groups_sap")
@@ -199,10 +223,12 @@ def build(run, blind, label, loop=0):
              events=dict(found=nev, stopped_by=[dict(flag=k, text=t, n=first.get(k, 0)) for k, t in FLAGS] + [dict(flag="clean", text="No flag fired", n=first.get("clean", 0))],
                          tiers=dict(tiers), boxes={k: boxes[k] for k in sorted(boxes, key=float)}, bands={l: bands.get(l, 0) for _, _, l in BANDS}),
              selftest=dict(fakes=inj_n, second_product_sees=inj_s),
-             history=history(run, done, nev, round(rate, 1)), notes=notes()[-8:][::-1], gallery=gallery(run, A, blind),
-             leads=LE.build(run, A, B, ph == "finished", blind, card, GAL),
-             ticker=[dict(tic=r["tic"], sector=r["sector"], events=r["n"], files=r["files_ok"], at=datetime.datetime.fromtimestamp(r["mtime"], datetime.timezone.utc).strftime("%H:%M:%S"))
+             history=history(run, done, nev, round(rate, 1)), notes=notes()[-8:][::-1], gallery=dict(kept=[], stopped=[]) if counts_only else gallery(run, A, blind),
+             leads=LE.build(run, A, B, ph == "finished", blind or counts_only, card, GAL),
+             ticker=[] if counts_only else [dict(tic=r["tic"], sector=r["sector"], events=r["n"], files=r["files_ok"], at=datetime.datetime.fromtimestamp(r["mtime"], datetime.timezone.utc).strftime("%H:%M:%S"))
                      for r in rows[-12:][::-1]])
+    if counts_only:
+        d["counts_only"] = True                        # no pictures, no star list, no per-star-sector counts: aggregates only (G3, Ahmed 3 Nov 2026: no live picture page for G3)
     if not blind:
         d["events"]["by_kind"] = dict(kinds)
     return d
@@ -224,7 +250,9 @@ def push_data(out):
         else:
             g("checkout", "-q", "--orphan", "watch-data")
     shutil.copy(out, SCRATCH / "watch.json")
-    g("add", "watch.json"); g("commit", "-q", "-m", "watch: counts only", "-m", "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>")
+    d = json.load(open(out, encoding="utf-8"))
+    msg = "watch: counts only" if d.get("counts_only") else "watch: feed update (includes star ids, times and pictures)"       # earlier commits all said "counts only"; the older feeds did carry star pictures
+    g("add", "watch.json"); g("commit", "-q", "-m", msg, "-m", "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>")
     r = g("push", "-q", "origin", "HEAD:refs/heads/watch-data")
     if r.returncode:
         print("push failed:", r.stderr[:200], flush=True)
@@ -233,13 +261,25 @@ def push_data(out):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("run", nargs="?"); ap.add_argument("--blind", action="store_true"); ap.add_argument("--label", default="")
     ap.add_argument("--out", default=str(OUT)); ap.add_argument("--loop", type=int, default=0); ap.add_argument("--push", action="store_true"); ap.add_argument("--note")
+    ap.add_argument("--counts-only", action="store_true"); ap.add_argument("--wait", action="store_true"); ap.add_argument("--ready", action="store_true")
     a = ap.parse_args()
     if a.note:
         add_note(a.note)
-        if not a.run:
+        if not a.run and not a.ready:
             sys.exit(0)
+    if a.ready:                                        # a prepared campaign that has not started: one snapshot, no run folder
+        d = ready(a.label); write(d, a.out); print("ready", d["progress"]["search"], d["progress"]["stars"], flush=True)
+        if a.push:
+            push_data(a.out)
+        sys.exit(0)
+    if a.wait:                                         # started together with the search: wait for the run folder's plan file (written by g3_run.py after its checks)
+        t0 = time.time()
+        while not (pathlib.Path(a.run) / "watch_plan.json").exists():
+            if time.time() - t0 > 7200:
+                sys.exit("watch_export: the run folder never appeared")
+            time.sleep(15)
     while True:
-        d = build(a.run, a.blind, a.label, a.loop); write(d, a.out)
+        d = build(a.run, a.blind, a.label, a.loop, a.counts_only); write(d, a.out)
         print(d["phase"], d["progress"]["search"], d["progress"]["sap"], d["progress"]["pdc"], d["machine"], flush=True)
         if a.push:
             push_data(a.out)

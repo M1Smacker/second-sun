@@ -11,6 +11,7 @@
 .sw-l-warn .sw-dot { background: #eebf6a; }
 .sw-l-stale .sw-dot { background: #e5584f; }
 .sw-l-done .sw-dot { background: var(--ss-accent); }
+.sw-l-ready .sw-dot { background: transparent; border: 3px solid var(--ss-accent); box-sizing: border-box; }
 @keyframes sw-pulse { 0% { box-shadow: 0 0 0 0 rgba(62, 207, 110, .6); } 70% { box-shadow: 0 0 0 12px rgba(62, 207, 110, 0); } 100% { box-shadow: 0 0 0 0 rgba(62, 207, 110, 0); } }
 .sw-upd, .sw-small { color: var(--ss-text-2); font-size: 14px; }
 .sw-now { font-size: 17px; margin: .4em 0; }
@@ -57,12 +58,13 @@
 
 ## Notes
 
-- The light at the top is green and pulsing when numbers are arriving and search processes are running. Amber: the exporter is up but no search process is found. Red: no new numbers for a few minutes.
+- The light at the top is green and pulsing when numbers are arriving and search processes are running. Amber: the exporter is up but no search process is found. Red: no new numbers for a few minutes. A ring with no fill: a campaign is prepared and has not started; nothing is running and nothing moves until Ahmed gives the word.
+- Two campaigns so far. **G3** (Vesper 0.8.1, 612 stars) is the current one: blind, counts only, no pictures and no star list. **G2 sealed** (Vesper 0.8.0, 594 stars, scored 30 Oct 2026, result NO EXCESS) is kept as it was published: [open the finished G2 sealed run](?src=../assets/data/watch-g2-sealed.json). That copy includes its pictures and the star details Ahmed allowed on 30 Oct.
 - "What the search found" sits right under the light. It starts with one plain verdict, then a funnel from all dips to leads, real beside upside-down. A lead is a star with a confirmed real dip and no known planet, one card per star, with the checks done, the checks waiting, and the next one. The rules were written before any sealed result was read (LEADS-RULES.md in the project).
 - Every star goes through the same path. The step that is working glows.
-- The nine safety checks are asked in order, and a dip stopped by the first one never reaches the next. Most dips are stopped by the spacecraft-settling check, because that is where TESS data is worst.
+- Every dip is tested against all the safety checks. The page lists eight of them and files each dip under the first listed one that fired, so the rows add up and are not independent counts. Most dips are filed under the spacecraft-settling check, because that is where TESS data is worst. Two further checks (burst, and orbit-locked in the final report) are not listed yet.
 - Tier 1 is the group we keep: dips with no known innocent cause. It is a list to study, not a list of planets.
 - The self-test pastes fake planets into every star-sector and checks that the machine still sees them.
 
 !!! plain "In plain words"
-    This page shows the search while it runs: how many stars are done, what each safety check stopped, pictures of real dips as they are found, and a self-test with fake planets. The pictures are real TESS light, there so you can learn what a stopped dip and a kept dip look like. I do not look at each star by eye; every star goes through exactly the same checks, and this page lets you watch them work.
+    This page shows the search while it runs: how many stars are done, what each safety check stopped, pictures of real dips as they are found (not in the blind G3 run), and a self-test with fake planets. The pictures are real TESS light, there so you can learn what a stopped dip and a kept dip look like. I do not look at each star by eye; every star goes through exactly the same checks, and this page lets you watch them work.

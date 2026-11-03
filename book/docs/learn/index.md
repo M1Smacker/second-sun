@@ -122,6 +122,9 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 ??? quiz "L5 check 7. Most false alarms were found by the 3 hour box. We removed it, and they were found by the 4 hour box. What does that teach?"
     Where something is found is not what causes it. The cause was short glitches; the shortest box simply caught them first.
 
+??? quiz "L5 check 8. The Search window shows 12,261 event records in its safety-check rows and 2,764 detections in its funnel for the same run. Why two numbers, and can you add the rows up as separate rejections?"
+    They are different samples. The 12,261 count every dip record in every light-curve product and pass; the 2,764 are the scorecard's detections (the best product of each star-sector, cleaned light only). A dip is tested against all the checks, and the page files it under the first listed flag that fired, so the rows add up to the total but are not independent rejection counts.
+
 **Next:** [Level 6](#l6), which starts with the rest of Chapter 10.
 
 ## L6 · Two-key vetting { #l6 }
