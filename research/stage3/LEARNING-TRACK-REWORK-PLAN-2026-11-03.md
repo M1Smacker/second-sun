@@ -51,3 +51,10 @@ Total about 6 to 7 points, spread over several days, inside each day's cap. Noth
 
 ## Not done / not verified
 No page was opened on a phone-sized screen for this plan; items 4 and 5 are judged from code. The question log does not exist yet, so "is the track enough to teach" has no answer yet.
+
+## Ahmed's answers (3 Nov 2026, evening, after the plan)
+1. He opens the book from the **home-screen icon** (installed app). So the missing Back button is very likely the standalone display mode (manifest `"display": "standalone"` has no browser Back). Label: LIKELY (his answer plus the manifest; not tested on his phone).
+2. He **can** dictate his questions from the chapters he read; the list has not arrived yet (NOT RECEIVED).
+3. Evidence labels: **hidden by default; the switch and the evidence list "almost non-existent, tiny, at the end of the page".** Smaller than the plan's collapsed list: no switch in the reading area, one tiny entry at the very end of the page.
+4. Voice: **yes to three samples** of the same paragraph. Held for now ("don't build anything"); done on his word after the design is approved.
+5. He then said no more research on the learning track is needed (RS-008 as written is withdrawn; its content audit is folded into the Learning Space proposal) and attached the ChatGPT prompt "Build a dedicated Learning Space" (design and audit proposal first, no edits). Files: `research/compass-reviews/2026-11-03-learning-space-prompt.md` (Compass), `research/stage3/LEARNING-SPACE-PROPOSAL-2026-11-03.md` (answer A to J), `research/stage3/LEARNING-SPACE-CORRECTIONS-2026-11-03.md` (separate corrections list).

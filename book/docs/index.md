@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (28 Oct 2026):** the first real search of all 549 stars has run, and nothing in it looks like a planet yet. Read [The first real search](start/first-search.md) for what we found, how the pipeline changed and what comes next. Begin with [Start here](start/index.md).
+    **Two-minute recap (3 Nov 2026):** the sealed search found a clean null; the 612-star G3 search is frozen and waits for your word. Next up: the Learning Space and your second-key exam, both designed, not built. Day notes: [3 Nov field note](field-notes/2026-11-03.md). Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

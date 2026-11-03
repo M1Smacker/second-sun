@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.1 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.9.3 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.9.4 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.6 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -68,6 +68,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.9.1 | 3 Nov | The home-page status panel shows Vesper 0.8.1 and that the G3 search waits for your word |
 | 2.9.2 | 3 Nov | Uncertainty audit: ten facts-page claims confirmed against the sources (85 verified, 12 likely, 1 unverified), the momentum-dump interval corrected from "every 2 to 6 days" to 2 to 8 days in most sectors, and a pointer on the eclipse-length line of the 3 Nov field note |
 | 2.9.3 | 3 Nov | A section in the 3 Nov field note on what a public amateur planet-candidate package teaches us (six practices, none built yet); a sixth check after level 6 in the learning track (track 1.6) |
+| 2.9.4 | 3 Nov | The home-page two-minute recap brought up to date (it was from 28 Oct) and a short section in the 3 Nov field note on what the learning-track problems taught us; the recap is now refreshed at the end of each day |
 
 ## Learning track
 
