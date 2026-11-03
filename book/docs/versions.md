@@ -6,8 +6,8 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.1 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.8.4 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
-| Learning track | 1.4 | 1.3 | a "level done" mark means what the level contained that day |
+| The book | 2.9.0 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| Learning track | 1.5 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
 Version numbers follow one rule: the first number changes when the old and new results or pages are no longer directly comparable, the second when something is added, the third for fixes that change no result.
@@ -64,6 +64,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 2.8.2 | 2 Nov | The "Updated. Reload" line can be dismissed and no longer covers the last text |
 | 2.8.3 | 2 Nov | The six cells of the home-page status panel now show where the project stands (sealed search done, G3 listed, Vesper 0.8.0, your eye test) |
 | 2.8.4 | 3 Nov | Fix: no readable text is smaller than 14 px on the phone (labels, table headings, chips, captions, footer and search results were 12 to 13 px); Vesper 0.8.1 added to the table |
+| 2.9.0 | 3 Nov | A field note for 3 Nov; a sentence on the refused freeze in chapter 8; a fifth check after level 6 in the learning track (track 1.5) |
 
 ## Learning track
 
@@ -74,6 +75,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 1.2 | 28 Oct | Checks added for the first real search |
 | 1.3 | 30 Oct | Two checks in level 5 and three in level 6 |
 | 1.4 | 2 Nov | One check after level 6: a baseline must be made under the same conditions as what it is compared with |
+| 1.5 | 3 Nov | One more check after level 6: what to do when a freeze refuses |
 
 From now on, when a level is marked done, the track version is written next to the date.
 

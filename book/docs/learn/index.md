@@ -175,6 +175,9 @@ These three chapters are not part of the readiness bar. They are how a careful p
 ??? quiz "After L6, check 4. You want to judge a new setting of the search. You have an older run to compare it with. What do you check before you read any score?"
     That the older run was made under the same conditions: the same data, the same files and the same settings apart from the one you are testing. Compare the two outputs event by event first. On 2 November 2026 one kind of star-sector (those that borrow good stretches of data from neighbouring stars) gave different events in 13% of cases, because the list of neighbours had grown since the old run. The honest fix was to rerun the baseline under today's conditions.
 
+??? quiz "After L6, check 5. We try to freeze a new version of the search and the freeze refuses, saying more code files changed than we expected. What do you do?"
+    Do not edit the fingerprint and do not assume the extra changes are harmless. List exactly which files differ, then re-run old results through the new code and compare every event and tier. If a few differ, find out whether the code or the test is wrong before you change either. On 3 November 2026 five files differed; the old results were reproduced 300 of 300 in three tests once a test that looked at one sector at a time was widened (it could not see a partner event in another sector).
+
 That is the end of the track. The Hunt tab shows where the project stands now.
 
 ## Sources

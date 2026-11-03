@@ -174,7 +174,7 @@ After the real search we sort every dip and never delete one. A **flag** is a re
 
 **Tiers** sort what is left. Tier 1A: the same dip shows in a second data product. 1L: weakly. 1B: no second product exists, so it cannot be checked. Tier 2: flagged, kept but doubted. Tier 3: a second product disagrees. Candidates could only come from tier 1.
 
-**Frozen settings.** Before we read any result we write every setting and a fingerprint (a hash) of every code and data file into a file, and the run refuses to start if anything has changed. Each version gets a new fingerprint, so we always know which rules made which numbers and cannot quietly tune the rules to the answer. Scientists call it pre-registering.
+**Frozen settings.** Before we read any result we write every setting and a fingerprint (a hash) of every code and data file into a file, and the run refuses to start if anything has changed. Each version gets a new fingerprint, so we always know which rules made which numbers and cannot quietly tune the rules to the answer. Scientists call it pre-registering. When we froze the version for a third star list on 3 November 2026 the freeze refused: two more code files than we expected had changed. We proved the change was inert by re-running old results through the new code (300 of 300 star-sectors equal in each of three tests) before we froze (CONFIRMED, see the [field note](../field-notes/2026-11-03.md)).
 
 ## 8.6 What this lets us conclude, and what it doesn't
 

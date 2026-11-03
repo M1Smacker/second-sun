@@ -20,3 +20,4 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [30 October 2026](2026-10-30.md) | Why the filter will not improve for free: a rule written first, stacking skipped, and a box floor that only moved the false alarms |
 | [31 October 2026](2026-10-31.md) | The search did see the known planet: our test used an old calendar. Flares, the price of each safety check, and counting in stars instead of events |
 | [2 November 2026](2026-11-02.md) | Compare like with like: a consistency check stopped a comparison against an older run made under different conditions; the rehearsal for real candidates went live |
+| [3 November 2026](2026-11-03.md) | When a frozen version refuses to freeze, believe it: five files had moved the fingerprint, a test (not the code) caused two mismatches, and text on the phone got a 14 px floor |
