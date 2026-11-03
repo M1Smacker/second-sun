@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (4 Nov 2026):** the sealed search found a clean null. The 612-star G3 search is frozen, its [Search window](watch.md) page is ready, and it waits for your word. Designed, not built: the Learning Space, the Keystone exam and Search window 2.0. Begin with [Start here](start/index.md).
+    **Two-minute recap (4 Nov 2026):** the G3 search ran once, in 8 minutes, and found nothing: no excess of real dips over noise. The false-alarm line missed its mark again, and small planets stay out of reach. Next: your words on the rename and the Learning Space. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

@@ -1,0 +1,6 @@
+G3 g3 run g3_e7886a71a61f: tier-1 events split by the labels clause (counts only; best product per star-sector; PDCSAP half and SAP half together as in the aggregate report).
+group | stars | star-sectors | tier-1 real | tier-1 upside-down | by SNR bar 7 / 8 / 10 / 12: real - upside-down
+(a) TOI hosts                        |    0 |     0 |    0 |    0 | 0-0 / 0-0 / 0-0 / 0-0
+(b) NASA-listed circumbinary hosts   |    0 |     0 |    0 |    0 | 0-0 / 0-0 / 0-0 / 0-0
+(c) none of the two                  |  595 |  3425 |   21 |   32 | 21-32 / 9-22 / 3-13 / 3-8
+all                                  |  595 |  3425 |   21 |   32 | 21-32 / 9-22 / 3-13 / 3-8

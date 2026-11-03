@@ -30,7 +30,7 @@ def verdict(finished, blind, n, real_conf, flip_conf):
     if not finished:
         return "Not finished. No verdict yet."
     if blind:
-        return "Finished. Counts only until the scoring is filed."
+        return "Finished. Counts only on this page; the scoring is filed (see the notes and the 4 Nov field note)."
     if n == 0:
         return "Finished: no leads. Nothing survived every check, so this run adds to the null."
     s = "1 lead" if n == 1 else f"{n} leads"

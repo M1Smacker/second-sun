@@ -125,6 +125,9 @@ The chapter numbers are permanent labels, so the path visits them out of numeric
 ??? quiz "L5 check 8. The Search window shows 12,261 event records in its safety-check rows and 2,764 detections in its funnel for the same run. Why two numbers, and can you add the rows up as separate rejections?"
     They are different samples. The 12,261 count every dip record in every light-curve product and pass; the 2,764 are the scorecard's detections (the best product of each star-sector, cleaned light only). A dip is tested against all the checks, and the page files it under the first listed flag that fired, so the rows add up to the total but are not independent rejection counts.
 
+??? quiz "L5 check 9. The G3 search found 18 real dips where noise predicts 23.5. Is that evidence that real dips are rarer than noise, and is a null result the same as no planets?"
+    No to both. The gap is smaller than the scatter (the 95% range runs from 19 below to 11 above), so it is consistent with zero: no excess, not a deficit. And a null only covers what the search could see: here a Jupiter-size dip was kept about 60% of the time and a dip like TOI-1338 b about 6%, so small planets around these faint stars were never really tested. The completeness table is part of the result.
+
 **Next:** [Level 6](#l6), which starts with the rest of Chapter 10.
 
 ## L6 · Two-key vetting { #l6 }

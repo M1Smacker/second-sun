@@ -1,0 +1,37 @@
+VESPER SCORECARD PLUS on g3_e7886a71a61f (g3), set g3, options ['c6']. In the lines below the column called 'sealed' is THIS run; 'dev' is the G2 development slice. Line E does not apply.
+A. STAR LEVEL (post hoc for the first sealed run): the unit is the star, not the event; events cluster on stars (deff = variance inflation from clustering)  [g3]
+   bar | tier-1 real (stars) | tier-1 upside-down (stars) | ratio, full run [95% star bootstrap] | expected real | real - expected [95%] | upper limit (95%, one-sided) | deff | detectable excess (80% power)
+     7 | 18 (11) | 31 (29) | 1.35 [1.17 to 1.55] | 23.0 | -5.0 [-19.5 to +11.4] | +8.5 | 1.8 | 19.6
+     8 | 9 (7) | 21 (20) | 1.35 [1.14 to 1.61] | 15.5 | -6.5 [-16.4 to +4.1] | +2.3 | 1.3 | 13.0
+    10 | 3 (3) | 13 (12) | 1.48 [1.18 to 1.89] | 8.8 | -5.8 [-12.3 to +0.4] | -0.6 | 1.2 | 8.0
+    12 | 3 (3) | 8 (7) | 1.51 [1.12 to 2.10] | 5.3 | -2.3 [-8.0 to +3.2] | +2.3 | 1.2 | 7.0
+   bar 7 raw events: real on 249 stars, upside-down on 293 stars (star-level ratio 1.18, event-level 1.35)
+   ratio after dropping the heaviest stars: 1: 1.35 (they hold 2% of raw events); 5: 1.40 (they hold 7% of raw events); 10: 1.42 (they hold 13% of raw events); 25: 1.37 (they hold 26% of raw events)
+   read: the limit says what the data allow; the detectable excess says what this run could have shown. A result is never stated from the event count alone.
+B. PRICE OF EVERY SAFETY CHECK (post hoc for the first sealed run): drop one check alone; planted dips regained (tier-1 points, sealed / development) against events let into tier 1 on the sealed run
+   check | planted points regained (sealed / dev) | real events added | upside-down events added | upside-down added per planted point | share of all raw events carrying it (real, upside-down)
+   gap_dump    | +2.3 / +4.9 | +0 | +11 | 3.1 | 62%, 72%
+   flipmatch   | +0.0 / +0.0 | +0 | +0 | no gain | 1%, 0%
+   c5          | +0.5 / +0.7 | +1 | +2 | 3.1 | 12%, 7%
+   ecl_overlap | +0.3 / +1.1 | +1 | +0 | 0.0 | 9%, 5%
+   repeater    | +0.5 / +2.8 | +5 | +3 | 1.8 | 34%, 32%
+   step        | +8.5 / +10.1 | +33 | +41 | 4.4 | 90%, 89%
+   ramp        | +1.9 / +2.4 | +1 | +2 | 0.9 | 45%, 42%
+   dominated   | +2.5 / +1.6 | +4 | +9 | 4.4 | 31%, 21%
+   common      | +0.0 / +0.0 | +0 | +0 | no gain | -
+   read: a check is cheap to keep when it lets few upside-down events in per planted point it would give back. The step check is the biggest single cost and the largest source of kept false alarms if dropped.
+C. EFFICIENCY (post hoc for the first sealed run): noise per 8 h box median 572 ppm; tier-1 completeness (8 h box) by K: K6 9%, K8 24%, K10 44%, K12 57%, K14 60%, K18 60%
+   one planet-bearing star with 5.8 sectors of data on average; expected tier-1 detections at P = 60 / 95 / 150 / 300 d, and the limit on (planets per binary x geometry factor g) at P = 95 and 300 d for the two excess limits (8.3 = preregistered-ratio upper end, 1.0 = full-run ratio)
+     1000 ppm (about 4 Earth radii, 1 solar radius): K 1.7, completeness 3% | 0.07 / 0.04 / 0.03 / 0.01 | P95: 31.7% | 3.82%   P300: 100.1% | 12.06%
+     2300 ppm (TOI-1338 b as seen (median depth of its events)): K 4.0, completeness 6% | 0.16 / 0.10 / 0.06 / 0.03 | P95: 13.8% | 1.66%   P300: 43.5% | 5.24%
+     4000 ppm (6.85 Earth radii, undiluted): K 7.0, completeness 17% | 0.42 / 0.26 / 0.17 / 0.08 | P95: 5.2% | 0.62%   P300: 16.3% | 1.96%
+    10000 ppm (Jupiter, 1 solar radius): K 17.5, completeness 60% | 1.50 / 0.95 / 0.60 / 0.30 | P95: 1.4% | 0.17%   P300: 4.5% | 0.55%
+   caveat: depth = (Rp/R*)^2 with R* = 1 solar radius, no dilution, window = 26 d per sector; the real host radii are not used yet (task T107). Limits above 100% mean no constraint. Stars searched: 611.
+D. WORDING RULES (post hoc for the first sealed run)
+   S2 reading: 9.05 per 1,000 (95% interval 6.15 to 12.85) against a mark of 8: BORDERLINE: the 95% interval includes the mark, so neither a pass nor a fail is claimed
+   pooled rate over all 895 stars: NOT COMPUTED until the development slice has been re-run with this version (census run, task T43)
+   S4 with 'found at all' beside 'kept' (planted dips, K 8 to 14, sealed | development; 95% Wilson intervals); the gap between the two is what the safety checks cost
+   4 h box: found 56.5% (53.4 to 59.5), kept 33.8% (30.9 to 36.7), n 1004 | development found 76.8%, kept 46.5% | kept, sealed against development: worse in this slice
+   8 h box: found 72.3% (69.5 to 75.0), kept 43.7% (40.7 to 46.8), n 1004 | development found 85.8%, kept 48.5% | kept, sealed against development: no clear difference
+   14 h box: found 72.4% (69.6 to 75.1), kept 40.0% (37.1 to 43.1), n 1004 | development found 85.0%, kept 36.1% | kept, sealed against development: no clear difference
+   20 h box: found 67.8% (64.9 to 70.6), kept 24.6% (22.0 to 27.4), n 1004 | development found 77.7%, kept 21.3% | kept, sealed against development: no clear difference
