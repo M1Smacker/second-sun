@@ -1,5 +1,5 @@
-G3 files on disk now: 1011 star-sector groups from 208 stars; with a QLP file 1003; with their own SPOC 2-minute file 28; QLP groups WITHOUT own windows (they must borrow): 975
-neighbour pools: G3 SPOC 2-minute star-sectors 28 in 28 cells; G2 pickle 8043 star-sectors in 1459 cells; G1 pickle 1304 in 44 cells
-  pool A: G3 files only: 0 (NONE, not searched) 963 (99%); 1 (weak) 12 (1%)
-  pool B: G3 + G2 + G1 union: 0 (NONE, not searched) 93 (10%); 1 (weak) 150 (15%); 2 or more (searched) 732 (75%)
-  pool B2: G2 + G1 only (no G3 SPOC): 0 (NONE, not searched) 93 (10%); 1 (weak) 150 (15%); 2 or more (searched) 732 (75%)
+G3 files on disk now: 4080 star-sector groups from 611 stars; with a QLP file 4075; with their own SPOC 2-minute file 126; QLP groups WITHOUT own windows (they must borrow): 3949
+neighbour pools: G3 SPOC 2-minute star-sectors 126 in 109 cells; G2 pickle 8043 star-sectors in 1459 cells; G1 pickle 1304 in 44 cells
+  pool A: G3 files only: 0 (NONE, not searched) 3673 (93%); 1 (weak) 243 (6%); 2 or more (searched) 33 (1%)
+  pool B: G3 + G2 + G1 union: 0 (NONE, not searched) 283 (7%); 1 (weak) 501 (13%); 2 or more (searched) 3165 (80%)
+  pool B2: G2 + G1 only (no G3 SPOC): 0 (NONE, not searched) 298 (8%); 1 (weak) 488 (12%); 2 or more (searched) 3163 (80%)
