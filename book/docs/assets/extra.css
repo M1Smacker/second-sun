@@ -64,7 +64,7 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 .md-typeset h2 { font-size: 23px; margin: 44px 0 14px; }
 .md-typeset h3 { font-size: 19px; line-height: 1.3; margin: 30px 0 10px; }
 .md-typeset h4 { font-size: 17px; line-height: 1.3; margin: 22px 0 8px; }
-.md-typeset small, .md-typeset figcaption, .ss-meta, .ss-caption { font-size: 13px; color: var(--ss-text-2); }
+.md-typeset small, .md-typeset figcaption, .ss-meta, .ss-caption { font-size: 14px; color: var(--ss-text-2); }
 @media (min-width: 60em) {
   .md-typeset { font-size: 18px; line-height: 1.65; }
   .md-typeset h1 { font-size: 38px; }
@@ -102,7 +102,7 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 /* ---------- Confidence chips: meaning by SHAPE, label always spelled out, no traffic-light colours ---------- */
 .md-typeset a.ss-chip {
   display: inline-flex; align-items: center; gap: 4px; position: relative;
-  font: 600 13px/1 var(--ss-label); letter-spacing: .03em;
+  font: 600 14px/1 var(--ss-label); letter-spacing: .03em;
   padding: 3px 6px; border: 1.5px solid currentColor; border-radius: 4px;
   color: var(--ss-text-2); text-decoration: none; vertical-align: .1em; white-space: nowrap;
 }
@@ -132,7 +132,7 @@ code, kbd, pre, .ss-mono { font-family: var(--md-code-font-family); font-variant
 .md-typeset dl.ss-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: 8px 0; }
 .md-typeset dl.ss-facts dt { color: var(--ss-text-2); font-weight: 400; margin: 0; }
 .md-typeset dl.ss-facts dd { margin: 0; font-variant-numeric: tabular-nums; }
-.ss-status { font-size: 13px; border: 1px solid var(--ss-text-3); border-radius: 4px; padding: 1px 6px; }
+.ss-status { font-size: 14px; border: 1px solid var(--ss-text-3); border-radius: 4px; padding: 1px 6px; }
 
 /* ---------- Tables: scroll inside their own box, never the page ---------- */
 .md-typeset__scrollwrap { max-width: 100%; }
@@ -215,3 +215,6 @@ body.ss-has-update { padding-bottom: 76px; }          /* room for the line below
 .md-search__options > .md-icon { width: var(--ss-tap); height: var(--ss-tap); display: inline-flex; align-items: center; justify-content: center; }
 .md-search__options > .md-icon svg { width: 20px; height: 20px; }
 .md-typeset .headerlink { transition: color var(--ss-dur-fast) var(--ss-ease), opacity var(--ss-dur-fast) var(--ss-ease); }
+
+/* ---------- Text floor (bug 68; Ahmed 3 Nov 2026: "u handle it", phone-first): nothing a reader has to read is under 14 px, also the Material parts ---------- */
+.md-copyright, .md-copyright__highlight, .md-search-result__meta, .md-footer__direction, .md-source__facts { font-size: 14px; }

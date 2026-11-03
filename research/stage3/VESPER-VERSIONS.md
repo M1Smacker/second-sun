@@ -12,7 +12,8 @@ Numbering (chosen by Claude, 29 Oct 2026): **0.N.0** = the frozen Stage 3 versio
 | 0.6.0 | v6 | f366d3682843 | 28 Oct | SAP twin searched too, union of PDCSAP and SAP |
 | 0.7.0 | v7 | fd788be04650 | 28 Oct | Pooled common-moment flag replaces burst; SAP-only dips must show in PDCSAP |
 | **0.7.1** | v7 + dataset switch | fd788be04650 rules; G2 dev run 73f62615e365 | 29 Oct | `dataset.py` (G1 or G2 by `SS_SET`); identical on all 5,082 G1 star-sectors. **Baseline of the Vesper study.** |
-| 0.8.0 | v8 | (to come) | | Chosen by the study's yardstick (`VESPER-STUDY-PLAN.md` section 3) |
+| 0.8.0 | v8 | 5f73692944aa | 30 Oct | 0.7.1 plus c6 (orbit-locked check), chosen by the study's yardstick (`VESPER-STUDY-PLAN.md` section 3). Frozen (`SETTINGS_FROZEN_V8.json`) and used for the one-time search of the 594 sealed G2 stars (31 Oct): no excess of real dips over noise |
+| **0.8.1** | v8 + G3 data paths | e7886a71a61f | 3 Nov | The 0.8.0 rules, run by code that can read the third star list (G3, 612 stars): `SS_SET=g3` paths, period table, ephemeris and eclipse widths from the TESS Ten Thousand Catalog, a fixed hashed reference windows table (union of G3, G2 and G1 SPOC files); also carries the dormant 0.9 study switches dg, nd, fl (off under `VESPER_OPTS=c6`). Zero difference on G1 (options off and c6) and on the stored sealed G2 run, 300 of 300 star-sectors each. Frozen in `SETTINGS_FROZEN_V81.json`; amendment 1 of `G3-PREREGISTRATION.md`. Not yet used for a search |
 
 ## How Vesper 0.7.1 works (the baseline, in plain steps)
 1. **Read** every light curve of a star-sector: SPOC 2 min, TESS-SPOC (FFI), QLP (FFI; raw `sap_flux` before sector 56). QLP is cut to good-time windows from the star's own SPOC file or from 2 or more neighbours; otherwise not used.
