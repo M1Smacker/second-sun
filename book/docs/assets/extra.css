@@ -217,4 +217,5 @@ body.ss-has-update { padding-bottom: 76px; }          /* room for the line below
 .md-typeset .headerlink { transition: color var(--ss-dur-fast) var(--ss-ease), opacity var(--ss-dur-fast) var(--ss-ease); }
 
 /* ---------- Text floor (bug 68; Ahmed 3 Nov 2026: "u handle it", phone-first): nothing a reader has to read is under 14 px, also the Material parts ---------- */
-.md-copyright, .md-copyright__highlight, .md-search-result__meta, .md-footer__direction, .md-source__facts { font-size: 14px; }
+.md-copyright, .md-copyright__highlight, .md-search-result__meta, .md-footer__direction, .md-source__facts, .md-skip { font-size: 14px; }
+.md-typeset sub, .md-typeset sup { font-size: max(.83em, 14px); }              /* a subscript letter in a 15 px table cell was 12.5 px */
