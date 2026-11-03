@@ -2,8 +2,8 @@
  "label": "G3 SEARCH: Vesper 0.8.1 on the 612 G3 stars (blind, counts only)",
  "blind": true,
  "phase": "finished",
- "updated": "2026-11-03T22:21:28+00:00",
- "loop_s": 60,
+ "updated": "2026-11-03T22:27:54+00:00",
+ "loop_s": 0,
  "run": {
   "folder": "g3_e7886a71a61f",
   "version": "Vesper 0.8.1 (frozen)",
@@ -35,8 +35,8 @@
   }
  },
  "machine": {
-  "workers": 10,
-  "cpu": 59
+  "workers": 0,
+  "cpu": 2
  },
  "started": "2026-11-03T22:17:11+00:00",
  "progress": {
@@ -53,7 +53,7 @@
    513
   ],
   "stars": 611,
-  "per_min": 408.0,
+  "per_min": 279.8,
   "eta_min": null
  },
  "files": {
@@ -178,9 +178,19 @@
    "done": 4080,
    "events": 1974,
    "per_min": 408.0
+  },
+  {
+   "t": 1793744876,
+   "done": 4080,
+   "events": 1974,
+   "per_min": 279.8
   }
  ],
  "notes": [
+  {
+   "at": "2026-11-03T22:27:52+00:00",
+   "text": "G3 finished at 01:24 on 4 Nov and is scored: no excess of real dips over noise (cleaned-light half, bar 7: 18 real, 31 upside-down, 23.5 expected from noise). The false-alarm line still misses its mark (9.34 per 1,000 against 8), as in G2. Counts only; the scorecard is in the 4 Nov field note."
+  },
   {
    "at": "2026-11-03T21:45:16+00:00",
    "text": "G3 is prepared and checked: 612 stars, Vesper 0.8.1 frozen, nothing has run. The search starts only on Ahmed's word."
@@ -202,7 +212,7 @@
   "schema": 1,
   "blind": true,
   "final": true,
-  "verdict": "Finished. Counts only until the scoring is filed.",
+  "verdict": "Finished. Counts only on this page; the scoring is filed (see the notes and the 4 Nov field note).",
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
