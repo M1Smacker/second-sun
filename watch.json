@@ -2,7 +2,7 @@
  "label": "G3 SEARCH: Vesper 0.8.1 on the 612 G3 stars (blind, counts only)",
  "blind": true,
  "phase": "search",
- "updated": "2026-11-03T22:17:05+00:00",
+ "updated": "2026-11-03T22:18:11+00:00",
  "loop_s": 60,
  "run": {
   "folder": "g3_e7886a71a61f",
@@ -36,12 +36,12 @@
  },
  "machine": {
   "workers": 10,
-  "cpu": 13
+  "cpu": 77
  },
- "started": null,
+ "started": "2026-11-03T22:17:11+00:00",
  "progress": {
   "search": [
-   0,
+   1648,
    4080
   ],
   "sap": [
@@ -53,21 +53,28 @@
    513
   ],
   "stars": 611,
-  "per_min": 0.0,
-  "eta_min": null
+  "per_min": 164.8,
+  "eta_min": 15
  },
  "files": {
-  "read_ok": 0,
-  "skipped": {},
-  "products": {}
+  "read_ok": 1653,
+  "skipped": {
+   "no safe windows": 371,
+   "too little data": 3
+  },
+  "products": {
+   "QLP": 1271,
+   "TESS-SPOC": 336,
+   "SPOC": 46
+  }
  },
  "events": {
-  "found": 0,
+  "found": 660,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 0
+    "n": 459
    },
    {
     "flag": "flipmatch",
@@ -77,51 +84,66 @@
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 0
+    "n": 22
    },
    {
     "flag": "ecl_overlap",
     "text": "Overlaps a predicted eclipse",
-    "n": 0
+    "n": 2
    },
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 0
+    "n": 59
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 0
+    "n": 77
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 0
+    "n": 4
    },
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 0
+    "n": 6
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 0
+    "n": 31
    }
   ],
-  "tiers": {},
-  "boxes": {},
+  "tiers": {
+   "2": 629,
+   "1B": 24,
+   "1A": 3,
+   "3": 4
+  },
+  "boxes": {
+   "3": 176,
+   "4": 72,
+   "5": 68,
+   "6.5": 64,
+   "8": 42,
+   "10": 60,
+   "12": 41,
+   "15": 55,
+   "20": 82
+  },
   "bands": {
-   "7 to 8": 0,
-   "8 to 10": 0,
-   "10 to 12": 0,
-   "12 and up": 0
+   "7 to 8": 161,
+   "8 to 10": 181,
+   "10 to 12": 99,
+   "12 and up": 219
   }
  },
  "selftest": {
-  "fakes": 0,
-  "second_product_sees": 0
+  "fakes": 730,
+  "second_product_sees": 704
  },
  "history": [
   {
@@ -129,6 +151,12 @@
    "done": 0,
    "events": 0,
    "per_min": 0.0
+  },
+  {
+   "t": 1793744293,
+   "done": 1648,
+   "events": 660,
+   "per_min": 164.8
   }
  ],
  "notes": [
@@ -157,19 +185,19 @@
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 0
+    "both": 405
    },
    {
     "label": "Kept: no safety check fired",
-    "both": 0
+    "both": 26
    },
    {
     "label": "Confirmed: a second light curve agrees",
-    "both": 0
+    "both": 3
    },
    {
     "label": "Leads: stars with a confirmed real dip, no known planet",
-    "both": 0
+    "both": 3
    }
   ],
   "known": null,
