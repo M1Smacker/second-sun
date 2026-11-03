@@ -1,6 +1,6 @@
 # Keystone: the exam for the second key (specification, 3 Nov 2026, late evening)
 
-Name: **Keystone** (provisional; the stone that locks an arch, and it is the key step. Ahmed can rename it). Idea from Ahmed, 3 Nov 2026: a full exam he takes once the learning track is done, so that he is qualified as the second key and, if Claude Code is ever gone, can continue the project himself ("he does not have to learn it exhaustively"). He asked for a very detailed file in the build list and for me to gather facts and data that would qualify him.
+Name: **Keystone** (provisional; the stone that locks an arch, and it is the key step. Ahmed can rename it). Idea from Ahmed, 3 Nov 2026: a full exam he takes once the learning track is done, so that he is qualified as the second key and can run the project himself. **Ahmed's framing (3 Nov 2026, later):** he will NOT stop using Claude Code for Second Sun and Claude stays a key forever; learning to work without Claude is "just for the love of the game", not because Claude is leaving ("he does not have to learn it exhaustively"). Read every "Claude is gone" line below as a skill drill, not a plan. He asked for a very detailed file in the build list and for me to gather facts and data that would qualify him.
 
 STATUS: specification only. Nothing is built, nothing is in the book. It cannot be taken before the learning track is finished; it is built after the Learning Space check engine (T133 stage 3). Research stint RS-009 (cap 1.5, written in `research/research-sessions.md`). Labels: CONFIRMED (read in a file or paper), LIKELY, UNCERTAIN, NOT TESTED.
 
@@ -66,3 +66,6 @@ Name (Keystone or another); the standards in section 5; taking it in sittings; w
 
 ## Sources
 Guerrero et al. 2021, "The TESS Objects of Interest Catalog from the TESS Prime Mission", ApJS 254, 39, arXiv 2103.12538 (ar5iv text read 3 Nov 2026). Our files cited above. The 2 Nov learning note (`research/learning-and-checking-literature-2026-11-02.md`, read from search summaries only, not CONFIRMED) for practice testing and mastery checks.
+
+## 10. The Keystone book page (Ahmed, 3 Nov 2026, later)
+Keystone needs an ENTIRE book page of its own, built alongside Keystone's development (not afterwards). It lives in the Learning Space (proposed address `/learn/keystone/`) and holds: what the exam certifies and what it does not, the five parts and the pass lines (written first), how to prepare (which levels and labs feed which domain), the casebook (the taught examples, never the exam cases or the answer key), the runbook link, and his dated pass register (read from the device store and the register file; the page can never award the pass by itself). A book change, so it follows the book rules: a version bump, a field note and learning-track check, publish with `publish_book.ps1 -Test`, and the answer key stays out of every page he can open before he sits the exam. Part of T134, same cost range plus about 1 to 1.5 for the page.
