@@ -33,3 +33,5 @@ Why: Ahmed asked (3 Nov 2026) that every research stint gets a number and a shor
 - 30 Oct: `research/live-updates-literature-2026-10-30.md`, `research/stage3/rabtsevich-literature-2026-10-30.md`
 - 31 Oct: `research/stage3/post-sealed-literature-2026-10-31.md`
 - 2 Nov: `research/learning-and-checking-literature-2026-11-02.md`, `research/stage3/loom-literature-2026-11-03.md`
+| RS-010 | 4 Nov | G4 GATHERING (Ahmed, 4 Nov 2026, after G3; he reverted "start the research for G4" to "gather data and research questions, put it in front of me, do not execute"): Q1 why G3 ran in 4.7 minutes against hours; Q2 what is unsearched (population, not sky); Q3 how Rabtsevich checked 126,246 stars; Q4 what the unit of a hunt should be. Cap 1.5 points. Own files first (step logs, audit tables, catalogues), then four pages read (Gaia DR3 EB abstract, Hamers 2016 abstract, Oddo 2026 abstract, MAST TESS-EBs page). No download, no search. Filed in `research/stage3/G4-GATHER-2026-11-04.md`; seven research questions Q1 to Q7 for his pick. |
+
