@@ -2,7 +2,7 @@
  "label": "G3 SEARCH: Vesper 0.8.1 on the 612 G3 stars (blind, counts only)",
  "blind": true,
  "phase": "search",
- "updated": "2026-11-03T22:18:11+00:00",
+ "updated": "2026-11-03T22:19:16+00:00",
  "loop_s": 60,
  "run": {
   "folder": "g3_e7886a71a61f",
@@ -36,12 +36,12 @@
  },
  "machine": {
   "workers": 10,
-  "cpu": 77
+  "cpu": 36
  },
  "started": "2026-11-03T22:17:11+00:00",
  "progress": {
   "search": [
-   1648,
+   3108,
    4080
   ],
   "sap": [
@@ -53,97 +53,97 @@
    513
   ],
   "stars": 611,
-  "per_min": 164.8,
-  "eta_min": 15
+  "per_min": 310.8,
+  "eta_min": 3
  },
  "files": {
-  "read_ok": 1653,
+  "read_ok": 3297,
   "skipped": {
-   "no safe windows": 371,
+   "no safe windows": 580,
    "too little data": 3
   },
   "products": {
-   "QLP": 1271,
-   "TESS-SPOC": 336,
-   "SPOC": 46
+   "QLP": 2520,
+   "TESS-SPOC": 671,
+   "SPOC": 106
   }
  },
  "events": {
-  "found": 660,
+  "found": 1278,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 459
+    "n": 873
    },
    {
     "flag": "flipmatch",
     "text": "The upside-down copy has the same wiggle",
-    "n": 0
+    "n": 2
    },
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 22
+    "n": 54
    },
    {
     "flag": "ecl_overlap",
     "text": "Overlaps a predicted eclipse",
-    "n": 2
+    "n": 8
    },
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 59
+    "n": 106
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 77
+    "n": 161
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 4
+    "n": 6
    },
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 6
+    "n": 16
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 31
+    "n": 52
    }
   ],
   "tiers": {
-   "2": 629,
-   "1B": 24,
-   "1A": 3,
-   "3": 4
+   "2": 1226,
+   "1B": 42,
+   "1A": 4,
+   "3": 6
   },
   "boxes": {
-   "3": 176,
-   "4": 72,
-   "5": 68,
-   "6.5": 64,
-   "8": 42,
-   "10": 60,
-   "12": 41,
-   "15": 55,
-   "20": 82
+   "3": 319,
+   "4": 123,
+   "5": 120,
+   "6.5": 126,
+   "8": 101,
+   "10": 98,
+   "12": 86,
+   "15": 121,
+   "20": 184
   },
   "bands": {
-   "7 to 8": 161,
-   "8 to 10": 181,
-   "10 to 12": 99,
-   "12 and up": 219
+   "7 to 8": 355,
+   "8 to 10": 365,
+   "10 to 12": 170,
+   "12 and up": 388
   }
  },
  "selftest": {
-  "fakes": 730,
-  "second_product_sees": 704
+  "fakes": 1548,
+  "second_product_sees": 1496
  },
  "history": [
   {
@@ -157,6 +157,12 @@
    "done": 1648,
    "events": 660,
    "per_min": 164.8
+  },
+  {
+   "t": 1793744358,
+   "done": 3108,
+   "events": 1278,
+   "per_min": 310.8
   }
  ],
  "notes": [
@@ -185,19 +191,19 @@
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 405
+    "both": 788
    },
    {
     "label": "Kept: no safety check fired",
-    "both": 26
+    "both": 43
    },
    {
     "label": "Confirmed: a second light curve agrees",
-    "both": 3
+    "both": 4
    },
    {
     "label": "Leads: stars with a confirmed real dip, no known planet",
-    "both": 3
+    "both": 4
    }
   ],
   "known": null,
