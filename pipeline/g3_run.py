@@ -29,7 +29,12 @@ def settings():
     if len(tg) != 612 or set(tg["slice"]) != {"g3"}:
         sys.exit(f"the G3 table must have 612 stars of slice g3, found {len(tg)}")
     DS.PREP.mkdir(parents=True, exist_ok=True); tg[["tic", "kic", "tmag", "morph"]].to_csv(G3_STARS, index=False)
-    s = {k: v for k, v in S3.current_settings(G3_STARS).items() if k not in DROP}
+    real_sha = C.sha                                                       # the data-dependent keys (dropped below) may not exist yet when the version is frozen, before the audit tables are made
+    C.sha = lambda p: real_sha(p) if pathlib.Path(p).exists() else "missing"
+    try:
+        s = {k: v for k, v in S3.current_settings(G3_STARS).items() if k not in DROP}
+    finally:
+        C.sha = real_sha
     return s, C.settings_hash(s)
 
 
