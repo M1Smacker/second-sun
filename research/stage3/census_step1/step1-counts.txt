@@ -1,0 +1,21 @@
+rows (target-sectors): S1-26 507,898; S27-109 1,250,090; S110-111 plan lists 23,752
+unique stars: S1-26 232,764; S27-109 476,784
+S27+ unique stars by Tmag, and by number of sectors:
+  Tmag 0-10: 149,970 stars; in 2+ sectors 88,104; in 4+ sectors 39,646; mean sectors 3.13
+  Tmag 10-11: 77,438 stars; in 2+ sectors 31,476; in 4+ sectors 9,216; mean sectors 2.35
+  Tmag 11-12: 85,668 stars; in 2+ sectors 32,622; in 4+ sectors 8,512; mean sectors 2.14
+  Tmag 12-13: 36,975 stars; in 2+ sectors 16,328; in 4+ sectors 6,293; mean sectors 2.60
+  Tmag 13-13.5: 12,723 stars; in 2+ sectors 6,403; in 4+ sectors 2,637; mean sectors 2.82
+  Tmag 13.5-99: 114,010 stars; in 2+ sectors 61,134; in 4+ sectors 21,145; mean sectors 2.49
+stars with 2-minute data ONLY after sector 26 (never a 2-min target in S1-26): 364,656 of 476,784
+  of those, Tmag <= 13.5: 258,858
+Prsa 2022 EBs 4,578 (S1-26 2-min). Of them also 2-min targets in S27+: 4,161
+EB share of S1-26 2-min unique stars: 4,578/232,764 = 1.97%
+  same share for Tmag<=13.5: 4,229/213,890 = 1.98%
+searched g1: 549 stars; also 2-min targets in S27+: 211
+searched g2: 895 stars; also 2-min targets in S27+: 854
+searched g3: 612 stars; also 2-min targets in S27+: 22
+TTC table3_new_ebs.txt: 7,936 TIC-like ids; also 2-min targets in S27+: 126
+TTC table4_known_ebs.txt: 2,065 TIC-like ids; also 2-min targets in S27+: 95
+ROUGH (LIKELY at best, NOT measured): at the S1-26 EB share, 258,858 new bright stars would hold about 5,091 EBs; of all S27+ stars not already listed about 9,295.
+per sector (rows, Tmag<=13.5): S27:20000/17623; S28:20000/18186; S29:20000/18096; S30:20000/17951; S31:20000/18347; S32:20000/18134; S33:20000/18706; S34:20000/18508; S35:20000/18339; S36:20000/18343; S37:20000/18353; S38:20000/18301; S39:20000/18281; S40:20000/16004; S41:20000/15625; S42:20000/16709; S43:20000/16061; S44:20000/15556; S45:20000/16527; S46:20000/16805; S47:20000/17128; S48:20000/17296; S49:20000/17251; S50:20000/17241; S51:20000/17299; S52:20000/16930; S53:20000/15771; S54:20000/14708; S55:20000/15690; S56:13000/10609; S57:13000/10408; S58:13000/10282; S59:13000/10233; S60:13000/10058; S61:12216/9656; S62:11234/8691; S63:11058/8571; S64:12108/9699; S65:12194/10193; S66:12816/10747; S67:13000/10312; S68:10577/7882; S69:10545/7645; S70:12803/7834; S71:13000/8618; S72:12103/7607; S73:10652/6836; S74:11778/7246; S75:11850/7550; S76:9955/6192; S77:9687/6007; S78:9928/6081; S79:11717/7489; S80:13000/9434; S81:13000/8460; S82:13000/7854; S83:13000/8384; S84:13000/10245; S85:13000/10229; S86:13000/9951; S87:13000/10907; S88:13000/10972; S89:13000/10948; S90:13000/10952; S91:13000/7770; S92:13000/6318; S93:13000/10959; S94:13000/10999; S95:13000/10997; S96:13000/10595; S97:13000/7311; S98:13000/6487; S99:13000/7972; S100:13000/10121; S101:13000/8137; S102:13000/7462; S103:13000/7095; S104:13000/7035; S105:13000/7787; S106:13000/7386; S107:13000/6418; S108:10802/5538; S109:11067/5488
