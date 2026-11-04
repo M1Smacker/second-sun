@@ -1,0 +1,32 @@
+
+R_sum 1.5 x R_A, rule A: existing hunts sum 22.5 (E at 10% = 2.25); per G2-sealed star 0.0182
+   Census  1400 G2-type stars, 3 sectors each: Census sum   11.5, E  1.15; all hunts E  3.40, chance of at least one  97%, 95% ceiling on the total rate if none  8.8%
+   Census  3000 G2-type stars, 3 sectors each: Census sum   24.7, E  2.47; all hunts E  4.72, chance of at least one  99%, 95% ceiling on the total rate if none  6.4%
+   Census  6000 G2-type stars, 3 sectors each: Census sum   49.4, E  4.94; all hunts E  7.19, chance of at least one 100%, 95% ceiling on the total rate if none  4.2%
+   Census  1400 G2-type stars, 6 sectors each: Census sum   17.3, E  1.73; all hunts E  3.98, chance of at least one  98%, 95% ceiling on the total rate if none  7.5%
+   Census  3000 G2-type stars, 6 sectors each: Census sum   37.1, E  3.71; all hunts E  5.96, chance of at least one 100%, 95% ceiling on the total rate if none  5.0%
+   Census  6000 G2-type stars, 6 sectors each: Census sum   74.2, E  7.42; all hunts E  9.67, chance of at least one 100%, 95% ceiling on the total rate if none  3.1%
+
+R_sum 1.5 x R_A, rule B: existing hunts sum 36.4 (E at 10% = 3.64); per G2-sealed star 0.0300
+   Census  1400 G2-type stars, 3 sectors each: Census sum   19.0, E  1.90; all hunts E  5.54, chance of at least one 100%, 95% ceiling on the total rate if none  5.4%
+   Census  3000 G2-type stars, 3 sectors each: Census sum   40.7, E  4.07; all hunts E  7.71, chance of at least one 100%, 95% ceiling on the total rate if none  3.9%
+   Census  6000 G2-type stars, 3 sectors each: Census sum   81.4, E  8.14; all hunts E 11.78, chance of at least one 100%, 95% ceiling on the total rate if none  2.5%
+   Census  1400 G2-type stars, 6 sectors each: Census sum   28.5, E  2.85; all hunts E  6.49, chance of at least one 100%, 95% ceiling on the total rate if none  4.6%
+   Census  3000 G2-type stars, 6 sectors each: Census sum   61.1, E  6.11; all hunts E  9.75, chance of at least one 100%, 95% ceiling on the total rate if none  3.1%
+   Census  6000 G2-type stars, 6 sectors each: Census sum  122.3, E 12.23; all hunts E 15.87, chance of at least one 100%, 95% ceiling on the total rate if none  1.9%
+
+R_sum 1.8 x R_A, rule A: existing hunts sum 12.6 (E at 10% = 1.26); per G2-sealed star 0.0126
+   Census  1400 G2-type stars, 3 sectors each: Census sum    8.0, E  0.80; all hunts E  2.06, chance of at least one  87%, 95% ceiling on the total rate if none 14.6%
+   Census  3000 G2-type stars, 3 sectors each: Census sum   17.1, E  1.71; all hunts E  2.97, chance of at least one  95%, 95% ceiling on the total rate if none 10.1%
+   Census  6000 G2-type stars, 3 sectors each: Census sum   34.3, E  3.43; all hunts E  4.69, chance of at least one  99%, 95% ceiling on the total rate if none  6.4%
+   Census  1400 G2-type stars, 6 sectors each: Census sum   12.0, E  1.20; all hunts E  2.46, chance of at least one  91%, 95% ceiling on the total rate if none 12.2%
+   Census  3000 G2-type stars, 6 sectors each: Census sum   25.8, E  2.58; all hunts E  3.84, chance of at least one  98%, 95% ceiling on the total rate if none  7.8%
+   Census  6000 G2-type stars, 6 sectors each: Census sum   51.5, E  5.15; all hunts E  6.41, chance of at least one 100%, 95% ceiling on the total rate if none  4.7%
+
+R_sum 1.8 x R_A, rule B: existing hunts sum 21.1 (E at 10% = 2.11); per G2-sealed star 0.0215
+   Census  1400 G2-type stars, 3 sectors each: Census sum   13.6, E  1.36; all hunts E  3.47, chance of at least one  97%, 95% ceiling on the total rate if none  8.6%
+   Census  3000 G2-type stars, 3 sectors each: Census sum   29.2, E  2.92; all hunts E  5.03, chance of at least one  99%, 95% ceiling on the total rate if none  6.0%
+   Census  6000 G2-type stars, 3 sectors each: Census sum   58.5, E  5.85; all hunts E  7.96, chance of at least one 100%, 95% ceiling on the total rate if none  3.8%
+   Census  1400 G2-type stars, 6 sectors each: Census sum   20.5, E  2.05; all hunts E  4.16, chance of at least one  98%, 95% ceiling on the total rate if none  7.2%
+   Census  3000 G2-type stars, 6 sectors each: Census sum   44.0, E  4.40; all hunts E  6.51, chance of at least one 100%, 95% ceiling on the total rate if none  4.6%
+   Census  6000 G2-type stars, 6 sectors each: Census sum   87.9, E  8.79; all hunts E 10.90, chance of at least one 100%, 95% ceiling on the total rate if none  2.8%
