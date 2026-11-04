@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "D:\second-sun\pipeline\g3_download.py", line 89, in <module>
+    for tic, nf, nb in ex.map(do_star, todo):
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\pipeline\g3_download.py", line 59, in do_star
+    sr = lk.search_lightcurve(f"TIC {tic}", author=list(WANT))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\memoization\caching\plain_cache.py", line 42, in wrapper
+    result = user_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\lightkurve\search.py", line 833, in search_lightcurve
+    return _search_products(
+           ^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\lightkurve\search.py", line 1019, in _search_products
+    products = Observations.get_product_list(observations)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\utils\class_or_instance.py", line 25, in f
+    return self.fn(obj, *args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\utils\process_asyncs.py", line 28, in newmethod
+    response = getattr(self, async_method_name)(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\utils\class_or_instance.py", line 25, in f
+    return self.fn(obj, *args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\mast\observations.py", line 545, in get_product_list_async
+    return self._portal_api_connection.service_request_async(service, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\utils\class_or_instance.py", line 25, in f
+    return self.fn(obj, *args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\mast\discovery_portal.py", line 364, in service_request_async
+    response = self._request("POST", self.MAST_REQUEST_URL, data=req_string, headers=headers,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\second-sun\.venv\Lib\site-packages\astroquery\mast\discovery_portal.py", line 188, in _request
+    raise TimeoutError("Timeout limit of {} exceeded.".format(self.TIMEOUT))
+TimeoutError: Timeout limit of 600 exceeded.

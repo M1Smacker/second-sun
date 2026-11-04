@@ -1,0 +1,39 @@
+2056 stars in the union of G1, G2, G3
+batch 1/35 done, rows so far 505
+batch 2/35 done, rows so far 1502
+batch 3/35 done, rows so far 2673
+batch 4/35 done, rows so far 3975
+batch 5/35 done, rows so far 4667
+batch 6/35 done, rows so far 5280
+batch 7/35 done, rows so far 5938
+batch 8/35 done, rows so far 6809
+batch 9/35 done, rows so far 7494
+batch 10/35 done, rows so far 8281
+batch 11/35 done, rows so far 9844
+batch 12/35 done, rows so far 10811
+batch 13/35 done, rows so far 11980
+batch 14/35 done, rows so far 13554
+batch 15/35 done, rows so far 14734
+batch 16/35 done, rows so far 15394
+batch 17/35 done, rows so far 16566
+batch 18/35 done, rows so far 19804
+batch 19/35 done, rows so far 22121
+batch 20/35 done, rows so far 24628
+batch 21/35 done, rows so far 25778
+batch 22/35 done, rows so far 26937
+batch 23/35 done, rows so far 27990
+batch 24/35 done, rows so far 29373
+batch 25/35 done, rows so far 30375
+batch 26/35 done, rows so far 32433
+batch 27/35 done, rows so far 33443
+batch 28/35 done, rows so far 35527
+batch 29/35 done, rows so far 37281
+batch 30/35 done, rows so far 38749
+batch 31/35 done, rows so far 40003
+batch 32/35 done, rows so far 41273
+batch 33/35 done, rows so far 42288
+batch 34/35 done, rows so far 43016
+batch 35/35 done, rows so far 43552
+MAST metadata backtest, 2026-11-03 02:40 Kuwait. Stars in the union of G1, G2, G3: 2056. Rows: 43552. Aggregates only.
+sector | product | stars with a file | share of union list | median days from sector end to release | 10th to 90th percentile
+ 85 | QLP       |   189 |  9.2% |  102.3 |  102.1 to  102.5

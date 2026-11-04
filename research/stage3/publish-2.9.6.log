@@ -1,0 +1,245 @@
+﻿
+== 1. Fresh clone of committed main (scratch)
+building main at e740d43
+
+== 2. Known repo problem: book/data/claims.csv is git-ignored (.gitignore has 'data/') so a clean clone cannot build
+claims.csv is tracked in the clone: good
+
+== 2b. Mission readiness rules still hold (negative and positive tests, run on the committed copy)
+all mission checks passed; current score 48.0
+
+== 2b2. Book shape rules hold (path.yml, sidebar and sky data agree; broken copies are refused)
+  refused: a chapter missing from the journey: data/path.yml: the journey must list every chapter exactly once
+  refused: a chapter listed twice in the journey: data/path.yml: the journey must list every chapter exactly once
+  refused: a story over 130 words: data/path.yml: chapter 1 story is over 130 words (brief: about 120)
+  refused: a chapter with two summary lines: data/path.yml: chapter 1 needs exactly 3 summary lines
+  refused: a chapter with no page: data/path.yml: no page book/01-nope.md
+  refused: a chapter in an unknown Part: data/path.yml: chapter 1 has unknown part 9
+  refused: a Part star missing from the sky data: data/path.yml: star 'Nowhere' is not in data/sky.json (run tools/make_sky.py?)
+  refused: a journey note that does not exist: data/path.yml: journey note 2099-01-01 does not exist
+  refused: chapters out of order: data/path.yml: chapters must be numbered 1..N in order
+  refused: a chapter missing from the learning track: data/path.yml: the learning track must list every chapter exactly once
+  refused: a chapter listed twice in the learning track: data/path.yml: the learning track must list every chapter exactly once
+  refused: levels out of order in the track: data/path.yml: track: must list the levels L0 to L6 and then AFTER, in that order
+  refused: a level with no chapters and no page: data/path.yml: level L1 has no chapters and no page to send the reader to
+  refused: a chapter moved to another level but not on the learning page: docs/learn/index.md: the L3 section does not link [Chapter 3] (data/path.yml puts it there
+  refused: the sidebar putting a chapter in the wrong Part: mkdocs.yml nav and data/path.yml disagree about the chapters (or their order): [('01-stars
+  refused: a nav with no Read tab: mkdocs.yml: the nav needs a Read tab
+all shape checks passed
+
+== 2c. Colour contrast still 7:1 or better (high-contrast rule)
+contrast ok: text, secondary text and accent are at least 7:1 on every surface in both schemes
+
+== 2d. Eyes mode logic: scoring, truth banner, saving after every answer, pass line (answers can never be changed)
+pass: the official test has exactly 10 clear dips, 4 faint, 8 quiet and 8 odd, and differs between shuffles
+pass: practice rounds have the length asked for and always include a quiet curve
+pass: the banner always says what it truly was: A DIP or NOT A DIP, with the reason, whatever the answer
+pass: scoring: right, wrong, partly right (not a dip but the wrong kind) and not sure
+pass: every answer is saved at once: a fresh store on the same storage sees it
+pass: an answer can never be changed, repeated, skipped or added after the round ends
+pass: looking back counts the look but never touches the answer
+pass: a round left half done is kept as abandoned, an empty one is dropped
+pass: unreadable saved data is never silently overwritten
+pass: when the device refuses to save, the screen is told and the round still works in memory
+pass: listeners hear about saves (the cloud upload will use this) and cannot break saving
+pass: summary counts: clear and faint dips, false alarms, odd things, looks
+pass: Wilson range behaves: 17 of 20 is about 64% to 95%, 0 of 0 is the whole range
+pass: pass line: needs 2 rounds, 60 curves and 2 days before it says anything
+pass: pass line: below the line when clear dips are missed or quiet curves are called dips; faint dips do not count
+pass: pass line ignores practice rounds and unfinished test rounds
+pass: export round-trips and holds every round with its answers
+pass: a round marked as synced leaves the unsent list; a round still open can never be marked
+pass: the cloud document has exactly the keys the published rules allow, with the right types
+pass: encoding: integers, decimals, text, booleans, nulls, lists and maps survive a round trip
+all 20 Eyes core checks passed
+
+== 2e. Eyes cloud uploader: offline queue, retries, no duplicates, nothing sent while a round is open
+pass: a finished round is sent once, in the shape the rules accept, and marked as synced
+pass: a round still open is never sent; sending starts the moment it finishes
+pass: offline: the round waits, nothing is lost, and it goes out when the internet returns
+pass: network errors back off 5 s, 15 s, 60 s, 5 min and then recover without losing the round
+pass: no duplicates: if the cloud stored a round but the answer was lost, the resend gets 409 and counts as stored
+pass: a refused round (403) stays queued, does not block the others, and is retried slowly
+pass: busy or down server (429, 503) is treated like being offline
+pass: calling flush many times at once sends each round once
+pass: several rounds waiting go out oldest first, and abandoned rounds are sent too
+pass: syncing does not trigger more sending (no loop), and the status listener hears every change
+pass: a paused uploader (a test copy of the book) never sends anything, whatever happens
+pass: a visitor can play but nothing is ever sent, and the line says so
+pass: who is an owner: a device with rounds before the rule, or the #owner link; a visitor stays a visitor even after playing
+pass: the status line is honest before any round exists
+all 14 Eyes cloud checks passed
+
+== 2f. Eyes HARD test: best-of-a-sector noise cards, fake planets as strong as they say, no giveaway by position, the 
+two lines never mix
+pass: the star's own noise is measured sensibly
+pass: a card is rebuilt exactly from its seed, and different seeds give different cards
+pass: hard-noise cards hold the best dip of a whole sector, far better looking than an ordinary stretch
+pass: the event does not sit in the same place on every kind of card (position must not give the answer away)
+pass: leak audit: where the event sits, how many holes the card has and how strong the rivals are do not tell a hard-noise card from a faint fake planet; width tells only a little
+pass: a fake planet is as strong as it says it is, on the detector's scale
+pass: the dip is really in the data, with sloping sides and a flat bottom
+pass: the official hard test has exactly the agreed mix, and every strength is inside its band
+pass: a dip at a gap really ends where the data stops, and a down-jump never recovers
+pass: a gap alone is no giveaway: other cards have gaps too, never touching the event, and only the gap-dip card has a dip that ends at one
+pass: an eclipse card is a real eclipse of this star, levelled, and deep
+pass: twin drill: the same noise twice, the planet in one only, the planet curve stronger, rebuilt exactly from its seed
+pass: hard scoring counts each tier, and Not sure is a miss on a clear fake planet but free on hard noise
+pass: one fact, one place: the hard line block states the clear-planet and hard-noise numbers once, the round block still has its own (F4, 27 Oct 2026)
+pass: results view: a false-alarm rate above the limit is said to be above the limit, never softened; clear dips above the target say so
+pass: results view: near a target the wording follows the confidence interval, not the point estimate
+pass: results view: the pill never calls a practice result a pass; the line and the hard line stay separate; nothing without test rounds
+pass: results view: the weak spot is a pattern to check and only appears when it is at least 10% of at least 20 jumps and gaps; trend is per test, oldest first
+pass: the hard line: not enough, then meets, then below; the numbers are the ones fixed in advance
+pass: the old pass line and the hard line never see each other's rounds
+pass: an answer to a hard card is saved with its tier, an answer to an old card is saved exactly as before, and the cloud shape is unchanged
+pass: the banner for hard cards says what they truly were
+all 22 Eyes hard-test checks passed
+
+== 2g. Eyes strength: the JavaScript box score gives the same numbers as the hunt's own Python box_scores (golden 
+arrays)
+pass: the same numbers as the Python box_scores on every golden array and every hunt duration
+pass: the hunt durations are whole numbers of ten-minute bins
+pass: a deep dip is found where it is, strongest at about its own length, and a card scored with the sector's scale agrees with the array's own scale
+pass: a noise-free dip of unit depth scores depth over the scale of the best box
+pass: a short or gappy array is handled: no scale from fewer than 20 boxes, and a box missing 20 percent of its points is skipped
+all 5 Eyes strength checks passed
+
+== 2h. Eyes feedback text: 36 to 44 words, only measured numbers, the lead never looks at the label, no 'missed' on a 
+false alarm, near misses never called plain noise, no repeats
+pass: every measurement is a finite number or a plain label, the same every time, and fast
+pass: one strength everywhere: the feedback's strength is the card's own strength from the hunt's function
+pass: every text is three lines of 36 to 44 words with no dashes, on every kind of card, every answer and both modes
+pass: only measured numbers appear: every number in a text is one the card was measured to have (or a fixed line like 7)
+pass: the lead lesson and the measurement line never look at the true label
+pass: a false alarm is never called a miss: 'You said Dip' on noise, and 'missed' appears nowhere
+pass: real mode gives measurements, not a verdict: no 'it was', 'right', 'hidden planet' or 'wrong' in any real-mode text
+pass: artifact lessons fire on their own kind of card and almost never on ordinary ones
+pass: a card that nearly matches an artifact is not called plain noise, and the near-miss lesson is rare on ordinary cards
+pass: the sentences do not repeat: 60 hard-noise cards in one sitting give many different lines, with the numbers masked
+pass: the pattern line speaks about Ahmed's own habit, at most once every six cards
+pass: easy-sitting cards (real windows with box fakes) get valid texts too
+pass: a faint brightening just under its test line is never called plain noise: it is 'close to' and not classified
+pass: an answer is saved with the measured strength of its card (field f), and a card without one is saved exactly as before
+pass: his own habit by strength: counts per band, d-prime and criterion from measured answers only, and an honest message when nothing is measured yet
+pass: a miss comes back 3 to 5 cards later, only unseen cards move, and the round keeps exactly the same cards
+all 16 Eyes feedback checks passed
+
+== 2i. Rehearsal (rung 3): statistics, pass line, locked answers, cloud document shape, no leak in the pictures, deck 
+integrity
+pass: six answers, each with a label
+pass: d-prime for 80% hits and 10% false alarms is about 2.1 (got 2.06)
+pass: equal rates give 0 and perfect scores stay finite
+pass: no planets or no others: not measured
+pass: Wilson interval for 8 of 10
+pass: entries: right, planet-like call, tier and strength kept
+pass: summary counts hits, false alarms and classes
+pass: reveal: a planet call on nothing is a false alarm
+pass: reveal: hit, miss, and near-limit wording
+pass: eight good sessions on eight days meet the line (d-prime 2.38)
+pass: seven sessions are not enough
+pass: eight sessions on one day are not enough (needs four days)
+pass: 6 false alarms in 14 others (43%) is below the line
+pass: one clear fake in three found is below the line
+pass: an abandoned session does not count
+pass: the next session follows the number finished, cycling after eight
+pass: 300 random orders: 20 items each, no two neighbours from one star
+pass: a round is mode practice, source rehearsal-v1, version 1 (the published cloud rules accept it)
+pass: skipping ahead is refused
+pass: an unknown answer is refused
+pass: the first answer is kept; a second answer to the same item is refused (answers cannot be changed)
+pass: an open round is never offered to the cloud
+pass: a finished round is offered once and cannot be finished twice
+pass: the cloud document has only the allowed keys, an allowed mode, at most 200 answers
+pass: the document encodes for Firestore with the source tag and every answer
+pass: a synced round is not sent again
+pass: a half-done session is kept as abandoned; an empty one is dropped
+pass: the three panels draw identically whatever the hidden class (they cannot leak it)
+pass: panel 2 is an svg with the data lines and the event bracket and no class words
+pass: panel 1 marks the event and panel 3 marks the phase
+pass: the deck has 8 sessions of 20 items
+pass: every session: 3 clear and 3 near-limit fake planets, 3 eclipses, 3 instrument, 2 flares, 2 steps, 4 nothing-hidden
+pass: no item carries a field outside the allowed list (no TIC, no sector, no time stamp)
+pass: arrays have the length the window says; box lengths are the hunt's grid
+pass: the deck holds 69 different star-sectors
+pass: fake planets carry their depth; clear ones are strong (13 or more), near-limit ones are under 10
+pass: the deck is 1.02 MB (limit 1.6)
+pass: mutation: a line looking only at fake planets found would pass a player who calls everything a planet; the real line does not
+
+all 38 rehearsal checks passed
+
+== 3. Strict build into D:\ss-pages-work\build
+mkdocs.exe : 
+At D:\second-sun\research\burn-3-book\tools\publish_book.ps1:26 char:5
++     & $exe @rest
++     ~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ │  ⚠  Warning from the Material for MkDocs team
+ │
+ │  MkDocs 2.0, the underlying framework of Material for MkDocs,
+ │  will introduce backward-incompatible changes, including:
+ │
+ │  × All plugins will stop working – the plugin system has been removed
+ │  × All theme overrides will break – the theming system has been rewritten
+ │  × No migration path exists – existing projects cannot be upgraded
+ │  × Closed contribution model – community members can't report bugs
+ │  × Currently unlicensed – unsuitable for production use
+ │
+ │  Our full analysis:
+ │
+ │  https://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/
+
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: D:\ss-pages-work\build
+INFO    -  The following pages exist in the docs directory, but are not included in the "nav" configuration:
+  - learn\l1-dip-depth.md
+  - parts\part1\cheat.md
+  - parts\part2\cheat.md
+  - parts\part3\cheat.md
+  - parts\part4\cheat.md
+  - parts\part5\cheat.md
+  - parts\part6\cheat.md
+INFO    -  offline precache: 210 entries, 7400 KB; version 183f868d67b0
+INFO    -  Documentation built in 2.59 seconds
+
+== 3b. Every link and anchor in the built site resolves; every chapter has the template
+checked 84 pages
+site check ok
+
+== 3c. Fonts: every non-ASCII character in the sources and in the built pages is drawn by a font the book serves (F4)
+pass: 31 distinct non-ASCII characters in the sources and 30 in the built pages are all drawn by the fonts the book serves (19 of them by the two symbol files: ΔΣδθλμπσ→√∝≈≤≥▶◀★✓✗)
+
+== 4. Safety checks on the built site
+ok: 84 pages, all noindex; 10 MB; no secret patterns
+
+== 4b. Browser tests on a spare port (8490)
+layout : pass
+chapter : pass
+eyeslayout : pass
+offline : pass
+jsoff : pass
+eyes : pass
+eyescloud : pass
+rehearsal : pass
+rehearsalcloud : pass
+watchtimers : pass
+headertitle : pass
+textfloor : pass
+
+== 4c. Same-day lesson rule: is the book behind the work? (reminder, never blocks)
+Book is 0 commits behind (last field note: e740d43)
+Readiness number: 4 work commits since book/progress/mission.yml was last edited (does any credit, evidence or status cell need updating?)
+
+== 5. Publish to gh-pages
+git.exe : To https://github.com/M1Smacker/second-sun.git
+At D:\second-sun\research\burn-3-book\tools\publish_book.ps1:26 char:5
++     & $exe @rest
++     ~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith.../second-sun.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   524cd19..8a08a4f  gh-pages -> gh-pages
+
+Published. GitHub takes 1 to 2 minutes to go live: https://m1smacker.github.io/second-sun/

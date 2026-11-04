@@ -1,0 +1,179 @@
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+D:\second-sun\.venv\Lib\site-packages\lightkurve\prf\__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (454/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (396/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 25% (4452/17981) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 30% (3311/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (296/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (4452/17981) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (296/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (4452/17981) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 30% (3311/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (296/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (4452/17981) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 30% (3311/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 46% (572/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 27% (339/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 37% (455/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 37% (455/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 37% (455/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 25% (2560/10358) of the cadences will be ignored due to the quality mask (quality_bitmask=1073741824).
+Warning: 35% (5994/17327) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 34% (3568/10358) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 35% (5994/17327) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 22% (4070/18462) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 23% (2566/11076) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 34% (3568/10358) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (5306/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 22% (4070/18462) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 35% (5994/17327) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (3194/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (5306/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 34% (3568/10358) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 35% (5994/17327) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 23% (2566/11076) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (3194/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 22% (4070/18462) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (5306/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 23% (2566/11076) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (3194/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 22% (4070/18462) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (5306/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (1529/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (5898/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (3549/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (5898/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (3549/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (5898/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (3549/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (5898/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 46% (572/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 27% (339/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 43% (7945/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 40% (496/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 43% (7945/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 40% (496/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 43% (7945/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 40% (496/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 43% (7945/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 46% (572/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 27% (339/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 39% (7341/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 37% (461/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (7341/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (1529/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 37% (461/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (7341/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 37% (461/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (7341/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (4755/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (2862/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (4755/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (2862/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (4755/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (2862/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 26% (4755/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (3528/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (1529/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (3528/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 32% (3528/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (4077/19643) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (818/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (4077/19643) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (818/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (4077/19643) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (818/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (4077/19643) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 46% (572/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 27% (339/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 40% (7441/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (476/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 40% (7441/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (476/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 40% (7441/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (476/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 40% (7441/18654) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 20% (231/1148) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 20% (231/1148) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 24% (4542/18810) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 24% (2729/11284) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 24% (4542/18810) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 24% (2729/11284) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 24% (4542/18810) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 24% (2729/11284) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 24% (4542/18810) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (1529/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (454/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (396/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 21% (4158/19496) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 39% (1529/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 21% (2492/11694) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 21% (4158/19496) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 46% (572/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 27% (339/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 39% (1529/3927) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 46% (574/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 29% (361/1241) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 38% (458/1197) of the cadences will be ignored due to the quality mask (quality_bitmask=4096).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 30% (3311/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 30% (3311/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 30% (3311/11157) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
+Warning: 33% (6153/18597) of the cadences will be ignored due to the quality mask (quality_bitmask=24319).
