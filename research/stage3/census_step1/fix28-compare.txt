@@ -1,0 +1,21 @@
+official rows_g3 (+1 signs with K): 6024; shape rows: sym 6024, skew 6024, stretch 6024, box 6024
+
+IDENTITY CHECK, official vs the sym variant on 6024 matching injections: tier1 identical in 100.0%, seen identical in 100.0%; kept share 33.1% vs 33.1%
+
+PAIRED COMPARISON, K 8 to 14 pooled (share kept in tier 1 / share seen), difference against sym with a star-sector bootstrap 95% interval
+  sym     : kept  30.5% (sym  30.5%), difference  +0.0 points (95% +0.0 to +0.0); n 3012
+  skew    : kept  26.1% (sym  30.5%), difference  -4.4 points (95% -5.6 to -3.0); n 3012
+  stretch : kept  21.5% (sym  30.5%), difference  -9.0 points (95% -10.6 to -7.5); n 3012
+  box     : kept  29.1% (sym  30.5%), difference  -1.4 points (95% -2.5 to -0.2); n 3012
+
+BY DURATION (kept share, K 8 to 14)
+     4 h box: sym 26.2%; skew 17.7%; stretch  9.8%; box 31.9%
+     8 h box: sym 38.4%; skew 34.1%; stretch 25.2%; box 39.7%
+    14 h box: sym 36.0%; skew 31.6%; stretch 30.1%; box 32.1%
+    20 h box: sym 21.4%; skew 21.0%; stretch 20.7%; box 12.5%
+
+BY K (kept share, all durations)
+  K    8: sym 14.1%; skew 10.3%; stretch  8.1%; box 13.7%
+  K   10: sym 32.1%; skew 26.1%; stretch 20.1%; box 30.5%
+  K   12: sym 45.2%; skew 41.9%; stretch 36.3%; box 42.9%
+  K   14: sym 50.7%; skew 49.6%; stretch 48.0%; box 46.4%
