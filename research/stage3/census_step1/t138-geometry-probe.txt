@@ -1,0 +1,48 @@
+g2sealed: 594 stars; eclipse width known for 522; median width 4.9 h; median binary period 9.5 d
+g2dev: 301 stars; eclipse width known for 258; median width 5.0 h; median binary period 9.5 d
+g3: 612 stars; eclipse width known for 612; median width 4.9 h; median binary period 9.5 d
+
+=== R_sum = 1.5 x R_A ===
+g2sealed: mean g by period cell P = 13:0.63, 24:0.34, 43:0.19, 77:0.16, 139:0.15, 250:0.14, 448:0.14
+   rule A: mean sum without g 70.0, with g 10.8 (effective g 0.15); E at 10% = 1.08
+   rule B: mean sum without g 116.2, with g 17.8 (effective g 0.15); E at 10% = 1.78
+   rule C: mean sum without g 100.7, with g 16.8 (effective g 0.17); E at 10% = 1.68
+g2dev: mean g by period cell P = 13:0.62, 24:0.35, 43:0.18, 77:0.13, 139:0.11, 250:0.11, 448:0.11
+   rule A: mean sum without g 33.8, with g 4.6 (effective g 0.14); E at 10% = 0.46
+   rule B: mean sum without g 55.9, with g 7.6 (effective g 0.14); E at 10% = 0.76
+   rule C: mean sum without g 46.0, with g 7.1 (effective g 0.15); E at 10% = 0.71
+g3: mean g by period cell P = 13:0.77, 24:0.32, 43:0.17, 77:0.14, 139:0.13, 250:0.12, 448:0.12
+   rule A: mean sum without g 30.8, with g 7.1 (effective g 0.23); E at 10% = 0.71
+   rule B: mean sum without g 51.4, with g 11.0 (effective g 0.21); E at 10% = 1.10
+   rule C: mean sum without g 30.1, with g 6.3 (effective g 0.21); E at 10% = 0.63
+COMBINED three hunts, central 10%: rule A: E = 2.25, chance of none 10.5%, 95% ceiling on total rate 13.3%; rule B: E = 3.64, chance of none 2.6%, 95% ceiling on total rate 8.2%; rule C: E = 3.02, chance of none 4.9%, 95% ceiling on total rate 9.9%
+
+=== R_sum = 1.8 x R_A ===
+g2sealed: mean g by period cell P = 13:0.47, 24:0.22, 43:0.14, 77:0.11, 139:0.11, 250:0.11, 448:0.10
+   rule A: mean sum without g 70.0, with g 7.5 (effective g 0.11); E at 10% = 0.75
+   rule B: mean sum without g 116.2, with g 12.8 (effective g 0.11); E at 10% = 1.28
+   rule C: mean sum without g 100.7, with g 12.2 (effective g 0.12); E at 10% = 1.22
+g2dev: mean g by period cell P = 13:0.45, 24:0.18, 43:0.11, 77:0.09, 139:0.08, 250:0.07, 448:0.07
+   rule A: mean sum without g 33.8, with g 3.3 (effective g 0.10); E at 10% = 0.33
+   rule B: mean sum without g 55.9, with g 5.5 (effective g 0.10); E at 10% = 0.55
+   rule C: mean sum without g 46.0, with g 5.1 (effective g 0.11); E at 10% = 0.51
+g3: mean g by period cell P = 13:0.48, 24:0.11, 43:0.05, 77:0.04, 139:0.03, 250:0.03, 448:0.03
+   rule A: mean sum without g 30.8, with g 1.8 (effective g 0.06); E at 10% = 0.18
+   rule B: mean sum without g 51.4, with g 2.8 (effective g 0.05); E at 10% = 0.28
+   rule C: mean sum without g 30.1, with g 2.0 (effective g 0.07); E at 10% = 0.20
+COMBINED three hunts, central 10%: rule A: E = 1.26, chance of none 28.4%, 95% ceiling on total rate 23.9%; rule B: E = 2.11, chance of none 12.1%, 95% ceiling on total rate 14.2%; rule C: E = 1.93, chance of none 14.5%, 95% ceiling on total rate 15.5%
+
+=== R_sum = 2.2 x R_A ===
+g2sealed: mean g by period cell P = 13:0.34, 24:0.14, 43:0.09, 77:0.08, 139:0.07, 250:0.07, 448:0.07
+   rule A: mean sum without g 70.0, with g 4.5 (effective g 0.06); E at 10% = 0.45
+   rule B: mean sum without g 116.2, with g 7.7 (effective g 0.07); E at 10% = 0.77
+   rule C: mean sum without g 100.7, with g 7.1 (effective g 0.07); E at 10% = 0.71
+g2dev: mean g by period cell P = 13:0.33, 24:0.12, 43:0.09, 77:0.07, 139:0.06, 250:0.06, 448:0.06
+   rule A: mean sum without g 33.8, with g 2.1 (effective g 0.06); E at 10% = 0.21
+   rule B: mean sum without g 55.9, with g 3.9 (effective g 0.07); E at 10% = 0.39
+   rule C: mean sum without g 46.0, with g 3.7 (effective g 0.08); E at 10% = 0.37
+g3: mean g by period cell P = 13:0.24, 24:0.03, 43:0.01, 77:0.01, 139:0.01, 250:0.01, 448:0.01
+   rule A: mean sum without g 30.8, with g 0.4 (effective g 0.01); E at 10% = 0.04
+   rule B: mean sum without g 51.4, with g 0.7 (effective g 0.01); E at 10% = 0.07
+   rule C: mean sum without g 30.1, with g 0.2 (effective g 0.01); E at 10% = 0.02
+COMBINED three hunts, central 10%: rule A: E = 0.70, chance of none 49.7%, 95% ceiling on total rate 42.9%; rule B: E = 1.23, chance of none 29.3%, 95% ceiling on total rate 24.4%; rule C: E = 1.09, chance of none 33.6%, 95% ceiling on total rate 27.5%

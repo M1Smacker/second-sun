@@ -2,6 +2,8 @@
 
 Method (`research/stage3/census_step1/q1_expected.py`, full output `q1-expected.txt`): expected detections E = (occurrence per star in a cell) x (Horizon sum of detection chance in that cell), added over the cells the occurrence anchor covers. Horizon = `pipeline/horizon_reach.py`, rule R0 unchanged (main scenario: stability floor 5.6, no dilution). Sources opened: Armstrong et al. 2014 (abstract and ar5iv full text), Oddo et al. 2026 (abstract and arXiv HTML full text).
 
+> **READ THE UPDATE AT THE END FIRST.** After this was written, the geometry factor was looked up (Martin and Triaud 2015) and probed on every star. It is about 0.05 to 0.2, so the 13-to-22 tension below mostly disappears: the null is consistent with Kepler's rate, and our hunts could not have excluded it. The body below is kept as written (the first pass).
+
 ## Plain verdict
 **On paper our three hunts should have found planets if the Kepler rate applied. They found none. So one of the numbers is wrong, and the most likely culprit is our own reach map, which leaves out a geometry factor.** This is not a finding about planets.
 
@@ -53,3 +55,25 @@ Stars like the G2 sealed set (bright, 2-minute data, about 0.12 star-equivalents
 - LIKELY: Horizon is over-generous by several times (Kepler cross-check); Kepler's sensitivity of 40 to 70 star-equivalents.
 - UNCERTAIN: the size of g; how the 10% spreads over cells; whether Armstrong's rate applies to our binaries and in which direction (the paper says its rates are "skewed towards these shorter period binaries" and that all known planets orbit binaries above 7 days, full text read); the exact count of the 7 planets above 6 Earth radii.
 - NOT TESTED: g from first principles; the effect of later vetting (real planets can fail checks); Gaia or other binary populations.
+
+## UPDATE (same night, after opening Martin and Triaud 2015): the geometry factor is looked up and probed
+
+Sources opened (arXiv full text): Martin and Triaud 2015, "Circumbinary planets - why they are so likely to transit" (arXiv:1501.03631, abstract and Section 4 read); Oddo et al. 2026 section V.2 (window function and binary inclination from the eclipse width and depth, Eq. 7 and 8). Script `census_step1/t138_geometry_probe.py`, output `t138-geometry-probe.txt`. Exploratory and report-only: Horizon rule R0 is NOT amended by this (T138 does that, with Ahmed's OK).
+
+**CONFIRMED (text read):** for a coplanar planet around a randomly oriented binary the probability of transitability is R/(a_p - a_A) (Martin and Triaud Eq. 26), the same as Welsh et al. 2012; it is almost period-independent, and it rises steeply with a little mutual inclination (their example: certain eventual transit at 1 AU around a 0.3 AU eclipsing binary if the mutual inclination exceeds 0.6 degrees). **LIKELY (my step from their Eq. 26, not checked against the known systems):** for a binary that is known to eclipse with impact parameter b (in units of R_sum, from the eclipse width as in Oddo Eq. 7 and 8), an exactly coplanar planet transits star A if b < R_A a_b / (R_sum (a_p - a_A)). The probe applies this star by star with the real eclipse width of every G2 and G3 star (width known for 1,392 of 1,507) and sums Horizon's detection chance only where the condition holds.
+
+**Result (R_sum is the one unknown that matters; a_A = a_b / 2, total mass 2 Msun as Horizon):**
+| R_sum | effective g (G2 sealed / G2 dev / G3) | all three hunts at the central 10%: E (rule A / B) | chance of none (A / B) | 95% ceiling on the total rate (A / B) |
+|---|---|---|---|---|
+| 1.5 x R_A | 0.15 / 0.14 / 0.23 | 2.3 / 3.6 | 10% / 3% | 13% / 8% |
+| 1.8 x R_A | 0.11 / 0.10 / 0.06 | 1.3 / 2.1 | 28% / 12% | 24% / 14% |
+| 2.2 x R_A | 0.06 / 0.06 / 0.01 | 0.7 / 1.2 | 50% / 29% | 43% / 24% |
+
+**What changes:**
+1. The tension above (13 to 22 expected, none found) mostly disappears. With the geometry in, the three hunts expected about 1 to 4 planets at Kepler's central rate and had a 3% to 50% chance of finding none. **Our null is consistent with Kepler's 10%.** It also could not exclude it: the 95% ceiling on the total rate for planets above 6 Earth radii inside 300 days is 8% to 43% depending on R_sum, above Armstrong's 3.5% to 28% range centre.
+2. My guessed g of 0.1 to 0.25 in the tables above was in the right range (the probe gives 0.05 to 0.23), but it was a guess then and is a probe now. The Kepler cross-check (Horizon 135 to 223 star-equivalents against Kepler's 40 to 70) is explained by this factor, not by a defect in the recovery tables (LIKELY: with g the Horizon sums fall to 15 to 36).
+3. G3 loses most because its stars are bigger (median TIC radius 1.64 against a smaller G2 set) and the effect compounds with the R_sum assumption; effective g for G3 drops to 0.01 at R_sum = 2.2 R_A. The R_sum guess (the companion's size) is the largest unknown. A real value per star needs the eclipse depth ratio or the TIC radii of both stars (T138).
+4. Census sizing (rule B / rule A, R_sum = 1.5 to 1.8): to push the 95% ceiling on the total rate down to 10% needs about 1,000 to 2,400 stars of the G2-sealed kind; to 5%, about 2,800 to 4,800; to 3.5%, about 4,000 to 6,800. If the 10% rate is real, 2,000 such stars would expect about 3 to 4 detections (chance of none about 2% to 8%). So Census at 2,000 or more G2-type stars could both find planets and test Kepler's rate. At 1,000 stars it would find about 1 to 2.
+5. Armstrong's 10% is for a sample dominated by shorter-period binaries; the paper says the shortfall around short binaries is real, so the rate for our long binaries may be higher (UNCERTAIN, direction only).
+
+**NOT TESTED:** the condition against the known Kepler systems (Kepler-16, -34, -35, -38, -64, -413, -1647) which transit; a few degrees of mutual inclination (raises g, per Martin and Triaud); the transit of star B (adds some); eccentricity; masses other than 2 Msun in total.
