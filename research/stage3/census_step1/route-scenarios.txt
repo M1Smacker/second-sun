@@ -1,0 +1,9 @@
+Scenarios (files from sectors 27 to 109 only; stars never 2-minute targets in S1-26 shown as 'new'):
+all new stars, Tmag <= 13.5, ALL sectors                       stars 258,858  files  510,446      914 GB    45.6 h at 8 threads
+all new stars, Tmag <= 13.5, ONE sector each (first pass)      stars 258,858  files  258,858      463 GB    23.1 h at 8 threads
+new, Tmag <= 12, ONE sector each                               stars 218,225  files  218,225      391 GB    19.5 h at 8 threads
+new, Tmag <= 10, ONE sector each                               stars  82,976  files   82,976      149 GB     7.4 h at 8 threads
+new, Tmag <= 11, 4+ sectors, ALL their sectors                 stars  17,279  files  108,078      193 GB     9.7 h at 8 threads
+new, Tmag <= 10, 4+ sectors, ALL their sectors                 stars  12,703  files   71,999      129 GB     6.4 h at 8 threads
+new, Tmag <= 12, 6+ sectors, ALL their sectors                 stars   8,075  files   84,308      151 GB     7.5 h at 8 threads
+new, Tmag <= 13.5, 8+ sectors, ALL their sectors               stars   5,193  files   75,151      135 GB     6.7 h at 8 threads

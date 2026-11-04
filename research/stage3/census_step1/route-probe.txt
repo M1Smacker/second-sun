@@ -1,0 +1,3 @@
+files in the sector 27 script: 19997
+AWS S3: 20/20 files, 35.7 MB, mean 1.79 MB per file, 41.1 s wall = 0.49 files/s, 0.87 MB/s, 0 failures
+MAST: 6/6 files, 10.7 MB, mean 1.79 MB per file, 17.3 s wall = 0.35 files/s, 0.62 MB/s, 0 failures
