@@ -1,0 +1,17 @@
+g2sealed reach done
+g2dev reach done
+g3 reach done
+
+All three hunts at Kepler's central 10%; E = expected detections, none = chance of finding none, ceil = 95% ceiling on the total rate from our null
+  R_sum 1.5, Delta 0 deg: mean g at P 77-139 d 0.13; rule A E=2.25 none=11% ceil=13.3% | rule B E=3.64 none=3% ceil=8.2%
+  R_sum 1.5, Delta 1 deg: mean g at P 77-139 d 0.16; rule A E=2.54 none=8% ceil=11.8% | rule B E=4.14 none=2% ceil=7.3%
+  R_sum 1.5, Delta 2 deg: mean g at P 77-139 d 0.21; rule A E=3.10 none=5% ceil=9.7% | rule B E=5.13 none=1% ceil=5.8%
+  R_sum 1.5, Delta 3 deg: mean g at P 77-139 d 0.28; rule A E=4.32 none=1% ceil=6.9% | rule B E=7.19 none=0% ceil=4.2%
+  R_sum 1.8, Delta 0 deg: mean g at P 77-139 d 0.07; rule A E=1.26 none=28% ceil=23.9% | rule B E=2.11 none=12% ceil=14.2%
+  R_sum 1.8, Delta 1 deg: mean g at P 77-139 d 0.09; rule A E=1.43 none=24% ceil=21.0% | rule B E=2.37 none=9% ceil=12.7%
+  R_sum 1.8, Delta 2 deg: mean g at P 77-139 d 0.11; rule A E=1.76 none=17% ceil=17.1% | rule B E=2.91 none=5% ceil=10.3%
+  R_sum 1.8, Delta 3 deg: mean g at P 77-139 d 0.15; rule A E=2.37 none=9% ceil=12.7% | rule B E=3.94 none=2% ceil=7.6%
+  R_sum 2.2, Delta 0 deg: mean g at P 77-139 d 0.05; rule A E=0.70 none=50% ceil=42.9% | rule B E=1.23 none=29% ceil=24.4%
+  R_sum 2.2, Delta 1 deg: mean g at P 77-139 d 0.06; rule A E=0.74 none=48% ceil=40.5% | rule B E=1.31 none=27% ceil=22.9%
+  R_sum 2.2, Delta 2 deg: mean g at P 77-139 d 0.07; rule A E=0.89 none=41% ceil=33.9% | rule B E=1.54 none=21% ceil=19.4%
+  R_sum 2.2, Delta 3 deg: mean g at P 77-139 d 0.08; rule A E=1.07 none=34% ceil=27.9% | rule B E=1.88 none=15% ceil=16.0%

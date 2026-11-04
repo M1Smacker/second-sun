@@ -77,3 +77,12 @@ Sources opened (arXiv full text): Martin and Triaud 2015, "Circumbinary planets 
 5. Armstrong's 10% is for a sample dominated by shorter-period binaries; the paper says the shortfall around short binaries is real, so the rate for our long binaries may be higher (UNCERTAIN, direction only).
 
 **NOT TESTED:** the condition against the known Kepler systems (Kepler-16, -34, -35, -38, -64, -413, -1647) which transit; a few degrees of mutual inclination (raises g, per Martin and Triaud); the transit of star B (adds some); eccentricity; masses other than 2 Msun in total.
+
+## UPDATE 2 (same night): a few degrees of mutual inclination (`t138_incl_probe.py`, output `t138-incl-probe.txt`)
+Adding a mutual inclination Delta between the planet's plane and the binary's (small-angle argument, my own, LIKELY; Martin and Triaud 2015 show transitability rises with it, Li, Holman and Tao 2016 find known systems within about 3 degrees of coplanar), the geometry factor at 77 to 139 days rises from 0.07 to 0.15 for R_sum = 1.8 and Delta = 0 to 3 degrees (0.13 to 0.28 for R_sum = 1.5; 0.05 to 0.08 for R_sum = 2.2). All three hunts at Kepler's central 10%:
+| R_sum | Delta | E (rule A / B) | chance of none (A / B) | 95% ceiling on the total rate (A / B) |
+|---|---|---|---|---|
+| 1.5 | 0 / 1 / 2 / 3 degrees | 2.3 / 2.5 / 3.1 / 4.3 and 3.6 / 4.1 / 5.1 / 7.2 | 11% / 8% / 5% / 1% and 3% / 2% / 1% / 0% | 13% to 7% and 8% to 4% |
+| 1.8 | 0 / 1 / 2 / 3 degrees | 1.3 / 1.4 / 1.8 / 2.4 and 2.1 / 2.4 / 2.9 / 3.9 | 28% / 24% / 17% / 9% and 12% / 9% / 5% / 2% | 24% to 13% and 14% to 8% |
+| 2.2 | 0 / 1 / 2 / 3 degrees | 0.7 / 0.7 / 0.9 / 1.1 and 1.2 / 1.3 / 1.5 / 1.9 | 50% / 48% / 41% / 34% and 29% / 27% / 21% / 15% | 43% to 28% and 24% to 16% |
+**Corrected reading:** in most of the grid the null is consistent with Kepler's rate (chance of none 5% to 50%). In the most optimistic corner (a small companion, 2 to 3 degrees of tilt, the 10% spread over stable cells only) the chance of none falls to about 1%, which would point to a lower rate around our binaries. The honest summary is a range, not "consistent": **the null is consistent with Kepler's rate unless several optimistic assumptions all hold together.** The book sentence was softened to match (2.9.10). Still not checked: the geometry condition and Delta on real systems (T138).
