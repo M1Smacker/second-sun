@@ -1,0 +1,9 @@
+Gaia DR3 EB candidates, total: [['2184477']]
+P > 7 d: all magnitudes [['137637']]; query 12.6s;
+   cumulative: G<9: 115; G<10: 263; G<11: 565; G<12: 1203; G<13: 2709; G<14: 5503; G<15: 10206; G<16: 18826
+P > 10 d: all magnitudes [['96591']]; query 7.9s;
+   cumulative: G<9: 83; G<10: 186; G<11: 394; G<12: 831; G<13: 1831; G<14: 3767; G<15: 7016; G<16: 12963
+P > 20 d: all magnitudes [['41319']]; query 8.8s;
+   cumulative: G<9: 46; G<10: 93; G<11: 187; G<12: 381; G<13: 777; G<14: 1528; G<15: 2889; G<16: 5417
+P > 40 d: all magnitudes [['10726']]; query 3.9s;
+   cumulative: G<9: 26; G<10: 52; G<11: 104; G<12: 181; G<13: 311; G<14: 550; G<15: 1063; G<16: 1926

@@ -1,0 +1,36 @@
+planted dips (sign +1, with a prepared product): 6024; star-sectors 251; depth_ppm quantiles 10/50/90: [3098.0, 8660.0, 27739.0]; K quantiles: [6.0, 11.0, 18.0]
+overall: seen 63%, kept in tier 1 33%
+
+By K (depth over the 8 h box noise): share seen / kept / kept-given-seen
+  K 6-8: n  1004; seen   8%; kept   4%; kept given seen  47%
+  K 8-10: n  1004; seen  28%; kept  14%; kept given seen  51%
+  K 10-12: n  1004; seen  62%; kept  32%; kept given seen  52%
+  K 12-14: n  1004; seen  85%; kept  45%; kept given seen  53%
+  K 14-18: n  1004; seen  95%; kept  51%; kept given seen  54%
+  K 18-99: n  1004; seen  99%; kept  53%; kept given seen  54%
+
+Dips with depth 1,500 to 3,500 ppm (TOI-1338 b is 2,300 ppm as seen): by star brightness (Tmag)
+  n 648; median K 8.0; median noise 337 ppm
+  Tmag 0-11.5: n  172; median noise   178 ppm; median K 12.0; seen  63%; kept  41%
+  Tmag 11.5-12.5: n  316; median noise   333 ppm; median K  8.0; seen  30%; kept  18%
+  Tmag 12.5-13.0: n  120; median noise   415 ppm; median K  6.0; seen  16%; kept   9%
+  Tmag 13.0-99: n   40; median noise   371 ppm; median K  6.0; seen  18%; kept   8%
+
+Why seen dips are lost (flags set on seen-but-not-kept planted dips, any depth with K 8 to 14; a dip can carry several):
+  n 832 of 1750 seen dips with K 8 to 14 are not kept
+   gap_dump   :  28%
+   flipmatch  :   0%
+   c5         :  14%
+   ecl_overlap:  12%
+   repeater   :   7%
+   step       :  53%
+   ramp       :  21%
+   dominated  :  21%
+   common     :   0%
+   asym       :   0%
+   too_deep   :   0%
+   flare      :   0%
+
+By product family (best): kept share at K 8 to 14: QLP: 29% (n 2640); SPOC: 42% (n 60); TESS-SPOC: 44% (n 312)
+
+By box length (dur, h) at K 8 to 14: 4.0: seen 45%, kept 26%; 8.0: seen 64%, kept 38%; 14.0: seen 64%, kept 36%; 20.0: seen 59%, kept 21%
