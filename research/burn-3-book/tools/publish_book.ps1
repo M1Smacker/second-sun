@@ -26,6 +26,15 @@ function Run {                                  # run a native command, stop on 
     & $exe @rest
     if ($LASTEXITCODE -ne 0) { throw "FAILED (exit $LASTEXITCODE): $exe $($rest -join ' ')" }
 }
+function RunNet {                               # same as Run, for commands that use the network: up to 3 tries (FIX 79: one transient getaddrinfo error stopped a publish after every check had passed)
+    for ($try = 1; $try -le 3; $try++) {
+        $exe = $args[0]; $rest = @($args | Select-Object -Skip 1)
+        & $exe @rest
+        if ($LASTEXITCODE -eq 0) { return }
+        if ($try -lt 3) { Write-Host "network step failed (exit $LASTEXITCODE), retry $try of 2 in $($try * 10) s" -ForegroundColor Yellow; Start-Sleep -Seconds ($try * 10) }
+    }
+    throw "FAILED after 3 tries (exit $LASTEXITCODE): $($args -join ' ')"
+}
 function Step($t) { Write-Host "`n== $t" -ForegroundColor Cyan }
 
 New-Item -ItemType Directory -Force $work | Out-Null
@@ -126,16 +135,16 @@ Step "4c. Same-day lesson rule: is the book behind the work? (reminder, never bl
 if ($DryRun) { Write-Host "`nDry run: nothing pushed." -ForegroundColor Yellow; exit 0 }
 
 Step "5. Publish to gh-pages"
-if (-not (Test-Path "$pub\.git")) { Run git clone --quiet --branch gh-pages --single-branch $repoUrl $pub }
+if (-not (Test-Path "$pub\.git")) { RunNet git clone --quiet --branch gh-pages --single-branch $repoUrl $pub }
 Run git -C $pub config user.name "M1Smacker"
 Run git -C $pub config user.email "208063596+M1Smacker@users.noreply.github.com"
 Run git -C $pub config core.autocrlf false      # keep LF; no line-ending warnings
-Run git -C $pub pull --quiet --ff-only origin gh-pages
+RunNet git -C $pub pull --quiet --ff-only origin gh-pages
 Get-ChildItem $pub -Force | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
 Copy-Item "$build\*" $pub -Recurse -Force
 New-Item -ItemType File -Force "$pub\.nojekyll" | Out-Null
 Run git -C $pub add -A
 if (-not (git -C $pub status --porcelain)) { Write-Host "Nothing changed since the last publish." -ForegroundColor Green; Write-Host $url; exit 0 }
 Run git -C $pub commit --quiet -m "Publish book (built from main $mainHash, strict build + checks passed)`n`nCo-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
-Run git -C $pub push origin gh-pages
+RunNet git -C $pub push origin gh-pages
 Write-Host "`nPublished. GitHub takes 1 to 2 minutes to go live: $url" -ForegroundColor Green
