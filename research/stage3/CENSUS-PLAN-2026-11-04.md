@@ -19,7 +19,7 @@ Agreed by Ahmed on 4 Nov 2026 after the G3 result. The name was my choice; his w
 ## 4. The stages (each step shown to Ahmed and taught before it is done)
 1. **Teach** how eclipsing binaries are found in light curves (first lesson, 4 Nov).
 2. **Census list (idea 1):** find eclipsing binaries ourselves in TESS 2-minute data after sector 26, then FFI data; cross-check with Gaia DR3 and the TESS Ten Thousand Catalog; vet with the usual checks (secondary eclipse, odd-even depths, nearby-star blends). Three-week rule lifted for this one system (Ahmed, 4 Nov).
-3. **Rank by value (idea 2):** before any big download, score every candidate binary with the Horizon reach calculator (brightness, period, star size, sectors) and keep the best few thousand.
+3. **Rank by value (idea 2):** before any big download, score every candidate binary by Horizon reach (with the transit-geometry factor, T138) TIMES an occurrence prior by binary period (about zero below 7 days, Hamers 2016; Q2 of 4 Nov night showed reach alone favours the wrong stars: short binaries) and keep the best few thousand.
 4. **Petrova upgrades that pay (idea 3):** recover the 14% of reads with no safe windows; settle the false-alarm check (missed its mark twice: 8.91 and 9.34 per 1,000 against 8); raise recovery of TOI-1338 b-size dips (6% in G3). Plus the fix-list and build-list items that Census needs.
 5. **New search idea to research (idea 4):** circumbinary transits shift in time and depth because the stars move. Combine dips that fit one possible planet orbit across all sectors instead of judging each dip alone. Literature check first (some groups do versions of this); call it ours only if it is.
 6. **One big audit of Petrova,** then freeze a new version.

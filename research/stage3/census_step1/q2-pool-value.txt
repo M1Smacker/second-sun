@@ -1,0 +1,36 @@
+G3 fit: log10(noise8 ppm) = 0.26 + 0.211 x Tmag over 594 stars (photon-noise expectation 0.2)
+disk: G3 0.54 MB per star-sector; G2 sealed 2.12 MB per star-sector
+G3 as searched (faint TTC, QLP): 612 stars, 3415 star-sectors, 1.8 GB, region sum 51.4 (0.084/star, 27.9/GB), K16 cell 19.1
+G2 sealed as searched (bright, 2-min): 594 stars, 6733 star-sectors, 14.3 GB, region sum 116.2 (0.196/star, 8.1/GB), K16 cell 87.3
+A. TTC fainter 13.5-15.5 (+1.36 mag), 785 stars: 612 stars, 3415 star-sectors, 1.8 GB, region sum 25.8 (0.042/star, 14.0/GB), K16 cell 4.0
+B. TTC 5-7 d, 495 stars: 612 stars, 3415 star-sectors, 1.8 GB, region sum 78.2 (0.128/star, 42.5/GB), K16 cell 24.8
+C. TTC 2-5 d, 1,205 stars: 612 stars, 3415 star-sectors, 1.8 GB, region sum 100.1 (0.164/star, 54.4/GB), K16 cell 24.8
+D. TTC under 2 d, 634 stars: 612 stars, 3415 star-sectors, 1.8 GB, region sum 119.1 (0.195/star, 64.7/GB), K16 cell 24.8
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+E3: region sum 52.5 (0.088/star, 14.5/GB), K16 41.9, 3.6 GB
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+D:\second-sun\research\stage3\census_step1\q2_pool_value.py:51: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  keep = g2_ss.groupby("tic", group_keys=False).apply(lambda g: g.sample(min(k, len(g)), random_state=int(rng.integers(1e9))))
+E6: region sum 79.0 (0.133/star, 13.1/GB), K16 62.0, 6.0 GB
+
+PER 1,000 STARS (region star-equivalents; GB):
+  G3 as searched (faint TTC, QLP)                                   84.0 star-eq per 1,000 stars;    3.0 GB per 1,000 stars;    27.9 per GB
+  G2 sealed as searched (bright, 2-min)                            195.6 star-eq per 1,000 stars;   24.1 GB per 1,000 stars;     8.1 per GB
+  A. TTC fainter 13.5-15.5 (+1.36 mag), 785 stars                   42.1 star-eq per 1,000 stars;    3.0 GB per 1,000 stars;    14.0 per GB
+  B. TTC 5-7 d, 495 stars                                          127.9 star-eq per 1,000 stars;    3.0 GB per 1,000 stars;    42.5 per GB
+  C. TTC 2-5 d, 1,205 stars                                        163.6 star-eq per 1,000 stars;    3.0 GB per 1,000 stars;    54.4 per GB
+  D. TTC under 2 d, 634 stars                                      194.6 star-eq per 1,000 stars;    3.0 GB per 1,000 stars;    64.7 per GB
+  E3. post-26 two-minute bright stars of the G2 type, 3 sectors     88.5 star-eq per 1,000 stars;    6.1 GB per 1,000 stars;    14.5 per GB
+  E6. post-26 two-minute bright stars of the G2 type, 6 sectors    133.0 star-eq per 1,000 stars;   10.1 GB per 1,000 stars;    13.1 per GB
