@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (4 Nov 2026):** the G3 search ran once, in 8 minutes, and found nothing: no excess of real dips over noise. The false-alarm line missed its mark again, and small planets stay out of reach. Next: your words on the rename and the Learning Space. Begin with [Start here](start/index.md).
+    **Two-minute recap (4 Nov 2026, night):** G3 found nothing. Overnight we counted the next fuel: about 365,000 stars have two-minute TESS data after sector 26 and no binary list. Our reach map is too generous, so that fix comes before sizing Census. Next: your words on Census and the rename. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 
