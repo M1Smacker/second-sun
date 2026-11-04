@@ -1,0 +1,20 @@
+S1-26 2-minute stars: EB share (and G2-type share) by Tmag bin and number of sectors in S1-26
+  Tmag 0-10, sectors 1-1: stars  78493; EB  1.47%; G2-type  0.35%
+  Tmag 0-10, sectors 2-3: stars  26235; EB  2.17%; G2-type  0.53%
+  Tmag 0-10, sectors 4-7: stars   5498; EB  2.00%; G2-type  0.67%
+  Tmag 0-10, sectors 8-99: stars   6286; EB  1.73%; G2-type  0.52%
+  Tmag 10-12, sectors 1-1: stars  44927; EB  2.15%; G2-type  0.44%
+  Tmag 10-12, sectors 2-3: stars  16614; EB  4.03%; G2-type  1.03%
+  Tmag 10-12, sectors 4-7: stars   4378; EB  2.95%; G2-type  0.71%
+  Tmag 10-12, sectors 8-99: stars   7404; EB  1.80%; G2-type  0.55%
+  Tmag 12-13.5, sectors 1-1: stars  16117; EB  1.30%; G2-type  0.28%
+  Tmag 12-13.5, sectors 2-3: stars   5423; EB  2.47%; G2-type  0.61%
+  Tmag 12-13.5, sectors 4-7: stars   1088; EB  2.94%; G2-type  0.46%
+  Tmag 12-13.5, sectors 8-99: stars   1427; EB  1.19%; G2-type  0.42%
+
+Pilot pools (stars new to 2-minute, S27-109 coverage) and expected EBs using the S1-26 shares of the same Tmag bin and the sector bin:
+  new, Tmag<=13.5 (all)                                        stars 258,858; expected EBs    5842; expected G2-type   1376
+  new, Tmag<=13.5, 8+ sectors (pilot pool)                     stars   5,193; expected EBs      85; expected G2-type     27
+  new, Tmag<=12, 6+ sectors                                    stars   8,075; expected EBs     168; expected G2-type     50
+  new, Tmag<=10, 4+ sectors                                    stars  12,703; expected EBs     251; expected G2-type     84
+  new, Tmag<=11, 4+ sectors                                    stars  17,279; expected EBs     370; expected G2-type    114

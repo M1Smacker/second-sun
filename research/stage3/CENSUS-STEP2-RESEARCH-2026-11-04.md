@@ -40,3 +40,14 @@ Two questions, both asked in the Census plan and neither answered by Step 1: (A)
 
 ## Labels
 CONFIRMED: sector-27 script size, file size, measured speeds, scenario arithmetic, abstract and full-text statements quoted above. LIKELY: that later sectors have the same size; that a plain finder costs less than the G2 search. UNCERTAIN: sustained speed over hours, bucket behaviour under heavy load, the finder's false-alarm and completeness rates. NOT TESTED: ADS and non-arXiv sources for a post-26 list; reading any light curve; the AWS bucket terms of use (public open-data registry, not opened).
+
+## UPDATE (same night): what each pool would yield (own data, `census_step1/eb_share_by_coverage.py`, output `eb-share-by-coverage.txt`)
+The Prsa 2022 EB share among 2-minute stars of sectors 1 to 26, by brightness and number of sectors, is flat at about 1.2% to 4.0% (EB) and 0.3% to 1.0% (G2 type: period over 5 d, detached). It does not climb with coverage. So the number of G2-type stars we could find is set by how many stars we scan, not by how many sectors each has. Applied to the pools of the scenario table (the stars new to 2-minute data in sectors 27 to 109):
+| pool | stars | expected EBs | expected G2-type | download |
+|---|---|---|---|---|
+| Tmag up to 13.5, all new | 258,858 | about 5,800 | about 1,400 | 914 GB, 46 h (all sectors) or 463 GB, 23 h (one sector each) |
+| Tmag up to 11, 4 or more sectors | 17,279 | about 370 | about 110 | 193 GB, 9.7 h |
+| Tmag up to 10, 4 or more sectors | 12,703 | about 250 | about 84 | 129 GB, 6.4 h |
+| Tmag up to 12, 6 or more sectors | 8,075 | about 170 | about 50 | 151 GB, 7.5 h |
+| Tmag up to 13.5, 8 or more sectors | 5,193 | about 85 | about 27 | 135 GB, 6.7 h |
+**Correction to the verdict above:** the 5,193 long-coverage stars (6.7 hours) are a good PILOT for testing the eclipse finder and the fetch, but they hold only about 27 G2-type stars. A Census of over 1,000 such stars needs most of the 258,858 new bright stars, which is the 23 to 46 hour and 460 to 910 GB job. That is still days, not months, if streamed (fetch, reduce, delete). All the yields are LIKELY at best (the S1 to 26 shares may not transfer: UNCERTAIN, factor 2). Free ground truth for the finder: 4,161 Prsa EBs were 2-minute targets again in sectors 27 to 109 (Step 1), including 854 of the G2 stars; a finder run on their later sectors can be scored for recall without any new labels. NOT done; Ahmed's call.
