@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.1 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.9.8 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.9.9 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.10 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -97,6 +97,7 @@ From now on, when a level is marked done, the track version is written next to t
 Each saved round carries a date, the name of its deck and a data-format number, so the version a round used can be read from its date.
 
 The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its own deck, named rehearsal-v1; its rounds carry that name and are counted apart from the Eyes rounds above.
+| 2.9.9 | 4 Nov | Seven new facts on the claims page (target-list counts, the 10% occurrence rate, the transit-geometry formula, Gaia counts, the geometry probe, the fetch speed test, the pooled false-alarm rate), each with its label and source |
 | 2.9.8 | 4 Nov | Field note 4 Nov extended (the transit-geometry probe: the null is consistent with Kepler's rate; fetching the light is cheaper than G3 suggested); recap refreshed; an eleventh check after level 5 and a longer tenth (track 1.10) |
 | 2.9.7 | 4 Nov | Night addition to the 4 Nov field note (unlisted two-minute stars after sector 26, why 16% of reads were lost, the reach map is too generous); home recap refreshed; a tenth check after level 5 in the learning track (track 1.9) |
 | 2.9.6 | 4 Nov | The G3 search is finished and scored (no excess of real dips over noise); new 4 Nov field note, home recap refreshed, Search window text for a finished counts-only campaign; a ninth check after level 5 in the learning track (track 1.8) |
