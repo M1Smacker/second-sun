@@ -16,7 +16,7 @@ Two questions, both asked in the Census plan and neither answered by Step 1: (A)
 ## B. What it costs to fetch the light (CONFIRMED by measurement on 66 files of sector 27; extrapolation UNCERTAIN)
 - **Routes:** MAST publishes a cURL script per sector listing every 2-minute light curve (sector 27 has 19,997 files; scripts exist up to sector 109 in the FFI list). The same files sit in the public AWS bucket at `stpubdata.s3.amazonaws.com/tess/public/tid/s####/xxxx/xxxx/xxxx/xxxx/<file>`, which worked and returned the same size as MAST.
 - **File size:** 1.79 MB per sector-27 light curve (every probed file the same size, 1,785,600 bytes).
-- **Speed:** 1 thread from the bucket 0.49 files/s (0.87 MB/s); MAST 0.35 files/s; **8 threads from the bucket 3.1 files/s (5.6 MB/s)**. G3 took 21 hours for 5,031 files because of MAST time-outs and restarts (0.07 files/s); the bucket route did not time out in 66 files.
+- **Speed:** 1 thread from the bucket 0.49 files/s (0.87 MB/s); MAST 0.35 files/s; **8 threads from the bucket 3.1 files/s (5.6 MB/s)**. G3's download took 21 hours of wall clock, but about 20 of them were a stall after a MAST time-out at 06:13 on the first morning (410 of 612 stars done, hung processes, restarted at 02:30 the next night); the restart moved the last 202 stars (0.65 GB) in about 10 minutes, about 2.7 files/s, in line with the 8-thread bucket test. The bucket route did not time out in 66 files (UNCERTAIN for long runs). Checked against `g3-download.log` and `g3-download-restart.log`.
 - **Disk:** D: has 464 GB free. Streaming (fetch, reduce to a few hundred bytes of features, delete the file) removes the disk limit.
 
 | scenario (stars never 2-minute targets in S1 to 26; sectors 27 to 109) | stars | files | GB | hours at 8 threads |
