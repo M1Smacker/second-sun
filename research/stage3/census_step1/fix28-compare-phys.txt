@@ -1,0 +1,20 @@
+official rows_g3 (+1 signs with K): 6024; shape rows: sym 6024, phys03 6024, phys08 6024
+
+IDENTITY CHECK, official vs the sym variant on 6024 matching injections: tier1 identical in 100.0%, seen identical in 100.0%; kept share 33.1% vs 33.1%
+
+PAIRED COMPARISON, K 8 to 14 pooled (share kept in tier 1 / share seen), difference against sym with a star-sector bootstrap 95% interval
+  sym     : kept  30.5% (sym  30.5%), difference  +0.0 points (95% +0.0 to +0.0); n 3012
+  phys03  : kept  27.8% (sym  30.5%), difference  -2.7 points (95% -3.5 to -1.8); n 3012
+  phys08  : kept  27.1% (sym  30.5%), difference  -3.4 points (95% -4.3 to -2.6); n 3012
+
+BY DURATION (kept share, K 8 to 14)
+     4 h box: sym 26.2%; phys03 25.4%; phys08 21.6%
+     8 h box: sym 38.4%; phys03 37.3%; phys08 33.6%
+    14 h box: sym 36.0%; phys03 31.6%; phys08 32.9%
+    20 h box: sym 21.4%; phys03 17.0%; phys08 20.1%
+
+BY K (kept share, all durations)
+  K    8: sym 14.1%; phys03 11.6%; phys08 11.1%
+  K   10: sym 32.1%; phys03 28.5%; phys08 27.0%
+  K   12: sym 45.2%; phys03 43.4%; phys08 43.1%
+  K   14: sym 50.7%; phys03 49.9%; phys08 50.4%

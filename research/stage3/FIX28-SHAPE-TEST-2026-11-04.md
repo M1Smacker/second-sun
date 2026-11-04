@@ -30,3 +30,20 @@ By depth (all box lengths): K 8: 14.1 / 10.3 / 8.1 / 13.7; K 10: 32.1 / 26.1 / 2
 
 ## Labels
 CONFIRMED: all rates (own run), the identity check, the paired differences and intervals. LIKELY: the mechanism (matched-filter mismatch), the real-world range. UNCERTAIN: where real transits fall between the shapes. NOT TESTED: a physical limb-darkened shape; duration changes during the transit.
+
+## Follow-up (4 Nov 2026, morning): a PHYSICAL shape pins the number
+Same chain, same 300 star-sectors, same seeds, 6,024 positive injections per variant. The injected profile is a planet of radius ratio 0.08 crossing a quadratic-limb-darkened star (u1 0.40, u2 0.25, ASSUMED typical Sun-like values, not looked up) along a straight chord, normalised so the deepest point equals the plateau depth K (same convention as above). Two impact parameters: b 0.3 (short ramps, curved bottom; within 1% of the maximum for 20% of the width, half-maximum width 88% of the total) and b 0.8 (long ramps; 17% of the width near the maximum, half-maximum width 77%). Script `census_step1/chain_recovery_phys.py`, output `fix28-compare-phys.txt`.
+
+**Plain verdict: a physical transit costs about 3 points of kept share (relative about 10%) against our trapezoid, not the 9 of the V-like extreme.** Kept share at K 8 to 14: sym 30.5%, phys b 0.3 27.8% (minus 2.7 points, 95% minus 3.5 to minus 1.8), phys b 0.8 27.1% (minus 3.4, minus 4.3 to minus 2.6).
+
+| box length | sym | phys b 0.3 | phys b 0.8 |
+|---|---|---|---|
+| 4 h | 26.2% | 25.4% | 21.6% |
+| 8 h | 38.4% | 37.3% | 33.6% |
+| 14 h | 36.0% | 31.6% | 32.9% |
+| 20 h | 21.4% | 17.0% | 20.1% |
+By depth (all lengths): K 8: 14.1 / 11.6 / 11.1; K 10: 32.1 / 28.5 / 27.0; K 12: 45.2 / 43.4 / 43.1; K 14: 50.7 / 49.9 / 50.4. The loss is again concentrated at shallow K and vanishes for loud dips.
+
+What it means: the best single correction for the quoted completeness is minus 3 points (relative minus 10%), with a plausible band of minus 2 to minus 4 for planets of radius ratio 0.08 and ordinary impact parameters. The earlier minus 1 to minus 9 range covered shapes no physical planet produces (V-shaped dips with 40% ramps). Horizon reach sums built on the trapezoid tables are therefore about 10% generous for this size class; small planets (shorter ingress) lose less, grazing geometries lose more (NOT tested beyond b 0.8). Doing the same correction in Census sizing shifts evidence by about 10%, inside every other uncertainty.
+
+Labels: CONFIRMED (own runs, paired, intervals): the numbers above for these two shapes. LIKELY: minus 3 points as the best correction for radius ratio 0.08. UNCERTAIN: limb-darkening coefficients (assumed), other radius ratios, duration changes during the transit (circumbinary transits are not constant-velocity chords). NOT TESTED: radius ratios other than 0.08; b above 0.8; eccentric or accelerating transits.
