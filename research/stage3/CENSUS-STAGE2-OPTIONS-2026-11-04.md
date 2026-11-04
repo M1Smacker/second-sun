@@ -12,6 +12,9 @@ You asked to decide "today or someday" whether we build the list. Tonight's grou
 | 5 | **Gaia queue (optional)** | The 5,503 Gaia candidates with P over 7 d and G under 14 as a priority list for the scan | about 1 | minutes | Gaia periods for long binaries are weak; use as a hint, not as truth. |
 After step 4: audit and freeze a new Petrova, preregister, prepare the Search window, and your explicit go (stages 6 and 7 of the Census plan). The rename, T137 (window table), and the S2 decision all land before the freeze.
 
+## A tool every step needs (not yet built, one more thing to approve)
+A streaming fetcher with retries, a heartbeat every minute, a stall alarm that ends the run loudly, and per-file reduce-and-delete. Reason: the G3 download lost about 20 of its 21 hours to a time-out nobody saw (FIX 72 patched the G3 script, not proven against a real time-out). About 0.5 to 1 point. Steps 2 to 4 reuse it.
+
 ## My lean
 Do step 1 first, then step 2, then step 3, with a short lesson before each so you stay in the loop. Step 4 only after step 2 has shown the finder works and after you have read the pilot's result. Total to a frozen list: about 8 to 10 points of my usage over several days, not months, if nothing surprises us.
 
