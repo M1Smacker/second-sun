@@ -1,0 +1,2 @@
+S1-26 unique 232,764; S27-109 unique 476,784; new only 364,656; new only Tmag<=13.5 258,858
+G3 run output: 4080 star-sector groups; product reads in main groups 5634; 'no safe windows' reads 784; groups with no ok product 655; stars 611; stars with at least one ok group 595

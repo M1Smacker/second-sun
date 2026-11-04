@@ -26,3 +26,6 @@ Census stars will mostly sit in sectors 27 to 109. That is the era with the high
 - LIKELY: reach gains (assumes full coverage for the lost star-sectors; recovery tables from the G2 development split reused unchanged).
 - UNCERTAIN: whether a different window rule (not just more neighbours) would be as safe: scattered light is per camera and CCD, so same-CCD neighbours are the right idea; a sector-wide fallback would be weaker.
 - NOT TESTED: how many extra false alarms the recovered star-sectors would add (S2 is already over its mark).
+
+## Independent re-check (same night, `census_step1/crosscheck_counts.py`, plain csv/json, no pandas, from the RUN output rather than the audit tables)
+G3 run output: 4,080 star-sector groups; 5,634 product reads; 784 with status "no safe windows"; 655 groups with no ok product; 611 stars, 595 with at least one ok group. Every figure matches the audit-based counts above (784 reads, 655 lost star-sectors, 16 stars lost). The 5,634 reads against 5,031 audit files differ because some files are read as more than one product (a TESS-SPOC file gives PDCSAP and SAP). CONFIRMED by two routes. The target-list counts of Step 1 were re-counted the same way: 232,764 and 476,784 stars, 364,656 new, 258,858 new at Tmag 13.5 or brighter: all match.
