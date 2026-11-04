@@ -1,0 +1,39 @@
+radius bins >6: [7, 9, 11, 13, 15] ; period bins <300 d: [13, 24, 43, 77, 139, 249]
+
+g2sealed: 594 stars
+  rule A (30 cells, mean sum 70.0): central 10.0%: E=7.00 (P0=0%); low 3.5%: E=2.45 (P0=9%); high 28%: E=19.61 (P0=0%)
+  rule B (15 cells, mean sum 116.2): central 10.0%: E=11.62 (P0=0%); low 3.5%: E=4.07 (P0=2%); high 28%: E=32.53 (P0=0%)
+  rule C (4 cells, mean sum 100.7): central 10.0%: E=10.07 (P0=0%); low 3.5%: E=3.52 (P0=3%); high 28%: E=28.20 (P0=0%)
+g2dev: 301 stars
+  rule A (30 cells, mean sum 33.8): central 10.0%: E=3.38 (P0=3%); low 3.5%: E=1.18 (P0=31%); high 28%: E=9.47 (P0=0%)
+  rule B (15 cells, mean sum 55.9): central 10.0%: E=5.59 (P0=0%); low 3.5%: E=1.96 (P0=14%); high 28%: E=15.66 (P0=0%)
+  rule C (4 cells, mean sum 46.0): central 10.0%: E=4.60 (P0=1%); low 3.5%: E=1.61 (P0=20%); high 28%: E=12.89 (P0=0%)
+g3: 612 stars
+  rule A (30 cells, mean sum 30.8): central 10.0%: E=3.08 (P0=5%); low 3.5%: E=1.08 (P0=34%); high 28%: E=8.63 (P0=0%)
+  rule B (15 cells, mean sum 51.4): central 10.0%: E=5.14 (P0=1%); low 3.5%: E=1.80 (P0=17%); high 28%: E=14.39 (P0=0%)
+  rule C (4 cells, mean sum 30.1): central 10.0%: E=3.01 (P0=5%); low 3.5%: E=1.05 (P0=35%); high 28%: E=8.42 (P0=0%)
+
+COMBINED G2 dev + G2 sealed + G3 (disjoint stars; G1 has no reach map):
+  rule A: central 10.0%: E=13.47, chance of seeing none 0%; low 3.5%: E=4.71, chance of seeing none 1%; high 28%: E=37.71, chance of seeing none 0%
+  rule B: central 10.0%: E=22.35, chance of seeing none 0%; low 3.5%: E=7.82, chance of seeing none 0%; high 28%: E=62.58, chance of seeing none 0%
+  rule C: central 10.0%: E=17.68, chance of seeing none 0%; low 3.5%: E=6.19, chance of seeing none 0%; high 28%: E=49.51, chance of seeing none 0%
+
+CENSUS WHAT-IF (per 1,000 stars like the G2 sealed set; expected detections at the central rate):
+  rule A: 11.79 per 1,000 stars; stars needed for E=3 (95% chance to see at least one if the rate is right): 254
+  rule B: 19.56 per 1,000 stars; stars needed for E=3 (95% chance to see at least one if the rate is right): 153
+  rule C: 16.95 per 1,000 stars; stars needed for E=3 (95% chance to see at least one if the rate is right): 177
+
+SENSITIVITY TO g (transit geometry; Horizon uses g = 1, UNCERTAIN; for a planet at 10 binary periods g is roughly a_bin/a_planet = 0.2 to 0.3 -- my estimate, NOT looked up):
+sum over the three hunts of the mean cell sums: rule A 135, rule B 223
+  g=1.0: expected at central 10%: rule A E=13.47 (none seen 0.0%), rule B E=22.35 (none seen 0.0%); 95% ceiling on the total rate from our zero: rule A 2.2%, rule B 1.3%
+  g=0.5: expected at central 10%: rule A E=6.73 (none seen 0.1%), rule B E=11.17 (none seen 0.0%); 95% ceiling on the total rate from our zero: rule A 4.5%, rule B 2.7%
+  g=0.25: expected at central 10%: rule A E=3.37 (none seen 3.4%), rule B E=5.59 (none seen 0.4%); 95% ceiling on the total rate from our zero: rule A 8.9%, rule B 5.4%
+  g=0.1: expected at central 10%: rule A E=1.35 (none seen 26.0%), rule B E=2.23 (none seen 10.7%); 95% ceiling on the total rate from our zero: rule A 22.3%, rule B 13.4%
+
+KEPLER CROSS-CHECK (Armstrong 2014: 1735 Kepler binaries in the initial sample, 7 known systems; 10% central rate):
+  4 to 7 detections / 10% = 40 to 70 star-equivalents of Kepler for this region (some of the 7 known planets are smaller than 6 Earth radii; which ones is from memory, UNCERTAIN; the 95% range of the rate, 3.5% to 28%, would widen it to 15 to 200). Ours by Horizon with g = 1: rule A 135, rule B 223.
+
+CENSUS: stars like the G2 sealed set needed to push the 95% ceiling on the total rate (R>6 Earth radii, P<300 d, coplanar) down to a target, if nothing is found:
+  g=1.0: ceiling 10%: rule A 254 stars, rule B 153 stars; ceiling 5%: rule A 509 stars, rule B 307 stars; ceiling 3%: rule A 727 stars, rule B 438 stars
+  g=0.5: ceiling 10%: rule A 509 stars, rule B 307 stars; ceiling 5%: rule A 1,018 stars, rule B 614 stars; ceiling 3%: rule A 1,454 stars, rule B 877 stars
+  g=0.25: ceiling 10%: rule A 1,018 stars, rule B 614 stars; ceiling 5%: rule A 2,036 stars, rule B 1,227 stars; ceiling 3%: rule A 2,908 stars, rule B 1,753 stars
