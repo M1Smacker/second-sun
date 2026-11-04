@@ -60,3 +60,15 @@ No change; the reasons stay as written above. The other ~170 old dated lines wer
 1. G3 inputs: nothing blocks the go; U01 is LIKELY and cheap if wrong, U02 waits for the run.
 2. Horizon page (R3): must carry the optimism sentence (R0 Amendment 3) and the "UNCERTAIN how the 10% maps" label; R1b is queued, not done.
 3. Book: F-028 corrected (claims page and chapter 3).
+
+## Added 4 Nov 2026 night (RS-011), items that changed or are new
+| ID | Item | What was done | Status |
+|---|---|---|---|
+| H2 | What Armstrong 2014's 10% covers. | Abstract and ar5iv text read: 10.0 (+18, -6.5)% for R_p > 6 Earth radii and P_p < 300 d if coplanar, from 1,735 Kepler binaries and 7 known systems; the paper says its rates are skewed towards shorter-period binaries and that all known planets sit around binaries above 7 d (so the rate for our long binaries is UNCERTAIN, direction probably higher). Li 2016 still not opened. | partly settled (CONFIRMED) |
+| H6 NEW | Horizon has no transit-geometry factor g (found 4 Nov, `Q1-EXPECTED-PLANETS-2026-11-04.md`). | Martin and Triaud 2015 Eq. 26 read; star-by-star probe (`t138_geometry_probe.py`) gives effective g 0.05 to 0.23, depending on R_sum (companion size 1.5 to 2.2 R_A). The condition itself is my step from Eq. 26 and is not checked on the known Kepler systems. | open; T138 |
+| H7 NEW | R_sum / R_A (companion size) feeds g. | Not measured for G2 and G3 stars. | NOT TESTED; needs depth ratios or two-star radii |
+| C1 NEW | EB share of the new 2-minute stars (1.97%, from the Prsa list in sectors 1 to 26) applied to sectors 27 to 109. | Arithmetic only (`CENSUS-STEP1-COUNTS`). Reasons it may differ: guest-observer target selection, coverage, long periods missed. | UNCERTAIN, factor 2; settle with a pilot on the long-coverage stars (stage 2) |
+| C2 NEW | Sustained fetch speed of the public AWS bucket for 2-minute light curves. | 66 files probed (3.1 files/s at 8 threads). | UNCERTAIN until a larger run; check bucket terms of use |
+| C3 NEW | Is there a post-sector-26 EB list for long periods? | arXiv title and abstract search only; one partial list (Lomb-Scargle, periods up to 13 d x N sectors). | NOT TESTED outside arXiv (ADS) |
+| C4 NEW | Is TESS single-event linking across sectors with an upside-down control already published? | Six abstracts and two full texts (STANLEY, Windemuth). | UNCERTAIN; wider search needed before any novelty claim |
+| S2a NEW | Pooled false-alarm rate 8.57 per 1,000 (7.08 to 10.29 Poisson). | `Q6-S2-EVIDENCE-2026-11-04.md`; clustering widens it (roughly 6.2 to 11, UNCERTAIN). | Ahmed's decision |
