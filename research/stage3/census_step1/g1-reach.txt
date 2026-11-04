@@ -1,0 +1,6 @@
+G1: 549 stars (508 with a TIC radius, median 2.14), 549 with a usable star-sector, 5038 star-sectors
+G1 mean cell sum without geometry: rule A 18.4, rule B 29.9; Kepler-16 cell (R=7, P 77/139): 13.8, 12.3
+  R_sum 1.5, rule A: G1 with g = 0.15: sum 2.8 (E 0.28); all four hunts E 2.53, chance of none 8%, 95% ceiling on the total rate 11.9%
+  R_sum 1.5, rule B: G1 with g = 0.15: sum 4.5 (E 0.45); all four hunts E 4.09, chance of none 2%, 95% ceiling on the total rate 7.3%
+  R_sum 1.8, rule A: G1 with g = 0.11: sum 2.0 (E 0.20); all four hunts E 1.46, chance of none 23%, 95% ceiling on the total rate 20.5%
+  R_sum 1.8, rule B: G1 with g = 0.11: sum 3.3 (E 0.33); all four hunts E 2.44, chance of none 9%, 95% ceiling on the total rate 12.3%
