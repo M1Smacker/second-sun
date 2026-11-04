@@ -17,6 +17,8 @@ Run everything with `D:\second-sun\.venv\Scripts\python.exe` (pandas, scipy). In
 | route_probe.py, route_parallel.py | fetch speed and file size (AWS bucket, MAST) | route-probe.txt, route-parallel.txt | CENSUS-STEP2-RESEARCH |
 | (inline) scenario table | files, GB, hours per pool | route-scenarios.txt | CENSUS-STEP2-RESEARCH |
 | eb_share_by_coverage.py | EB share by brightness and sectors; pilot pool yields | eb-share-by-coverage.txt | CENSUS-STEP2-RESEARCH update |
+| g1_reach.py | Horizon reach for G1 (gap fill) | g1-reach.txt | Q1 update 3 |
+| chain_recovery_shape.py + run_shapes.ps1 | FIX 28: completeness for other transit shapes (wrapper patches only signal()) | data\shape_*.log, rows_shape_*.pkl | FIX28-SHAPE-TEST (when done) |
 | census_worth.py | what Census would add to the evidence | census-worth.txt | CENSUS-WORTH |
 
 Run order if everything is rebuilt: fetch_targets.py 1, count_targets.py, eb_share_by_coverage.py, q5_lost_reads.py, q1_expected.py, t138_geometry_probe.py, t138_incl_probe.py, q2_pool_value.py, q7_completeness.py, census_worth.py. The reach runs take 2 to 6 minutes each. Q3 and the route probes need the network.
