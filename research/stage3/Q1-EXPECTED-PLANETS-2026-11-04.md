@@ -108,7 +108,7 @@ Source: Doyle et al. 2011, Science (arXiv:1109.3432), PDF fetched into `data\cen
 - NOT TESTED: their numerical check of the analytic expression, the precession timescale formula, and the Bayesian fits.
 
 ## UPDATE 6 (6 Nov 2026): corrected by the independent Opus 5.5 trial audit and re-run with Horizon R0 Amendment 4. THIS SUPERSEDES THE NUMBERS OF UPDATES 1 TO 5.
-**Plain verdict:** our four hunts expected about 1.5 to 3.3 planets at Kepler's central 10% and found none. That is consistent with Kepler's rate (chance of finding none 4% to 28% in the main scenario), and the hunts cannot test it. Nothing found; no change to Petrova.
+**Plain verdict:** our four hunts expected about 1.5 to 3.3 planets at Kepler's central 10% and found none. That is consistent with Kepler's rate (chance of finding none 4% to 23% for the four hunts and 6% to 28% for the three without G1, main scenario), and the hunts cannot test it. Nothing found; no change to Petrova.
 
 **What the audit changed** (`OPUS-TRIAL-AUDIT-2026-11-06.md`; I re-ran its scripts and got the same output: Monte Carlo 8 of 8 rows identical, data check identical apart from run times):
 - F-1 (CONFIRMED): the tilt rule of UPDATE 2 counted planets that transit eventually, with precession over years. One sector is a snapshot, and for 0 to 3 degrees of tilt the snapshot chance stays flat (0.135 at 0 degrees against 0.124 to 0.143 at 1 to 3 degrees, P_p 77.8 d). The UPDATE 2 rows with a tilt, the "E up to 7" and the "about 1% in the most optimistic corner" are WITHDRAWN. UPDATE 4 and 5's idea of a visibility factor is not needed for a coplanar planet.

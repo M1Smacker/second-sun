@@ -1,0 +1,2 @@
+﻿FIX 80 reproduction, started 06 Nov 20:12: chapter browser test run 10 times on the built book 2.9.14 (port 8491), no change to any file.
+run 1 : FAIL | {"mode":"chapter","checks":16,"fails":[],"farSeen":29,"scroll":{"open":1,"railTop":112,"railBottom":634,"vh":650,"noteTop":296,"noteInView":true,"label":"Glossary · SPOC"},"sweep":{"positions":20,"worst":109,"maxHidden":2,"maxNotes":29},"errors":[],"pass":true}
