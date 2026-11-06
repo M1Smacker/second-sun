@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (6 Nov 2026, evening):** a second AI model audited our reach map and found two errors in my work. After the fix, our four nulls are still consistent with Kepler's planet rate and cannot test it. A Census of 1,400 stars would add about half to the evidence. Next: your words on Census and the rename. Begin with [Start here](start/index.md).
+    **Two-minute recap (6 Nov 2026, night):** a second AI model checked our reach map and found two errors in my work; I fixed them and re-ran everything. Our four nulls still agree with Kepler's planet rate and cannot test it. Four more claims are verified. Next: your words on Census, the false-alarm mark and the rename. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

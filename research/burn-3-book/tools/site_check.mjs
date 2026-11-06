@@ -75,19 +75,6 @@ async function goto(b, url) {
   return Promise.race([loaded, sleep(15000).then(() => false)]);
 }
 
-// FIX 80 (6 Nov 2026): the margin layout can still be moving right after a page load (fonts, images), so one measure taken after a fixed sleep sometimes read notes 502 px from their anchor (reproduced: 1 failure in 9 runs on the built 2.9.14 site). Wait for the fonts, then measure until two measures in a row agree.
-async function settledMeasure(b, ms = 4000) {
-  try { await b.evaluate(`document.fonts ? document.fonts.ready.then(() => true) : true`); } catch {}
-  let prev = null, m = null; const t0 = Date.now();
-  while (Date.now() - t0 < ms) {
-    m = await b.evaluate(CHAPTER_MEASURE);
-    const key = `${m.far.worst}|${m.far.orphan}|${m.far.shown}|${m.far.hidden}`;
-    if (key === prev) return m;
-    prev = key; await sleep(250);
-  }
-  return m;
-}
-
 const offline = (b, on) => b.send("Network.emulateNetworkConditions", { offline: on, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
 const shellLength = () => JSON.parse(fs.readFileSync(path.join(opt.site, "sw.js"), "utf8").match(/const SHELL = (\[.*\]);/)[1]).length;
 const SHELL_COUNT = `(async () => { const k = (await caches.keys()).find((x) => x.startsWith("ss-shell-")); return k ? (await (await caches.open(k)).keys()).length : 0; })()`;
@@ -175,10 +162,10 @@ const CHAPTER_MEASURE = `(() => {
   return { overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, rail: shown(rail), margin: shown(mar), strip: shown(strip),
     sidebar: shown(q(".md-sidebar--primary")), railBox: box(rail), paraBox: box(para), marBox: box(mar), mainW: Math.round(q(".md-main__inner").getBoundingClientRect().width),
     chars: lines.length >= 3 ? Math.round(lines.slice(0, 3).reduce((a, b) => a + b, 0) / 3) : 0, notes: mar ? mar.querySelectorAll(".mn:not([hidden])").length : 0, open: open.length,
-    far: (() => { if (!mar) return { shown: 0, hidden: 0, worst: 0, orphan: 0 }; let worst = 0, orphan = 0; const all = [...mar.querySelectorAll(".mn")], shown = all.filter((n) => !n.hidden);
+    far: (() => { if (!mar) return { shown: 0, hidden: 0, worst: 0, orphan: 0 }; let worst = 0, orphan = 0, wk = ""; const all = [...mar.querySelectorAll(".mn")], shown = all.filter((n) => !n.hidden);
       for (const n of shown) { const key = n.dataset.key, a = key.startsWith("g:") ? [...document.querySelectorAll('.md-content__inner a[href*="glossary/#"]')].find((x) => x.hash === key.slice(2)) : document.querySelector('.md-content__inner a.ss-chip[data-cid="' + key + '"]');
-        if (!a) { orphan++; continue; } worst = Math.max(worst, Math.abs(n.getBoundingClientRect().top - a.getBoundingClientRect().top)); }
-      return { shown: shown.length, hidden: all.length - shown.length, worst: Math.round(worst), orphan }; })(),
+        if (!a) { orphan++; continue; } const dd = Math.abs(n.getBoundingClientRect().top - a.getBoundingClientRect().top); if (dd > worst) { worst = dd; wk = key + " note@" + Math.round(n.getBoundingClientRect().top) + " anchor@" + Math.round(a.getBoundingClientRect().top) + " scrollY " + Math.round(scrollY) + " docH " + document.documentElement.scrollHeight + " notes " + all.length + " hidden " + (all.length - shown.length) + " fonts " + (document.fonts ? document.fonts.status : "n/a"); } }
+      return { shown: shown.length, hidden: all.length - shown.length, worst: Math.round(worst), wk, orphan }; })(),
     toc: rail ? rail.querySelectorAll(".ss-rail__toc a").length : 0, ariaHidden: mar ? mar.getAttribute("aria-hidden") : null, marginLinks: mar ? mar.querySelectorAll("a, button, [tabindex]").length : 0 };
 })()`;
 
@@ -194,7 +181,7 @@ async function chapterLayout() {
         const wide = w >= 1120;
         await waitFor(b, wide ? `document.querySelectorAll(".ss-margin .mn").length > 0` : "document.readyState === 'complete'", 8000);
         await sleep(400);
-        const m = await settledMeasure(b), tag = `${p} ${w}x${h}`;
+        const m = await b.evaluate(CHAPTER_MEASURE), tag = `${p} ${w}x${h}`;
         out.checks++;
         if (m.overflow > 0) fail(`${tag}: sideways scroll +${m.overflow}`);
         if (m.mainW > 1400) fail(`${tag}: page wider than 1400 (${m.mainW})`);
@@ -210,7 +197,7 @@ async function chapterLayout() {
           if (m.chars < 58 || m.chars > 76) fail(`${tag}: ${m.chars} characters a line (want 58 to 76)`);
           if (!m.notes) fail(`${tag}: no notes in the margin`);
           if (m.open > 1) fail(`${tag}: ${m.open} notes open at once`);
-          if (m.far.worst > 124 || m.far.orphan) fail(`${tag}: a margin note sits ${m.far.worst} px from its anchor (limit 120, ${m.far.orphan} without an anchor)`);
+          if (m.far.worst > 124 || m.far.orphan) fail(`${tag}: a margin note sits ${m.far.worst} px from its anchor (limit 120, ${m.far.orphan} without an anchor) [${m.far.wk}]`);
           out.farSeen = Math.max(out.farSeen || 0, m.far.shown + m.far.hidden);
           if (m.toc < 3) fail(`${tag}: 'In this chapter' has ${m.toc} entries`);
           if (m.ariaHidden !== "true" || m.marginLinks) fail(`${tag}: margin must be aria-hidden with no links or tab stops (${m.ariaHidden}, ${m.marginLinks})`);
@@ -242,9 +229,9 @@ async function chapterLayout() {
       await waitFor(b, `document.querySelectorAll(".ss-margin .mn").length > 0`, 8000);
       for (let f = 0; f <= 0.9; f += 0.1) {
         await b.evaluate(`scrollTo(0, document.documentElement.scrollHeight * ${f.toFixed(2)})`); await sleep(350);
-        const m = await settledMeasure(b);
+        const m = await b.evaluate(CHAPTER_MEASURE);
         out.sweep.positions++; out.sweep.worst = Math.max(out.sweep.worst, m.far.worst); out.sweep.maxHidden = Math.max(out.sweep.maxHidden, m.far.hidden); out.sweep.maxNotes = Math.max(out.sweep.maxNotes, m.far.shown + m.far.hidden);
-        if (m.far.worst > 124 || m.far.orphan) fail(`sweep ${p} at ${f.toFixed(1)}: a note sits ${m.far.worst} px from its anchor (limit 120)`);
+        if (m.far.worst > 124 || m.far.orphan) fail(`sweep ${p} at ${f.toFixed(1)}: a note sits ${m.far.worst} px from its anchor (limit 120) [${m.far.wk}]`);
         if (m.open > 1) fail(`sweep ${p} at ${f.toFixed(1)}: ${m.open} notes open`);
       }
     }
