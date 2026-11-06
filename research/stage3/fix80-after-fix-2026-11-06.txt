@@ -1,0 +1,2 @@
+﻿FIX 80 after the settled-measure patch, started 06 Nov 20:16: chapter browser test run 30 times on the same built book 2.9.14 (port 8492). Verdict per run = the test's own JSON field pass.
+run 1 : pass | fails=[]

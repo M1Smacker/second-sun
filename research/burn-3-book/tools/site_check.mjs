@@ -75,6 +75,19 @@ async function goto(b, url) {
   return Promise.race([loaded, sleep(15000).then(() => false)]);
 }
 
+// FIX 80 (6 Nov 2026): the margin layout can still be moving right after a page load (fonts, images), so one measure taken after a fixed sleep sometimes read notes 502 px from their anchor (reproduced: 1 failure in 9 runs on the built 2.9.14 site). Wait for the fonts, then measure until two measures in a row agree.
+async function settledMeasure(b, ms = 4000) {
+  try { await b.evaluate(`document.fonts ? document.fonts.ready.then(() => true) : true`); } catch {}
+  let prev = null, m = null; const t0 = Date.now();
+  while (Date.now() - t0 < ms) {
+    m = await b.evaluate(CHAPTER_MEASURE);
+    const key = `${m.far.worst}|${m.far.orphan}|${m.far.shown}|${m.far.hidden}`;
+    if (key === prev) return m;
+    prev = key; await sleep(250);
+  }
+  return m;
+}
+
 const offline = (b, on) => b.send("Network.emulateNetworkConditions", { offline: on, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
 const shellLength = () => JSON.parse(fs.readFileSync(path.join(opt.site, "sw.js"), "utf8").match(/const SHELL = (\[.*\]);/)[1]).length;
 const SHELL_COUNT = `(async () => { const k = (await caches.keys()).find((x) => x.startsWith("ss-shell-")); return k ? (await (await caches.open(k)).keys()).length : 0; })()`;
@@ -181,7 +194,7 @@ async function chapterLayout() {
         const wide = w >= 1120;
         await waitFor(b, wide ? `document.querySelectorAll(".ss-margin .mn").length > 0` : "document.readyState === 'complete'", 8000);
         await sleep(400);
-        const m = await b.evaluate(CHAPTER_MEASURE), tag = `${p} ${w}x${h}`;
+        const m = await settledMeasure(b), tag = `${p} ${w}x${h}`;
         out.checks++;
         if (m.overflow > 0) fail(`${tag}: sideways scroll +${m.overflow}`);
         if (m.mainW > 1400) fail(`${tag}: page wider than 1400 (${m.mainW})`);
@@ -229,7 +242,7 @@ async function chapterLayout() {
       await waitFor(b, `document.querySelectorAll(".ss-margin .mn").length > 0`, 8000);
       for (let f = 0; f <= 0.9; f += 0.1) {
         await b.evaluate(`scrollTo(0, document.documentElement.scrollHeight * ${f.toFixed(2)})`); await sleep(350);
-        const m = await b.evaluate(CHAPTER_MEASURE);
+        const m = await settledMeasure(b);
         out.sweep.positions++; out.sweep.worst = Math.max(out.sweep.worst, m.far.worst); out.sweep.maxHidden = Math.max(out.sweep.maxHidden, m.far.hidden); out.sweep.maxNotes = Math.max(out.sweep.maxNotes, m.far.shown + m.far.hidden);
         if (m.far.worst > 124 || m.far.orphan) fail(`sweep ${p} at ${f.toFixed(1)}: a note sits ${m.far.worst} px from its anchor (limit 120)`);
         if (m.open > 1) fail(`sweep ${p} at ${f.toFixed(1)}: ${m.open} notes open`);
