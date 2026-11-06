@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Vesper, the search | 0.8.1 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.9.13 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.9.14 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.10 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -100,6 +100,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.9.11 | 4 Nov | Correction: the G3 download's 21 hours were about 20 hours of unnoticed stall and about an hour and a quarter of work (field note, check 11); the TESS camera fact verified from the mission paper |
 | 2.9.12 | 4 Nov | Dip-shape test added to the field note (a physical shape lowers kept share by about 3 points; claim F-098) and the source note on F-017 |
 | 2.9.13 | 4 Nov | Claims F-030 and F-042 verified against the opened abstracts (F-042 narrowed to what the abstract says); recap mentions the dip-shape result |
+| 2.9.14 | 6 Nov | Geometry numbers corrected after an independent audit (tilt rule and per-star widths withdrawn, new rule, re-run); evening addition to the 4 Nov field note; claim F-095 and check 10 reworded; recap |
 | 2.9.10 | 4 Nov | Wording corrected after a tilt test (our nulls are consistent with Kepler's rate in most, not all, of the cases tried); two claims upgraded to verified (STANLEY, Planet Hunters PH1 b) |
 | 2.9.9 | 4 Nov | Seven new facts on the claims page (target-list counts, the 10% occurrence rate, the transit-geometry formula, Gaia counts, the geometry probe, the fetch speed test, the pooled false-alarm rate), each with its label and source |
 | 2.9.8 | 4 Nov | Field note 4 Nov extended (the transit-geometry probe: the null is consistent with Kepler's rate; fetching the light is cheaper than G3 suggested); recap refreshed; an eleventh check after level 5 and a longer tenth (track 1.10) |

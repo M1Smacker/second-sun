@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (4 Nov 2026, morning):** G3 found nothing. Overnight we counted the next fuel, about 365,000 stars with no binary list, found that fetching their light is cheap, and found a missing geometry factor that makes our null consistent with Kepler in most cases tried. A realistic dip shape lowers our completeness by a tenth. Next: your words on Census and the rename. Begin with [Start here](start/index.md).
+    **Two-minute recap (6 Nov 2026, evening):** a second AI model audited our reach map and found two errors in my work. After the fix, our four nulls are still consistent with Kepler's planet rate and cannot test it. A Census of 1,400 stars would add about half to the evidence. Next: your words on Census and the rename. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 
