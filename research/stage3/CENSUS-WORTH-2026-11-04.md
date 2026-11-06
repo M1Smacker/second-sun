@@ -1,5 +1,19 @@
 # Is Census worth running? What 1,400 to 6,000 G2-type stars would add (night of 4 Nov 2026; research stint RS-011; arithmetic on earlier outputs; report only)
 
+## CORRECTED 6 Nov 2026 (supersedes the numbers below; kept for the record)
+Recomputed with the transit chance of Horizon R0 Amendment 4 (`census_step1/census_worth2.py`, output `census-worth2.txt`; inputs `t138-g-reach.txt`, main scenario). The 4 Nov table used the withdrawn per-star-width probe (Opus audit F-2).
+**Plain verdict:** 1,400 G2-type stars with 3 sectors each add about 55% to our evidence, not double (the audit's F-D was right). About 3,000 stars (3 sectors) roughly double it (plus 118%); 6,000 add about 235%. Existing three hunts: E 1.3 to 2.9 at Kepler's 10%.
+
+| Census | All hunts E | Chance of at least one | 95% ceiling if none |
+|---|---|---|---|
+| 1,400 stars, 3 sectors | 2.0 to 4.5 | 86% to 99% | 6.7% to 15.1% |
+| 3,000 stars, 3 sectors | 2.8 to 6.3 | 94% to 100% | 4.8% to 10.8% |
+| 6,000 stars, 3 sectors | 4.3 to 9.7 | 99% to 100% | 3.1% to 7.0% |
+
+(ranges over companion size f 1.5 to 2.2 and rules A and B). With 6 sectors per star instead of 3, 1,400 stars add about 83%. So Census at its expected size of 1,400 would be a decent but not decisive test: a null would cap the total rate near 7% to 15%, and only about 3,000 or more G2-type stars would push the ceiling near 5% to 10%. LIKELY at best (the G2-type count is a factor of 2 estimate; the meaning of Armstrong's 10% per binary is UNCERTAIN).
+
+--- below: the 4 Nov version, SUPERSEDED ---
+
 Script `research/stage3/census_step1/census_worth.py`, output `census-worth.txt`. Inputs (all produced tonight): Horizon-with-geometry sums per search (`t138-geometry-probe.txt`), the value of a star with 3 or 6 sectors against the G2 sealed set (`q2-pool-value.txt`: 88.5 and 133.0 against 195.6 star-equivalents per 1,000 stars), the expected number of G2-type stars among the new bright 2-minute stars (about 1,400, `CENSUS-STEP2-RESEARCH`, LIKELY, factor 2), and Armstrong 2014's central 10% (abstract CONFIRMED). The geometry factor and the companion size (R_sum) are the big unknowns, so three cases are shown: R_sum 1.5 (more optimistic), 1.8 and rule A or B for how the 10% spreads over cells (A pessimistic, B middle).
 
 ## Plain verdict

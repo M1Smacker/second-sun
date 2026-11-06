@@ -22,3 +22,8 @@ Run everything with `D:\second-sun\.venv\Scripts\python.exe` (pandas, scipy). In
 | census_worth.py | what Census would add to the evidence | census-worth.txt | CENSUS-WORTH |
 
 Run order if everything is rebuilt: fetch_targets.py 1, count_targets.py, eb_share_by_coverage.py, q5_lost_reads.py, q1_expected.py, t138_geometry_probe.py, t138_incl_probe.py, q2_pool_value.py, q7_completeness.py, census_worth.py. The reach runs take 2 to 6 minutes each. Q3 and the route probes need the network.
+
+## Added 6 Nov 2026 (T138)
+- `t138_g_reach.py` -> `t138-g-reach.txt`: Horizon reach with the transit chance g of R0 Amendment 4, four hunts, four scenarios, f 1.5, 1.8, 2.2.
+- `census_worth2.py` -> `census-worth2.txt`: Census worth recomputed (replaces `census_worth.py`).
+- `t138_geometry_probe.py` and `t138_incl_probe.py` (and their outputs) are SUPERSEDED: exploratory, flawed per the Opus audit (`../OPUS-TRIAL-AUDIT-2026-11-06.md`), kept for the record.

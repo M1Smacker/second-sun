@@ -1,0 +1,61 @@
+g1: 549 stars, 5038 star-sectors, median binary period 19.1 d
+g2dev: 301 stars, 3253 star-sectors, median binary period 9.5 d
+g2sealed: 594 stars, 6733 star-sectors, median binary period 9.5 d
+g3: 612 stars, 3415 star-sectors, median binary period 9.5 d
+
+=== scenario main: stability floor F = 5.6, dilution = 1.0 ===
+  g1: mean g at P 77 and 139 d: f 1.5: 0.329, f 1.8: 0.287, f 2.2: 0.245; E no geometry A 1.84, B 2.99
+  g2dev: mean g at P 77 and 139 d: f 1.5: 0.164, f 1.8: 0.137, f 2.2: 0.112; E no geometry A 3.38, B 5.59
+  g2sealed: mean g at P 77 and 139 d: f 1.5: 0.162, f 1.8: 0.135, f 2.2: 0.111; E no geometry A 7.00, B 11.62
+  g3: mean g at P 77 and 139 d: f 1.5: 0.148, f 1.8: 0.123, f 2.2: 0.101; E no geometry A 3.08, B 5.14
+  f 1.5, rule A: E with g: g1 0.26 | g2dev 0.47 | g2sealed 0.97 | g3 0.45 | three hunts 1.88 (none 15%, ceiling 16.0%) | four hunts 2.14 (none 12%, ceiling 14.0%)
+  f 1.5, rule B: E with g: g1 0.37 | g2dev 0.72 | g2sealed 1.49 | g3 0.68 | three hunts 2.89 (none 6%, ceiling 10.4%) | four hunts 3.26 (none 4%, ceiling 9.2%)
+  f 1.8, rule A: E with g: g1 0.22 | g2dev 0.39 | g2sealed 0.81 | g3 0.37 | three hunts 1.57 (none 21%, ceiling 19.1%) | four hunts 1.79 (none 17%, ceiling 16.8%)
+  f 1.8, rule B: E with g: g1 0.31 | g2dev 0.60 | g2sealed 1.24 | g3 0.57 | three hunts 2.41 (none 9%, ceiling 12.5%) | four hunts 2.72 (none 7%, ceiling 11.0%)
+  f 2.2, rule A: E with g: g1 0.18 | g2dev 0.32 | g2sealed 0.66 | g3 0.30 | three hunts 1.28 (none 28%, ceiling 23.4%) | four hunts 1.46 (none 23%, ceiling 20.5%)
+  f 2.2, rule B: E with g: g1 0.25 | g2dev 0.49 | g2sealed 1.02 | g3 0.47 | three hunts 1.97 (none 14%, ceiling 15.2%) | four hunts 2.22 (none 11%, ceiling 13.5%)
+  NO GEOMETRY (old, too generous): three hunts E rule A 13.5, B 22.3; four hunts A 15.3, B 25.3
+  per-star mean sum in G2 sealed (for Census sizing, stars needed = 3 / (rate x per-star sum)): f 1.5 rule A: 0.0163, f 1.5 rule B: 0.0251, f 1.8 rule A: 0.0136, f 1.8 rule B: 0.0209, f 2.2 rule A: 0.0111, f 2.2 rule B: 0.0171
+  (57 s)
+
+=== scenario floor3: stability floor F = 3.0, dilution = 1.0 ===
+  g1: mean g at P 77 and 139 d: f 1.5: 0.329, f 1.8: 0.287, f 2.2: 0.245; E no geometry A 3.38, B 4.44
+  g2dev: mean g at P 77 and 139 d: f 1.5: 0.164, f 1.8: 0.137, f 2.2: 0.112; E no geometry A 5.83, B 7.51
+  g2sealed: mean g at P 77 and 139 d: f 1.5: 0.162, f 1.8: 0.135, f 2.2: 0.111; E no geometry A 11.82, B 15.19
+  g3: mean g at P 77 and 139 d: f 1.5: 0.148, f 1.8: 0.123, f 2.2: 0.101; E no geometry A 5.77, B 7.22
+  f 1.5, rule A: E with g: g1 0.67 | g2dev 1.11 | g2sealed 2.24 | g3 1.19 | three hunts 4.53 (none 1%, ceiling 6.6%) | four hunts 5.21 (none 1%, ceiling 5.8%)
+  f 1.5, rule B: E with g: g1 0.77 | g2dev 1.33 | g2sealed 2.65 | g3 1.34 | three hunts 5.31 (none 0%, ceiling 5.6%) | four hunts 6.08 (none 0%, ceiling 4.9%)
+  f 1.8, rule A: E with g: g1 0.56 | g2dev 0.93 | g2sealed 1.86 | g3 0.99 | three hunts 3.78 (none 2%, ceiling 7.9%) | four hunts 4.34 (none 1%, ceiling 6.9%)
+  f 1.8, rule B: E with g: g1 0.64 | g2dev 1.11 | g2sealed 2.21 | g3 1.11 | three hunts 4.43 (none 1%, ceiling 6.8%) | four hunts 5.07 (none 1%, ceiling 5.9%)
+  f 2.2, rule A: E with g: g1 0.46 | g2dev 0.76 | g2sealed 1.52 | g3 0.81 | three hunts 3.09 (none 5%, ceiling 9.7%) | four hunts 3.55 (none 3%, ceiling 8.4%)
+  f 2.2, rule B: E with g: g1 0.52 | g2dev 0.90 | g2sealed 1.81 | g3 0.91 | three hunts 3.62 (none 3%, ceiling 8.3%) | four hunts 4.15 (none 2%, ceiling 7.2%)
+  NO GEOMETRY (old, too generous): three hunts E rule A 23.4, B 29.9; four hunts A 26.8, B 34.4
+  (71 s)
+
+=== scenario floor6.9: stability floor F = 6.9, dilution = 1.0 ===
+  g1: mean g at P 77 and 139 d: f 1.5: 0.329, f 1.8: 0.287, f 2.2: 0.245; E no geometry A 1.48, B 2.66
+  g2dev: mean g at P 77 and 139 d: f 1.5: 0.164, f 1.8: 0.137, f 2.2: 0.112; E no geometry A 2.79, B 5.00
+  g2sealed: mean g at P 77 and 139 d: f 1.5: 0.162, f 1.8: 0.135, f 2.2: 0.111; E no geometry A 5.71, B 10.31
+  g3: mean g at P 77 and 139 d: f 1.5: 0.148, f 1.8: 0.123, f 2.2: 0.101; E no geometry A 2.27, B 4.53
+  f 1.5, rule A: E with g: g1 0.19 | g2dev 0.35 | g2sealed 0.71 | g3 0.28 | three hunts 1.34 (none 26%, ceiling 22.3%) | four hunts 1.53 (none 22%, ceiling 19.6%)
+  f 1.5, rule B: E with g: g1 0.30 | g2dev 0.60 | g2sealed 1.23 | g3 0.56 | three hunts 2.40 (none 9%, ceiling 12.5%) | four hunts 2.70 (none 7%, ceiling 11.1%)
+  f 1.8, rule A: E with g: g1 0.16 | g2dev 0.29 | g2sealed 0.59 | g3 0.24 | three hunts 1.12 (none 33%, ceiling 26.8%) | four hunts 1.28 (none 28%, ceiling 23.5%)
+  f 1.8, rule B: E with g: g1 0.25 | g2dev 0.50 | g2sealed 1.03 | g3 0.47 | three hunts 2.00 (none 14%, ceiling 15.0%) | four hunts 2.25 (none 11%, ceiling 13.3%)
+  f 2.2, rule A: E with g: g1 0.13 | g2dev 0.24 | g2sealed 0.49 | g3 0.19 | three hunts 0.92 (none 40%, ceiling 32.8%) | four hunts 1.05 (none 35%, ceiling 28.7%)
+  f 2.2, rule B: E with g: g1 0.21 | g2dev 0.41 | g2sealed 0.84 | g3 0.39 | three hunts 1.63 (none 20%, ceiling 18.4%) | four hunts 1.84 (none 16%, ceiling 16.3%)
+  NO GEOMETRY (old, too generous): three hunts E rule A 10.8, B 19.8; four hunts A 12.2, B 22.5
+  (50 s)
+
+=== scenario dilute0.5: stability floor F = 5.6, dilution = 0.5 ===
+  g1: mean g at P 77 and 139 d: f 1.5: 0.329, f 1.8: 0.287, f 2.2: 0.245; E no geometry A 0.92, B 1.51
+  g2dev: mean g at P 77 and 139 d: f 1.5: 0.164, f 1.8: 0.137, f 2.2: 0.112; E no geometry A 2.29, B 3.88
+  g2sealed: mean g at P 77 and 139 d: f 1.5: 0.162, f 1.8: 0.135, f 2.2: 0.111; E no geometry A 5.09, B 8.61
+  g3: mean g at P 77 and 139 d: f 1.5: 0.148, f 1.8: 0.123, f 2.2: 0.101; E no geometry A 1.45, B 2.46
+  f 1.5, rule A: E with g: g1 0.13 | g2dev 0.32 | g2sealed 0.70 | g3 0.21 | three hunts 1.23 (none 29%, ceiling 24.4%) | four hunts 1.36 (none 26%, ceiling 22.0%)
+  f 1.5, rule B: E with g: g1 0.19 | g2dev 0.51 | g2sealed 1.12 | g3 0.33 | three hunts 1.95 (none 14%, ceiling 15.4%) | four hunts 2.14 (none 12%, ceiling 14.0%)
+  f 1.8, rule A: E with g: g1 0.11 | g2dev 0.27 | g2sealed 0.59 | g3 0.17 | three hunts 1.03 (none 36%, ceiling 29.2%) | four hunts 1.14 (none 32%, ceiling 26.4%)
+  f 1.8, rule B: E with g: g1 0.15 | g2dev 0.42 | g2sealed 0.93 | g3 0.27 | three hunts 1.63 (none 20%, ceiling 18.5%) | four hunts 1.78 (none 17%, ceiling 16.9%)
+  f 2.2, rule A: E with g: g1 0.09 | g2dev 0.22 | g2sealed 0.48 | g3 0.14 | three hunts 0.84 (none 43%, ceiling 35.7%) | four hunts 0.93 (none 39%, ceiling 32.3%)
+  f 2.2, rule B: E with g: g1 0.13 | g2dev 0.34 | g2sealed 0.76 | g3 0.22 | three hunts 1.33 (none 26%, ceiling 22.6%) | four hunts 1.46 (none 23%, ceiling 20.6%)
+  NO GEOMETRY (old, too generous): three hunts E rule A 8.8, B 15.0; four hunts A 9.7, B 16.5
+  (54 s)

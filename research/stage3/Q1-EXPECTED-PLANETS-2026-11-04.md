@@ -2,6 +2,8 @@
 
 Method (`research/stage3/census_step1/q1_expected.py`, full output `q1-expected.txt`): expected detections E = (occurrence per star in a cell) x (Horizon sum of detection chance in that cell), added over the cells the occurrence anchor covers. Horizon = `pipeline/horizon_reach.py`, rule R0 unchanged (main scenario: stability floor 5.6, no dilution). Sources opened: Armstrong et al. 2014 (abstract and ar5iv full text), Oddo et al. 2026 (abstract and arXiv HTML full text).
 
+> **6 NOV 2026: UPDATE 6 AT THE END SUPERSEDES THE NUMBERS OF UPDATES 1 TO 5.** An independent Opus 5.5 audit found two errors in my probe (tilt rule, per-star widths) and four wording slips; the maps were re-run with a corrected rule (Horizon R0 Amendment 4). The plain result is the same: our nulls are consistent with Kepler's rate and cannot test it.
+
 > **READ THE UPDATE AT THE END FIRST.** After this was written, the geometry factor was looked up (Martin and Triaud 2015) and probed on every star. It is about 0.05 to 0.2, so the 13-to-22 tension below mostly disappears: the null is consistent with Kepler's rate, and our hunts could not have excluded it. The body below is kept as written (the first pass).
 
 ## Plain verdict
@@ -104,3 +106,30 @@ Source: Doyle et al. 2011, Science (arXiv:1109.3432), PDF fetched into `data\cen
 - **CONFIRMED, they say:** "the probability only differs within a factor of two if we take transits of both stars into account and integrate over four years for all the observed systems". So both-star transits and a 4-year window move the probability by at most about 2 (an upper side correction we do not apply).
 - **CONFIRMED, context:** the previous occurrence derivation (Martin and Triaud 2014, population synthesis) gave a lower limit of 47% for the occurrence of circumbinary systems if mutual inclinations are isotropic, and the paper argues coplanarity of 3 degrees or less (not a selection bias) may imply an occurrence similar to single stars. This matches the direction of Armstrong 2014's 10% (coplanar assumption) and says our geometry factor is the right thing to include.
 - NOT TESTED: their numerical check of the analytic expression, the precession timescale formula, and the Bayesian fits.
+
+## UPDATE 6 (6 Nov 2026): corrected by the independent Opus 5.5 trial audit and re-run with Horizon R0 Amendment 4. THIS SUPERSEDES THE NUMBERS OF UPDATES 1 TO 5.
+**Plain verdict:** our four hunts expected about 1.5 to 3.3 planets at Kepler's central 10% and found none. That is consistent with Kepler's rate (chance of finding none 4% to 28% in the main scenario), and the hunts cannot test it. Nothing found; no change to Petrova.
+
+**What the audit changed** (`OPUS-TRIAL-AUDIT-2026-11-06.md`; I re-ran its scripts and got the same output: Monte Carlo 8 of 8 rows identical, data check identical apart from run times):
+- F-1 (CONFIRMED): the tilt rule of UPDATE 2 counted planets that transit eventually, with precession over years. One sector is a snapshot, and for 0 to 3 degrees of tilt the snapshot chance stays flat (0.135 at 0 degrees against 0.124 to 0.143 at 1 to 3 degrees, P_p 77.8 d). The UPDATE 2 rows with a tilt, the "E up to 7" and the "about 1% in the most optimistic corner" are WITHDRAWN. UPDATE 4 and 5's idea of a visibility factor is not needed for a coplanar planet.
+- F-2 (CONFIRMED): the width-based impact parameter is not a measurement. Deciding a transit needs b to about 1%, the inputs are 10 to 30% uncertain, and what passed was mostly stars whose width was above the physical maximum and was clipped to b = 0 (12% of G2 sealed at f 1.8, 3% of G3). The statement in UPDATE 1 that G3 loses most because its stars are bigger was WRONG (median radii 1.61, 1.60 and 1.64); the G3 "g = 0.01" was that clipped share falling.
+- New rule (Amendment 4, committed de2e951 before the re-run): g = min(1, (P_b / P_p)^(2/3) / f), f = R_sum / R_A in 1.5, 1.8, 2.2. Needs only the binary period. First order of Li, Holman and Tao 2016 eq. 7, divided by the eclipse window; matches the one-sector snapshot of the audit's 3D Monte Carlo (0.137 first order against 0.135 snapshot at 77.8 d; the exact coplanar form is 0.156).
+- Slips fixed here: UPDATE 1 item 1 "could not exclude it" (one row did exclude it; after the fix the sentence is right for another reason); item 2 "sums fall to 15 to 36" (the probe said 7 to 36; the corrected three-hunt sums are 12.8 to 28.9); item 4 Census sizes mixed cases (see CENSUS-WORTH, rewritten).
+
+**Corrected numbers** (`census_step1/t138_g_reach.py`, output `t138-g-reach.txt`; E = expected detections at Kepler's central 10%; main scenario: stability floor 5.6, crossed star gives all the light; rule A = all cells of the Armstrong region, rule B = cells most stars can reach):
+
+| Companion size f | Rule | Three hunts E | Chance of none | 95% ceiling if none | Four hunts E (with G1) |
+|---|---|---|---|---|---|
+| 1.5 | A | 1.88 | 15% | 16.0% | 2.14 |
+| 1.5 | B | 2.89 | 6% | 10.4% | 3.26 |
+| 1.8 | A | 1.57 | 21% | 19.1% | 1.79 |
+| 1.8 | B | 2.41 | 9% | 12.5% | 2.72 |
+| 2.2 | A | 1.28 | 28% | 23.4% | 1.46 |
+| 2.2 | B | 1.97 | 14% | 15.2% | 2.22 |
+
+Without geometry (old, too generous): three hunts E 13.5 (rule A) and 22.3 (rule B).
+Other scenarios (three hunts, f 1.8, rule A and B): stability floor 3 (planets allowed at binary-period ratios down to 3): E 3.78 and 4.43, chance of none 2% and 1%, ceiling 7.9% and 6.8%; floor 6.9: E 1.12 and 2.00; half the light: E 1.03 and 1.63.
+
+**Reading (LIKELY):** with the stability floor the known planets obey (5.6), the null is consistent with Kepler's 10% at every companion size and rule tried (the most constraining case has a 6% chance of finding none, and its ceiling, 10.4%, still sits above 10%). Only if circumbinary planets existed at ratios closer than any observed (floor 3) would our nulls exclude 10%. UNCERTAIN: what Armstrong's 10% is a share of (per binary of our kind?), the real companion size, unequal masses, eccentric binaries, transits of star B (the audit estimates up to about 20% more at f 2.2, NOT TESTED), isotropic planets (not in this map).
+
+**Checks that passed in the audit:** the coplanar condition (independent algebra and a 3D Monte Carlo: ever-transits 0.162 against the formula 0.156), the unit conversions, and every E, chance of none and ceiling in the earlier tables recomputed from the outputs. Not checked by the audit: Martin and Triaud eq. 26 itself, Oddo 2026, Horizon's recovery tables, Armstrong 2014, eccentric binaries.

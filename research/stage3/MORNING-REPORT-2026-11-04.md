@@ -35,3 +35,6 @@ Found nothing new about planets, because nothing was searched. All 5 main items,
 5. The Petrova rename go; whether the book leads with "found nothing" or "not looked hard enough".
 
 Next: say yes or no to T138 (about 2 points; it fixes the number every Census size depends on), or tell me a different first step; I start the moment you say so.
+
+## CORRECTION, 6 Nov 2026 (added later; the text above is unchanged)
+An independent Opus 5.5 audit (`OPUS-TRIAL-AUDIT-2026-11-06.md`) found two errors behind finding 3: the tilt test counted eventual transits, not what one sector sees, and the per-star width method was not a measurement. Corrected result (`Q1-EXPECTED-PLANETS-2026-11-04.md` UPDATE 6): the geometry factor g averages about 0.10 to 0.16 for G2 and G3 stars (0.25 to 0.33 for G1, whose binaries are longer) at planet periods of 77 to 139 days (not the 0.05 to 0.3 I wrote), the three hunts expected 1.3 to 2.9 planets at Kepler's 10%, and the null is consistent with it (chance of none 6% to 28%); the "about 1% corner" is withdrawn. Finding 6: 1,400 Census stars add about 55% to our evidence, not double it.
