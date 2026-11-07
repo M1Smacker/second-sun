@@ -1,0 +1,36 @@
+﻿
+=== completeness factor c = 0.9 (FIX 28 trim) ===
+f 1.5 rule A N 1400: E0 1.88 Census E 1.03 | old all-hunts  95% | Census alone at 10%, no update  64% | A:  44% (rate median 5.9%) | B:  26% (rate median 2.4%)
+f 1.5 rule A N 3000: E0 1.88 Census E 2.21 | old all-hunts  98% | Census alone at 10%, no update  89% | A:  68% (rate median 5.9%) | B:  44% (rate median 2.4%)
+f 1.5 rule B N 1400: E0 2.89 Census E 1.59 | old all-hunts  99% | Census alone at 10%, no update  80% | A:  52% (rate median 5.0%) | B:  31% (rate median 2.1%)
+f 1.5 rule B N 3000: E0 2.89 Census E 3.41 | old all-hunts 100% | Census alone at 10%, no update  97% | A:  76% (rate median 5.0%) | B:  52% (rate median 2.1%)
+f 1.8 rule A N 1400: E0 1.57 Census E 0.86 | old all-hunts  91% | Census alone at 10%, no update  58% | A:  40% (rate median 6.2%) | B:  24% (rate median 2.6%)
+f 1.8 rule A N 3000: E0 1.57 Census E 1.85 | old all-hunts  97% | Census alone at 10%, no update  84% | A:  64% (rate median 6.2%) | B:  41% (rate median 2.6%)
+f 1.8 rule B N 1400: E0 2.41 Census E 1.32 | old all-hunts  98% | Census alone at 10%, no update  73% | A:  48% (rate median 5.4%) | B:  29% (rate median 2.2%)
+f 1.8 rule B N 3000: E0 2.41 Census E 2.84 | old all-hunts  99% | Census alone at 10%, no update  94% | A:  72% (rate median 5.4%) | B:  48% (rate median 2.2%)
+f 2.2 rule A N 1400: E0 1.28 Census E 0.70 | old all-hunts  86% | Census alone at 10%, no update  50% | A:  36% (rate median 6.6%) | B:  21% (rate median 2.8%)
+f 2.2 rule A N 3000: E0 1.28 Census E 1.51 | old all-hunts  94% | Census alone at 10%, no update  78% | A:  59% (rate median 6.6%) | B:  37% (rate median 2.8%)
+f 2.2 rule B N 1400: E0 1.97 Census E 1.08 | old all-hunts  95% | Census alone at 10%, no update  66% | A:  44% (rate median 5.8%) | B:  26% (rate median 2.4%)
+f 2.2 rule B N 3000: E0 1.97 Census E 2.32 | old all-hunts  99% | Census alone at 10%, no update  90% | A:  69% (rate median 5.8%) | B:  45% (rate median 2.4%)
+
+=== completeness factor c = 1.0 (as quoted) ===
+f 1.5 rule A N 1400: E0 1.88 Census E 1.03 | old all-hunts  95% | Census alone at 10%, no update  64% | A:  46% (rate median 5.7%) | B:  27% (rate median 2.3%)
+f 1.5 rule A N 3000: E0 1.88 Census E 2.21 | old all-hunts  98% | Census alone at 10%, no update  89% | A:  70% (rate median 5.7%) | B:  46% (rate median 2.3%)
+f 1.5 rule B N 1400: E0 2.89 Census E 1.59 | old all-hunts  99% | Census alone at 10%, no update  80% | A:  54% (rate median 4.8%) | B:  33% (rate median 2.0%)
+f 1.5 rule B N 3000: E0 2.89 Census E 3.41 | old all-hunts 100% | Census alone at 10%, no update  97% | A:  78% (rate median 4.8%) | B:  54% (rate median 2.0%)
+f 1.8 rule A N 1400: E0 1.57 Census E 0.86 | old all-hunts  91% | Census alone at 10%, no update  58% | A:  42% (rate median 6.0%) | B:  25% (rate median 2.5%)
+f 1.8 rule A N 3000: E0 1.57 Census E 1.85 | old all-hunts  97% | Census alone at 10%, no update  84% | A:  66% (rate median 6.0%) | B:  43% (rate median 2.5%)
+f 1.8 rule B N 1400: E0 2.41 Census E 1.32 | old all-hunts  98% | Census alone at 10%, no update  73% | A:  50% (rate median 5.2%) | B:  30% (rate median 2.2%)
+f 1.8 rule B N 3000: E0 2.41 Census E 2.84 | old all-hunts  99% | Census alone at 10%, no update  94% | A:  74% (rate median 5.2%) | B:  50% (rate median 2.2%)
+f 2.2 rule A N 1400: E0 1.28 Census E 0.70 | old all-hunts  86% | Census alone at 10%, no update  50% | A:  38% (rate median 6.4%) | B:  22% (rate median 2.7%)
+f 2.2 rule A N 3000: E0 1.28 Census E 1.51 | old all-hunts  94% | Census alone at 10%, no update  78% | A:  62% (rate median 6.4%) | B:  39% (rate median 2.7%)
+f 2.2 rule B N 1400: E0 1.97 Census E 1.08 | old all-hunts  95% | Census alone at 10%, no update  66% | A:  46% (rate median 5.6%) | B:  28% (rate median 2.3%)
+f 2.2 rule B N 3000: E0 1.97 Census E 2.32 | old all-hunts  99% | Census alone at 10%, no update  90% | A:  71% (rate median 5.6%) | B:  47% (rate median 2.3%)
+
+=== sensitivity: add G1 (about E 0.3 to the existing hunts, approximate), c 0.9 ===
+f 2.2 rule A N 1400: A:  34% | B:  20%
+f 2.2 rule A N 3000: A:  57% | B:  36%
+f 1.8 rule A N 1400: A:  38% | B:  22%
+f 1.8 rule A N 3000: A:  62% | B:  39%
+f 1.5 rule B N 1400: A:  50% | B:  30%
+f 1.5 rule B N 3000: A:  75% | B:  51%

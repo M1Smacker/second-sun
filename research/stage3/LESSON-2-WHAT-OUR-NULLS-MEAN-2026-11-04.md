@@ -1,5 +1,7 @@
 ## Lesson 2: what our three empty searches really tell us, and what Census could add
 
+> **CORRECTION 2, 8 Nov 2026:** the Census chance of finding a planet quoted in this lesson and its sources counted our three finished searches, which found nothing, as future chances. Forward-looking, Census alone (rate updated by the nulls) is 21% to 52% at 1,400 stars and 37% to 76% at 3,000, not "very likely". Details: `CENSUS-WORTH-2026-11-04.md`, top banner. The 95% ceilings stand.
+
 > **CORRECTION, 6 Nov 2026:** an independent Opus 5.5 audit found that my tilt test and my per-star width method were wrong (details and the corrected numbers: `Q1-EXPECTED-PLANETS-2026-11-04.md`, UPDATE 6). The plain message of this lesson stands (our nulls are consistent with Kepler's rate and cannot test it), but the numbers differ: expected planets are about 1.3 to 2.9 for the three hunts, the "about 1% in the most optimistic corner" idea is withdrawn, and 1,400 Census stars add about half to our evidence, not double it.
 
 Ahmed, this is the second lesson, written overnight while you slept. It is in the same plain voice as the first. Nothing here needs a decision from you; read it when you have ten quiet minutes. Everything I quote has a note behind it in the project, and I mark how sure I am in words.
