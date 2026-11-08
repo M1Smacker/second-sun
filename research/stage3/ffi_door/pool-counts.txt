@@ -1,0 +1,63 @@
+FFI door stage B: Gaia DR3 slow eclipsing binary pool (COUNTS ONLY). Source: gaiadr3.vari_eclipsing_binary with frequency < 0.2, joined to gaia_source, per HEALPix level-3 pixel.
+pixel files merged: 768 of 768; rows (unique source_id): 188407
+expected total with frequency < 0.2 (parent's count, 8 Nov 2026): 188,407
+rows with a G magnitude: 188407; without: 0
+
+== exact all-sky pools (cumulative, G brighter than) ==
+              G<11      G<12      G<13    G<13.5      G<14
+P>5           849      1836      4016      5724      8059
+P>7           565      1203      2709      3883      5503
+P>10          394       831      1831      2647      3767
+P>20          187       381       777      1091      1528
+P>30          138       261       500       689       928
+P>5 d, G<15: 14870   P>7 d: 10206
+P>5 d, G<16: 27066   P>7 d: 18826
+P>5 d, G<17: 44800   P>7 d: 31140
+P>5 d, G<18: 73787   P>7 d: 51921
+
+== model type, P>5 d and G<14 (G5 frame) ==
+total 8059
+  TWOGAUSSIANS                                    4170  (51.7%)
+  TWOGAUSSIANS_WITH_ELLIPSOIDAL_ON_ECLIPSE1       1462  (18.1%)
+  TWOGAUSSIANS_WITH_ELLIPSOIDAL_ON_ECLIPSE2       1067  (13.2%)
+  ONEGAUSSIAN                                      598  (7.4%)
+  ONEGAUSSIAN_WITH_ELLIPSOIDAL                     567  (7.0%)
+  ELLIPSOIDAL                                      195  (2.4%)
+== model type, P>7 d and G<13.5 ==
+total 3883; TWOGAUSSIANS 2064
+
+== 8 <= G < 14, P>5 d: counts per sample cell (G bin x period class) ==
+P                (5.0, 10.0]  (10.0, 30.0]  (30.0, 1000000000.0]
+phot_g_mean_mag                                                 
+[8, 10)                  173           108                    52
+[10, 11)                 248           136                    72
+[11, 12)                 550           314                   123
+[12, 13)                1180           761                   239
+[13, 14)                2107          1508                   428
+
+== Gaia alias peaks (Mowlavi 2023): share of P>5 d, 8<=G<14 within 1% of the period ==
+  within 1% of 34.1 d: 39 of 7999 (0.49%)
+  within 1% of 53.7 d: 20 of 7999 (0.25%)
+  within 1% of 107.2 d: 13 of 7999 (0.16%)
+
+== period distribution of the 8<=G<14, P>5 d pool ==
+  P     5 to     7 d: 2532
+  P     7 to    10 d: 1726
+  P    10 to    20 d: 2229
+  P    20 to    30 d: 598
+  P    30 to    60 d: 607
+  P    60 to   120 d: 213
+  P   120 to   inf d: 94
+
+== red-dwarf stratum (counts only): P>5 d, 14<=G<17 ==
+14<=G<17, P>5 d: 36741
+  BP-RP > 2.0: 1784
+  parallax_over_error > 5: 22452
+  parallax_over_error > 5 and BP-RP > 2.0 and M_G > 8 (small-radius proxy, roughly M dwarf main sequence): 46
+  of which TWOGAUSSIANS: 38
+
+== U8 pool-level: Gaia ephemeris error at the TESS epoch (catalogue only) ==
+  TESS Sector 1 (2018 Jul)   median reference_time offset 908 d; error median 0.19 d; share <= 0.25 d: 56.5%; <= 1 d: 86.2%; of 7999 stars
+  BJD 2460000 (2023 Feb)     median reference_time offset 2583 d; error median 0.50 d; share <= 0.25 d: 32.4%; <= 1 d: 67.2%; of 7999 stars
+  BJD 2461000 (2025 Oct)     median reference_time offset 3583 d; error median 0.68 d; share <= 0.25 d: 25.8%; <= 1 d: 59.7%; of 7999 stars
+  (frequency_error median 1.81e-05 /d; share with frequency_error > 1e-4 /d: 7.5%)

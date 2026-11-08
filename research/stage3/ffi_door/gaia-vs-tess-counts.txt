@@ -1,0 +1,18 @@
+TESS-known EBs (Prsa 2022 first, then TTC tables 3 and 4), unique TIC, P_TESS > 5 d: 4074 (Prsa 1111, TTC3 2629, TTC4 334)
+  with Tmag <= 13.5 (TTC4 has no Tmag in the table; those are counted separately): 2160; TTC4 rows without Tmag: 334
+matched to the Gaia slow pool (3 arcsec + sanity): 219 of 4074 (any Tmag); pool rows are P_Gaia > 5 d by construction
+  of the 2160 TESS-known with Tmag <= 13.5: 90 matched = recall of the Gaia slow-EB list 4.2%
+period ratio P_Gaia / P_TESS over the 219 matched: within 1% of 1: 60; within 5% of 1: 61; within 2% of 2: 16; within 2% of 0.5: 6; within 2% of 3: 0; within 2% of 1/3: 0; other: 126
+  P_TESS 5 to 10 d: n=164, within 1%: 45, factor 2 either way (+-3%): 16
+  P_TESS 10 to 30 d: n=55, within 1%: 15, factor 2 either way (+-3%): 9
+  P_TESS 30 to inf d: n=0, within 1%: 0, factor 2 either way (+-3%): 0
+
+Gaia ephemeris vs TESS catalogue T0 (stars with period within 1%: 60; with Gaia eclipse phases: 60)
+  |T_TESS - T_Gaia| (nearest Gaia primary or secondary eclipse): median 0.089 d; share <= 0.1 d: 53.3%; <= 0.25 d: 80.0%; <= 0.5 d: 85.0%; <= 1 d: 93.3%
+  nearest eclipse is the Gaia PRIMARY in 90.0% (so TESS T0 and Gaia primary agree on which eclipse is deeper in 90.0% of the cases)
+  chance level for a random time to land within 0.25 d of either eclipse: 13.9%
+  formal Gaia ephemeris error at the TESS time: median 0.097 d; share of stars with |residual| <= 3 x formal error: 86.7% (honest errors would give about 99.7%)
+  residual in units of formal error: median 0.93; 90th percentile 3.2
+  P_TESS 5 to 10 d: n=45, share <= 0.25 d: 93.3%, median |res| 0.066 d
+  P_TESS 10 to 30 d: n=15, share <= 0.25 d: 40.0%, median |res| 0.485 d
+  mean offset between Gaia reference time and the TESS T0 used: 1242 d

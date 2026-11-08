@@ -1,0 +1,24 @@
+FFI door stage B exclusions (COUNTS ONLY). Frame: P>5 d and 8<=G<14: 7999 stars
+2-minute lists read: 111 files, 1781740 rows, 601177 unique TIC ids
+  frame stars matched to a 2-minute target of sectors 1..111: 362
+    of which already matched in sectors 1..26 lists (first-seen sector <= 26): 168
+Prsa 2022 (4584 rows): frame stars matched: 121
+TTC tables parsed: table3 7936 rows, table4 2065 rows, 10001 unique TIC (expected about 10,001 in total)
+  frame stars matched to TTC: 148
+CALNet (10531 rows): frame stars matched by Gaia id: 111; by position: 118; either: 118
+
+== union ==
+excluded by any of the lists above: 494 of 7999 (6.2%)
+  only 2-minute: 122; only Prsa: 1; only TTC: 131; only CALNet: 0
+survivors (frame minus position/Gaia-id exclusions): 7505
+
+== survivors per sample cell (G bin x period class) ==
+P                (5.0, 10.0]  (10.0, 30.0]  (30.0, 1000000000.0]
+phot_g_mean_mag                                                 
+[8, 10)                  114            70                    35
+[10, 11)                 197           108                    53
+[11, 12)                 513           277                   107
+[12, 13)                1128           720                   226
+[13, 14)                2060          1476                   421
+survivors: TWOGAUSSIANS 3910 of 7505
+G<13 survivors: 3548; G<13.5: 5218; P>7 d: 5117 (all within the frame 8<=G<14)
