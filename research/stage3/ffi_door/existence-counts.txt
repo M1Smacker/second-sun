@@ -1,0 +1,56 @@
+FFI door stage C (counts only). Sample: 400 stars; sha256 of the sample file is in the ffi_door data folder, file sample_400.sha256 (e8d30070...).
+TESSCut sector service: lookups failed for 0 stars; sectors 1..109 that pointed at the star position: median 5, min 0, max 44; stars never on silicon: 3
+MAST CAOM rows: HLSP 3532; TESS collection 0
+TESS-SPOC FFI observations in the sample (target-pixel-file entries): 480; with a listed light-curve file: 480 (100.0%)
+
+== U1: loader-readable FFI light curve (QLP or TESS-SPOC FFI) in at least 2 sectors ==
+  all 400        U1 372 of 400 (93.0%); at least 1 sector: 389 of 400 (97.2%); NOTHING in any sector: 11 of 400 (2.8%)
+  Tmag <= 13.5   U1 371 of 394 (94.2%); at least 1 sector: 387 of 394 (98.2%); NOTHING in any sector: 7 of 394 (1.8%)
+  Tmag > 13.5    U1 1 of 6 (16.7%); at least 1 sector: 2 of 6 (33.3%); NOTHING in any sector: 4 of 6 (66.7%)
+== by product: stars with the product in >=1 / >=2 sectors ==
+  QLP                >=1 sector: 389 of 400 (97.2%); >=2 sectors: 372 of 400 (93.0%); median sectors per star (stars with any) 5
+  TESS-SPOC          >=1 sector: 171 of 400 (42.8%); >=2 sectors: 114 of 400 (28.5%); median sectors per star (stars with any) 2
+  TGLC               >=1 sector: 142 of 400 (35.5%); >=2 sectors: 36 of 400 (9.0%); median sectors per star (stars with any) 1
+  GSFC-ELEANOR-LITE  >=1 sector: 200 of 400 (50.0%); >=2 sectors: 42 of 400 (10.5%); median sectors per star (stars with any) 1
+  TASOC              >=1 sector: 74 of 400 (18.5%); >=2 sectors: 19 of 400 (4.8%); median sectors per star (stars with any) 1
+  CDIPS              >=1 sector: 13 of 400 (3.2%); >=2 sectors: 7 of 400 (1.8%); median sectors per star (stars with any) 2
+  T16                >=1 sector: 115 of 400 (28.8%); >=2 sectors: 25 of 400 (6.2%); median sectors per star (stars with any) 1
+  TARS               >=1 sector: 42 of 400 (10.5%); >=2 sectors: 39 of 400 (9.8%); median sectors per star (stars with any) 3
+  mission 2-minute SPOC light curves on MAST for any sample star (should be 0): 0 stars
+
+== U6: star-sectors with BOTH QLP and TESS-SPOC FFI light curves vs only one ==
+  star-sectors with at least one of the two: 2096; both: 476 of 2096 (22.7%); QLP only: 1616; SPOC only: 4
+  stars with at least 2 sectors where BOTH exist: 114 of 400 (28.5%); stars with at least 1: 171 of 400 (42.8%)
+
+== coverage of the sectors TESS pointed at (sectors <= 109) ==
+  star-sectors on silicon: 2320; with QLP light curve: 2084 of 2320 (89.8%)
+  star-sectors on silicon: 2320; with TESS-SPOC light curve: 474 of 2320 (20.4%)
+  with QLP or TESS-SPOC: 2084 of 2320 (89.8%)
+  S1-26 (30 min)   star-sectors on silicon 525; QLP 483 of 525 (92.0%); SPOC 115 of 525 (21.9%); both 115 of 525 (21.9%)
+  S27-55 (10 min)  star-sectors on silicon 528; QLP 486 of 528 (92.0%); SPOC 112 of 528 (21.2%); both 112 of 528 (21.2%)
+  S56+ (200 s)     star-sectors on silicon 1267; QLP 1115 of 1267 (88.0%); SPOC 247 of 1267 (19.5%); both 247 of 1267 (19.5%)
+
+== U1 by stratum (all 400) ==
+  G [10, 11)   n= 80 U1 76 of 80 (95.0%); nothing 1 of 80 (1.2%)
+  G [11, 12)   n= 80 U1 76 of 80 (95.0%); nothing 1 of 80 (1.2%)
+  G [12, 13)   n= 80 U1 75 of 80 (93.8%); nothing 1 of 80 (1.2%)
+  G [13, 14)   n= 80 U1 68 of 80 (85.0%); nothing 6 of 80 (7.5%)
+  G [8, 10)    n= 80 U1 77 of 80 (96.2%); nothing 2 of 80 (2.5%)
+  P 5-10 d   n=135 U1 124 of 135 (91.9%); nothing 5 of 135 (3.7%)
+  P 10-30 d  n=135 U1 126 of 135 (93.3%); nothing 4 of 135 (3.0%)
+  P >30 d    n=130 U1 122 of 130 (93.8%); nothing 2 of 130 (1.5%)
+  TIC log g < 3.5 (giants)   n= 39 U1 39 of 39 (100.0%); SPOC FFI in >=1 sector 19 of 39 (48.7%); QLP in >=1 39 of 39 (100.0%)
+  TIC log g >= 3.5           n=127 U1 116 of 127 (91.3%); SPOC FFI in >=1 sector 69 of 127 (54.3%); QLP in >=1 122 of 127 (96.1%)
+  no TIC log g               n=234 U1 217 of 234 (92.7%); SPOC FFI in >=1 sector 83 of 234 (35.5%); QLP in >=1 228 of 234 (97.4%)
+  other model types          n=182 U1 170 of 182 (93.4%)
+  TWOGAUSSIANS               n=218 U1 202 of 218 (92.7%)
+
+== sectors per star with a loader-readable FFI light curve: distribution ==
+  0: 11, 1: 17, 2: 34, 3: 69, 4: 61, 5: 56, 6: 41, 7: 42, 8: 40, 9: 14, 10: 5, 11: 2, 12: 8  (12 means 12 or more)
+  median 5; mean 5.2
+
+== positive control TOI-1338 (TIC 260128333, a public planet host) ==
+  QLP sectors: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 61, 62, 63, 64, 65, 66, 67, 68, 69, 87, 88, 89, 90, 93, 94, 95, 96, 97, 98]
+  TESS-SPOC FFI sectors: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+  mission 2-minute sectors: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 61, 62, 63, 64, 65, 66, 67, 68, 69, 87, 88, 89, 90, 93, 94, 95, 96, 97, 98]
+  FFI-only sectors (QLP or SPOC FFI present, no 2-minute): [1, 2]

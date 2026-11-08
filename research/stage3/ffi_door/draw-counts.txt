@@ -1,0 +1,36 @@
+FFI door draw: quota plan per cell (rows G bins 8-10,10-11,11-12,12-13,13-14; columns P 5-10,10-30,>30 d)
+[[27 27 26]
+ [27 27 26]
+ [27 27 26]
+ [27 27 26]
+ [27 27 26]]
+availability (survivors) per cell:
+[[ 114   70   35]
+ [ 197  108   53]
+ [ 513  277  107]
+ [1128  720  226]
+ [2060 1476  421]]
+planned total 400; unplaced shortfall 0
+TIC-id exclusion lists: 2min_S1-111 601177, G1 549, G2 895, G3 612, Prsa2022 4578, TTC 10001, CALNet 10531; union 611218
+cell G-bin 0 period-class 0: quota 27 taken 27 (looked at 30 of 114)
+cell G-bin 0 period-class 1: quota 27 taken 27 (looked at 30 of 70)
+cell G-bin 0 period-class 2: quota 26 taken 26 (looked at 29 of 35)
+cell G-bin 1 period-class 0: quota 27 taken 27 (looked at 30 of 197)
+cell G-bin 1 period-class 1: quota 27 taken 27 (looked at 30 of 108)
+cell G-bin 1 period-class 2: quota 26 taken 26 (looked at 29 of 53)
+cell G-bin 2 period-class 0: quota 27 taken 27 (looked at 30 of 513)
+cell G-bin 2 period-class 1: quota 27 taken 27 (looked at 30 of 277)
+cell G-bin 2 period-class 2: quota 26 taken 26 (looked at 29 of 107)
+cell G-bin 3 period-class 0: quota 27 taken 27 (looked at 30 of 1128)
+cell G-bin 3 period-class 1: quota 27 taken 27 (looked at 30 of 720)
+cell G-bin 3 period-class 2: quota 26 taken 26 (looked at 29 of 226)
+cell G-bin 4 period-class 0: quota 27 taken 27 (looked at 30 of 2060)
+cell G-bin 4 period-class 1: quota 27 taken 27 (looked at 30 of 1476)
+cell G-bin 4 period-class 2: quota 26 taken 26 (looked at 29 of 421)
+
+sample size 400; rejected during draw: {'no_tic': 0, 'excluded_tic': 0}; duplicates of TIC in sample: 0
+sha256 of sample_400.csv: e8d300706277a9a0808362e117cf729cc1836f4007326c89a8286c812be7d18a
+seed 20261108
+Tmag: min 7.37 median 11.11 max 13.82; share with Tmag > 13.5: 1.5% (6)
+TWOGAUSSIANS 218; others 182
+P (Gaia, d): 5-10 135, 10-30 135, >30 130; log g < 3.5 (TIC): 39 of 166 with logg
