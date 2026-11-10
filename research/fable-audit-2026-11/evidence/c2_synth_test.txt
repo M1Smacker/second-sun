@@ -1,0 +1,31 @@
+﻿=== g2 ===
+errors: 2 ['ValueError: time and flux must not be empty']
+C2 synthetic test, set g2: 35 slow-star files (P >= 13 d); synthetic eclipse in every sector + one planted 8 h K 12 dip in the sampled sector
+  TOL 1 h | synthetic-eclipse events vetoed 14 of 14 | planted dip found 29, vetoed by chance 2 | other real-arm events vetoed 13 of 14 | upside-down events vetoed 0 of 5 | files with no other-sector events 2
+  TOL 2 h | synthetic-eclipse events vetoed 14 of 14 | planted dip found 29, vetoed by chance 4 | other real-arm events vetoed 13 of 14 | upside-down events vetoed 0 of 5 | files with no other-sector events 2
+  TOL 4 h | synthetic-eclipse events vetoed 14 of 14 | planted dip found 29, vetoed by chance 6 | other real-arm events vetoed 13 of 14 | upside-down events vetoed 1 of 5 | files with no other-sector events 2
+    TOL 1 Ke 6: synthetic vetoed 0/0, dip vetoed 0/9
+    TOL 1 Ke 15: synthetic vetoed 7/7, dip vetoed 2/8
+    TOL 1 Ke 40: synthetic vetoed 7/7, dip vetoed 0/12
+    TOL 2 Ke 6: synthetic vetoed 0/0, dip vetoed 1/9
+    TOL 2 Ke 15: synthetic vetoed 7/7, dip vetoed 3/8
+    TOL 2 Ke 40: synthetic vetoed 7/7, dip vetoed 0/12
+    TOL 4 Ke 6: synthetic vetoed 0/0, dip vetoed 2/9
+    TOL 4 Ke 15: synthetic vetoed 7/7, dip vetoed 3/8
+    TOL 4 Ke 40: synthetic vetoed 7/7, dip vetoed 1/12
+
+=== g3 ===
+C2 synthetic test, set g3: 34 slow-star files (P >= 13 d); synthetic eclipse in every sector + one planted 8 h K 12 dip in the sampled sector
+  TOL 1 h | synthetic-eclipse events vetoed 14 of 16 | planted dip found 31, vetoed by chance 2 | other real-arm events vetoed 3 of 28 | upside-down events vetoed 1 of 14 | files with no other-sector events 0
+  TOL 2 h | synthetic-eclipse events vetoed 14 of 16 | planted dip found 31, vetoed by chance 3 | other real-arm events vetoed 3 of 28 | upside-down events vetoed 1 of 14 | files with no other-sector events 0
+  TOL 4 h | synthetic-eclipse events vetoed 14 of 16 | planted dip found 31, vetoed by chance 3 | other real-arm events vetoed 3 of 28 | upside-down events vetoed 1 of 14 | files with no other-sector events 0
+    TOL 1 Ke 6: synthetic vetoed 0/1, dip vetoed 0/8
+    TOL 1 Ke 15: synthetic vetoed 7/7, dip vetoed 0/12
+    TOL 1 Ke 40: synthetic vetoed 7/8, dip vetoed 2/11
+    TOL 2 Ke 6: synthetic vetoed 0/1, dip vetoed 0/8
+    TOL 2 Ke 15: synthetic vetoed 7/7, dip vetoed 0/12
+    TOL 2 Ke 40: synthetic vetoed 7/8, dip vetoed 3/11
+    TOL 4 Ke 6: synthetic vetoed 0/1, dip vetoed 0/8
+    TOL 4 Ke 15: synthetic vetoed 7/7, dip vetoed 0/12
+    TOL 4 Ke 40: synthetic vetoed 7/8, dip vetoed 3/11
+

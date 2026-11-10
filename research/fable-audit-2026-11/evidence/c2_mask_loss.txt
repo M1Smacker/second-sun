@@ -1,0 +1,60 @@
+﻿=== g2 (C2: C1f + veto, TOL 1 h) ===
+
+  K   12 SPOCfam  | 0.97/0.97 n  8 | 0.88/0.88 n  8 | 0.75/0.75 n  8 | 0.88/0.88 n  6 | 0.94/0.94 n  8
+  K   12 QLP      | 0.88/0.94 n  4 | 0.66/0.69 n  8 | 0.46/0.46 n  7 | 0.79/0.79 n  7 | 0.88/0.88 n  8
+  K   25 SPOCfam  | 1.00/1.00 n  8 | 0.97/0.97 n  8 | 0.88/0.88 n  8 | 0.96/0.96 n  6 | 1.00/1.00 n  8
+  K   25 QLP      | 1.00/1.00 n  4 | 0.97/0.97 n  8 | 0.71/0.71 n  7 | 1.00/1.00 n  7 | 1.00/1.00 n  8
+  K   12 dur 8 h | 1.00/1.00 n 12 | 0.81/0.81 n 16 | 0.73/0.73 n 15 | 0.92/0.92 n 13 | 0.94/0.94 n 16
+  K   25 dur 8 h | 1.00/1.00 n 12 | 0.94/1.00 n 16 | 0.87/0.87 n 15 | 0.92/0.92 n 13 | 1.00/1.00 n 16
+  K   12 all durations  | m = 0.99 (dips lost to the mask: 1%)
+  K   25 all durations  | m = 1.00 (dips lost to the mask: 0%)
+     5 d n 12 | frozen    1/   3 = 0.33 cut 0.164 | C0    1/   3 = 0.33 cut 0.141 | frozen real events inside C0 
+windows 0
+    10 d n 16 | frozen    4/   2 = 2.00 cut 0.124 | C0    5/   5 = 1.00 cut 0.250 | frozen real events inside C0 
+windows 0
+    14 d n 15 | frozen    1/   5 = 0.20 cut 0.110 | C0   16/   4 = 4.00 cut 0.062 | frozen real events inside C0 
+windows 0
+    20 d n 13 | frozen    1/   1 = 1.00 cut 0.066 | C0    4/   2 = 2.00 cut 0.170 | frozen real events inside C0 
+windows 0
+  27.4 d n 16 | frozen    1/   3 = 0.33 cut 0.044 | C0    0/   3 = 0.00 cut 0.092 | frozen real events inside C0 
+windows 1
+G. C2 = C1f + event veto (slow binaries, P >= 13 d). Real light, nothing planted: real/upside-down events before -> 
+after the veto; events vetoed real/upside-down
+     5 d n 12 | C1f 1/3 -> C2 1/3 = 0.33 | vetoed 0/0 | planted dips found 305, vetoed by chance match 0
+    10 d n 16 | C1f 5/5 -> C2 5/5 = 1.00 | vetoed 0/0 | planted dips found 351, vetoed by chance match 0
+    14 d n 15 | C1f 16/4 -> C2 2/4 = 0.50 | vetoed 14/0 | planted dips found 357, vetoed by chance match 78
+    20 d n 13 | C1f 4/2 -> C2 0/2 = 0.00 | vetoed 4/0 | planted dips found 304, vetoed by chance match 10
+  27.4 d n 16 | C1f 0/3 -> C2 0/3 = 0.00 | vetoed 0/0 | planted dips found 392, vetoed by chance match 0
+
+
+
+=== g3 (C2: C1f + veto, TOL 1 h) ===
+
+  K   12 SPOCfam  | 0.88/0.88 n  8 | 1.00/1.00 n  8 | 0.88/0.91 n  8 | 0.75/0.75 n  8 | 0.81/0.81 n  8
+  K   12 QLP      | 0.79/0.79 n  7 | 0.71/0.71 n  7 | 0.82/0.82 n  7 | 0.79/0.79 n  7 | 0.71/0.71 n  6
+  K   25 SPOCfam  | 1.00/1.00 n  8 | 1.00/1.00 n  8 | 0.94/0.97 n  8 | 0.91/0.91 n  8 | 0.97/0.97 n  8
+  K   25 QLP      | 1.00/1.00 n  7 | 1.00/1.00 n  7 | 0.96/1.00 n  7 | 1.00/1.00 n  7 | 0.83/0.83 n  6
+  K   12 dur 8 h | 0.93/1.00 n 15 | 1.00/1.00 n 15 | 0.67/0.67 n 15 | 0.93/0.93 n 15 | 1.00/1.00 n 14
+  K   25 dur 8 h | 0.93/1.00 n 15 | 1.00/1.00 n 15 | 0.87/0.87 n 15 | 0.93/0.93 n 15 | 1.00/1.00 n 14
+  K   12 all durations  | m = 1.00 (dips lost to the mask: 0%)
+  K   25 all durations  | m = 1.00 (dips lost to the mask: 0%)
+     5 d n 15 | frozen    2/   3 = 0.67 cut 0.123 | C0    5/   3 = 1.67 cut 0.087 | frozen real events inside C0 
+windows 0
+    10 d n 15 | frozen    1/   5 = 0.20 cut 0.161 | C0    5/   7 = 0.71 cut 0.085 | frozen real events inside C0 
+windows 0
+    14 d n 15 | frozen    3/   0 = 3.00 cut 0.109 | C0    7/   3 = 2.33 cut 0.056 | frozen real events inside C0 
+windows 0
+    20 d n 15 | frozen    5/   8 = 0.62 cut 0.069 | C0   10/  10 = 1.00 cut 0.028 | frozen real events inside C0 
+windows 0
+  27.4 d n 14 | frozen    0/   4 = 0.00 cut 0.065 | C0   21/   6 = 3.50 cut 0.028 | frozen real events inside C0 
+windows 0
+G. C2 = C1f + event veto (slow binaries, P >= 13 d). Real light, nothing planted: real/upside-down events before -> 
+after the veto; events vetoed real/upside-down
+     5 d n 15 | C1f 5/3 -> C2 5/3 = 1.67 | vetoed 0/0 | planted dips found 366, vetoed by chance match 0
+    10 d n 15 | C1f 5/7 -> C2 5/7 = 0.71 | vetoed 0/0 | planted dips found 379, vetoed by chance match 0
+    14 d n 15 | C1f 7/3 -> C2 6/2 = 3.00 | vetoed 1/1 | planted dips found 375, vetoed by chance match 11
+    20 d n 15 | C1f 10/10 -> C2 10/9 = 1.11 | vetoed 0/1 | planted dips found 376, vetoed by chance match 32
+  27.4 d n 14 | C1f 21/6 -> C2 18/6 = 3.00 | vetoed 3/0 | planted dips found 346, vetoed by chance match 30
+
+
+
