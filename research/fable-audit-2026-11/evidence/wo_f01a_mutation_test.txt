@@ -1,0 +1,20 @@
+﻿
+control (unmodified): files with injections 58
+  dips K 25 before/after by bin (5-10, 10-14, 14-20, 20-27.4, >27.4): 0.75/1.00 | 0.27/1.00 | 0.08/1.00 | 0.00/1.00 | 0.02/1.00
+  bumps K 25 before/after by bin:                                  1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00
+  T1 mask loss visible: PASS   T2 injection works: PASS   T3 bump control: PASS
+
+A before-case injected AFTER the mask: files with injections 58
+  dips K 25 before/after by bin (5-10, 10-14, 14-20, 20-27.4, >27.4): 1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00
+  bumps K 25 before/after by bin:                                  1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00
+  T1 mask loss visible: FAIL   T2 injection works: PASS   T3 bump control: PASS
+
+B injection sign flipped: files with injections 58
+  dips K 25 before/after by bin (5-10, 10-14, 14-20, 20-27.4, >27.4): 0.07/0.05 | 0.00/0.00 | 0.02/0.00 | 0.00/0.00 | 0.00/0.00
+  bumps K 25 before/after by bin:                                  0.00/0.00 | 0.08/0.00 | 0.00/0.00 | 0.00/0.00 | 0.00/0.00
+  T1 mask loss visible: FAIL   T2 injection works: FAIL   T3 bump control: PASS
+
+C bump injected as a dip in the before case: files with injections 58
+  dips K 25 before/after by bin (5-10, 10-14, 14-20, 20-27.4, >27.4): 0.75/1.00 | 0.27/1.00 | 0.08/1.00 | 0.00/1.00 | 0.02/1.00
+  bumps K 25 before/after by bin:                                  0.00/1.00 | 0.08/1.00 | 0.00/1.00 | 0.00/1.00 | 0.00/1.00
+  T1 mask loss visible: PASS   T2 injection works: PASS   T3 bump control: FAIL
