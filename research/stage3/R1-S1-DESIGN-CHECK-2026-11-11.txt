@@ -1,0 +1,24 @@
+Re-search 1: a design check of the S1 rule on the SEEN stars' development runs. 11 Nov 2026, about 02:15 Kuwait. Counts only; seen stars never give the verdict (preregistration section 3); this checks whether the S1 rule as written can give a clean answer at all.
+
+WHAT S1 SAYS (preregistration section 6): count real tier-1 events in recovered light per SNR bar; compare with the noise-expected count = upside-down count divided by the real-to-upside-down ratio measured by asymmetry_test.py (all light, random star-sectors, raw dips at 4.5 to 6 SNR). EXCESS needs chance 0.01 or less at bar 7 and real above expected at bars 8, 10, 12.
+
+THE COUNTS (tier-1, real / upside-down, development runs on the seen stars, options c6,p1)
+G3 seen (284 stars)
+  all light              bar 7: 43/21    bar 8: 35/15   bar 10: 30/6   bar 12: 30/3
+  recovered light        bar 7: 33/8     bar 8: 31/7    bar 10: 29/4   bar 12: 29/2
+  light both masks keep  bar 7: 10/13    bar 8: 4/8     bar 10: 1/2    bar 12: 1/1
+G2 seen (420 stars)
+  all light              bar 7: 80/49    bar 8: 64/40   bar 10: 52/27  bar 12: 45/16
+  recovered light        bar 7: 65/33    bar 8: 58/31   bar 10: 48/22  bar 12: 43/15
+  light both masks keep  bar 7: 15/16    bar 8: 6/9     bar 10: 4/5    bar 12: 2/1
+All events (not only tier-1), real / upside-down, bar 7: G3 recovered 470/245, both-masks-keep 406/342; G2 recovered 2,785/1,327, both-masks-keep 1,731/993.
+
+WHAT THE S1 RULE, AS WRITTEN, SAYS ON THESE RUNS (PDCSAP half, the run's all-light asymmetry file; this is the design check, not a result)
+- Recovered light only: G3 seen: bar 7 real 31, upside-down 8, noise-expected 6.1, chance 0.000; EXCESS at every bar. G2 seen: bar 7 real 64, upside-down 31, noise-expected 31.6, chance 0.000; EXCESS at every bar.
+- Light both masks keep (the control: light the old filter already judged): NO EXCESS on both sets (chance 0.86 and 0.75 at bar 7).
+
+READ PLAINLY
+- In the light both masks keep, real and upside-down are balanced, as the filter was built to make them. In the recovered light (the light the old filter threw away), the real arm has about 2 to 4 times as many tier-1 events as the upside-down arm on the seen stars. The recovered light is the stretch next to the binary's own eclipses, so leftovers of the eclipses (real dips with no upside-down twin) are the first suspect. NOT TESTED: whether any of it is anything else.
+- Consequence: if the unseen stars behave like the seen stars, the S1 rule as written would call EXCESS on the sealed run whether or not there is a planet. That is not a false discovery (an excess only opens private two-key checks), but it means a clean measured null (the win condition) cannot come out of the rule as written. The check was made before any unseen star was read.
+- Options (to put to Ahmed and the outside check, nothing decided): (A) Amendment 2 before the freeze: the expected real count in recovered light comes from a recovered-light ratio measured on the SEEN stars (allowed: they are the design stars), with its own uncertainty in the test, per product family; the null then says "no excess beyond the eclipse-leftover imbalance measured on seen stars", with less power. (B) Improve the filter so the recovered light is balanced (a rule change: Petrova 1.1.0, new gates, new time, counts on seen stars again). (C) Run as written and treat every S1 excess as a lead list (stage 2 private checks): expensive and cannot give a clean null.
+- G1 is not part of this and is not affected.

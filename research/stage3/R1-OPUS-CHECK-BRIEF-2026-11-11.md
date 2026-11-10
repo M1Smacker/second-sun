@@ -2,6 +2,8 @@
 
 You are an independent checker. You do NOT fix, edit, commit or run searches. You read, run small read-only scripts if you must, and report. **Stop after 30 tool calls** and report what you have, even if unfinished. Before reading anything, write down your PREDICTION: which of the marks do you expect to be weak, and why (3 lines). Then check it.
 
+**If calls run short, answer in this order: question 8, question 1, question 6, then 3, 4, 5, 2, 7.**
+
 ## What this is
 Second Sun searches TESS light for planets orbiting two stars. The old filter (Vesper 0.8.1) deleted planet dips in slow binaries (audit F-01). The new filter (Petrova 1.0.0, a switch `p1` on top of 0.8.1, run as `VESPER_OPTS=c6,p1`) keeps them. Nothing is frozen yet. Ahmed (the owner) reads on a phone and knows little jargon, so your report must be plain. The rules were written BEFORE the search in `research/stage3/R1-PREREGISTRATION.md` (read section 4, 5 and Amendment 1). The test code is `pipeline/r1_gate.py`, the mask and veto code is `pipeline/petrova_mask.py`, the freeze code is `pipeline/r1_run.py` (function `freeze`).
 
@@ -17,6 +19,8 @@ Second Sun searches TESS light for planets orbiting two stars. The old filter (V
 5. **Recovered light, 33 vs 8:** this is a RESULT to report, not a reason to change the definition (Amendment 1 says so). Is there anything in the code that would make the real arm get more events in recovered light for a reason other than the planet-free noise or the eclipse residuals? One paragraph.
 6. **Freeze list:** list every file that differs between Vesper 0.8.1 and the current tree that the freeze hashes (see `pipeline/stage3.py` `current_settings`, `pipeline/r1_run.py` CHANGED_FILES) and say whether anything that changes search results is NOT in the hash list (for example `r1_gate.py` is test code and should not change results; `targets_r1.py`, `targets/r1_targets.csv`, the catalogue tables `data/xmatch/ebs.csv` and the TTC table: are they hashed or at least pinned?). What would change the events silently after the freeze?
 7. **Anything else** that could make the sealed run answer a different question than the one written in section 6 of the preregistration. Max 3 items, ranked.
+
+8. **THE S1 CALIBRATION PROBLEM (the most important question).** Read `research/stage3/R1-S1-DESIGN-CHECK-2026-11-11.txt` (counts only, seen stars). In the light both masks keep, tier-1 real and upside-down are balanced (10/13 and 15/16 at bar 7); in recovered light they are 33/8 (G3) and 65/33 (G2), and the preregistered S1 rule (asymmetry ratio measured in all light) calls EXCESS with chance 0.000 on both. Check my arithmetic by a different route (a plain binomial or Poisson on the counts, not our scripts). Then rank the options A (a recovered-light ratio measured on the SEEN stars, with its own uncertainty, per product family, written as Amendment 2 before the freeze), B (change the filter: Petrova 1.1.0) and C (run as written, every excess becomes a lead list), and say which you would sign, with what limits on the null's wording. Is there a cleaner option I have missed (for example a veto or a shape test that is allowed because it is tuned only on planted dips and synthetic eclipses)? Is option A legitimate given that the ratio would be measured on stars whose counts I have already seen? Do not propose anything that reads an unseen star.
 
 ## Rules
 - Do not edit any file under `pipeline/`, `research/stage3/` or `targets/`. Do not commit. Write your report only as your reply (I will file it).
