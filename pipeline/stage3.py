@@ -29,7 +29,7 @@ def git(*a):
 
 def current_settings(stars_csv):
     code = {f: C.sha(C.ROOT / "pipeline" / f) for f in ("stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py",
-                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py", "dataset.py", "vopts.py")}
+                                                       "stage3_core.py", "stage3.py", "sap_twin.py", "stage3_report.py", "dataset.py", "vopts.py", "petrova_mask.py")}
     return dict(options=sorted(V.ON), base_run=BASE, v7=dict(V7, common_moment="a dip is flagged if 3 or more OTHER stars have a primary event of EITHER kind within 0.1 d at the same sector and camera (stage3_core.common_moment_n); "
                                                           "it replaces the Stage 2 burst flag in the tiers, which counted only upside-down events",
                                        pdc_check="a SAP-only dip whose PDCSAP flux (same file, same box length, nothing filled from SAP: sap_twin.load_pdc) shows SNR under pdc_min is tier 3; not measurable (PDC dropped those cadences) means no judgement (stage3.pdc_pass writes pdc_snr into groups_sap)"),
