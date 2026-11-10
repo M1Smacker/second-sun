@@ -5,4 +5,4 @@ Every field of every event equal to the frozen group files: 300 of 300 star-sect
 Tiers, union and v7 flags equal to stage3_report.load of the frozen run: 300 of 300 star-sectors.
 Errors: 0. Star-sectors that differ: 0.
 Mutation (flat-baseline lift 0.5 changed to 0.05, 15 star-sectors with events): the comparison caught 7 of 15.
-Not tested: the other 4782 star-sectors of the stored run (the code paths are the same; only the sample was re-run). Time 157 s.
+Not tested: the other 4782 star-sectors of the stored run (the code paths are the same; only the sample was re-run). Time 166 s.
