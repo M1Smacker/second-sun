@@ -1,0 +1,21 @@
+﻿=== g2 ===
+[T0] stars 895; in catalogue with period within 2% 895; usable primary width 780 (87%); secondary width and phase 480 (54%); secondary phase off 0.5 by > 0.02 295
+[phip] stars 895; in catalogue with period within 2% 895; usable primary width 780 (87%); secondary width and phase 480 (54%); secondary phase off 0.5 by > 0.02 278
+Phip-pf quantiles (5,25,50,75,95%): [0.4753 0.9996 1.     1.     1.002 ]; share within 0.01 of an integer 0.86
+Phis-pf quantiles: [0.2466 0.4928 0.5    0.5848 1.    ]; Phis-pf minus Phip-pf quantiles: [-0.7425 -0.5029 -0.4997 -0.3832  0.5   ]
+Catalogue drift to BTJD 4000 (sector ~98), 3 sigma, in primary widths: quantiles (50,90,99%, max) [5.410000e-01 8.733000e+00 1.607690e+02 1.374162e+03]; share > 0.25 width 0.642 (n 780)
+TOI-1338 [catalogue] sector 98: predicted primary nearest 3995.62 at BTJD 3995.583; primary width 4.9 h; secondary phase nan; primary depth 416.3 sigma, secondary 8.7 sigma, deepest out-of-window bin 13.9 sigma, median primary offset -0.09 widths
+TOI-1338 [refit] sector 98: predicted primary nearest 3995.62 at BTJD 3995.583; primary width 4.9 h; secondary phase nan; primary depth 388.5 sigma, secondary 9.3 sigma, deepest out-of-window bin 13.9 sigma, median primary offset -0.09 widths
+
+Stars checked on their latest SPOC 2-min sector: 21 (skipped 0); sectors used, quantiles (0,50,100%): [  7.  85. 107.]
+[catalogue] n 20: primary in-window depth > 5 sigma: 18; < 2 sigma: 1; secondary > 5 sigma: 16; |primary offset| < 0.25 width: 14 of 19; offset quantiles (10,50,90%) [-0.2  -0.    0.51]; deepest out-of-window bin > 8 sigma (eclipse left outside the 1.5x windows): 14 (of which eccentric 4)
+[refit] n 20: primary in-window depth > 5 sigma: 20; < 2 sigma: 0; secondary > 5 sigma: 16; |primary offset| < 0.25 width: 18 of 19; offset quantiles (10,50,90%) [-0.1  -0.    0.09]; deepest out-of-window bin > 8 sigma (eclipse left outside the 1.5x windows): 16 (of which eccentric 4)
+
+=== g3 ===
+[T0] stars 612; in catalogue with period within 2% 612; usable primary width 612 (100%); secondary width and phase 402 (66%); secondary phase off 0.5 by > 0.02 191
+TTC: secondary phase from T0-sec vs the Phase column: |diff| quantiles (50,90,99%) [0.002 0.004 0.005] (n 402); TTC gives no period or T0 errors, drift measured on the data below
+
+Stars checked on their latest SPOC 2-min sector: 20 (skipped 0); sectors used, quantiles (0,50,100%): [ 29.  78. 102.]
+[catalogue] n 20: primary in-window depth > 5 sigma: 17; < 2 sigma: 2; secondary > 5 sigma: 12; |primary offset| < 0.25 width: 16 of 19; offset quantiles (10,50,90%) [-0.07 -0.01  0.14]; deepest out-of-window bin > 8 sigma (eclipse left outside the 1.5x windows): 11 (of which eccentric 5)
+[refit] n 20: primary in-window depth > 5 sigma: 17; < 2 sigma: 2; secondary > 5 sigma: 12; |primary offset| < 0.25 width: 17 of 19; offset quantiles (10,50,90%) [-0.14 -0.    0.11]; deepest out-of-window bin > 8 sigma (eclipse left outside the 1.5x windows): 10 (of which eccentric 4)
+

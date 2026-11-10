@@ -1,0 +1,6 @@
+start g2 22:30:07
+DONE 8167 99 s
+done g2 22:31:52
+start g3 22:31:52
+DONE 6850 49 s
+done g3 22:32:47

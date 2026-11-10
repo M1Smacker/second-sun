@@ -1,0 +1,3 @@
+﻿Phip NOT near 0/1 (pf): 68 stars in G2, 27 tested | median z: T0 convention -132.0, phip convention -41.4 | eclipse seen (z < -5): T0 27, phip 17 | phip better by more than 5 sigma: 5, T0 better: 20
+Phip NOT near 0/1 (2g only): 23 stars in G2, 17 tested | median z: T0 convention -13.4, phip convention -0.3 | eclipse seen (z < -5): T0 13, phip 4 | phip better by more than 5 sigma: 1, T0 better: 13
+control: Phip near 0/1: 773 stars in G2, 28 tested | median z: T0 convention -588.9, phip convention -589.7 | eclipse seen (z < -5): T0 27, phip 27 | phip better by more than 5 sigma: 0, T0 better: 3

@@ -1,4 +1,4 @@
-# Job list (interim, until the Downloads page exists)
+﻿# Job list (interim, until the Downloads page exists)
 One line per download or long machine run: when, what, from where, why, expected size, state. Started automatically by Claude (Ahmed's rule, 30 Oct 2026).
 
 | Started (30 Oct 2026) | What | From | Why | Size | State |
@@ -25,3 +25,5 @@ abtsevich_zenodo | zenodo.org | RS-007 research; each logged in research/downloa
 | 10 Nov, 16:17 Kuwait (clock) | WO-F01 Part A: whole-chain eclipse-mask loss, injections before vs after the mask on 100 files per period bin and product family, G2 then G3, 6 workers Normal priority (research/fable-audit-2026-11/scripts/wo_f01a_mask_loss.py), no download | local disk, reads data\g2 and data\g3 only | measure what share of real dips the frozen mask deletes per hunt; rows private in data\fable_audit_mask | started, expected about 20 to 40 min |
 | 10 Nov, 16:30 Kuwait (clock) | WO-F01 Part A finished: G2 1,000 files in 312 s, G3 774 files in 142 s (6 workers); result research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md | local disk | finished |
 | 10 Nov, about 22:05 to 22:12 Kuwait (clock) | Step 1 mutation test of the Part A harness (4 variants x 60 files, 138 s, 6 workers, `research/fable-audit-2026-11/scripts/wo_f01a_mutation_test.py`), no download; then RS-016 literature fetch (5 arXiv PDFs, 22 MB, python after title check, into data\mask_literature_2026-11-10 and data\mask_literature_b_2026-11-10) | local disk and arxiv.org | check that Part A's checks can fail; read how professionals mask eclipses | finished |
+| 10 Nov, 22:30 Kuwait (clock) | C0 catalogue-mask full-size test: G2 then G3, 50 files per period bin and product family, 6 workers Normal priority (research/fable-audit-2026-11/scripts/c0_full_run.sh), no download | local disk, reads data\g2 and data\g3 only | step 4 of the 20% plan: does a time-only catalogue mask keep planted dips and keep the real and upside-down arms level | running |
+| 10 Nov, 22:33 Kuwait (clock) | C0 full-size test finished: G2 500 files in 99 s, G3 424 files in 49 s; results research/fable-audit-2026-11/DESIGN-C0-OPUS-2026-11-10.md addendum | local disk | finished |
