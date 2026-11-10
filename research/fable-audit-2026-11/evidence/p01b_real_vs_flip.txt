@@ -1,0 +1,37 @@
+﻿
+===== G3: 612 stars; stars per period bin: {'<10': 336, '10-14': 174, '14-20': 79, '20-27': 19, '>27': 4}
+star-sector groups 4080; per period bin {'<10': 2117, '10-14': 1293, '14-20': 535, '20-27': 102, '>27': 33}; events 1704
+-- ALL events: real / upside-down per period bin (rows) and SNR bin (columns)
+   P    <10: 7-9: 146/161   9-12: 81/92   12-20: 64/84   >20: 46/62   total 337/399   per 1000 groups 159.2/188.5
+   P  10-14: 7-9: 114/175   9-12: 66/104   12-20: 39/55   >20: 11/44   total 230/378   per 1000 groups 177.9/292.3
+   P  14-20: 7-9: 47/73   9-12: 20/45   12-20: 14/29   >20: 11/26   total 92/173   per 1000 groups 172.0/323.4
+   P  20-27: 7-9: 34/13   9-12: 4/8   12-20: 5/11   >20: 3/2   total 46/34   per 1000 groups 451.0/333.3
+   P    >27: 7-9: 3/3   9-12: 1/1   12-20: 0/4   >20: 0/3   total 4/11   per 1000 groups 121.2/333.3
+   all P: real 709, upside-down 995
+-- FIRST-TIER events (1A, 1L, 1B): real / upside-down per period bin (rows) and SNR bin (columns)
+   P    <10: 7-9: 2/12   9-12: 0/1   12-20: 1/5   >20: 1/1   total 4/19   per 1000 groups 1.9/9.0
+   P  10-14: 7-9: 6/3   9-12: 1/7   12-20: 0/0   >20: 0/1   total 7/11   per 1000 groups 5.4/8.5
+   P  14-20: 7-9: 2/1   9-12: 4/0   12-20: 1/0   >20: 0/1   total 7/2   per 1000 groups 13.1/3.7
+   P  20-27: 7-9: 1/1   9-12: 0/1   12-20: 0/1   >20: 0/0   total 1/3   per 1000 groups 9.8/29.4
+   P    >27: 7-9: 0/0   9-12: 0/0   12-20: 0/0   >20: 0/0   total 0/0   per 1000 groups 0.0/0.0
+   all P: real 19, upside-down 35
+
+===== G2 sealed: 895 stars; stars per period bin: {'<10': 469, '10-14': 174, '14-20': 148, '20-27': 53, '>27': 51}
+star-sector groups 6877; per period bin {'<10': 2986, '10-14': 1282, '14-20': 1234, '20-27': 488, '>27': 887}; events 7797
+-- ALL events: real / upside-down per period bin (rows) and SNR bin (columns)
+   P    <10: 7-9: 775/695   9-12: 482/463   12-20: 326/327   >20: 197/199   total 1780/1684   per 1000 groups 596.1/564.0
+   P  10-14: 7-9: 379/397   9-12: 177/262   12-20: 97/211   >20: 25/80   total 678/950   per 1000 groups 528.9/741.0
+   P  14-20: 7-9: 290/413   9-12: 151/230   12-20: 46/179   >20: 30/120   total 517/942   per 1000 groups 419.0/763.4
+   P  20-27: 7-9: 73/150   9-12: 28/95   12-20: 13/53   >20: 1/24   total 115/322   per 1000 groups 235.7/659.8
+   P    >27: 7-9: 116/277   9-12: 48/158   12-20: 12/130   >20: 14/53   total 190/618   per 1000 groups 214.2/696.7
+   all P: real 3280, upside-down 4517
+-- FIRST-TIER events (1A, 1L, 1B): real / upside-down per period bin (rows) and SNR bin (columns)
+   P    <10: 7-9: 24/15   9-12: 6/12   12-20: 11/10   >20: 7/0   total 48/37   per 1000 groups 16.1/12.4
+   P  10-14: 7-9: 14/10   9-12: 10/6   12-20: 3/9   >20: 1/5   total 28/30   per 1000 groups 21.8/23.4
+   P  14-20: 7-9: 13/9   9-12: 5/4   12-20: 0/5   >20: 0/0   total 18/18   per 1000 groups 14.6/14.6
+   P  20-27: 7-9: 0/5   9-12: 0/10   12-20: 0/5   >20: 0/0   total 0/20   per 1000 groups 0.0/41.0
+   P    >27: 7-9: 6/11   9-12: 5/13   12-20: 0/7   >20: 1/10   total 12/41   per 1000 groups 13.5/46.2
+   all P: real 106, upside-down 146
+
+Known transiting circumbinary hosts, binary period (d): Kepler-16 41.1, -34 27.8, -35 20.7, -38 18.8, -47 7.4, -64 20.0, -413 10.1, -453 27.3, -1647 11.3, -1661 28.2, TOI-1338 14.6, TIC 172900988 19.7
+  with binary period over 18 d: 8 of 12; over 14 d: 9 of 12

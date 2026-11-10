@@ -1,0 +1,4 @@
+﻿G3 QLP files on disk: 4075; sampled 240 (seed 84); lightkurve 2.6.0
+sectors <56: files 118; cadences 276297; kept by the loader 225518 (81.6%); kept WITH a flag set 0 (0.00% of kept); files with any 0; bits (bit: cadences) {}; flux columns {'kspsap_flux': 118}
+sectors 56-93: files 98; cadences 1083770; kept by the loader 982103 (90.6%); kept WITH a flag set 0 (0.00% of kept); files with any 0; bits (bit: cadences) {}; flux columns {'sys_rm_flux': 98}
+sectors >=94: files 24; cadences 289618; kept by the loader 232998 (80.5%); kept WITH a flag set 27672 (11.88% of kept); files with any 17; bits (bit: cadences) {29: 27672}; flux columns {'sys_rm_flux': 24}

@@ -1,0 +1,2 @@
+﻿G3: groups 4080; upside-down first-tier 35 (8.58 per 1000), of which 1 have a real event within 0.3 d -> 34 (8.33 per 1000) under a two-sided rule; real first-tier 19 (matched 0); real events in tier 2 ONLY because of the flip-match flag: 0
+G2 sealed: groups 6877; upside-down first-tier 146 (21.23 per 1000), of which 1 have a real event within 0.3 d -> 145 (21.08 per 1000) under a two-sided rule; real first-tier 106 (matched 0); real events in tier 2 ONLY because of the flip-match flag: 1

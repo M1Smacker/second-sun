@@ -1,0 +1,15 @@
+﻿
+files per period bin: 25; dip 8 h; columns: K | found when injected BEFORE the mask | found when injected AFTER the 
+mask | share of dip cadences cut
+P     5 to 10    : K 12 | before 0.84 | after 0.96 | cut 0.14 | files 25 of 3558 in bin
+P     5 to 10    : K 25 | before 0.80 | after 1.00 | cut 0.21 | files 25 of 3558 in bin
+P    10 to 14    : K 12 | before 0.68 | after 1.00 | cut 0.39 | files 25 of 1447 in bin
+P    10 to 14    : K 25 | before 0.28 | after 1.00 | cut 0.80 | files 25 of 1447 in bin
+P    14 to 20    : K 12 | before 0.52 | after 0.92 | cut 0.47 | files 25 of 1373 in bin
+P    14 to 20    : K 25 | before 0.12 | after 1.00 | cut 0.87 | files 25 of 1373 in bin
+P    20 to 27.4  : K 12 | before 0.08 | after 1.00 | cut 0.94 | files 25 of 526 in bin
+P    20 to 27.4  : K 25 | before 0.00 | after 1.00 | cut 1.00 | files 25 of 526 in bin
+P  27.4 to 10000.0: K 12 | before 0.04 | after 0.96 | cut 0.94 | files 25 of 1139 in bin
+P  27.4 to 10000.0: K 25 | before 0.00 | after 1.00 | cut 1.00 | files 25 of 1139 in bin
+
+

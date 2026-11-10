@@ -1,0 +1,17 @@
+﻿(1) Forward Census odds, c = 0.9: mine (Monte Carlo) per prior; the project's ranges are 36-52% (A) and 21-31% (B) at 1,400; 59-76% and 37-52% at 3,000
+   N 1400 prior A: 36% to 52%
+   N 1400 prior B: 21% to 31%
+   N 3000 prior A: 59% to 76%
+   N 3000 prior B: 37% to 52%
+
+    With the mask loss (F-01), factor m on E. X = Census also run with the unfixed mask; Y = mask fixed before Census. N 1,400, c 0.9:
+   m 1.0: prior A: X 36-52%, Y 36-52%, believed rate (mean) 5.7-7.7% | prior B: X 21-31%, Y 21-31%, believed rate (mean) 2.9-4.1%
+   m 0.8: prior A: X 32-48%, Y 38-55%, believed rate (mean) 6.2-8.3% | prior B: X 19-28%, Y 23-33%, believed rate (mean) 3.2-4.5%
+   m 0.6: prior A: X 27-42%, Y 40-58%, believed rate (mean) 6.9-8.9% | prior B: X 16-25%, Y 24-36%, believed rate (mean) 3.7-4.8%
+   m 0.4: prior A: X 21-34%, Y 42-62%, believed rate (mean) 8.0-9.8% | prior B: X 12-20%, Y 26-40%, believed rate (mean) 4.3-5.3%
+
+(2) S2 intervals (exact binomial, 95%), per 1,000 star-sectors; mark 8
+   pooled: 115 in 13412 = 8.57 (7.08 to 10.28); chance of 115 or more if the true rate is exactly 8: 0.240
+   G3: 32 in 3425 = 9.34 (6.40 to 13.16); chance of 32 or more if the true rate is exactly 8: 0.212
+   pooled minus G3 (115-32 in 13,412-3,425): 83 in 9987 = 8.31 (6.62 to 10.29); chance of 83 or more if the true rate is exactly 8: 0.379
+   Note: star-sectors of one star are not independent (the G3 note gives a star-level ratio with the 25 heaviest stars), so the true interval is wider than binomial.
