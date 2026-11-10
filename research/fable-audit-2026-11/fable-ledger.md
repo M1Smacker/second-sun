@@ -11,3 +11,4 @@
 | 2026-11-10 11:05 | Area R: H1 and H2 read, privacy check of watch_export and the watch-data branch, findings-R.md | 2 | 35 / 38 | 21 / 21 | 27 / 28 | under 1 | 5 |
 | 2026-11-10 10:09 | Area L (skill, examples, blind bug test), work orders, REPORT.md | 4 | 38 / 50 | 21 / 23 | 28 / 30 | about 2 bar points | 22 findings in total |
 | 2026-11-10 10:27 | Fix step (Ahmed: do it today): mask prototype on real light, PETROVA-1.0-MASK-DESIGN.md, re-search prereg draft, RESEARCH-ORDERS.md, answers file | 3 | 51 / - | 23 / - | 31 / - | read after commit | 0 new |
+| 2026-11-10 15:43 | Extension: known planets, d02, d03, Amendment A, playbook, research orders; then resume after the pause | 8 | 51 / 25 (new window) | 23 / 33 | 31 / 48 | 10 bar points, of which about 4 were the uncached resume | 0 new findings, 1 design amendment |
