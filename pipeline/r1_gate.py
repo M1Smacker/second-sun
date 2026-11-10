@@ -19,8 +19,9 @@ if V.ON != frozenset({"c6", "p1"}):
 KS, DURS = (12.0, 25.0), (4.0, 8.0, 14.0, 20.0)
 BINS = [(5, 10), (10, 14), (14, 20), (20, 27.4), (27.4, 1e9)]
 MODE = {"m": "before"}
-ROWS = X.PREP / "rows_r1_gate.pkl"
-OUT = C.ROOT / "research" / "stage3" / f"R1-GATE-RESULT-{DS.NAME}.txt"
+TAG = os.environ.get("R1_TAG", "")      # R1_TAG=-sealed keeps the S4 completeness run on the sealed stars apart from the development gates (their files are frozen references)
+ROWS = X.PREP / f"rows_r1_gate{TAG}.pkl"
+OUT = C.ROOT / "research" / "stage3" / f"R1-GATE-RESULT-{DS.NAME}{TAG}.txt"
 
 
 def install():

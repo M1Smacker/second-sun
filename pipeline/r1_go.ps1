@@ -1,6 +1,6 @@
 # Re-search 1 (Petrova 1.0.0), the ONE sealed search of the unseen stars, in two parts: G3 first (328 stars), then G2 (475 stars). G1 (549 Kepler-field stars) waits for its own eclipse widths (preregistration section 8).
 # RUN ONLY AFTER Ahmed's fresh explicit one-word go: r1_run.py refuses without research\stage3\R1-GO-unseen.txt, without SETTINGS_FROZEN_P100.json and without a clean tree, and this script stops at the first step that fails.
-# The analysis (S1 to S4, counts first) is a separate step (B4) and is not started here. Each step logs to data\r1_*_log.txt. Usage: .\r1_go.ps1 [workers]   (Ahmed's rule: 70 percent CPU, so 6 workers on his 12 cores)
+# After each part the counts-first readout runs (r1_readout.py); after both parts S4 completeness (r1_gate.py, tag -sealed). Each step logs to data\r1_*_log.txt. Usage: .\r1_go.ps1 [workers]   (Ahmed's rule: 70 percent CPU, so 6 workers on his 12 cores)
 param([int]$n = 6)
 $env:OMP_NUM_THREADS = "1"; $env:MKL_NUM_THREADS = "1"; $env:OPENBLAS_NUM_THREADS = "1"; $env:NUMEXPR_NUM_THREADS = "1"; $env:NUMBA_NUM_THREADS = "1"; $env:PYTHONUNBUFFERED = "1"
 $env:VESPER_OPTS = "c6,p1"
@@ -23,5 +23,20 @@ foreach ($p in $parts) {
   Say "1.$($p.no) $set sealed search exit $LASTEXITCODE"
   if (Test-Path "$log\stage3_$set\$run") { Copy-Item $fr "$log\stage3_$set\$run\pip-freeze.txt" -Force; Say "0 library versions copied into $run" }
   if (-not (Select-String -Path "$log\r1_${set}_run_log.txt" -Pattern "^SEARCH DONE" -Quiet)) { Say "STOP: the $set search did not finish"; exit 1 }
+  # the counts-first readout of this part (r1_readout.py: totals, S1 by Amendment 2, control, S1 as written, bins, S2); writes research\stage3\R1-RESULT-<set>.txt
+  $env:SS_RUN = $run
+  & $py -W ignore r1_readout.py 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\r1_${set}_readout_log.txt" -Encoding utf8
+  Say "2.$($p.no) $set readout exit $LASTEXITCODE"
+  Remove-Item Env:SS_RUN -ErrorAction SilentlyContinue
 }
-Say "ALL SEARCH STEPS DONE (both parts). Next: the counts-first analysis (B4); nothing is opened before it."
+Say "ALL SEARCH STEPS AND READOUTS DONE (both parts)."
+# S4 completeness on the sealed stars: dips and bumps injected into RAW light before every step, 300 star-sectors per list (60 per period bin), written apart from the development gates (R1_TAG=-sealed)
+foreach ($p in $parts) {
+  $set = $p.set; $run = "r1_${set}_unseen_$h12"; $env:SS_SET = $set; $env:SS_RUN = $run; $env:R1_TAG = "-sealed"
+  Say "3.$($p.no) $set S4 completeness start"
+  & $py -W ignore r1_gate.py run 300 $n 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\r1_${set}_s4_log.txt" -Encoding utf8
+  & $py -W ignore r1_gate.py summary 2>&1 | Where-Object { $_ -notmatch "Warning|warn|^\s*$" } | Out-File "$log\r1_${set}_s4_log.txt" -Append -Encoding utf8
+  Say "3.$($p.no) $set S4 completeness exit $LASTEXITCODE"
+}
+Remove-Item Env:SS_RUN, Env:R1_TAG -ErrorAction SilentlyContinue
+Say "ALL STEPS DONE (searches, readouts, S4). Nothing has been opened; the plain verdict is next."
