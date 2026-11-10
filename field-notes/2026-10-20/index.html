@@ -1736,6 +1736,8 @@
       
         
       
+        
+      
     
     
     
@@ -2281,6 +2283,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2707,6 +2737,10 @@
 <h1 id="20-october-2026-testing-honestly">20 October 2026: testing honestly<a class="headerlink" href="#20-october-2026-testing-honestly" title="Permanent link">&para;</a></h1>
 <p class="ss-meta">Field note · night 1 and morning · about 12 min</p>
 
+<div class="admonition warning">
+<p class="admonition-title">Correction, 10 Nov 2026</p>
+<p>An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. <a href="../2026-11-10/">The full story</a>.</p>
+</div>
 <div class="admonition plain">
 <p class="admonition-title">In plain words</p>
 <p>Overnight we built a better planet search and then spent most of our effort trying to <strong>break</strong> it: hiding fake planets to see which it finds, flipping the data upside down to count false alarms, and running it on a real G1 star. In the morning, a bug in the professionals' tool (STANLEY) was found and worked around, and we measured our search with fake planets that move like real ones. <strong>No new planet.</strong> But we now know what our search can and can't see.</p>
@@ -2714,7 +2748,7 @@
 <h2 id="what-we-did-and-why">What we did, and why<a class="headerlink" href="#what-we-did-and-why" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Detector version 2.</strong> It slides a box of 3 to 15 hours along the light curve and asks "is it darker in here than usual?" (Chapter 8). It re-found TOI-1338 b in 4 of 8 sectors <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-014" title="VERIFIED · Second Sun overnight test (research/overnight-science/report.md) · checked 2026-10-20" data-cid="F-014" data-claim="Our detector v2 found the known planet TOI-1338 b in 4 of the 8 sectors with data at the transit; missed transits had SNR 3.7 to 6.5" data-src="Second Sun overnight test (research/overnight-science/report.md)" data-checked="2026-10-20">VERIFIED</a>.</li>
-<li><strong>Fake planets.</strong> We added made-up transits of known sizes and checked which were found: down to about 6 Earth radii <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-015" title="VERIFIED · Second Sun overnight injection test · checked 2026-10-20" data-cid="F-015" data-claim="On TOI-1338 sector 98, detector v2 finds injected 6.4-hour transits of 6 Earth radii 5 times in 7 and of 7 Earth radii every time; 5 Earth radii and smaller are missed" data-src="Second Sun overnight injection test" data-checked="2026-10-20">VERIFIED</a>.</li>
+<li><strong>Fake planets.</strong> We added made-up transits of known sizes and checked which were found: down to about 6 Earth radii <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-015" title="LIKELY · Second Sun overnight injection test · checked 2026-10-20" data-cid="F-015" data-claim="On TOI-1338 sector 98, detector v2 finds injected 6.4-hour transits of 6 Earth radii 5 times in 7 and of 7 Earth radii every time; 5 Earth radii and smaller are missed (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun overnight injection test" data-checked="2026-10-20">LIKELY</a>.</li>
 <li><strong>Upside-down data.</strong> Flip the light curve (2 − brightness) and any dip becomes a bump. Whatever the search still "finds" must be noise: 6 fakes in 10 sectors <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-016" title="VERIFIED · Second Sun overnight false-alarm test · checked 2026-10-20" data-cid="F-016" data-claim="Run on upside-down (flipped) TOI-1338 light curves, detector v2 at SNR 7 still finds 6 fake dips in 10 sectors, with peaks up to SNR 12.6" data-src="Second Sun overnight false-alarm test" data-checked="2026-10-20">VERIFIED</a>.</li>
 <li><strong>A failed clean-up.</strong> Throwing out dips near spacecraft events removed fakes but also half the real crossings. So those became <strong>warning flags</strong> for a human (Chapter 10).</li>
 <li><strong>A timing check.</strong> A 2024 paper predicted a TOI-1338 b crossing on 16 December 2025. We found it <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-011" title="VERIFIED · Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test · checked 2026-10-20" data-cid="F-011" data-claim="Wang and Liu (2024) predicted a TOI-1338 b transit on 2025-12-16 at 02:13 UTC lasting 6.31 hours; our search found it on that night, about one hour later" data-src="Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test" data-checked="2026-10-20">VERIFIED</a>, 56 ± 5 minutes after the predicted time.</li>
@@ -2722,7 +2756,7 @@
 <li><strong>STANLEY</strong> installed and run (Chapter 12). Its strongest signal was near 96 days (first misread as 94; corrected in the afternoon), close to the real planet's 95.2, but its scores aren't calibrated yet.</li>
 <li><strong>Compass</strong> reviewed our upgrade plans: <strong>REVISE</strong>. Its three points: use STANLEY's fake-planet maker instead of building one; odd and even depths only mean something for planets that repeat; centroid checks must predict the expected shift.</li>
 <li><strong>The STANLEY bug.</strong> Its fake-planet maker placed <strong>zero</strong> transits. Cause: before adding the transits it ran them through its <strong>search scorer</strong>, which keeps only transits already showing a dip. Before injection there's no dip, so it kept none. Our wrapper now takes the transit times straight from its orbit simulation.</li>
-<li><strong>The realistic test.</strong> 6 fake planets, 33 crossings lasting 6.8 to 15.3 hours <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-029" title="VERIFIED · Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py) · checked 2026-10-20" data-cid="F-029" data-claim="Injecting 6 circumbinary planets (33 transits, 6.8 to 15.3 h long, timed by STANLEY&#x27;s N-body code) into 40 TESS sectors of TOI-1338: our search found 0 of 10 at 4 Earth radii, 8 of 10 at 6, 10 of 10 at 8; the 2-day detrend kept 90-100% of depth; 3 of 33 transits fell inside the eclipse mask" data-src="Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py)" data-checked="2026-10-20">VERIFIED</a>. Our cleaning kept 90 to 100% of each dip. 6 Earth radii: 8 of 10 found. 8: 10 of 10. 4: none. <strong>3 of 33 crossings were lost inside the stars' eclipses</strong> before the search even looked.</li>
+<li><strong>The realistic test.</strong> 6 fake planets, 33 crossings lasting 6.8 to 15.3 hours <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-029" title="LIKELY · Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py) · checked 2026-10-20" data-cid="F-029" data-claim="Injecting 6 circumbinary planets (33 transits, 6.8 to 15.3 h long, timed by STANLEY&#x27;s N-body code) into 40 TESS sectors of TOI-1338: our search found 0 of 10 at 4 Earth radii, 8 of 10 at 6, 10 of 10 at 8; the 2-day detrend kept 90-100% of depth; 3 of 33 transits fell inside the eclipse mask (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py)" data-checked="2026-10-20">LIKELY</a>. Our cleaning kept 90 to 100% of each dip. 6 Earth radii: 8 of 10 found. 8: 10 of 10. 4: none. <strong>3 of 33 crossings were lost inside the stars' eclipses</strong> before the search even looked.</li>
 </ol>
 <h2 id="the-idea-behind-it">The idea behind it<a class="headerlink" href="#the-idea-behind-it" title="Permanent link">&para;</a></h2>
 <p><strong>Injection and recovery</strong> is how you measure a search: add signals you know, see what comes back. It turns "we found nothing" into "nothing bigger than X crossed". Without it, a null result means nothing. Chapter 9 is all about it.</p>
@@ -2758,7 +2792,7 @@
 <p>Each method flattens the light curve differently first. The harder you flatten, the more slow wobble you remove, and the smaller the noise looks. Quote the number that matches how your search treats the data.</p>
 </details>
 <p><strong>Later, batch 3 of the overhaul:</strong> writing <a href="../../labs/lab8-read-stanley/">Lab 8</a> caught a second slip. STANLEY's strongest orbit is at <strong>96.1 days</strong>, not the 93.8 reported overnight. The search log prints the period range high to low, but the results file runs low to high. The real planet's period is 95.2 days, so the conclusion ("close") survives, but the number was wrong for half a day. Lesson: read an array's order from the data file, and check one known feature lines up. <a href="../../book/12-stanley/">Chapter 12</a> and <a href="../../book/06-orbits-three-body/">Chapter 6</a> are new.</p>
-<p><strong>Batch 4:</strong> <a href="../../book/09-fake-planets/">Chapter 9</a> (fake planets) and <a href="../../book/11-pixels-and-neighbours/">Chapter 11</a> (pixels and neighbours), with Labs 6 and 7. Two things worth knowing: three different fake-planet tests now agree on a floor of about 6 Earth radii <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-048" title="VERIFIED · Second Sun Lab 6 run, 2026-10-20 · checked 2026-10-20" data-cid="F-048" data-claim="Lab 6 on TOI-1338 sector 98: fake planets (realistic transit shape, added before cleaning) at 4 times were found 4 of 4 at 6 and 8 Earth radii, 1 of 4 at 5, 0 of 4 at 3 and 4; the 2-day cleaning kept 92-96% of the 6 and 8 Earth-radius dips&#x27; centre depth" data-src="Second Sun Lab 6 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>; and TOI-1338's pixels show the 16 December dip on the right star, with the light's centre steady to about a thousandth of an arcsecond <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20" data-cid="F-049" data-claim="Lab 7 on TOI-1338 sector 98: during the planet crossing the dimming sits on the target&#x27;s own pixels (brightest pixel row 4 col 4, most dimmed row 4 col 5); the light centre moved +0.001 and -0.000 arcseconds, 0.1 and 0.0 times the chance spread measured from 128 same-length windows; 8 catalogued stars brighter than Tmag 16 fall on the 11 x 11 pixels" data-src="Second Sun Lab 7 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. The pixel lab uses a better error bar than our first pixel script (Compass's point): the chance spread of the same measurement at quiet times.</p>
+<p><strong>Batch 4:</strong> <a href="../../book/09-fake-planets/">Chapter 9</a> (fake planets) and <a href="../../book/11-pixels-and-neighbours/">Chapter 11</a> (pixels and neighbours), with Labs 6 and 7. Two things worth knowing: three different fake-planet tests now agree on a floor of about 6 Earth radii <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-048" title="LIKELY · Second Sun Lab 6 run, 2026-10-20 · checked 2026-10-20" data-cid="F-048" data-claim="Lab 6 on TOI-1338 sector 98: fake planets (realistic transit shape, added before cleaning) at 4 times were found 4 of 4 at 6 and 8 Earth radii, 1 of 4 at 5, 0 of 4 at 3 and 4; the 2-day cleaning kept 92-96% of the 6 and 8 Earth-radius dips&#x27; centre depth (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun Lab 6 run, 2026-10-20" data-checked="2026-10-20">LIKELY</a>; and TOI-1338's pixels show the 16 December dip on the right star, with the light's centre steady to about a thousandth of an arcsecond <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20" data-cid="F-049" data-claim="Lab 7 on TOI-1338 sector 98: during the planet crossing the dimming sits on the target&#x27;s own pixels (brightest pixel row 4 col 4, most dimmed row 4 col 5); the light centre moved +0.001 and -0.000 arcseconds, 0.1 and 0.0 times the chance spread measured from 128 same-length windows; 8 catalogued stars brighter than Tmag 16 fall on the 11 x 11 pixels" data-src="Second Sun Lab 7 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. The pixel lab uses a better error bar than our first pixel script (Compass's point): the chance spread of the same measurement at quiet times.</p>
 <p><strong>Batch 5:</strong> <a href="../../book/13-your-workshop/">Chapter 13</a> (a tour of the project), <a href="../../book/15-mistakes-as-lessons/">Chapter 15</a> (our 15 mistakes, as five lessons), <a href="../../labs/lab9-your-star/">Lab 9</a> (the whole route on a G1 star of your choice), a rebuilt <a href="../../learn/">learning track</a> and a <a href="../../reference/reading-list/">reading list</a>. Writing Lab 9 found a real problem in the G1 list: our rule "morph &lt; 0.5" also lets in stars whose shape was <strong>never measured</strong> (morph = −1): <strong>136 of 552 rows</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-052" title="VERIFIED · Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20 · checked 2026-10-20" data-cid="F-052" data-claim="The G1 cut morph &lt; 0.5 also admits morph = -1 (not measured in the Villanova catalogue): 136 of the 552 rows. One such star (TIC 138638780) shows no eclipse deeper than about 440 ppm in 3 TESS sectors" data-src="Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. The first star I tried was one of them, and it showed no eclipse at all. Not fixed (the hunt is paused); it's a decision for you in the decision log, explained in <a href="../../book/01-stars-names-missions/">Chapter 1</a>.</p>
 <p><strong>Batch 6, the stress test (overhaul complete):</strong> every one of the 10 lab scripts was run again from scratch and reproduced its page's "what you should see" output exactly. The built site: 40 pages, 3,743 internal links and anchors checked, <strong>0 broken</strong>; no long dashes in visible text; no sideways scrolling on any page at phone width (375 px) or desktop width; all 11 lab and chapter pictures load; all 39 pages are in the offline cache; the "Next" links lead through all 25 chapters and labs in one line, with no loops. Your progress page now shows TOI-1338 b's recovery (19 October) and this overhaul as milestones.</p>
 <h2 id="evening-the-quality-filter-experiment-you-approved-it-i-ran-it">Evening: the quality-filter experiment (you approved it, I ran it)<a class="headerlink" href="#evening-the-quality-filter-experiment-you-approved-it-i-ran-it" title="Permanent link">&para;</a></h2>
@@ -2817,7 +2851,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 2.9.15 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 2.10.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   

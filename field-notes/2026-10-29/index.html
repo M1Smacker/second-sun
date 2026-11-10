@@ -1736,6 +1736,8 @@
       
         
       
+        
+      
     
     
     
@@ -2259,6 +2261,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2663,6 +2693,10 @@
 <h1 id="29-october-2026-how-small-a-planet-could-we-have-found">29 October 2026: how small a planet could we have found?<a class="headerlink" href="#29-october-2026-how-small-a-planet-could-we-have-found" title="Permanent link">&para;</a></h1>
 <p class="ss-meta">Field note · day 11 · about 6 min</p>
 
+<div class="admonition warning">
+<p class="admonition-title">Correction, 10 Nov 2026</p>
+<p>An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. <a href="../2026-11-10/">The full story</a>.</p>
+</div>
 <div class="admonition plain">
 <p class="admonition-title">In plain words</p>
 <p>We have searched 549 stars with Vesper and found nothing above noise. Today we asked the question that gives that result its meaning: if a planet had been there, how big would it have to be for us to catch it? We pasted thousands of fake dips into our own data and ran the whole frozen search on them. The answer is humbling. Only the biggest planets would have been caught, so "we found nothing" is a weak statement. It is still an honest one, and now it has numbers.</p>
@@ -2672,9 +2706,9 @@
 <li><strong>We checked the fill.</strong> Our "cleaned light" input fills some missing readings from the raw light. We counted: 0.67% of readings are filled, and a filled reading sits inside 8.5% of real dips and 7.8% of upside-down dips, so it affects both sides alike <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-086" title="VERIFIED · Our own count over all 3,019 SPOC and TESS-SPOC files of the 549 stars and the frozen run fd788be04650, aggregates only, 29 October 2026 · checked 2026-10-29" data-cid="F-086" data-claim="Step 0 audit of version 7: 0.67% of the readings in the cleaned-light part of the search were filled in from raw light, and a filled reading sits inside 8.5% of the real dips and 7.8% of the upside-down dips of that part" data-src="Our own count over all 3,019 SPOC and TESS-SPOC files of the 549 stars and the frozen run fd788be04650, aggregates only, 29 October 2026" data-checked="2026-10-29">VERIFIED</a>. No error was swallowed in secret. The run logs hold zero errors; the only silent skips are 21 QLP files with no safe time windows.</li>
 <li><strong>We found a wrong name.</strong> Of the 14 first-tier dips we called "cleaned light", 10 sit on QLP's raw flux, because QLP has no cleaned column before sector 56 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-087" title="VERIFIED · Our own count of the frozen run fd788be04650 by flux column, aggregates only; that QLP has no cleaned column before sector 56 is from our own loader notes (detect_v2.load), QLP&#x27;s product description was not read, 29 October 2026 · checked 2026-10-29" data-cid="F-087" data-claim="Of the 14 real first-tier dips that were called cleaned light, 10 sit on QLP&#x27;s raw flux column, 2 on PDC flux and 2 on QLP&#x27;s cleaned column; the 32 upside-down ones split 16, 9 and 7" data-src="Our own count of the frozen run fd788be04650 by flux column, aggregates only; that QLP has no cleaned column before sector 56 is from our own loader notes (detect_v2.load), QLP&#x27;s product description was not read, 29 October 2026" data-checked="2026-10-29">VERIFIED</a>. The comparison with the upside-down copy still holds, since both sides use the same flux, but the word "cleaned" was wrong. The briefing now says so, and the code gets the new name at the next freeze.</li>
 <li><strong>We built a test that sends fake dips through the whole chain.</strong> It pastes the same fake dip, at the same time and depth, into every file of a star-sector. Then the unchanged frozen code runs: search, checks, second look, raw-light twin, union and tiers. With nothing pasted in, it reproduces the real events in all 299 star-sectors tried, so it is the same machine.</li>
-<li><strong>We ran 14,352 fake dips</strong> in 299 random star-sectors, 4 lengths, 6 depths, each as a dip and as a mirror bump. Even a very deep dip (18 times the noise) is seen almost every time, but only 44% to 64% end in the first tier. Half are recovered at about 11 times the 8 hour noise, which is about 8,000 parts per million for the middle star <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-088" title="VERIFIED · Our own run of the unchanged frozen code (a run with nothing pasted in reproduces the real events in 299 of 299 star-sectors), 29 October 2026 · checked 2026-10-29" data-cid="F-088" data-claim="Fake dips pasted into 299 random star-sectors and sent through the whole version 7 chain (14,352 fake dips): even at 18 times the 8 hour noise only 44% to 64% end in the first tier, and half are recovered at about 11 times the 8 hour noise, about 8,000 parts per million for the middle star" data-src="Our own run of the unchanged frozen code (a run with nothing pasted in reproduces the real events in 299 of 299 star-sectors), 29 October 2026" data-checked="2026-10-29">VERIFIED</a>.</li>
+<li><strong>We ran 14,352 fake dips</strong> in 299 random star-sectors, 4 lengths, 6 depths, each as a dip and as a mirror bump. Even a very deep dip (18 times the noise) is seen almost every time, but only 44% to 64% end in the first tier. Half are recovered at about 11 times the 8 hour noise, which is about 8,000 parts per million for the middle star <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-088" title="LIKELY · Our own run of the unchanged frozen code (a run with nothing pasted in reproduces the real events in 299 of 299 star-sectors), 29 October 2026 · checked 2026-10-29" data-cid="F-088" data-claim="Fake dips pasted into 299 random star-sectors and sent through the whole version 7 chain (14,352 fake dips): even at 18 times the 8 hour noise only 44% to 64% end in the first tier, and half are recovered at about 11 times the 8 hour noise, about 8,000 parts per million for the middle star (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Our own run of the unchanged frozen code (a run with nothing pasted in reproduces the real events in 299 of 299 star-sectors), 29 October 2026" data-checked="2026-10-29">LIKELY</a>.</li>
 <li><strong>We compared that with the known planets.</strong> We asked the NASA Exoplanet Archive for the sizes of known circumbinary planets and worked out the deepest dip each could make. Against 8,000 ppm only Kepler-16 b clears the bar for a middle star. Against the quietest bright stars (about 3,100 ppm) roughly half of the transiting ones do.</li>
-<li><strong>We tested the mirror.</strong> A fake dip and its mirror bump pass through the chain almost equally well: 32% against 34% <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-089" title="VERIFIED · Our own paired injection test on 299 random star-sectors, 29 October 2026 · checked 2026-10-29" data-cid="F-089" data-claim="A fake dip and its mirror-image bump pass through the whole chain almost equally well: 32% against 34% in the first tier at 8 to 12 times the noise (exact p = 0.06, 3,588 pairs)" data-src="Our own paired injection test on 299 random star-sectors, 29 October 2026" data-checked="2026-10-29">VERIFIED</a>. That supports using the upside-down copy as a control, within about two points.</li>
+<li><strong>We tested the mirror.</strong> A fake dip and its mirror bump pass through the chain almost equally well: 32% against 34% <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-089" title="LIKELY · Our own paired injection test on 299 random star-sectors, 29 October 2026 · checked 2026-10-29" data-cid="F-089" data-claim="A fake dip and its mirror-image bump pass through the whole chain almost equally well: 32% against 34% in the first tier at 8 to 12 times the noise (exact p = 0.06, 3,588 pairs) (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Our own paired injection test on 299 random star-sectors, 29 October 2026" data-checked="2026-10-29">LIKELY</a>. That supports using the upside-down copy as a control, within about two points.</li>
 <li><strong>We counted the next star list (G2).</strong> The catalogue we already had gives 895 new stars under the same rule as G1. I first guessed 1 to 4 GB of downloads. The query said about 28 GB, because every star has many sectors. I wrote my wrong guess down next to the right number.</li>
 <li><strong>One slip of mine:</strong> I pointed the browser at a PDF link and it offered to save the file on your PC. You cancelled it and nothing was saved. The new rule: I ask before touching any file link.</li>
 </ol>
@@ -2760,7 +2794,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 2.9.15 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 2.10.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   

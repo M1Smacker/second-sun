@@ -1723,6 +1723,8 @@
       
         
       
+        
+      
     
     
     
@@ -2141,6 +2143,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2513,6 +2543,10 @@
 <h1 id="lab-6-hide-your-own-fake-planets">Lab 6: hide your own fake planets<a class="headerlink" href="#lab-6-hide-your-own-fake-planets" title="Permanent link">&para;</a></h1>
 <p class="ss-meta">Lab · at your PC · about 20 min (the script runs 3 to 5 minutes) · Level L5 · after Chapter 9</p>
 
+<div class="admonition warning">
+<p class="admonition-title">Correction, 10 Nov 2026</p>
+<p>An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. <a href="../../field-notes/2026-11-10/">The full story</a>.</p>
+</div>
 <div class="admonition plain">
 <p class="admonition-title">In plain words</p>
 <p>You hide 20 fake planets (5 sizes, 4 places each) in real TOI-1338 data and run our search on every one. The table shows which were found, and how much of each dip survived our cleaning. You've just measured what our search can see.</p>
@@ -2529,7 +2563,7 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
 </code></pre></div>
 <figure>
 <p><img alt="A two-day stretch of cleaned TOI-1338 data with a shallow dip at the red line" loading="lazy" src="../img/lab6-fake-5re.png" width="100%" /></p>
-<figcaption>The one 5-Earth-radius fake that was found (BTJD 4013.0), after cleaning. From your PC <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-048" title="VERIFIED · Second Sun Lab 6 run, 2026-10-20 · checked 2026-10-20" data-cid="F-048" data-claim="Lab 6 on TOI-1338 sector 98: fake planets (realistic transit shape, added before cleaning) at 4 times were found 4 of 4 at 6 and 8 Earth radii, 1 of 4 at 5, 0 of 4 at 3 and 4; the 2-day cleaning kept 92-96% of the 6 and 8 Earth-radius dips&#x27; centre depth" data-src="Second Sun Lab 6 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>.</figcaption>
+<figcaption>The one 5-Earth-radius fake that was found (BTJD 4013.0), after cleaning. From your PC <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-048" title="LIKELY · Second Sun Lab 6 run, 2026-10-20 · checked 2026-10-20" data-cid="F-048" data-claim="Lab 6 on TOI-1338 sector 98: fake planets (realistic transit shape, added before cleaning) at 4 times were found 4 of 4 at 6 and 8 Earth radii, 1 of 4 at 5, 0 of 4 at 3 and 4; the 2-day cleaning kept 92-96% of the 6 and 8 Earth-radius dips&#x27; centre depth (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun Lab 6 run, 2026-10-20" data-checked="2026-10-20">LIKELY</a>.</figcaption>
 </figure>
 <h2 id="do-it-yourself">Do it yourself<a class="headerlink" href="#do-it-yourself" title="Permanent link">&para;</a></h2>
 <details class="note">
@@ -2542,7 +2576,7 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
 <h2 id="reading-it">Reading it<a class="headerlink" href="#reading-it" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>R+</strong> means Earth radii. <strong>depth</strong> is the textbook depth, (planet size ÷ star size)².</li>
-<li><strong>6 and 8 Earth radii: found every time.</strong> 5: once in 4. 3 and 4: never. Same floor as the bigger tests in Chapter 9.</li>
+<li><strong>6 and 8 Earth radii: found every time.</strong> 5: once in 4. 3 and 4: never. Same floor as the bigger tests in Chapter 9. <strong>Correction:</strong> this lab builds the eclipse mask from the clean light and adds the fake afterwards, so it cannot see the mask deleting a real dip. Read the table as an upper limit.</li>
 <li><strong>Depth kept</strong> compares the dip's centre after cleaning with the fake's real centre depth. 92 to 96% for the big ones: cleaning barely touches them.</li>
 <li><strong>Why 129% and 109% for the small ones?</strong> Their dips are smaller than the noise, so "depth kept" is mostly noise. A number can be computed and still mean nothing: check the size of the signal against the noise before reading a ratio.</li>
 <li><strong>The picture:</strong> the 5-Earth-radius dip at 4013.0 is real, but you'd hardly pick it out by eye. The search found it there and not at the other three times: at the edge of the floor, luck (where the noise happens to wobble) decides.</li>
@@ -2619,7 +2653,7 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 2.9.15 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 2.10.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
