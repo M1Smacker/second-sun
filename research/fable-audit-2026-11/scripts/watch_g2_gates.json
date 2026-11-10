@@ -1,0 +1,5 @@
+{"max": 1800, "step": 60, "disk_gb_min": 5, "mem_gb_min": 1.0, "drive": "D:/",
+ "jobs": [
+  {"name": "G2 gates (r1_gate.py, 6 workers)", "match": "r1_gate.py", "logs": ["D:/second-sun/data/r1_gates.log"],
+   "done": [["D:/second-sun/research/stage3/R1-GATE-RESULT-g2.txt", ""]], "stall": 1200, "cpu_stall": 600, "gone": 180, "must_run": true}
+ ]}

@@ -1,0 +1,8 @@
+{"max": 1800, "step": 60, "disk_gb_min": 5, "mem_gb_min": 1.0, "drive": "D:/",
+ "jobs": [
+  {"name": "Re-search 1 chain (search, readout, S4: r1_go.ps1)", "match": ["r1_run.py", "r1_readout.py", "r1_gate.py"],
+   "logs": ["D:/second-sun/data/r1_steps_log.txt", "D:/second-sun/data/r1_g3_run_log.txt", "D:/second-sun/data/r1_g2_run_log.txt", "D:/second-sun/data/r1_g3_s4_log.txt", "D:/second-sun/data/r1_g2_s4_log.txt"],
+   "done": [["D:/second-sun/data/r1_steps_log.txt", "ALL STEPS DONE"]], "stall": 2400, "cpu_stall": 900, "gone": 240, "must_run": true},
+  {"name": "Search window exporter (watch_export.py)", "match": "watch_export.py", "logs": ["D:/second-sun/book/docs/assets/data/watch.json"],
+   "done": [], "stall": 600, "cpu_stall": 900, "gone": 300, "must_run": false}
+ ]}
