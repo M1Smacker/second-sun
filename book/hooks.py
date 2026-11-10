@@ -215,7 +215,8 @@ def claims_table(d):
 
 # placeholders that need the page's path back to the site root
 RENDER_AT = {"home-map": lambda d, r: shape.home(d["path"], d, r), "journey": lambda d, r: shape.journey(d["path"], r),
-             "contents": lambda d, r: shape.contents(d["path"], r), "track": lambda d, r: shape.track_page(d["path"], r)}
+             "contents": lambda d, r: shape.contents(d["path"], r), "track": lambda d, r: shape.track_page(d["path"], r),
+             "continue": lambda d, r: shape.continue_block(d["path"], r)}
 RENDER = {"status-panel": status_panel, "mission-bar": mission_bar, "mission-detail": mission_detail, "progress-line": progress_line, "levels": levels, "milestones": milestones,
           "quests": quests, "candidates": candidates, "claims": claims_table}
 

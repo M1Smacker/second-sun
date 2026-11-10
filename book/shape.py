@@ -232,9 +232,38 @@ def chapter_end(p, c, to_root):
             f'{pager}{levelend}{notehtml}{partend}</nav>')
 
 
+def _words_of(path):
+    return len(path.read_text(encoding="utf-8").split()) if path.exists() else 0
+
+
+def _units(p, to_root):
+    """The reading units in track order: every chapter, plus a level's own lesson page when it has one (Level 2 has no page of its own and is not counted).
+    `w` is the word count of the source, so a long chapter weighs more than a short one in the progress line (about 200 words a minute)."""
+    out = []
+    for t in p["track"]:
+        if t["chapters"]:
+            for n in t["chapters"]:
+                c = p["by_n"][n]
+                out.append(dict(id=f"c{n}", level=t["label"], t=title(c), u=url(c, to_root), w=_words_of(ROOT / "docs" / "book" / f'{c["slug"]}.md')))
+        elif t.get("page") and "#" not in t["page"]:
+            out.append(dict(id=f'p-{t["level"].lower()}', level=t["label"], t=f'{t["label"]}: {t["hint"]}', u=f'{to_root}{t["page"]}',
+                            w=_words_of(ROOT / "docs" / (t["page"].rstrip("/") + ".md"))))
+    return out
+
+
+def continue_block(p, to_root):
+    """The 'where you are' block at the top of the learning page. Plain link to the first lesson without JavaScript; book.js fills in the rest from this device's reading marks."""
+    units = _units(p, to_root)
+    first = units[0]
+    data = escape(json.dumps(units, ensure_ascii=True), quote=True)
+    return (f'<div class="ss-continue" data-units="{data}"><p class="ss-continue__what"><a href="{first["u"]}">Begin {escape(first["level"])}: {escape(first["t"])}</a></p>'
+            f'<p class="ss-continue__sum"></p><span class="ss-bar" hidden role="progressbar" aria-label="Reading progress, by words read"><span style="width:0%"></span></span></div>')
+
+
 def track_page(p, to_root):
-    """The whole learning path at a glance: each level, its chapters in reading order, and the field notes that taught them."""
+    """The whole learning path at a glance: each level, its chapters in reading order, and the field notes that taught them. book.js adds a state word (not started, in progress, read) per level from this device's reading marks."""
     notes = _notes_by_chapter(p)
+    ids = {t["level"]: [u["id"] for u in _units(p, to_root) if u["level"] == t["label"]] for t in p["track"]}
     rows = ""
     for t in p["track"]:
         if t["chapters"]:
@@ -243,7 +272,8 @@ def track_page(p, to_root):
             what = f'<a href="{to_root}{t["page"]}">{escape(t["hint"])}</a>'
         ns = sorted({notes[n] for n in t["chapters"] if n in notes})
         nh = (" · Field notes: " + ", ".join(f'<a href="{to_root}field-notes/{x}/">{_date(x)}</a>' for x in ns)) if ns else ""
-        rows += f'<li><a href="{to_root}learn/#{t["level"].lower()}"><b>{escape(t["label"])}: {escape(t["name"])}</b></a><span>{what}{nh}</span></li>'
+        rows += (f'<li data-units="{" ".join(ids[t["level"]])}"><a href="{to_root}learn/#{t["level"].lower()}"><b>{escape(t["label"])}: {escape(t["name"])}</b></a>'
+                 f'<span>{what}{nh}</span></li>')
     return f'<ol class="ss-chapters ss-track">{rows}</ol>'
 
 

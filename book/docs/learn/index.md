@@ -2,6 +2,8 @@
 
 <p class="ss-meta">Seven levels and a last step · one or two sittings each · your progress line updates when you finish one</p>
 
+<!-- ss:continue -->
+
 !!! plain "In plain words"
     This is the one path through the book. Start at Level 0 and go in order: each level builds on the one before, from "what is a light curve?" up to being the **second key**, someone who can check a candidate independently. Each level says what to read, in order, which lab to do on your PC (optional), and ends with three questions. When you can answer them, tell me "L2 done, 3/3" (or whatever level), and I'll set the date on your progress line.
 
