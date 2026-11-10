@@ -1,0 +1,25 @@
+Re-search 1, development (dry) runs on the 704 design-seen stars, audit of what was searched and what was skipped. 11 Nov 2026, 02:10 Kuwait. Counts only: no star id, no event time.
+Runs: G3 seen `r1dev_g3_seen_bcd29c7aabb0` (284 stars) and G2 seen `r1dev_g2_seen_bcd29c7aabb0` (420 stars), options c6,p1, settings hash bcd29c7aabb0 (NOT frozen: development folder name, no go file, run by r1_run.py dev).
+Script: the silent-skip audit (counts of group files, file status and events; run from a scratch script, output pasted here).
+
+COMPLETENESS (no silent drop of groups)
+- G3 seen: 2,476 of 2,476 search groups and 437 of 437 raw-light (SAP) groups have an output file.
+- G2 seen: 7,253 of 7,253 search groups and 4,669 of 4,669 raw-light groups have an output file.
+
+FILES SKIPPED, BY REASON (every file has a status; none vanishes)
+- G3 seen: ok 3,490; "no safe windows" 345; "too little data" 3.   Skipped 348 of 3,838 = 9.1 percent.
+- G2 seen: ok 25,634; "too little data after masking" 1,052; "no safe windows" 140; "too little data" 2.   Skipped 1,194 of 26,828 = 4.5 percent.
+- For comparison, older Vesper 0.8.x development runs on the G2 development slice (301 stars, 3,425 groups; different stars, so only a rough guide): "no safe windows" 340 of 8,744 files = 3.9 percent. The new label "too little data after masking" is the Petrova mask path; its 3.9 percent in G2 plus the 0.5 percent "no safe windows" is close to the old 3.9 percent. NOT TESTED: whether the skipped files are the same files as before. Reported in the verdict as star-sectors that could not be searched.
+
+EVENTS (primary, best product, all light)
+- G3 seen: real 876, upside-down 587. Vetoed by the cross-sector phase veto (flagged to tier 2, never deleted): real 95, upside-down 10.
+- G2 seen: real 4,516, upside-down 2,320. Vetoed: real 867, upside-down 77.
+
+EVENTS IN RECOVERED LIGHT (cadences the old mask removed on either arm and Petrova keeps; Amendment 1)
+- G3 seen: all events real 470, upside-down 245; tier-1 real 33, upside-down 8.
+- G2 seen: all events real 2,785, upside-down 1,327; tier-1 real 65, upside-down 33.
+- READ PLAINLY: the real arm has about twice the events of the upside-down arm in recovered light (1.9 and 2.1 for all events, 4.1 and 2.0 for tier-1), on seen stars. The same real-over-upside-down surplus exists in all light (1.5 and 1.9 for G3 and G2 all events). Whether it is the known asymmetry of the chain (the run's own measured ratio is used by S1) or a leftover of the eclipses is NOT TESTED and is one of the questions put to the outside check (R1-OPUS-CHECK-BRIEF-2026-11-11.md). It is a result to report, not a reason to change the definition (Amendment 1).
+
+WHAT THIS FILE IS NOT: it is not the result of Re-search 1. The seen stars cannot give the pass or fail verdict (preregistration section 3). It only shows that the chain ran to the end on real light and where files drop out.
+
+IF THE FROZEN SETTINGS HASH EQUALS bcd29c7aabb0 (nothing in the hashed code or settings changes before the freeze), these development runs are the same computation as the dry run of step B2 and the dry run is not repeated; the freeze note will say so. If the hash differs, the dry run is repeated on the frozen version.
