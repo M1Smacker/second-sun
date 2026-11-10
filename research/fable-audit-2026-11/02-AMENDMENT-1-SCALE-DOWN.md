@@ -38,8 +38,8 @@ Only 2 of the 4 helper reports were saved. No area was started. Reading, not jud
 - The book, learning track, Eyes correctness and flaky tests go into the report as one line: "not audited, budget".
 
 ## 3. Reading: cheap helpers, no re-reading
-- **Helpers run on Sonnet** (Agent tool `model: "sonnet"`), never on Fable.
-- At most **2 helpers at a time**. Each gets a tight question and a cap of about 25 tool calls, and returns at most about 1 page.
+- **You choose each helper's model** (the Agent tool's `model` field: `haiku`, `sonnet`, `opus`, or Fable only if you truly need it). Pick the cheapest model that can do the job: Haiku or Sonnet for reading, listing and counting; Opus for careful checks; never Fable for reading.
+- At most **1 helper at a time** (Ahmed, 10 Nov). Each gets a tight question and a cap of about 25 tool calls, and returns at most about 1 page.
 - **Do not re-read the history.** Use the two saved helper reports as your history:
   - `H1-resume-rules.md` and `H2-mistakes-ledger-queues.md`, in your old scratchpad: `C:\Users\hanzl\AppData\Local\Temp\claude\7e0db8f3d55f49f4\4e166baa-75ae-4de1-a35e-2891ae1a25ea\scratchpad\`.
   - First copy them to `evidence/history/` in this folder.
@@ -77,13 +77,41 @@ Only 2 of the 4 helper reports were saved. No area was started. Reading, not jud
   - The skill stays: SKILL.md tight, plus at most 2 reference files.
   - The blind bug test drops to **4 planted bugs**.
 
+## 4b. Spend Fable only where Fable is needed (Ahmed, 10 Nov)
+Not everything that can be checked deserves Fable's tokens.
+
+**Before each check, ask yourself:** "Could Sonnet 5.5 Extra or Opus 5.5 do this well from a clear work order?"
+- **If yes:** do NOT do it, and do not hand it to a helper. Write a short work order tagged **Sonnet ok** or **Opus needed**, and move on. Examples: counting, listing, reconciling numbers across files, checking paths, fixing typos or stale text, tidying queues, routine tests, simple downloads, reading a paper for one stated fact.
+- **If no:** this is Fable work. Examples: judging whether the filter logic is right; finding the hidden cause of S2; re-deriving the statistics; spotting what nobody has noticed; deciding which ideas truly raise the planet chance; designing better tests; writing the lessons. Spend your tokens here, with your full judgement.
+
+**In the report, mark each finding:**
+- "Fable used: yes/no";
+- for "no", why Fable was not needed.
+
+The goal is maximum improvement per Fable token.
+
+## 4c. How to watch your own usage and scale down yourself
+1. Load the tool once: ToolSearch with query `select:mcp__ccd_session_mgmt__get_usage`.
+2. Call `mcp__ccd_session_mgmt__get_usage` (no arguments). In `plan.windows`, read `percentUsed` for:
+   - **"Weekly · all models"**: your stop line;
+   - "Weekly · Fable";
+   - "5-hour limit".
+3. Read it after **every task**, and at least every **15 tool calls**. Log each reading in `fable-ledger.md`. The meters move in whole points, so look at the trend over several readings.
+4. **Self-scaling ladder on "Weekly · all models":**
+   - **up to 30%:** work to plan.
+   - **30% to 35%:** finish only the core of the current area; everything else becomes work orders; no new research.
+   - **35% to 38%:** stop auditing; write the remaining findings as work orders.
+   - **38%:** write the report now. It must always reach Ahmed, together with the decision rounds.
+5. **5-hour window over 85%:** first write STATE.md, the ledger and the partial report. If the window fills, the run stops until Ahmed resumes you, and nothing written is lost.
+6. If any area overruns its budget in section 1, cut the next areas by the same amount. Never cut the report.
+
 ## 5. Unchanged and still most important
 - The audit changes nothing. Every brief 1.x rule still holds.
 - Every finding gets a work order Sonnet 5.5 Extra can run cold (brief 5.2). Short is fine; complete is required. Unfinished parts become work orders too.
 - One chat line per area, the full report in chat, ask-tool decision rounds, labels, no en or em dashes.
 
 ## 6. Restart checklist
-1. Read this amendment, then brief sections 1, 5 and 6 again. Skip the rest unless needed.
+1. Read this amendment (sections 4b and 4c above all), then brief sections 1, 5 and 6 again. Skip the rest unless needed.
 2. Read the meters, log a ledger row, and update STATE.md.
 3. Copy H1 and H2 to `evidence/history/`.
 4. Send one chat line: "Fable resumed under Amendment 1, bar X%, Fable meter Y%."
