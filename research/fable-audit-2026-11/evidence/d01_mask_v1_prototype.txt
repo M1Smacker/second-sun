@@ -1,0 +1,16 @@
+﻿
+columns A (no injection): events per star-sector real/upside-down, FROZEN mask | REPEAT rule (upside-down arm with the 
+mirrored rule) | data kept frozen, repeat | single bins per star
+columns B (8 h dip injected before the mask): K 12 found frozen / repeat ; K 25 found frozen / repeat
+P 5 to 10: stars 10, star-sectors 55 | A: frozen 0.15/0.11 | repeat 0.15/0.13 | kept 0.858, 0.840 | single bins per 
+star 0.0 | B K12: 1.00 / 0.90 (n=10) | B K25: 0.90 / 1.00 (n=10)
+P 10 to 14: stars 10, star-sectors 55 | A: frozen 0.16/0.35 | repeat 0.31/0.35 | kept 0.857, 0.849 | single bins per 
+star 0.0 | B K12: 0.40 / 1.00 (n=10) | B K25: 0.10 / 1.00 (n=10)
+P 14 to 20: stars 10, star-sectors 50 | A: frozen 0.08/0.16 | repeat 0.30/0.20 | kept 0.863, 0.847 | single bins per 
+star 0.0 | B K12: 0.70 / 1.00 (n=10) | B K25: 0.30 / 1.00 (n=10)
+P 20 to 27.4: stars 10, star-sectors 48 | A: frozen 0.17/0.35 | repeat 0.65/0.44 | kept 0.914, 0.912 | single bins per 
+star 3.3 | B K12: 0.30 / 1.00 (n=10) | B K25: 0.00 / 1.00 (n=10)
+P 27.4 to 10000.0: stars 10, star-sectors 56 | A: frozen 0.04/0.11 | repeat 0.39/0.16 | kept 0.926, 0.935 | single 
+bins per star 3.1 | B K12: 0.00 / 0.80 (n=10) | B K25: 0.00 / 0.90 (n=10)
+
+

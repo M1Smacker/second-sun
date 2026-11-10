@@ -26,13 +26,19 @@ Updated 2026-11-10 09:50 Kuwait. Repo read at commit c9b9aca. Model claude-fable
 - Work orders: `work-orders/WO-F01.md`, `WO-F02-F04-F05-F06.md`, `WO-F09-to-F22.md` (includes WO-BUGTEST).
 - `REPORT.md` written. Local commit made, not pushed.
 
-## Waiting for Ahmed
-Decision rounds (report section "Decisions for Ahmed"). The 14 Nov fix step does ONLY what he approves as "Fable only" (my recommendation: Petrova 1.0 mask design, WO-F01 part B), at most 8 bar points, then he presses the reset.
+## Fix step (done 10 Nov, on Ahmed's word "do whatever's left ... so that I can use the reset")
+- His answers to both rounds: `03-AHMED-ANSWERS-ROUNDS.md`.
+- `design/PETROVA-1.0-MASK-DESIGN.md` (repeat rule, tested prototype `scripts/d01_mask_v1_prototype.py`, `evidence/d01_mask_v1_prototype.txt`).
+- `design/SLOW-BINARY-RESEARCH-PREREG-DRAFT.md` (draft only).
+- `work-orders/RESEARCH-ORDERS.md` (RS-013 to RS-021 for Sonnet or Opus).
+- Committed locally, not pushed. Ahmed may press the Fable reset.
 
 ## For Sonnet after run 1
+Approved by Ahmed on 10 Nov: shorten RESUME; push local commits after a check that no file names a star; the outside-check rule; WO-F18 (tidy rules and queues, file the audit findings with tag [FABLE-Fnn]); all Sonnet-ok work orders (he may use Opus). NOT approved: rewriting the watch-data history ("Leave it").
 Update RESUME.md and `research/usage-ledger.md` from this folder; copy RS-015 into `research/research-sessions.md`. Do not file queue items until Ahmed says yes.
 
 ## Python
 `D:\second-sun\.venv\Scripts\python.exe` has lightkurve 2.6.0, numpy 1.26.4, astropy 7.2.3, wotan. Set PYTHONUTF8=1.
+
 
 
