@@ -1,0 +1,22 @@
+﻿
+stars per bin 20, up to 5 sectors each, seed 3. Events per star-sector, real/upside-down.
+A frozen | A new mask, outside the lane | A new mask, lane only | single bins per star: before the catalogue window -> 
+left after it | stars with catalogue widths
+B planted 8 h dip before the mask: K12 found frozen / new (of the new finds, share labelled lane) ; same for K25
+P 5 to 10: stars 20, star-sectors 86 | A frozen 0.12/0.13 | new outside lane 0.28/0.15 | lane 0.00/0.00 | single bins 
+per star 0.0 -> 0.0 | catalogue widths for 17 of 20 | B K12: 0.90 / 1.00 (lane share 0.00, n=20) | B K25: 0.80 / 1.00 
+(lane share 0.00, n=20)
+P 10 to 14: stars 20, star-sectors 93 | A frozen 0.24/0.30 | new outside lane 0.38/0.23 | lane 0.00/0.00 | single bins 
+per star 0.1 -> 0.1 | catalogue widths for 19 of 20 | B K12: 0.55 / 0.75 (lane share 0.00, n=20) | B K25: 0.25 / 0.95 
+(lane share 0.00, n=20)
+P 14 to 20: stars 20, star-sectors 94 | A frozen 0.36/0.21 | new outside lane 0.46/0.22 | lane 0.01/0.00 | single bins 
+per star 0.5 -> 0.5 | catalogue widths for 15 of 20 | B K12: 0.35 / 1.00 (lane share 0.00, n=20) | B K25: 0.05 / 1.00 
+(lane share 0.00, n=20)
+P 20 to 27.4: stars 20, star-sectors 93 | A frozen 0.15/0.14 | new outside lane 0.39/0.17 | lane 0.04/0.00 | single 
+bins per star 0.7 -> 0.7 | catalogue widths for 15 of 20 | B K12: 0.20 / 0.75 (lane share 0.00, n=20) | B K25: 0.05 / 
+1.00 (lane share 0.05, n=20)
+P 27.4 to 10000.0: stars 20, star-sectors 97 | A frozen 0.04/0.10 | new outside lane 0.13/0.06 | lane 0.08/0.06 | 
+single bins per star 3.0 -> 2.2 | catalogue widths for 17 of 20 | B K12: 0.05 / 0.79 (lane share 0.27, n=19) | B K25: 
+0.00 / 0.79 (lane share 0.40, n=19)
+
+
