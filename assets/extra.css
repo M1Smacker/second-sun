@@ -219,3 +219,30 @@ body.ss-has-update { padding-bottom: 76px; }          /* room for the line below
 /* ---------- Text floor (bug 68; Ahmed 3 Nov 2026: "u handle it", phone-first): nothing a reader has to read is under 14 px, also the Material parts ---------- */
 .md-copyright, .md-copyright__highlight, .md-search-result__meta, .md-footer__direction, .md-source__facts, .md-skip { font-size: 14px; }
 .md-typeset sub, .md-typeset sup { font-size: max(.83em, 14px); }              /* a subscript letter in a 15 px table cell was 12.5 px */
+
+/* ---------- Quieter reading and not getting lost (11 Nov 2026; book.js section 5c) ---------- */
+/* Evidence chips leave the reading text. They stay in the page as zero-size anchors (the PC margin lines its notes up on them); the same claims sit folded at the end of the page. */
+.md-content__inner[data-ss-evi] a.ss-chip[data-cid] {
+  display: inline-block !important; width: 0; height: 0; min-width: 0; padding: 0; margin: 0; border: 0; overflow: hidden; font-size: 0; line-height: 0; vertical-align: baseline;
+  visibility: hidden; pointer-events: none;   /* still laid out (the margin reads its position), but not shown, not selectable, not copied */
+}
+.md-content__inner[data-ss-evi] a.ss-chip[data-cid]::before, .md-content__inner[data-ss-evi] a.ss-chip[data-cid]::after { display: none; }
+.md-typeset details.ss-evidence { margin: 32px 0 16px; max-width: var(--ss-measure); }
+.md-typeset details.ss-evidence > summary::before { -webkit-mask-image: var(--md-admonition-icon--note); mask-image: var(--md-admonition-icon--note); }
+.md-typeset details.ss-evidence ul { list-style: none; margin: 0 0 8px; padding: 0; font-size: 15px; }
+.md-typeset details.ss-evidence li { margin: 0; padding: 10px 0; border-top: 1px solid var(--ss-line); }
+.md-typeset details.ss-evidence li:first-child { border-top: 0; }
+
+/* The "where you are" block on the learning page, and a state word under each level */
+.md-typeset .ss-continue { border: 1px solid var(--ss-line); border-left: 3px solid var(--ss-accent); background: var(--ss-surface); border-radius: var(--ss-radius); padding: 14px 16px; margin: 16px 0 24px; max-width: var(--ss-measure); }
+.md-typeset .ss-continue__what { margin: 0 0 6px; font-size: 18px; line-height: 1.4; }
+.md-typeset .ss-continue__what a { font-weight: 600; }
+.md-typeset .ss-continue__sum { margin: 0; font-size: 15px; color: var(--ss-text-2); }
+.md-typeset .ss-state { display: block; margin-top: 2px; font: 600 14px/1.4 var(--ss-label); color: var(--ss-text-2); }
+.md-typeset .ss-state--read { color: var(--ss-text); }
+
+/* Back button in the header: phones and the installed app only (a browser tab has its own Back) */
+.ss-back { display: none; flex: none; align-items: center; gap: 4px; min-height: 44px; min-width: 44px; margin: 0 0 0 4px; padding: 0 10px; background: none; border: 0; color: inherit; font: 600 16px/1 var(--ss-label); cursor: pointer; }
+.ss-back span { font-size: 26px; line-height: 1; }
+@media (max-width: 47.9375em), (display-mode: standalone) { .ss-back { display: inline-flex; } }
+.ss-back[hidden] { display: none !important; }

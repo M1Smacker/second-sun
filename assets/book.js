@@ -50,8 +50,9 @@
       span.textContent = "";
       if (last) {
         const a = document.createElement("a");
-        a.href = last.u; a.textContent = "Chapter " + last.n + ": " + last.t;
-        span.append(a, " · " + read.length + " of " + chs.length + " read");
+        const pos = get("ss-pos", null), here = pos && pos.n === last.n && pos.id;
+        a.href = last.u + (here ? "#" + pos.id : ""); a.textContent = "Chapter " + last.n + ": " + last.t;
+        span.append(a, (here && pos.t ? " · stopped at " + pos.t : "") + " · " + read.length + " of " + chs.length + " read");
       } else span.textContent = "Nothing opened yet. " + read.length + " of " + chs.length + " chapters read.";
     } catch (err) { /* keep the static text */ }
   }
@@ -151,6 +152,110 @@
   WIDE.addEventListener("change", marginSoon);
   if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(marginInit); else marginInit();
 
+  // 5c. Quieter reading and not getting lost (11 Nov 2026). Everything here is per device (localStorage / sessionStorage) and the book reads the same without it.
+  //     Evidence: the claim chips leave the reading text (they stay as zero-size anchors so the PC margin still lines up) and the same claims are listed once, folded, at the end of the page.
+  //     Where was I: the last section reached in a chapter, the Continue block and a state word per level on the learning page.
+  //     Back: a Back button in the header on phones and in the installed app (a standalone iPhone app has no browser Back).
+  function evidenceInit() {
+    const inner = document.querySelector(".md-content__inner");
+    if (!inner) return;
+    inner.removeAttribute("data-ss-evi");
+    const old = inner.querySelector(":scope > details.ss-evidence");
+    if (old) old.remove();
+    const chips = $$(".md-content__inner a.ss-chip[data-cid]");
+    if (!chips.length) return;
+    const by = new Map();
+    chips.forEach((a) => { if (!by.has(a.dataset.cid)) by.set(a.dataset.cid, a); });
+    const d = document.createElement("details"), s = document.createElement("summary"), ul = document.createElement("ul");
+    d.className = "ss-evidence";
+    s.textContent = "Evidence on this " + (inner.querySelector(".ss-read-btn") ? "chapter" : "page") + " (" + by.size + (by.size === 1 ? " claim)" : " claims)");
+    by.forEach((a, id) => {
+      const li = document.createElement("li"), c = document.createElement("a"), q = document.createElement("span");
+      c.className = "ss-chip ss-chip--" + ((a.className.match(/ss-chip--(\w+)/) || [])[1] || "unverified"); c.href = a.href; c.textContent = a.textContent.trim();
+      const cl = a.dataset.claim.replace(/\s+$/, "");
+      q.textContent = " " + id + ": " + cl + (/[.!?]$/.test(cl) ? "" : ".") + " Source: " + a.dataset.src + ", checked " + a.dataset.checked + ".";
+      li.append(c, q); ul.append(li);
+    });
+    d.append(s, ul);
+    inner.insertBefore(d, inner.querySelector(":scope > .ss-end"));
+    chips.forEach((a) => {
+      a.tabIndex = -1; a.setAttribute("aria-hidden", "true");                          // the folded list is the readable, keyboard-reachable copy
+      const prev = a.previousSibling;
+      if (prev && prev.nodeType === 3) prev.textContent = prev.textContent.replace(/[ \t\n]+$/, "");   // no stray space before the full stop
+    });
+    inner.setAttribute("data-ss-evi", "1");
+  }
+
+  const headText = (h) => Array.from(h.childNodes).filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim();
+  let posTimer = 0;
+  function posSave() {
+    const b = document.querySelector(".md-content__inner .ss-read-btn[data-ch]");
+    if (!b) return;
+    let cur = null;
+    $$(".md-content__inner > h2[id], .md-content__inner > h3[id]").forEach((h) => { if (h.getBoundingClientRect().top < innerHeight * 0.3) cur = h; });
+    put("ss-pos", { n: Number(b.dataset.ch), id: cur ? cur.id : "", t: cur ? headText(cur) : "" });
+  }
+  addEventListener("scroll", () => { clearTimeout(posTimer); posTimer = setTimeout(posSave, 400); }, { passive: true });
+
+  const mins = (w) => Math.max(1, Math.round(w / 200));
+  const leftTxt = (m) => (m < 60 ? m + " min" : (Math.round(m / 30) / 2) + " h");
+  function learnInit() {
+    const box = document.querySelector(".ss-continue"), ladder = $$("ol.ss-track li[data-units]");
+    if (!box) return;
+    let units = [];
+    try { units = JSON.parse(box.dataset.units); } catch (e) { return; }
+    const read = get("ss-read", []), opened = get("ss-opened", []);
+    const done = (u) => (u.id[0] === "c" ? read.includes(Number(u.id.slice(1))) : opened.includes(norm(u.u)));
+    ladder.forEach((li) => {
+      const us = li.dataset.units.split(" ").map((i) => units.find((u) => u.id === i)).filter(Boolean);
+      const o = li.querySelector(".ss-state");
+      if (o) o.remove();
+      if (!us.length) return;
+      const n = us.filter(done).length, w = us.reduce((a, u) => a + (done(u) ? 0 : u.w), 0);
+      const st = n === us.length ? ["read", "\u25CF Read"] : n ? ["part", "\u25D0 In progress"] : ["none", "\u25CB Not started"];
+      const el = document.createElement("small");
+      el.className = "ss-state ss-state--" + st[0];
+      el.textContent = st[1] + " \u00B7 " + n + " of " + us.length + " read" + (w ? " \u00B7 about " + leftTxt(mins(w)) + " left" : "");
+      li.append(el);
+    });
+    const total = units.reduce((a, u) => a + u.w, 0), rest = units.filter((u) => !done(u));
+    const restW = rest.reduce((a, u) => a + u.w, 0), last = get("ss-last", 0), pos = get("ss-pos", null);
+    const cur = units.find((u) => u.id === "c" + last && !done(u)) || rest[0];
+    const what = box.querySelector(".ss-continue__what"), sum = box.querySelector(".ss-continue__sum"), bar = box.querySelector(".ss-bar");
+    what.textContent = "";
+    if (cur) {
+      const a = document.createElement("a"), at = pos && cur.id === "c" + pos.n;
+      a.href = cur.u + (at && pos.id ? "#" + pos.id : "");
+      a.textContent = (total > restW || last ? "Continue: " : "Begin ") + cur.level + ", " + cur.t;
+      what.append(a, (at && pos.t ? " \u00B7 stopped at " + pos.t : "") + " \u00B7 about " + leftTxt(mins(cur.w)));
+    } else what.textContent = "Every lesson is marked read on this device. Pick any level below to go back over it.";
+    sum.textContent = (units.length - rest.length) + " of " + units.length + " lessons read \u00B7 " + (rest.length ? "about " + leftTxt(mins(restW)) + " left" : "all read");
+    bar.hidden = false;
+    bar.setAttribute("aria-valuemin", "0"); bar.setAttribute("aria-valuemax", "100"); bar.setAttribute("aria-valuenow", String(Math.round(100 * (total - restW) / total)));
+    bar.firstElementChild.style.width = Math.round(100 * (total - restW) / total) + "%";
+  }
+
+  const readTrail = () => { try { return JSON.parse(sessionStorage.getItem("ss-trail") || "[]"); } catch (e) { return []; } };
+  function backInit() {
+    const hd = document.querySelector(".md-header__inner");
+    if (!hd || !SRC) return;
+    const root = norm(new URL("../", SRC)), dash = norm(new URL("../learn/", SRC)), here = norm(location.href);
+    let t = readTrail();
+    if (t.length >= 2 && t[t.length - 2] === here) t.pop(); else if (t[t.length - 1] !== here) t.push(here);    // a step back through history pops, anything else pushes
+    t = t.slice(-40);
+    try { sessionStorage.setItem("ss-trail", JSON.stringify(t)); } catch (e) { /* nothing is saved */ }
+    let b = hd.querySelector(".ss-back");
+    if (!b) {
+      b = document.createElement("button");
+      b.type = "button"; b.className = "ss-back"; b.setAttribute("aria-label", "Back"); b.innerHTML = '<span aria-hidden="true">\u2039</span> Back';
+      b.addEventListener("click", () => {
+        if (readTrail().length >= 2) history.back(); else location.href = norm(location.href) === dash ? root : dash;   // nothing earlier in this visit: the learning page, or the home page from there
+      });
+      hd.insertBefore(b, hd.firstChild);
+    }
+    b.hidden = here === root;
+  }
+
   // 6. Read aloud: the device's own voice (free, works offline, nothing is sent anywhere). Reads the chapter text
   //    paragraph by paragraph, skips pictures, code, tables, demos and equations, and highlights what it is saying.
   const SKIP = ".ss-end, .ss-demo, .ss-dg, .ss-strip, .ss-rail, .ss-margin, .ss-listen, .ss-eq, pre, table, figure, .ss-fallback, details, .md-nav, .md-source-file";
@@ -213,8 +318,8 @@
   });
   window.addEventListener("pagehide", () => { if (synth) synth.cancel(); });
 
-  if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(() => { closePop(); if (synth) synth.cancel(); paint(); sayInit(); });
-  else { paint(); sayInit(); }
+  if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(() => { closePop(); if (synth) synth.cancel(); paint(); sayInit(); evidenceInit(); learnInit(); backInit(); });
+  else { paint(); sayInit(); evidenceInit(); learnInit(); backInit(); }
 
   const swUrl = document.currentScript && document.currentScript.dataset.sw;
   if (!("serviceWorker" in navigator) || !swUrl) return;
