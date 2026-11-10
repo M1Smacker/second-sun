@@ -11,7 +11,7 @@ Three parts:
     SAME sector, with a similar width and strength, are masked in every cycle. A run seen once is never masked.
  3. EVENT VETO (slow binaries, P of 13 d or more): an event is flagged p1_veto when the same star has an event of the SAME arm in at least NMIN other sectors at the same binary phase (catalogue epoch +
     that sector's primary offset), with similar duration and depth. It removes events, never cadences. In the chain a vetoed event goes to tier 2 (flag, never delete).
-Recovered light = cadences the old mask removes (real arm) and this mask keeps; an event counts as evidence in Re-search 1 only if its centre lies there."""
+Recovered light = cadences the old mask removes on EITHER arm (f or 2 - f) and this mask keeps; an event counts as evidence in Re-search 1 only if its centre lies there."""
 import pathlib
 import numpy as np
 import pandas as pd
@@ -175,7 +175,7 @@ def remove(t, f, periods, c):
 
 
 def old_removed(t, f, periods):
-    """Cadences the Vesper 0.8.1 mask removes (eclipse_mask_auto on the real arm, one period after the other), as a boolean over the ORIGINAL t."""
+    """Cadences the Vesper 0.8.1 mask removes (eclipse_mask_auto on the given light, one period after the other), as a boolean over the ORIGINAL t."""
     from detect_v2 import eclipse_mask_auto
     idx = np.arange(len(t)); gone = np.zeros(len(t), bool)
     for P in periods:
@@ -201,7 +201,9 @@ def mask_runs(t, f, periods, tic):
     if c is not None and not np.isfinite(c.get("wp", np.nan)):
         c = None
     rm = remove(t, f, periods, c)
-    old = old_removed(t, f, periods)
+    # recovered light must be the same for both arms AND chosen without favouring either: the old mask cuts LOW phases of the real arm, so cadences picked from the real arm alone are low-flux spots and
+    # the real arm would get more events there by construction (seen in the first development counts, 11 Nov). The union of the cuts the old mask makes on f and on 2 - f is unchanged by the flip.
+    old = old_removed(t, f, periods) | old_removed(t, 2 - f, periods)
     if c is not None:
         P, T0, off = float(c["P"]), float(c["T0"]), refit(t, f, c)
     else:

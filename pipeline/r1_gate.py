@@ -181,11 +181,34 @@ def summary():
             rb, ra = bf.tier1.mean(), af.tier1.mean()
             m = rb / ra if ra > 0 else np.nan
             byK = "; ".join(f"K{k:g} {bf[bf.K == k].tier1.mean() / max(af[af.K == k].tier1.mean(), 1e-9):.2f}" for k in KS)
-            out.append(f"   {b:>9} d: before {100 * rb:3.0f}% ({int(bf.tier1.sum())}/{len(bf)}), after {100 * ra:3.0f}% ({int(af.tier1.sum())}/{len(af)}), m = {m:.2f} ({byK}); lost to the veto: {int(bf.vetoed.sum())} of {len(bf)}")
-            ok[sign] &= bool(m >= 0.95)
+            out.append(f"   {b:>9} d: before {100 * rb:3.0f}% ({int(bf.tier1.sum())}/{len(bf)}), after {100 * ra:3.0f}% ({int(af.tier1.sum())}/{len(af)}), m = {('%.2f' % m) if m == m else 'n/a (nothing found even after the mask, not judged)'} ({byK}); lost to the veto: {int(bf.vetoed.sum())} of {len(bf)}")
+            ok[sign] &= (m != m) or bool(m >= 0.95)
         out.append(f"{gate} {'PASS' if ok[sign] else 'FAIL'}")
-    out.append("(d) events vetoed, real / upside-down, among primary events of the run: see the exchangeability script output; no mark")
+    out += exchange()
     OUT.write_text("\n".join(out), encoding="utf-8"); print("\n".join(out))
+
+
+def exchange():
+    """Gates (c) and (d) on the stored development run of the seen stars (nothing planted): tier-1 real / upside-down primary events per period bin, and events vetoed. Counts only."""
+    ev, _ = R.load(str(X.RUN / "groups"))
+    ev = ev[ev.primary & ev["p1_P"].notna()].copy()
+    ev["bin"] = [binlab(p) for p in ev.p1_P]
+    t1 = ev[ev.tier.isin(X.TIER1)]
+    out = ["(c) exchangeability, nothing planted: tier-1 real / upside-down primary events per binary-period bin (mark 0.67 to 1.5 where a bin has 20 or more events; bins with fewer are not judged; "
+           "G3 over 27.4 d is a KNOWN LIMIT, reported apart)"]
+    c_ok = True
+    for lo, hi in BINS:
+        b = f"{lo:g}-{hi:g}" if hi < 1e8 else f"over {lo:g}"
+        g = t1[t1.bin == b]; r, f = int((g.kind == "real").sum()), int((g.kind == "flip").sum()); ratio = r / max(f, 1)
+        judged = r + f >= 20; known = DS.NAME == "g3" and hi > 1e8
+        verdict = "not judged (under 20 events)" if not judged else ("known limit" if known else ("inside" if 0.67 <= ratio <= 1.5 else "OUTSIDE"))
+        c_ok &= (not judged) or known or 0.67 <= ratio <= 1.5
+        out.append(f"   {b:>9} d: real {r}, upside-down {f}, ratio {ratio:.2f}: {verdict}")
+    out.append(f"(c) {'PASS' if c_ok else 'FAIL (a failed bin is labelled not covered; the search still runs)'}")
+    v = ev[ev.get("p1_veto", False) == True]
+    out.append(f"(d) events vetoed (flagged to tier 2) among primary events: real {int((v.kind == 'real').sum())}, upside-down {int((v.kind == 'flip').sum())}; "
+               f"tier-1 events in recovered light: real {int(((t1.kind == 'real') & (t1.recovered == True)).sum())}, upside-down {int(((t1.kind == 'flip') & (t1.recovered == True)).sum())}")
+    return out
 
 
 if __name__ == "__main__":
