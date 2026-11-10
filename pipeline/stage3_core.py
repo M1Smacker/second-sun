@@ -251,7 +251,7 @@ def tier_of(e):
     are exactly 1A + 1L + 1B. v7: if the event carries `common` (the common-moment flag) it replaces `burst`; if it carries `pdc_snr` (SAP-only dips) a value under PDC_MIN makes it tier 3."""
     c = e.get("common")
     bad_moment = e["burst"] if c is None or c != c else c
-    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("orbit_lock") or e.get("step") or e.get("ramp") or e.get("dominated") or _set(e.get("too_deep")) or _set(e.get("flare")):
+    if e["gap_dump"] or bad_moment or e["flipmatch"] or e["c5"] or e.get("ecl_overlap") or e.get("repeater") or e.get("orbit_lock") or e.get("step") or e.get("ramp") or e.get("dominated") or _set(e.get("too_deep")) or _set(e.get("flare")) or _set(e.get("p1_veto")):
         return "2"
     p = e.get("pdc_snr")
     if p is not None and p == p and p < PDC_MIN:

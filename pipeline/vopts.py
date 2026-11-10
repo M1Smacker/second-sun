@@ -10,9 +10,11 @@ exactly Vesper 0.7.1 (proved by zero_diff.py). The set is read at import, so wor
   nd   (v9 candidate, task T32, re-scoped) an unphysical event (the dg test) is left out of the dominance comparison, so a broken light curve's absurd SNR cannot mark real events as dominated
   fl   (v9 candidate, task T33) flare-shape check: the asymmetry of the dip, (late third - early third) / depth in the search's orientation, is stored for every event (asym) and an event above 1.0 goes to tier 2 (flag flare)
   c2   step test without its data-cover rule (that duplicates the gap rule; phase A showed every 8 h step flag came from it); a side with no data is not judged
+  p1   Petrova 1.0 (Re-search 1, research/stage3/R1-PREREGISTRATION.md): the data-driven eclipse mask is replaced by pipeline/petrova_mask.py (catalogue windows in time, a within-sector repeat lane,
+       and an event-stage cross-sector phase veto for binaries of 13 d or more, flagged to tier 2); each event also records whether it lies in recovered light. Run as VESPER_OPTS=c6,p1
 """
 import os
 
 ON = frozenset(x for x in os.environ.get("VESPER_OPTS", "").replace("+", ",").split(",") if x)
-KNOWN = {"bf4", "c1a", "c1b", "c1c", "c2", "c6", "dg", "nd", "fl"}
+KNOWN = {"bf4", "c1a", "c1b", "c1c", "c2", "c6", "dg", "nd", "fl", "p1"}
 assert ON <= KNOWN, f"unknown VESPER_OPTS switch: {sorted(ON - KNOWN)}"

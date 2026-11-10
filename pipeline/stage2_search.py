@@ -160,7 +160,11 @@ def prepare(path):
     if len(t) < 200:
         return None, {**meta, "status": "too little data"}
     dt = np.diff(t); edges = np.concatenate([t[:-1][dt > 0.25], t[1:][dt > 0.25], [t.min(), t.max()]])
-    t, f, runs = mask_runs(t, f, A.PER.get(tic, []))
+    if "p1" in V.ON:                                             # Petrova 1.0 (vopts.py): catalogue windows + repeat lane; info (offset, epoch, recovered light) goes to the group meta
+        import petrova_mask as PM
+        t, f, runs, meta["p1"] = PM.mask_runs(t, f, A.PER.get(tic, []), tic)
+    else:
+        t, f, runs = mask_runs(t, f, A.PER.get(tic, []))
     if len(t) < 200:
         return None, {**meta, "status": "too little data after masking"}
     return dict(t=t, f=f, runs=runs, edges=edges, meta=meta), {**meta, "status": "ok", "n_searched": len(t)}
@@ -195,11 +199,16 @@ def do_group(args):
                 c8 = [o[key].snr_near(e["center"], e["dur_h"]) for o in others]
                 c8 = [x for x in c8 if np.isfinite(x)]
                 ed, ew = ecl_dist(e["center"], d["runs"])
+                p1x = {}
+                if "p1" in V.ON and m.get("p1"):                 # keys exist only with the switch on, so a default run writes exactly what it always wrote
+                    import petrova_mask as PM
+                    q = m["p1"]
+                    p1x = dict(p1_P=q["P"], p1_T0=q["T0"], p1_off=q["off"], recovered=PM.in_recovered(e["center"], q["recovered"]))
                 res["events"].append(dict(kind=kind, tic=tic, sector=sector, camera=m["camera"], ccd=m["ccd"], product=name,
                                           column=m["column"], center=round(e["center"], 4), dur_h=e["dur_h"], snr=round(e["snr"], 2),
                                           depth_ppm=round(e["depth_ppm"]), flags="; ".join(e["flags"]),
                                           ecl_d=ed, ecl_w=ew, c8_best=max(c8) if c8 else None, c8_n=len(c8),
-                                          burst_n=burst_n(sector, m["camera"], e["center"], tic)))
+                                          burst_n=burst_n(sector, m["camera"], e["center"], tic), **p1x))
     # injection: the SAME dip in every product at the same time (what a real astrophysical dip would do)
     if prods:
         a = max(prods.values(), key=lambda d: d["t"].max() - d["t"].min())

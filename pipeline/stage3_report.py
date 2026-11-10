@@ -64,6 +64,12 @@ def apply_v7(ev):
         ev.loc[P, "orbit_lock"] = C.orbit_locked(E, {int(t): [p for _, p, _ in ep.by.get(int(t), [])] for t in set(E.tic)})
         for i in ev.index[P & ev["orbit_lock"].values]:
             ev.at[i, "tier"] = C.tier_of(ev.loc[i].to_dict())
+    if "p1" in C.V.ON and "p1_P" in ev:     # Petrova 1.0: event-stage cross-sector phase veto on the primary events (flag, tier 2); judged after c6 so c6 is unchanged
+        import petrova_mask as PM
+        ev["p1_veto"] = False
+        ev.loc[P, "p1_veto"] = PM.veto_events(ev[P])
+        for i in ev.index[P & ev["p1_veto"].values]:
+            ev.at[i, "tier"] = C.tier_of(ev.loc[i].to_dict())
     return ev
 
 
