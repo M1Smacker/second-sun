@@ -1,207 +1,118 @@
 {
- "label": "G3 SEARCH: Vesper 0.8.1 on the 612 G3 stars (blind, counts only)",
+ "label": "RE-SEARCH 1: Petrova 1.0.0 on the 803 binary stars (5 days or longer) of the G2 and G3 lists that were not looked at while the filter was designed (blind, counts only)",
  "blind": true,
- "phase": "finished",
- "updated": "2026-11-03T22:27:54+00:00",
+ "counts_only": true,
+ "phase": "ready",
+ "updated": "2026-11-10T23:27:29+00:00",
  "loop_s": 0,
+ "machine": {
+  "workers": null,
+  "cpu": null
+ },
+ "started": null,
  "run": {
-  "folder": "g3_e7886a71a61f",
-  "version": "Vesper 0.8.1 (frozen)",
-  "hash": "e7886a71a61fb01894c76b27336f1f7eec461330f61c7c35f018f42ae886b07a",
-  "git_commit": "a483b58",
+  "folder": "r1_unseen",
+  "version": "Petrova 1.0.0 (NOT FROZEN YET)",
+  "hash": "",
+  "git_commit": "",
   "settings": {
-   "snr_bar": 7.0,
-   "boxes_h": [
-    3,
-    4,
-    5,
-    6.5,
-    8,
-    10,
-    12,
-    15,
-    20
-   ],
-   "bin_days": 0.006944444444444444,
-   "options": [
-    "c6"
-   ],
-   "flags": {
-    "common_stars": 3,
-    "step_lift": 0.5,
-    "ramp_days": 1.0,
-    "repeat_n": 3
-   }
+   "snr_bar": null,
+   "boxes_h": null,
+   "bin_days": null,
+   "options": null,
+   "flags": {}
   }
  },
- "machine": {
-  "workers": 0,
-  "cpu": 2
- },
- "started": "2026-11-03T22:17:11+00:00",
  "progress": {
   "search": [
-   4080,
-   4080
+   0,
+   4070
   ],
   "sap": [
-   513,
-   513
+   0,
+   0
   ],
   "pdc": [
-   513,
-   513
+   0,
+   0
   ],
-  "stars": 611,
-  "per_min": 279.8,
+  "stars": 788,
+  "list_stars": 803,
+  "per_min": 0.0,
   "eta_min": null
  },
  "files": {
-  "read_ok": 4847,
-  "skipped": {
-   "no safe windows": 784,
-   "too little data": 3
-  },
-  "products": {
-   "QLP": 3288,
-   "TESS-SPOC": 830,
-   "SPOC": 126,
-   "TESS-SPOC-SAP": 512,
-   "SPOC-SAP": 91
-  }
+  "read_ok": 0,
+  "skipped": {},
+  "products": {}
  },
  "events": {
-  "found": 1974,
+  "found": 0,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 1329
+    "n": 0
    },
    {
     "flag": "flipmatch",
     "text": "The upside-down copy has the same wiggle",
-    "n": 3
+    "n": 0
    },
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 93
+    "n": 0
    },
    {
     "flag": "ecl_overlap",
     "text": "Overlaps a predicted eclipse",
-    "n": 11
+    "n": 0
    },
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 170
+    "n": 0
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 262
+    "n": 0
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 7
+    "n": 0
    },
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 23
+    "n": 0
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 76
+    "n": 0
    }
   ],
-  "tiers": {
-   "2": 1898,
-   "1B": 60,
-   "1A": 9,
-   "3": 6,
-   "1L": 1
-  },
-  "boxes": {
-   "3": 483,
-   "4": 186,
-   "5": 190,
-   "6.5": 180,
-   "8": 181,
-   "10": 151,
-   "12": 126,
-   "15": 170,
-   "20": 307
-  },
+  "tiers": {},
+  "boxes": {},
   "bands": {
-   "7 to 8": 554,
-   "8 to 10": 578,
-   "10 to 12": 258,
-   "12 and up": 584
+   "7 to 8": 0,
+   "8 to 10": 0,
+   "10 to 12": 0,
+   "12 and up": 0
   }
  },
  "selftest": {
-  "fakes": 2050,
-  "second_product_sees": 1990
+  "fakes": 0,
+  "second_product_sees": 0
  },
- "history": [
-  {
-   "t": 1793744227,
-   "done": 0,
-   "events": 0,
-   "per_min": 0.0
-  },
-  {
-   "t": 1793744293,
-   "done": 1648,
-   "events": 660,
-   "per_min": 164.8
-  },
-  {
-   "t": 1793744358,
-   "done": 3108,
-   "events": 1278,
-   "per_min": 310.8
-  },
-  {
-   "t": 1793744425,
-   "done": 4080,
-   "events": 1974,
-   "per_min": 408.0
-  },
-  {
-   "t": 1793744490,
-   "done": 4080,
-   "events": 1974,
-   "per_min": 408.0
-  },
-  {
-   "t": 1793744876,
-   "done": 4080,
-   "events": 1974,
-   "per_min": 279.8
-  }
- ],
+ "history": [],
  "notes": [
   {
    "at": "2026-11-03T22:27:52+00:00",
    "text": "G3 finished at 01:24 on 4 Nov and is scored: no excess of real dips over noise (cleaned-light half, bar 7: 18 real, 31 upside-down, 23.5 expected from noise). The false-alarm line still misses its mark (9.34 per 1,000 against 8), as in G2. Counts only; the scorecard is in the 4 Nov field note."
-  },
-  {
-   "at": "2026-11-03T21:45:16+00:00",
-   "text": "G3 is prepared and checked: 612 stars, Vesper 0.8.1 frozen, nothing has run. The search starts only on Ahmed's word."
-  },
-  {
-   "at": "2026-10-30T18:34:36+00:00",
-   "text": "The sealed search finished and is scored: no excess of real dips over noise. The section What the search found says what that means."
-  },
-  {
-   "at": "2026-10-30T16:28:34+00:00",
-   "text": "The one-time sealed search of the 594 G2 stars has started with Vesper 0.8.0. Blind run: real and upside-down dips are mixed and not labelled until the final analysis."
   }
  ],
  "gallery": {
@@ -211,29 +122,11 @@
  "leads": {
   "schema": 1,
   "blind": true,
-  "final": true,
-  "verdict": "Finished. Counts only on this page; the scoring is filed (see the notes and the 4 Nov field note).",
-  "stages": [
-   {
-    "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 0
-   },
-   {
-    "label": "Kept: no safety check fired",
-    "both": 0
-   },
-   {
-    "label": "Confirmed: a second light curve agrees",
-    "both": 0
-   },
-   {
-    "label": "Leads: stars with a confirmed real dip, no known planet",
-    "both": 0
-   }
-  ],
+  "final": false,
+  "verdict": "Not started. No search has run on this list.",
+  "stages": [],
   "known": null,
   "cards": []
  },
- "ticker": [],
- "counts_only": true
+ "ticker": []
 }
