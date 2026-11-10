@@ -2,6 +2,9 @@
 
 <p class="ss-meta">Lab · at your PC · about 30 min · Level L6 · the final lab</p>
 
+!!! warning "Correction, 10 Nov 2026"
+    An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. [The full story](../field-notes/2026-11-10.md).
+
 !!! plain "In plain words"
     This is the whole route on a real G1 star, start to finish: look it up, download its data, find and hide the two stars' eclipses, search for dips, check the dips against upside-down data and spacecraft events, and list what's left for a human to judge. Everything you learned in Labs 1 to 8, in one run. You'll pick the star.
 
@@ -45,7 +48,7 @@ Events to vet by hand: 0. Pictures in D:\second-sun\labs\out
 
 - **2 eclipses found, 19.4% masked.** Both of the binary's eclipses were found from Kepler's period alone, by folding all three sectors together. One sector is often too short to pin down a long-period binary, which is why the lab folds them all at once (the lesson from Kepler-16, Chapter 10).
 - **0 events, 0 in the flipped data.** A bright (9.8 mag), quiet star. Nothing crossed the bar.
-- **What "nothing" means here:** no single crossing bigger than roughly 5 to 6 Earth radii (Chapter 9's floor, for a star this bright or brighter) in the unmasked 80% of three sectors. It does **not** mean no planet: a small one, or one that crossed during the masked 19.4% or between sectors, would be missed.
+- **What "nothing" means here:** no single crossing bigger than roughly 5 to 6 Earth radii (Chapter 9's floor, an upper limit after the 10 Nov correction, for a star this bright or brighter) in the unmasked 80% of three sectors. It does **not** mean no planet: a small one, or one that crossed during the masked 19.4% or between sectors, would be missed.
 
 ## How the script works
 

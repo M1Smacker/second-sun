@@ -2,6 +2,9 @@
 
 <p class="ss-meta">Lab · at your PC · about 20 min (the script runs 3 to 5 minutes) · Level L5 · after Chapter 9</p>
 
+!!! warning "Correction, 10 Nov 2026"
+    An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. [The full story](../field-notes/2026-11-10.md).
+
 !!! plain "In plain words"
     You hide 20 fake planets (5 sizes, 4 places each) in real TOI-1338 data and run our search on every one. The table shows which were found, and how much of each dip survived our cleaning. You've just measured what our search can see.
 
@@ -38,7 +41,7 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
 ## Reading it
 
 - **R+** means Earth radii. **depth** is the textbook depth, (planet size ÷ star size)².
-- **6 and 8 Earth radii: found every time.** 5: once in 4. 3 and 4: never. Same floor as the bigger tests in Chapter 9.
+- **6 and 8 Earth radii: found every time.** 5: once in 4. 3 and 4: never. Same floor as the bigger tests in Chapter 9. **Correction:** this lab builds the eclipse mask from the clean light and adds the fake afterwards, so it cannot see the mask deleting a real dip. Read the table as an upper limit.
 - **Depth kept** compares the dip's centre after cleaning with the fake's real centre depth. 92 to 96% for the big ones: cleaning barely touches them.
 - **Why 129% and 109% for the small ones?** Their dips are smaller than the noise, so "depth kept" is mostly noise. A number can be computed and still mean nothing: check the size of the signal against the noise before reading a ratio.
 - **The picture:** the 5-Earth-radius dip at 4013.0 is real, but you'd hardly pick it out by eye. The search found it there and not at the other three times: at the edge of the floor, luck (where the noise happens to wobble) decides.

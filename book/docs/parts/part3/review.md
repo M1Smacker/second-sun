@@ -32,7 +32,7 @@
     Real dips become bumps, so anything found there is noise or spacecraft effects. It **measures** our false-alarm rate instead of guessing it.
 
 ??? quiz "3. The search finds nothing in a star. What can you say?"
-    Only that no transit stronger than our bar happened in that data: roughly nothing bigger than ~6 Earth radii for a TOI-1338-like star. Smaller planets, or planets not crossing during that sector, could still be there.
+    Only that no transit stronger than our bar happened in that data: roughly nothing bigger than ~6 Earth radii for a TOI-1338-like star (measured before the eclipse-mask problem was found, so read it as an upper limit). Smaller planets, or planets not crossing during that sector, could still be there.
 
 ## Chapter 9: Fake planets
 

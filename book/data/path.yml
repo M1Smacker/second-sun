@@ -114,7 +114,7 @@ chapters:
     part: 3
     title: "Fake planets"
     hook: "how we measure what the search can see"
-    story: "How small a planet could we have missed? We hid fake ones in real TOI-1338 data to find out. A planet of 6 Earth radii was found 5 times in 7, and one of 7 Earth radii every time. At 5 Earth radii and below, never {{claim:F-015}}. That is what turns 'we found nothing' into a sentence with a number in it: nothing bigger than about 6 Earth sizes crossed here."
+    story: "How small a planet could we have missed? We hid fake ones in real TOI-1338 data to find out. A planet of 6 Earth radii was found 5 times in 7, and one of 7 Earth radii every time. At 5 Earth radii and below, never {{claim:F-015}}. That is what turns 'we found nothing' into a sentence with a number in it: nothing bigger than about 6 Earth sizes crossed here (measured the old way, so an upper limit; see the correction of 10 Nov 2026)."
     summary:
       - "What: hiding fake planets of known size in real data and counting how many the search finds."
       - "Why: it turns \"we found nothing\" into \"nothing bigger than a known size crossed here\"."

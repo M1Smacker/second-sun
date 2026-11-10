@@ -2,6 +2,9 @@
 
 <p class="ss-meta">Chapter 9 · about 20 min · Maths: fractions, one square root</p>
 
+!!! warning "Correction, 10 Nov 2026"
+    An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. [The full story](../field-notes/2026-11-10.md).
+
 !!! plain "In plain words"
     To know what your search can find, hide fake planets of known sizes in real data and count how many it finds. Without that, an empty result means nothing.
 
@@ -71,9 +74,9 @@ STANLEY's N-body code (Chapter 6) gives each fake planet real crossing times and
 | STANLEY-timed, 40 sectors {{claim:F-029}} | 33 crossings | 8 of 10 | 0 of 10 | 90 to 100% |
 | Your Lab 6, sector 98 {{claim:F-048}} | 20 | 4 of 4 | 0 of 4 | 92 to 96% |
 
-**Three different tests agree:** our search reliably finds single crossings of planets about **6 Earth radii** and bigger around a star like TOI-1338, and almost never smaller than 5. The 2-day cleaning keeps over 90% of a real dip's depth, even for 15-hour crossings.
+**Three tests agree, and all three share one blind spot (see the correction above):** measured the old way, our search finds single crossings of planets about **6 Earth radii** and bigger around a star like TOI-1338, and almost never smaller than 5. Read these as upper limits. The 2-day cleaning keeps over 90% of a real dip's depth, even for 15-hour crossings.
 
-And one new loss: **3 of 33** realistic crossings fell inside the stars' eclipses, so they were cut out before the search looked {{claim:F-029}}. About 1 crossing in 11 is invisible to us whatever its size.
+And one new loss: **3 of 33** realistic crossings fell inside the stars' eclipses, so they were cut out before the search looked {{claim:F-029}}. About 1 crossing in 11 was cut out because the mask was built from clean light. A real planet's own dip is in the light when the real mask is built and can be cut too (see the correction above).
 
 ### Completeness: what share of real planets do all our rules keep?
 
@@ -91,7 +94,7 @@ One lesson in reasoning came out of it. Most leftover false alarms were caught b
 
 ## 9.6 What this lets us conclude, and what it doesn't
 
-- **We can say:** "for TOI-1338-like stars, nothing bigger than about 6 Earth radii crossed in the searched data, apart from the known planet, with about 1 crossing in 11 hidden by eclipses".
+- **We can say (after the correction):** "our searches showed no event of planet size in the searched data apart from the known planet". How many planets they could have found is much less certain: on TOI-1338's own light a planted dip 25 times deeper than the noise and 8 hours long was found 28 percent of the time when it went in before the mask, not every time.
 - **We can't** say anything about planets smaller than 5 Earth radii from single crossings. That's what stacking (STANLEY, Chapter 12) is for.
 - **We can't** yet give these numbers for fainter G1 stars. Each brightness level needs its own test.
 
