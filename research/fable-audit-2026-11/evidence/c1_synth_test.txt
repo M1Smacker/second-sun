@@ -1,0 +1,29 @@
+﻿=== g2 ===
+
+errors: 1 ['ValueError: time and flux must not be empty']
+C1 synthetic test, set g2: 29 files with a synthetic eclipse and a planted dip
+Z 3 fast: eclipse removed 0.73; leak events 1 (C0 8); planted dip removed 0.189, found 0.91 (C0 0.91)
+Z 3 slow: eclipse removed 0.77; leak events 1 (C0 11); planted dip removed 0.563, found 0.44 (C0 0.89)
+Z 4 fast: eclipse removed 0.72; leak events 1 (C0 8); planted dip removed 0.232, found 0.82 (C0 0.91)
+Z 4 slow: eclipse removed 0.58; leak events 2 (C0 11); planted dip removed 0.521, found 0.50 (C0 0.89)
+Z 5 fast: eclipse removed 0.45; leak events 1 (C0 8); planted dip removed 0.232, found 0.82 (C0 0.91)
+Z 5 slow: eclipse removed 0.48; leak events 2 (C0 11); planted dip removed 0.390, found 0.56 (C0 0.89)
+Z 6 fast: eclipse removed 0.45; leak events 1 (C0 8); planted dip removed 0.232, found 0.82 (C0 0.91)
+Z 6 slow: eclipse removed 0.43; leak events 3 (C0 11); planted dip removed 0.277, found 0.50 (C0 0.89)
+
+
+
+=== g3 ===
+
+C1 synthetic test, set g3: 32 files with a synthetic eclipse and a planted dip
+Z 3 fast: eclipse removed 0.78; leak events 3 (C0 19); planted dip removed 0.000, found 0.86 (C0 0.79)
+Z 3 slow: eclipse removed 0.55; leak events 0 (C0 13); planted dip removed 0.309, found 0.67 (C0 0.89)
+Z 4 fast: eclipse removed 0.75; leak events 3 (C0 19); planted dip removed 0.000, found 0.93 (C0 0.79)
+Z 4 slow: eclipse removed 0.53; leak events 0 (C0 13); planted dip removed 0.250, found 0.72 (C0 0.89)
+Z 5 fast: eclipse removed 0.70; leak events 3 (C0 19); planted dip removed 0.000, found 0.93 (C0 0.79)
+Z 5 slow: eclipse removed 0.49; leak events 1 (C0 13); planted dip removed 0.198, found 0.78 (C0 0.89)
+Z 6 fast: eclipse removed 0.65; leak events 3 (C0 19); planted dip removed 0.000, found 0.93 (C0 0.79)
+Z 6 slow: eclipse removed 0.49; leak events 1 (C0 13); planted dip removed 0.142, found 0.83 (C0 0.89)
+
+
+

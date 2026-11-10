@@ -18,7 +18,11 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import c0_catalogue_mask as C0
 
 Z = float(os.environ.get("C1_Z", "4.0"))
-TOL_H, DRIFT_H, PAD, CAP, PSLOW = 1.0, 2.0, 0.5, 0.25, 13.0
+TOL_H, DRIFT_H, PAD, CAP = 1.0, 2.0, 0.5, 0.25
+PSLOW = float(os.environ.get("C1_PSLOW", "13.0"))   # 1e9 = no cross-sector lane (variant C1f)
+ZX = float(os.environ.get("C1_ZX", "2.0"))   # other-sector runs need peak |z| >= Z + ZX
+WRATIO = 2.5                                  # matched runs must have half spans within a factor 2.5
+ZRATIO = 3.0                                  # and, within a sector, peak |z| within a factor 3
 CURRENT_TIC = None
 SYNTH = None            # None or f(tic, t) -> additive flux; applied to other-sector light (the test adds it to the current light itself)
 STATS = {}              # tic -> dict(rec=, single=, cap=)
@@ -69,7 +73,8 @@ def other_runs(tic, c, P):
         return _OTHER[key]
     import wo_f01a_mask_loss as H
     man = pd.read_csv(H.DS.MANIFEST).drop_duplicates("file"); m = man[man.tic == tic].copy()
-    m["sec"] = m.file.str.extract(r"-s(\d{4})-").astype(float); m["pri"] = np.where(m.author == "QLP", 1, 0)
+    m = m.assign(sec=m.file.str.extract(r"[-_]s(\d{4})[-_]", expand=False).astype(float).values,   # SPOC 'tess..-s0012-..' and QLP 'hlsp_qlp_tess_ffi_s0012-..'
+                 pri=(m.author == "QLP").astype(int).values)
     m = m.sort_values(["sec", "pri"]).groupby("sec").head(1)
     out = []; wp = c["wp"] if c is not None else np.nan; T0 = c["T0"] if c is not None else 0.0
     for p in m.path:
@@ -85,7 +90,8 @@ def other_runs(tic, c, P):
         keep = ~C0.windows(t, c)[0] if c is not None and np.isfinite(wp) else np.ones(len(t), bool)
         off = _offset(t, f, c)
         for sign, tc, hs, zp in find_runs(t, f, keep, wp):
-            out.append((sign, ((tc - T0 - off) / P) % 1.0, hs, t.min(), t.max()))
+            if zp >= Z + ZX:                                                    # another sector's run must be clearly real (chance matches cost planet dips)
+                out.append((sign, ((tc - T0 - off) / P) % 1.0, hs, t.min(), t.max()))
     _OTHER[key] = out
     return out
 
@@ -103,11 +109,11 @@ def complement(t, f, keep, tic, c, P):
     for i, (sign, tc, hs, zp) in enumerate(runs):
         hit = False
         for j, (s2, tc2, hs2, _) in enumerate(runs):
-            if j != i and s2 == sign and cyc[j] != cyc[i]:
+            if j != i and s2 == sign and cyc[j] != cyc[i] and max(hs, hs2) <= WRATIO * min(hs, hs2) and max(zp, runs[j][3]) <= ZRATIO * min(zp, runs[j][3]):   # same width and strength, as a real eclipse in every cycle
                 d = min(abs(ph[i] - ph[j]), 1 - abs(ph[i] - ph[j])) * P
                 hit |= d < hs + hs2 + tol
         for s2, ph2, hs2, a, b in oth:
-            if s2 == sign and not (a <= t.max() and b >= t.min()):
+            if s2 == sign and not (a <= t.max() and b >= t.min()) and max(hs, hs2) <= WRATIO * min(hs, hs2):
                 d = min(abs(ph[i] - ph2), 1 - abs(ph[i] - ph2)) * P
                 hit |= d < hs + hs2 + tol + DRIFT_H / 24
         if hit:

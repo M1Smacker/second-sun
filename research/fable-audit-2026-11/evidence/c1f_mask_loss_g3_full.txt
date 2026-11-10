@@ -1,0 +1,49 @@
+WO-F01 Part A, set g3. Files sampled 424; with injections 378; skipped 46 (no safe windows: 43; no clean slot: 2; too little data: 1).
+m = found when injected BEFORE the mask (what a real planet does) / found when injected AFTER the mask (what every earlier recovery test did). Cells: before/after, n files. Standard error of one cell about 0.05 at n = 100.
+Period bins (d): 5-10 | 10-14 | 14-20 | 20-27.4 | >27.4
+
+A. DIPS, all four durations pooled, by K and product family
+  K    8 SPOCfam  | 0.21/0.21 n 50 | 0.28/0.29 n 50 | 0.28/0.28 n 50 | 0.19/0.19 n 33 | 0.16/0.16 n  8
+  K    8 QLP      | 0.19/0.20 n 40 | 0.15/0.15 n 41 | 0.22/0.22 n 42 | 0.12/0.12 n 34 | 0.14/0.14 n 30
+  K   12 SPOCfam  | 0.87/0.89 n 50 | 0.91/0.93 n 50 | 0.93/0.93 n 50 | 0.90/0.90 n 33 | 0.91/0.91 n  8
+  K   12 QLP      | 0.86/0.88 n 40 | 0.91/0.91 n 41 | 0.84/0.84 n 42 | 0.78/0.81 n 34 | 0.90/0.90 n 30
+  K   18 SPOCfam  | 0.97/0.99 n 50 | 0.98/0.99 n 50 | 1.00/1.00 n 50 | 1.00/1.00 n 33 | 1.00/1.00 n  8
+  K   18 QLP      | 0.98/1.00 n 40 | 1.00/1.00 n 41 | 0.99/0.99 n 42 | 0.96/0.99 n 34 | 1.00/1.00 n 30
+  K   25 SPOCfam  | 0.99/1.00 n 50 | 0.98/1.00 n 50 | 1.00/1.00 n 50 | 1.00/1.00 n 33 | 1.00/1.00 n  8
+  K   25 QLP      | 0.98/1.00 n 40 | 1.00/1.00 n 41 | 0.99/1.00 n 42 | 0.99/1.00 n 34 | 1.00/1.00 n 30
+
+B. DIPS by duration (both families pooled)
+  K   12 dur    4 h  | 0.72/0.73 n 90 | 0.86/0.87 n 91 | 0.71/0.72 n 92 | 0.55/0.57 n 67 | 0.74/0.74 n 38
+  K   12 dur    8 h  | 0.94/0.97 n 90 | 0.95/0.96 n 91 | 0.97/0.97 n 92 | 0.94/0.96 n 67 | 0.97/0.97 n 38
+  K   12 dur   14 h  | 0.94/0.98 n 90 | 0.95/0.96 n 91 | 0.98/0.98 n 92 | 0.96/0.97 n 67 | 1.00/1.00 n 38
+  K   12 dur   20 h  | 0.84/0.86 n 90 | 0.89/0.89 n 91 | 0.89/0.89 n 92 | 0.91/0.93 n 67 | 0.89/0.89 n 38
+  K   25 dur    4 h  | 1.00/1.00 n 90 | 0.99/1.00 n 91 | 0.99/1.00 n 92 | 0.99/1.00 n 67 | 1.00/1.00 n 38
+  K   25 dur    8 h  | 0.99/1.00 n 90 | 0.99/1.00 n 91 | 1.00/1.00 n 92 | 1.00/1.00 n 67 | 1.00/1.00 n 38
+  K   25 dur   14 h  | 0.97/1.00 n 90 | 0.99/1.00 n 91 | 1.00/1.00 n 92 | 1.00/1.00 n 67 | 1.00/1.00 n 38
+  K   25 dur   20 h  | 0.99/1.00 n 90 | 1.00/1.00 n 91 | 1.00/1.00 n 92 | 1.00/1.00 n 67 | 1.00/1.00 n 38
+
+C. share of the dip's cadences the mask removed (before case, mean, K 12 and 25, all durations)
+  SPOCfam  | 0.02 | 0.02 | 0.00 | 0.00 | 0.00
+  QLP      | 0.02 | 0.00 | 0.01 | 0.02 | 0.00
+
+D. BUMPS on the upside-down arm (proof test: before/after must agree, m about 1)
+  K   12 dur 8 h | 0.96/0.98 n 90 | 0.96/0.96 n 91 | 0.93/0.93 n 92 | 0.99/0.99 n 67 | 1.00/1.00 n 38
+  K   25 dur 8 h | 0.99/1.00 n 90 | 1.00/1.00 n 91 | 0.99/1.00 n 92 | 1.00/1.00 n 67 | 1.00/1.00 n 38
+
+E. ONE NUMBER FOR THE HUNT g3: m = sum(w * before) / sum(w * after), w = files of the cell in the g3 manifest x usable share of the sample (a file with no safe windows was never searched)
+  K    8 dur 8 h        | m = 1.00 (dips lost to the mask: 0%)
+  K    8 all durations  | m = 0.97 (dips lost to the mask: 3%)
+  K   12 dur 8 h        | m = 0.99 (dips lost to the mask: 1%)
+  K   12 all durations  | m = 0.99 (dips lost to the mask: 1%)
+  K   18 dur 8 h        | m = 0.99 (dips lost to the mask: 1%)
+  K   18 all durations  | m = 0.99 (dips lost to the mask: 1%)
+  K   25 dur 8 h        | m = 0.99 (dips lost to the mask: 1%)
+  K   25 all durations  | m = 0.99 (dips lost to the mask: 1%)
+
+F. REAL LIGHT, no injection, per star-sector file (counts only): events real arm / upside-down arm, ratio, share of cadences removed; frozen vs C0
+     5 d n 90 | frozen   13/  14 = 0.93 cut 0.128 | C0   23/  16 = 1.44 cut 0.080 | frozen real events inside C0 windows 0
+    10 d n 91 | frozen   15/  23 = 0.65 cut 0.135 | C0   35/  37 = 0.95 cut 0.076 | frozen real events inside C0 windows 0
+    14 d n 92 | frozen   16/  23 = 0.70 cut 0.099 | C0   51/  36 = 1.42 cut 0.054 | frozen real events inside C0 windows 0
+    20 d n 67 | frozen   17/  22 = 0.77 cut 0.081 | C0   41/  28 = 1.46 cut 0.034 | frozen real events inside C0 windows 0
+  27.4 d n 38 | frozen    4/  11 = 0.36 cut 0.077 | C0   67/  16 = 4.19 cut 0.033 | frozen real events inside C0 windows 0
+  C0 fallback flags over 378 files: {}

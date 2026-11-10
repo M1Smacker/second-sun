@@ -1,0 +1,70 @@
+﻿=== g2 (C1, Z 5; column 'C0' = C1) ===
+
+m = found when injected BEFORE the mask (what a real planet does) / found when injected AFTER the mask (what every 
+earlier recovery test did). Cells: before/after, n files. Standard error of one cell about 0.05 at n = 100.
+  K   12 SPOCfam  | 0.97/0.97 n  8 | 0.81/0.88 n  8 | 0.59/0.88 n  8 | 0.71/0.83 n  6 | 0.78/0.94 n  8
+  K   12 QLP      | 0.88/0.94 n  4 | 0.53/0.69 n  8 | 0.68/0.86 n  7 | 0.64/0.82 n  7 | 0.75/0.84 n  8
+  K   25 SPOCfam  | 1.00/1.00 n  8 | 0.91/0.97 n  8 | 0.56/1.00 n  8 | 0.71/1.00 n  6 | 0.88/1.00 n  8
+  K   25 QLP      | 1.00/1.00 n  4 | 0.84/0.97 n  8 | 0.75/1.00 n  7 | 0.68/1.00 n  7 | 0.84/1.00 n  8
+D. BUMPS on the upside-down arm (proof test: before/after must agree, m about 1)
+  K   12 dur 8 h | 1.00/1.00 n 12 | 0.69/0.81 n 16 | 0.60/1.00 n 15 | 0.62/0.92 n 13 | 0.81/0.94 n 16
+  K   25 dur 8 h | 1.00/1.00 n 12 | 0.81/1.00 n 16 | 0.60/1.00 n 15 | 0.69/1.00 n 13 | 0.88/1.00 n 16
+E. ONE NUMBER FOR THE HUNT g2: m = sum(w * before) / sum(w * after), w = files of the cell in the g2 manifest x usable 
+share of the sample (a file with no safe windows was never searched)
+  K    8 dur 8 h        | m = 0.88 (dips lost to the mask: 12%)
+  K    8 all durations  | m = 0.94 (dips lost to the mask: 6%)
+  K   12 dur 8 h        | m = 0.86 (dips lost to the mask: 14%)
+  K   12 all durations  | m = 0.89 (dips lost to the mask: 11%)
+  K   18 dur 8 h        | m = 0.84 (dips lost to the mask: 16%)
+  K   18 all durations  | m = 0.88 (dips lost to the mask: 12%)
+  K   25 dur 8 h        | m = 0.84 (dips lost to the mask: 16%)
+  K   25 all durations  | m = 0.88 (dips lost to the mask: 12%)
+     5 d n 12 | frozen    1/   3 = 0.33 cut 0.164 | C0    1/   3 = 0.33 cut 0.141 | frozen real events inside C0 
+windows 0
+    10 d n 16 | frozen    4/   2 = 2.00 cut 0.124 | C0    4/   5 = 0.80 cut 0.255 | frozen real events inside C0 
+windows 0
+    14 d n 15 | frozen    1/   5 = 0.20 cut 0.110 | C0    7/   3 = 2.33 cut 0.104 | frozen real events inside C0 
+windows 0
+    20 d n 13 | frozen    1/   1 = 1.00 cut 0.066 | C0    0/   0 = 0.00 cut 0.204 | frozen real events inside C0 
+windows 0
+  27.4 d n 16 | frozen    1/   3 = 0.33 cut 0.044 | C0    1/   2 = 0.50 cut 0.111 | frozen real events inside C0 
+windows 1
+  C0 fallback flags over 72 files: {}
+
+
+
+=== g3 (C1, Z 5; column 'C0' = C1) ===
+
+m = found when injected BEFORE the mask (what a real planet does) / found when injected AFTER the mask (what every 
+earlier recovery test did). Cells: before/after, n files. Standard error of one cell about 0.05 at n = 100.
+  K   12 SPOCfam  | 0.88/0.88 n  8 | 1.00/1.00 n  8 | 0.81/0.91 n  8 | 0.84/0.94 n  8 | 0.78/0.91 n  8
+  K   12 QLP      | 0.79/0.79 n  7 | 0.71/0.71 n  7 | 0.79/0.79 n  7 | 0.75/0.86 n  7 | 0.58/0.75 n  6
+  K   25 SPOCfam  | 1.00/1.00 n  8 | 1.00/1.00 n  8 | 0.91/1.00 n  8 | 0.88/1.00 n  8 | 0.78/1.00 n  8
+  K   25 QLP      | 1.00/1.00 n  7 | 1.00/1.00 n  7 | 0.96/1.00 n  7 | 0.86/1.00 n  7 | 0.83/1.00 n  6
+D. BUMPS on the upside-down arm (proof test: before/after must agree, m about 1)
+  K   12 dur 8 h | 0.93/1.00 n 15 | 1.00/1.00 n 15 | 0.60/0.87 n 15 | 1.00/1.00 n 15 | 1.00/1.00 n 14
+  K   25 dur 8 h | 0.93/1.00 n 15 | 1.00/1.00 n 15 | 0.67/1.00 n 15 | 1.00/1.00 n 15 | 1.00/1.00 n 14
+E. ONE NUMBER FOR THE HUNT g3: m = sum(w * before) / sum(w * after), w = files of the cell in the g3 manifest x usable 
+share of the sample (a file with no safe windows was never searched)
+  K    8 dur 8 h        | m = 0.98 (dips lost to the mask: 2%)
+  K    8 all durations  | m = 0.97 (dips lost to the mask: 3%)
+  K   12 dur 8 h        | m = 0.99 (dips lost to the mask: 1%)
+  K   12 all durations  | m = 0.99 (dips lost to the mask: 1%)
+  K   18 dur 8 h        | m = 0.99 (dips lost to the mask: 1%)
+  K   18 all durations  | m = 0.99 (dips lost to the mask: 1%)
+  K   25 dur 8 h        | m = 0.99 (dips lost to the mask: 1%)
+  K   25 all durations  | m = 0.99 (dips lost to the mask: 1%)
+     5 d n 15 | frozen    2/   3 = 0.67 cut 0.123 | C0    5/   3 = 1.67 cut 0.087 | frozen real events inside C0 
+windows 0
+    10 d n 15 | frozen    1/   5 = 0.20 cut 0.161 | C0    5/   7 = 0.71 cut 0.088 | frozen real events inside C0 
+windows 0
+    14 d n 15 | frozen    3/   0 = 3.00 cut 0.109 | C0    5/   0 = 5.00 cut 0.075 | frozen real events inside C0 
+windows 0
+    20 d n 15 | frozen    5/   8 = 0.62 cut 0.069 | C0   10/  10 = 1.00 cut 0.029 | frozen real events inside C0 
+windows 0
+  27.4 d n 14 | frozen    0/   4 = 0.00 cut 0.065 | C0   18/   6 = 3.00 cut 0.036 | frozen real events inside C0 
+windows 0
+  C0 fallback flags over 74 files: {}
+
+
+

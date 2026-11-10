@@ -66,7 +66,7 @@ if __name__ == "__main__":
     print(f"C1 synthetic test, set {H.SET}: {df.groupby('Z').size().iloc[0]} files with a synthetic eclipse and a planted dip")
     print("Z  speed  Ke | eclipse cadences removed C1 (C0) | real-arm events at the synthetic eclipse C1 (C0) | planted dip: share removed, found C1 (C0) | cadences removed | runs recurring/single")
     for (z, slow, ke), g in df.groupby(["Z", "slow", "Ke"]):
-        print(f"{z:3g} {'slow' if slow else 'fast'} {ke:4g} n{len(g):3d} | {g.catch.mean():.2f} ({g.catch_c0.mean():.2f}) | {g.leak.sum():3d} ({g.leak_c0.sum():3d}) | "
-              f"{g.dipcut.mean():.3f}, {g.found.mean():.2f} ({g.found_c0.mean():.2f}) | {g.cut.mean():.3f} | {g.rec.sum()}/{g.single.sum()}")
-    for z, g in df.groupby("Z"):
-        print(f"Z {z:g} ALL: eclipse removed {g.catch.mean():.2f}; leak events {g.leak.sum()} (C0 {g.leak_c0.sum()}); planted dip removed {g.dipcut.mean():.3f}, found {g.found.mean():.2f} (C0 {g.found_c0.mean():.2f})")
+        print(f"{z:3g} {'slow' if slow else 'fast'} {ke:4g} n{len(g):3d} | {g.catch.mean():.2f} ({g.catch_c0.mean():.2f}) | {int(g.leak.sum()):3d} ({int(g.leak_c0.sum()):3d}) | "
+              f"{g.dipcut.mean():.3f}, {g.found.astype(float).mean():.2f} ({g.found_c0.astype(float).mean():.2f}) | {g.cut.mean():.3f} | {int(g.rec.sum())}/{int(g.single.sum())}")
+    for (z, slow), g in df.groupby(["Z", "slow"]):
+        print(f"Z {z:g} {'slow' if slow else 'fast'}: eclipse removed {g.catch.mean():.2f}; leak events {int(g.leak.sum())} (C0 {int(g.leak_c0.sum())}); planted dip removed {g.dipcut.mean():.3f}, found {g.found.astype(float).mean():.2f} (C0 {g.found_c0.astype(float).mean():.2f})")
