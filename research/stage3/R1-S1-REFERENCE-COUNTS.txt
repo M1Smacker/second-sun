@@ -1,0 +1,20 @@
+Re-search 1, Amendment 2: reference counts of the SEEN stars (tier-1, PDCSAP half, development runs, counts only). Written 11 Nov 2026 BEFORE the freeze and before any unseen star was read.
+Lines: REF <list> <recovered|kept> bar <SNR bar> real <n> flip <n>. Made by pipeline/r1_reference_counts.py.
+# g3 seen run r1dev_g3_seen_bcd29c7aabb0
+REF g3 recovered bar 7 real 31 flip 8
+REF g3 recovered bar 8 real 30 flip 7
+REF g3 recovered bar 10 real 29 flip 4
+REF g3 recovered bar 12 real 29 flip 2
+REF g3 kept bar 7 real 7 flip 13
+REF g3 kept bar 8 real 2 flip 8
+REF g3 kept bar 10 real 0 flip 2
+REF g3 kept bar 12 real 0 flip 1
+# g2 seen run r1dev_g2_seen_bcd29c7aabb0
+REF g2 recovered bar 7 real 64 flip 31
+REF g2 recovered bar 8 real 57 flip 30
+REF g2 recovered bar 10 real 48 flip 22
+REF g2 recovered bar 12 real 43 flip 15
+REF g2 kept bar 7 real 14 flip 16
+REF g2 kept bar 8 real 6 flip 9
+REF g2 kept bar 10 real 4 flip 5
+REF g2 kept bar 12 real 2 flip 1
