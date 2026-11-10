@@ -197,6 +197,31 @@ def ready(label):
                 leads=dict(schema=1, blind=True, final=False, verdict="Not started. No search has run on this list.", stages=[], known=None, cards=[]), ticker=[])
 
 
+def _r1_unseen(setname):
+    """(stars in the list, stars with light-curve files, star-sectors in the best-product table) of the UNSEEN stars of one list (g2 or g3), read in a child process because dataset.py fixes its list at import."""
+    code = ("import sys; sys.path.insert(0, r'%s'); import dataset as DS, pandas as pd; r1 = pd.read_csv(r'%s', comment='#'); r1 = r1[(r1['list'] == DS.NAME) & (r1['design_seen'] == 0)]; "
+            "nb = pd.read_csv(DS.BEST); nb = nb[nb.tic.isin(r1.tic)]; print(r1.tic.nunique(), nb.tic.nunique(), len(nb))") % (HERE, ROOT / "targets" / "r1_targets.csv")
+    out = subprocess.run([sys.executable, "-W", "ignore", "-c", code], env={**os.environ, "SS_SET": setname}, capture_output=True, text=True).stdout.split()
+    return [int(x) for x in out[-3:]]
+
+
+def ready_r1(label):
+    """Re-search 1 prepared and not started (no run folder, nothing read from light): the size of the UNSEEN list of G2 and G3 (G1 waits for its own eclipse widths, see the preregistration) and the version.
+    Counts only; never an event."""
+    fz = ROOT / "research" / "stage3" / "SETTINGS_FROZEN_P100.json"
+    f = json.load(open(fz)) if fz.exists() else None
+    cnt = [_r1_unseen(x) for x in ("g2", "g3")]
+    n = notes()
+    return dict(label=label, blind=True, counts_only=True, phase="ready", updated=now_iso(), loop_s=0, machine=dict(workers=None, cpu=None), started=None,
+                run=dict(folder="r1_unseen", version="Petrova 1.0.0 (frozen)" if f else "Petrova 1.0.0 (NOT FROZEN YET)", hash=f["hash"] if f else "", git_commit="",
+                         settings=dict(snr_bar=None, boxes_h=None, bin_days=None, options=["c6", "p1"] if f else None, flags={})),
+                progress=dict(search=[0, sum(c[2] for c in cnt)], sap=[0, 0], pdc=[0, 0], stars=sum(c[1] for c in cnt), list_stars=sum(c[0] for c in cnt), per_min=0.0, eta_min=None),
+                files=dict(read_ok=0, skipped={}, products={}),
+                events=dict(found=0, stopped_by=[dict(flag=k, text=t, n=0) for k, t in FLAGS] + [dict(flag="clean", text="No flag fired", n=0)], tiers={}, boxes={}, bands={l: 0 for _, _, l in BANDS}),
+                selftest=dict(fakes=0, second_product_sees=0), history=[], notes=n[-1:], gallery=dict(kept=[], stopped=[]),
+                leads=dict(schema=1, blind=True, final=False, verdict="Not started. No search has run on this list.", stages=[], known=None, cards=[]), ticker=[])
+
+
 def build(run, blind, label, loop=0, counts_only=False):
     run = pathlib.Path(run)
     plan = totals(run)
@@ -261,12 +286,17 @@ def push_data(out):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("run", nargs="?"); ap.add_argument("--blind", action="store_true"); ap.add_argument("--label", default="")
     ap.add_argument("--out", default=str(OUT)); ap.add_argument("--loop", type=int, default=0); ap.add_argument("--push", action="store_true"); ap.add_argument("--note")
-    ap.add_argument("--counts-only", action="store_true"); ap.add_argument("--wait", action="store_true"); ap.add_argument("--ready", action="store_true")
+    ap.add_argument("--counts-only", action="store_true"); ap.add_argument("--wait", action="store_true"); ap.add_argument("--ready", action="store_true"); ap.add_argument("--ready-r1", action="store_true")
     a = ap.parse_args()
     if a.note:
         add_note(a.note)
-        if not a.run and not a.ready:
+        if not a.run and not a.ready and not a.ready_r1:
             sys.exit(0)
+    if a.ready_r1:                                     # Re-search 1, prepared and not started: one snapshot, no run folder
+        d = ready_r1(a.label); write(d, a.out); print("ready r1", d["progress"]["search"], d["progress"]["stars"], flush=True)
+        if a.push:
+            push_data(a.out)
+        sys.exit(0)
     if a.ready:                                        # a prepared campaign that has not started: one snapshot, no run folder
         d = ready(a.label); write(d, a.out); print("ready", d["progress"]["search"], d["progress"]["stars"], flush=True)
         if a.push:
