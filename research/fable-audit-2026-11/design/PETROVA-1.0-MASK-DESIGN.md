@@ -52,3 +52,20 @@ Reading (LIKELY, small sample):
 
 ## Cost (UNCERTAIN)
 Finish the prototype and measure: Sonnet 1.5 to 2. Review and thresholds: Opus 1. Build into a version with tests, freeze: 3 to 5 (the ledger's "new frozen version plus full bug hunt").
+
+## Amendment A (10 Nov 2026, after two more prototype runs): the design is NOT settled. Read this before building anything.
+Two versions were tested on the same 20 G2 stars per period bin (seed 3). Columns: planted dip found at K 12 / K 25; events per star-sector with nothing planted, real / upside-down, outside the lane.
+
+| Binary period | Frozen 0.8.1 | Pooled repeat rule (d02) | Hybrid (d03) |
+|---|---|---|---|
+| 5 to 10 d | 0.90 / 0.80; 0.12 / 0.13 | 1.00 / 1.00; 0.28 / 0.15 | 0.85 / 0.75; 0.12 / 0.12 |
+| 10 to 14 d | 0.55 / 0.25; 0.24 / 0.30 | 0.75 / 0.95; 0.38 / 0.23 | 0.45 / 0.25; 0.23 / 0.23 |
+| 14 to 20 d | 0.35 / 0.05; 0.36 / 0.21 | 1.00 / 1.00; 0.46 / 0.22 | 0.60 / 0.55; 0.32 / 0.12 |
+| 20 to 27 d | 0.20 / 0.05; 0.15 / 0.14 | 0.75 / 1.00; 0.39 / 0.17 | 0.65 / 0.85; 0.11 / 0.05 |
+| over 27 d | 0.05 / 0.00; 0.04 / 0.10 | 0.79 / 0.79; 0.13 / 0.06 | 0.65 / 0.70; 0.02 / 0.03 |
+
+(Frozen and hybrid differ a little from run to run in the planted column because the dip time is drawn differently; each share is good to about plus or minus 0.2.)
+- **Pooled rule (the text above, rules 1 to 5): best recovery, but it LEAKS.** With nothing planted the real arm has 1.6 to 2.3 times the upside-down arm in every bin, also under 10 d where the frozen mask is balanced. LIKELY cause: folding several years at the catalogue period smears eclipses that a per-sector fold catches (TOI-1338 shows binary-locked events under this rule too, `evidence/k01_known_planets.txt`). The catalogue window as coded removed almost nothing (the Prsa phase convention `Phip-pf`, `Phis-pf` is unverified). Do NOT build the pooled rule as written.
+- **Hybrid (frozen per-sector runs, kept as eclipses only if low in 2 or more cycles; `scripts/d03_mask_v1_hybrid.py`): balanced arms under 14 d (0.12 / 0.12, 0.23 / 0.23), and it frees dips in slow binaries (0.55 to 0.85 found over 14 d, 77% to 100% of them in the single-visit lane). But at 10 to 14 d it recovers no more than the frozen mask (0.45 / 0.25), and the lane has a real-arm excess (0.25 against 0.08 over 20 d: eclipses seen once).** NOT TESTED why 10 to 14 d fails: first suspect, the planted dip's run is "confirmed" by an unrelated run within the phase tolerance (0.02 is 0.2 to 0.3 d at these periods), or the padding of a neighbouring confirmed run covers it.
+- **What a builder should do next (Opus, about 1.5 points):** (1) print, for the 10 to 14 d failures of d03, whether the dip's run was confirmed and by which episode; (2) tighten the phase tolerance to the run width plus 2 bins and require the confirming episode to have a similar depth (within a factor 2); (3) verify the catalogue phase convention on 10 stars and add the catalogue window to the hybrid; (4) rerun on 50 stars per bin. Pass marks unchanged: planted recovery at least 0.9 of after-mask recovery in every bin, real over upside-down outside the lane between 0.8 and 1.25.
+- **What is solid:** the fault (F-01), the principle (an eclipse is a dip that comes back; a dip seen once is a lane case, not a deletion), the mirror rule, and planting before the mask. What is not: the exact rule.

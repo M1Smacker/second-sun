@@ -1,0 +1,22 @@
+﻿
+HYBRID rule. stars per bin 20, up to 5 sectors, seed 3. Events per star-sector, real/upside-down.
+A frozen | A hybrid outside the lane | A hybrid lane only | runs per star: frozen total -> unconfirmed | data kept 
+frozen, hybrid
+B planted 8 h dip before the mask: K12 found frozen / hybrid (share of hybrid finds in the lane); same for K25
+P 5 to 10: stars 20, star-sectors 86 | A frozen 0.12/0.13 | hybrid outside lane 0.12/0.12 | lane 0.01/0.00 | runs per 
+star 7.3 -> unconfirmed 0.1 | kept 0.824, 0.824 | B K12: 0.85 / 0.85 (lane share 0.06, n=20) | B K25: 0.75 / 0.75 
+(lane share 0.00, n=20)
+P 10 to 14: stars 20, star-sectors 93 | A frozen 0.24/0.30 | hybrid outside lane 0.23/0.23 | lane 0.02/0.03 | runs per 
+star 11.2 -> unconfirmed 0.8 | kept 0.848, 0.849 | B K12: 0.45 / 0.45 (lane share 0.11, n=20) | B K25: 0.20 / 0.25 
+(lane share 0.20, n=20)
+P 14 to 20: stars 20, star-sectors 94 | A frozen 0.36/0.21 | hybrid outside lane 0.32/0.12 | lane 0.15/0.05 | runs per 
+star 10.7 -> unconfirmed 2.0 | kept 0.907, 0.911 | B K12: 0.35 / 0.60 (lane share 0.42, n=20) | B K25: 0.05 / 0.55 
+(lane share 0.91, n=20)
+P 20 to 27.4: stars 20, star-sectors 93 | A frozen 0.15/0.14 | hybrid outside lane 0.11/0.05 | lane 0.25/0.08 | runs 
+per star 11.7 -> unconfirmed 3.0 | kept 0.916, 0.926 | B K12: 0.20 / 0.65 (lane share 0.77, n=20) | B K25: 0.05 / 0.85 
+(lane share 0.94, n=20)
+P 27.4 to 10000.0: stars 20, star-sectors 97 | A frozen 0.04/0.10 | hybrid outside lane 0.02/0.03 | lane 0.25/0.09 | 
+runs per star 7.5 -> unconfirmed 2.4 | kept 0.946, 0.957 | B K12: 0.05 / 0.65 (lane share 0.92, n=20) | B K25: 0.00 / 
+0.70 (lane share 1.00, n=20)
+
+
