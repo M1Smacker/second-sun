@@ -1,3 +1,6 @@
+## LATEST (10 Nov 2026, 09:36 Kuwait): Fable run 1 paused by the 5-hour limit, not resumed
+Fable audit session (local_6b914ad3) read the brief, ran 4 helpers on history, hit the 5-hour limit at about 02:54 and stopped. Meters at 09:36 : 5-hour 2% (new window), Weekly all models 17%, Weekly Fable 20%. Only 2 of 4 helper reports exist (H1, H2 in that session's scratchpad); STATE.md says meter test not done. About 20% of the Fable meter went on about 5 minutes of reading with 4 Fable-priced helpers. Ahmed said do not resume. Proposal waiting for him: resume with Sonnet-priced helpers for reading and a stop line in bar points.
+
 ## LATEST (10 Nov 2026, 02:45 Kuwait): Fable brief written, Fable NOT started
 research/fable-audit-2026-11/01-FABLE-BRIEF.md is the full brief (21 rounds of Ahmed's answers; run 1 audit changes nothing; stop at about 30 Fable points or weekly all-models 40%; fix step 14 Nov before the reset; run 2 optional to 92%; work orders Sonnet can run cold; private skill second-sun-auditor; blind bug test for next week; Fable ledger in its folder). Ahmed chose to start Fable as a nested session from the main chat (Fable 5.2, medium). Waiting for his go to launch it. Week plan: physics 15 points to 13 Nov, math plan 20, father's website 10, Cowork 20 to 30 this week; weekly reset 17 Nov 01:00. Weekly 7%.
 
