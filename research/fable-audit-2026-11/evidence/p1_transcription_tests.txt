@@ -1,0 +1,9 @@
+Petrova mask transcription tests, 11 Nov 2026 (counts only; scripts p1_vs_c1f_equal.py, p1_veto_equal.py in ../scripts)
+1. pipeline/petrova_mask.remove vs the tested C1f mask (c1_mask.remove, C0_REFIT=0 C1_PSLOW=1e9 C1_Z=5), real star-sector light, 4 files per period bin and product family:
+   set g2: files compared 40, identical removed cadences 40, different 0, skipped 0; median share of cadences removed 0.075
+   set g3: files compared 36, identical removed cadences 36, different 0, skipped 4; median share of cadences removed 0.038
+2. pipeline/petrova_mask.veto_events vs the tested C2 veto (c2_event_veto.veto, TOL 1 h, NMIN 2), 400 random synthetic stars (P 8 to 40 d, 2 to 7 sectors, clustered and random phases):
+   random synthetic events 2540: same decision as the tested C2 veto 2540 of 2540; events vetoed 346
+3. pipeline/petrova_mask.load_catalogue vs c0_catalogue_mask.load_catalogue: g2 895 stars, g3 612 stars, 0 mismatches in P, T0, eT0, eP, wp, ws, phs.
+4. petrova_mask.selftest(): passes (recurring eclipse removed, single dip kept, mask of 2 - f equals mask of f, catalogue windows, veto on 4 sectors).
+5. p1-off zero-difference proofs (switch off, new code): research/stage3/zero-diff-P1-off.txt, -c6.txt, -g2-sealed-c6.txt: 300 of 300 each, 0 differences. (To be re-run on the final committed code before the freeze.)
