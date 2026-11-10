@@ -1,0 +1,8 @@
+product TESS-SPOC column pdcsap_flux cadence min 30.0 n 1143 range 1870.47 1897.77
+gaps over 0.2 d: [(1883.97, 1887.0, 3.02)]
+per-cadence robust scatter (all data incl. eclipses) ppm 8504
+transit 1883.37: cadences in window 19, baseline cadences 72, depth 9416 ppm, baseline scatter 6074 ppm/cadence, naive SNR 6.8; nearest gap edge 0.60 d; data within +-0.5 d: 47
+transit 1888.3: cadences in window 13, baseline cadences 109, depth 7250 ppm, baseline scatter 6789 ppm/cadence, naive SNR 3.9; nearest gap edge 1.30 d; data within +-0.5 d: 48
+after 2-d biweight detrend: cadences 1143 of 1143
+  detrended in-window mean 6662 ppm below 1 (the real depth is about 3000)
+  detrended in-window mean 4206 ppm below 1 (the real depth is about 3000)

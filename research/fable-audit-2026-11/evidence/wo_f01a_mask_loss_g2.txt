@@ -1,0 +1,41 @@
+WO-F01 Part A, set g2. Files sampled 1000; with injections 971; skipped 29 (no safe windows: 20; no clean slot: 7; 8 h noise not finite: 2).
+m = found when injected BEFORE the mask (what a real planet does) / found when injected AFTER the mask (what every earlier recovery test did). Cells: before/after, n files. Standard error of one cell about 0.05 at n = 100.
+Period bins (d): 5-10 | 10-14 | 14-20 | 20-27.4 | >27.4
+
+A. DIPS, all four durations pooled, by K and product family
+  K    8 SPOCfam  | 0.25/0.29 n100 | 0.17/0.28 n100 | 0.07/0.18 n100 | 0.09/0.20 n100 | 0.10/0.34 n100
+  K    8 QLP      | 0.16/0.21 n 93 | 0.12/0.21 n 88 | 0.08/0.20 n 93 | 0.04/0.26 n 98 | 0.05/0.21 n 99
+  K   12 SPOCfam  | 0.77/0.92 n100 | 0.55/0.88 n100 | 0.41/0.90 n100 | 0.24/0.88 n100 | 0.16/0.91 n100
+  K   12 QLP      | 0.66/0.89 n 93 | 0.61/0.88 n 88 | 0.37/0.87 n 93 | 0.22/0.93 n 98 | 0.21/0.87 n 99
+  K   18 SPOCfam  | 0.80/1.00 n100 | 0.49/1.00 n100 | 0.28/1.00 n100 | 0.09/1.00 n100 | 0.04/0.99 n100
+  K   18 QLP      | 0.65/1.00 n 93 | 0.49/1.00 n 88 | 0.24/1.00 n 93 | 0.09/1.00 n 98 | 0.07/1.00 n 99
+  K   25 SPOCfam  | 0.76/1.00 n100 | 0.35/1.00 n100 | 0.14/1.00 n100 | 0.02/1.00 n100 | 0.01/0.99 n100
+  K   25 QLP      | 0.60/1.00 n 93 | 0.33/1.00 n 88 | 0.12/1.00 n 93 | 0.02/1.00 n 98 | 0.03/1.00 n 99
+
+B. DIPS by duration (both families pooled)
+  K   12 dur    4 h  | 0.54/0.86 n193 | 0.36/0.80 n188 | 0.18/0.84 n193 | 0.06/0.78 n198 | 0.10/0.71 n199
+  K   12 dur    8 h  | 0.73/0.96 n193 | 0.57/0.96 n188 | 0.33/0.96 n193 | 0.13/0.97 n198 | 0.11/0.95 n199
+  K   12 dur   14 h  | 0.82/0.98 n193 | 0.66/0.93 n188 | 0.49/0.93 n193 | 0.27/0.96 n198 | 0.21/0.97 n199
+  K   12 dur   20 h  | 0.78/0.82 n193 | 0.72/0.84 n188 | 0.55/0.80 n193 | 0.46/0.89 n198 | 0.32/0.93 n199
+  K   25 dur    4 h  | 0.63/1.00 n193 | 0.21/1.00 n188 | 0.06/1.00 n193 | 0.00/1.00 n198 | 0.05/0.99 n199
+  K   25 dur    8 h  | 0.66/1.00 n193 | 0.26/1.00 n188 | 0.07/1.00 n193 | 0.01/1.00 n198 | 0.02/0.99 n199
+  K   25 dur   14 h  | 0.67/1.00 n193 | 0.37/1.00 n188 | 0.12/1.00 n193 | 0.03/1.00 n198 | 0.01/0.99 n199
+  K   25 dur   20 h  | 0.77/1.00 n193 | 0.54/1.00 n188 | 0.26/1.00 n193 | 0.05/0.99 n198 | 0.02/0.99 n199
+
+C. share of the dip's cadences the mask removed (before case, mean, K 12 and 25, all durations)
+  SPOCfam  | 0.22 | 0.53 | 0.70 | 0.84 | 0.88
+  QLP      | 0.33 | 0.52 | 0.72 | 0.86 | 0.85
+
+D. BUMPS on the upside-down arm (proof test: before/after must agree, m about 1)
+  K   12 dur 8 h | 0.96/0.96 n193 | 0.95/0.95 n188 | 0.96/0.96 n193 | 0.97/0.97 n198 | 0.93/0.93 n199
+  K   25 dur 8 h | 1.00/1.00 n193 | 1.00/1.00 n188 | 1.00/1.00 n193 | 1.00/1.00 n198 | 0.99/1.00 n199
+
+E. ONE NUMBER FOR THE HUNT g2: m = sum(w * before) / sum(w * after), w = files of the cell in the g2 manifest x usable share of the sample (a file with no safe windows was never searched)
+  K    8 dur 8 h        | m = 0.49 (dips lost to the mask: 51%)
+  K    8 all durations  | m = 0.61 (dips lost to the mask: 39%)
+  K   12 dur 8 h        | m = 0.53 (dips lost to the mask: 47%)
+  K   12 all durations  | m = 0.60 (dips lost to the mask: 40%)
+  K   18 dur 8 h        | m = 0.42 (dips lost to the mask: 58%)
+  K   18 all durations  | m = 0.48 (dips lost to the mask: 52%)
+  K   25 dur 8 h        | m = 0.37 (dips lost to the mask: 63%)
+  K   25 all durations  | m = 0.40 (dips lost to the mask: 60%)

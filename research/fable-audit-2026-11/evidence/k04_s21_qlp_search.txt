@@ -1,0 +1,3 @@
+cadences 791 after the frozen mask 610 mask runs (phase) [[0.052, 0.053], [0.055, 0.065], [0.14, 0.145], [0.147, 0.172], [0.502, 0.503], [0.545, 0.555], [0.557, 0.558], [0.803, 0.812], [0.813, 0.815]]
+transit 1883.37: cadences in window 18, removed by the mask 100%; frozen mask: best SNR -0.0 @ 1883.80 (3 h); no mask: best SNR 7.0 @ 1883.39 (6.5 h)
+transit 1888.3: cadences in window 10, removed by the mask 100%; frozen mask: best SNR 0.7 @ 1888.98 (3 h); no mask: best SNR 344.1 @ 1889.80 (20 h)

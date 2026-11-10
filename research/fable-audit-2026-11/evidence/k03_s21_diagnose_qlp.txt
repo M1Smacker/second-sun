@@ -1,0 +1,8 @@
+product QLP column sap_flux cadence min 30.0 n 791 range 1871.68 1897.7
+gaps over 0.2 d: [(1876.39, 1876.87, 0.48), (1879.89, 1880.1, 0.21), (1881.95, 1883.14, 1.19), (1883.83, 1887.7, 3.87), (1895.31, 1895.52, 0.21), (1896.5, 1896.87, 0.37), (1897.22, 1897.45, 0.23)]
+per-cadence robust scatter (all data incl. eclipses) ppm 1154
+transit 1883.37: cadences in window 18, baseline cadences 11, depth 2123 ppm, baseline scatter 265 ppm/cadence, naive SNR 33.9; nearest gap edge 0.23 d; data within +-0.5 d: 33
+transit 1888.3: cadences in window 10, baseline cadences 61, depth 2865 ppm, baseline scatter 460 ppm/cadence, naive SNR 19.7; nearest gap edge 0.60 d; data within +-0.5 d: 40
+after 2-d biweight detrend: cadences 791 of 791
+  detrended in-window mean 1039 ppm below 1 (the real depth is about 3000)
+  detrended in-window mean 3022 ppm below 1 (the real depth is about 3000)

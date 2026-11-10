@@ -1,0 +1,18 @@
+
+===== TOI-1338 b (predicted, Kostov 2020 Table 6): 40 files, catalogue periods used by the mask [14.608583]
+  columns: transit time (BTJD) | sector | cadences in the window (+-dur/2) | share removed by the frozen mask | best SNR within +-1.5 d: frozen mask (SNR @ time, box h) | no mask | note
+    2049.69 | S27 |  237 of 237 expected | removed   0% | masked   6.7 @ 2049.95 (6.5 h) | unmasked   5.2 @ 2049.95 (5 h) | 
+    2237.92 | S34 |  292 of 292 expected | removed   0% | masked   5.2 @ 2238.22 (8 h) | unmasked   4.6 @ 2238.22 (8 h) | 
+    2331.00 | S37 |  190 of 189 expected | removed   0% | masked   3.5 @ 2331.04 (3 h) | unmasked 102.0 @ 2330.20 (3 h) | 
+    2989.35 | S62 |    0 of 181 expected | removed  n/a | masked   3.5 @ 2990.25 (15 h) | unmasked   2.7 @ 2990.16 (10 h) | window only 0% covered by data
+    3084.82 | S65 |  245 of 246 expected | removed   0% | masked   9.2 @ 3085.40 (6.5 h) | unmasked   7.9 @ 3085.40 (6.5 h) | 
+    3177.98 | S68 |  148 of 148 expected | removed  31% | masked   4.8 @ 3178.26 (5 h) | unmasked 157.6 @ 3177.50 (4 h) | 
+    3743.62 | S89 |  191 of 190 expected | removed   0% | masked   8.4 @ 3744.48 (6.5 h) | unmasked   7.3 @ 3744.48 (6.5 h) | 
+    3836.04 | S93 |  148 of 148 expected | removed   0% | masked  10.8 @ 3836.96 (6.5 h) | unmasked 198.1 @ 3834.89 (4 h) | 
+    3931.42 | S96 |  251 of 252 expected | removed   0% | masked  15.2 @ 3932.76 (8 h) | unmasked  11.8 @ 3932.76 (8 h) | 
+    4024.62 | S98 |  137 of 141 expected | removed 100% | masked   8.5 @ 4025.64 (5 h) | unmasked 176.3 @ 4024.80 (4 h) | 
+
+===== TIC 172900988 b (published S21 transits, Kostov 2021): 1 files, catalogue periods used by the mask [19.658]
+  columns: transit time (BTJD) | sector | cadences in the window (+-dur/2) | share removed by the frozen mask | best SNR within +-1.5 d: frozen mask (SNR @ time, box h) | no mask | note
+    1883.37 | S21 |   19 of 19 expected | removed   0% | masked   2.8 @ 1883.28 (15 h) | unmasked   2.4 @ 1883.28 (15 h) | 
+    1888.30 | S21 |   13 of 13 expected | removed   0% | masked   2.0 @ 1887.05 (3 h) | unmasked  22.7 @ 1889.80 (20 h) | 
