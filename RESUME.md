@@ -1,3 +1,6 @@
+## LATEST (10 Nov 2026, 09:43 Kuwait): Fable Amendment 1 written, Fable NOT resumed
+research/fable-audit-2026-11/02-AMENDMENT-1-SCALE-DOWN.md: one budget of about 23 bar points to the 40% all-models line (P 7, N 5, S 5, R 2, L 2, report 2), book audit removed (tools privacy check kept in R), Sonnet helpers only (max 2), no history re-read (use saved H1, H2), scope cuts per area, fix step at most 8 bar points. Waiting for Ahmed's go to resume.
+
 ## LATEST (10 Nov 2026, 09:36 Kuwait): Fable run 1 paused by the 5-hour limit, not resumed
 Fable audit session (local_6b914ad3) read the brief, ran 4 helpers on history, hit the 5-hour limit at about 02:54 and stopped. Meters at 09:36 : 5-hour 2% (new window), Weekly all models 17%, Weekly Fable 20%. Only 2 of 4 helper reports exist (H1, H2 in that session's scratchpad); STATE.md says meter test not done. About 20% of the Fable meter went on about 5 minutes of reading with 4 Fable-priced helpers. Ahmed said do not resume. Proposal waiting for him: resume with Sonnet-priced helpers for reading and a stop line in bar points.
 
