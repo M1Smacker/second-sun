@@ -1,0 +1,27 @@
+﻿
+
+===== TIC 172900988: P 19.658 d, 5 files, sectors [44, 45, 46, 47, 21]; eclipse bins 28, single-visit bins 0
+  events in all sectors: frozen mask 0, repeat rule 0
+
+===== TOI-1338: P 14.608559 d, 40 files, sectors [4, 5, 6, 7, 8, 9, 10, 11, 12, 27, 28, 29, 30, 31, 32, 34, 35, 36, 
+37, 38, 39, 61, 62, 63, 64, 65, 66, 67, 68, 69, 87, 88, 89, 90, 93, 94, 95, 96, 97, 98]; eclipse bins 20, single-visit 
+bins 0
+  S4: BTJD 1422.20  SNR 8.5  depth 1825 ppm  6.5 h  binary phase 0.845  NEW (frozen mask removed 28% of it)
+  S5: BTJD 1463.57  SNR 8.4  depth 3031 ppm  3 h  binary phase 0.677  also found with the frozen mask
+  S10: BTJD 1579.04  SNR 11.0  depth 2112 ppm  10 h  binary phase 0.581  also found with the frozen mask
+  S27: BTJD 2047.86  SNR 7.2  depth 2628 ppm  6.5 h  binary phase 0.673  NEW (frozen mask removed 68% of it)
+  S30: BTJD 2116.90  SNR 8.0  depth 1060 ppm  20 h  binary phase 0.399  also found with the frozen mask
+  S31: BTJD 2156.20  SNR 9.5  depth 3039 ppm  4 h  binary phase 0.089  NEW (frozen mask removed 100% of it)
+  S32: BTJD 2199.93  SNR 17.3  depth 6546 ppm  3 h  binary phase 0.083  NEW (frozen mask removed 100% of it)
+  S32: BTJD 2185.60  SNR 10.1  depth 3430 ppm  4 h  binary phase 0.102  NEW (frozen mask removed 100% of it)
+  S65: BTJD 3085.40  SNR 9.2  depth 2798 ppm  6.5 h  binary phase 0.695  also found with the frozen mask
+  S66: BTJD 3112.45  SNR 9.5  depth 970 ppm  20 h  binary phase 0.548  also found with the frozen mask
+  S67: BTJD 3134.82  SNR 9.9  depth 2443 ppm  5 h  binary phase 0.078  also found with the frozen mask
+  S68: BTJD 3174.81  SNR 7.2  depth 748 ppm  20 h  binary phase 0.816  also found with the frozen mask
+  S89: BTJD 3744.48  SNR 8.4  depth 2007 ppm  6.5 h  binary phase 0.812  also found with the frozen mask
+  S93: BTJD 3836.96  SNR 10.7  depth 2312 ppm  6.5 h  binary phase 0.142  also found with the frozen mask
+  S96: BTJD 3932.76  SNR 14.8  depth 2118 ppm  8 h  binary phase 0.700  also found with the frozen mask
+  S98: BTJD 4025.64  SNR 8.5  depth 2000 ppm  5 h  binary phase 0.058  also found with the frozen mask
+  events in all sectors: frozen mask 11, repeat rule 16
+
+
