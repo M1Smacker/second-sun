@@ -1,0 +1,53 @@
+# Re-search 1 preregistration (written 11 Nov 2026 BEFORE Petrova 1.0.0 exists and BEFORE any light is read with it)
+
+**Status: written and committed first; the freeze (step A5) and the search (step B) come later and follow these rules.** A change needs a new dated amendment at the bottom, never an edit of the rules above it. Plan: `PLAN-2026-11-11-FREEZE-HUNT-LEARNING.md`. Draft by Fable (10 Nov): `research/fable-audit-2026-11/design/SLOW-BINARY-RESEARCH-PREREG-DRAFT.md` (called G4a there; Census replaced G4, so this hunt is called Re-search 1).
+
+## 1. Purpose
+The frozen Vesper 0.8.1 eclipse mask deleted most strong planet dips in binaries slower than about 10 to 14 d, and 27 to 34 percent at 5 to 10 d, before the search (audit F-01, `WO-F01-PART-A-RESULT-2026-11-10.md`). That light was never scored. Petrova 1.0.0 keeps it. Win condition (unchanged): a clean measured null, with an honest count of what was found and a completeness table. A candidate would be welcome but is not the target.
+
+## 2. The star list (fixed by these hashes)
+- File `targets/r1_targets.csv`, made by `pipeline/targets_r1.py`, sha256 **01d6d71a5b709cb68360acc409cfb5c04259fee3e680070b1662934941a0e0de** (as written, LF line endings). **2,059 rows, 2,056 stars:** every star of `g1_targets.csv` (549), `g2_targets.csv` (895, development AND sealed slices) and `g3_targets.csv` (612). Every row has a catalogue binary period of 5 d or more (G1 and G2 over 5 d, G3 over 7 d). No star is in two lists. Source hashes of the three lists are in the file header.
+- Column `design_seen`: 1 for the **704 stars** (G2 420, G3 284, G1 none) that appear in a real-light sample whose counts were looked at while the mask was designed (the Part A sample and the C0, C1, C1f and C2 samples). 0 for the **1,352 unseen stars** (G1 549, G2 475, G3 328). The hash of the sorted seen star list is in the file header.
+- Period bins (d): 5-10, 10-14, 14-20, 20-27, over 27.4. Rows per bin (a star with two binary periods has two rows), seen / unseen: 265 / 686, 176 / 243, 151 / 148, 61 / 71, 51 / 207.
+- The list contains no light curve, no event and no search result.
+
+## 3. The split and the one-shot rule
+- **Dry run** on the 704 design-seen stars. Purpose: catch crashes and silent skips, and measure the pre-run gates (section 5) on real light. Only bug fixes are allowed afterwards: each is written down BEFORE it is made, the fix is a patch 1.0.x, and a zero-difference test proves the untouched star-sectors give identical events. Any change of a rule, threshold or window is a new version (1.1.0) with a new amendment, and the sealed run waits.
+- **Sealed run** on the 1,352 unseen stars. ONE frozen version (Petrova 1.0.0 or its bug-fix patch). The run script refuses without the frozen hash, a go file and a clean tree, as `pipeline/g3_run.py` does. If a bug is found afterwards, the fixed version runs again and BOTH results are reported with the reason.
+- The pass or fail verdict (section 6, S1) comes from the sealed stars only. The seen stars are reported as their own stratum, as is the G2 development slice (it tuned c6 for 0.8.0).
+
+## 4. What counts as evidence (decided before any result)
+- **Recovered light** = cadences that the frozen 0.8.1 mask (`eclipse_mask_auto`, run on the real arm of the star-sector) removed and the Petrova mask keeps. The same cadence set is used for both arms (the mirror rule). An event counts as evidence only if its centre lies in recovered light.
+- Events in light both masks keep are reported for completeness and never count, because 0.8.1 already judged that light (no re-scoring of sealed runs).
+- UNCERTAIN, to be settled in the dry run with planted dips and synthetic eclipses only: how recovered light is stored per star-sector. Whatever is chosen is written as Amendment 1 before the sealed run.
+
+## 5. Pre-run gates (set after Ahmed's seven plan rounds, and after I had seen the C2 counts; said plainly)
+The gates were first drafted by Fable as: dips kept at least 0.8 of the after-mask recovery, and real over upside-down 0.8 to 1.25 in every bin. I changed them after seeing the C2 full-size table (`DESIGN-C2-OPUS-2026-11-10.md`, addendum), because a ratio of 1.25 on 40 events is inside one standard error. The new marks were set before the new tests, but not before I saw those counts. Ahmed approved them on 11 Nov.
+- **(a) Dips kept (m):** dips injected into RAW light before every step, K 8 to 25, durations 4, 8, 14 and 20 h, through the whole chain (veto, flags, tiers). In every binary-period bin the recovery is at least **0.95** of the recovery of the same dip added after the mask. Measured on the dry-run (seen) stars with 300 random star-sectors.
+- **(b) Bumps kept:** the same, on the upside-down arm, at least **0.95**.
+- **(c) Exchangeability:** on seen-star real light with nothing planted, real over upside-down tier-1 events between **0.67 and 1.5** in every bin that has 20 or more events. Bins with fewer events are not judged. G3 binaries over 27 d are reported separately as a KNOWN LIMIT (41 / 16 in the C2 run) and their null is worded "excludes less".
+- **(d) Vetoed events:** real and upside-down counts reported, no mark.
+- A failure of (a) or (b) in any bin: nothing is frozen, one repair attempt by a nested Opus 5.5 medium (30 tool calls), then I stop and ask Ahmed. A failure of (c) in a bin: the search still runs; that bin is labelled "not covered" in the verdict.
+
+## 6. What counts as an excess and what is reported
+- **S1 (the result), sealed stars, recovered light only:** per flux half and per SNR bar (7, 8, 10, 12) the real tier-1 count against the noise-expected count (upside-down count divided by the real-to-upside-down ratio measured by `asymmetry_test.py` on this run). Star-level bootstrap as in `scorecard_plus.py`. An **excess** needs chance 0.01 or less at bar 7 and the real count above expected at the other bars; anything less is **no excess**.
+- **S2 (false alarms):** upside-down tier-1 events per 1,000 star-sectors of recovered light, star-level interval, NO pass or fail mark (Ahmed's decision of 10 Nov, option A).
+- **S3 single-visit lane:** dips at binary phases seen once per sector are counted apart, never S1 evidence.
+- **S4 completeness:** dips injected into raw light before every step, per binary-period bin, with the null.
+- Splits: period bin, design_seen, G2 slice, labels (TOI, NASA-listed circumbinary host, none), product family.
+- **Plain verdict first** after the run: found something, found nothing, or N leads under check.
+
+## 7. Reporting rules and leads
+Aggregates only. No real event is opened, listed or plotted without Ahmed's yes. Star ids, event times and pictures stay under `data\`. Lead stages (written now, before results): stage 1, an S1 excess in a bin; stage 2, private check by the second-product rule and the binary-phase duration key on the events behind it; stage 3, a blind picture check; a lead needs two keys and Ahmed's yes before anything is said, and nothing leaves the PC without it. The Search window shows counts only.
+
+## 8. Known limits of this design (said now)
+- **G1 (549 stars, Kepler field):** `g1_targets.csv` has an epoch (`bjd0`, BJD minus 2400000) and a period but no eclipse width column. The Petrova mask needs widths from the Villanova catalogue. Its conventions have NOT been tested (Part A and the mask runs covered G2 and G3 only). G1 is searched only after the same gates (a) to (c) are measured on it; otherwise G1 follows later, as a separate amendment.
+- **Slowest faint binaries (G3 over 27 d):** the mask leaves a real-arm excess a recurrence veto cannot remove; cause NOT TESTED. Other unbalanced bins in the C2 run: G3 5-10 d (1.44), G3 20-27 d (1.33), G2 5-10 d (1.59, shared with the frozen mask), G2 20-27 d (0.38).
+- **The whole chain on top of the new mask has never been measured** (the C2 runs measured the detection step). Gate (a) is its first test.
+- **A real two-transit planet:** the veto should not touch it (its transits fall at different binary phases). NOT TESTED.
+- **Counts were seen:** while designing the mask I looked at real and upside-down event COUNTS per bin on the seen stars. No event was listed. That is why the verdict uses the unseen stars only.
+- **Faint stars, QLP windows, catalogue period errors over many cycles, files that change after MAST reprocessing:** as in `G3-PREREGISTRATION.md` section 7. The download manifest and file hashes are kept.
+- The null says: in N star-sectors of binaries of 5 d or more, no dip of at least K times the noise survived the checks in the recovered light, with the completeness of section 6 S4. It replaces the 0.8.1 statements that F-01 voided, for these stars. It says nothing about smaller planets.
+
+## Lock record
+Written and committed 11 Nov 2026, BEFORE Petrova 1.0.0 exists and before any light is read with it. Ahmed's answers in the ask-tool rounds of 11 Nov 2026 (11 Nov 2026, from 00:12 to about 00:40 Kuwait): order "Freeze, hunt, learn meanwhile"; name "Petrova 1.0.0, rename at the freeze"; "Sonnet builds, nested Opus checks marks"; scope "All stars, report samples apart"; split "Yes, my version" (dry run on seen stars, sealed on unseen) with "Bugs only, written down"; "One retry by nested Opus"; "Keep, verdict says excludes less"; evidence "Only the light the old mask deleted"; period cut "Everything from 5 d up"; pass marks "My updated marks, disclosed"; "Write the plan, start step A now"; and the cap rule "Work until the meter is 30 and if work is still not done go up to 35%". The commit containing this record is the lock commit: find it with `git log -- research/stage3/R1-PREREGISTRATION.md`. The freeze of Petrova 1.0.0 and the sealed run follow the plan; each is recorded below as a dated amendment. Amendments go below this line.

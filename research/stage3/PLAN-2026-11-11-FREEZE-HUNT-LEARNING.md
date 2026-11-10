@@ -7,7 +7,7 @@
 4. **Name:** Petrova 1.0.0. The rename from Vesper happens at the freeze. Vesper 0.8.1 stays untouched as the old reference. A later rule change would be 1.1.0.
 5. **What the hunt searches:** every star of the three lists with a binary period of 5 d or more (about 2,056 stars on disk, no download). Both arms, real and upside-down.
 6. **What counts as evidence:** only events in the light the OLD mask deleted and the NEW mask keeps ("the recovered light"). Other events are reported but never count, because 0.8.1 already judged that light.
-7. **Split:** dry run on the stars I already looked at while designing the mask (about half; exact count when I build the list), bugs only. Then one sealed run on the unseen stars. The pass or fail comes from the sealed half; the seen half is reported apart.
+7. **Split:** dry run on the 704 stars I already looked at while designing the mask (34% of 2,056: G2 420, G3 284, G1 none), bugs only. Then one sealed run on the 1,352 unseen stars. The pass or fail comes from the sealed stars; the seen stars are reported apart. (Built in step A1; list `targets/r1_targets.csv`.)
 8. **Pass marks (set after I saw the C2 counts, which the preregistration says plainly):** planted dips kept at least 0.95 per bin; bumps at least 0.95; real over upside-down 0.67 to 1.5 where a bin has 20 or more events; vetoed events reported. G3 binaries over 27 d are a known limit: that bin's null is worded "excludes less".
 9. **If something shows up:** counts first, no star named in the repo or the book; I run the two private checks, push a notification, and wait for your yes.
 10. **PC:** hunt always at 70% (normal priority, numba threads capped). Short note to you after each step.
@@ -36,6 +36,7 @@ Units foundation and full reader, the full dashboard, the 8-page chapter on the 
 Counts only on real light; tune only on planted dips and synthetic eclipses; no star ids, event times or lead details in the repo or the book; `pipeline/` frozen files never edited (new module, new version); nothing outward without his yes except the already approved book publish and the push after the star-name check; unverified is not fixed; times read from `Get-Date`.
 
 ## Honest notes
+- **G1 (549 Kepler-field stars) is not ready for the new mask:** its target list has an epoch and a period but no eclipse width. The widths must come from the Villanova catalogue and the same gates must be measured on G1. Default (found in A1): G1 is searched only after that check passes, otherwise it follows later. This may add about 0.3 points to A2/A3.
 - Fable's draft names this hunt G4a. Census replaced G4, so we call it **Re-search 1**.
 - The exchangeability mark in Fable's draft was 0.8 to 1.25. I loosen it to 0.67 to 1.5 because 1.25 on 40 events is inside one standard error, and I saw the C2 table first. The preregistration must say this.
 - Part A found the old mask also loses 27 to 34% of strong dips at 5 to 10 d, so the draft's 10 d cut is replaced by 5 d.
