@@ -1,0 +1,45 @@
+area | concept | chapters(files/hits) | labs | parts+start | learn | glossary | notes | other | VERDICT
+filter | Frozen version / settings hash / freeze | 3/5 | 0/0 | 2/5 | 1/6 | 1/1 | 9/33 | 1/7 | TAUGHT
+filter | Products: SPOC, TESS-SPOC, QLP, full-frame | 4/27 | 3/6 | 1/2 | 1/1 | 1/6 | 4/26 | 0/0 | TAUGHT
+filter | PDCSAP vs SAP flux | 4/19 | 2/7 | 2/7 | 1/1 | 1/4 | 2/51 | 1/1 | TAUGHT
+filter | Quality flags / bitmask | 5/5 | 2/3 | 0/0 | 0/0 | 1/2 | 0/0 | 0/0 | TAUGHT
+filter | Detrending (biweight, 2-day window) | 5/30 | 3/10 | 1/5 | 0/0 | 1/2 | 4/10 | 0/0 | TAUGHT
+filter | Box search over durations (3 to 20 h) | 1/1 | 1/1 | 0/0 | 0/0 | 0/0 | 2/2 | 1/1 | MENTIONED
+filter | SNR 7 threshold | 4/6 | 2/5 | 0/0 | 1/1 | 1/1 | 4/4 | 0/0 | TAUGHT
+filter | Upside-down control (flipped light, bumps) | 5/29 | 2/11 | 4/23 | 1/4 | 1/6 | 8/94 | 2/2 | TAUGHT
+filter | Eclipse mask (blindfold) | 3/5 | 3/3 | 1/1 | 0/0 | 1/1 | 1/1 | 0/0 | TAUGHT
+filter | Mask folds one sector at the binary period | 0/0 | 1/1 | 0/0 | 0/0 | 1/1 | 0/0 | 0/0 | MENTIONED
+filter | Catalogue periods and eclipse widths (Prsa, TTC, Villanova) | 6/29 | 3/9 | 6/7 | 1/3 | 1/2 | 7/22 | 0/0 | TAUGHT
+filter | Second-product check | 2/4 | 1/1 | 0/0 | 0/0 | 0/0 | 2/2 | 0/0 | TAUGHT, no quiz/glossary
+filter | Tiers (tier 1, tier 2) | 2/4 | 0/0 | 0/0 | 1/1 | 1/1 | 3/9 | 1/1 | TAUGHT
+filter | Flags (gap edge, momentum dump, common moment, step, ramp, repeater) | 3/10 | 2/4 | 2/7 | 0/0 | 1/5 | 1/4 | 0/0 | TAUGHT
+filter | Orbit-locked check (c6) | 3/6 | 0/0 | 0/0 | 1/1 | 0/0 | 2/5 | 2/2 | TAUGHT
+method | False-alarm yardstick (upside-down per 1,000 star-sectors) | 3/16 | 1/1 | 2/3 | 1/3 | 1/3 | 11/52 | 3/4 | TAUGHT
+method | Preregistration / sealed split / one-shot | 1/1 | 0/0 | 1/1 | 1/4 | 0/0 | 4/19 | 2/17 | MENTIONED
+method | S1 / S2 / S3 pass criteria | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 1/3 | 0/0 | DIARY ONLY
+method | Injection and recovery (planted dips) | 8/50 | 2/6 | 4/11 | 1/2 | 1/3 | 13/82 | 4/17 | TAUGHT
+method | Depth in units of noise (K), K50, completeness | 1/5 | 1/1 | 1/1 | 1/4 | 1/1 | 4/12 | 0/0 | TAUGHT
+method | Injection BEFORE the mask (order matters) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | MISSING
+method | Reach map / expected number of planets (Horizon) | 0/0 | 0/0 | 0/0 | 1/1 | 0/0 | 2/3 | 2/2 | MENTIONED
+method | Transit probability for circumbinary planets (coplanar, tilt) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | MISSING
+method | Occurrence rate (Armstrong, about 10 percent) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 1/1 | DIARY ONLY
+method | Real versus upside-down excess (asymmetry) | 1/1 | 0/0 | 0/0 | 1/1 | 0/0 | 5/14 | 2/4 | MENTIONED
+method | Noise statistics (red noise, scatter, p-value) | 8/25 | 6/14 | 4/5 | 1/4 | 1/5 | 4/5 | 0/0 | TAUGHT
+science | Eclipsing binaries: detached, eccentric, secondary eclipse | 5/12 | 2/2 | 2/2 | 1/1 | 1/3 | 3/4 | 0/0 | TAUGHT
+science | Binary period vs sector length (slow binary, one visit per phase) | 1/1 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | MENTIONED
+science | Ephemeris (epoch, period, drift) | 1/1 | 0/0 | 0/0 | 0/0 | 0/0 | 2/3 | 0/0 | MENTIONED
+science | Time systems BTJD / BJD | 3/14 | 5/11 | 1/2 | 1/1 | 1/2 | 0/0 | 0/0 | TAUGHT
+science | TTV and TDV (timing and duration variations) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | MISSING
+science | Three-body orbits and the stability limit | 8/16 | 0/0 | 4/9 | 1/2 | 1/2 | 7/14 | 0/0 | TAUGHT
+science | Pixel-level vetting, dilution, nearby stars | 10/85 | 4/47 | 5/27 | 1/10 | 1/8 | 7/30 | 1/1 | TAUGHT
+science | Known planets (Kepler-16, TOI-1338, TIC 172900988) | 13/80 | 9/30 | 11/18 | 2/5 | 1/5 | 9/41 | 1/2 | TAUGHT
+science | Professionals' tools (STANLEY, Windemuth, mono-cbp) | 7/43 | 1/11 | 4/9 | 1/3 | 1/2 | 3/24 | 1/1 | TAUGHT
+science | Gaia eclipsing-binary catalogue | 1/6 | 1/2 | 0/0 | 0/0 | 1/1 | 0/0 | 1/1 | TAUGHT
+science | Sectors, cameras, scattered light | 11/76 | 8/57 | 5/13 | 2/12 | 1/11 | 11/109 | 4/9 | TAUGHT
+project | Hunts G1, G2, G3 (what, how many stars) | 12/24 | 4/12 | 5/11 | 2/3 | 1/3 | 6/31 | 2/22 | TAUGHT
+project | Census plan | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 2/6 | 1/1 | DIARY ONLY
+project | Two-key rule and leads | 5/9 | 1/1 | 0/0 | 1/3 | 0/0 | 8/19 | 3/5 | TAUGHT
+project | CTOI / ExoFOP / credit | 5/9 | 0/0 | 1/1 | 1/1 | 1/4 | 3/8 | 0/0 | TAUGHT
+
+TOTALS: TAUGHT 27, MENTIONED 7, DIARY ONLY 3, MISSING 3, TAUGHT, no quiz/glossary 1
+KB by group: chapters 113, labs 40, parts 20, start 24, learn 20, glossary 12, notes 162, other 31
