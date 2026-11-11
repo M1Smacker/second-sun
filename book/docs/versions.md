@@ -4,15 +4,15 @@ A version number says which exact rules or pages a result, a score or a progress
 
 | Thing | Version now | Baseline (frozen reference) | Why it has one |
 |---|---|---|---|
-| Vesper, the search | 0.8.1 | 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
+| Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.11.0 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.11.1 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.10 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
 Version numbers follow one rule: the first number changes when the old and new results or pages are no longer directly comparable, the second when something is added, the third for fixes that change no result.
 
-## Vesper
+## Petrova (called Vesper until 11 Nov 2026)
 
 Earlier names: Stage 2 and "v1 to v7". The full record, with fingerprints of each frozen version, is `research/stage3/VESPER-VERSIONS.md` in the project folder.
 
@@ -28,6 +28,7 @@ Earlier names: Stage 2 and "v1 to v7". The full record, with fingerprints of eac
 | 0.7.1 | 29 Oct | A switch between the two star lists, no rule changed. **Baseline of the improvement study** |
 | 0.8.0 | 30 Oct | The orbit-locked check. Frozen (fingerprint 5f73692944aa) and used for the one-time search of the sealed G2 stars. Result: no excess of real dips over noise |
 | 0.8.1 | 3 Nov | The same rules, now able to read the third star list (G3). Frozen (fingerprint e7886a71a61f). Proved to give exactly the same events as before on three samples of 300 test star-sectors each. Not yet used for a search |
+| 1.0.0 | 11 Nov | The eclipse mask changed: eclipses are hidden from a catalogue of binary periods, start times and widths instead of from the data, so planet dips in slow binaries are no longer deleted (audit finding F-01); dips that repeat at the same binary phase inside one sector are masked; an event check across sectors flags (never deletes) repeats. Renamed from Vesper at the freeze. Frozen (fingerprint bcd29c7aabb0). With the new switch off it gives exactly the old events (three samples of 300 test star-sectors, 300 of 300 each). Used for Re-search 1 |
 
 Tested in the study and not taken: wider smoothing windows, a looser step test, retrained check weights, a waiver for strong dips, and dropping the 3 hour box. None gave more real dips without more false alarms than our budget allows.
 
@@ -104,6 +105,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.9.15 | 6 Nov | Range fixed in the 4 Nov field note (four searches: 4% to 23% chance of finding none); claims F-002, F-017, F-051 and F-096 verified from opened papers and saved outputs; browser test prints the worst margin note when it fails; recap |
 | 2.10.0 | 10 Nov | New field note (the eclipse mask was deleting planets and our tests could not see it); correction banners on Chapters 8 and 9, Labs 6 and 9, three field notes and the learning track; claims F-015, F-029, F-048, F-088 and F-089 moved to LIKELY as upper limits; two sentences in Chapter 9 rewritten; home recap refreshed |
 | 2.11.0 | 11 Nov | Learning screens, first quick wins: a Back button in the header on phones and in the installed app; the learning page opens with where you are (the lesson, where you stopped, lessons read and time left) and a state word for every level; the evidence tags no longer sit in the reading text (the same claims are listed folded at the end of each chapter). Tested at phone width in the preview pane only, not yet on your phone |
+| 2.11.1 | 11 Nov | Vesper is now called Petrova (version 1.0.0, frozen 11 Nov); versions page and home status panel updated; the Search window shows the prepared Re-search 1 card |
 | 2.9.10 | 4 Nov | Wording corrected after a tilt test (our nulls are consistent with Kepler's rate in most, not all, of the cases tried); two claims upgraded to verified (STANLEY, Planet Hunters PH1 b) |
 | 2.9.9 | 4 Nov | Seven new facts on the claims page (target-list counts, the 10% occurrence rate, the transit-geometry formula, Gaia counts, the geometry probe, the fetch speed test, the pooled false-alarm rate), each with its label and source |
 | 2.9.8 | 4 Nov | Field note 4 Nov extended (the transit-geometry probe: the null is consistent with Kepler's rate; fetching the light is cheaper than G3 suggested); recap refreshed; an eleventh check after level 5 and a longer tenth (track 1.10) |
