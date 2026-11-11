@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (10 Nov 2026, night):** an audit found our eclipse mask deleted 4 to 6 of every 10 strong planet dips in slow binaries, and our own tests could not see it. Every floor number is an upper limit; the nulls stand. Next: a new mask, then re-search the old stars. Begin with [Start here](start/index.md).
+    **Two-minute recap (11 Nov 2026):** the new filter, Petrova 1.0.0, is frozen and searched the hidden light of 803 binary stars. Real dips did not beat the control: nothing found, no leads. The test is weak for slow binaries; the Kepler list comes next. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

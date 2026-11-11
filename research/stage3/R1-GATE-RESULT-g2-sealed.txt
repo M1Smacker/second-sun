@@ -1,0 +1,24 @@
+R1 gates, set g2, run r1_g2_unseen_bcd29c7aabb0, VESPER_OPTS ['c6', 'p1']. Counts only.
+Star-sectors: 219; zero-injection identity with the stored run: 219 of 219; errors: 26 {'no prepared product': 26}
+(a) dips (real arm): tier-1 recovery, injected before the mask / after the mask = m (mark: at least 0.95 per bin); counts are injections
+        5-10 d: before  40% (169/424), after  41% (174/424), m = 0.97 (K12 0.95; K25 0.99); lost to the veto: 0 of 424
+       10-14 d: before  37% (164/448), after  37% (166/448), m = 0.99 (K12 0.99; K25 0.99); lost to the veto: 2 of 448
+       14-20 d: before  42% (181/432), after  42% (181/432), m = 1.00 (K12 0.99; K25 1.01); lost to the veto: 4 of 432
+     20-27.4 d: before  37% (114/312), after  37% (114/312), m = 1.00 (K12 1.00; K25 1.00); lost to the veto: 5 of 312
+   over 27.4 d: before  46% (62/136), after  46% (62/136), m = 1.00 (K12 1.00; K25 1.00); lost to the veto: 1 of 136
+(a) PASS
+(b) bumps (upside-down arm): tier-1 recovery, injected before the mask / after the mask = m (mark: at least 0.95 per bin); counts are injections
+        5-10 d: before  42% (179/424), after  43% (183/424), m = 0.98 (K12 0.99; K25 0.97); lost to the veto: 0 of 424
+       10-14 d: before  37% (165/448), after  36% (163/448), m = 1.01 (K12 1.00; K25 1.02); lost to the veto: 0 of 448
+       14-20 d: before  39% (169/432), after  39% (170/432), m = 0.99 (K12 0.99; K25 1.00); lost to the veto: 5 of 432
+     20-27.4 d: before  38% (120/312), after  38% (120/312), m = 1.00 (K12 1.00; K25 1.00); lost to the veto: 2 of 312
+   over 27.4 d: before  41% (56/136), after  41% (56/136), m = 1.00 (K12 1.00; K25 1.00); lost to the veto: 1 of 136
+(b) PASS
+(c) exchangeability, nothing planted: tier-1 real / upside-down primary events per binary-period bin (mark 0.67 to 1.5 where a bin has 20 or more events; bins with fewer are not judged; G3 over 27.4 d is a KNOWN LIMIT, reported apart)
+        5-10 d: real 33, upside-down 10, ratio 3.30: OUTSIDE
+       10-14 d: real 13, upside-down 12, ratio 1.08: inside
+       14-20 d: real 4, upside-down 1, ratio 4.00: not judged (under 20 events)
+     20-27.4 d: real 1, upside-down 0, ratio 1.00: not judged (under 20 events)
+   over 27.4 d: real 2, upside-down 0, ratio 2.00: not judged (under 20 events)
+(c) FAIL (a failed bin is labelled not covered; the search still runs)
+(d) events vetoed (flagged to tier 2) among primary events: real 57, upside-down 18; tier-1 events in recovered light: real 34, upside-down 13

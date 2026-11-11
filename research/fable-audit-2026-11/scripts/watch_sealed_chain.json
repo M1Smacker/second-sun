@@ -1,4 +1,4 @@
-{"max": 1800, "step": 60, "disk_gb_min": 5, "mem_gb_min": 1.0, "drive": "D:/",
+{"max": 3000, "step": 60, "disk_gb_min": 5, "mem_gb_min": 1.0, "drive": "D:/",
  "jobs": [
   {"name": "Re-search 1 chain (search, readout, S4: r1_go.ps1)", "match": ["r1_run.py", "r1_readout.py", "r1_gate.py"],
    "logs": ["D:/second-sun/data/r1_steps_log.txt", "D:/second-sun/data/r1_g3_run_log.txt", "D:/second-sun/data/r1_g2_run_log.txt", "D:/second-sun/data/r1_g3_s4_log.txt", "D:/second-sun/data/r1_g2_s4_log.txt"],

@@ -1,0 +1,24 @@
+R1 gates, set g3, run r1_g3_unseen_bcd29c7aabb0, VESPER_OPTS ['c6', 'p1']. Counts only.
+Star-sectors: 179; zero-injection identity with the stored run: 179 of 179; errors: 1 {'8 h noise not finite': 1}
+(a) dips (real arm): tier-1 recovery, injected before the mask / after the mask = m (mark: at least 0.95 per bin); counts are injections
+        5-10 d: before  39% (186/472), after  40% (188/472), m = 0.99 (K12 0.98; K25 1.00); lost to the veto: 0 of 472
+       10-14 d: before  52% (251/480), after  52% (249/480), m = 1.01 (K12 1.01; K25 1.01); lost to the veto: 3 of 480
+       14-20 d: before  50% (239/480), after  51% (243/480), m = 0.98 (K12 0.99; K25 0.98); lost to the veto: 3 of 480
+     20-27.4 d: no injections
+   over 27.4 d: no injections
+(a) PASS
+(b) bumps (upside-down arm): tier-1 recovery, injected before the mask / after the mask = m (mark: at least 0.95 per bin); counts are injections
+        5-10 d: before  38% (178/472), after  40% (187/472), m = 0.95 (K12 0.93; K25 0.97); lost to the veto: 0 of 472
+       10-14 d: before  50% (240/480), after  50% (240/480), m = 1.00 (K12 1.00; K25 1.00); lost to the veto: 2 of 480
+       14-20 d: before  45% (218/480), after  45% (218/480), m = 1.00 (K12 1.00; K25 1.00); lost to the veto: 19 of 480
+     20-27.4 d: no injections
+   over 27.4 d: no injections
+(b) PASS
+(c) exchangeability, nothing planted: tier-1 real / upside-down primary events per binary-period bin (mark 0.67 to 1.5 where a bin has 20 or more events; bins with fewer are not judged; G3 over 27.4 d is a KNOWN LIMIT, reported apart)
+        5-10 d: real 16, upside-down 7, ratio 2.29: OUTSIDE
+       10-14 d: real 4, upside-down 8, ratio 0.50: not judged (under 20 events)
+       14-20 d: real 3, upside-down 0, ratio 3.00: not judged (under 20 events)
+     20-27.4 d: real 0, upside-down 0, ratio 0.00: not judged (under 20 events)
+   over 27.4 d: real 0, upside-down 0, ratio 0.00: not judged (under 20 events)
+(c) FAIL (a failed bin is labelled not covered; the search still runs)
+(d) events vetoed (flagged to tier 2) among primary events: real 0, upside-down 2; tier-1 events in recovered light: real 16, upside-down 6

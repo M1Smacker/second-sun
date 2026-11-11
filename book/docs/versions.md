@@ -6,8 +6,8 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.11.1 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
-| Learning track | 1.10 | 1.3 | a "level done" mark means what the level contained that day |
+| The book | 2.11.2 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| Learning track | 1.11 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
 Version numbers follow one rule: the first number changes when the old and new results or pages are no longer directly comparable, the second when something is added, the third for fixes that change no result.
@@ -83,6 +83,7 @@ The numbers before 2.4.0 were worked out afterwards from the project history, on
 | 1.4 | 2 Nov | One check after level 6: a baseline must be made under the same conditions as what it is compared with |
 | 1.5 | 3 Nov | One more check after level 6: what to do when a freeze refuses |
 | 1.6 | 3 Nov | One more check after level 6: what makes a later test of a post hoc candidate fair |
+| 1.11 | 11 Nov | One more check after level 6: how to test new stars against a measured imbalance, and say how big an excess the test could see |
 
 From now on, when a level is marked done, the track version is written next to the date.
 
@@ -106,6 +107,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.10.0 | 10 Nov | New field note (the eclipse mask was deleting planets and our tests could not see it); correction banners on Chapters 8 and 9, Labs 6 and 9, three field notes and the learning track; claims F-015, F-029, F-048, F-088 and F-089 moved to LIKELY as upper limits; two sentences in Chapter 9 rewritten; home recap refreshed |
 | 2.11.0 | 11 Nov | Learning screens, first quick wins: a Back button in the header on phones and in the installed app; the learning page opens with where you are (the lesson, where you stopped, lessons read and time left) and a state word for every level; the evidence tags no longer sit in the reading text (the same claims are listed folded at the end of each chapter). Tested at phone width in the preview pane only, not yet on your phone |
 | 2.11.1 | 11 Nov | Vesper is now called Petrova (version 1.0.0, frozen 11 Nov); versions page and home status panel updated; the Search window shows the prepared Re-search 1 card |
+| 2.11.2 | 11 Nov | New field note (Re-search 1: the hidden light searched again, nothing found, how to read a null); the Search window note and the home recap updated; a seventh check after level 6 in the learning track (track 1.11) |
 | 2.9.10 | 4 Nov | Wording corrected after a tilt test (our nulls are consistent with Kepler's rate in most, not all, of the cases tried); two claims upgraded to verified (STANLEY, Planet Hunters PH1 b) |
 | 2.9.9 | 4 Nov | Seven new facts on the claims page (target-list counts, the 10% occurrence rate, the transit-geometry formula, Gaia counts, the geometry probe, the fetch speed test, the pooled false-alarm rate), each with its label and source |
 | 2.9.8 | 4 Nov | Field note 4 Nov extended (the transit-geometry probe: the null is consistent with Kepler's rate; fetching the light is cheaper than G3 suggested); recap refreshed; an eleventh check after level 5 and a longer tenth (track 1.10) |

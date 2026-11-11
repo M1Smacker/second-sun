@@ -198,6 +198,9 @@ These three chapters are not part of the readiness bar. They are how a careful p
 ??? quiz "After L6, check 6. A lab reports a candidate that was picked after looking at the data. What makes a later test of it fair?"
     The predictions and the decision rules are written down, hashed and published before the new data exist, and a missing signal counts as excluded only if the test would have caught it at least 95% of the time. Otherwise almost any result can be made to look like a confirmation. This is how Pavel Rabtsevich preregistered his TESS Sector 110 test (3 November 2026 reading).
 
+??? quiz "After L6, check 7. A control shows 33 real against 8 upside-down strong dips in one stretch of light and 10 against 13 in another. What do you do before you test for a planet in the first stretch?"
+    Do not use a formula for the imbalance: measure it on stars used for design, bin by bin, write the rule down before any new star is read, and test the new stars against that measured imbalance. Say in the result how big an excess the test could have seen.
+
 That is the end of the track. The Hunt tab shows where the project stands now.
 
 ## Sources
