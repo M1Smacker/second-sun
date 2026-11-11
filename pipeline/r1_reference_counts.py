@@ -16,6 +16,24 @@ def counts(E):
     return {b: (int((r1.snr >= b).sum()), int((f1.snr >= b).sum())) for b in BARS}
 
 
+BINS = [(5, 10), (10, 14), (14, 20), (20, 27.4), (27.4, 1e9)]      # binary-period bins of the preregistration (Amendment 3 stratifies S1 by them)
+
+
+def bin_lines(name, run):
+    """REFBIN lines (Amendment 3): the same tier-1, PDCSAP-half, recovered-light counts as above, split by the binary period of the event's own binary (column p1_P), per SNR bar."""
+    ev, meta = R.load(str(C.DS.RUNS / run / "groups"))
+    E = ev[ev.primary].copy()
+    E["rec"] = E.recovered.fillna(False).astype(bool)
+    t1 = E[E.rec & E.tier.isin(T1)]
+    r, f = R.pdc_half(t1[t1.kind == "real"]), R.pdc_half(t1[t1.kind == "flip"])
+    out = [f"# {name} seen run {run}: tier-1 events in recovered light without a binary period (dropped from the bins): real {int(r.p1_P.isna().sum())}, flip {int(f.p1_P.isna().sum())}"]
+    for b in BARS:
+        for k, (lo, hi) in enumerate(BINS):
+            nr = int(((r.snr >= b) & (r.p1_P >= lo) & (r.p1_P < hi)).sum()); nf = int(((f.snr >= b) & (f.p1_P >= lo) & (f.p1_P < hi)).sum())
+            out.append(f"REFBIN {name} recovered bar {b} bin {k} real {nr} flip {nf}")
+    return out
+
+
 def lines(name, run):
     ev, meta = R.load(str(C.DS.RUNS / run / "groups"))
     E = ev[ev.primary].copy()
@@ -29,6 +47,16 @@ def lines(name, run):
 
 if __name__ == "__main__":
     name, run = C.DS.NAME, os.environ["SS_RUN"]
+    if "--bins" in sys.argv:                                     # Amendment 3: per-bin reference counts go to their own file (the Amendment 2 file stays as it was, with its hash)
+        out = bin_lines(name, run)
+        print("\n".join(out))
+        if "--write" in sys.argv:
+            f = C.ROOT / "research" / "stage3" / "R1-S1-REFERENCE-BINS.txt"
+            head = "" if f.exists() else ("Re-search 1, Amendment 3: reference counts of the SEEN stars by binary-period bin (tier-1, PDCSAP half, recovered light, development runs, counts only). Written 11 Nov 2026 BEFORE the freeze.\n"
+                                          "Lines: REFBIN <list> recovered bar <SNR bar> bin <0..4: 5-10, 10-14, 14-20, 20-27.4, over 27.4 d> real <n> flip <n>. Made by pipeline/r1_reference_counts.py --bins.\n")
+            with open(f, "a", encoding="utf-8", newline="\n") as h:
+                h.write(head + "\n".join(out) + "\n")
+        sys.exit(0)
     out = lines(name, run)
     print("\n".join(out))
     if "--write" in sys.argv:

@@ -1,0 +1,44 @@
+Re-search 1, Amendment 3: reference counts of the SEEN stars by binary-period bin (tier-1, PDCSAP half, recovered light, development runs, counts only). Written 11 Nov 2026 BEFORE the freeze.
+Lines: REFBIN <list> recovered bar <SNR bar> bin <0..4: 5-10, 10-14, 14-20, 20-27.4, over 27.4 d> real <n> flip <n>. Made by pipeline/r1_reference_counts.py --bins.
+# g3 seen run r1dev_g3_seen_bcd29c7aabb0: tier-1 events in recovered light without a binary period (dropped from the bins): real 0, flip 0
+REFBIN g3 recovered bar 7 bin 0 real 6 flip 3
+REFBIN g3 recovered bar 7 bin 1 real 5 flip 4
+REFBIN g3 recovered bar 7 bin 2 real 11 flip 1
+REFBIN g3 recovered bar 7 bin 3 real 4 flip 0
+REFBIN g3 recovered bar 7 bin 4 real 5 flip 0
+REFBIN g3 recovered bar 8 bin 0 real 6 flip 2
+REFBIN g3 recovered bar 8 bin 1 real 4 flip 4
+REFBIN g3 recovered bar 8 bin 2 real 11 flip 1
+REFBIN g3 recovered bar 8 bin 3 real 4 flip 0
+REFBIN g3 recovered bar 8 bin 4 real 5 flip 0
+REFBIN g3 recovered bar 10 bin 0 real 6 flip 1
+REFBIN g3 recovered bar 10 bin 1 real 3 flip 2
+REFBIN g3 recovered bar 10 bin 2 real 11 flip 1
+REFBIN g3 recovered bar 10 bin 3 real 4 flip 0
+REFBIN g3 recovered bar 10 bin 4 real 5 flip 0
+REFBIN g3 recovered bar 12 bin 0 real 6 flip 1
+REFBIN g3 recovered bar 12 bin 1 real 3 flip 0
+REFBIN g3 recovered bar 12 bin 2 real 11 flip 1
+REFBIN g3 recovered bar 12 bin 3 real 4 flip 0
+REFBIN g3 recovered bar 12 bin 4 real 5 flip 0
+# g2 seen run r1dev_g2_seen_bcd29c7aabb0: tier-1 events in recovered light without a binary period (dropped from the bins): real 0, flip 0
+REFBIN g2 recovered bar 7 bin 0 real 11 flip 4
+REFBIN g2 recovered bar 7 bin 1 real 3 flip 4
+REFBIN g2 recovered bar 7 bin 2 real 17 flip 3
+REFBIN g2 recovered bar 7 bin 3 real 5 flip 5
+REFBIN g2 recovered bar 7 bin 4 real 28 flip 15
+REFBIN g2 recovered bar 8 bin 0 real 11 flip 3
+REFBIN g2 recovered bar 8 bin 1 real 2 flip 4
+REFBIN g2 recovered bar 8 bin 2 real 15 flip 3
+REFBIN g2 recovered bar 8 bin 3 real 5 flip 5
+REFBIN g2 recovered bar 8 bin 4 real 24 flip 15
+REFBIN g2 recovered bar 10 bin 0 real 8 flip 2
+REFBIN g2 recovered bar 10 bin 1 real 0 flip 4
+REFBIN g2 recovered bar 10 bin 2 real 12 flip 1
+REFBIN g2 recovered bar 10 bin 3 real 5 flip 4
+REFBIN g2 recovered bar 10 bin 4 real 23 flip 11
+REFBIN g2 recovered bar 12 bin 0 real 4 flip 1
+REFBIN g2 recovered bar 12 bin 1 real 0 flip 3
+REFBIN g2 recovered bar 12 bin 2 real 12 flip 1
+REFBIN g2 recovered bar 12 bin 3 real 4 flip 2
+REFBIN g2 recovered bar 12 bin 4 real 23 flip 8

@@ -13,6 +13,8 @@ BARS = (7, 8, 10, 12)
 REF = C.ROOT / "research" / "stage3" / "R1-S1-REFERENCE-COUNTS.txt"
 REF_SHA = "88ffd47484e0cf88c0977455e91412ac5af34210266eceab5c216abe98cd1c37"      # Amendment 2 (sha256 of the file with LF line endings)
 ALPHA = 0.005                                                                       # Amendment 2: 0.01 shared between two lists
+REF_BINS = C.ROOT / "research" / "stage3" / "R1-S1-REFERENCE-BINS.txt"
+REF_BINS_SHA = "eba2b708884aa7f17dc73650d5d8eb62e2b2db2b017a0f1daf4fe9d1f6e17d20"   # Amendment 3 (sha256 of the file with LF line endings)
 BINS = [(5, 10), (10, 14), (14, 20), (20, 27.4), (27.4, 1e9)]
 OUT = []
 
@@ -29,6 +31,66 @@ def ref_counts():
     for m in re.finditer(r"^REF (g\d) (recovered|kept) bar (\d+) real (\d+) flip (\d+)$", b.decode("utf-8"), re.M):
         d[(m[1], m[2], int(m[3]))] = (int(m[4]), int(m[5]))
     return d
+
+
+def ref_bins():
+    b = REF_BINS.read_bytes().replace(b"\r\n", b"\n")
+    if hashlib.sha256(b).hexdigest() != REF_BINS_SHA:
+        sys.exit("REFUSED: the per-bin reference counts file does not hash to the value fixed in Amendment 3")
+    d = {}
+    for m in re.finditer(r"^REFBIN (g\d) recovered bar (\d+) bin (\d) real (\d+) flip (\d+)$", b.decode("utf-8"), re.M):
+        d[(m[1], int(m[2]), int(m[3]))] = (int(m[4]), int(m[5]))
+    return d
+
+
+def strat_exact(tables):
+    """One-sided exact stratified test (Amendment 3): tables = [(real_sealed, flip_sealed, real_seen, flip_seen)] per binary-period bin. Under the null that the real share is the same in the sealed and the seen stars
+    inside every bin, the real count of the sealed stars in a bin is hypergeometric; the bins are summed by convolution. Returns the chance of a total of real sealed events at least the observed one."""
+    from scipy.stats import hypergeom
+    pmf, obs = np.array([1.0]), 0
+    for rs, fs, rr, fr in tables:
+        ns, rt, n = rs + fs, rs + rr, rs + fs + rr + fr
+        if ns == 0 or n == 0:
+            continue
+        obs += rs
+        lo, hi = max(0, ns - (n - rt)), min(ns, rt)
+        full = np.zeros(hi + 1)
+        full[lo:hi + 1] = hypergeom.pmf(np.arange(lo, hi + 1), n, rt, ns)
+        pmf = np.convolve(pmf, full)
+    return float(pmf[obs:].sum()) if obs < len(pmf) else 0.0
+
+
+def strat_block(name, E_rec, refb, label):
+    """The Amendment 3 S1 block: sealed per-bin counts against the fixed per-bin reference. Returns (excess?, rows)."""
+    t1 = E_rec[E_rec.tier.isin(T1)]
+    r, f = R.pdc_half(t1[t1.kind == "real"]), R.pdc_half(t1[t1.kind == "flip"])
+    P(f"   {label}: sealed counts split by binary period against the seen counts of the same bin (exact stratified test); events without a binary period: real {int(r.p1_P.isna().sum())}, upside-down {int(f.p1_P.isna().sum())}")
+    rows = []
+    for b in BARS:
+        tabs, exp = [], 0.0
+        for k, (lo, hi) in enumerate(BINS):
+            rs = int(((r.snr >= b) & (r.p1_P >= lo) & (r.p1_P < hi)).sum()); fs = int(((f.snr >= b) & (f.p1_P >= lo) & (f.p1_P < hi)).sum())
+            rr, fr = refb[(name, b, k)]
+            tabs.append((rs, fs, rr, fr))
+            exp += (rs + fs) * (rr / (rr + fr)) if rr + fr else 0.0
+        R_s = sum(t[0] for t in tabs); F_s = sum(t[1] for t in tabs)
+        p = strat_exact(tabs)
+        rows.append((b, R_s, F_s, exp, p, tabs))
+        P(f"   bar {b:2d}: sealed real {R_s:4d}, upside-down {F_s:4d}; real expected from the seen share of each bin {exp:6.1f}; chance {p:.4f}   per bin sealed real/upside-down: " + " ".join(f"{t[0]}/{t[1]}" for t in tabs))
+    ex = rows[0][4] <= ALPHA and all(x[1] > x[3] for x in rows[1:])
+    return ex, rows
+
+
+def power_note(sealed, ref):
+    """How big would an excess have to be? At bar 7: the smallest real count that the unstratified Fisher test would call an excess given the sealed upside-down count, against the count expected from the seen share."""
+    rs, fs = sealed[7]; rr, fr = ref[7]
+    if fs == 0 or rr + fr == 0 or fr == 0:
+        return "power: not computable (a zero count at bar 7)"
+    exp = fs * rr / fr
+    for R_try in range(max(rs, 1), 100000):
+        if fisher_exact([[R_try, fs], [rr, fr]], alternative="greater")[1] <= ALPHA:
+            return f"power: at bar 7 with {fs} upside-down events the sealed real count would have to reach about {R_try} (expected from the seen share about {exp:.0f}), that is about {R_try / exp:.1f} times the expected count; the null excludes only an excess of that size or more"
+    return "power: not reached below 100000"
 
 
 def t1_counts(E):
@@ -56,7 +118,7 @@ def main(out_file=None):
     folder = C.DS.RUNS / run
     plan = json.load(open(folder / "watch_plan.json"))
     nfile = len(glob.glob(str(folder / "groups" / "*.json"))); nsap = len(glob.glob(str(folder / "groups_sap" / "*.json")))
-    ref = ref_counts()
+    ref, refb = ref_counts(), ref_bins()
     ev, meta = R.load(str(folder / "groups"))
     E = ev[ev.primary].copy()
     E["rec"] = E.recovered.fillna(False).astype(bool)
@@ -73,12 +135,15 @@ def main(out_file=None):
     rec = E[E.rec]
     P(f"   events in recovered light: real {int((rec.kind == 'real').sum())}, upside-down {int((rec.kind == 'flip').sum())}; tier-1: real {int(((rec.kind == 'real') & rec.tier.isin(T1)).sum())}, upside-down {int(((rec.kind == 'flip') & rec.tier.isin(T1)).sum())}")
     P("")
-    P("S1 (Amendment 2): recovered light, tier-1, PDCSAP half, against the fixed seen-star reference counts")
+    P("S1 (Amendments 2 and 3): recovered light, tier-1, PDCSAP half, against the fixed seen-star reference counts, stratified by binary-period bin (Amendment 3: the unseen stars have a different mix of periods)")
     sealed, kept = t1_counts(E[E.rec]), t1_counts(E[~E.rec])
     r_ref = {b: ref[(name, "recovered", b)] for b in BARS}; k_ref = {b: ref[(name, "kept", b)] for b in BARS}
-    ex, rows = fisher_block(name, sealed, r_ref, "recovered light")
-    P(f"   VERDICT S1 for {name.upper()}: {'EXCESS (opens private two-key checks only; not a discovery)' if ex else 'NO EXCESS'}   [rule: chance <= {ALPHA} at bar 7 and sealed real share above the seen real share at bars 8, 10, 12]")
-    P("   power note: with these counts the smallest excess that could have reached the mark is large; the null excludes only a large excess. Wording fixed in Amendment 2: no excess beyond the imbalance measured on the 704 design stars.")
+    ex, rows = strat_block(name, E[E.rec], refb, "recovered light, stratified")
+    P(f"   VERDICT S1 for {name.upper()}: {'EXCESS (opens private two-key checks only; not a discovery)' if ex else 'NO EXCESS'}   [rule (Amendment 3): stratified chance <= {ALPHA} at bar 7 and sealed real count above the count expected from the seen share of each bin at bars 8, 10, 12]")
+    P("   " + power_note(sealed, r_ref))
+    P("   Wording fixed in Amendments 2 and 3: a null means no excess beyond the real-over-upside-down imbalance measured on the 704 design stars, and only an excess of the size given by the power line would have been seen.")
+    P("   The unweighted test of Amendment 2, for the record:")
+    exu, rowsu = fisher_block(name, sealed, r_ref, "recovered light, unweighted")
     P("")
     P("CONTROL (light both masks keep; the old filter already judged it; this tells whether the seen and sealed stars behave alike)")
     exk, _ = fisher_block(name, kept, k_ref, "light both masks keep")

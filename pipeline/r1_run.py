@@ -55,6 +55,15 @@ def settings(stars):
     return s, C.settings_hash(s)
 
 
+EXTRA = {"ttc_table3": C.ROOT / "data" / "g3" / "catalog_ttc" / "table3_new_ebs.txt", "per_star": C.ROOT / "research" / "audit-2026-10-23" / "per_star.csv"}      # read by the masks but not in the version hash (outside check, 11 Nov 2026)
+
+
+def extra_inputs():
+    """Hashes of the two input files that change the masks without changing the code hash, and the versions of the libraries that decide the numbers (Amendment 3, fix 1). Fixed at the freeze, checked at every frozen run."""
+    import importlib.metadata as md
+    return dict(files={k: C.sha(v) for k, v in EXTRA.items()}, packages={n: md.version(n) for n in ("numpy", "scipy", "pandas", "numba", "lightkurve", "astropy")})
+
+
 def freeze():
     if FROZENP.exists():
         sys.exit(f"already frozen: {FROZENP}")
@@ -75,7 +84,7 @@ def freeze():
         if not ("(a) PASS" in t and "(b) PASS" in t):
             sys.exit(f"gate result missing or not passing (a) and (b): {name}")
     FROZENP.write_text(json.dumps(dict(version="Petrova 1.0.0", based_on="Vesper 0.8.1", based_on_hash=f81["hash"], hash=h, options=["c6", "p1"], code_files_changed_from_0_8_1=changed, p1_off_proofs=list(PROOFS), gates=list(GATES),
-                                        every_other_setting_equal_to_0_8_1=True, r1_list_sha256=R1_LIST_SHA, settings=s, provenance=pv), indent=1), encoding="utf-8")
+                                        every_other_setting_equal_to_0_8_1=True, r1_list_sha256=R1_LIST_SHA, extra_inputs=extra_inputs(), settings=s, provenance=pv), indent=1), encoding="utf-8")
     print("FROZEN Petrova 1.0.0", h, "| differs from Vesper 0.8.1 only in:", changed)
 
 
@@ -91,6 +100,8 @@ def guard(stratum, dev=False):
     fz = json.load(open(FROZENP))
     if h != fz["hash"]:
         sys.exit(f"REFUSED: the code and settings on disk hash to {h[:12]}, the frozen Petrova 1.0.0 hash is {fz['hash'][:12]}")
+    if fz.get("extra_inputs") != json.loads(json.dumps(extra_inputs())):
+        sys.exit("REFUSED: an input file or a library version differs from the freeze record (extra_inputs): " + json.dumps(extra_inputs()))
     print(f"guard ok: Petrova 1.0.0, hash {h[:12]} equals the frozen hash; {DS.NAME} {stratum} stars: {len(pd.read_csv(st))}", flush=True)
     return st, s, h
 
