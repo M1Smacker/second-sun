@@ -1,0 +1,50 @@
+RE-SEARCH 1 READOUT, list G2, run r1_g2_unseen_bcd29c7aabb0 (SEALED RUN), options ['c6', 'p1']. Counts only.
+
+TOTALS FIRST
+   star-sectors searched (best product ok): 2695, of them with any recovered light: 2381; stars: 457
+   group files: search 3049 of 3049, raw-light twins 1672 of 1672
+   files by status: {'ok': 9646, 'too little data after masking': 612, 'no safe windows': 201, 'too little data': 2}; skipped 815 of 10461 = 7.8 percent
+   primary events: real 1459, upside-down 959; vetoed by the cross-sector veto: real 57, upside-down 18
+   events in recovered light: real 676, upside-down 389; tier-1: real 34, upside-down 13
+
+S1 (Amendments 2 and 3): recovered light, tier-1, PDCSAP half, against the fixed seen-star reference counts, stratified by binary-period bin (Amendment 3: the unseen stars have a different mix of periods)
+   recovered light, stratified: sealed counts split by binary period against the seen counts of the same bin (exact stratified test); events without a binary period: real 0, upside-down 0
+   bar  7: sealed real   32, upside-down   13; real expected from the seen share of each bin   27.9; chance 0.3141   per bin sealed real/upside-down: 20/4 9/8 2/1 1/0 0/0
+   bar  8: sealed real   26, upside-down   13; real expected from the seen share of each bin   23.6; chance 0.4966   per bin sealed real/upside-down: 18/4 7/8 0/1 1/0 0/0
+   bar 10: sealed real   19, upside-down   10; real expected from the seen share of each bin   14.5; chance 0.4638   per bin sealed real/upside-down: 14/3 5/6 0/1 0/0 0/0
+   bar 12: sealed real   18, upside-down    5; real expected from the seen share of each bin   11.2; chance 0.1023   per bin sealed real/upside-down: 13/1 5/4 0/0 0/0 0/0
+   VERDICT S1 for G2: NO EXCESS   [rule (Amendment 3): stratified chance <= 0.005 at bar 7 and sealed real count above the count expected from the seen share of each bin at bars 8, 10, 12]
+   power: at bar 7 with 13 upside-down events the sealed real count would have to reach about 73 (expected from the seen share about 27), that is about 2.7 times the expected count; the null excludes only an excess of that size or more
+   Wording fixed in Amendments 2 and 3: a null means no excess beyond the real-over-upside-down imbalance measured on the 704 design stars, and only an excess of the size given by the power line would have been seen.
+   The unweighted test of Amendment 2, for the record:
+   recovered light, unweighted: sealed real/upside-down against seen real/upside-down, one-sided Fisher chance that the sealed real share is this much larger
+   bar  7: sealed   32 /   13 (real share 0.71), seen   64 /   31 (real share 0.67), chance 0.4044
+   bar  8: sealed   26 /   13 (real share 0.67), seen   57 /   30 (real share 0.66), chance 0.5341
+   bar 10: sealed   19 /   10 (real share 0.66), seen   48 /   22 (real share 0.69), chance 0.7052
+   bar 12: sealed   18 /    5 (real share 0.78), seen   43 /   15 (real share 0.74), chance 0.4679
+
+CONTROL (light both masks keep; the old filter already judged it; this tells whether the seen and sealed stars behave alike)
+   light both masks keep: sealed real/upside-down against seen real/upside-down, one-sided Fisher chance that the sealed real share is this much larger
+   bar  7: sealed    8 /    8 (real share 0.50), seen   14 /   16 (real share 0.47), chance 0.5369
+   bar  8: sealed    4 /    5 (real share 0.44), seen    6 /    9 (real share 0.40), chance 0.5818
+   bar 10: sealed    3 /    3 (real share 0.50), seen    4 /    5 (real share 0.44), chance 0.6224
+   bar 12: sealed    3 /    2 (real share 0.60), seen    2 /    1 (real share 0.67), chance 0.8214
+   control reads: no surplus: nothing against the transfer
+
+S1 AS WRITTEN IN SECTION 6, FOR THE RECORD (noise-expected from the all-light asymmetry file; superseded by Amendment 2 for the verdict)
+S1. Excess of real tier-1 dips over noise (preregistration section 5; PDCSAP half has the fair control, the SAP-only half is reported on its own line and is NEVER evidence)
+   bar  7: real  32, upside-down  13, noise-expected real  13.3, chance of at least the observed 0.000
+   bar  8: real  26, upside-down  13, noise-expected real  12.7, chance of at least the observed 0.001
+   bar 10: real  19, upside-down  10, noise-expected real   9.6, chance of at least the observed 0.005
+   bar 12: real  18, upside-down   5, noise-expected real   4.8, chance of at least the observed 0.000
+   VERDICT S1: EXCESS (opens two-key vetting only; not a discovery)   [rule: chance <= 0.01 at bar 7 and real above expected at bars 8, 10, 12]   asymmetry file: asymmetry_g2_v5.txt
+   SAP-only half (no fair control, not evidence): real 2, upside-down 0
+
+SPLIT BY BINARY PERIOD (tier-1 in recovered light, all bars at 7 and up; counts only, no mark). S3 note: above 13.7 d a binary phase is visited at most about twice per sector, so the last three rows are the near single-visit lane.
+        5-10 d: real   20, upside-down    4
+       10-14 d: real    9, upside-down    8
+       14-20 d: real    2, upside-down    1
+     20-27.4 d: real    1, upside-down    0
+   over 27.4 d: real    0, upside-down    0
+
+S2. False alarms in recovered light (no pass mark, Ahmed's decision of 10 Nov): upside-down tier-1 13 in 2381 star-sectors with recovered light = 5.46 per 1,000 (95 percent interval 2.91 to 9.34); stars are correlated, so the interval is a floor
