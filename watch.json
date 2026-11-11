@@ -2,7 +2,7 @@
  "label": "RE-SEARCH 1, part 2 of 2: Petrova 1.0.0 on the 475 G2 stars that were not looked at while the filter was designed (blind, counts only)",
  "blind": true,
  "phase": "pdc",
- "updated": "2026-11-11T00:34:28+00:00",
+ "updated": "2026-11-11T00:35:34+00:00",
  "loop_s": 60,
  "run": {
   "folder": "r1_g2_unseen_bcd29c7aabb0",
@@ -36,8 +36,8 @@
   }
  },
  "machine": {
-  "workers": 6,
-  "cpu": 41
+  "workers": 0,
+  "cpu": 9
  },
  "started": "2026-11-11T00:15:55+00:00",
  "progress": {
@@ -50,11 +50,11 @@
    1672
   ],
   "pdc": [
-   698,
+   1671,
    1672
   ],
   "stars": 475,
-  "per_min": 83.3,
+  "per_min": 41.8,
   "eta_min": null
  },
  "files": {
@@ -258,6 +258,12 @@
    "done": 3049,
    "events": 7008,
    "per_min": 83.3
+  },
+  {
+   "t": 1794357336,
+   "done": 3049,
+   "events": 7008,
+   "per_min": 41.8
   }
  ],
  "notes": [
