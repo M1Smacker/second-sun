@@ -1,8 +1,8 @@
 {
  "label": "RE-SEARCH 1, part 1 of 2: Petrova 1.0.0 on the 328 G3 stars that were not looked at while the filter was designed (blind, counts only)",
  "blind": true,
- "phase": "sap",
- "updated": "2026-11-11T00:12:48+00:00",
+ "phase": "finished",
+ "updated": "2026-11-11T00:13:53+00:00",
  "loop_s": 60,
  "run": {
   "folder": "r1_g3_unseen_bcd29c7aabb0",
@@ -36,8 +36,8 @@
   }
  },
  "machine": {
-  "workers": 6,
-  "cpu": 71
+  "workers": 0,
+  "cpu": 34
  },
  "started": "2026-11-11T00:11:40+00:00",
  "progress": {
@@ -46,11 +46,11 @@
    1604
   ],
   "sap": [
-   44,
+   76,
    76
   ],
   "pdc": [
-   0,
+   76,
    76
   ],
   "stars": 327,
@@ -58,7 +58,7 @@
   "eta_min": null
  },
  "files": {
-  "read_ok": 1325,
+  "read_ok": 1357,
   "skipped": {
    "no safe windows": 439
   },
@@ -66,17 +66,17 @@
    "QLP": 1165,
    "TESS-SPOC": 114,
    "SPOC": 1,
-   "TESS-SPOC-SAP": 44,
+   "TESS-SPOC-SAP": 76,
    "SPOC-SAP": 1
   }
  },
  "events": {
-  "found": 722,
+  "found": 746,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 527
+    "n": 547
    },
    {
     "flag": "flipmatch",
@@ -86,7 +86,7 @@
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 32
+    "n": 35
    },
    {
     "flag": "ecl_overlap",
@@ -101,7 +101,7 @@
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 41
+    "n": 42
    },
    {
     "flag": "ramp",
@@ -120,27 +120,27 @@
    }
   ],
   "tiers": {
-   "2": 679,
+   "2": 703,
    "1B": 38,
    "3": 3,
    "1A": 2
   },
   "boxes": {
-   "3": 214,
-   "4": 76,
+   "3": 221,
+   "4": 82,
    "5": 74,
-   "6.5": 69,
-   "8": 64,
-   "10": 49,
+   "6.5": 72,
+   "8": 67,
+   "10": 50,
    "12": 46,
-   "15": 63,
-   "20": 67
+   "15": 66,
+   "20": 68
   },
   "bands": {
-   "7 to 8": 123,
-   "8 to 10": 191,
-   "10 to 12": 95,
-   "12 and up": 313
+   "7 to 8": 128,
+   "8 to 10": 197,
+   "10 to 12": 97,
+   "12 and up": 324
   }
  },
  "selftest": {
@@ -158,6 +158,12 @@
    "t": 1794355971,
    "done": 1604,
    "events": 722,
+   "per_min": 160.4
+  },
+  {
+   "t": 1794356036,
+   "done": 1604,
+   "events": 746,
    "per_min": 160.4
   }
  ],
@@ -186,12 +192,12 @@
  "leads": {
   "schema": 1,
   "blind": true,
-  "final": false,
-  "verdict": "Not finished. No verdict yet.",
+  "final": true,
+  "verdict": "Finished. Counts only on this page; the scoring is filed (see the notes and the 4 Nov field note).",
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 404
+    "both": 658
    },
    {
     "label": "Kept: no safety check fired",
