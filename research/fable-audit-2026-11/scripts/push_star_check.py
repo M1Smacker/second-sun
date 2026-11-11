@@ -22,8 +22,8 @@ for p in (ROOT / "data").glob("calnet_2026-11-07/*.csv"):
         for c in df.columns:
             if str(c).lower() in ("tic", "tic_id", "ticid"):
                 ids |= set(pd.to_numeric(df[c], errors="coerce").dropna().astype(int))
-    except Exception:
-        pass
+    except Exception as e:                                   # 11 Nov 2026 audit: this skip was silent, so an unreadable CALNet list could make the check look clean
+        print("skip calnet", p.name, type(e).__name__)
 ttc = ROOT / "data" / "g3" / "catalog_ttc" / "table3_new_ebs.txt"
 if ttc.exists():
     for l in open(ttc, encoding="latin-1"):
