@@ -2,7 +2,7 @@
  "label": "RE-SEARCH 1, part 2 of 2: Petrova 1.0.0 on the 475 G2 stars that were not looked at while the filter was designed (blind, counts only)",
  "blind": true,
  "phase": "search",
- "updated": "2026-11-11T00:25:43+00:00",
+ "updated": "2026-11-11T00:26:48+00:00",
  "loop_s": 60,
  "run": {
   "folder": "r1_g2_unseen_bcd29c7aabb0",
@@ -37,12 +37,12 @@
  },
  "machine": {
   "workers": 6,
-  "cpu": 35
+  "cpu": 37
  },
  "started": "2026-11-11T00:15:55+00:00",
  "progress": {
   "search": [
-   2681,
+   3014,
    3049
   ],
   "sap": [
@@ -54,99 +54,100 @@
    1672
   ],
   "stars": 475,
-  "per_min": 268.1,
-  "eta_min": 1
+  "per_min": 281.3,
+  "eta_min": 0
  },
  "files": {
-  "read_ok": 6016,
+  "read_ok": 6799,
   "skipped": {
-   "no safe windows": 169,
-   "too little data after masking": 384,
-   "too little data": 1
+   "no safe windows": 200,
+   "too little data after masking": 420,
+   "too little data": 2
   },
   "products": {
-   "QLP": 2287,
-   "SPOC": 1905,
-   "TESS-SPOC": 1824
+   "QLP": 2572,
+   "SPOC": 2170,
+   "TESS-SPOC": 2057
   }
  },
  "events": {
-  "found": 4057,
+  "found": 4700,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 2238
+    "n": 2604
    },
    {
     "flag": "flipmatch",
     "text": "The upside-down copy has the same wiggle",
-    "n": 33
+    "n": 42
    },
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 384
+    "n": 420
    },
    {
     "flag": "ecl_overlap",
     "text": "Overlaps a predicted eclipse",
-    "n": 38
+    "n": 47
    },
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 699
+    "n": 796
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 404
+    "n": 492
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 27
+    "n": 31
    },
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 30
+    "n": 38
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 204
+    "n": 230
    }
   ],
   "tiers": {
-   "2": 3855,
-   "1A": 147,
-   "3": 26,
+   "2": 4473,
+   "1A": 162,
+   "3": 31,
    "1L": 6,
-   "1B": 23
+   "1B": 26,
+   "?": 2
   },
   "boxes": {
-   "3": 1793,
-   "4": 425,
-   "5": 361,
-   "6.5": 322,
-   "8": 253,
-   "10": 254,
-   "12": 189,
-   "15": 207,
-   "20": 253
+   "3": 2077,
+   "4": 501,
+   "5": 412,
+   "6.5": 378,
+   "8": 306,
+   "10": 277,
+   "12": 208,
+   "15": 230,
+   "20": 311
   },
   "bands": {
-   "7 to 8": 903,
-   "8 to 10": 1011,
-   "10 to 12": 558,
-   "12 and up": 1585
+   "7 to 8": 1077,
+   "8 to 10": 1176,
+   "10 to 12": 644,
+   "12 and up": 1803
   }
  },
  "selftest": {
-  "fakes": 10402,
-  "second_product_sees": 9741
+  "fakes": 11804,
+  "second_product_sees": 11023
  },
  "history": [
   {
@@ -208,6 +209,12 @@
    "done": 2681,
    "events": 4057,
    "per_min": 268.1
+  },
+  {
+   "t": 1794356810,
+   "done": 3014,
+   "events": 4700,
+   "per_min": 281.3
   }
  ],
  "notes": [
@@ -240,19 +247,19 @@
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 1586
+    "both": 1847
    },
    {
     "label": "Kept: no safety check fired",
-    "both": 102
+    "both": 115
    },
    {
     "label": "Confirmed: a second light curve agrees",
-    "both": 78
+    "both": 88
    },
    {
     "label": "Leads: stars with a confirmed real dip, no known planet",
-    "both": 36
+    "both": 44
    }
   ],
   "known": null,
