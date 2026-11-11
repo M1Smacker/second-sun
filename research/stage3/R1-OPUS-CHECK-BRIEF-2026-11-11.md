@@ -9,6 +9,7 @@ Second Sun searches TESS light for planets orbiting two stars. The old filter (V
 
 ## Results to judge (counts only; never open an event)
 - `research/stage3/R1-GATE-RESULT-g3.txt` (done) and `research/stage3/R1-GATE-RESULT-g2.txt` (must exist before you start; if it does not exist, stop and say so).
+- G2 file (finished 03:02): (a) and (b) PASS with m 0.98 to 1.00 in every bin (vetoed injections 0 to 21 of about 450 per bin); (c) FAIL by the preregistered rule: 14 to 20 d real 22 / upside-down 7 (ratio 3.14) and over 27.4 d 31 / 16 (1.94) are OUTSIDE 0.67 to 1.5, 5 to 10 d 16 / 12 is inside, 10 to 14 d and 20 to 27.4 d are under 20 events; 21 of 300 sampled star-sectors had 'no prepared product' (errors). The preregistration says a failed (c) bin is labelled "not covered" and the search still runs. (d) vetoed real 867, upside-down 77.
 - Facts I already see in the G3 file (check them, do not just repeat them): (a) and (b) pass with m 0.99 to 1.00 in every bin; (c) is judged in ONE bin only (5 to 10 d, 23 events, ratio 1.09) because every other bin has fewer than 20 events, so it passes almost by default; the unjudged bins read 14 to 20 d real 13 / upside-down 2, 20 to 27 d 4 / 0, over 27 d 5 / 0; (d) vetoed events real 95, upside-down 10; tier-1 events in recovered light real 33, upside-down 8.
 
 ## Questions (answer each in 2 to 4 lines, with a label CONFIRMED / LIKELY / UNCERTAIN / NOT TESTED)
