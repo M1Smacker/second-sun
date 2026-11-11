@@ -3,7 +3,7 @@
  "blind": true,
  "counts_only": true,
  "phase": "ready",
- "updated": "2026-11-10T23:27:52+00:00",
+ "updated": "2026-11-11T00:10:58+00:00",
  "loop_s": 0,
  "machine": {
   "workers": null,
@@ -12,14 +12,17 @@
  "started": null,
  "run": {
   "folder": "r1_unseen",
-  "version": "Petrova 1.0.0 (NOT FROZEN YET)",
-  "hash": "",
+  "version": "Petrova 1.0.0 (frozen)",
+  "hash": "bcd29c7aabb0297e2913a5d042d14fdbad80095aa6c46ea46a8bede83a206bb9",
   "git_commit": "",
   "settings": {
    "snr_bar": null,
    "boxes_h": null,
    "bin_days": null,
-   "options": null,
+   "options": [
+    "c6",
+    "p1"
+   ],
    "flags": {}
   }
  },
