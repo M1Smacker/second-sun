@@ -1,14 +1,14 @@
 {
- "label": "RE-SEARCH 1, part 1 of 2: Petrova 1.0.0 on the 328 G3 stars that were not looked at while the filter was designed (blind, counts only)",
+ "label": "RE-SEARCH 1, part 2 of 2: Petrova 1.0.0 on the 475 G2 stars that were not looked at while the filter was designed (blind, counts only)",
  "blind": true,
- "phase": "search",
- "updated": "2026-11-11T00:11:43+00:00",
+ "phase": "finished",
+ "updated": "2026-11-11T00:36:39+00:00",
  "loop_s": 60,
  "run": {
-  "folder": "r1_g3_unseen_bcd29c7aabb0",
+  "folder": "r1_g2_unseen_bcd29c7aabb0",
   "version": "Vesper 0.7.1 (development use)",
   "hash": "bcd29c7aabb0297e2913a5d042d14fdbad80095aa6c46ea46a8bede83a206bb9",
-  "git_commit": "6cbd575",
+  "git_commit": "58f5eb6",
   "settings": {
    "snr_bar": 7.0,
    "boxes_h": [
@@ -37,117 +37,239 @@
  },
  "machine": {
   "workers": 6,
-  "cpu": 46
+  "cpu": 48
  },
- "started": "2026-11-11T00:11:40+00:00",
+ "started": "2026-11-11T00:15:55+00:00",
  "progress": {
   "search": [
-   67,
-   1604
+   3049,
+   3049
   ],
   "sap": [
-   0,
-   76
+   1672,
+   1672
   ],
   "pdc": [
-   0,
-   76
+   1672,
+   1672
   ],
-  "stars": 327,
-  "per_min": 6.7,
-  "eta_min": 229
+  "stars": 475,
+  "per_min": 8.3,
+  "eta_min": null
  },
  "files": {
-  "read_ok": 49,
+  "read_ok": 9646,
   "skipped": {
-   "no safe windows": 25
+   "no safe windows": 201,
+   "too little data after masking": 612,
+   "too little data": 2
   },
   "products": {
-   "QLP": 42,
-   "TESS-SPOC": 7
+   "QLP": 2604,
+   "SPOC": 2197,
+   "TESS-SPOC": 2087,
+   "SPOC-SAP": 1379,
+   "TESS-SPOC-SAP": 1379
   }
  },
  "events": {
-  "found": 35,
+  "found": 7008,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 22
+    "n": 4000
    },
    {
     "flag": "flipmatch",
     "text": "The upside-down copy has the same wiggle",
-    "n": 0
+    "n": 55
    },
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 5
+    "n": 580
    },
    {
     "flag": "ecl_overlap",
     "text": "Overlaps a predicted eclipse",
-    "n": 1
+    "n": 71
    },
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 3
+    "n": 1149
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 1
+    "n": 724
    },
    {
     "flag": "ramp",
     "text": "Sits on a slow ramp after data resumes",
-    "n": 0
+    "n": 42
    },
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 1
+    "n": 58
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 2
+    "n": 329
    }
   ],
   "tiers": {
-   "2": 33,
-   "?": 1,
-   "3": 1
+   "2": 6684,
+   "1A": 237,
+   "3": 35,
+   "1L": 7,
+   "1B": 45
   },
   "boxes": {
-   "3": 9,
-   "4": 3,
-   "5": 3,
-   "6.5": 2,
-   "8": 6,
-   "10": 1,
-   "15": 7,
-   "20": 4
+   "3": 2730,
+   "4": 757,
+   "5": 642,
+   "6.5": 596,
+   "8": 457,
+   "10": 470,
+   "12": 391,
+   "15": 425,
+   "20": 540
   },
   "bands": {
-   "7 to 8": 8,
-   "8 to 10": 9,
-   "10 to 12": 7,
-   "12 and up": 11
+   "7 to 8": 1615,
+   "8 to 10": 1772,
+   "10 to 12": 938,
+   "12 and up": 2683
   }
  },
  "selftest": {
-  "fakes": 8,
-  "second_product_sees": 8
+  "fakes": 14364,
+  "second_product_sees": 13546
  },
  "history": [
   {
-   "t": 1794355905,
-   "done": 67,
-   "events": 35,
-   "per_min": 6.7
+   "t": 1794356149,
+   "done": 0,
+   "events": 0,
+   "per_min": 0.0
+  },
+  {
+   "t": 1794356214,
+   "done": 217,
+   "events": 398,
+   "per_min": 21.7
+  },
+  {
+   "t": 1794356281,
+   "done": 443,
+   "events": 894,
+   "per_min": 44.3
+  },
+  {
+   "t": 1794356346,
+   "done": 731,
+   "events": 1557,
+   "per_min": 73.1
+  },
+  {
+   "t": 1794356413,
+   "done": 1116,
+   "events": 1878,
+   "per_min": 111.6
+  },
+  {
+   "t": 1794356478,
+   "done": 1420,
+   "events": 2384,
+   "per_min": 142.0
+  },
+  {
+   "t": 1794356548,
+   "done": 1547,
+   "events": 2506,
+   "per_min": 154.7
+  },
+  {
+   "t": 1794356615,
+   "done": 1909,
+   "events": 3056,
+   "per_min": 190.9
+  },
+  {
+   "t": 1794356680,
+   "done": 2265,
+   "events": 3672,
+   "per_min": 226.5
+  },
+  {
+   "t": 1794356745,
+   "done": 2681,
+   "events": 4057,
+   "per_min": 268.1
+  },
+  {
+   "t": 1794356810,
+   "done": 3014,
+   "events": 4700,
+   "per_min": 281.3
+  },
+  {
+   "t": 1794356875,
+   "done": 3049,
+   "events": 4733,
+   "per_min": 262.4
+  },
+  {
+   "t": 1794356940,
+   "done": 3049,
+   "events": 5303,
+   "per_min": 234.5
+  },
+  {
+   "t": 1794357007,
+   "done": 3049,
+   "events": 5913,
+   "per_min": 198.7
+  },
+  {
+   "t": 1794357073,
+   "done": 3049,
+   "events": 6646,
+   "per_min": 165.1
+  },
+  {
+   "t": 1794357138,
+   "done": 3049,
+   "events": 7008,
+   "per_min": 152.4
+  },
+  {
+   "t": 1794357204,
+   "done": 3049,
+   "events": 7008,
+   "per_min": 119.7
+  },
+  {
+   "t": 1794357270,
+   "done": 3049,
+   "events": 7008,
+   "per_min": 83.3
+  },
+  {
+   "t": 1794357336,
+   "done": 3049,
+   "events": 7008,
+   "per_min": 41.8
+  },
+  {
+   "t": 1794357401,
+   "done": 3049,
+   "events": 7008,
+   "per_min": 8.3
   }
  ],
  "notes": [
@@ -175,24 +297,24 @@
  "leads": {
   "schema": 1,
   "blind": true,
-  "final": false,
-  "verdict": "Not finished. No verdict yet.",
+  "final": true,
+  "verdict": "Finished. Counts only on this page; the scoring is filed (see the notes and the 4 Nov field note).",
   "stages": [
    {
     "label": "Dips found (signal-to-noise 7 or more)",
-    "both": 16
+    "both": 1543
    },
    {
     "label": "Kept: no safety check fired",
-    "both": 0
+    "both": 61
    },
    {
     "label": "Confirmed: a second light curve agrees",
-    "both": 0
+    "both": 44
    },
    {
     "label": "Leads: stars with a confirmed real dip, no known planet",
-    "both": 0
+    "both": 25
    }
   ],
   "known": null,
