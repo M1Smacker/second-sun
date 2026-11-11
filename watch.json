@@ -1,61 +1,79 @@
 {
- "label": "RE-SEARCH 1: Petrova 1.0.0 on the 803 binary stars (5 days or longer) of the G2 and G3 lists that were not looked at while the filter was designed (blind, counts only)",
+ "label": "RE-SEARCH 1, part 1 of 2: Petrova 1.0.0 on the 328 G3 stars that were not looked at while the filter was designed (blind, counts only)",
  "blind": true,
- "counts_only": true,
- "phase": "ready",
- "updated": "2026-11-11T00:10:58+00:00",
- "loop_s": 0,
- "machine": {
-  "workers": null,
-  "cpu": null
- },
- "started": null,
+ "phase": "search",
+ "updated": "2026-11-11T00:11:43+00:00",
+ "loop_s": 60,
  "run": {
-  "folder": "r1_unseen",
-  "version": "Petrova 1.0.0 (frozen)",
+  "folder": "r1_g3_unseen_bcd29c7aabb0",
+  "version": "Vesper 0.7.1 (development use)",
   "hash": "bcd29c7aabb0297e2913a5d042d14fdbad80095aa6c46ea46a8bede83a206bb9",
-  "git_commit": "",
+  "git_commit": "6cbd575",
   "settings": {
-   "snr_bar": null,
-   "boxes_h": null,
-   "bin_days": null,
+   "snr_bar": 7.0,
+   "boxes_h": [
+    3,
+    4,
+    5,
+    6.5,
+    8,
+    10,
+    12,
+    15,
+    20
+   ],
+   "bin_days": 0.006944444444444444,
    "options": [
     "c6",
     "p1"
    ],
-   "flags": {}
+   "flags": {
+    "common_stars": 3,
+    "step_lift": 0.5,
+    "ramp_days": 1.0,
+    "repeat_n": 3
+   }
   }
  },
+ "machine": {
+  "workers": 6,
+  "cpu": 46
+ },
+ "started": "2026-11-11T00:11:40+00:00",
  "progress": {
   "search": [
-   0,
-   4070
+   67,
+   1604
   ],
   "sap": [
    0,
-   0
+   76
   ],
   "pdc": [
    0,
-   0
+   76
   ],
-  "stars": 788,
-  "list_stars": 803,
-  "per_min": 0.0,
-  "eta_min": null
+  "stars": 327,
+  "per_min": 6.7,
+  "eta_min": 229
  },
  "files": {
-  "read_ok": 0,
-  "skipped": {},
-  "products": {}
+  "read_ok": 49,
+  "skipped": {
+   "no safe windows": 25
+  },
+  "products": {
+   "QLP": 42,
+   "TESS-SPOC": 7
+  }
  },
  "events": {
-  "found": 0,
+  "found": 35,
   "stopped_by": [
    {
     "flag": "gap_dump",
     "text": "Near a data gap or a spacecraft momentum dump",
-    "n": 0
+    "n": 22
    },
    {
     "flag": "flipmatch",
@@ -65,22 +83,22 @@
    {
     "flag": "c5",
     "text": "Sits at a catalogue eclipse phase",
-    "n": 0
+    "n": 5
    },
    {
     "flag": "ecl_overlap",
     "text": "Overlaps a predicted eclipse",
-    "n": 0
+    "n": 1
    },
    {
     "flag": "repeater",
     "text": "Many similar dips in the same light curve",
-    "n": 0
+    "n": 3
    },
    {
     "flag": "step",
     "text": "The baseline jumps across the dip",
-    "n": 0
+    "n": 1
    },
    {
     "flag": "ramp",
@@ -90,32 +108,64 @@
    {
     "flag": "dominated",
     "text": "A stronger event of the other kind in the same curve",
-    "n": 0
+    "n": 1
    },
    {
     "flag": "clean",
     "text": "No flag fired",
-    "n": 0
+    "n": 2
    }
   ],
-  "tiers": {},
-  "boxes": {},
+  "tiers": {
+   "2": 33,
+   "?": 1,
+   "3": 1
+  },
+  "boxes": {
+   "3": 9,
+   "4": 3,
+   "5": 3,
+   "6.5": 2,
+   "8": 6,
+   "10": 1,
+   "15": 7,
+   "20": 4
+  },
   "bands": {
-   "7 to 8": 0,
-   "8 to 10": 0,
-   "10 to 12": 0,
-   "12 and up": 0
+   "7 to 8": 8,
+   "8 to 10": 9,
+   "10 to 12": 7,
+   "12 and up": 11
   }
  },
  "selftest": {
-  "fakes": 0,
-  "second_product_sees": 0
+  "fakes": 8,
+  "second_product_sees": 8
  },
- "history": [],
+ "history": [
+  {
+   "t": 1794355905,
+   "done": 67,
+   "events": 35,
+   "per_min": 6.7
+  }
+ ],
  "notes": [
   {
    "at": "2026-11-03T22:27:52+00:00",
    "text": "G3 finished at 01:24 on 4 Nov and is scored: no excess of real dips over noise (cleaned-light half, bar 7: 18 real, 31 upside-down, 23.5 expected from noise). The false-alarm line still misses its mark (9.34 per 1,000 against 8), as in G2. Counts only; the scorecard is in the 4 Nov field note."
+  },
+  {
+   "at": "2026-11-03T21:45:16+00:00",
+   "text": "G3 is prepared and checked: 612 stars, Vesper 0.8.1 frozen, nothing has run. The search starts only on Ahmed's word."
+  },
+  {
+   "at": "2026-10-30T18:34:36+00:00",
+   "text": "The sealed search finished and is scored: no excess of real dips over noise. The section What the search found says what that means."
+  },
+  {
+   "at": "2026-10-30T16:28:34+00:00",
+   "text": "The one-time sealed search of the 594 G2 stars has started with Vesper 0.8.0. Blind run: real and upside-down dips are mixed and not labelled until the final analysis."
   }
  ],
  "gallery": {
@@ -126,10 +176,28 @@
   "schema": 1,
   "blind": true,
   "final": false,
-  "verdict": "Not started. No search has run on this list.",
-  "stages": [],
+  "verdict": "Not finished. No verdict yet.",
+  "stages": [
+   {
+    "label": "Dips found (signal-to-noise 7 or more)",
+    "both": 16
+   },
+   {
+    "label": "Kept: no safety check fired",
+    "both": 0
+   },
+   {
+    "label": "Confirmed: a second light curve agrees",
+    "both": 0
+   },
+   {
+    "label": "Leads: stars with a confirmed real dip, no known planet",
+    "both": 0
+   }
+  ],
   "known": null,
   "cards": []
  },
- "ticker": []
+ "ticker": [],
+ "counts_only": true
 }
