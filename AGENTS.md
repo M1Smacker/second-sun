@@ -36,10 +36,26 @@ Keep this file under 32 KB (Codex reads only the first 32 KB of project instruct
 5. **Never touch the live Eyes page** (m1smacker.github.io, any `eyes` page with answer cards) or the Firebase project: answering cards uploads to Ahmed's real cloud scores.
 6. **Never tune on results.** No threshold, window, bin edge or mark is chosen after seeing the events it will judge. Preregistrations (`*PREREGISTRATION*.md`) and frozen settings (`research/stage3/SETTINGS_FROZEN_*.json`) are read-only for you; a verdict once filed is never re-interpreted.
 7. **Secrets.** Never open `D:\second-sun-secrets`, `.env`, `auth.json`, Firebase keys, or the `ADS_DEV_KEY` value. Never print a key.
-8. **Writes:** code and notes only on your branch, inside `research/astra/` and (when a brief says so) `book/` or `pipeline/` NEW files. Machine outputs only under `data\astra\` (create subfolders). Never write to C:. Never delete anything outside `data\astra\`.
+8. **Writes:** code and notes only on your branch, inside `research/astra/` and (when a brief says so) `book/` or `pipeline/` NEW files. Machine outputs only under `data\astra\` (create subfolders). Never write to C: (the Codex app's own logs and temp files are fine). Never delete anything outside `data\astra\`.
 9. **Downloads (Second Sun only)** are allowed without asking, into a NEW empty folder `data\astra\downloads\<name>\`, fetched with Python, and logged in your report (what, from where, size). Never open file links in a browser. Anything not Second Sun, any account step, any outward action: no.
 10. **Machine load.** Long runs go in the background with a log file. At most 6 worker processes; set `NUMBA_NUM_THREADS=2` (numba otherwise makes 12 threads per worker and pins all 12 cores). Use `D:\second-sun\.venv\Scripts\python.exe` (Python 3.12 with lightkurve); plain `python` is the wrong interpreter and a check run with it looks like a pass but never ran. Claude may be running jobs at the same time: before a heavy run, count the running python processes (`Get-Process python`); if Claude's job is running, use at most 3 workers. When Ahmed is away, heavy jobs may use up to about 70% of the CPU.
 11. **Read the clock, never guess times.** Run `Get-Date` before writing any time. Ahmed is in Kuwait (UTC+3).
+12. **Where you may go (you run with FULL ACCESS, so these rules ARE the fence; Ahmed, 12 Nov 2026).** The app will not stop you, so you stop yourself. Before ANY command or file action, check its paths against this table. Anything not listed as allowed is forbidden.
+
+    | Place | You may |
+    |---|---|
+    | `D:\second-sun-astra\` (your folder) | read everything; write only as rule 8 says |
+    | `D:\second-sun-astra\data\` (a link to the real data) | read (fences apply); write only under `data\astra\` |
+    | `D:\second-sun\.venv\Scripts\python.exe` | RUN it (rule 10). Never `pip install`, never change the venv; if a package is missing, STOP and ask |
+    | `D:\ss-external\` (outside tools: mono-cbp, TOI-1338 test runs) | read only |
+    | `D:\ss-artifact-work\`, `D:\ss-rh-build\` (old book and page builds) | read only, only if a brief needs them |
+    | `C:\Users\hanzl\.codex\` and the system temp folder | only what the Codex app itself writes (logs, temp files) |
+    | the public web | read pages and download Second Sun data (rule 9); no sign-ins, no forms, no posting |
+
+    **Forbidden, never read or write:** `D:\second-sun\` itself (Claude's checkout: everything you need is in your own copy; the only exceptions are running the venv python above and reading data through your `data` link); `D:\second-sun-secrets\`; `D:\ss-private-backup\` (a copy of real G1 to G3 events: fence A lives there); `D:\ss-watch-data\` and `D:\ss-pages-work\` (they feed the live site); `D:\ss-update-test\`; every other folder on D: or C: (Ahmed's games, photos, backups, OneDrive); other apps' settings.
+    **Forbidden actions, whatever the path:** `git push`, `git remote` changes, `gh`, anything that writes to GitHub or any outside service; installing or uninstalling anything (pip, npm, winget, choco); changing system, registry, firewall, scheduled tasks, environment variables or app settings; stopping or killing processes you did not start (Claude's long jobs run as python too); deleting outside `data\astra\`; `git reset --hard`, `git clean`, force anything; opening a browser on the live Eyes page or Firebase.
+    **A new Second Sun folder is needed?** STOP and write it under STOP SIGNS (what folder, why). Claude creates it and adds it to this table. Never make one yourself outside your folder.
+    **If you slip:** say so at the top of your report (what path, what action). An honest slip is fixable; a hidden one ends the helper trial. Claude's `fence_check.py` reads your session logs for these paths and commands after every brief.
 
 ## 5. How to work like this project (the standards)
 - **Nothing is true until a script that could have contradicted it has run on our own data.** Reading finds little; a 40-line script finds a lot. Before reading more than about 20 KB, ask which script the reading lets you write.

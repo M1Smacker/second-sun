@@ -11,7 +11,7 @@ Claude already made: `AGENTS.md`, the Codex skills in `.agents/skills/`, this ma
 1. **Privacy first (before any Second Sun chat):** ChatGPT, Settings, Data Controls: turn OFF "Improve the model for everyone". In Codex settings: leave "Include environments" (training on full environments) OFF. Never use thumbs up or down on a Second Sun chat (a rating can send the whole chat for training even with the switch off). Check the switch again once a week (a user reported in Nov 2026 that it turned itself back on; not confirmed).
 2. In the Codex app, sign in with the Plus account, open `D:\second-sun-astra` again.
 3. **Model picker:** GPT-6 Astra should now appear. For brief 001 pick Astra, effort Medium. (If only older models show, update the app: Astra needs a recent Codex version.)
-4. **Permissions:** keep the default sandbox (it can edit inside its folder and asks before anything else). Do not choose "full access".
+4. **Permissions (Ahmed's choice, 12 Nov 2026): Full access.** The app will not stop Codex, so the fence is AGENTS.md rule 12 (where Codex may go and what it may never run), plus two real checks: pushing from `D:\second-sun-astra` is switched off in git (its push address is a dummy), and `fence_check.py` reads Codex's history database after every brief and flags any forbidden folder, push, install, settings change or fenced star. If you ever want the hard wall back, switch to the default sandbox; nothing else changes.
 5. **First message (one line):** "Read AGENTS.md, then do brief 001 in research/astra/inbox." When it says the report is ready, tell Claude: "Codex finished 001".
 6. Then brief 002 the same way (Astra, effort High), likely over 2 or 3 sessions.
 

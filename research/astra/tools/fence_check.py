@@ -3,7 +3,11 @@
 Claude runs this before merging any Codex branch, and Ahmed can run it any time. It prints COUNTS ONLY (never a star id).
 
 What it checks
-  1. Codex's own session logs (C:\\Users\\hanzl\\.codex\\sessions\\**\\*.jsonl, newer than --since):
+  1. Codex's own history, newer than --since: rollout files (C:\\Users\\hanzl\\.codex\\sessions\\**\\*.jsonl) AND the app's
+     database (thread_history_1.sqlite, only threads run in a second-sun folder; the app deletes the .jsonl files later).
+     No records at all counts as NEEDS A LOOK (nothing scanned is not a pass). It checks:
+       0. AGENTS.md rule 12 (Codex has full access): forbidden folders and forbidden commands in what Codex DID
+          (commands, cwd, file edits; never its chat or reasoning, which quote the rules)
        a. any FENCE A star id (G1, 552 rows: never searched with Petrova, kept blind for the G1 re-search)
        b. any FENCE B star id (the 803 G2 and G3 rows unseen at the Petrova design; spent by Re-search 1 on 11 Nov 2026,
           kept as a hold-out for the next filter version)
@@ -63,19 +67,81 @@ def fences(extra=()):
     return a - ALLOW, b - ALLOW, {i for i in every if i > 99999} - ALLOW
 
 
-def scan_sessions(sdir, since, fa, fb):
+# AGENTS.md rule 12 (12 Nov 2026): Codex runs with FULL ACCESS, so these patterns are checked on what it DID
+# (commands, cwd, file edits, tool arguments), never on its chat or reasoning, which quote the rules themselves.
+_D_OK = r"second-sun-astra|second-sun[\\/]+\.venv[\\/]+Scripts[\\/]+python|second-sun[\\/]+data|ss-external|ss-artifact-work|ss-rh-build"
+FORBIDDEN_PATH = re.compile(r"(?<![A-Za-z])[Dd]:[\\/]+(?!(?:" + _D_OK + r")(?![\w-]))[^\\/\s\"'*?<>|;]+"
+                            r"|(?<![A-Za-z])[Cc]:[\\/]+Users[\\/]+[^\\/\s\"']+[\\/]+(?!\.codex|AppData[\\/]+Local[\\/]+Temp)[^\\/\s\"']+", re.I)
+FORBIDDEN_CMD = re.compile(r"\bgit(\.exe)?\s+(-C\s+\S+\s+)?(push|clean|remote\s+(set-url|add|remove|rename))\b|\bgit\b[^\n]*\breset\s+--hard"
+                           r"|\bgit\b[^\n]*\bconfig\b[^\n]*pushurl|(^|[\s;&|\"'(])gh(\.exe)?\s+\w"
+                           r"|\b(pip|pip3|npm|winget|choco|scoop)\s+(install|uninstall|i|remove)\b|\b(schtasks|taskkill|netsh|setx|reg\s+(add|delete))\b"
+                           r"|Stop-Process|Set-ExecutionPolicy|Set-ItemProperty|New-ItemProperty|SetEnvironmentVariable|publish_book|firebase", re.I)
+ACTION_KEYS = ("cmd", "command", "arguments", "action", "input", "cwd", "path", "changes")
+SKIP_TYPES = {"reasoning", "agentMessage", "userMessage", "message", "contextCompaction", "agent_message", "user_message"}
+
+
+def _action_text(o):
+    """Text of what Codex DID in one log record ('' for chat, reasoning and rule quotes)."""
+    for k in ("payload", "item", "msg"):
+        if isinstance(o.get(k), dict):
+            o = o[k]
+    if o.get("type") in SKIP_TYPES or str(o.get("type", "")).endswith("_output"):
+        return ""
+    return " ".join(json.dumps(o[k]) if not isinstance(o[k], str) else o[k] for k in ACTION_KEYS if k in o)
+
+
+def _records(sdir, history, since):
+    """Yield (action_text, full_text) for Codex records newer than since: rollout .jsonl files and the app's history DB.
+    The Codex app (26.1106) keeps history in thread_history_1.sqlite and later deletes the .jsonl rollouts, so a scan of
+    .jsonl only found NOTHING and said CLEAN (found 12 Nov 2026, before Codex ever ran here)."""
+    if Path(sdir).exists():
+        for p in Path(sdir).rglob("*.jsonl"):
+            if datetime.datetime.fromtimestamp(p.stat().st_mtime) < since:
+                continue
+            with open(p, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    try:
+                        o = json.loads(line)
+                    except ValueError:
+                        yield line, line
+                        continue
+                    yield (_action_text(o) if isinstance(o, dict) else line), line
+    if history and Path(history).exists():
+        import sqlite3
+        h = sqlite3.connect(f"file:{Path(history).as_posix()}?mode=ro", uri=True)
+        ms = int(since.timestamp() * 1000)
+        st = Path(history).with_name("state_5.sqlite")
+        astra = None
+        if st.exists():   # only threads Codex ran in its own folder (Ahmed may use Codex for other things)
+            s = sqlite3.connect(f"file:{st.as_posix()}?mode=ro", uri=True)
+            astra = {r[0] for r in s.execute("select id from threads where lower(cwd) like '%second-sun%'")}
+            s.close()
+        rows = h.execute("select thread_id, item_json from thread_items where created_at_ms >= ?", (ms,)).fetchall()
+        h.close()   # never hold the Codex app's database open
+        for tid, j in rows:
+            if astra is not None and tid not in astra:
+                continue
+            try:
+                o = json.loads(j)
+            except ValueError:
+                continue
+            yield _action_text(o), j
+
+
+def scan_sessions(sdir, since, fa, fb, history=None):
     out = collections.Counter()
-    files = [p for p in Path(sdir).rglob("*.jsonl") if datetime.datetime.fromtimestamp(p.stat().st_mtime) >= since] if Path(sdir).exists() else []
-    out["session files scanned"] = len(files)
-    if not Path(sdir).exists():
-        print("NOTE: no Codex session folder at", sdir, "(nothing to scan; this is not a pass)")
-    for p in files:
-        with open(p, encoding="utf-8", errors="replace") as fh:
-            for line in fh:
-                ids = {int(m.group(1)) for m in NUM.finditer(line)}
-                out["lines with a FENCE A id"] += bool(ids & fa)
-                out["lines with a FENCE B id"] += bool(ids & fb)
-                out["lines with a search or event-opening command"] += bool(SEARCH_CMD.search(line))
+    n = 0
+    for act, full in _records(sdir, history, since):
+        n += 1
+        ids = {int(m.group(1)) for m in NUM.finditer(full)}
+        out["records with a FENCE A id"] += bool(ids & fa)
+        out["records with a FENCE B id"] += bool(ids & fb)
+        out["actions running search code or opening events"] += bool(SEARCH_CMD.search(act))
+        out["actions touching a forbidden folder (rule 12)"] += bool(FORBIDDEN_PATH.search(act))
+        out["forbidden commands (push, gh, install, kill, settings; rule 12)"] += bool(FORBIDDEN_CMD.search(act))
+    out["Codex records scanned"] = n
+    if n == 0:
+        print("NOTE: no Codex records found since", since.date(), "in", sdir, "or", history, "(nothing scanned: NOT a pass)")
     return out
 
 
@@ -128,17 +194,20 @@ def main(argv=None):
     ap.add_argument("--since", default=(datetime.date.today() - datetime.timedelta(days=7)).isoformat())
     ap.add_argument("--sessions", default=str(Path.home() / ".codex" / "sessions"))
     ap.add_argument("--extra", nargs="*", default=[])
+    ap.add_argument("--history", default=str(Path.home() / ".codex" / "thread_history_1.sqlite"))
     ap.add_argument("--no-data-scan", action="store_true")
     ap.add_argument("--no-branches", action="store_true")
+    ap.add_argument("--allow-no-logs", action="store_true", help="do not count 'no Codex records found' as a problem")
     a = ap.parse_args(argv)
     since = datetime.datetime.fromisoformat(a.since)
     fa, fb, every = fences(a.extra)
     print(f"fence A ids: {len(fa)}; fence B ids: {len(fb)}; all list ids: {len(every)}; since {since:%Y-%m-%d %H:%M}")
     bad = 0
-    s = scan_sessions(a.sessions, since, fa, fb)
+    s = scan_sessions(a.sessions, since, fa, fb, a.history)
     for k, v in s.items():
         print(f"  sessions: {k}: {v}")
-    bad += s["lines with a FENCE A id"] + s["lines with a FENCE B id"] + s["lines with a search or event-opening command"]
+    bad += sum(v for k, v in s.items() if k != "Codex records scanned")
+    bad += (s["Codex records scanned"] == 0 and not a.allow_no_logs)
     if not a.no_branches:
         br = scan_branches(fa, fb, every)
         print(f"  astra branches: {len(br)}")
