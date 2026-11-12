@@ -85,7 +85,9 @@ def git(*a):
 
 def scan_branches(fa, fb, every):
     res = {}
-    for br in [b.strip().lstrip("* ").strip() for b in git("branch", "--list", "astra/*").splitlines() if b.strip()]:
+    # for-each-ref, not 'git branch': 'git branch' marks a branch checked out in another worktree with '+ ', which once
+    # turned the name into '+ astra/x', made every diff empty and the verdict CLEAN (caught by the 12 Nov mutation test)
+    for br in [b.strip() for b in git("for-each-ref", "--format=%(refname:short)", "refs/heads/astra/").splitlines() if b.strip()]:
         c = collections.Counter()
         names = git("diff", "--name-only", f"main...{br}").split()
         c["frozen files changed"] = sum(Path(n).name in FROZEN and n.startswith("pipeline/") for n in names)
