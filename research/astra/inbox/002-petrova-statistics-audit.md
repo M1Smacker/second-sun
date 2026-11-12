@@ -4,11 +4,18 @@
 **Branch:** `astra/002-petrova-audit`, made from main. **Writes allowed:** `research/astra/reports/002-*.md`, `research/astra/scripts/002_*.py` and `research/astra/scripts/harness/`, `data\astra\002\`, `research/astra/USAGE.md`. Read-only on every frozen file, every preregistration and every filed result.
 **Stars allowed for real-light work:** only the 704 `design_seen == 1` rows of `targets/r1_targets.csv`, synthetic light, and the published systems. Fence A (G1) and fence B (803 hold-out) as in AGENTS.md: counts from filed result files are fine, their light and events are not.
 
+## Your core mission (Ahmed, 12 Nov 2026; this outranks every detail below)
+1. **Find bugs in our filter**: in Petrova, the search chain, the gates and the statistics. Hunt them actively with the auditor skill (`.agents/skills/second-sun-auditor`, section 1: walk the path a real planet's light takes, from the file to the tier). Every part below is also a bug hunt: report any bug you meet, even outside the part's question.
+2. **Tell us how to improve the filter**: concrete changes, each with what it fixes, how to test it, and its cost.
+3. **Tell us how to raise our chances of finding a real circumbinary planet**: which stars, data, methods or search choices would most raise the odds that a real planet in our data reaches tier 1, and which of our current choices lose planets.
+4. **Research** (literature, other teams' circumbinary methods, catalogues, data products): follow the research blueprint in `.agents/skills/second-sun-research` (a question tied to a decision, our own data first, primary sources, the exact sentence pulled out, labels, every finding turned into a plan change).
+You advise; you never change the frozen filter or a filed result. Claude and Ahmed decide.
+
 ## Why (the decision this serves)
 Ahmed must choose what comes next: the G1 re-search (needs Petrova 1.0.1 and Amendment 4), Census (our own binary list), or a better filter first (Petrova 1.1.0, a binary-phase key). Each choice rests on Petrova 1.0.0 being right and on the Re-search 1 null meaning what we say. You are the independent check. Claude built all of it, so Claude's checks are producer checks, not review. The Fable audit (`research/fable-audit-2026-11/REPORT.md`) already found F-01 (the old eclipse mask deleted dips in slow binaries); do not redo it, build on it.
 
 ## Budget (Ahmed's rule: weekly points are the budget)
-Total cap **30 weekly points** across several sessions. Per part caps below; if a part hits its cap, write what is left and move on. The five-hour bar is only a speed limit: stop near 80% and continue after its reset. Before each part write the prediction in USAGE.md; after it, the actual.
+Total cap **33 weekly points** across several sessions (parts 0 to F: 30, part G: 3). Per part caps below; if a part hits its cap, write what is left and move on. The five-hour bar is only a speed limit: stop near 80% and continue after its reset. Before each part write the prediction in USAGE.md; after it, the actual.
 
 ## How to run code here (read first)
 Pipeline and research scripts hard-code `ROOT = D:\second-sun` (your lead, report 001). Never run or import them as they are. Part 0 builds the safe way.
@@ -29,8 +36,10 @@ Pipeline and research scripts hard-code `ROOT = D:\second-sun` (your lead, repor
 
 **F. Process review (Astra, xhigh; cap 5).** Read the preregistration and its three amendments as a strict referee. Were any amendments shaped by results they should not have seen? Check commit times against the times unseen-star results first existed (git log, file times; counts only). Then write what Amendment 4 for a G1 re-search MUST contain, and what a Census search would need that G1 does not.
 
+**G. Improve the filter and our chances (Astra, High; cap 3; after A to F, using what they found).** (1) Your ranked list of improvements to Petrova and the search chain (bug fixes first, then method changes), each with: what it fixes or gains, the evidence from your parts, how Claude would test it (a test that could fail), and cost. (2) How to raise the chance that a real circumbinary planet in TESS data reaches tier 1: star selection, data products and cadences, period and depth reach, transit-timing variations (circumbinary transits shift and change width from transit to transit), other methods published for circumbinary searches. Research with the blueprint; cite the primary source for every claim; label each. (3) What you would NOT change, and why.
+
 ## Stop signs (as AGENTS.md and the auditor skill; the important ones again)
 Stop and write it under STOP SIGNS if: a step would read fenced light or events; you are about to choose a threshold, band or bin after seeing what it judges; a decision number moves by more than about 10% under your re-derivation (finish the part, report it, start nothing based on it); anything looks like a possible planet (write nothing about it outside `data\astra\002\`, claim nothing, tell Claude).
 
 ## Report
-`reports/002-petrova-statistics-audit.md` in the mailbox format, one section per part, each finding labelled CONFIRMED / LIKELY / UNCERTAIN / NOT TESTED with file and line, and every number you recompute shown next to the filed number. Commit after each part. Close with **"What I would do next and why"**, ranking G1 re-search, Petrova 1.1.0, Census, other: one paragraph each, with the evidence from your parts. Ahmed and Claude decide; you advise.
+`reports/002-petrova-statistics-audit.md` in the mailbox format, one section per part, each finding labelled CONFIRMED / LIKELY / UNCERTAIN / NOT TESTED with file and line, and every number you recompute shown next to the filed number. Commit after each part. Keep a running section **"Bugs found"** at the top (each: file and line, what goes wrong, a failing check or the reason none was possible, severity, CONFIRMED or LIKELY). Then part G. Close with **"What I would do next and why"**, ranking G1 re-search, Petrova 1.1.0, Census, other: one paragraph each, with the evidence from your parts. Ahmed and Claude decide; you advise.
