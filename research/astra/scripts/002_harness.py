@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import tempfile
 
 
 ROOT = Path(r"D:\second-sun-astra")
@@ -135,6 +136,14 @@ class Guard:
             raise RuntimeError("Run with Python -I -B")
         sys.addaudithook(self.audit)
         OUT.mkdir(parents=True, exist_ok=True)
+        temporary = OUT / "tmp"
+        temporary.mkdir(exist_ok=True)
+        os.environ["TMP"] = str(temporary)
+        os.environ["TEMP"] = str(temporary)
+        tempfile.tempdir = str(temporary)
+        cache = OUT / "numba-cache"
+        cache.mkdir(exist_ok=True)
+        os.environ["NUMBA_CACHE_DIR"] = str(cache)
         provenance = json.loads((COPIES / "provenance.json").read_text(encoding="utf-8"))
         for name, row in provenance.items():
             content = (COPIES / name).read_bytes().replace(b"\r\n", b"\n")

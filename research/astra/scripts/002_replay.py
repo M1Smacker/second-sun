@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import sys
 import uuid
+import traceback
 
 sys.path.insert(0, str(Path(__file__).parent))
 H = importlib.import_module("002_harness")
@@ -64,5 +65,6 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as error:
+        traceback.print_exc()
         print(f"Replay stopped: {type(error).__name__}", flush=True)
         raise SystemExit(1)

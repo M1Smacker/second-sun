@@ -55,3 +55,21 @@ QUEUE PROPOSAL: diagnose startup using a private traceback and route any require
 Usage baseline 40% five-hour / 11% weekly, final observed 46% / 12%. Delta +6 five-hour and +1 weekly, account-wide rounded meters, excluding final checkpoint overhead. Prediction 5 to 8 five-hour, at most 1 weekly. Lesson: native-library startup needs a controlled temporary directory and private exception diagnostics when all writes are guarded.
 
 Next: resume Part 0 with startup diagnostics and the remaining parity steps under a renewed allowance. Requires Ahmed's continuation because the explicit follow-up cap is reached.
+
+## Part 0 follow-up 2, 13 Nov 2026, 00:23 Kuwait
+
+Model GPT-6 Astra, effort unverified; Part 0 requests Sol Medium, continuation on the app-selected model is authorized.
+
+**Verdict: primary replay matched 3 of 3 groups.** This supersedes the earlier startup failure and shared-input stop. The shared-input issue above is an authorization history, not a confirmed filter bug; updated rule 2 permits those machine reads. Its fixture proposal is no longer needed.
+
+**CONFIRMED, harness setup defects fixed.** `002_harness.py` now creates temporary and Numba cache directories under `data/astra/002` before scientific imports. TMP, TEMP, tempfile.tempdir and NUMBA_CACHE_DIR are process-local settings. `002_replay.py` preserves full tracebacks in redirected private logs. The first retry passed the prior SciPy failure but failed at Numba cache initialization; the second completed after cache redirection. No frozen source or copied filter algorithm changed.
+
+**CONFIRMED, runtime evidence:** `replay-followup2b.log` records expected/actual primary event counts 0/0, 1/1, 0/0, all canonical event dictionaries identical, and zero recorded processing errors in all three groups. Selection used the first three eligible sorted filenames before opening event contents. Empty groups make this limited coverage: only one event was compared. This is replay identity, not proof of scientific correctness. SAP and union parity are NOT TESTED and explicitly deferred to Part C.
+
+The separate harness smoke command passed the synthetic mask self-test, verified all 12 copied hashes, rejected three forbidden access probes and completed one allowed write. The guard remains a Python audit hook, not an OS sandbox. Native-extension access is not independently verified. A nonfatal optional lightkurve dependency warning occurred; no package was installed.
+
+STOP SIGNS: none active. QUEUE PROPOSALS: none new. IDEAS: none new. Questions for Ahmed: none. Parts B through G remain pending at this checkpoint.
+
+Usage: baseline 60% five-hour / 14% weekly, observed finish 67% / 15%, +7 and +1 account-wide rounded points before checkpoint overhead. Cap 2 weekly points respected at this reading. Lesson: scientific-library temp and compilation caches must be redirected before import.
+
+Next: begin Part B's independent count statistics, within its four-weekly-point cap; authorized for Codex now.
