@@ -1,10 +1,13 @@
 # 002 Petrova statistics audit, Part 0 (GPT-6.1 Sol, effort unverified, 13 Nov 2026, 00:01 Kuwait)
 
+**RUN-MODE RESUME POINT:** stopped after Part E at the authorized five-hour speed limit, observed 89% five-hour / 18% weekly. Start Part A next: inspect mask and call sites, run predefined synthetic dip/bump grid (periods 5, 10, 14, 20, 30, 50 d; one, two, four sectors), off-switch comparison and single-visit veto checks. Then D, C, F, G. Only an introductory mask-source read occurred; no Part A experiment has run. B's anonymous cluster intervals and E's gate/loss audit are now filed below. The old moved-number review stop is lifted by run mode. No final ranking is yet justified. Full audit remains incomplete.
+
 **Current verdict:** Three primary groups replay identically. Part B independently reproduces all eight filed S1 chances. The sensitivity wording needs correction; the G2 conditional planting calculation changes a decision number by more than 10%, triggering the brief's review stop. SAP/union replay and Parts E, A, D, C, F, G remain untested. Earlier checkpoints below are retained as history and superseded where stated.
 **Branch:** astra/002-petrova-audit. Source base c173b11c70b18d5bde81565d26157d80503af8e9.
 **Handling note:** A source diagnostic surfaced pre-existing identifiers in its tool output while locating the copied lines. The staged payload omits those identifiers. No event file or light curve was opened.
 
 ## Bugs found
+- **CONFIRMED, medium, gate coverage reporting:** `pipeline/r1_gate.py:180` to 187 treats absent or undefined comparisons as preserving PASS. Four missing-bin/arm checks occur in sealed G3; no development injection verdict depended on a missing bin, and no filed ratio used the undefined zero-recovery branch. Part E supplies executed counts and a proposed explicit INCOMPLETE status, without changing a filed verdict.
 - **CONFIRMED, reporting/statistical interpretation, material to planning.** `pipeline/r1_readout.py:84` to 92 uses unstratified Fisher thresholds for the stratified verdict's power line. A deterministic significance threshold is also presented as an exclusion limit, without a sampling-power calculation. Part B below verifies the filed verdict probabilities but does not support that exclusion claim. Proposed correction only; filed results untouched.
 - **CONFIRMED, helper setup only, fixed.** The guard initially left scientific-library temporary files and Numba cache paths outside the writable subtree. Full traceback identified the Numba failure; redirected storage enabled three primary replays. No production-filter defect follows from this.
 - **SUPERSEDED authorization issue, not a production bug:** the following original shared-input finding was lifted by updated AGENTS rule 2.
@@ -142,3 +145,35 @@ Only five G3 stars and eleven G2 stars have positive flip counts. Zero-event boo
 Run: approved venv Python with `-I -B research/astra/scripts/002_cluster.py`. Output: `data/astra/002/cluster.json`. Checks actually run: exact totals assertions and 100,000 cluster resamples per campaign. No separate coverage simulation or independent review of this new script was performed. This completes the requested empirical S2 interval calculation; unconditional S1 power remains explicitly untested as previously reported.
 
 QUEUE PROPOSAL: clarify that the filed Poisson interval ignores clustering, rather than claiming all clustered interval constructions must be wider. STOP SIGNS: no active run-mode stop; changed numbers are reported and work continues. IDEAS: none new. Questions: none. Usage: 78% to 81% five-hour, 17% to 17% weekly, rounded account-wide before commit.
+
+## Part E: gate coverage and design-only losses
+
+**CONFIRMED, coverage reporting defect:** `pipeline/r1_gate.py:180` to 187 leaves the initial PASS unchanged when a bin has no after injections; zero after recovery also leaves PASS unchanged through the NaN branch. `002_gates.py` parsed all four filed R1 gate reports: four missing-bin/arm checks, all in G3 sealed (20 to 27.4 d and over 27.4 d, each in dips and bumps); zero undefined-ratio entries. The other three reports have zero missing injection bins. Thus both sealed G3 (a)/(b) labels pass only the evaluated bins, not all five. No development (a)/(b) verdict depended on missing bins, and no filed verdict depended on the zero-recovery NaN branch. A missing test is NOT a measured failure either. Proposed status: PASS ON TESTED BINS plus explicit coverage, or INCOMPLETE when all-bin coverage is required. Do not alter filed verdicts. Severity: medium, coverage interpretation. The branch behavior is static source evidence; file counts are executed evidence. No injected mutation of the frozen summary was run.
+
+**CONFIRMED, gate scope:** `_run_group`, lines 116 to 117, chooses centers using already-prepared `a['t']`. Amendment 3 explicitly acknowledges this. Gate (a) tests whether adding a dip grows the mask near surviving light, not full-time retention. Its near-unity ratio can coexist with poor absolute recovery. A meaningful unconditional test chooses times over raw-sector time before masks and windows, includes gaps as a separately reported geometric loss, injects before preparation, and scores against identical zero-injection controls. Keep the current conditional comparison as a diagnostic, but add unconditional recovery by period, brightness, product and era. This is a test design, not a completed completeness measurement.
+
+**CONFIRMED, gate (c) policy:** G2 development failed 14 to 20 d and over 27.4 d; G2 sealed additionally has 5 to 10 d OUTSIDE, as does G3 sealed. Amendment 3 paragraph 4 and section 5 authorize continuing the search while labelling failed bins not covered. That is faithful policy for exploration, not evidence of a calibrated false-positive control in those bins. The adjusted S1 test asks whether the imbalance exceeds the design reference; it does not restore real/flip symmetry. Do not reinterpret the filed NO EXCESS. The known/under-20 exceptions mean G3 development PASS provides limited coverage.
+
+**CONFIRMED, metadata-only G3 design losses:** `002_gates.py` opens only group filenames on the design-seen target list, then reads metadata, not event values. 2,476 groups, 3,312 file records: 2,964 ok, 345 no safe windows, 3 too little data. No-safe-window fraction is 10.42% of files, compared with the separately FILED unseen total 439/1796 = 24.44%; no unseen metadata files were opened. Different populations mean this difference cannot establish a cause.
+
+| Split | No safe windows / file records |
+|---|---:|
+| QLP | 345 / 2471 |
+| SPOC | 0 / 125 |
+| TESS-SPOC | 0 / 716 |
+| Magnitude below 11 | 16 / 324 |
+| Magnitude 11 to 12 | 52 / 551 |
+| Magnitude 12 to 14 | 277 / 2437 |
+| Sectors below 56 | 190 / 1857 |
+| Sectors 56 to 93 | 103 / 1263 |
+| Sectors 94 onward | 52 / 192 |
+| Binary period 5 to 10 d | 152 / 1425 |
+| Binary period 10 to 14 d | 95 / 1159 |
+| Binary period 14 to 20 d | 70 / 552 |
+| Binary period 20 to 27.4 d | 25 / 135 |
+| Binary period above 27.4 d | 3 / 41 |
+
+The sector table is [002-g3-sector-losses.md](002-g3-sector-losses.md): 105 sectors, 75 with skips; sector totals sum to 3312 and skip counts to 345. All listed products have no safe windows in 248/2476 groups, 10.02%. This is group availability loss, not a planet-completeness percentage: other sectors may still cover the star, products overlap, and observing durations differ. No exposure weighting or transit recovery was measured. These splits describe associations only, not causes or a license to change quality rules. Initial script used the wrong period-column name and reported unknown; corrected to p_bin_d and rerun before this report. No selection was changed based on results.
+
+Run: approved venv Python `-I -B research/astra/scripts/002_gates.py`. Private full counts: data/astra/002/gates.json. QUEUE PROPOSALS: FIX explicit missing/undefined gate coverage; BUILD compare conservative QLP window alternatives on design data with raw injections and flip controls before changing any window rule. IDEAS: none beyond those tests. NOT TESTED: unseen per-sector/product losses, exposure-time loss, unconditional completeness, causal source of QLP skips. No new fence or replay stop. No questions for Ahmed. Part E complete at this scope; proceed to A.
+Part E usage: predicted 5 five-hour points and 1 weekly; observed 81 to 89% and 17 to 18%, account-wide rounded. Run-mode speed stop now active at 89%; no later experiment launched. Next: resume Part A after the five-hour reset, then D, C, F, G under the remaining total budget; Codex is authorized to continue when resumed.
