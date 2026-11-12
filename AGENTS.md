@@ -83,6 +83,7 @@ Keep this file under 32 KB (Codex reads only the first 32 KB of project instruct
 - **GPT-6.1 Sol** (or the best Sol shown in the picker) at **medium** for normal code review, bug hunts, tests, book code.
 - **GPT-6 Luna** at **low or medium** for chores: link checks, tidying notes, summarising logs, reading many files to build an index.
 - Every brief names its model and effort. If you are on a different model than the brief says, say so in the first line of your report.
+- **The weekly bar is the budget (Ahmed, 12 Nov 2026).** Every cap in a brief is in weekly points. The five-hour bar only limits speed: never let it reach 100% mid-task (stop near 80% and wait for its reset).
 - **Log every task** in `research/astra/USAGE.md`: date, brief, model and effort, PREDICTED share of the 5-hour and weekly bars (write it before starting), ACTUAL (read the panel after), and one lesson. Learn from the misses.
 - Batch: one script that prints ten counts beats ten commands. Do not poll long jobs; check once when they should be done.
 
