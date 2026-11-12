@@ -1,0 +1,17 @@
+# Brief 001: learn the whole project (onboarding scan)
+
+**From:** Claude Code (first key), 12 Nov 2026. **Model:** GPT-6 Astra, effort **medium** (if Astra is not in your picker yet, use the best Sol at high and say so). **Cap:** one long working turn, about 10% of a 5-hour bar; stop and report at 15%.
+**Writes allowed:** `research/astra/reports/001-onboarding.md`, `research/astra/reports/001-project-map.md`, `research/astra/USAGE.md`, on branch `astra/001-onboarding`. No code changes. Nothing runs on real light.
+
+## Why
+Ahmed wants you to know Second Sun as well as Claude does, so your reviews catch real problems instead of re-asking settled questions. Your map becomes the starting point of every later session (you do not keep memory between sessions; the map does).
+
+## Do
+1. Read `AGENTS.md`, then `RESUME.md` (the top 4 blocks in full, the rest by headings), `CLAUDE.md`, `research/astra/claude-memory/MEMORY.md` and every memory file it lists.
+2. Scan the repo yourself (`git ls-files`, folder by folder): `pipeline/`, `targets/`, `research/` (start with `stage3/`, `fable-audit-2026-11/REPORT.md`, `RESEARCH-BLUEPRINT.md`, `SEARCH-WINDOW-BLUEPRINT.md`, `decisions.md`, `mistakes.md`, `claims.md`, `uncertainty-register.md`, `predictions.md`), `book/` (`mkdocs.yml`, `data/path.yml`, `docs/index.md`, `docs/versions.md`, the field notes from 4 Nov to 11 Nov, `docs/learn/index.md`, `docs/watch.md`), `labs/`, `experiments/`. List `data\` folder names and sizes only (no files opened inside Fence A or B folders).
+3. Trace the path of one planet's light through the code, from a FITS file to a tier label, with file and function names: load, quality mask, eclipse mask (old and Petrova), windows, detrending, box search, the upside-down arm, safety checks (C-checks, veto), tiers, the readout. Note where each frozen file sits on that path.
+4. Write `reports/001-project-map.md` (your reference for later sessions, as long as needed): what the project is, who decides what, the timeline (19 Oct 2026 to now), every search and its result in one line each, the filter versions and what changed, the tests and gates and what each can and cannot see, the open decisions, the book's structure and how it is built and tested, the rules, and a glossary of the project's own words (tier 1A, recovered light, design-seen, S1, S2, S4, gate (c), flip arm, Census, Horizon, Eyes, Keystone, Compass, two keys, ...).
+5. Write `reports/001-onboarding.md` in the mailbox format: plain verdict ("I know the project" or what is missing), the 10 things that most surprised you, anything that looks WRONG or contradictory (labelled, with file:line), the 5 places you would audit first and why, and up to 3 questions for Ahmed.
+
+## Do not
+Open event files or light curves of fenced stars, run any search, edit anything outside the files above, or print a star id.

@@ -11,6 +11,9 @@
 ## How to research (Ahmed, 29 Oct 2026)
 Every research task follows `research/RESEARCH-BLUEPRINT.md`: questions tied to decisions, our own data and the precision of our measures first, then primary sources (arXiv abstract and HTML pages, never file links in the browser), the exact sentence pulled out, labels, and every finding turned into a plan change and filed. Spend at least about 10 minutes on a serious question. It applies automatically, without being told (Ahmed, 3 Nov 2026): no fixed number of questions, only the research stint's own usage cap written down before it starts; every stint is numbered (RS-001 on) in `research/research-sessions.md`.
 
+## Codex helper (Ahmed, 12 Nov 2026)
+Codex (ChatGPT Plus, GPT-6 Astra for big judgements) is the helper and reviewer; Claude is the first key, Ahmed the second. Codex's rules: `AGENTS.md`; mailbox and tools: `research/astra/` (README there). Codex works in the worktree `D:\second-sun-astra` on `astra/*` branches and never pushes. **Before merging any astra branch run `research/astra/tools/fence_check.py` and read its report; after any change to Claude's memory or the auditor or my-take skill run `research/astra/tools/sync_kit.py`.** Brief Codex through `research/astra/inbox/NNN-*.md`; disagreements go to Ahmed with evidence.
+
 ## Other standing rules (details in memory and the files named)
 - File obvious follow-ups yourself and do them when best, inside the weekly cap; ask only real forks. **Two queues, never mixed (Ahmed, 30 Oct 2026): bugs go in `research/stage3/FIX-QUEUE.md`; builds, studies and features go in `research/stage3/BUILD-QUEUE.md`, one task each. The build queue waits until the research is done and he says go.**
 - Weekly cap and stop line are set by Ahmed in chat (25% and 23% on 27 Oct 2026); log every task in `research/usage-ledger.md`.
