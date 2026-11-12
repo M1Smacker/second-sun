@@ -63,3 +63,34 @@ None required for this checkpoint. Completing the scan needs a later authorized 
 Predicted: 10% five-hour, weekly unknown. Observed at wrap-up start: 5% to 19% five-hour, 1% to 3% weekly. Final snapshot is in USAGE.md. Lesson: full memory dumps consume the cap and truncate; future reads should be small, numbered chunks with an explicit coverage checklist.
 
 Next: Claude reviews this partial checkpoint before a continuation, to preserve the cap and resolve the documentation issues; review cost unmeasured, requires Claude.
+
+## Continuation
+
+Requested model: GPT-6 Sol, Medium. Runtime model/effort remains unverified by this agent. This continuation supersedes the earlier stop policy: the budget is at most 2 weekly points; the five-hour stop is near 80%. Branch switched to astra/001-onboarding and merged main: already up to date, initially clean. Claude's fixes and prior independent review are recorded in the latest RESUME; I did not rerun his fence checker.
+
+### Coverage checklist
+- [x] Current AGENTS.md, latest RESUME block, mailbox README and continuation instructions read. Auditor/mailbox skills retained from the first part of this chat.
+- [x] Fable REPORT.md fully read: lines 1 to 45, then numbered lines 46 to 94. Its labels and estimates are historical findings, not my revalidation.
+- [x] R1-PREREGISTRATION.md fully read in numbered chunks 1 to 59 and 60 to 78, including all three amendments.
+- [x] MORNING-REPORT-2026-11-11.md fully read, numbered lines 1 to 59.
+- [x] pipeline/r1_gate.py fully read, numbered lines 1 to 96 and 97 to 219.
+- [x] pipeline/r1_readout.py fully read, numbered lines 1 to 114 and 115 to 175.
+- [x] Four previously truncated memory files fully reread in small numbered chunks: feedback_verify_science_with_sources.md (1 to 15), feedback_always_say_whats_next.md (1 to 15), project_keystone_exam.md (1 to 12), feedback_learning_track_ui_preferences.md (1 to 12), all under research/astra/claude-memory/.
+- [ ] Remaining skimmed memories not exhaustively reread. Stopped to reserve allowance for delivery. The continuation explicitly permits stopping near the cap.
+- [ ] Directory sizes and complete inventory intentionally skipped as instructed.
+
+### New contradictions and audit leads
+1. **CONFIRMED path typo:** continuation item (3) names research/stage3/r1_gate.py and r1_readout.py; neither exists there. Both exist under pipeline and were read there. No scripts were imported or executed. QUEUE PROPOSAL, FIX: correct the brief's source paths.
+2. **CONFIRMED static mismatch, scientific effect NOT TESTED:** pipeline/r1_readout.py:84 to 92 calculates the displayed "power" threshold using unstratified Fisher counts. main:141 to 144 attaches that line to the stratified Amendment 3 verdict and says only an excess of that size would have been seen. The function's own docstring acknowledges the unstratified test. It is a threshold calculation with fixed flipped counts, not a measured probability of detecting an alternative. Brief 002 should independently establish what that line can support before relying on the morning report's multiples. No replacement number or reinterpretation of the filed verdict is proposed here.
+3. **CONFIRMED wording conflict:** MORNING-REPORT-2026-11-11.md:27 calls the surplus eclipse leftovers as fact; R1-PREREGISTRATION.md:62 calls that cause suspected and NOT TESTED. QUEUE PROPOSAL, FIX: retain the uncertainty in the narrative. This identifies a confidence-label inconsistency, not a finding about what generated the events.
+4. **CONFIRMED static implementation difference, impact NOT TESTED:** preregistration:34 specifies a star-level S2 interval; Amendment 2:65 and :68 leave S2 unchanged. r1_readout.py:164 to 166 calls B.pois and explicitly labels its interval a floor because stars are correlated. Brief 002 should trace that helper and the saved results to establish the deviation's extent. Do not silently change the filed result.
+5. **CONFIRMED static audit lead:** r1_gate.py:180 to 187 skips bins with no injections and accepts an undefined before/after ratio without turning the overall gate to FAIL. This does not prove a real run passed incorrectly. It makes coverage and denominators essential parts of the next review. Likewise _run_group:117 chooses injection times from prepared light; this agrees with Amendment 3's conditional-completeness warning.
+
+### Readiness and limits
+**Ready for brief 002: yes, to begin its scoped audit after Claude's review.** I can distinguish the original S1, Amendment 2 reference comparison and final stratified Amendment 3 rule; the PDCSAP-half S1 counts from whole-union totals; raw insertion from kept-time selection; and gate failure from the required not-covered wording. The primary audit targets are mapped. This is readiness to investigate, not validation of the pipeline or its statistics.
+No brief 002 work started: no independent science calculations, real data reads, tests, experiments, code modifications, external research or verdict changes. The full original onboarding remains incomplete by design under the narrowed continuation. Other references and dependencies should be read only as the next audit needs them.
+No new operational stop sign or forbidden path action. Existing pipeline absolute-path restriction respected. No disagreements with Claude's scientific decisions established; the source discrepancies above are for review. No new system ideas or questions for Ahmed.
+
+Usage: baseline after instruction reading was 3% five-hour / 5% weekly; prediction 8 to 12 five-hour points and 1 weekly point, hard stop at 7% weekly. Final measured snapshot is in USAGE.md; bars are account-wide and rounded, not an exact task bill. Lesson: prioritize full reads of a few decision-bearing documents and reserve delivery headroom.
+
+Next: Claude reviews this continuation and its audit leads before brief 002; review cost unmeasured, requires Claude.
