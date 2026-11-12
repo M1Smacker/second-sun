@@ -1,10 +1,13 @@
 # 002 Petrova statistics audit, Part 0 (GPT-6.1 Sol, effort unverified, 13 Nov 2026, 00:01 Kuwait)
 
-**Plain verdict:** Guarded harness built and smoke-tested. The three design-seen star-sector replay is blocked by the shared audit inputs. Part 0 is partial.
+**Current verdict:** Three primary groups replay identically. Part B independently reproduces all eight filed S1 chances. The sensitivity wording needs correction; the G2 conditional planting calculation changes a decision number by more than 10%, triggering the brief's review stop. SAP/union replay and Parts E, A, D, C, F, G remain untested. Earlier checkpoints below are retained as history and superseded where stated.
 **Branch:** astra/002-petrova-audit. Source base c173b11c70b18d5bde81565d26157d80503af8e9.
 **Handling note:** A source diagnostic surfaced pre-existing identifiers in its tool output while locating the copied lines. The staged payload omits those identifiers. No event file or light curve was opened.
 
 ## Bugs found
+- **CONFIRMED, reporting/statistical interpretation, material to planning.** `pipeline/r1_readout.py:84` to 92 uses unstratified Fisher thresholds for the stratified verdict's power line. A deterministic significance threshold is also presented as an exclusion limit, without a sampling-power calculation. Part B below verifies the filed verdict probabilities but does not support that exclusion claim. Proposed correction only; filed results untouched.
+- **CONFIRMED, helper setup only, fixed.** The guard initially left scientific-library temporary files and Numba cache paths outside the writable subtree. Full traceback identified the Numba failure; redirected storage enabled three primary replays. No production-filter defect follows from this.
+- **SUPERSEDED authorization issue, not a production bug:** the following original shared-input finding was lifted by updated AGENTS rule 2.
 - **CONFIRMED, high severity for fence isolation.** pipeline/stage2_search.py:110 to 133 initializes burst state from the campaign-wide audit event table and may open a reference FITS chosen without a design-seen restriction. This is a blocker for a faithful helper replay under the current authorization. It does not establish a scientific error in the production run. The checks below cover source, manifest selection and access refusal. Production behavior was not run.
 
 ## Part 0
@@ -73,3 +76,54 @@ STOP SIGNS: none active. QUEUE PROPOSALS: none new. IDEAS: none new. Questions f
 Usage: baseline 60% five-hour / 14% weekly, observed finish 67% / 15%, +7 and +1 account-wide rounded points before checkpoint overhead. Cap 2 weekly points respected at this reading. Lesson: scientific-library temp and compilation caches must be redirected before import.
 
 Next: begin Part B's independent count statistics, within its four-weekly-point cap; authorized for Codex now.
+
+## Part B simulation design, before calculation
+
+Use only the four filed count tables. Exact test: integer combinatorial weights, enumerated independently without importing pipeline code. Check with 100,000 conditional random label permutations per threshold, fixed seed. For the requested planting calculation, freeze the filed background and distribute a fixed number of added real events among bins in proportion to their sealed bar-7 total event counts. Use 500 placements per dose, doses 0 to 200 in steps of 5. Assume every planted event clears bar 12, hence all four thresholds; this is an optimistic strong-event scenario, not a distribution of astrophysical depths. Evaluate the full filed rule. Report the first grid doses with at least 50% and 90% firing; these are conditional placement probabilities, not unconditional survey power or confidence exclusions. Denominator for comparison is the original bar-7 stratified expected count, fixed before planting. Bin weights, dose grid and scenario will not be tuned to outputs.
+
+A star-cluster bootstrap requires per-star event counts and exposure, including zero-event stars. The supplied aggregate files cannot identify those. Do not open hold-out event files to manufacture them; check for an authorized pre-aggregated input, otherwise mark this subtask unavailable.
+
+## Part B results and review stop
+
+**CONFIRMED: filed S1 arithmetic reproduced.** `scripts/002_statistics.py` imports no pipeline module. It enumerates integer combinatorial weights for reference-sample real counts and sums the lower tail, complementary to counting the sealed upper tail. Separately, NumPy hypergeometric draws simulate conditional label permutation, 100,000 trials per row. Three tiny cases were also checked against exhaustive individual-label subset enumeration, including an empty sealed bin and degenerate reference counts. All three matched within 1e-14. These are independent arithmetic checks, not a validation of event independence.
+
+| Campaign | SNR bar | Filed chance | Independent exact | Permutation estimate |
+|---|---:|---:|---:|---:|
+| G3 | 7 | 0.4071 | 0.4070997261 | 0.40488 |
+| G3 | 8 | 0.5150 | 0.5150324453 | 0.51637 |
+| G3 | 10 | 0.5583 | 0.5583333333 | 0.55769 |
+| G3 | 12 | 0.8846 | 0.8846153846 | 0.88353 |
+| G2 | 7 | 0.3141 | 0.3141222953 | 0.31298 |
+| G2 | 8 | 0.4966 | 0.4965963529 | 0.49508 |
+| G2 | 10 | 0.4638 | 0.4638007849 | 0.46613 |
+| G2 | 12 | 0.1023 | 0.1023391813 | 0.10411 |
+
+All exact values round to the filed values. All permutation estimates lie within the prespecified five Monte Carlo standard-error check. No verdict is reinterpreted: both remain NO EXCESS as filed.
+
+**CONFIRMED within the declared scenario: conditional planting results.** The full stratified rule, including bars 8, 10 and 12, was evaluated for 500 randomized bin placements per dose. Full curves and checks are in private `data/astra/002/statistics.json`; counts-only console output is in `statistics.log`, with an empty error log. Run with the approved venv interpreter and `-I -B research/astra/scripts/002_statistics.py`.
+
+| Campaign | Target firing rate | Last grid dose below / first above | Rate at first above | Total real count at first above | Multiple of original stratified expectation |
+|---|---:|---:|---:|---:|---:|
+| G3 | 50% | 50 / 55 added | 79.8% | 71 | 4.778 |
+| G3 | 90% | 55 / 60 added | 98.6% | 76 | 5.114 |
+| G2 | 50% | 55 / 60 added | 54.6% | 92 | 3.293 |
+| G2 | 90% | 65 / 70 added | 97.4% | 102 | 3.651 |
+
+The grid spacing is five events; these are first grid crossings, not precise threshold estimates. At 500 trials the largest possible Monte Carlo standard error is 2.24 percentage points. The original stratified expectations are 14.8611 for G3 and 27.9357 for G2. The filed Fisher figures use different denominators, 6*31/8=23.25 and 13*64/31=26.8387, so the multiples are not directly interchangeable. The G3 numerical resemblance between 5.114 and 5.2 does not validate its filed method. G2's 3.293 and 3.651 differ from the quoted 2.7 by about 22% and 35%, respectively. Its grid crossing real counts 92 and 102 also exceed the filed 73 by about 26% and 40%.
+
+**LIMITATION / NOT TESTED:** This is conditional injection-placement sensitivity with the observed background fixed. It is not unconditional statistical power: noise counts, design-reference uncertainty and star correlations were not resampled. Every added event was assumed to exceed SNR 12 and to reach tier 1 already. Real raw-light completeness, depth distributions and astrophysical occurrence rates are absent. Full 50%/90% population-power inference remains incomplete. A null result cannot be described as excluding a particular excess merely because one hypothetical count table would cross a significance threshold. The new simulation does not establish an exclusion either.
+
+**NOT TESTED: S2 star-clustered intervals.** The four supplied files give totals, not the joint per-star recovered exposure and flip count including zero-event stars. A filename search in research/astra and research/stage3 for cluster/bootstrap/S2/per-star inputs found no suitable R1 table (only an unrelated Q6 S2 evidence filename). No hold-out event files were opened. The reported rates 6/1152 and 13/2381 are arithmetically usable, but many different allocations across stars share these totals and yield different bootstrap intervals. The quoted Poisson intervals cannot be replaced honestly from these aggregates. A safe input is an anonymous frequency table of (recovered star-sector exposure, tier-1 flip count), including eligible zero-event stars, produced by Claude. No identifiers need enter the report or repository.
+
+**Interpretation, conditional on the test assumptions:** Stratification makes a fairer comparison of real/flip shares when the period mixtures differ. It tests for an excess beyond the design-star imbalance within those bins, not whether any planets exist. It can miss a population present similarly in both samples, signals removed by masking or rejected before tier 1, effects inside broad bins, and weak excesses. Event-level exchangeability between design and hold-out samples, within-bin comparability, and independence across correlated events are not established by this arithmetic reproduction. Thus the filed null is a defensible narrow statement of failure to reject this model, not proof of no planets or a calibrated exclusion limit.
+
+**STOP SIGNS:** material movement of a planning number under the requested stratified planting calculation. Finish this part's report and start nothing based on it, as instructed. The clustered interval also lacks an authorized sufficient aggregate. No fenced light or event inspection was used to fill that gap.
+
+**QUEUE PROPOSALS:** FIX: replace `power_note`'s unstratified threshold/exclusion wording with a clearly scoped, matching-rule sensitivity analysis. Acceptance check: reproduce the eight exact probabilities, compare the full rule under a specified stochastic background and signal model, report uncertainty and clustering assumptions, and avoid claiming exclusion without coverage evidence. BUILD: generate the anonymous S2 exposure/count frequency table for cluster resampling. These are proposals for Claude, not edits to the project queues.
+
+**IDEAS:** no additional build beyond those two scoped proposals. **Questions for Ahmed:** none needed to understand this checkpoint; Claude should review the changed sensitivity interpretation before work proceeds.
+
+**What I did not check:** population-power calibration; star-cluster intervals; SAP or union parity; Parts E, A, D, C, F, G; astrophysical literature or filter-ranking recommendations. Ranking G1, Petrova 1.1.0 and Census now would exceed the evidence gathered.
+
+Next: Claude reviews the Part B sensitivity correction and missing cluster input before the audit resumes; review costs Claude time, no further Codex computation is required for this handoff.
+Usage, Part B: predicted 12 five-hour points and 2 weekly, cap 4 weekly. Observed 67 to 73% five-hour and 15 to 16% weekly before commit, account-wide rounded. Whole continuation baseline 60% / 14%, final observed 73% / 16%. Static whitespace check passed; runtime arithmetic and simulation checks are described above. These are producer checks of the new audit script, not a separate review of that script.
