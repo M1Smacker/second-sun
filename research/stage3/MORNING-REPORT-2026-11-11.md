@@ -4,7 +4,7 @@
 **We found nothing.** The slow-binary stars were searched again with the new filter (Petrova 1.0.0), in the light the old filter used to delete. On the 803 stars that were never looked at while the filter was designed, the real dips did not beat the control. **0 leads.** Nothing needs a private check, and nothing leaves the PC.
 
 **But read the three limits before you read "nothing":**
-1. **The test is weak.** Only a big excess would have shown: about 5 times the expected count in G3 and about 2.7 times in G2. A small planet population would hide inside that.
+1. **The test is weak.** Only a big excess would have shown: about 5 times the expected count in G3 and about 2.7 times in G2 (CORRECTED 13 Nov 2026 by Codex brief 002 part B with the stratified rule the verdict uses: G3 about 4.8 to 5.1 times, G2 about 3.3 to 3.7 times, for the rule to fire 50% to 90% of the time with strong events; a sensitivity under stated assumptions, not an exclusion limit). A small planet population would hide inside that.
 2. **Most slow binaries were not in this search.** The 14 day and longer binaries are the ones the old filter hurt most. Among the unseen stars, 91 of the 803 rows are that slow. The other 335 slow unseen rows are in G1 (the Kepler field), which I did not search (no eclipse widths yet).
 3. **The search is real, but the clean-null claim is narrow.** It says: no excess of real dips in the recovered light beyond the imbalance measured on the 704 design stars. It does not say the recovered light holds no planets.
 
@@ -17,7 +17,7 @@
 | Events in recovered light, real / upside-down | 125 / 129 | 676 / 389 |
 | Tier-1 in recovered light, real / upside-down | **16 / 6** | **34 / 13** |
 | S1, the preregistered test (needs chance 0.005 or less) | chance 0.41: **no excess** | chance 0.31: **no excess** |
-| Power: excess that would have been seen | about 5.2 times expected | about 2.7 times expected |
+| Power: excess that would have been seen | about 5.2 times expected (corrected 13 Nov: 4.8 to 5.1) | about 2.7 times expected (corrected 13 Nov: 3.3 to 3.7) |
 | Control (light both filters keep) | no surplus | no surplus |
 | False alarms per 1,000 star-sectors (no pass mark) | 5.21 (1.91 to 11.34) | 5.46 (2.91 to 9.34) |
 | Vetoed by the cross-sector veto, real / upside-down | 0 / 2 | 57 / 18 |
