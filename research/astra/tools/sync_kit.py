@@ -76,7 +76,7 @@ def main():
         if SECRET.search(b):
             print("REFUSED (looks like a secret):", label); refused += 1; continue
         old = dst.read_bytes() if dst.exists() else None
-        if old == b:
+        if old is not None and old.replace(b"\r\n", b"\n") == b.replace(b"\r\n", b"\n"):   # git may turn LF into CRLF on checkout
             same += 1; continue
         if check:
             print("OUT OF DATE:", label); stale += 1; continue
