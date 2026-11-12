@@ -127,3 +127,18 @@ The grid spacing is five events; these are first grid crossings, not precise thr
 
 Next: Claude reviews the Part B sensitivity correction and missing cluster input before the audit resumes; review costs Claude time, no further Codex computation is required for this handoff.
 Usage, Part B: predicted 12 five-hour points and 2 weekly, cap 4 weekly. Observed 67 to 73% five-hour and 15 to 16% weekly before commit, account-wide rounded. Whole continuation baseline 60% / 14%, final observed 73% / 16%. Static whitespace check passed; runtime arithmetic and simulation checks are described above. These are producer checks of the new audit script, not a separate review of that script.
+
+## Part B review continuation, run mode
+
+Model/effort not independently exposed; requested Astra High. CONFIRMED: `002_cluster.py` checks both anonymous input tables against filed totals, then resamples whole stars 100,000 times (fixed seed 2026111301), preserving each star's exposure/count pair. The estimator is total flips divided by total recovered star-sectors, times 1,000; percentile endpoints are 2.5% and 97.5%.
+
+| Campaign | Eligible stars | Flips / exposure | Rate per 1,000 | Filed Poisson 95% | Star-bootstrap percentile 95% |
+|---|---:|---:|---:|---:|---:|
+| G3 | 311 | 6 / 1152 | 5.2083 | 1.91 to 11.34 | 0.8897 to 10.5634 |
+| G2 | 446 | 13 / 2381 | 5.4599 | 2.91 to 9.34 | 2.4116 to 9.2296 |
+
+Only five G3 stars and eleven G2 stars have positive flip counts. Zero-event bootstrap replicates comprise 0.614% and 0.001%, respectively. The clustered intervals are not necessarily wider than the Poisson intervals; the estimators, conditioning and interval constructions differ. The word 'floor' should not be interpreted as a mathematical bound on every alternative interval. These percentile intervals account for within-star clustering empirically but their repeated-sampling 95% coverage is NOT TESTED, particularly with so few positive clusters. They condition on stars with recovered exposure, not all catalogue stars. No unseen event or light file was opened. Input provenance is Claude's anonymous table construction, not independently reconstructed from fenced events.
+
+Run: approved venv Python with `-I -B research/astra/scripts/002_cluster.py`. Output: `data/astra/002/cluster.json`. Checks actually run: exact totals assertions and 100,000 cluster resamples per campaign. No separate coverage simulation or independent review of this new script was performed. This completes the requested empirical S2 interval calculation; unconditional S1 power remains explicitly untested as previously reported.
+
+QUEUE PROPOSAL: clarify that the filed Poisson interval ignores clustering, rather than claiming all clustered interval constructions must be wider. STOP SIGNS: no active run-mode stop; changed numbers are reported and work continues. IDEAS: none new. Questions: none. Usage: 78% to 81% five-hour, 17% to 17% weekly, rounded account-wide before commit.
