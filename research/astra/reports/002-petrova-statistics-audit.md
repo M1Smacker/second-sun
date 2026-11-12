@@ -35,3 +35,23 @@ None. Claude can resolve the input dependency.
 Prediction 10 to 15 five-hour points and 1 to 2 weekly points. Meter baseline 21% five-hour and 8% weekly. See USAGE.md for the final pre-commit reading. Lesson: inspect mixed reference inputs before budgeting a replay.
 
 Next: Claude provides a fence-safe replay fixture so the three-group identity check can run. Setup cost unmeasured, requires Claude.
+
+## Part 0 follow-up, 13 Nov 2026, 00:15 Kuwait
+
+Model GPT-6 Astra, effort unverified. Part 0 names Sol Medium, and the follow-up authorizes carrying on with the app-selected model.
+
+**Verdict: replay failed before the first comparison.** Updated AGENTS rule 2 lifts the previous shared-input blocker. The guard now allows exact campaign manifest, audit, window and best-product inputs plus the frozen manifest's per-sector SPOC references. Reference paths are remapped through the helper data junction. Reads are enabled explicitly and remain subject to the output guard.
+
+Added scripts/002_replay.py. It selects the first three sorted stored development group filenames belonging to design-seen stars, with selection preceding event reads. It writes fresh outputs under a unique data/astra/002 replay folder, compares every stored event field using canonical JSON, and stops on mismatch or recorded processing error. This initial runner covers the primary product groups. SAP replay and final union comparison still need implementation after startup succeeds.
+
+Actual command used the approved venv interpreter with -I -B and redirected output to data/astra/002/replay-followup.log. It ended with exit code 1 and 'Replay stopped: FileNotFoundError', alongside a SciPy MessageStream temporary-file cleanup TypeError. Zero group comparisons completed. The root cause is UNCERTAIN. The restrictive output guard and library temporary-file handling need investigation. The generic exception handler does not preserve enough diagnostic detail to establish the exact missing file. Do not interpret this as a detected science regression.
+
+**STOP SIGNS:** failed replay and follow-up budget reached. The brief explicitly requires stopping at either. Parts B through G have not begun. No sealed verdict or frozen source was changed. No new scientific claim follows from this attempt.
+
+Checks performed were source inspection, scoped machine-input permission wiring, and the failed runtime attempt. No successful full-chain parity test occurred. No further tests were run after the failure.
+
+QUEUE PROPOSAL: diagnose startup using a private traceback and route any required temporary files into data/astra/002, then complete primary, SAP and final union parity before advancing. No new system idea or decision for Ahmed is required.
+
+Usage baseline 40% five-hour / 11% weekly, final observed 46% / 12%. Delta +6 five-hour and +1 weekly, account-wide rounded meters, excluding final checkpoint overhead. Prediction 5 to 8 five-hour, at most 1 weekly. Lesson: native-library startup needs a controlled temporary directory and private exception diagnostics when all writes are guarded.
+
+Next: resume Part 0 with startup diagnostics and the remaining parity steps under a renewed allowance. Requires Ahmed's continuation because the explicit follow-up cap is reached.

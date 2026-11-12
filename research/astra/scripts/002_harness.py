@@ -74,6 +74,37 @@ class Guard:
         if not path.is_relative_to(OUT) or not path.resolve().is_relative_to(self.out):
             raise PermissionError("Write outside data/astra/002")
 
+    def allow_machine_inputs(self, campaign):
+        """Exact shared inputs authorized by AGENTS rule 2, read only."""
+        if campaign not in self.seen:
+            raise PermissionError("Unsupported campaign")
+        base = DATA / campaign
+        paths = [base / "manifest.csv"]
+        paths += [base / "audit" / name for name in
+                  ("audit_all.csv", "spoc_windows.pkl", "best_per_star_sector.csv")]
+        for path in paths:
+            if path.resolve() != self.data / path.relative_to(DATA):
+                raise PermissionError("Machine input path escape")
+            self.reads.add(path.resolve())
+            print(f"MACHINE READ {path}", flush=True)
+        references, used = {}, set()
+        with paths[0].open(encoding="utf-8-sig", newline="") as source:
+            for row in csv.DictReader(source):
+                if row["file"] in used:
+                    continue
+                used.add(row["file"])
+                if row["author"] == "SPOC":
+                    sector = int(row["file"].split("-s")[1][:4])
+                    old = Path(row["path"])
+                    relative = old.relative_to(Path(r"D:\second-sun") / "data")
+                    reference = DATA / relative
+                    if reference.resolve() != self.data / relative:
+                        raise PermissionError("Reference path escape")
+                    references.setdefault(sector, reference)
+        self.reads.update(path.resolve() for path in references.values())
+        print("MACHINE READ reference SPOC files selected by frozen manifest rule (momentum dumps only)", flush=True)
+        return references
+
     def audit(self, event, args):
         if event == "open":
             path, _, flags = args
