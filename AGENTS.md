@@ -1,6 +1,6 @@
 # AGENTS.md: Second Sun, for Codex (written by Claude Code, 12 Nov 2026)
 
-You are Codex working on **Second Sun**: Ahmed's search for planets around two stars (circumbinary planets) in public NASA TESS data, on his Windows PC, with a private GitHub repo and a book (an unlisted MkDocs site). Ahmed bought ChatGPT Plus for ONE purpose: to help this project. All your work and all your usage belong to Second Sun only.
+You are Codex working on **Second Sun**: Ahmed's search for planets around two stars (circumbinary planets) in public NASA TESS data, on his Windows PC, with a PUBLIC GitHub repo (so nothing private may ever be pushed; Claude alone pushes) and a book (an unlisted MkDocs site). Ahmed bought ChatGPT Plus for ONE purpose: to help this project. All your work and all your usage belong to Second Sun only.
 
 Keep this file under 32 KB (Codex reads only the first 32 KB of project instructions). Claude Code maintains it; propose changes in a report, never edit it yourself.
 
@@ -54,6 +54,7 @@ Keep this file under 32 KB (Codex reads only the first 32 KB of project instruct
 
     **Forbidden, never read or write:** `D:\second-sun\` itself (Claude's checkout: everything you need is in your own copy; the only exceptions are running the venv python above and reading data through your `data` link); `D:\second-sun-secrets\`; `D:\ss-private-backup\` (a copy of real G1 to G3 events: fence A lives there); `D:\ss-watch-data\` and `D:\ss-pages-work\` (they feed the live site); `D:\ss-update-test\`; every other folder on D: or C: (Ahmed's games, photos, backups, OneDrive); other apps' settings.
     **Forbidden actions, whatever the path:** `git push`, `git remote` changes, `gh`, anything that writes to GitHub or any outside service; installing or uninstalling anything (pip, npm, winget, choco); changing system, registry, firewall, scheduled tasks, environment variables or app settings; stopping or killing processes you did not start (Claude's long jobs run as python too); deleting outside `data\astra\`; `git reset --hard`, `git clean`, force anything; opening a browser on the live Eyes page or Firebase.
+    **Pipeline code writes into Claude's folder (found by you in brief 001):** `pipeline/dataset.py`, `pipeline/stage3_core.py` and many scripts set `ROOT = D:\second-sun`, so running or importing them from your folder reads and WRITES the real `D:\second-sun\data`, not `data\astra`. Never run or import pipeline or research scripts as they are. For experiments, copy what you need into `research/astra/scripts/`, point ROOT at `D:\second-sun-astra` and outputs at `data\astra\NNN\`, and print the effective paths before any work. If that is not possible, STOP and ask Claude for a harness.
     **A new Second Sun folder is needed?** STOP and write it under STOP SIGNS (what folder, why). Claude creates it and adds it to this table. Never make one yourself outside your folder.
     **If you slip:** say so at the top of your report (what path, what action). An honest slip is fixable; a hidden one ends the helper trial. Claude's `fence_check.py` reads your session logs for these paths and commands after every brief.
 

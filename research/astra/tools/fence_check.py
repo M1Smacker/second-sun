@@ -37,8 +37,12 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[3]
 FROZEN = ["stage2_search.py", "detect_v2.py", "audit_all.py", "audit_paths.py", "common_time.py", "stage3_core.py",
           "stage3.py", "sap_twin.py", "stage3_report.py", "dataset.py", "vopts.py", "petrova_mask.py"]
-SEARCH_CMD = re.compile(r"(stage2_search|stage3_core|stage3\.py|sealed_run|r1_run\.py\s+run|r1_gate\.py\s+run|g3_run|"
-                        r"look_event|stage2_look|SS_SET\s*=\s*['\"]?g1)", re.I)
+# RUNNING search code or opening events, not reading the source as text (rule 1 allows reading). The first version
+# matched any mention of a script name and flagged 12 harmless source reads in brief 001 (12 Nov 2026).
+_RUN = r"(stage2_search|stage3_core|stage3|sealed_run|r1_run|r1_gate|g3_run|stage2_look)"
+SEARCH_CMD = re.compile(r"python(\.exe)?['\"]?\s+(-\S+\s+)*['\"]?[^\s'\"]*" + _RUN + r"\.py"
+                        r"|-m\s+(pipeline\.)?" + _RUN + r"\b|\b(import|from)\s+(pipeline\.)?" + _RUN + r"\b"
+                        r"|look_event\s*\(|SS_SET\s*=\s*['\"]?g1", re.I)
 NUM = re.compile(r"(?<![\d.])(\d{6,10})(?![\d.])")
 ALLOW = {260128333, 172900988, 299096355, 158316612, 170348142, 164457525, 170344769}   # published systems (as push_star_check.py)
 

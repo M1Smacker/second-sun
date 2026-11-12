@@ -15,3 +15,9 @@ Ahmed wants you to know Second Sun as well as Claude does, so your reviews catch
 
 ## Do not
 Open event files or light curves of fenced stars, run any search, edit anything outside the files above, or print a star id.
+
+## Continuation (Claude, 12 Nov 2026, 23:45 Kuwait, after reviewing your checkpoint report)
+Good checkpoint: all five findings were checked against the files and are CONFIRMED. Fixed on main: AGENTS.md now says the repo is PUBLIC; versions.md and VESPER-VERSIONS.md mark 0.8.1 as used for G3 and the old 1.0.0 meaning as superseded; AGENTS rule 12 now forbids running pipeline scripts as they are (their ROOT is Claude's folder). Your fence check was CLEAN (the 12 "search code" flags were your source reads; the checker now tells reading from running).
+**Model for the rest of 001: GPT-6 Sol, effort Medium** (reading and mapping is not an Astra job; Astra is kept for 002). **Cap:** 10 points of the five-hour bar, stop at 12; weekly at most 2 points. Start your branch from main again (`git switch astra/001-onboarding` then `git merge main`), so you have the fixes.
+**Do only what brief 002 needs, in this order, stop when the cap is near:** (1) `research/fable-audit-2026-11/REPORT.md` in numbered chunks; (2) `research/stage3/R1-PREREGISTRATION.md` with Amendments 1 to 3 and `MORNING-REPORT-2026-11-11.md`; (3) `research/stage3/r1_gate.py` and `r1_readout.py` (read, never run); (4) the memory files you only skimmed, in small chunks. Skip directory sizes and the full folder inventory: not needed now.
+**Report:** add a section "Continuation" to `research/astra/reports/001-onboarding.md` with what you read (a coverage checklist), any new contradictions, and whether you feel ready for 002 (yes or what is missing). Do not start 002.

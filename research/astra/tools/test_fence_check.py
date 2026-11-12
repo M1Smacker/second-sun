@@ -57,6 +57,11 @@ with tempfile.TemporaryDirectory() as td:
             {"type": "commandExecution", "command": "Get-ChildItem D:\\second-sun-astra\\data\\astra; Get-ChildItem D:\\ss-external\\run1; type D:/second-sun/data/x.csv",
              "cwd": "D:\\second-sun-astra"},
             {"type": "fileChange", "changes": [{"path": "D:\\second-sun-astra\\research\\astra\\reports\\001-onboarding.md"}]}])), "CLEAN"),
+        ("reading frozen source as text (brief 001 style)", run(empty, db(td, "k", [
+            {"type": "commandExecution", "command": "python -c \"from pathlib import Path\nfor f in ['pipeline/stage2_search.py','pipeline/stage3_core.py']: print(Path(f).read_text()[:99])\"",
+             "cwd": "D:\\second-sun-astra"}])), "CLEAN"),
+        ("importing search code", run(empty, db(td, "l", [
+            {"type": "commandExecution", "command": "python -c \"import stage3_core; stage3_core.main()\"", "cwd": "D:\\second-sun-astra"}])), "NEEDS A LOOK"),
         ("git push in a command (history DB)", run(empty, db(td, "e", [
             {"type": "commandExecution", "command": "git push origin astra/001-x", "cwd": "D:\\second-sun-astra"}])), "NEEDS A LOOK"),
         ("edit inside Claude's folder", run(empty, db(td, "f", [
