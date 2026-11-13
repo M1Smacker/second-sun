@@ -16,10 +16,11 @@ Saturn-like planets (3,000 to 6,000 ppm, 6 to 12 h): **R = 0.27 (0.21 to 0.34)**
 Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**, outside windows **45**, not found **41**, mask **15**, no safe windows **7**, caught **61**.
 
 ## ACTIVE path now
-1. **Codex brief 005** (Ahmed's round, 13 Nov, after brief 004): part 0 the new combined baseline (binary-locked repeater plus FIX 91, both ADOPTED for the next version, not frozen); part A what the +53 real-side events are; part B the 5 to 10 day blind spot (node 1.5, T161); part C the windows (node 1.2). One report per part plus a combined report. Brief: `research/astra/inbox/005-three-diagnoses.md` on branch astra/005-three-diagnoses.
-2. **No freeze yet** (Ahmed): keep improving on the bench; one freeze later with a combined bench run and an outside audit.
+1. **Direction decision with Ahmed** after Codex 005 (merged 13 Nov): the measured ceilings say single-transit fixes alone probably cannot reach the 50% G1 bar (see Bench). Question round pending.
+2. **No freeze yet** (Ahmed).
 
-**Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]; with the binary-locked repeater (Codex 004, rule committed before results) R 33.3% [25.9, 40.1], 13 more Saturn-like test planets, none lost; background upside-down tier-1 70 to 85 (limit 86.9), real 123 to 176 (tracked cost, part A). FIX 91 alone: R unchanged, upside-down 70 to 68.
+**Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS).
+**Codex 005 findings:** A: the +59/-6 real-side change is NOT eclipse leftovers (54 of 56 classifiable sit 2+ eclipse widths away), spread over 33 stars, cause UNCERTAIN, no narrower lock supported. B (node 1.5): all 19 short-period misses are below SNR 7; depth survives detrending; higher noise in short binaries is LIKELY the cause (median best SNR 6.2 vs 9.3, scatter 3,070 vs 2,221 ppm); binary-phase origin UNCERTAIN; ceiling 7.9 points. C (node 1.2): of 52 window losses, 15 are true archive gaps, 21 lost at load, 16 have usable data before the window rule; ceiling 2.6 to 7.0 points. Needed for GO: +16.7 points and a lower bound of 40%; the two biggest ceilings together give 14.9 points even if perfect.
 
 ---
 
