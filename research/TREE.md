@@ -68,7 +68,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 
 **2.3 Data and downloads.** *Status: PARKED.* FIX 25 "sector 1751" files; FIX 72 MAST timeouts; T150 the Annex index; T151 machine-learning dataset.
 
-**2.4 Parked new systems.** *Status: PARKED (three-weeks rule of 3 Nov).* T119 Horizon, T120 Vigil, T121 Witness (no-go), T122 research, T123 OMS (deferred), T124 evidence index.
+**2.4 Parked new systems.** *Status: PARKED (three-weeks rule of 3 Nov).* T119 Horizon, T120 Vigil, T121 Witness (no-go), T122 research, T123 OMS (deferred), T124 evidence index. T163 eclipse-timing lane, feasibility first (IDEA, 14 Nov; parked until after G1).
 
 ## 3. How we prove it (honesty and statistics)
 **3.1 Statistics and controls.** *Status: NEXT for 86 and 87 (they touch how the next result is read).* FIX 86 power line test; FIX 87 gate PASS on empty bins; FIX 88 "floor" wording; PARKED: T101 scrambled control, T129 effective sample size, T117 evidence ladder, T118 negative controls, T54 funnel test.
