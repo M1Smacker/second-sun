@@ -16,7 +16,7 @@ Saturn-like planets (3,000 to 6,000 ppm, 6 to 12 h): **R = 0.27 (0.21 to 0.34)**
 Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**, outside windows **45**, not found **41**, mask **15**, no safe windows **7**, caught **61**.
 
 ## ACTIVE path now
-1. **Direction decision with Ahmed** after Codex 005 (merged 13 Nov): the measured ceilings say single-transit fixes alone probably cannot reach the 50% G1 bar (see Bench). Question round pending.
+1. **Codex brief 006, everything left on branch 1** (Ahmed's round, 13 Nov 23:30): P planet-level bench (decides G1 under the new `research/stage3/G1-PLANET-BAR.md`, written before any planet number) with a multi-transit combination design study; S short-binary noise fix (node 1.5); W window repair (node 1.2); M mask or support (node 1.4). Brief `research/astra/inbox/006-branch-one.md` on astra/006-branch-one, cap 40 weekly points of its bar.
 2. **No freeze yet** (Ahmed).
 
 **Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS).
