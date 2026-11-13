@@ -1,6 +1,7 @@
 ## LATEST (13 Nov 2026, evening Kuwait): T160 TREE HOME PAGE, DESIGN ROUND 1
 Ahmed ran the ChatGPT prompt (`research/tree/T160-image-prompt-for-chatgpt.md`); 10 mock-ups saved in `research/tree/mockups-2026-11-13/`. My reading: the three directions share the same parts, only the decoration differs; ChatGPT invented several DONE statuses. Round 1 answers: gold vine (A) on phone AND PC, statuses read from TREE.md automatically, slide-up card on phone and side panel on PC. Decisions file `research/tree/T160-DESIGN-DECISIONS.md`; T160 line updated; tree_check passes. Open for round 2: the vine squeezes the cards on a 375 px phone. Build still waits for the book phase (after G1 or Census).
-**Next:** Codex 003 report (Ahmed says continue), then the node 1.1 question round.
+**Codex follow-up written** (astra branch, `research/astra/inbox/003-followup-after-resume.md`, commit eee9f2c): no rerun; Codex writes the final report, why each stage loses (file and line, by Tree node), the 5 to 10 d blind spot, an honest reading of the multi-window study, and ranked Petrova 1.1 candidates. Ahmed gives it the line to start.
+**Next:** Codex 003 reading, then the node 1.1 question round.
 
 ## LATEST (13 Nov 2026, 21:36 Kuwait): THE TREE BUILT; QUEUES CLEANED AND GROUPED; CENSUS EXPLAINED
 **Ahmed (13 Nov):** we are in an audit, fix, audit loop with no direction; the queues are a pile; "everything should be a tree". Question round: **The Tree** (one map), **full clean-up first**, **T156 bench is the scoreboard**, name "The Tree"; the book home page becomes the interactive clickable Tree (T160, design in many rounds later). Also: report crucial results with my honest reading (memory feedback_explain_what_results_mean), decisions in question rounds (memory updated).
