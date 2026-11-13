@@ -21,3 +21,10 @@ The reference band is a choice made now, not derived from data: it brackets a ro
 
 ## What this bar is not
 It is not a claim about planets in the sky. It measures only our chain on our stars. A clean null with a known R is still the win (rule of 29 Oct 2026).
+
+## Result (added 13 Nov 2026, Kuwait 19:14; the rule above is unchanged)
+T156 finished (Codex's design and scripts; Codex stopped at its five-hour limit at 989 of 2,000 trials and Claude resumed the same frozen run with its resume option). 2,000 paired trials on 510 design-seen stars, 222 in the reference band.
+**R = 0.27, 95% star-clustered interval 0.21 to 0.34. Decision under this bar: FIX FIRST.** G1 waits; the largest loss stage gets fixed in a new Petrova version, tested, and T156 is rerun.
+Reference R per period bin: 5 to 10 d 0.13 (6 of 48, interval 0.04 to 0.23: a named blind spot), 10 to 14 d 0.26, 14 to 20 d 0.26, 20 to 27.4 d 0.40, over 27.4 d 0.33.
+Where all 2,000 dips stop (whole depth and duration range): no safe windows 59 (3%), centre outside every searched window 316 (16%), too little left after the eclipse mask 218 (11%), **not found at any tier 570 (29%)**, found but not tier 1 443 (22%), recovered 394 (20%). Bumps recovered 400: the two arms agree in every bin (paired 99% intervals include zero).
+Claude re-counted R, the reference counts per bin and the stage counts directly from the raw result journals: identical. Codex's final report and its reading of the losses are still to come.
