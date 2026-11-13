@@ -34,3 +34,5 @@ Write PREDICTED before you start (from the brief and earlier rows), ACTUAL from 
 
 | 2026-11-13 22:15 +03:00 | 003 follow-up START | Runtime model/effort unverified; Astra High requested | Predict 20 five-hour points / 4 weekly; conservative total ceiling weekly 57% | Baseline 15% / 49% | Follow-up | Existing journals only; distinguish planted-bump recovery from false alarms. |
 | 2026-11-13 22:20 +03:00 | 003 follow-up COMPLETE, pre-commit | Runtime model/effort unverified; Astra High requested | 20 five-hour / 4 weekly | 15 to 32% five-hour (+17), 49 to 52% weekly (+3); whole brief account span 32 to 52% (+20), includes unallocated overhead | Follow-up | Reference repeater-only release 13; planted bump recovery is not background false alarms. |
+
+| 2026-11-13 22:34 +03:00 | 004 START | GPT-6.1 Sol, effort unverified | 35 five-hour / 6 weekly predicted, 10 weekly cap | 41% five-hour / 53% weekly baseline, cap 63% weekly | One session | Freeze rule before outcomes. Use saved candidates and check old-tier parity. |
