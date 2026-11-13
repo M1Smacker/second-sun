@@ -50,13 +50,17 @@ def main(args):
                   dip_only=int(((dip==1)&(bump==0)&sel).sum()),bump_only=int(((dip==0)&(bump==1)&sel).sum()))
         item['loss_counts_dip']=[sum(r['bin']==k and r['dip']['stage']==j and not r['dip']['recovered'] for r in rows) for j in range(5)]
         item['diagnostic_inconsistencies']=sum(r['bin']==k and r['dip']['diagnostic_inconsistency'] for r in rows)
+        if usable: item['reference_ci95']=np.quantile(np.asarray(perbin)[:10000,k],[.025,.975]).tolist()
         if len(difference): item['paired_difference_ci99']=np.quantile(np.asarray(difference)[:,k],[.005,.995]).tolist()
         result['bins'].append(item)
     def split(key):
         values={}
         for i,r in enumerate(rows):
-            label=key(r); entry=values.setdefault(label,dict(n=0,dip=0,bump=0,reference_n=0,reference_dip=0))
+            label=key(r); entry=values.setdefault(label,dict(n=0,dip=0,bump=0,reference_n=0,reference_dip=0,reference_bins_n=[0]*5,reference_bins_dip=[0]*5))
             entry['n']+=1; entry['dip']+=int(dip[i]); entry['bump']+=int(bump[i]); entry['reference_n']+=int(ref[i]); entry['reference_dip']+=int(ref[i]*dip[i])
+            entry['reference_bins_n'][r['bin']]+=int(ref[i]); entry['reference_bins_dip'][r['bin']]+=int(ref[i]*dip[i])
+        for entry in values.values():
+            entry['R_equal_bins']=float(np.mean(np.array(entry['reference_bins_dip'])/entry['reference_bins_n'])) if all(entry['reference_bins_n']) else None
         return values
     result['splits']['product']=split(lambda r:r['product'])
     result['splits']['campaign']=split(lambda r:r['campaign'])
@@ -70,6 +74,10 @@ def main(args):
     inside=np.array([r['dip']['flags'][1] for r in rows])
     result['conditional_window_rate']=float(dip[inside].mean()) if inside.any() else None
     result['conditional_window_reference_rate']=float(dip[inside&ref].mean()) if (inside&ref).any() else None
+    conditional=[dip[inside&ref&(b==k)].mean() if (inside&ref&(b==k)).any() else np.nan for k in range(5)]
+    result['R_c_equal_bins']=float(np.mean(conditional)) if np.isfinite(conditional).all() else None
+    result['distinct_groups']=len({(r['campaign'],r['star'],r['sector']) for r in rows})
+    result['preexisting_dip']=sum(r['dip']['preexisting'] for r in rows)
     (OUT/f'{args.label}-summary.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
     print(json.dumps(result,indent=2))
 
