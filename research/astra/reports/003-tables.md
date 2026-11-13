@@ -113,4 +113,3 @@ No new settings were run. Agreement is a post hoc diagnostic, not a validated se
 | brightness | 11-12 | 0/7 | 23/50 |
 | brightness | 12+ | 1/15 | 4/34 |
 | brightness | <11 | 5/26 | 28/90 |
-

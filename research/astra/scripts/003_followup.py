@@ -53,6 +53,6 @@ for key,fun in [('product',lambda r:r['product']),('campaign',lambda r:r['campai
         a=[r for r in rr if r['bin']==0 and fun(r)==val];b=[r for r in rr if r['bin']!=0 and fun(r)==val]
         context.append([key,val,f"{sum(r['dip']['recovered'] for r in a)}/{len(a)}",f"{sum(r['dip']['recovered'] for r in b)}/{len(b)}"])
 table(['Split','Group','5 to 10 d recovery','Other bins pooled'],context)
-(ROOT/'research/astra/reports/003-tables.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+(ROOT/'research/astra/reports/003-tables.md').write_text('\n'.join(lines).rstrip()+'\n',encoding='utf-8')
 result=dict(R=rate,reference_n=len(rr),reference_losses=losses,study=study,short_context=context)
 (OUT/'followup-counts.json').write_text(json.dumps(result,indent=2),encoding='utf-8');print(json.dumps(result,indent=2))
