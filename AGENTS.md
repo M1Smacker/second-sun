@@ -96,3 +96,6 @@ Keep this file under 32 KB (Codex reads only the first 32 KB of project instruct
 
 ## 9. Definition of done for any brief
 A report in `research/astra/reports/NNN-<name>.md` (format in the mailbox skill) with: the plain verdict, findings with labels and evidence, what you did NOT check, STOP SIGNS hit, QUEUE PROPOSALS, IDEAS, questions for Ahmed, your usage row, and the branch name if you changed files. Scripts you wrote live in `research/astra/scripts/` and run with one command. Then stop and tell Ahmed in one or two plain lines that the report is ready for Claude.
+
+## 13. The Tree (Ahmed, 13 Nov 2026)
+`research/TREE.md` is the one map of everything. Read its ACTIVE path before you start a brief. Every bug or idea you report names its Tree node (for example "node 1.1"); Claude files it there. A Petrova change counts only if the T156 bench shows more planets reaching tier 1 without more upside-down alarms.
