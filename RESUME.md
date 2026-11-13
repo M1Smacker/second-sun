@@ -1,4 +1,4 @@
-## LATEST (14 Nov 2026, 00:35 Kuwait): WHY ONLY TRANSITS; T163 ECLIPSE-TIMING IDEA FILED
+## LATEST (14 Nov 2026, 00:25 Kuwait): WHY ONLY TRANSITS; T163 ECLIPSE-TIMING IDEA FILED
 Ahmed asked why we use only transits, whether the filter can have two methods, and why 14 vs 12. Answer: 14 transiting planets in 12 systems (Kepler-47 has three). RV, imaging, microlensing and pulsar timing need instruments or data we do not have (spectrographs, adaptive optics, bulge surveys, radio); eclipse timing works on TESS photometry we already hold, but for sun-like detached binaries it is sensitive mainly to brown dwarfs or massive planets on long orbits, and most eclipse-timing planet claims failed to predict new eclipses (Pulley et al. 2022, arXiv 2206.06919, search summary). Filed T163 (eclipse-timing lane, feasibility first, parked until after G1, node 2.4); FIX 27 (timing as a second key for transit leads) already exists. Codex five-hour bar out; Ahmed waits about 3 hours.
 
 ## LATEST (14 Nov 2026, 00:20 Kuwait): EVERY KNOWN CIRCUMBINARY PLANET LISTED; NO-IDEAS-BY-DEFAULT RULE
