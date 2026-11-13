@@ -25,7 +25,7 @@ def run(args):
     import stage3 as S3
     import stage2_search as S2
     import stage3_core as C
-    
+
     import petrova_mask as PM
     import sap_twin as T
     name=args.campaign
