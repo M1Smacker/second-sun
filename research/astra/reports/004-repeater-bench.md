@@ -1,6 +1,6 @@
 # 004 repeater bench, Tree node 1.1 (GPT-6.1 Sol, effort unverified)
 
-**Verdict: pending.** Branch `astra/004-repeater-bench`.
+**Repeater bench: PASS on all three gates. R 27.47% to 33.34% [25.88%, 40.10%]. Background flips 70 to 85. FIX 91 pending.** Branch `astra/004-repeater-bench`.
 
 ## Part 1: frozen rule
 
@@ -11,3 +11,7 @@ Replay the frozen tier rules with only the chosen flag changed, including re-eva
 **Acceptance rule (Claude, written before any result; do not change it):** the change counts only if (1) reference-band R rises; (2) the background upside-down tier-1 count does not rise by more than its counting error (new count at most old + 2 x sqrt(old + 1)); (3) planted-bump recovery stays within the paired 99% intervals of dip recovery per bin, as in 003. Report each condition as PASS or FAIL. Anything else is not adopted.
 
 FIX 91 is evaluated alone, with condition (1) replaced by R does not fall. Saved centres are rounded to 0.0001 day. A coincidence decision inside the resulting uncertainty band around the frozen 0.3-day boundary must be resolved from saved information or treated as unverified. No threshold changes. Use 10,000 whole-star bootstrap draws, seeded as in 003. Condition (3) uses per-bin paired differences with 99% intervals, as in 003.
+
+## Part 2 checkpoint
+
+CONFIRMED by saved-event replay. All 37,105 stored pre-union event tiers and 4,000 saved final recovery decisions agree with the original rule, across 14,835 baseline group files and 2,000 paired trials. Old R and its bootstrap interval reproduce 003. Reference dips gained 13, lost zero. Across all depths, dips 394 to 496 and bumps 400 to 483. Background real 123 to 176, flips 70 to 85. The counting allowance is 86.85 and each paired 99% interval includes zero. Full tables follow in the final report.
