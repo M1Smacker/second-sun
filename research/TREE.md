@@ -58,7 +58,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 - T31 depth guard and T33 flare shape (accepted in the 0.9 study, check whether Petrova 1.0 carries them); T32 near-zero noise guard; T35 the 3 h box; FIX 19, 21, 22 (SAP and QLP flux halves).
 
 **1.7 The scoreboard and its tools.** *Status: DONE for now (T156 is the bench).*
-- T156 bench (rerun after every candidate change); **AGREED by Ahmed (14 Nov): after brief 006 and its fixes, BEFORE G1 (G1 is one shot): T109 known-planet check** (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
+- T156 bench (rerun after every candidate change); **AGREED by Ahmed (14 Nov): after brief 006 and its fixes, BEFORE G1 (G1 is one shot): T109 known-planet check** (targets listed in `research/stage3/cbp-census-2026-11-14.md`: 12 transiting systems, all with free TESS data, none in fence A or B; first TOI-1338 and TIC 172900988, whose planets transit in TESS data; the 10 Kepler systems only where their planets are predicted to transit inside TESS sectors, UNCERTAIN until checked) (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
 
 ## 2. Where we look (the fuel)
 **2.1 Census: our own binary list from TESS after sector 26** (about 1,400 good targets, about 1 to 2 planets expected at Kepler's rate). *Status: WAITS on branch 1 (no new fuel into a 1-in-4 engine).*
