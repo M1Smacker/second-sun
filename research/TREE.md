@@ -23,6 +23,15 @@ Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**,
 **Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS).
 **Codex 005 findings:** A: the +59/-6 real-side change is NOT eclipse leftovers (54 of 56 classifiable sit 2+ eclipse widths away), spread over 33 stars, cause UNCERTAIN, no narrower lock supported. B (node 1.5): all 19 short-period misses are below SNR 7; depth survives detrending; higher noise in short binaries is LIKELY the cause (median best SNR 6.2 vs 9.3, scatter 3,070 vs 2,221 ppm); binary-phase origin UNCERTAIN; ceiling 7.9 points. C (node 1.2): of 52 window losses, 15 are true archive gaps, 21 lost at load, 16 have usable data before the window rule; ceiling 2.6 to 7.0 points. Needed for GO: +16.7 points and a lower bound of 40%; the two biggest ceilings together give 14.9 points even if perfect.
 
+## Road ahead (Claude's estimate, 13 Nov 2026; Codex rounds counted, not promised)
+1. **Brief 006** (running next): planet-level P decides G1. One round.
+2. **One or two fix rounds** on what 006 finds (likely the multi-transit combination, if it helps). One to two rounds.
+3. **T109 real known-planet check** (synthetic bench against real planets). Can ride along with step 2.
+4. **Freeze Petrova 1.1** (all accepted fixes into the real code, two proofs, outside audit by Fable or Codex). One round.
+5. **G1 preparation and the one-shot G1 search**, then the plain verdict. One to two rounds.
+6. **Census** (new fuel, about 1,400 stars), then the learning rebuild and the Tree home page.
+About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace if both meters allow.
+
 ---
 
 ## 1. How well we see (Petrova, the engine)
@@ -45,7 +54,7 @@ Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**,
 - T31 depth guard and T33 flare shape (accepted in the 0.9 study, check whether Petrova 1.0 carries them); T32 near-zero noise guard; T35 the 3 h box; FIX 19, 21, 22 (SAP and QLP flux halves).
 
 **1.7 The scoreboard and its tools.** *Status: DONE for now (T156 is the bench).*
-- T156 bench (rerun after every candidate change); PARKED: T36 cross-sector plant harness, T109 larger known-planet test (after Petrova 1.1).
+- T156 bench (rerun after every candidate change); **NEXT after 006: T109 known-planet check** (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
 
 ## 2. Where we look (the fuel)
 **2.1 Census: our own binary list from TESS after sector 26** (about 1,400 good targets, about 1 to 2 planets expected at Kepler's rate). *Status: WAITS on branch 1 (no new fuel into a 1-in-4 engine).*
