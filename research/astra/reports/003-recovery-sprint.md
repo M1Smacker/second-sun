@@ -3,7 +3,9 @@
 **Plain verdict: NOT MEASURED. Design frozen before any injection trial.** Branch `astra/003-recovery-sprint`. No frozen source or decision bar is edited.
 
 ## Bugs found
-None established yet. Missing evidence is not silently replaced with an assumption.
+1. **CONFIRMED, unequal opposite-sign coincidence flag.** pipeline/stage2_search.py:194 passes the opposite-arm events into the real-arm veto; line 195 passes an empty list into the flipped-arm veto. pipeline/detect_v2.py:274-277 creates the coincidence flag; pipeline/stage3_core.py:65-67 reads it and :254-255 makes it tier 2. 003_checks.py reproduces the two exact call paths on synthetic events: dip tier 2, corresponding bump tier 1B. This establishes a structural asymmetry, not its population frequency or the cause of any measured aggregate difference. Fix proposal: Claude should make opposite-sign coincidence handling symmetric in a new version and price both sensitivity and false alarms. Frozen source remains unchanged.
+
+2. **CONFIRMED, harness bookkeeping issues fixed.** Supervisor progress initially could inherit stale timing-stage counts at full-run startup; it now initializes each worker's counter before launch. The metadata-only feasibility script initially failed on commented CSV headers; it now skips comment lines and ran successfully. Neither failure changed injected draws, recovery thresholds or stored events. Static syntax checks are separate from runtime evidence.
 
 ## Part 1: frozen design
 
