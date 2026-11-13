@@ -9,3 +9,5 @@ book/site/
 site/
 labs/out/
 research/audit-2026-10-23/*.pkl
+# Claude's private memory copies for Codex: local only, never pushed (repo is public)
+research/astra/claude-memory/

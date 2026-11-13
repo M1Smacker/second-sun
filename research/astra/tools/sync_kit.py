@@ -22,7 +22,10 @@ HOME = Path.home()
 MEM_SRC = HOME / ".claude" / "projects" / "D--second-sun" / "memory"
 AUD_SRC = HOME / ".claude" / "skills" / "second-sun-auditor"
 TAKE_SRC = ROOT / ".claude" / "skills" / "my-take" / "SKILL.md"
-MEM_DST = ROOT / "research" / "astra" / "claude-memory"
+# Memory copies are PRIVATE and never in git (the repo is public; cleaned from history 13 Nov 2026).
+# They go straight into Codex's own worktree, where .gitignore keeps them untracked.
+ASTRA = ROOT.parent / "second-sun-astra"
+MEM_DST = (ASTRA if ASTRA.exists() else ROOT) / "research" / "astra" / "claude-memory"
 SK_DST = ROOT / ".agents" / "skills"
 SECRET = re.compile(rb"sk-[A-Za-z0-9]{16,}|AIza[0-9A-Za-z_-]{30,}|ghp_[A-Za-z0-9]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY|"
                     rb"(api[_-]?key|token|password)\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{12,}", re.I)

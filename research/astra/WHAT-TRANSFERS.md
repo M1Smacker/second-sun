@@ -6,7 +6,7 @@ Method: I listed everything Claude Code uses on Second Sun (instructions, memory
 | What Claude uses | How Codex gets it | Status |
 |---|---|---|
 | `CLAUDE.md` standing rules | merged into `AGENTS.md` (Codex reads it every session), plus Codex may read `CLAUDE.md` itself | COPIED |
-| Claude's private memory (70 files: Ahmed's rules, decisions, lessons) | `research/astra/claude-memory/` via `tools/sync_kit.py` | COPIED (Claude reruns the sync after changes; `--check` catches drift) |
+| Claude's private memory (70 files: Ahmed's rules, decisions, lessons) | `research/astra/claude-memory/` in the Codex worktree only (gitignored, never committed) via `tools/sync_kit.py` | COPIED (Claude reruns the sync after changes; `--check` catches drift) |
 | `second-sun-auditor` skill (Fable audit lessons, stop signs, worked bugs) | `.agents/skills/second-sun-auditor/` with a Codex reading note on top | COPIED |
 | `my-take` skill (the opinion format Ahmed approved) | `.agents/skills/my-take/` | COPIED |
 | Research blueprint, research-session numbering | `.agents/skills/second-sun-research/` (points to `research/RESEARCH-BLUEPRINT.md`), stints AS-NNN | POINTED |
