@@ -37,3 +37,6 @@ Write PREDICTED before you start (from the brief and earlier rows), ACTUAL from 
 
 | 2026-11-13 22:34 +03:00 | 004 START | GPT-6.1 Sol, effort unverified | 35 five-hour / 6 weekly predicted, 10 weekly cap | 41% five-hour / 53% weekly baseline, cap 63% weekly | One session | Freeze rule before outcomes. Use saved candidates and check old-tier parity. |
 | 2026-11-13 22:48 +03:00 | 004 complete, pre-commit | GPT-6.1 Sol, effort unverified | 35 five-hour / 6 weekly, cap 10 | 41 to 53% five-hour, 53 to 55% weekly | One session | Stored forward coincidence flags can resolve rounded-centre boundary cases. |
+
+| 2026-11-13 23:01 +03:00 | 005 START | GPT-6.1 Sol, effort unverified | Weekly predicted 1/3/5/4/1 for 0/A/B/C/report, caps 1/4/7/6/2 | 54% five-hour / 55% weekly, total ceiling 75% | Run mode | Parallelize independent saved replay and preregistered diagnostic measurement within machine cap. |
+| 2026-11-13 23:16 +03:00 | 005 complete, pre-report snapshot | GPT-6.1 Sol, effort unverified | Weekly predicted 1/3/5/4/1, cap 20 total | 54 to 71% five-hour, 55 to 58% weekly, approximately +3 weekly. Parallel parts not individually attributable. | Run mode | Restore SAP suffix from saved group role and verify event parity before interpretation. |
