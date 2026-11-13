@@ -39,3 +39,7 @@ None active at design freeze. No extra build outside the brief. No question for 
 
 ## Usage
 Baseline 5% five-hour / 32% weekly. Part 1 predicted 12 weekly points within its 18-point guide; total brief cap 25 points. Actual recorded after work. Skills: auditor, mailbox, research.
+# Timing and full-run launch
+
+CONFIRMED: first 20 paired trials completed, with zero-injection identity on all 20 distinct groups. Mean paired-trial processing time 4.992 seconds, median 4.130 seconds, summed worker processing 99.839 seconds. Campaign startup added 40.729 and 12.953 seconds; these are separate from per-trial timing. This permits the originally planned 2,000 pairs, 400 per period bin. Four workers with two Numba threads each are planned for the remaining 1,980 pairs, approximately 42 minutes of ideally balanced processing at the measured mean, plus startup and workload imbalance. This estimate controls runtime only. No recovery number changed the sample or thresholds.
+

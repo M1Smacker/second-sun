@@ -12,6 +12,9 @@ def main(args):
     assert len(configurations)<=4
     processes=[]; streams=[]
     for campaign,slot,slots in configurations:
+        progress_path=OUT/'workers'/f'{campaign}-{slot}'/'progress.json'
+        progress_path.parent.mkdir(parents=True,exist_ok=True)
+        progress_path.write_text(json.dumps(dict(worker=f'{campaign}-{slot}',status='starting',trials_done=0,trials_planned=0)),encoding='utf-8')
         label=f'{args.start}-{args.limit}-{campaign}-{slot}'
         stdout=(OUT/f'{label}.log').open('w',encoding='utf-8'); stderr=(OUT/f'{label}-error.log').open('w',encoding='utf-8')
         streams.extend([stdout,stderr])
