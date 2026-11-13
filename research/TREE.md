@@ -7,6 +7,7 @@
 2. **Biggest loss first.** Branch 1 nodes are ordered by how many planets they lose on the scoreboard.
 3. **Outside audits (Codex, Fable) only at a version freeze**, not after every fix. Bugs found between freezes are filed on their node and wait their turn unless they break a running result.
 4. **One active path at a time.** A new finding goes on its node; it does not jump the queue unless it is bigger than the active loss.
+5. **Accepted fixes wait on the bench (Ahmed, 13 Nov 2026).** A fix that passes stays in the bench copies; all accepted fixes enter the real Petrova code together at the freeze, each behind a switch, with two proofs then: switches off reproduce 1.0.0 exactly, switches on reproduce the bench numbers. Until then every bench number is a copy-based measurement.
 
 ## Goal
 **Find a circumbinary planet in TESS data, or prove a clean, measured null.** Both are wins (29 Oct 2026).
