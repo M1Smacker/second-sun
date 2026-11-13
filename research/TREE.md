@@ -16,7 +16,7 @@ Saturn-like planets (3,000 to 6,000 ppm, 6 to 12 h): **R = 0.27 (0.21 to 0.34)**
 Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**, outside windows **45**, not found **41**, mask **15**, no safe windows **7**, caught **61**.
 
 ## ACTIVE path now
-1. **Node 1.1** (Codex 003 report merged 13 Nov): Claude designs one candidate, a repeater test that counts only repeats tied to the binary's own period instead of every same-kind event; priced on the same 2,000 trials and the upside-down control. Ahmed decides the order in a question round.
+1. **Node 1.1, Codex brief 004** (Ahmed's round, 13 Nov: repeater first, one change per bench run, Codex does all of it on a lighter model, FIX 91 priced separately): Codex writes one smarter repeater rule before any result, re-tiers the saved T156 trials and the un-injected design groups, and applies the acceptance rule (R up, upside-down background within counting error, arms agree). Brief: `research/astra/inbox/004-repeater-bench.md` on branch astra/004-repeater-bench.
 
 ---
 
