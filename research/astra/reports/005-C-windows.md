@@ -1,0 +1,3 @@
+# 005 C. Window losses, node 1.2 (GPT-6.1 Sol)
+
+**Verdict pending.** Saved T156 statuses determine the 52 reference window losses. Saved traces lack pre-quality and pre-window cadence arrays. Predeclared targeted diagnostic reads only these design files and replays preparation without detection. Compare recorded finite TIME and frozen quality-selected raw timestamps to the same 1.5 cadence centre test, then reconstruct own-SPOC/neighbour coverage. Use available archived quality and saved instrument timing to count associations, without calling an exclusion safe or harmful solely from its flag. No changes to windows or masks in this measurement.
