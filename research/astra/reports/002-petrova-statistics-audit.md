@@ -185,3 +185,26 @@ CONFIRMED: `002_mask_grid.py` ran 18 cases (periods 5,10,14,20,30,50 d; 1,2,4 se
 CONFIRMED: synthetic veto scenarios at periods 12.9,13,20 d preserve real/flip label symmetry. Single-sector events survive. At 13 and 20 d two same-phase sectors veto both events; adding two unrelated-phase event sectors changes the same pair to no veto. Adding a third matching phase restores veto for the matching three. `petrova_mask.py:232` counts other sectors WITH EVENTS in the arm, not all observed sectors, and lowers NMIN to one when fewer than three other event-bearing sectors exist. The module description states NMIN other sectors without that exception. Documentation mismatch CONFIRMED; scientific harm NOT TESTED. A denser event list can change the threshold without changing the original matching pair. Proposed FIX: document actual rule and test whether event-dependent availability is intended before any version change.
 
 Static call-site check: stage2_search applies one preparation to both detection arms; recovered-light definition uses the union of old-mask removals on f and 2-f. The primary offset is nevertheless fitted to low real flux and is reused by the veto; complete end-to-end inversion invariance is not proven. No independent 0.8.1 source fixture/replay has yet been built; the requested three real-light off-switch comparisons remain NOT TESTED. This is a Part A checkpoint, not completion of that requirement. No frozen code was edited.
+
+## Part D design, before inspection
+
+Use only design-seen stored development primary tier-1 PDCSAP-half recovered events, both arms, SNR>=7. Copy authorized groups into an isolated private fixture and apply the unchanged copied union/tiering code. No event-level values are printed. Reject bands at catalogue primary and secondary eclipse centers, radius k times their FULL catalogue duration for k=0,0.75,1,1.5,2. Primary epoch remains the catalogue epoch, matching window placement; secondary uses catalogue phase or the production fallback. Report counts by period and k, catalogue-missing counts separately. These are exploratory design-star diagnostics, not a revised verdict. Without phase-dependent kept-time exposure, counts cannot establish an excess rate or causal explanation.
+
+## Part C bounded pilot design, before raw-light runs
+
+After SAP parity, select the first sorted eligible G3 design group in each of the five catalogue period bins, irrespective of its events or preparation status. One fixed-seed uniform time over the union of loaded product time ranges per group, no exclusion of gaps or eclipses. Inject an 8-hour trapezoid of 4000 ppm into loaded flux before windows, eclipse masks and detrending, in separate dip and bump trials. Keep loader quality-mask losses outside the stated denominator. This 10-trial pilot is a plumbing check, not a precision completeness estimate or a reproduction of the filed K12/K25 population. Check zero-injection primary and SAP event identity first; evaluate union/tiering in the full design-only stored context. Mark pre-existing event matches separately, never count them as recovered injections. Do not change the chosen times or sample after outcomes. Expand only after pilot is correct and a measured runtime permits the two-hour bound.
+
+## Part D results
+
+CONFIRMED: `002_phase.py g3` and `g2` copied only design-member groups into private fixtures and ran the copied union/tiering code. Baseline recovered PDCSAP-half tier-1 counts reproduce the filed references: G3 31/8, G2 64/31 (real/flip). G3 has zero missing catalogue-width events; G2 has seven, all real. No individual event values are printed or committed.
+
+| Campaign, usable catalogue only | k=0 | k=0.75 | k=1 | k=1.5 | k=2 |
+|---|---:|---:|---:|---:|---:|
+| G3 real/flip | 31/8 | 31/8 | 31/8 | 30/8 | 26/7 |
+| G2 real/flip | 57/31 | 57/31 | 57/31 | 53/31 | 51/31 |
+
+At k=2 the per-period-bin survivors, real/flip, are G3: 3/3, 4/3, 10/1, 4/0, 5/0; G2: 5/4, 1/4, 14/3, 4/5, 27/15. Bin order is 5-10,10-14,14-20,20-27.4,>27.4 days. Counts remain imbalanced; removing these near-eclipse bands does NOT make the excess vanish. This does not rule out broad eclipse residuals, epoch errors or other binary effects. No exposure-normalized phase rate or significance claim is warranted from these counts. The unshifted catalogue coordinates match the actual window placement; drift/offset uncertainty was not scanned. No k was chosen as a new filter setting. Missing-width events were excluded from band comparisons, not silently counted as passing. Full results: data/astra/002/phase-g2.json and phase-g3.json.
+
+QUEUE PROPOSAL: BUILD test a proposed phase key on synthetic eccentric/epoch-error binaries and raw injected transits before any 1.1.0 decision; this experiment does not justify simply widening catalogue exclusions. A width/ephemeris availability audit is also needed before relying on that key. No possible-planet inference is made. No run-mode stop applies. Part D complete as a descriptive phase-band diagnostic; causal explanation remains NOT TESTED.
+
+Part A addendum: the one-partner exception is also present in the original C2 prototype (c2_event_veto.py:26); it was carried forward, not introduced by the helper. Therefore this finding is a documentation/availability-definition concern, not proof of a regression.
