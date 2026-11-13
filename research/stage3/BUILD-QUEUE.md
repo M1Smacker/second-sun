@@ -79,6 +79,8 @@ Closed today (text in the archive): T56 a working rule, kept in memory; nothing 
 - [ ] **T127. Wider novelty check for leads.** Lead stage 4 uses only `toi.csv` and `cbp.csv`; add ExoFOP CTOI, TCE tables, NASA Exoplanet Archive, SIMBAD, VizieR, ADS, arXiv and Planet Hunters, and a dated UTC sentence. Cost: about 0.3. Who: Claude. *From RS-007, `rabtsevich-deep-2026-11-03.md`, 3 Nov 2026; waits for Ahmed's go like the rest of the queue.*
 - [ ] **T60. Rabtsevich / TIC 4206066:** report the TESS follow-up outcome honestly after 26 Nov 2026 (memory: reference_rabtsevich_tic4206066). Cost: about 0.2. Who: Claude. Date-driven, not research-driven.
 
+- [ ] **T162. Exploratory lane for sub-bar events [Ahmed's Rabtsevich question, RS-023, 13 Nov 2026; IDEA, NOT DECIDED].** Rabtsevich found his candidate by examining two signals just below his shortlist threshold post hoc, then tested them on new data. Our sealed runs never look below the bar. Possible: a separate, clearly labelled exploratory list of near-bar events, never counted in a verdict, confirmed only on fresh sectors under the lead rules (same idea as Vigil, T120, and T125). Needs a rule written before any use. Node 3.3.
+
 ## 3.4 Going public later
 - [ ] **T108. Go-professional playbook page** (private draft): ExoFOP takes only published candidates, so the route is a collaborator or a refereed paper first; what leaves the public book at that moment (Q14). Cost: about 0.5. Who: Claude, Ahmed decides. Kind: B. [WO-13]
 - [ ] **T149. Is the upside-down asymmetry result new? [WO-19].** T127-style literature check of the 1.3 to 2.5 times figure in symmetry*.txt (re-derive it first). Cost: about 0.5. Who: Claude.

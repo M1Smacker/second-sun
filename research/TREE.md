@@ -54,7 +54,7 @@ About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace 
 - T31 depth guard and T33 flare shape (accepted in the 0.9 study, check whether Petrova 1.0 carries them); T32 near-zero noise guard; T35 the 3 h box; FIX 19, 21, 22 (SAP and QLP flux halves).
 
 **1.7 The scoreboard and its tools.** *Status: DONE for now (T156 is the bench).*
-- T156 bench (rerun after every candidate change); **NEXT after 006: T109 known-planet check** (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
+- T156 bench (rerun after every candidate change); **NEXT after 006, BEFORE G1 (G1 is one shot): T109 known-planet check** (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
 
 ## 2. Where we look (the fuel)
 **2.1 Census: our own binary list from TESS after sector 26** (about 1,400 good targets, about 1 to 2 planets expected at Kepler's rate). *Status: WAITS on branch 1 (no new fuel into a 1-in-4 engine).*
@@ -71,7 +71,7 @@ About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace 
 
 **3.2 Records, reproducibility and tests.** *Status: PARKED.* FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T130 number-to-file audit; T52 settings read from the run.
 
-**3.3 Leads: how a dip becomes a claim.** *Status: PARKED until a lead exists.* FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven, after 26 Nov 2026).
+**3.3 Leads: how a dip becomes a claim.** *Status: PARKED until a lead exists.* FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven, after 26 Nov 2026). T162 exploratory lane for sub-bar events (idea, RS-023).
 
 **3.4 Going public later.** *Status: PARKED.* T108 playbook; T149 is our upside-down result new.
 
