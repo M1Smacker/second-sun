@@ -1,6 +1,14 @@
 # 003 recovery sprint (Codex; runtime model/effort unverified, Astra High requested for judgement)
 
-**Plain verdict: NOT MEASURED. Design frozen before any injection trial.** Branch `astra/003-recovery-sprint`. No frozen source or decision bar is edited.
+**Plain verdict: INCOMPLETE, one confirmed pipeline control-path bug; no valid final R yet.** Branch `astra/003-recovery-sprint`. No frozen source or decision bar is edited.
+
+**RESUME HERE, 13 Nov 2026, 17:25 Kuwait:** the five-hour meter was observed at 93%, above the brief's near-90% stop threshold. Last progress snapshot: 959/2000 paired trials. A budget STOP.json was written so workers finish their current pair and stop; the final checkpoint count is recorded below. The automatic follow-on launcher also stops on this marker. No identity mismatch or fenced access was reported. Do not interpret this unfinished, campaign-unbalanced prefix as R or apply the decision bar. The requested sprint is not complete.
+
+After the usage window resets: inspect STOP.json and progress, confirm the marker is only the budget stop, archive that marker within data/astra/003, then resume the same four worker partitions with `003_supervise.py --start 20 --limit 2000 --g2 2 --g3 2 --resume`. Use the approved Python with -I -B, hidden background process, new private log filenames, and check existing Python load first. Completed trial IDs are skipped; source identity is rechecked for remaining groups. If other heavy jobs are present, sequence partitions instead of launching all four. Restart 003_finishrun.py to summarize all 2000 pairs, run G2 flag attribution, then run the fixed 1/3-day variants with the 2-day baseline. G3 attribution is already complete. Resume support has syntax verification only, no resumed runtime test yet. Inspect for any unfinished trial directories if a process did not stop cleanly, never treat cached output as a fresh run.
+
+Remaining deliverables: full-sample R and bootstrap interval; five-bin losses and depth/duration/product/era tables; paired control test; completed multi-window gain; final recommendations against the decision bar; final usage and handoff. Supporting method/licence, published-reference and historical-number notes are committed as 003-methods.md, 003-published-reference.md and 003-history.md. Their historical values were checked against filed notes, not rerun.
+
+Final checkpoint CONFIRMED: supervisor status stopped, 989 unique completed paired trials, no duplicate trial IDs; period-bin counts 219,238,201,179,152. The stop marker kind is budget. Follow-on launcher exited without starting the alternate-window study. Original source checks passed for completed groups; no claim is made for the uncompleted groups. All 12 sprint scripts parse successfully. Resume execution and the alternate-window path remain NOT TESTED. The 200 synthetic bootstrap aggregation checks passed, and the opposite-sign veto counterexample ran. Producer checks are not independent review.
 
 ## Bugs found
 1. **CONFIRMED, unequal opposite-sign coincidence flag.** pipeline/stage2_search.py:194 passes the opposite-arm events into the real-arm veto; line 195 passes an empty list into the flipped-arm veto. pipeline/detect_v2.py:274-277 creates the coincidence flag; pipeline/stage3_core.py:65-67 reads it and :254-255 makes it tier 2. 003_checks.py reproduces the two exact call paths on synthetic events: dip tier 2, corresponding bump tier 1B. This establishes a structural asymmetry, not its population frequency or the cause of any measured aggregate difference. Fix proposal: Claude should make opposite-sign coincidence handling symmetric in a new version and price both sensitivity and false alarms. Frozen source remains unchanged.
@@ -34,10 +42,14 @@ NASA Exoplanet Archive composite-table API returned 14 transiting circumbinary p
 Use only Part 1 failures before detection for the multi-window design study. Preserve their original masks, windows and all downstream rules; compare the union of detection candidates from independently detrended 1,2,3-day windows against the frozen route, with the same bump controls and matching rules. Do not claim this repairs absent windows: those remain unavailable. This is a minimal multi-window idea, not a faithful implementation or benchmark of all mono-cbp. Diagnose stage-specific losses before choosing any production proposal. STANLEY is a feasibility note only, no implementation or installs.
 
 ## What I did NOT check
-No real injection or recovery outcome has been inspected at this design commit. No claim of a calibrated rate, published-planet coverage, external-method performance or G1 readiness.
+At the original design commit, no real injection result had been inspected. At this checkpoint, timing outcomes and G3 loss attribution have been read, but the final fixed sample is incomplete. No calibrated final rate, alternate-window performance, G1 readiness, independent code review, or local STANLEY runtime is established. No package was installed, no frozen source changed, no outward write made.
 
 ## STOP SIGNS / QUEUE PROPOSALS / IDEAS / Questions
-None active at design freeze. No extra build outside the brief. No question for Ahmed is needed to execute the fixed experiment.
+STOP SIGNS: five-hour budget threshold, observed at 93%; workers asked to stop after their active pair. This overshot the near-90% target because the meter was not checked frequently enough during the wait. No identity mismatch was observed at checkpoint.
+
+QUEUE PROPOSALS: FIX, asymmetric opposite-sign coincidence flag, reproduced by 003_checks.py, future-version change for Claude. BUILD, finish this already authorized T156/T158 sprint after reset. No additional unasked build. IDEAS: none beyond this brief. Disagreements with Claude: no frozen decision was changed; the code asymmetry is evidence for review, not a production patch. Questions for Ahmed: none required.
+
+What I would do next and why: complete the unchanged 2000-pair sample and fixed study after the usage reset. This is required before applying the filed G1 bar; Claude's eventual review remains necessary before any filter change.
 
 ## Usage
 Baseline 5% five-hour / 32% weekly. Part 1 predicted 12 weekly points within its 18-point guide; total brief cap 25 points. Actual recorded after work. Skills: auditor, mailbox, research.

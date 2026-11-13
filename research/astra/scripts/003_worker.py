@@ -43,6 +43,11 @@ def run(args):
     if study is not None:
         selected=set(json.loads((H.OUT/'study-selection.json').read_text(encoding='utf-8'))['trials'])
         jobs=[r for r in jobs if r['trial'] in selected]
+    if getattr(args,'resume',False):
+        completed=set()
+        for old_journal in folder.glob('results-*.jsonl'):
+            completed.update(json.loads(line)['trial'] for line in old_journal.read_text(encoding='utf-8').splitlines())
+        jobs=[r for r in jobs if r['trial'] not in completed]
     update('context',0,len(jobs)); start=time.perf_counter()
     best=pd.read_csv(C.BEST)[['tic','sector','product']].rename(columns={'product':'best'})
     events=[]
@@ -91,7 +96,7 @@ def run(args):
         prepared[key]=(d,m); return d,m
     S2.load=load; S2.prepare=prepare; S2.in_windows=windows; PM.mask_runs=mask
     verified={}; journal=folder/f'results-{args.start}-{args.limit}.jsonl'
-    if journal.exists(): raise RuntimeError('Existing result journal; explicit recovery needed')
+    if journal.exists() and not getattr(args,'resume',False): raise RuntimeError('Existing result journal; explicit recovery needed')
     setup_seconds=time.perf_counter()-start
     for count,trial in enumerate(jobs):
         if (H.OUT/'STOP.json').exists(): update('stopped',count,len(jobs)); return
@@ -184,6 +189,7 @@ if __name__=='__main__':
     parser.add_argument('--slot',type=int,default=0); parser.add_argument('--slots',type=int,default=1)
     parser.add_argument('--start',type=int,default=0); parser.add_argument('--limit',type=int,default=20)
     parser.add_argument('--study-window',type=float,choices=[1.0,3.0],default=None)
+    parser.add_argument('--resume',action='store_true')
     args=parser.parse_args()
     try: run(args)
     except Exception as exc:

@@ -11,15 +11,19 @@ def main(args):
     configurations=[('g2',i,args.g2) for i in range(args.g2)]+[('g3',i,args.g3) for i in range(args.g3)]
     assert len(configurations)<=4
     processes=[]; streams=[]
+    baseline=args.start
+    if args.resume:
+        baseline=sum(len(p.read_text(encoding='utf-8').splitlines()) for p in (OUT/'workers').glob('*/results-*.jsonl'))
     for campaign,slot,slots in configurations:
         progress_path=OUT/'workers'/f'{campaign}-{slot}'/'progress.json'
         progress_path.parent.mkdir(parents=True,exist_ok=True)
         progress_path.write_text(json.dumps(dict(worker=f'{campaign}-{slot}',status='starting',trials_done=0,trials_planned=0)),encoding='utf-8')
-        label=f'{args.start}-{args.limit}-{campaign}-{slot}'
+        label=f'{args.start}-{args.limit}-{campaign}-{slot}'+('-resume' if args.resume else '')
         stdout=(OUT/f'{label}.log').open('w',encoding='utf-8'); stderr=(OUT/f'{label}-error.log').open('w',encoding='utf-8')
         streams.extend([stdout,stderr])
         command=[PYTHON,'-I','-B',str(ROOT/'research/astra/scripts/003_worker.py'),'--campaign',campaign,
                  '--slot',str(slot),'--slots',str(slots),'--start',str(args.start),'--limit',str(args.limit)]
+        if args.resume:command.append('--resume')
         processes.append(subprocess.Popen(command,cwd=ROOT,stdout=stdout,stderr=stderr,creationflags=subprocess.CREATE_NO_WINDOW))
     while True:
         statuses=[]
@@ -28,7 +32,7 @@ def main(args):
             try: statuses.append(json.loads(path.read_text(encoding='utf-8')))
             except (FileNotFoundError,json.JSONDecodeError): pass
         running=any(p.poll() is None for p in processes)
-        progress=dict(phase='timing' if args.limit==20 else 'full',trials_done=args.start+sum(x['trials_done'] for x in statuses),
+        progress=dict(phase='timing' if args.limit==20 else 'full',trials_done=baseline+sum(x['trials_done'] for x in statuses),
             trials_planned=args.limit,paired_arms_planned=2*args.limit,status='running' if running else 'complete',
             last_update_utc=datetime.now(timezone.utc).isoformat(),workers=statuses)
         if (OUT/'STOP.json').exists(): progress['status']='stopping'
@@ -43,4 +47,5 @@ def main(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(); p.add_argument('--start',type=int,default=0); p.add_argument('--limit',type=int,default=20)
     p.add_argument('--g2',type=int,default=1); p.add_argument('--g3',type=int,default=1)
+    p.add_argument('--resume',action='store_true')
     main(p.parse_args())
