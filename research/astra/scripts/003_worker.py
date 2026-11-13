@@ -31,13 +31,18 @@ def run(args):
     name=args.campaign
     source=H.DATA/f'stage3_{name}'/f'r1dev_{name}_seen_{H.DEVELOPMENT_HASH}'
     ident=f'{name}-{args.slot}'
-    folder=H.OUT/'workers'/ident; folder.mkdir(parents=True,exist_ok=True)
+    study=getattr(args,'study_window',None)
+    folder=H.OUT/('workers' if study is None else f'study-w{study:g}')/ident
+    folder.mkdir(parents=True,exist_ok=True)
     progress=folder/'progress.json'
     def update(status,done,planned,**extra):
         progress.write_text(json.dumps(dict(worker=ident,status=status,trials_done=done,trials_planned=planned,
             last_update_utc=datetime.now(timezone.utc).isoformat(),**extra),indent=2),encoding='utf-8')
     trials=json.loads((H.OUT/'design.json').read_text(encoding='utf-8'))['trials']
     jobs=[r for r in trials[args.start:args.limit] if r['campaign']==name and r['trial']%args.slots==args.slot]
+    if study is not None:
+        selected=set(json.loads((H.OUT/'study-selection.json').read_text(encoding='utf-8'))['trials'])
+        jobs=[r for r in jobs if r['trial'] in selected]
     update('context',0,len(jobs)); start=time.perf_counter()
     best=pd.read_csv(C.BEST)[['tic','sector','product']].rename(columns={'product':'best'})
     events=[]
@@ -52,6 +57,9 @@ def run(args):
     S3._init3(folder,'g3' if name=='g3' else 'g2',C.GRID_V5)
     S2.S['spoc_by_sector']={s:str(p) for s,p in refs.items()}
     original_load=S2.load; original_prepare=S2.prepare; original_mask=PM.mask_runs; original_windows=S2.in_windows
+    original_detrend=S2.detrend
+    def study_detrend(t,f,window_d=2.0):
+        return original_detrend(t,f,window_d=study)
     active={}; raw_cache={}; prepared={}; tracing={}; traces={}
     def load(path,info=False):
         key=(str(path),bool(T.MODE['sap']),bool(T.MODE['pdc']),info)
@@ -125,6 +133,7 @@ def run(args):
         if key in verified and verified[key]!=file_hash: raise IdentityFailure('Stored baseline changed')
         result=dict(trial,product=str(product),time=centre,setup_seconds=setup_seconds)
         for sign in signs:
+            S2.detrend=study_detrend if study is not None and sign else original_detrend
             active.clear(); prepared.clear(); traces.clear()
             if sign: active.update(trial,sign=sign,time=centre)
             trial_dir=folder/f'trial-{trial["trial"]}-{sign}'
@@ -174,6 +183,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(); parser.add_argument('--campaign',choices=['g2','g3'],required=True)
     parser.add_argument('--slot',type=int,default=0); parser.add_argument('--slots',type=int,default=1)
     parser.add_argument('--start',type=int,default=0); parser.add_argument('--limit',type=int,default=20)
+    parser.add_argument('--study-window',type=float,choices=[1.0,3.0],default=None)
     args=parser.parse_args()
     try: run(args)
     except Exception as exc:
