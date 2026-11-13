@@ -1,6 +1,6 @@
 # G1 planet-level bar (preregistered, written BEFORE any planet-level measurement)
 
-**Written by:** Claude, 13 Nov 2026, Kuwait 23:31, after Ahmed's question round on Codex 005, before Codex brief 006 starts and before any planet-level number exists. **This file decides G1 from now on.** The single-transit bar (`G1-RECOVERY-BAR.md`, 13 Nov 16:42) stays on record unchanged, with its result (FIX FIRST at R 27.5%, baseline now 33.3%). A change to this file needs a new dated file, written before the numbers it would judge.
+**Written by:** Claude, 13 Nov 2026, Kuwait 23:35, after Ahmed's question round on Codex 005, before Codex brief 006 starts and before any planet-level number exists. **This file decides G1 from now on.** The single-transit bar (`G1-RECOVERY-BAR.md`, 13 Nov 16:42) stays on record unchanged, with its result (FIX FIRST at R 27.5%, baseline now 33.3%). A change to this file needs a new dated file, written before the numbers it would judge.
 
 ## Why a second bar, and why it is not moving the goalposts
 The single-transit bar measures whether one transit reaches tier 1. A real circumbinary planet usually transits several times across the sectors a star was watched, so the question that matters for G1 is whether **the planet** is found. That number has never been measured, so a rule written now cannot be tuned on it. Codex 005 also showed that single-transit repairs probably cannot reach 50% (ceilings of about 15 points against 17 needed), which is why Ahmed chose to measure planets.
