@@ -66,7 +66,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 
 **2.2 G1: the last unseen list (552 rows, one shot).** *Status: WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.* T37b (a fresh-set test) folds into this.
 
-**2.3 Data and downloads.** *Status: PARKED.* FIX 25 "sector 1751" files; FIX 72 MAST timeouts; T150 the Annex index; T151 machine-learning dataset.
+**2.3 Data and downloads.** *Status: PARKED.* FIX 25 "sector 1751" files; FIX 72 MAST timeouts; T150 the Annex index; T151 machine-learning dataset (T150 gets a by-catch extension: IDEA, 14 Nov).
 
 **2.4 Parked new systems.** *Status: PARKED (three-weeks rule of 3 Nov).* T119 Horizon, T120 Vigil, T121 Witness (no-go), T122 research, T123 OMS (deferred), T124 evidence index. T163 eclipse-timing lane, feasibility first (IDEA, 14 Nov; parked until after G1).
 
