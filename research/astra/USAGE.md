@@ -24,3 +24,4 @@ Write PREDICTED before you start (from the brief and earlier rows), ACTUAL from 
 | 2026-11-13 | 002 D START | Model/effort unverified | 12 five-hour, 2 weekly predicted | Meter pending | Continuation | Fix phase-band grid before event inspection. |
 | 2026-11-13 | 002 C pilot START | Model/effort unverified | 15 five-hour, 3 weekly predicted | Baseline pending, D running | Continuation | Zero-injection identity before raw-injection outcomes. |
 | 2026-11-13 | 002 A synthetic and D checkpoint | Runtime unverified | A 15 five-hour/3 weekly; D 12/2 | Shared continuation meter recorded at checkpoints, attribution overlaps C | One turn | Phase-band counts do not establish causal eclipse contamination. |
+| 2026-11-13 | 002 F START | Runtime effort unverified; xhigh requested | 8 five-hour, 2 weekly predicted | Shared continuation meter pending | One turn | Commit chronology plus metadata cannot prove absence of earlier reads. |
