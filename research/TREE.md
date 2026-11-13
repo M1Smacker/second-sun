@@ -26,11 +26,15 @@ Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**,
 ## Road ahead (Claude's estimate, 13 Nov 2026; Codex rounds counted, not promised)
 1. **Brief 006** (running next): planet-level P decides G1. One round.
 2. **One or two fix rounds** on what 006 finds (likely the multi-transit combination, if it helps). One to two rounds.
-3. **T109 real known-planet check** (synthetic bench against real planets). Can ride along with step 2.
+3. **T109 real known-planet check** (synthetic bench against real planets), after 006 and its fixes, before the freeze (Ahmed agreed 14 Nov).
 4. **Freeze Petrova 1.1** (all accepted fixes into the real code, two proofs, outside audit by Fable or Codex). One round.
 5. **G1 preparation and the one-shot G1 search**, then the plain verdict. One to two rounds.
-6. **Census** (new fuel, about 1,400 stars), then the learning rebuild and the Tree home page.
+6. **Housekeeping phase** (Ahmed, 14 Nov): fix every bug on the chain Census uses, build the kept tasks (Tree home page, control room, learning rebuild, F4), archive the rest.
+7. **Census** (new fuel, about 1,400 stars), (the learning rebuild and the Tree home page move into step 6).
 About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace if both meters allow.
+
+## Triage of 14 Nov 2026 (Ahmed approved; file `research/tree/TRIAGE-2026-11-14.md`)
+Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148); merged 8 into 4 (T51 and T53 into T159, T106 into T141, T128 into T142, T57a to T58b into T57); parked 17 with a wake-up trigger; the rest keep a phase: NOW (Petrova via Codex), G1 PREPARATION, HOUSEKEEPING PHASE (after G1, before Census: fix every bug on the chain Census uses, build what is kept, archive the rest), CENSUS. Node lists below may still name dropped tasks; the build queue is the source of each task's status. No cap on the queue size (Ahmed).
 
 ---
 
@@ -54,7 +58,7 @@ About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace 
 - T31 depth guard and T33 flare shape (accepted in the 0.9 study, check whether Petrova 1.0 carries them); T32 near-zero noise guard; T35 the 3 h box; FIX 19, 21, 22 (SAP and QLP flux halves).
 
 **1.7 The scoreboard and its tools.** *Status: DONE for now (T156 is the bench).*
-- T156 bench (rerun after every candidate change); **NEXT after 006, BEFORE G1 (G1 is one shot): T109 known-planet check** (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
+- T156 bench (rerun after every candidate change); **AGREED by Ahmed (14 Nov): after brief 006 and its fixes, BEFORE G1 (G1 is one shot): T109 known-planet check** (run the bench chain on the real, published circumbinary planets with TESS data, e.g. TOI-1338 b, to make sure the synthetic bench agrees with real planets); PARKED: T36 cross-sector plant harness.
 
 ## 2. Where we look (the fuel)
 **2.1 Census: our own binary list from TESS after sector 26** (about 1,400 good targets, about 1 to 2 planets expected at Kepler's rate). *Status: WAITS on branch 1 (no new fuel into a 1-in-4 engine).*
@@ -71,7 +75,7 @@ About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace 
 
 **3.2 Records, reproducibility and tests.** *Status: PARKED.* FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T130 number-to-file audit; T52 settings read from the run.
 
-**3.3 Leads: how a dip becomes a claim.** *Status: PARKED until a lead exists.* FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven, after 26 Nov 2026). T162 exploratory lane for sub-bar events (idea, RS-023).
+**3.3 Leads: how a dip becomes a claim.** *Status: PARKED until a lead exists.* FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven: after 26 Nov 2026 Claude checks the Sector 110 result and tells Ahmed plainly either way; note his candidate is a single-star planet, not circumbinary). T162 exploratory lane for sub-bar events (IDEA, RS-023; PARKED until after G1, then decided with a rule written first, Ahmed agreed 14 Nov).
 
 **3.4 Going public later.** *Status: PARKED.* T108 playbook; T149 is our upside-down result new.
 
