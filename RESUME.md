@@ -1,3 +1,12 @@
+## LATEST (14 Nov 2026, 10:49 pm Kuwait): LATE-NIGHT BLOCK (Opus 5.5 MEDIUM; weekly 19% to 21%, new cap 30%, Ahmed: continue past the 1:30 am 5-hour reset)
+Ahmed (10:24 pm): new limit 30%, give Codex real work. Plan approved ("Go as planned").
+- **Codex 014 briefed** (`research/astra/inbox/014-dumps-ephemerides-deep-bench.md`, afb2614): part 1 dump-artefact map (G2 derive, G3 check), part 2 eclipse times v2 (alias resolution, calibrated errors, synthetic twin-eclipse trap, seed-14 hold-out), part 3 deep-planet bench for FIX 96. Ahmed sent it about 10:37 pm (I buried the line at first; memory rule tightened: end the turn on the line). Codex committed its method 10:38 pm, running.
+- **RS-031** (`research/stage3/rs031/`): dumps: scatter grows about a day before each dump (Vanderburg 2019), hours after (Eisner 2019), ramps within 0.5 d (Wong 2020), dumps mimic transits (Guerrero 2021); aperture losses make one-sided dips. DSp bench (relief only after the dump, rule written first): P 48.47%, bg 176/80: FAILS by 1 upside-down; DS's planet gain sits before dumps with the artefacts; only a jitter measure could separate them.
+- **FIX 88** star-clustered S2 interval in r1_readout (G3 0.89 to 10.61, G2 2.40 to 9.21, matches Codex 002); **FIX 89** erratum (git times); **FIX 85** utf-8 encodings in 4 files (readout byte-identical); **FIX 90** documented (frozen file).
+- **G1 preregistration draft v2**: text for all 10 parts + 4 decisions for Ahmed (blind? excess rule? reference? which limits fixed first).
+- Field note 14 Nov + glossary 'aperture loss'; book 2.12.0 live (10:49 pm). Fable brief updated (RS-031, DSp).
+- Next: review Codex 014 parts as they land (fence check first); stop near 28 to 29% weekly.
+
 ## LATEST (14 Nov 2026, 10:18 pm Kuwait): FIX 95 ADOPTED; DS HELD FOR FABLE (Opus 5.5 high)
 - Ahmed: "yes, adopt the known events flag, do what u think is best for this one". FIX 95 ADOPTED for Petrova 1.1 (not frozen). Adopted set now: repeater b + FIX 91 + OAE + K (P 48.11%, T156 ref R 34.21%, bg 174/79). DS held for Fable (my call). FIX-QUEUE, TREE baseline line, Fable brief (task 1: Codex 012 + RS-030 alias; task 2: K adopted, DS dump-artefact question, FIX 92 failed) updated.
 - Ahmed: the 14 to 19 weekly jump was HIS Claude Cowork task (limits are shared across Claude Code, claude.ai, Cowork). Ledger row corrected (my share about 0.4 to 0.5); memory feedback_usage_ledger_calibration.md updated; sync_kit run. Keep tracking my usage and leave headroom for his other work.
