@@ -30,9 +30,11 @@
 - One small fix done by me: the 24 Oct note's test counts (16 checks, 18 mutations). Book 2.11.4.
 - Small imprecision, your call: the 23 Oct note calls TOI-1338 b "the 0.2% dip"; it is about 0.26%.
 
-## 5. Codex
-- It never got the 007 speed-up line (still 2 workers). Codex's own report and part S (short-binary bench, 3,823 trials) are still running.
-- **Send it this line:** "Read research/astra/inbox/007-night-14-nov.md and do it in order, starting with step 0. No polling."
+## 5. Codex (updated 09:20)
+- Codex finished 006 at 07:56: the same P (48.4%, FIX FIRST). The short-binary fix (S) passes but only lifts P to 48.6%; the window repair fails its gate.
+- New: the planted bumps lose to the planted dips in slow binaries because of one flag, "dominated" (it holds 21 bumps against 6 dips in the 20 to 27 day bin). In slow eclipsing binaries the real eclipse leftovers are dips, so a fair-looking rule meets an unfair sky. Same flag as FIX 93.
+- Fence check of its branch: clean (no frozen file, no fenced star).
+- The 007 line is now stale. **Send this instead:** "Read research/astra/inbox/008-after-006.md and do it in order. No polling."
 
 ## 6. Your calls
 1. The 3 wording calls above (and C3/C4).

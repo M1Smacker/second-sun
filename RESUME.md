@@ -1,3 +1,9 @@
+## LATEST (14 Nov 2026, 09:22 Kuwait): 09:01 CONTINUATION: WHY THE PAIRED CONTROL FAILS; CODEX 008 NOTE
+- Codex finished 006 at 07:56 (astra/006-branch-one): P 48.37% FIX FIRST, S passes (48.6%), W fails coverage gate, M 13 of 15 losses catalogue windows; paired control fails in the 20 to 27.4 d bin (95 vs 75 of 187).
+- Claude p_flags.py (all 1,250 trials): arms find the crossing equally; 'dominated' holds bumps 21 vs dips 6 (20 to 27.4 d), 23 vs 3 (27.4 d+). CONFIRMED counts, LIKELY mechanism (eclipse leftovers as competitors). FIX 93 updated; P-CHECK addendum.
+- Fence check since 13 Nov: NEEDS A LOOK resolved as benign (path strings in harness code, Codex Stop-Process of its own supervisor, other Codex project folder, my T54 watch_leads.json). Branch not merged.
+- Inbox 008 written (replaces 007): second keys on p_flags and T109, FIX 93 design on T156 + planet bench + paired control; branch astra/008-after-006; Ahmed sends: 'Read research/astra/inbox/008-after-006.md and do it in order. No polling.' Morning report section 5 updated.
+
 ## LATEST (14 Nov 2026, 06:03 Kuwait): NIGHT RUN DONE EXCEPT THE 09:01 CONTINUATION
 - P verdict FIX FIRST by two keys (05:57 block). Morning report `research/stage3/MORNING-REPORT-2026-11-14.md` (commit, phone version given in chat). Book 2.11.5 live (home recap 14 Nov, checked 05:55).
 - T130: every field note mapped (15 pages, 1,544 numbers; 1,490 traced or not results; 5 FLAGGED, 3 distinct; 49 UNSOURCED, none a verdict number). 21 Oct readiness recounted from mission.yml at 8ce5e8e (35.75, 23 items). Next T130: Search window results page, chapters that quote results.
