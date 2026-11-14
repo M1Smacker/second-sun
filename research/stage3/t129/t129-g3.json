@@ -1,0 +1,71 @@
+{
+ "list": "g3",
+ "run": "r1_g3_unseen_bcd29c7aabb0",
+ "note": "counts only; unstratified versions (the verdict test is stratified by bin; deff is the point here)",
+ "bars": {
+  "7": {
+   "real": 16,
+   "flip": 6,
+   "stars": 16,
+   "stars_real": 11,
+   "stars_flip": 5,
+   "max_events_one_star": 4,
+   "share": 0.727,
+   "share_ref": 0.795,
+   "deff": 1.54,
+   "n_eff": 14.3,
+   "p_event_unstratified": 0.8217,
+   "p_cluster_unstratified": 0.717,
+   "power_times_expected_event": 5.2,
+   "power_times_expected_cluster": 6.0
+  },
+  "8": {
+   "real": 13,
+   "flip": 5,
+   "stars": 12,
+   "stars_real": 8,
+   "stars_flip": 4,
+   "max_events_one_star": 4,
+   "share": 0.722,
+   "share_ref": 0.811,
+   "deff": 1.68,
+   "n_eff": 10.7,
+   "p_event_unstratified": 0.8625,
+   "p_cluster_unstratified": 0.7412,
+   "power_times_expected_event": 5.93,
+   "power_times_expected_cluster": 7.23
+  },
+  "10": {
+   "real": 13,
+   "flip": 3,
+   "stars": 10,
+   "stars_real": 8,
+   "stars_flip": 2,
+   "max_events_one_star": 4,
+   "share": 0.812,
+   "share_ref": 0.879,
+   "deff": 1.84,
+   "n_eff": 8.7,
+   "p_event_unstratified": 0.8543,
+   "p_cluster_unstratified": 0.6916,
+   "power_times_expected_event": 10.8,
+   "power_times_expected_cluster": 12.9
+  },
+  "12": {
+   "real": 12,
+   "flip": 3,
+   "stars": 9,
+   "stars_real": 7,
+   "stars_flip": 2,
+   "max_events_one_star": 4,
+   "share": 0.8,
+   "share_ref": 0.935,
+   "deff": 1.86,
+   "n_eff": 8.1,
+   "p_event_unstratified": 0.9669,
+   "p_cluster_unstratified": 0.8321,
+   "power_times_expected_event": 29.91,
+   "power_times_expected_cluster": 34.66
+  }
+ }
+}

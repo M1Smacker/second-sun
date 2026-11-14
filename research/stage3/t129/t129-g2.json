@@ -1,0 +1,71 @@
+{
+ "list": "g2",
+ "run": "r1_g2_unseen_bcd29c7aabb0",
+ "note": "counts only; unstratified versions (the verdict test is stratified by bin; deff is the point here)",
+ "bars": {
+  "7": {
+   "real": 32,
+   "flip": 13,
+   "stars": 28,
+   "stars_real": 17,
+   "stars_flip": 11,
+   "max_events_one_star": 7,
+   "share": 0.711,
+   "share_ref": 0.674,
+   "deff": 1.94,
+   "n_eff": 23.2,
+   "p_event_unstratified": 0.4044,
+   "p_cluster_unstratified": 0.3454,
+   "power_times_expected_event": 2.72,
+   "power_times_expected_cluster": 3.32
+  },
+  "8": {
+   "real": 26,
+   "flip": 13,
+   "stars": 25,
+   "stars_real": 14,
+   "stars_flip": 11,
+   "max_events_one_star": 7,
+   "share": 0.667,
+   "share_ref": 0.655,
+   "deff": 2.06,
+   "n_eff": 18.9,
+   "p_event_unstratified": 0.5341,
+   "p_cluster_unstratified": 0.4578,
+   "power_times_expected_event": 2.75,
+   "power_times_expected_cluster": 3.6
+  },
+  "10": {
+   "real": 19,
+   "flip": 10,
+   "stars": 19,
+   "stars_real": 11,
+   "stars_flip": 8,
+   "max_events_one_star": 7,
+   "share": 0.655,
+   "share_ref": 0.686,
+   "deff": 2.1,
+   "n_eff": 13.8,
+   "p_event_unstratified": 0.7052,
+   "p_cluster_unstratified": 0.5944,
+   "power_times_expected_event": 3.16,
+   "power_times_expected_cluster": 4.12
+  },
+  "12": {
+   "real": 18,
+   "flip": 5,
+   "stars": 16,
+   "stars_real": 11,
+   "stars_flip": 5,
+   "max_events_one_star": 7,
+   "share": 0.783,
+   "share_ref": 0.741,
+   "deff": 1.7,
+   "n_eff": 13.6,
+   "p_event_unstratified": 0.4679,
+   "p_cluster_unstratified": 0.3564,
+   "power_times_expected_event": 4.4,
+   "power_times_expected_cluster": 5.47
+  }
+ }
+}
