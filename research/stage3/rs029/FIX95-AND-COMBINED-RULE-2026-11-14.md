@@ -11,3 +11,19 @@
 2. OAED and OAEkD are planet fixes: Tree rule 1. Adopted only if P rises against OAE AND the upside-down background is not higher than OAE's AND the paired control passes in all five bins.
 3. If OAEkD passes rule 2 and OAED does not, the combination is the candidate (the known-events hold pays for DS's extra false alarms). If neither passes, DS stays filed for Fable's trade-off round (Monday) and only OAEk can go forward.
 4. Every result is a bench number on the design stars (one key, Claude); Codex's T156 bench is the second key before any freeze.
+
+## Result (read 9:16 pm, 14 Nov 2026; Claude, one key; `bench.json`, trials `data/rs029/bench-trials.csv`)
+Identity: OAE reproduces RS-024 exactly (527 dips / 514 bumps new, P 0.4828, background 176 / 83). The rs024 files were backed up and restored (no diff).
+
+| Option | Dips new | Bumps new | P (equal weight) | Paired control, all 5 bins | Tier-1 background real / upside-down |
+|---|---|---|---|---|---|
+| OAE (baseline) | 527 | 514 | 0.4828 | passes | 176 / 83 |
+| OAEk (FIX 95) | 525 | 513 | 0.4811 | passes | 174 / 79 |
+| OAED (DS) | 547 | 532 | 0.5016 | passes | 207 / 87 |
+| OAEkD (both) | 545 | 531 | 0.4998 | passes | 204 / 83 |
+
+**Verdicts under the rules written before the run:**
+1. **OAEk PASSES rule 1** (P -0.17 points, under the 0.5 limit; paired control passes; upside-down 83 to 79; real 176 to 174). Candidate for Petrova 1.1. CONFIRMED on the design bench (one key).
+2. **OAED FAILS rule 2** (upside-down 83 to 87).
+3. **OAEkD PASSES rule 2 as written** (P 0.4828 to 0.4998, +18 dips; upside-down 83 to 83, not higher; paired control passes). By rule 3 the combination is the candidate, not DS alone: the known-events hold pays for DS's 4 extra upside-down alarms.
+**Honest cautions (not a change of verdict):** (a) the upside-down count is EQUAL, not lower: a knife edge, inside counting error either way (Poisson sd about 9); (b) the REAL background rises 176 to 204 (+28, +16%), mostly in the 5 to 10 d and 27.4+ d bins; RS-025 showed the upside-down meter is partly blind near dumps and gaps, so some of those 28 may be dump artefacts the control cannot see; (c) P 0.4998 is 0.0002 under the G1 GO line of 0.50: this does not reach G1 by itself; (d) the DS threshold 0.25 was chosen after seeing design-bench shapes (RS-025 note). So OAEkD goes to Fable's trade-off round (Monday) and Codex's T156 second key with these cautions written on it; OAEk alone can go forward as a safety fix.

@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.11.7 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.11.8 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.11 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -112,6 +112,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.4 | 14 Nov | Fix: the 24 Oct field note now gives the Eyes test counts as they are (16 feedback checks, 18 mutations; it said 14 and 14) |
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
+| 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
 | 2.11.6 | 14 Nov | Three wording fixes from the number audit: 32 (not 34) against 13 on 11 Nov; the 0.58 against 0.95 sizes on 10 Nov; the slow-binary sentence in the correction box (8 pages) |
 | 2.9.10 | 4 Nov | Wording corrected after a tilt test (our nulls are consistent with Kepler's rate in most, not all, of the cases tried); two claims upgraded to verified (STANLEY, Planet Hunters PH1 b) |
 | 2.9.9 | 4 Nov | Seven new facts on the claims page (target-list counts, the 10% occurrence rate, the transit-geometry formula, Gaia counts, the geometry probe, the fetch speed test, the pooled false-alarm rate), each with its label and source |

@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (14 Nov 2026, evening):** our planet score is 0.48, just under the 0.50 bar. A narrower eclipse mask catches more test planets but lets in real eclipses whose catalogue times are wrong, so Codex now measures each binary's true eclipse times and Fable designs the fix on Monday. Begin with [Start here](start/index.md).
+    **Two-minute recap (14 Nov 2026, night):** two small fixes together lift our planet score from 0.48 to 0.4998, a hair under the 0.50 bar, with no extra upside-down alarms: flagging NASA's known spacecraft trouble moments, and judging dump-time dips by their shape. Fable weighs it on Monday; Codex is measuring true eclipse times. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 
