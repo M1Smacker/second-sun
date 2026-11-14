@@ -1,3 +1,9 @@
+## LATEST (14 Nov 2026, 05:12 Kuwait): T130 TWELVE PAGES, BOOK 2.11.4 PUBLISHING, WAITING FOR TRIALS
+- T130: pages 11 (27 Oct, 183 numbers) and 12 (24 Oct, 57) mapped. 12 pages, 1,177 numbers, 5 FLAGGED (same 3 problems), 27 UNSOURCED (book-build or private details only). New recount script `research/number-map/check_eyes_1027.py` (25 rounds = 665 curves, 9 deep dips called odd in the first five rounds, thirds 77.8/83.1/82.8%, Wilson 10.7% at 0 of 32): all agree with the note.
+- Book fix (tiny, mine): 24 Oct note said 14 feedback checks and 14 mutations; tests have 16 and 18 since 24 Oct evening (rerun: 16 pass, 18 of 18 caught). Book 2.11.4 (footer, versions row), commit e9325ea; publish_book.ps1 -Test running in background (log C:\Users\hanzl\AppData\Local\Temp\publish-2.11.4.log); confirm live page after it ends.
+- T130 paused (23 Oct has 293 numbers; 21 and 19 Oct left) to keep the five-hour meter for the P check: weekly 94%, five-hour 69% at 05:10 (resets 09:00 Kuwait).
+- Waiters: bjn2erujb (trial generation done, then start p_recount.py at once, it reads trial folders, not Codex's summary), bha2sojxw (planet-summary.json). Codex 1,034 of 1,250 at 05:04.
+
 ## LATEST (14 Nov 2026, 05:01 Kuwait): T130 TEN PAGES
 - T130 pages 8 to 10 mapped and committed (31 Oct, 2 Nov, 28 Oct): 10 pages, 914 numbers, 899 traced or not results; still the same 5 flags (3 distinct) and 10 UNSOURCED, no new problem. 28 Oct (252 numbers) sources: audit report, mono-cbp B-lite, v5 to v7 aggregates, `research/stage3/learnings-2026-10-27.md`. Commits e531832, af8514d.
 - Correction to the 04:53 block: the five-hour meter resets 06:00 UTC = 09:00 Kuwait, not 06:00 Kuwait. Weekly 92%, five-hour 60% at 05:00.
