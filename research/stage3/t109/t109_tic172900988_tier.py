@@ -21,7 +21,7 @@ P, T0 = 19.658025, 1878.33860
 PHS = (((1890.23 - T0) / P) % 1 + ((1870.57 - T0) / P) % 1) / 2
 TRANSITS = [1883.37, 1888.30]
 saved = json.loads((OUT / "tic172900988.json").read_text(encoding="utf-8"))
-SPOC21 = ROOT / "data" / "g2" / "8200343" / "tess2020020091053-s0021-0000000008200343-0167-s_lc.fits"
+SPOC21 = ROOT / "data" / "g2" / "21499327" / "tess2020020091053-s0021-0000000021499327-0167-s_lc.fits"  # dump times are spacecraft-wide; 14 Nov 2026 night: was a fence B star's file (opened for dump times only, never searched), swapped to a design star, same times
 lc = lk.read(str(SPOC21), quality_bitmask="none"); tq = lc.time.value; q = np.asarray(lc.quality.value, int)
 dumps = tq[(q & 32) > 0]; dumps = dumps[np.isfinite(dumps)]
 print("sector-21 momentum dumps (BTJD):", np.round(dumps, 2))

@@ -1,3 +1,9 @@
+## LATEST (14 Nov 2026, 10:14 pm Kuwait): CODEX 013 CHECKED (Opus 5.5 high; weekly 14% to 19%, stop line 20%: STOPPED)
+- Codex 013 (report 10:02 pm, branch astra/013-known-events-ds, not merged): identity exact vs RS-029; T156 B 500/509, B+K 499/507 (ref R 34.64 to 34.21%), B+K+DS 536/545 (R 35.50%); all gates pass for both. Root cause: DS frees 30 real vs 4 upside-down untouched events, 23 of 30 before a dump: LIKELY dump artefacts the upside-down meter cannot see.
+- Recommendation to Ahmed: adopt K (FIX 95) for Petrova 1.1 (two keys); hold DS for Fable's round (Mon 16 Nov). Waiting for his yes.
+- Fence check: branch 013 clean (frozen 0, fence ids 0). Two session flags traced: an old Codex 006 Stop-Process (3:15 am, own run) and Codex READING the text of my T109 script, which hard-coded a fence B star's light file (8200343, sector 21) to read dump times. My slip (14 Nov 4:20 am): swapped to design star 21499327, same 29 dump times within 0.0004 d. Lesson added to the auditor skill; sync_kit run.
+- Usage outlier: this check cost about 5 weekly points against 0.4 predicted (ledger note). Weekly 19%: work stopped for today.
+
 ## LATEST (14 Nov 2026, 9:41 pm Kuwait): CODEX 013 BRIEFED (Opus 5.5 high; weekly 14%)
 Ahmed: "Yes, brief 013". `research/astra/inbox/013-known-events-and-dump-shape.md` (commit d6e8e96, copied to astra): second key incl. T156 on B+K and B+K+DS (B = repeater b + FIX 91 + OAE), identity vs RS-029 (527/514, P 0.4828, 176/83), RS-029 pass rules copied, root cause of the +28 real background under DS (hours to the nearest dump, lifts, SAP twin; both arms). Branch astra/013-known-events-ds, no push. Line handed to Ahmed. Next: check 013 when it reports (fence check first); Fable round Mon 16 Nov.
 
