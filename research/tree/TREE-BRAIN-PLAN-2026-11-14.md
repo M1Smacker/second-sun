@@ -66,3 +66,12 @@ Map style (tree, mind map, metro map); how much technical text a panel shows by 
 - **Time slider:** drag back to any date and see the brain as it was then; watch findings appear and old beliefs get crossed out.
 - **PC:** a full-screen graph view (WebGL force layout so thousands of dots stay smooth) with a side panel; **mobile:** the same graph simplified to the neighbourhood of one dot at a time, plus the tap-through list.
 - **Same JSON feeds it:** the builder of section 4 writes nodes and edges; nothing is drawn by hand.
+
+## 9. Ahmed's idea (14 Nov 2026, 16:05): the Drop box and the auto-builder
+"We make changes, we go around our day... then we just give it to the Python scripts. They do the sorting and the code writing, and we just put it into our website."
+
+**Shape:** a folder `drops/` in main (not a branch: branches get forgotten; git history is the backup). At the moment a piece of work ends, the worker (Claude or Codex) writes ONE small file there in the card shape of section 1 (type, node, date, label, one plain line, why it matters, plain explanation, technical depth, links, supersedes). Python never writes the words; it sorts, checks and formats them.
+**One drop fans out to every place we now hand-edit:** the Tree JSON (dots and lines), the book field note, the learning-track chapter hook, the home "Two-minute recap", the versions row, the RESUME LATEST block, the ledger row. Today each finished task means about six hand edits; with the Drop it is one file.
+**The builder `tools/brain_build.py`:** reads drops plus the auto-sources of section 2; refuses (does not fix) a drop with a missing field, an unknown node, an unexplained id, or a privacy hit (`tic`, centres, `source_id`); writes generated files only; then `publish_book.ps1 -Test` pushes gh-pages as it already does (GitHub Pages, no Netlify needed). Preview locally first; any failed check stops the push.
+**When:** drops are written the moment work ends (memory and context fade); building and publishing can be batched (end of day, or at once after a big task).
+**Phasing:** the drop habit replaces the commit trailer of Phase 0 and can start before G1; the builder is part of T160 after G1.

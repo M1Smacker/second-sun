@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 16:08 Kuwait): AHMED'S DROP-BOX IDEA FILED
+Ahmed proposed: put every update in one folder, Python sorts it into website data and publishes. Filed as section 9 of `research/tree/TREE-BRAIN-PLAN-2026-11-14.md`: `drops/` folder in main, one card-shaped file per finished piece of work (written by Claude or Codex, words never written by Python), `brain_build.py` fans each drop into Tree JSON, field note, recap, versions, RESUME, ledger, refuses bad or private drops, then publish_book.ps1 pushes. Drops can start before G1 (replace the commit trailer); builder is T160 after G1. Waiting: Ahmed's answer on starting drops now.
+
 ## LATEST (14 Nov 2026, 14:15 Kuwait): TREE-AS-BRAIN PLAN
 Ahmed: the Tree must hold the whole project (work, findings, learnings, changes), highly interactive, PC first, cheap to keep current. Plan `research/tree/TREE-BRAIN-PLAN-2026-11-14.md`: one card shape, generated from existing files plus a one-line Tree: commit trailer, built at every publish, privacy-scanned; Phase 0 habits before G1 (waiting for his yes), build first after G1 (T160).
 
