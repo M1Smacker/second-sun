@@ -29,3 +29,39 @@ book/docs/field-notes/2026-11-11.md,19,5,DERIVED,,,,"scope of the null: the R1 b
 book/docs/field-notes/2026-11-11.md,19,14,DERIVED,,,,see the 5 on this line
 book/docs/field-notes/2026-11-11.md,28,4,DERIVED,,,,quiz answer: 'about 4 in 10' as on line 14
 book/docs/field-notes/2026-11-11.md,28,10,DERIVED,,,,quiz answer: 'about 4 in 10' as on line 14
+book/docs/field-notes/2026-11-10.md,6,4,DERIVED,,,,'4 to 6 of every 10': hunt-level m 0.60 / 0.48 / 0.40 at K 12 / 18 / 25 (G2) = 40 to 60% lost (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 2)
+book/docs/field-notes/2026-11-10.md,6,6,DERIVED,,,,see the 4 on this line
+book/docs/field-notes/2026-11-10.md,6,10,DERIVED,,,,see the 4 on this line
+book/docs/field-notes/2026-11-10.md,12,1774,DERIVED,,,,1000 G2 + 774 G3 sampled files (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md line 9)
+book/docs/field-notes/2026-11-10.md,12,1660,DERIVED,,,,971 + 689 usable files (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md line 9)
+book/docs/field-notes/2026-11-10.md,12,25,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,12,8,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,14,5,NOT A RESULT,,,,table header: binary-period bin edges
+book/docs/field-notes/2026-11-10.md,14,10,NOT A RESULT,,,,bin edges
+book/docs/field-notes/2026-11-10.md,14,14,NOT A RESULT,,,,bin edges
+book/docs/field-notes/2026-11-10.md,14,20,NOT A RESULT,,,,bin edges
+book/docs/field-notes/2026-11-10.md,14,27,NOT A RESULT,,,,bin edges (27.4 d in the source)
+book/docs/field-notes/2026-11-10.md,16,1.00,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,16,0.99,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,17,0.66,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,17,0.26,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,17,0.07,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,17,0.01,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,17,0.02,TRACED,research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md,"| 25, 8 h |",,
+book/docs/field-notes/2026-11-10.md,19,1338,NOT A RESULT,,,,star name (TOI-1338)
+book/docs/field-notes/2026-11-10.md,19,40,TRACED,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,files 40 with injections 40,,
+book/docs/field-notes/2026-11-10.md,19,0.58,MISMATCH,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,all durations pooled: 0.58 / 0.95,,"the note says 'fakes of all tested sizes together' but 0.58 / 0.95 pools K 12, 18 and 25 only (K 8 was tested and left out: 0.03 to 0.23). Minor wording; Ahmed's call (T130, 14 Nov 2026)"
+book/docs/field-notes/2026-11-10.md,19,0.95,TRACED,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,all durations pooled: 0.58 / 0.95,,
+book/docs/field-notes/2026-11-10.md,19,25,TRACED,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,K   25 dur    8 h: 0.28 / 1.00,,
+book/docs/field-notes/2026-11-10.md,19,8,TRACED,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,K   25 dur    8 h: 0.28 / 1.00,,
+book/docs/field-notes/2026-11-10.md,19,0.28,TRACED,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,K   25 dur    8 h: 0.28 / 1.00,,
+book/docs/field-notes/2026-11-10.md,19,1.00,TRACED,research/fable-audit-2026-11/evidence/k05_toi1338_before_after.txt,K   25 dur    8 h: 0.28 / 1.00,,
+book/docs/field-notes/2026-11-10.md,20,172900988,NOT A RESULT,,,,star name (TIC 172900988 b)
+book/docs/field-notes/2026-11-10.md,26,2026,NOT A RESULT,,,,year in a description
+book/docs/field-notes/2026-11-10.md,30,98,TRACED,research/fable-audit-2026-11/FINAL-REPORT-2026-11-10.md,| C0 timetable only | 0.98 to 1.00,0.98,
+book/docs/field-notes/2026-11-10.md,30,100,TRACED,research/fable-audit-2026-11/FINAL-REPORT-2026-11-10.md,| C0 timetable only | 0.98 to 1.00,1.00,'out of 100' is the same fraction
+book/docs/field-notes/2026-11-10.md,31,99,TRACED,research/fable-audit-2026-11/FINAL-REPORT-2026-11-10.md,| C1f timetable + repeat inside a sector | 0.99,0.99,
+book/docs/field-notes/2026-11-10.md,31,100,NOT A RESULT,,,,'out of 100': the denominator
+book/docs/field-notes/2026-11-10.md,31,13,TRACED,research/fable-audit-2026-11/DESIGN-C1-OPUS-2026-11-10.md,for P under 13 d,,
+book/docs/field-notes/2026-11-10.md,35,6,NOT A RESULT,,,,quotes an old book claim ('floor of 6 Earth radii') that the note withdraws
+book/docs/field-notes/2026-11-10.md,37,14,DERIVED,,,,'slower than about 14 days': the before-mask survival falls to 0.07 and below from the 14-20 d bin (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md line 17)
