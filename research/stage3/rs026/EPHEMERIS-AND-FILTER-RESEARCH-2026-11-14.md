@@ -51,3 +51,6 @@ Each eclipse time from a template fit (handles asymmetric eclipses; Kwee-van Woe
   2. If V2+OAE fails only on upside-down background (rule c) and 011 shows the new events sit within 3 eclipse widths: build steps 1 to 3 (template fit, centres from the fit, not the deepest point) and measure it the same way; this is the case where the full design earns its cost.
   3. If V1+OAE also fails rule c, or the new events sit far from eclipses: the padding is hiding something other than eclipses; stop and research before any fix (root cause first).
   4. If both pass: V2, not V1 (V1 drops the timing term for every star, including any whose catalogue time is truly wrong by more than a width; V2 keeps a capped term).
+
+### Update after Codex 011 and RS-027 (Claude, 14 Nov 2026, 19:04)
+Codex 011: with OAE, V1 P 49.61%, V2 49.66% (both under 50%), upside-down +3 and +6: both FAIL the preregistered rule. RS-027: about half the new real events are deep eclipses at wrong catalogue times (one star's true period 31.81 d against the catalogue's 30.98 d). So the padding was covering wrong ephemerides, and the full design (steps 1 to 3) is needed, with step 2 fitting the PERIOD too, not only the epoch. Decision rule outcome: case 2 (build the fit), reached through the research case 3 required. File `research/stage3/rs027/NEW-EVENTS-ROOT-CAUSE-2026-11-14.md`.

@@ -1,3 +1,8 @@
+## LATEST (14 Nov 2026, 19:04 Kuwait): CODEX 011 CHECKED, BOTH MASK VARIANTS FAIL; RS-027 FOUND WHY
+- Codex 011 (branch astra/011-mask-timing-oae, not merged; fence check same benign flags, frozen 0, ids 0): with OAE, V0/V1/V2 P 48.20/49.61/49.66%, all-design background real/upside-down 176/83, 209/86, 205/89, T156 dips 500/524/523, paired control passes every bin. Preregistered verdict: both FAIL (a) P and (c) upside-down, so (d) fails too.
+- RS-027 (Claude, unasked root cause, about 0.3 weekly): 18 of 38 V2 new real events are deep eclipses (8,000 ppm+ or SNR 50+, 10 stars); TIC 140760434 repeats a 10,000 ppm eclipse every 31.81 d (catalogue 30.98 d); TIC 394728064 has a misplaced secondary; two upside-down events at the same sector-4 moment on two stars (spacecraft). Padding was hiding wrong ephemerides. Plan change: FIX 94 full design with our own TESS eclipse fit, period refitted, primary and secondary separately; deep-event guard idea. Fed to Fable task 1 (brief updated). RS-026 file, TREE log, research-sessions row RS-027, drop.
+- Next: Fable block Monday (design the fit); nothing for Codex until then unless Ahmed wants a measurement.
+
 ## LATEST (14 Nov 2026, 16:40 Kuwait): FABLE BRIEF, FIX 94 DECISION RULE, RS-025 Q5
 Ahmed: do all three while Codex runs 011; cap 30% weekly today; he runs Opus 5.5 medium.
 - Fable brief `research/fable-method/FABLE-BRIEF-2026-11-16.md` (three tasks: FIX 94 production design, what goes into Petrova 1.1, shortest safe path to G1; work logs; skill `second-sun-method`; finish Mon 23:00). Held-out task `HELD-OUT-TASK.md` (step flag fair fix), Fable told not to open it. PLAN step 1 DONE.
