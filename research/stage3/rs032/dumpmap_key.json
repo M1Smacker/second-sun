@@ -1,0 +1,138 @@
+{
+ "g2": {
+  "-12..-6": {
+   "tier1_real": 19,
+   "tier1_flip": 3,
+   "snr7_real": 558,
+   "snr7_flip": 227
+  },
+  "-6..-3": {
+   "tier1_real": 3,
+   "tier1_flip": 1,
+   "snr7_real": 55,
+   "snr7_flip": 20
+  },
+  "-3..-1": {
+   "tier1_real": 2,
+   "tier1_flip": 0,
+   "snr7_real": 11,
+   "snr7_flip": 4
+  },
+  "-1..0": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 0,
+   "snr7_flip": 0
+  },
+  "contains": {
+   "tier1_real": 28,
+   "tier1_flip": 5,
+   "snr7_real": 381,
+   "snr7_flip": 279
+  },
+  "0..1": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 0,
+   "snr7_flip": 0
+  },
+  "1..3": {
+   "tier1_real": 2,
+   "tier1_flip": 0,
+   "snr7_real": 100,
+   "snr7_flip": 60
+  },
+  "3..6": {
+   "tier1_real": 1,
+   "tier1_flip": 2,
+   "snr7_real": 120,
+   "snr7_flip": 89
+  },
+  "6..12": {
+   "tier1_real": 6,
+   "tier1_flip": 1,
+   "snr7_real": 226,
+   "snr7_flip": 159
+  },
+  "far": {
+   "tier1_real": 105,
+   "tier1_flip": 50,
+   "snr7_real": 3065,
+   "snr7_flip": 1482
+  },
+  "no dump times": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 0,
+   "snr7_flip": 0
+  }
+ },
+ "g3": {
+  "-12..-6": {
+   "tier1_real": 3,
+   "tier1_flip": 1,
+   "snr7_real": 60,
+   "snr7_flip": 44
+  },
+  "-6..-3": {
+   "tier1_real": 1,
+   "tier1_flip": 0,
+   "snr7_real": 4,
+   "snr7_flip": 1
+  },
+  "-3..-1": {
+   "tier1_real": 1,
+   "tier1_flip": 0,
+   "snr7_real": 2,
+   "snr7_flip": 1
+  },
+  "-1..0": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 0,
+   "snr7_flip": 0
+  },
+  "contains": {
+   "tier1_real": 7,
+   "tier1_flip": 3,
+   "snr7_real": 57,
+   "snr7_flip": 60
+  },
+  "0..1": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 0,
+   "snr7_flip": 0
+  },
+  "1..3": {
+   "tier1_real": 1,
+   "tier1_flip": 0,
+   "snr7_real": 18,
+   "snr7_flip": 8
+  },
+  "3..6": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 27,
+   "snr7_flip": 17
+  },
+  "6..12": {
+   "tier1_real": 1,
+   "tier1_flip": 1,
+   "snr7_real": 54,
+   "snr7_flip": 39
+  },
+  "far": {
+   "tier1_real": 54,
+   "tier1_flip": 21,
+   "snr7_real": 654,
+   "snr7_flip": 417
+  },
+  "no dump times": {
+   "tier1_real": 0,
+   "tier1_flip": 0,
+   "snr7_real": 0,
+   "snr7_flip": 0
+  }
+ }
+}
