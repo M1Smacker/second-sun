@@ -6,7 +6,8 @@ Ahmed (12:16 am): start on your own after the reset; is Codex suitable for my wo
 - Filed: FIX-QUEUE 96, TREE log + node 1.6, Fable brief task 2, ledger, drop. Branch not merged.
 - **Codex next:** addendum 014a (reconcile the 15 G2 real events), already in its inbox; Ahmed sends the line. Codex 014 overall: part 1 no replicated dump excess, part 2 FAIL (error model, RS-034), part 3 cap safe.
 - **FIX 96 radius check PASS (1:39 am)** (`research/stage3/fix96/FIX96-RADIUS-CHECK-2026-11-15.md`): most generous of four radii (header, TIC 8.2, Gaia DR3 GSP-Phot, FLAME) keeps all 76 held events held (50 real, 26 upside-down); header/smallest median 1.00, max 1.25; 22 held events within 2x of the cap. Downloads 24 KB in data/fix96_radii_2026-11-15 (downloads.csv, jobs.md). First run crashed on my own duplicate key, fixed, no re-download.
-- Next: next build or fix item (no-input ones).
+- **Gap filed (1:41 am):** no G1 runner was on any list; now BUILD T165 (node 3.2; waits for the Petrova 1.1 freeze and G1 prereg; wires T52, T142, T54, FIX 77 exporter rule, and pins data/g1/manifest.csv hash for FIX 70, which no G1 plan had). On the Fable brief task 3. FIX 80 (flaky book test) checked: no failure dump since 6 Nov because publish logs are not kept to files; left waiting.
+- Next: Ahmed's answers (Codex line for 014a; Codex code task yes/no). Mine: no-input items only.
 
 ## LATEST (14 Nov 2026, 11:13 pm Kuwait): WORK-NOT-IDLE BLOCK (Opus 5.5 MEDIUM; weekly 21% to 22%, target 25% before Codex 014 lands; cap 30%)
 Ahmed (10:56 pm): don't sit idle when the list is done; report, say what's next, start it; reach into the build list. Plan approved ("Go").

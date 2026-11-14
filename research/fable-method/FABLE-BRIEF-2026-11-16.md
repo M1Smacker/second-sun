@@ -40,6 +40,7 @@ Candidates: OAE (adopted, not frozen), the FIX 94 variant from task 1, the dump-
 
 ## Task 3 (planning): the shortest safe path to a G1 GO
 From today to the one G1 run: steps, order, what each step's failure would mean, what can run in parallel, what Ahmed must decide, and where the plan could quietly go wrong. **Deliver:** a revised "Road to G1" for `research/TREE.md` (as a proposal file, Claude merges) plus the list of what the G1 preregistration must contain (draft: `research/stage3/G1-PREREGISTRATION.md`; bars: `G1-PLANET-BAR.md`, `G1-RECOVERY-BAR.md`; rules: `LEADS-RULES.md`).
+**Added 15 Nov, 1:41 am (Claude):** two gaps for the G1 path: no G1 runner exists yet (now BUILD T165, wired to T52, T142, T54 and the FIX 77 exporter rule), and FIX 70 (QLP-only events depend on which files are in the set's manifest) is in no G1 plan; proposal: pin the G1 manifest hash in the settings and download nothing into data/g1 after the freeze. Say whether that is enough.
 
 ## Then: write the skill (from your logs, not from memory)
 `research/fable-method/second-sun-method/SKILL.md`: an ordered procedure for a hard Second Sun task, decision rules ("if X, do Y before Z"), stop signs, and two or three worked examples quoted from your logs. One page plus examples, frontmatter like the auditor skill (name, description saying when to load it). Claude installs it and runs sync_kit.
