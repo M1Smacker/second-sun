@@ -1,0 +1,53 @@
+{
+ "check": {
+  "sectors with two files": 107,
+  "... median |difference| of dump starts under 0.01 d": 97,
+  "sectors with dump times": 108,
+  "median dumps per sector": 4.0
+ },
+ "A_untouched": {
+  "flip": {
+   "n": 49,
+   "box_contains_dump": 25,
+   "share_inside": 0.51,
+   "offset_h_hist": {
+    "-6 to -3 h": 17,
+    "-3 to -1 h": 2,
+    "-1 to 1 h": 0,
+    "1 to 3 h": 3,
+    "3 to 6 h": 13,
+    "6 to 12 h": 0
+   },
+   "median_abs_offset_h": 4.71
+  },
+  "real": {
+   "n": 154,
+   "box_contains_dump": 53,
+   "share_inside": 0.344,
+   "offset_h_hist": {
+    "-6 to -3 h": 28,
+    "-3 to -1 h": 12,
+    "-1 to 1 h": 2,
+    "1 to 3 h": 12,
+    "3 to 6 h": 30,
+    "6 to 12 h": 3
+   },
+   "median_abs_offset_h": 5.9
+  }
+ },
+ "B_planted_freed": {
+  "n": 23,
+  "box_contains_dump": 10,
+  "share_inside": 0.435,
+  "offset_h_hist": {
+   "-6 to -3 h": 4,
+   "-3 to -1 h": 4,
+   "-1 to 1 h": 1,
+   "1 to 3 h": 2,
+   "3 to 6 h": 5,
+   "6 to 12 h": 1
+  },
+  "median_abs_offset_h": 4.02
+ },
+ "B_note": "observed crossing nearest a dump, per freed trial; duration in the journal is in days"
+}
