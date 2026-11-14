@@ -1345,3 +1345,41 @@ book/docs/field-notes/2026-10-23.md,226,6,NOT A RESULT,,,,"chapter, part, bug, l
 book/docs/field-notes/2026-10-23.md,226,17,TRACED,research/stage2-2026-10-23/README.md,ths of the masked eclipses: ,,
 book/docs/field-notes/2026-10-23.md,226,19,TRACED,research/stage2-2026-10-23/README.md,are of real (17%) and fake (,,
 book/docs/field-notes/2026-10-23.md,229,7,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-21.md,6,0,NOT A RESULT,,,,scale of the bar (0 to 100)
+book/docs/field-notes/2026-10-21.md,6,100,NOT A RESULT,,,,scale of the bar (0 to 100)
+book/docs/field-notes/2026-10-21.md,6,36,TRACED,book/progress/mission.yml,delta: 35.75,35.75,shown rounded as 36
+book/docs/field-notes/2026-10-21.md,11,100,NOT A RESULT,,,,scale of the bar
+book/docs/field-notes/2026-10-21.md,14,549,TRACED,research/audit-2026-10-23/README.md,239 of the 549 stars,,
+book/docs/field-notes/2026-10-21.md,14,0001,NOT A RESULT,,,,candidate name SS-0001
+book/docs/field-notes/2026-10-21.md,21,40,NOT A RESULT,,,,example of an opinion ('about 40% there')
+book/docs/field-notes/2026-10-21.md,21,23,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,21,36,TRACED,book/progress/mission.yml,delta: 35.75,35.75,
+book/docs/field-notes/2026-10-21.md,29,35.75,TRACED,book/progress/mission.yml,delta: 35.75,,
+book/docs/field-notes/2026-10-21.md,29,36,TRACED,book/progress/mission.yml,delta: 35.75,35.75,
+book/docs/field-notes/2026-10-21.md,29,10,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,29,15,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,29,25,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,29,20,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,29,1,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,29,0,DERIVED,,,,"recount 14 Nov of book/progress/mission.yml as of commit 8ce5e8e (21 Oct): 23 items; Know the sky 10 of 10, Detector 15 of 25, Vetting 9.75 of 20, Calibration 1 of 10, search 0 of 25, paper 0 of 10; total 35.75"
+book/docs/field-notes/2026-10-21.md,29,549,TRACED,research/audit-2026-10-23/README.md,239 of the 549 stars,,
+book/docs/field-notes/2026-10-21.md,35,1,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-21.md,35,100,NOT A RESULT,,,,scale of the bar
+book/docs/field-notes/2026-10-21.md,38,2,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-19.md,11,12,TRACED,book/data/claims.csv,"F-001,",,
+book/docs/field-notes/2026-10-19.md,11,2,TRACED,book/data/claims.csv,"F-001,",,
+book/docs/field-notes/2026-10-19.md,13,16,TRACED,book/data/claims.csv,"F-027,",,
+book/docs/field-notes/2026-10-19.md,13,236,TRACED,book/data/claims.csv,"F-027,",,
+book/docs/field-notes/2026-10-19.md,10,25,TRACED,book/progress/milestones.yml,Plan locked (25 rounds of decisions),,
+book/docs/field-notes/2026-10-19.md,11,14,TRACED,research/deep-review-2026-10-23/review.md,About 40% of the 14 known transiting CBPs,,
+book/docs/field-notes/2026-10-19.md,12,5,NOT A RESULT,,,,'Chapter 5'
+book/docs/field-notes/2026-10-19.md,13,900,TRACED,book/data/claims.csv,"F-039,",908,'about 900 ppm'
+book/docs/field-notes/2026-10-19.md,13,7,NOT A RESULT,,,,'Chapter 7'
+book/docs/field-notes/2026-10-19.md,25,2,NOT A RESULT,,,,'Lab 2'
+book/docs/field-notes/2026-10-19.md,25,7,NOT A RESULT,,,,'Chapter 7'
+book/docs/field-notes/2026-10-19.md,30,1,NOT A RESULT,,,,'Day 1'
+book/docs/field-notes/2026-10-19.md,31,10,UNSOURCED,,,,"helper sessions froze about 10 seconds after starting (19 Oct): an observation of that night, not written in a tracked file"
+book/docs/field-notes/2026-10-19.md,35,1,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-19.md,38,2,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-19.md,39,2009,NOT A RESULT,,,,"Kepler mission years (2009 to 2013), background fact"
+book/docs/field-notes/2026-10-19.md,39,2013,NOT A RESULT,,,,"Kepler mission years, background fact"
