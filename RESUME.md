@@ -6,7 +6,8 @@ Ahmed (10:56 pm): don't sit idle when the list is done; report, say what's next,
 - **T130** (9d6612f): re-mapped after book 2.11.6 fixes, tonight's field note mapped; 17 pages, 1,644 numbers, 97.0%; 1 FLAG left (10 Nov line 19, 0.58 'all sizes' pools K 12 to 25 only: Ahmed's wording call).
 - **T35 3 h box**: part 1 done (`T35-BOX-RULE-2026-11-14.md`): under B the 3 h box holds 99/40 of 174/79 (57% / 51%) and 59 of the 95 real excess; 8 h+ boxes balanced 29/27. Part 2 bench B vs B3 (3 h box held) queued after nd -> `rs032/box.json`.
 - Codex 014 watcher (b2e1h20qp) still waiting for part 1; nothing committed by Codex since 10:38 pm.
-- Next: read nd and box benches, write results, Tree + drops; review Codex 014 parts as they land; stop near 25 to 28% weekly.
+- **11:30 pm update:** nd/dg priced: ZERO change (P 48.11%, 174/79; 61 unphysical events already ignored by OAE), safe guards, no gain (9edf593). **T35 decided: keep the 3 h box** (B3 costs 40 planets, P 44.63%, paired control fails 20 to 27.4 d; background 75/39) (d75b911). Second key for Codex 014 part 1 ready (`T35-BOX-RULE` side file: G2 excess in box-contains 28/5 and 6 to 12 h before dump 19/3). Weekly 23%, 5-hour 80%.
+- Next: T164 feasibility (do TESS 2-second pointing files exist per sector, size, can they show jitter near dumps) for Fable; review Codex 014 parts as they land; stop near 25 to 28% weekly.
 
 ## LATEST (14 Nov 2026, 10:49 pm Kuwait): LATE-NIGHT BLOCK (Opus 5.5 MEDIUM; weekly 19% to 21%, new cap 30%, Ahmed: continue past the 1:30 am 5-hour reset)
 Ahmed (10:24 pm): new limit 30%, give Codex real work. Plan approved ("Go as planned").
