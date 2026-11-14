@@ -15,3 +15,4 @@ book/docs/field-notes/2026-10-23.md
 book/docs/field-notes/2026-10-21.md
 book/docs/field-notes/2026-10-19.md
 book/docs/watch.md
+book/docs/field-notes/2026-11-14.md

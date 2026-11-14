@@ -10,8 +10,8 @@ book/docs/field-notes/2026-11-11.md,11,10,TRACED,research/stage3/R1-S1-DESIGN-CH
 book/docs/field-notes/2026-11-11.md,11,13,TRACED,research/stage3/R1-S1-DESIGN-CHECK-2026-11-11.txt,light both masks keep  bar 7: 10/13,,
 book/docs/field-notes/2026-11-11.md,13,16,TRACED,research/stage3/R1-RESULT-g3.txt,tier-1: real 16,,G3 unseen recovered light; equals the verdict selection (bar 7 PDCSAP half: 16/6)
 book/docs/field-notes/2026-11-11.md,13,6,TRACED,research/stage3/R1-RESULT-g3.txt,tier-1: real 16,,
-book/docs/field-notes/2026-11-11.md,13,34,MISMATCH,research/stage3/R1-RESULT-g2.txt,tier-1: real 34,,"34/13 is tier-1 in recovered light over BOTH flux halves (R1-RESULT-g2 line 8); the chance 0.31 printed beside it was computed on the PDCSAP half, 32/13 (line 12). Not a wrong verdict; a number from another selection. Wording is Ahmed's call (found by T130, 14 Nov 2026)"
-book/docs/field-notes/2026-11-11.md,13,13,TRACED,research/stage3/R1-RESULT-g2.txt,tier-1: real 34,,
+book/docs/field-notes/2026-11-11.md,13,32,TRACED,research/stage3/R1-RESULT-g2.txt,bar  7: sealed real   32,,"G2 unseen recovered light, PDCSAP half (the verdict selection); reworded from 34 in book 2.11.6 (T130 fix, Ahmed's go)"
+book/docs/field-notes/2026-11-11.md,13,13,TRACED,research/stage3/R1-RESULT-g2.txt,bar  7: sealed real   32,,
 book/docs/field-notes/2026-11-11.md,13,0.41,TRACED,research/stage3/R1-RESULT-g3.txt,bar  7: sealed real   16,0.4071,stratified S1 chance G3
 book/docs/field-notes/2026-11-11.md,13,0.31,TRACED,research/stage3/R1-RESULT-g2.txt,bar  7: sealed real   32,0.3141,stratified S1 chance G2
 book/docs/field-notes/2026-11-11.md,13,0.005,TRACED,research/stage3/R1-PREREGISTRATION.md,Fisher chance 0.005 or less,,
@@ -68,7 +68,8 @@ book/docs/field-notes/2026-11-10.md,37,14,DERIVED,,,,'slower than about 14 days'
 book/docs/field-notes/2026-11-04.md,6,4,DERIVED,,,,'4 to 6 of every 10': hunt-level m 0.60 / 0.48 / 0.40 (G2) and 0.69 / 0.54 / 0.40 (G3) at K 12 / 18 / 25 = 31 to 60% lost (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 2)
 book/docs/field-notes/2026-11-04.md,6,6,DERIVED,,,,see the 4 on this line
 book/docs/field-notes/2026-11-04.md,6,10,DERIVED,,,,see the 4 on this line
-book/docs/field-notes/2026-11-04.md,6,20,MISMATCH,,,,"'almost all of them in binaries slower than 20 days' is not supported by the audit tables: at K 25, 8 h, the before-mask survival is already 0.26 (G2) and 0.16 (G3) at 10 to 14 d and 0.07 / 0.09 at 14 to 20 d (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 1); weighted by files per bin it is 31% (G2) and 5% (G3) (check_slow20.py). The 10 Nov note itself says 'slower than about 14 days'. Ahmed's wording call (T130, 14 Nov 2026). CONFIRMED by research/number-map/check_slow20.py: weighted by files per bin, binaries slower than 20 d hold only 31% (G2) and 5% (G3) of the lost strong dips (K 25, 8 h); 5 to 14 d hold 45% and 78%."
+book/docs/field-notes/2026-11-04.md,6,5,DERIVED,,,,"'most lost dips are in 5 to 14 day binaries': weighted by files per bin, 5 to 14 d hold 45% (G2) and 78% (G3) of the lost strong dips at K 25, 8 h (research/number-map/check_slow20.py); reworded from 'slower than 20 days' in book 2.11.6 (T130 fix, Ahmed's go)"
+book/docs/field-notes/2026-11-04.md,6,14,DERIVED,,,,see the 5 on this line
 book/docs/field-notes/2026-11-04.md,9,611,TRACED,research/stage3/G3-RESULT-2026-11-04.md,611 searched,,
 book/docs/field-notes/2026-11-04.md,9,8,TRACED,research/stage3/G3-RESULT-2026-11-04.md,Total 8 min 15 s,8,whole run with completeness and scoring; the search itself 4 min 43 s (line 13 of the note gives 01:15 to 01:20)
 book/docs/field-notes/2026-11-04.md,13,01,NOT A RESULT,,,,clock time
@@ -335,7 +336,8 @@ book/docs/field-notes/2026-10-30.md,92,25,TRACED,research/stage3/DEEP-ANALYSIS-A
 book/docs/field-notes/2026-10-29.md,6,4,DERIVED,,,,'4 to 6 of every 10': hunt-level m 0.40 to 0.69 (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 2)
 book/docs/field-notes/2026-10-29.md,6,6,DERIVED,,,,see the 4
 book/docs/field-notes/2026-10-29.md,6,10,DERIVED,,,,see the 4
-book/docs/field-notes/2026-10-29.md,6,20,MISMATCH,,,,"same pasted 10 Nov correction box as the 4 Nov note: 'almost all of them in binaries slower than 20 days' is not what research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 1 shows (heavy losses already at 10 to 14 d). Ahmed's wording call (T130, 14 Nov 2026). CONFIRMED by research/number-map/check_slow20.py: weighted by files per bin, binaries slower than 20 d hold only 31% (G2) and 5% (G3) of the lost strong dips (K 25, 8 h); 5 to 14 d hold 45% and 78%."
+book/docs/field-notes/2026-10-29.md,6,5,DERIVED,,,,"'most lost dips are in 5 to 14 day binaries': weighted by files per bin, 5 to 14 d hold 45% (G2) and 78% (G3) of the lost strong dips at K 25, 8 h (research/number-map/check_slow20.py); reworded from 'slower than 20 days' in book 2.11.6 (T130 fix, Ahmed's go)"
+book/docs/field-notes/2026-10-29.md,6,14,DERIVED,,,,see the 5 on this line
 book/docs/field-notes/2026-10-29.md,9,549,TRACED,book/data/claims.csv,Our first real search covered 549 stars,,
 book/docs/field-notes/2026-10-29.md,13,0.67,TRACED,research/stage3/learnings-2026-10-29.md,0.67% of the cadences,,
 book/docs/field-notes/2026-10-29.md,13,8.5,TRACED,research/stage3/learnings-2026-10-29.md,real (8.5%),,
@@ -458,7 +460,8 @@ book/docs/field-notes/2026-10-20.md,79,3,TRACED,book/data/claims.csv,"F-055,",,
 book/docs/field-notes/2026-10-20.md,6,4,DERIVED,,,,as on the 29 Oct and 4 Nov notes (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 2)
 book/docs/field-notes/2026-10-20.md,6,6,DERIVED,,,,see the 4
 book/docs/field-notes/2026-10-20.md,6,10,DERIVED,,,,see the 4
-book/docs/field-notes/2026-10-20.md,6,20,MISMATCH,,,,"same pasted 10 Nov correction box: 'almost all slower than 20 days' is wrong (file-weighted 31% G2, 5% G3, research/number-map/check_slow20.py). Ahmed's wording call (T130)"
+book/docs/field-notes/2026-10-20.md,6,5,DERIVED,,,,"'most lost dips are in 5 to 14 day binaries': weighted by files per bin, 5 to 14 d hold 45% (G2) and 78% (G3) of the lost strong dips at K 25, 8 h (research/number-map/check_slow20.py); reworded from 'slower than 20 days' in book 2.11.6 (T130 fix, Ahmed's go)"
+book/docs/field-notes/2026-10-20.md,6,14,DERIVED,,,,see the 5 on this line
 book/docs/field-notes/2026-10-20.md,13,15,NOT A RESULT,,,,"box grid 3 to 15 h, a setting"
 book/docs/field-notes/2026-10-20.md,16,10,NOT A RESULT,,,,'Chapter 10'
 book/docs/field-notes/2026-10-20.md,17,56,TRACED,research/predictions.md,Timing of the S98 TOI-1338 b transit,,
@@ -1437,3 +1440,17 @@ book/docs/watch.md,62,25,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,the
 book/docs/watch.md,62,612,TRACED,research/stage3/R1-PREREGISTRATION.md,g3_targets.csv,,
 book/docs/watch.md,62,594,TRACED,research/stage3/DEEP-ANALYSIS-AFTER-SEALED-2026-10-30.md,"Sealed stars searched, once",,
 book/docs/watch.md,66,1,NOT A RESULT,,,,label tier 1
+book/docs/field-notes/2026-11-14.md,10,19,TRACED,research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md,19 intervals,,known spacecraft events list (RS-028)
+book/docs/field-notes/2026-11-14.md,10,2,DERIVED,,,,P dips 527 (OAE) to 525 (OAEk): FIX95-AND-COMBINED-RULE table rows 20 and 21
+book/docs/field-notes/2026-11-14.md,10,1100,DERIVED,,,,"'about 1,100 test planets': 1,098 planted planets (research/stage3/rs028/KNOWN-SPACECRAFT-EVENTS-2026-11-14.md line 14)"
+book/docs/field-notes/2026-11-14.md,10,4,DERIVED,,,,upside-down background 83 to 79 (FIX95 rule file line 26)
+book/docs/field-notes/2026-11-14.md,10,2,DERIVED,,,,real background 176 to 174 (FIX95 rule file line 26)
+book/docs/field-notes/2026-11-14.md,11,49.98,DERIVED,,,,P 0.4998 for OAEkD (FIX95 rule file table row 23)
+book/docs/field-notes/2026-11-14.md,11,30,TRACED,research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md,DS frees 30 real and 4 upside-down,,Codex 013 agrees
+book/docs/field-notes/2026-11-14.md,11,4,TRACED,research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md,DS frees 30 real and 4 upside-down,,
+book/docs/field-notes/2026-11-14.md,11,23,TRACED,research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md,23 of 30 sit BEFORE,,
+book/docs/field-notes/2026-11-14.md,11,30,TRACED,research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md,23 of 30 sit BEFORE,,
+book/docs/field-notes/2026-11-14.md,11,2019,NOT A RESULT,,,,citation year (Vanderburg 2019)
+book/docs/field-notes/2026-11-14.md,11,2019,NOT A RESULT,,,,citation year (Eisner 2019)
+book/docs/field-notes/2026-11-14.md,13,13,TRACED,research/stage3/rs030/CODEX-012-ROOT-CAUSE-2026-11-14.md,13 of the 58 locked,,RS-030
+book/docs/field-notes/2026-11-14.md,13,58,TRACED,research/stage3/rs030/CODEX-012-ROOT-CAUSE-2026-11-14.md,13 of the 58 locked,,
