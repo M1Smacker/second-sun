@@ -35,7 +35,7 @@ Done 4 of 9: [####.....]
 7. Freeze Petrova 1.1 (two proofs, outside audit).
 8. Re-measure P on frozen 1.1 and re-check the known planets: GO or not.
 9. Finish and freeze the G1 preregistration (Ahmed approves), prepare the Search window, Ahmed's go, run G1 once.
-After G1 is locked: **the interactive Tree page is the first build (T160, Ahmed 14 Nov: PC first, works on mobile, every research stint, update, fix and Codex brief explorable)**, then the rest of housekeeping, then Census.
+After G1 is locked: **the interactive Tree page is the first build (T160, Ahmed 14 Nov: PC first, works on mobile, every research stint, update, fix and Codex brief explorable; it becomes the project's brain, generated, plan `research/tree/TREE-BRAIN-PLAN-2026-11-14.md`)**, then the rest of housekeeping, then Census.
 
 ## Triage of 14 Nov 2026 (Ahmed approved; file `research/tree/TRIAGE-2026-11-14.md`)
 Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148); merged 8 into 4 (T51 and T53 into T159, T106 into T141, T128 into T142, T57a to T58b into T57); parked 17 with a wake-up trigger; the rest keep a phase: NOW (Petrova via Codex), G1 PREPARATION, HOUSEKEEPING PHASE (after G1, before Census: fix every bug on the chain Census uses, build what is kept, archive the rest), CENSUS. Node lists below may still name dropped tasks; the build queue is the source of each task's status. No cap on the queue size (Ahmed).

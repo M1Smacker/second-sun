@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 14:15 Kuwait): TREE-AS-BRAIN PLAN
+Ahmed: the Tree must hold the whole project (work, findings, learnings, changes), highly interactive, PC first, cheap to keep current. Plan `research/tree/TREE-BRAIN-PLAN-2026-11-14.md`: one card shape, generated from existing files plus a one-line Tree: commit trailer, built at every publish, privacy-scanned; Phase 0 habits before G1 (waiting for his yes), build first after G1 (T160).
+
 ## LATEST (14 Nov 2026, 14:10 Kuwait): THE TREE NOW HOLDS EVERY STINT AND BRIEF; T160 FIRST AFTER G1
 Ahmed: the Tree is crucial; first build after G1 is locked; PC primary, mobile works; every research, update, fix explorable. Done: TREE.md "Research and Codex log" (RS-023 to RS-026, Codex 006 to 010); tree_check now also fails on a missing stint (RS-023+) or brief (006+); T160 tagged FIRST BUILD AFTER G1 IS LOCKED; road says so; memory updated, kit synced.
 
