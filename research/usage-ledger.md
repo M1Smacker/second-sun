@@ -216,3 +216,5 @@ Reading: porting and re-using existing scripts ran 0.2 to 0.4 of the estimate ag
 | 2026-11-14 16:40 | Opus 5.5 | Codex 011 brief, Tree log, drop | small | weekly 9% after |
 | 2026-11-14 16:40 | Opus 5.5 medium | Fable brief, FIX 94 decision rule, RS-025 Q5 known planets | medium | weekly 9% to 9%, 5-hour 6% to 10% |
 | 2026-11-14 19:04 | Opus 5.5 medium | Codex 011 check, fence check, RS-027 root cause | small | weekly about 9 to 10% |
+| 2026-11-14 19:18 to 19:24 | Opus 5.5 high | Codex 012 brief, memory rules, FIX 95 sector 4 (web source), FIX 96 deep guard, G1 prereg contents, twin test launched | PREDICTED 4.0 for tasks 1 to 4 and 6 | weekly 10% to 10%, 5-hour 15% to 20% (about 0.6 weekly at 8:1) | LESSON: predictions about 5x too high for script-and-notes work at 35 to 42% context on Opus high; next predictions divide gut by 4 |
+| 2026-11-14 19:24 to 19:40 | Opus 5.5 high | twin test result, book 2.11.7 publish and live check, FIX 95 moment-flag pricing | PREDICTED 1.5 (new calibration) | weekly 10% to 11%, 5-hour 20% to 21% | close to the new calibration |

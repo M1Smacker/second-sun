@@ -1,0 +1,38 @@
+{
+ "background_K3": {
+  "real": {
+   "total": 176,
+   "at_moment": 22
+  },
+  "flip": {
+   "total": 83,
+   "at_moment": 15
+  }
+ },
+ "background_K5": {
+  "real": {
+   "total": 176,
+   "at_moment": 10
+  },
+  "flip": {
+   "total": 83,
+   "at_moment": 7
+  }
+ },
+ "background_K8": {
+  "real": {
+   "total": 176,
+   "at_moment": 6
+  },
+  "flip": {
+   "total": 83,
+   "at_moment": 4
+  }
+ },
+ "planet_crossings": {
+  "total": 5308,
+  "at_moment_K3": 1291,
+  "at_moment_K5": 787,
+  "at_moment_K8": 459
+ }
+}

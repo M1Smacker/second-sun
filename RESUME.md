@@ -1,3 +1,14 @@
+## LATEST (14 Nov 2026, 19:40 Kuwait): EVENING LIST DONE (Opus 5.5 high; weekly 10% to 11%)
+Ahmed: brief Codex 012, give a work list, stop at 20% weekly to let him see (may continue), keep usage predictions, always ask model and effort (memory feedback_ask_model_and_effort.md, sync_kit run).
+- Codex 012 briefed (`research/astra/inbox/012-own-eclipse-ephemerides.md`, copied to astra): own TESS ephemerides, period and epoch, primary and secondary, 112 affected + 60 control stars, checks (control agreement, 011 deep events on fitted eclipses, injection). Branch astra/012-own-ephemerides.
+- FIX 95 (node 1.6): sector 4 pointing shift at TJD 1413.26 (HEASARC sector 4 summary, read); 50 dev events straddle it, 3 reached tier 1. Data-driven any-camera moment flag priced and NOT viable (rs027_moments.py: K=3 removes 22/15 background, risks 1,291 of 5,308 crossings); fix = known-events list from release notes.
+- FIX 96 (node 1.6): 51 of 176 real and 16 of 83 upside-down tier-1 background events deeper than 3%; bench cannot price (planted max 5,990 ppm); per-star physical ceiling idea.
+- Twin-transit OAEt REJECTED (rs024_twin.py: 529 vs 527 dips, upside-down 83 to 90). OAE stays.
+- G1 preregistration: 10-part proposed contents appended (not approved). Book 2.11.7 recap published, live confirmed.
+- Calibration: predicted about 6.5 weekly for the list, actual about 1; divide gut by 4 for script-and-notes work.
+- Two clock slips (wrote 19:30/19:31 when it was 19:20/19:22), fixed; memory read-the-clock updated.
+- Waiting: Codex 012. Next with room: known spacecraft events list (FIX 95 research), Fable Monday.
+
 ## LATEST (14 Nov 2026, 19:04 Kuwait): CODEX 011 CHECKED, BOTH MASK VARIANTS FAIL; RS-027 FOUND WHY
 - Codex 011 (branch astra/011-mask-timing-oae, not merged; fence check same benign flags, frozen 0, ids 0): with OAE, V0/V1/V2 P 48.20/49.61/49.66%, all-design background real/upside-down 176/83, 209/86, 205/89, T156 dips 500/524/523, paired control passes every bin. Preregistered verdict: both FAIL (a) P and (c) upside-down, so (d) fails too.
 - RS-027 (Claude, unasked root cause, about 0.3 weekly): 18 of 38 V2 new real events are deep eclipses (8,000 ppm+ or SNR 50+, 10 stars); TIC 140760434 repeats a 10,000 ppm eclipse every 31.81 d (catalogue 30.98 d); TIC 394728064 has a misplaced secondary; two upside-down events at the same sector-4 moment on two stars (spacecraft). Padding was hiding wrong ephemerides. Plan change: FIX 94 full design with our own TESS eclipse fit, period refitted, primary and secondary separately; deep-event guard idea. Fed to Fable task 1 (brief updated). RS-026 file, TREE log, research-sessions row RS-027, drop.

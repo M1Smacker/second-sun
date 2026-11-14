@@ -26,3 +26,14 @@ Counts from Codex 011's background and new-event rows (tier 1, untouched design 
 - **CONFIRMED:** 51 of the 176 tier-1 real background events and 16 of the 83 upside-down ones are deeper than 30,000 ppm (3%). The planet bench cannot price the guard: its deepest planted planet is 5,990 ppm, so any guard above that costs zero planets there BY CONSTRUCTION (a blind spot, not evidence of safety).
 - **The guard is not a substitute for FIX 94:** at 30,000 ppm it removes only 7 of the 38 new V2 real events; the 10,000 ppm eclipse of TIC 140760434 passes it.
 - **Design idea (NOT TESTED, filed as FIX 96):** a per-star physical ceiling instead of a fixed number: the deepest transit a planet of 1.5 Jupiter radii could make across the primary (TIC radius), diluted by the companion's light; events deeper than that are labelled eclipse-like, both arms the same. A fixed 3% would wrongly cut a Jupiter crossing a small M dwarf (about 4% before dilution, UNCERTAIN, rough arithmetic); the known transiting circumbinary planets are far shallower (TOI-1338 b about 2,000 to 3,000 ppm, T109).
+
+## FIX 95 pricing: a data-driven "sector-wide moment" flag (Claude, 14 Nov 2026, 19:39; `rs027_moments.py`, `moments.json`, rule written before the run)
+Moment = events on at least K other stars of the same sector, ANY camera, within 0.1 d (pool: all SNR 7+ dev events, g2 plus g3).
+| K | Tier-1 background at a moment, real / upside-down (of 176 / 83) | Planted crossings at a moment (of 5,308) |
+|---|---|---|
+| 3 | 22 / 15 | 1,291 (24%) |
+| 5 | 10 / 7 | 787 (15%) |
+| 8 | 6 / 4 | 459 (9%) |
+- **CONFIRMED: not viable.** Ordinary events on hundreds of stars make "moments" everywhere, so this flag would put a quarter of planet crossings at risk to remove 15 upside-down events. (The planet window is wider, half the duration plus 0.1 d, so its share is an upper bound; even a fraction of it is too costly.)
+- **Plan change:** FIX 95's fix must be a short list of KNOWN spacecraft events with exact times from the TESS data release notes (like the sector 4 pointing shift at TJD 1413.26), not a statistical moment finder. Building that list is a research task (one entry per sector from the notes), filed under FIX 95.
+
