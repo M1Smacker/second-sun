@@ -1,3 +1,4 @@
 # Pages whose every number must trace to a file (T130). One path per line, relative to D:\second-sun. Checked by pipeline/number_map.py.
 book/docs/field-notes/2026-11-11.md
 book/docs/field-notes/2026-11-10.md
+book/docs/field-notes/2026-11-04.md

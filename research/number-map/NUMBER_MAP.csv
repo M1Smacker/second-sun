@@ -15,8 +15,8 @@ book/docs/field-notes/2026-11-11.md,13,13,TRACED,research/stage3/R1-RESULT-g2.tx
 book/docs/field-notes/2026-11-11.md,13,0.41,TRACED,research/stage3/R1-RESULT-g3.txt,bar  7: sealed real   16,0.4071,stratified S1 chance G3
 book/docs/field-notes/2026-11-11.md,13,0.31,TRACED,research/stage3/R1-RESULT-g2.txt,bar  7: sealed real   32,0.3141,stratified S1 chance G2
 book/docs/field-notes/2026-11-11.md,13,0.005,TRACED,research/stage3/R1-PREREGISTRATION.md,Fisher chance 0.005 or less,,
-book/docs/field-notes/2026-11-11.md,14,5,TRACED,research/stage3/R1-RESULT-g3.txt,about 5.2 times,5.2,"G3 power as printed; corrected 13 Nov to 4.8 to 5.1 (MORNING-REPORT line 20); T129 (14 Nov): star-level about 5.5 to 5.9"
-book/docs/field-notes/2026-11-11.md,14,3.3,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,corrected 13 Nov: 3.3 to 3.7,,"G2 power corrected 13 Nov; T129: star-level about 4.0 to 4.5"
+book/docs/field-notes/2026-11-11.md,14,5,TRACED,research/stage3/R1-RESULT-g3.txt,about 5.2 times,5.2,G3 power as printed; corrected 13 Nov to 4.8 to 5.1 (MORNING-REPORT line 20); T129 (14 Nov): star-level about 5.5 to 5.9
+book/docs/field-notes/2026-11-11.md,14,3.3,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,corrected 13 Nov: 3.3 to 3.7,,G2 power corrected 13 Nov; T129: star-level about 4.0 to 4.5
 book/docs/field-notes/2026-11-11.md,14,3.7,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,corrected 13 Nov: 3.3 to 3.7,,
 book/docs/field-notes/2026-11-11.md,14,2.7,TRACED,research/stage3/R1-RESULT-g2.txt,about 2.7 times,,the superseded first figure
 book/docs/field-notes/2026-11-11.md,14,4,DERIVED,,,,"'about 4 in 10': S4 completeness 39%, 52%, 50% per G3 bin (MORNING-REPORT-2026-11-11 line 29)"
@@ -65,3 +65,126 @@ book/docs/field-notes/2026-11-10.md,31,100,NOT A RESULT,,,,'out of 100': the den
 book/docs/field-notes/2026-11-10.md,31,13,TRACED,research/fable-audit-2026-11/DESIGN-C1-OPUS-2026-11-10.md,for P under 13 d,,
 book/docs/field-notes/2026-11-10.md,35,6,NOT A RESULT,,,,quotes an old book claim ('floor of 6 Earth radii') that the note withdraws
 book/docs/field-notes/2026-11-10.md,37,14,DERIVED,,,,'slower than about 14 days': the before-mask survival falls to 0.07 and below from the 14-20 d bin (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md line 17)
+book/docs/field-notes/2026-11-04.md,6,4,DERIVED,,,,'4 to 6 of every 10': hunt-level m 0.60 / 0.48 / 0.40 (G2) and 0.69 / 0.54 / 0.40 (G3) at K 12 / 18 / 25 = 31 to 60% lost (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 2)
+book/docs/field-notes/2026-11-04.md,6,6,DERIVED,,,,see the 4 on this line
+book/docs/field-notes/2026-11-04.md,6,10,DERIVED,,,,see the 4 on this line
+book/docs/field-notes/2026-11-04.md,6,20,MISMATCH,,,,"'almost all of them in binaries slower than 20 days' is not supported by the audit tables: at K 25, 8 h, the before-mask survival is already 0.26 (G2) and 0.16 (G3) at 10 to 14 d and 0.07 / 0.09 at 14 to 20 d (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 1); a share of lost dips weighted by files per bin was not computed. The 10 Nov note itself says 'slower than about 14 days'. Ahmed's wording call (T130, 14 Nov 2026)"
+book/docs/field-notes/2026-11-04.md,9,611,TRACED,research/stage3/G3-RESULT-2026-11-04.md,611 searched,,
+book/docs/field-notes/2026-11-04.md,9,8,TRACED,research/stage3/G3-RESULT-2026-11-04.md,Total 8 min 15 s,8,whole run with completeness and scoring; the search itself 4 min 43 s (line 13 of the note gives 01:15 to 01:20)
+book/docs/field-notes/2026-11-04.md,13,01,NOT A RESULT,,,,clock time
+book/docs/field-notes/2026-11-04.md,13,09,NOT A RESULT,,,,clock time
+book/docs/field-notes/2026-11-04.md,13,15,TRACED,research/stage3/G3-RESULT-2026-11-04.md,start 01:15:46,,01:15
+book/docs/field-notes/2026-11-04.md,13,20,TRACED,research/stage3/G3-RESULT-2026-11-04.md,search done 01:20:29,,01:20
+book/docs/field-notes/2026-11-04.md,13,8,TRACED,research/stage3/G3-RESULT-2026-11-04.md,8 worker,,
+book/docs/field-notes/2026-11-04.md,15,300,TRACED,research/stage3/G3-RESULT-2026-11-04.md,completeness on 300 planted star-sectors,,
+book/docs/field-notes/2026-11-04.md,20,7,TRACED,research/stage3/benchmark-g3-g3.txt,bar  7: real  18,,
+book/docs/field-notes/2026-11-04.md,20,18,TRACED,research/stage3/benchmark-g3-g3.txt,bar  7: real  18,,
+book/docs/field-notes/2026-11-04.md,20,31,TRACED,research/stage3/benchmark-g3-g3.txt,bar  7: real  18,,
+book/docs/field-notes/2026-11-04.md,20,23.5,TRACED,research/stage3/benchmark-g3-g3.txt,bar  7: real  18,,
+book/docs/field-notes/2026-11-04.md,20,8,TRACED,research/stage3/G3-RESULT-2026-11-04.md,one-sided 95% upper limit +8.5,8.5,'about 8': the source says +8.5
+book/docs/field-notes/2026-11-04.md,20,95,TRACED,research/stage3/G3-RESULT-2026-11-04.md,one-sided 95% upper limit,,
+book/docs/field-notes/2026-11-04.md,21,9.34,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"= 9.34 per 1,000",,
+book/docs/field-notes/2026-11-04.md,21,1000,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"= 9.34 per 1,000",1000,
+book/docs/field-notes/2026-11-04.md,21,8,TRACED,research/stage3/G3-RESULT-2026-11-04.md,mark 8 or fewer,,
+book/docs/field-notes/2026-11-04.md,21,8.91,TRACED,research/stage3/G3-RESULT-2026-11-04.md,8.91,,
+book/docs/field-notes/2026-11-04.md,21,6.39,TRACED,research/stage3/G3-RESULT-2026-11-04.md,95% 6.39 to 13.19,,
+book/docs/field-notes/2026-11-04.md,21,13.19,TRACED,research/stage3/G3-RESULT-2026-11-04.md,95% 6.39 to 13.19,,
+book/docs/field-notes/2026-11-04.md,22,8,TRACED,research/stage3/G3-RESULT-2026-11-04.md,8 h 43.7%,,
+book/docs/field-notes/2026-11-04.md,22,44,TRACED,research/stage3/G3-RESULT-2026-11-04.md,8 h 43.7%,43.7,
+book/docs/field-notes/2026-11-04.md,22,60,TRACED,research/stage3/G3-RESULT-2026-11-04.md,K14 60%,,deepest setting K 14; the Jupiter 60% is on line 33 of the source
+book/docs/field-notes/2026-11-04.md,22,10000,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"a Jupiter (10,000 ppm) 60%",10000,
+book/docs/field-notes/2026-11-04.md,22,1338,NOT A RESULT,,,,star name
+book/docs/field-notes/2026-11-04.md,22,6,TRACED,research/stage3/G3-RESULT-2026-11-04.md,found and kept about 6% of the time,,
+book/docs/field-notes/2026-11-04.md,22,4,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"1,000 ppm 3%",1000,"'a 4-Earth-radius one': 1,000 ppm, labelled 'about 4 Earth radii, 1 solar radius' in pipeline/scorecard_plus.py line 142 (strictly 3.4 Earth radii)"
+book/docs/field-notes/2026-11-04.md,22,3,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"1,000 ppm 3%",,
+book/docs/field-notes/2026-11-04.md,23,14,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"784 of 5,634 product reads (13.9%)",13.9,
+book/docs/field-notes/2026-11-04.md,23,784,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"784 of 5,634 product reads",,
+book/docs/field-notes/2026-11-04.md,23,5634,TRACED,research/stage3/G3-RESULT-2026-11-04.md,"784 of 5,634 product reads",,"the 5,634 counts second-pass SAP reads; 784 of 5,031 files is 15.6% (research/stage3/Q5-LOST-READS-2026-11-04.md line 9)"
+book/docs/field-notes/2026-11-04.md,25,1,TRACED,research/stage3/G3-RESULT-2026-11-04.md,assume a 1 solar radius host,,
+book/docs/field-notes/2026-11-04.md,29,5,TRACED,research/stage3/G3-RESULT-2026-11-04.md,real minus expected is -5.0,5.0,
+book/docs/field-notes/2026-11-04.md,29,95,TRACED,research/stage3/G3-RESULT-2026-11-04.md,[95% -19.5 to +11.4],,
+book/docs/field-notes/2026-11-04.md,29,19,TRACED,research/stage3/G3-RESULT-2026-11-04.md,[95% -19.5 to +11.4],19.5,
+book/docs/field-notes/2026-11-04.md,29,11,TRACED,research/stage3/G3-RESULT-2026-11-04.md,[95% -19.5 to +11.4],11.4,
+book/docs/field-notes/2026-11-04.md,39,1,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-04.md,39,2,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-04.md,39,3,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-04.md,47,476784,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"476,784 different stars",476784,
+book/docs/field-notes/2026-11-04.md,47,27,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,sectors 27 to 109,,
+book/docs/field-notes/2026-11-04.md,47,109,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,sectors 27 to 109,,
+book/docs/field-notes/2026-11-04.md,47,364656,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"364,656 of them",364656,
+book/docs/field-notes/2026-11-04.md,47,258858,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"258,858",258858,
+book/docs/field-notes/2026-11-04.md,47,13.5,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"476,784 different stars",13.5,
+book/docs/field-notes/2026-11-04.md,47,1,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"476,784 different stars",1,sectors 1 to 26
+book/docs/field-notes/2026-11-04.md,47,26,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"476,784 different stars",26,
+book/docs/field-notes/2026-11-04.md,48,1.97,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"258,858 x 1.97%",,
+book/docs/field-notes/2026-11-04.md,48,5100,TRACED,research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md,"about **5,100 eclipsing binaries**",5100,
+book/docs/field-notes/2026-11-04.md,48,1000,DERIVED,,,,"5,100 x 20.6% (946 of 4,584 Prsa EBs of the G2 type, research/stage3/CENSUS-STEP1-COUNTS-2026-11-04.md line 18) = about 1,050"
+book/docs/field-notes/2026-11-04.md,48,2,NOT A RESULT,,,,"'a factor of 2': stated error, a judgement"
+book/docs/field-notes/2026-11-04.md,49,784,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,784 of them (15.6%),,
+book/docs/field-notes/2026-11-04.md,49,16,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,about 16% of the star-sectors,,"784 reads are 15.6% of files; 655 star-sectors are 16.1% (research/stage3/Q5-LOST-READS-2026-11-04.md lines 9 and 10); the sentence pairs 784 with the star-sector share, close enough at this rounding"
+book/docs/field-notes/2026-11-04.md,49,4,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,"48 of 1,136 lost (4.2%)",4.2,
+book/docs/field-notes/2026-11-04.md,49,1,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,(sectors 1 to 26),1,
+book/docs/field-notes/2026-11-04.md,49,26,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,(sectors 1 to 26),,
+book/docs/field-notes/2026-11-04.md,49,27,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,254 of 950 (26.7%),26.7,the era sectors 27 to 55 and its 27% share
+book/docs/field-notes/2026-11-04.md,49,55,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,(sectors 27 to 55),,
+book/docs/field-notes/2026-11-04.md,49,18,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,"351 of 1,981 (17.7%)",17.7,
+book/docs/field-notes/2026-11-04.md,49,8,TRACED,research/stage3/Q5-LOST-READS-2026-11-04.md,about 8% of the reach,,
+book/docs/field-notes/2026-11-04.md,51,1400,TRACED,research/stage3/census_step1/census-worth2.txt,"Census  1400 G2-type stars, 3 sectors each: Census E  1.03 (adds  55%",1400,"'about half': adds 55% (rule A, f 1.5); the audit quotes +51% to +65% from census-worth.txt"
+book/docs/field-notes/2026-11-04.md,52,0.1,DERIVED,,,,"mean g 0.101 (G3, f 2.2) to 0.164 (G2 development, f 1.5) at P 77 and 139 d (research/stage3/census_step1/t138-g-reach.txt lines 2 to 5)"
+book/docs/field-notes/2026-11-04.md,52,0.16,DERIVED,,,,"mean g 0.101 (G3, f 2.2) to 0.164 (G2 development, f 1.5) at P 77 and 139 d (research/stage3/census_step1/t138-g-reach.txt lines 2 to 5)"
+book/docs/field-notes/2026-11-04.md,52,77,TRACED,research/stage3/G4-GATHER-2026-11-04.md,77 to 139 d,,
+book/docs/field-notes/2026-11-04.md,52,139,TRACED,research/stage3/G4-GATHER-2026-11-04.md,77 to 139 d,,
+book/docs/field-notes/2026-11-04.md,52,0.05,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,the probe gives 0.05 to 0.23,,"first probe, superseded"
+book/docs/field-notes/2026-11-04.md,52,0.2,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,the probe gives 0.05 to 0.23,0.23,'0.05 to 0.2' in the note; the probe gave 0.05 to 0.23
+book/docs/field-notes/2026-11-04.md,52,1.5,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,about 1.5 to 3.3 planets,,
+book/docs/field-notes/2026-11-04.md,52,3.3,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,about 1.5 to 3.3 planets,,
+book/docs/field-notes/2026-11-04.md,52,4,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,Plain verdict:** our four hunts,4,'4% to 23%' chance
+book/docs/field-notes/2026-11-04.md,52,23,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,Plain verdict:** our four hunts,23,
+book/docs/field-notes/2026-11-04.md,53,3,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,8 threads from the bucket 3.1 files/s,3.1,
+book/docs/field-notes/2026-11-04.md,53,8,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,8 threads from the bucket,,
+book/docs/field-notes/2026-11-04.md,53,1.8,TRACED,research/stage3/CENSUS-PLAN-2026-11-04.md,1.8 MB a file,,
+book/docs/field-notes/2026-11-04.md,53,21,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,took 21 hours of wall clock,,
+book/docs/field-notes/2026-11-04.md,53,20,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,about 20 of them were a stall,,
+book/docs/field-notes/2026-11-04.md,53,410,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,410 of 612 stars done,,
+book/docs/field-notes/2026-11-04.md,53,612,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,410 of 612 stars done,,
+book/docs/field-notes/2026-11-04.md,53,202,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,the last 202 stars,,
+book/docs/field-notes/2026-11-04.md,53,10,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,in about 10 minutes,,
+book/docs/field-notes/2026-11-04.md,53,5193,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,"| 5,193 | 75,151 | 135 | 6.7 |",5193,
+book/docs/field-notes/2026-11-04.md,53,7,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,"| 5,193 | 75,151 | 135 | 6.7 |",6.7,'about 7 hours'
+book/docs/field-notes/2026-11-04.md,53,135,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,"| 5,193 | 75,151 | 135 | 6.7 |",,
+book/docs/field-notes/2026-11-04.md,59,26,NOT A RESULT,,,,"'sector 26': the end of the published list, a definition"
+book/docs/field-notes/2026-11-04.md,60,21,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,took 21 hours of wall clock,,
+book/docs/field-notes/2026-11-04.md,60,5,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,(5.6 MB/s),5.6,'5 MB a second'
+book/docs/field-notes/2026-11-04.md,65,26,NOT A RESULT,,,,question text
+book/docs/field-notes/2026-11-04.md,66,21,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,took 21 hours of wall clock,,
+book/docs/field-notes/2026-11-04.md,68,4,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-04.md,68,0.1,DERIVED,,,,"mean g 0.101 (G3, f 2.2) to 0.164 (G2 development, f 1.5) at P 77 and 139 d (research/stage3/census_step1/t138-g-reach.txt lines 2 to 5)"
+book/docs/field-notes/2026-11-04.md,68,0.16,DERIVED,,,,"mean g 0.101 (G3, f 2.2) to 0.164 (G2 development, f 1.5) at P 77 and 139 d (research/stage3/census_step1/t138-g-reach.txt lines 2 to 5)"
+book/docs/field-notes/2026-11-04.md,68,77,TRACED,research/stage3/G4-GATHER-2026-11-04.md,77 to 139 d,,
+book/docs/field-notes/2026-11-04.md,68,139,TRACED,research/stage3/G4-GATHER-2026-11-04.md,77 to 139 d,,
+book/docs/field-notes/2026-11-04.md,68,5,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-04.md,68,26,NOT A RESULT,,,,'sector 26' definition
+book/docs/field-notes/2026-11-04.md,68,6,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-04.md,68,20,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,about 20 of them were a stall,,
+book/docs/field-notes/2026-11-04.md,68,10,TRACED,research/stage3/CENSUS-STEP2-RESEARCH-2026-11-04.md,in about 10 minutes,,
+book/docs/field-notes/2026-11-04.md,72,21.5,TRACED,research/stage3/FIX28-SHAPE-TEST-2026-11-04.md,21.5,,
+book/docs/field-notes/2026-11-04.md,72,30.5,TRACED,research/stage3/FIX28-SHAPE-TEST-2026-11-04.md,30.5,,
+book/docs/field-notes/2026-11-04.md,72,27.1,TRACED,research/stage3/FIX28-SHAPE-TEST-2026-11-04.md,27.1,,
+book/docs/field-notes/2026-11-04.md,72,27.8,TRACED,research/stage3/FIX28-SHAPE-TEST-2026-11-04.md,27.8,,
+book/docs/field-notes/2026-11-04.md,72,3,TRACED,research/stage3/FIX28-SHAPE-TEST-2026-11-04.md,about 3 points of kept share,,
+book/docs/field-notes/2026-11-04.md,82,3000,TRACED,research/stage3/OPUS-TRIAL-AUDIT-2026-11-06.md,isotropic eclipsing binaries per row,3000,3D Monte Carlo audit_mc.py
+book/docs/field-notes/2026-11-04.md,82,0.135,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-1 (CONFIRMED),,
+book/docs/field-notes/2026-11-04.md,82,0.124,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-1 (CONFIRMED),,
+book/docs/field-notes/2026-11-04.md,82,0.143,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-1 (CONFIRMED),,
+book/docs/field-notes/2026-11-04.md,82,1,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-1 (CONFIRMED),1,1 to 3 degrees; 'about 1% chance' idea withdrawn (line 90)
+book/docs/field-notes/2026-11-04.md,82,3,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-1 (CONFIRMED),3,
+book/docs/field-notes/2026-11-04.md,82,10,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-2 (CONFIRMED),10,widths 10 to 30% uncertain
+book/docs/field-notes/2026-11-04.md,82,30,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,F-2 (CONFIRMED),30,
+book/docs/field-notes/2026-11-04.md,84,1400,TRACED,research/stage3/census_step1/census-worth2.txt,"Census  1400 G2-type stars, 3 sectors each: Census E  1.03 (adds  55%",1400,"'about half': adds 55% (rule A, f 1.5); the audit quotes +51% to +65% from census-worth.txt"
+book/docs/field-notes/2026-11-04.md,91,6,NOT A RESULT,,,,'Q1 UPDATE 6': a section name
+book/docs/field-notes/2026-11-04.md,50,10,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,Armstrong et al. 2014 give 10.0,10.0,Kepler rate
+book/docs/field-notes/2026-11-04.md,50,13,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,"Without geometry (old, too generous)",13.5,"13 to 22 planets (13.5 rule A, 22.3 rule B; the same file's table says 22.4)"
+book/docs/field-notes/2026-11-04.md,50,22,TRACED,research/stage3/Q1-EXPECTED-PLANETS-2026-11-04.md,"Without geometry (old, too generous)",22.3,
+book/docs/field-notes/2026-11-04.md,51,3000,TRACED,research/stage3/census_step1/census-worth2.txt,"Census  3000 G2-type stars, 3 sectors each: Census E  2.21 (adds 118%",3000,"'about 3,000 would roughly double it': adds 118% (rule A, f 1.5)"
+book/docs/field-notes/2026-11-04.md,84,3000,TRACED,research/stage3/census_step1/census-worth2.txt,"Census  3000 G2-type stars, 3 sectors each: Census E  2.21 (adds 118%",3000,
+book/docs/field-notes/2026-11-04.md,66,2.2,DERIVED,,,,"research/downloads.csv wave g3: 612 rows, 2.28 GB (2.12 GiB), summed 14 Nov 2026"

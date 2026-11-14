@@ -94,7 +94,25 @@ def check():
     return problems
 
 
+def suggest(page, sources):
+    """For every number of a page, the source line (among the given files) that contains the number and shares the most words with the page
+    line. A suggestion only: every row is still reviewed by hand before it enters the map."""
+    srcs = {s: (ROOT / s).read_text(encoding="utf-8", errors="replace").splitlines() for s in sources}
+    words = lambda t: {w.lower() for w in re.findall(r"[A-Za-z]{4,}", t)}
+    for ln, num, text in tokens(page):
+        best = (0, None, None, None)
+        for s, lines in srcs.items():
+            for i, l in enumerate(lines, 1):
+                if number_in(l, num):
+                    sc = len(words(text) & words(l))
+                    if sc > best[0]:
+                        best = (sc, s, i, l.strip())
+        print(f"{ln}\t{num}\t" + (f"{best[1]}:{best[2]} ({best[0]})\t{best[3][:150]}" if best[1] else "NO SOURCE LINE"))
+
+
 if __name__ == "__main__":
+    if len(sys.argv) >= 4 and sys.argv[1] == "suggest":
+        suggest(sys.argv[2], sys.argv[3:]); sys.exit(0)
     if len(sys.argv) == 3 and sys.argv[1] == "list":
         for ln, num, text in tokens(sys.argv[2]):
             print(f"{ln}\t{num}\t{text.strip()[:140]}")
