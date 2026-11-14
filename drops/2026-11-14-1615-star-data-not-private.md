@@ -10,5 +10,5 @@ supersedes: []
 ---
 **Plain:** Star ids and star data may appear plainly in the book and on the Tree; they are no longer treated as private.
 **Why it matters:** the Tree can now show real stars and events instead of counts only.
-**Explanation:** Ahmed: the book is his own notebook and nobody knows the link. Science rules stay: sealed runs stay blind until the preregistered analysis, fence A and B stars are never searched, outward actions (emails, CTOI, ExoFOP, posts) need his yes.
+**Explanation:** Ahmed: the book is his own notebook and nobody knows the link. Science rules stay: sealed runs stay blind until the preregistered analysis, fence A and B stars are never searched, outward actions (emails, CTOI, ExoFOP, posts) need his yes. Leads show at once, marked 'not checked yet'.
 **Technical:** the publish script's privacy scan has to be loosened to match before the first star id is published (part of T160).

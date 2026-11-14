@@ -21,4 +21,4 @@ supersedes: []       # drop file names this one replaces
 **Explanation:** a few plain sentences.
 **Technical:** numbers, method, caveats.
 ```
-Star ids and star data are allowed (Ahmed, 14 Nov 2026). Not allowed: unblinding a sealed run, fence A or B stars, a named lead before two keys, private memory text.
+Star ids and star data are allowed (Ahmed, 14 Nov 2026). Leads may be shown at once, marked 'not checked yet'. Not allowed: unblinding a sealed run, fence A or B stars, private memory text.

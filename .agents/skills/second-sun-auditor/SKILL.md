@@ -33,7 +33,7 @@ Where bugs hide, and what to check:
 - **Sentinels and selection.** -1, NaN, empty string passing a `<` test; `drop_duplicates` choosing a row; a regex reading `s2019` as a sector.
 - **Counts that share a name.** 4,080 (G3 groups searched) and 3,425 (G3 star-sectors scored) are both "G3 star-sectors". Say which.
 - **Hard paths, wrong venv.** `D:\second-sun\.venv\Scripts\python.exe` has lightkurve; plain `python` does not. A check that never ran looks like a pass.
-- **Blind and fences, not privacy.** Star ids and star data may be published (Ahmed, 14 Nov 2026). Before a push, still check the payload does not unblind a sealed run, touch fence A or B stars, or show a named lead before two keys. A commit message is not evidence.
+- **Blind and fences, not privacy.** Star ids and star data may be published (Ahmed, 14 Nov 2026). Before a push, still check the payload does not unblind a sealed run, touch fence A or B stars, or show a lead without the 'not checked yet' mark. A commit message is not evidence.
 
 ## 2. How to fix without making new bugs
 1. Write the failing test first and watch it fail on the unfixed code.
