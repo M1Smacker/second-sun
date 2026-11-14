@@ -1,3 +1,7 @@
+## LATEST (14 Nov 2026, 09:35 Kuwait): T130 SEARCH WINDOW PAGE; MEMORY CONSOLIDATED
+- T130 page 16: book/docs/watch.md (6 result numbers traced; the rest is CSS). 16 pages, 1,627 numbers. Next: chapter pages that quote results.
+- Memory pass (consolidate-memory skill): retired feedback_daily_usage_cap (27 Oct, superseded; caps rule folded into feedback_usage_ledger_calibration, links repointed); freeze-plan memory marked DONE; overnight memory gained the five-hour-first rule (keep the window for the decision task, arm a wake at the reset). sync_kit run: 7 copied, 1 removed, 0 refused.
+
 ## LATEST (14 Nov 2026, 09:22 Kuwait): 09:01 CONTINUATION: WHY THE PAIRED CONTROL FAILS; CODEX 008 NOTE
 - Codex finished 006 at 07:56 (astra/006-branch-one): P 48.37% FIX FIRST, S passes (48.6%), W fails coverage gate, M 13 of 15 losses catalogue windows; paired control fails in the 20 to 27.4 d bin (95 vs 75 of 187).
 - Claude p_flags.py (all 1,250 trials): arms find the crossing equally; 'dominated' holds bumps 21 vs dips 6 (20 to 27.4 d), 23 vs 3 (27.4 d+). CONFIRMED counts, LIKELY mechanism (eclipse leftovers as competitors). FIX 93 updated; P-CHECK addendum.
