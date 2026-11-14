@@ -10,7 +10,7 @@
 <!-- ss:progress-line -->
 
 !!! warning "Correction, 10 Nov 2026"
-    An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days. So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. [The full story](../field-notes/2026-11-10.md).
+    An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, and the loss grows as the binary gets slower (most lost dips are in 5 to 14 day binaries, because most of our data are there). So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. [The full story](../field-notes/2026-11-10.md).
 
 ## The path at a glance
 
