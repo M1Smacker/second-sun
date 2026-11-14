@@ -1,0 +1,31 @@
+page,line,number,status,source_file,snippet,source_number,note
+book/docs/field-notes/2026-11-11.md,6,803,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,of the 803 rows,,unseen G2+G3 rows (fence B)
+book/docs/field-notes/2026-11-11.md,10,300,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,300 of 300 star-sectors,,zero-difference proof with p1 off
+book/docs/field-notes/2026-11-11.md,11,2,DERIVED,,,,65/33 = 2.0 (G2 design stars) and 33/8 = 4.1 (G3) from R1-DRY-RUN-AUDIT lines 19 and 20
+book/docs/field-notes/2026-11-11.md,11,4,DERIVED,,,,33/8 = 4.1 (G3 design stars) from R1-DRY-RUN-AUDIT line 19
+book/docs/field-notes/2026-11-11.md,11,33,TRACED,research/stage3/R1-DRY-RUN-AUDIT-2026-11-11.txt,tier-1 real 33,,G3 seen real 33; the second 33 on the line (G2 upside-down) is on line 20 of the same file
+book/docs/field-notes/2026-11-11.md,11,8,TRACED,research/stage3/R1-DRY-RUN-AUDIT-2026-11-11.txt,upside-down 8,,G3 seen
+book/docs/field-notes/2026-11-11.md,11,65,TRACED,research/stage3/R1-DRY-RUN-AUDIT-2026-11-11.txt,tier-1 real 65,,G2 seen
+book/docs/field-notes/2026-11-11.md,11,10,TRACED,research/stage3/R1-S1-DESIGN-CHECK-2026-11-11.txt,light both masks keep  bar 7: 10/13,,
+book/docs/field-notes/2026-11-11.md,11,13,TRACED,research/stage3/R1-S1-DESIGN-CHECK-2026-11-11.txt,light both masks keep  bar 7: 10/13,,
+book/docs/field-notes/2026-11-11.md,13,16,TRACED,research/stage3/R1-RESULT-g3.txt,tier-1: real 16,,G3 unseen recovered light; equals the verdict selection (bar 7 PDCSAP half: 16/6)
+book/docs/field-notes/2026-11-11.md,13,6,TRACED,research/stage3/R1-RESULT-g3.txt,tier-1: real 16,,
+book/docs/field-notes/2026-11-11.md,13,34,MISMATCH,research/stage3/R1-RESULT-g2.txt,tier-1: real 34,,"34/13 is tier-1 in recovered light over BOTH flux halves (R1-RESULT-g2 line 8); the chance 0.31 printed beside it was computed on the PDCSAP half, 32/13 (line 12). Not a wrong verdict; a number from another selection. Wording is Ahmed's call (found by T130, 14 Nov 2026)"
+book/docs/field-notes/2026-11-11.md,13,13,TRACED,research/stage3/R1-RESULT-g2.txt,tier-1: real 34,,
+book/docs/field-notes/2026-11-11.md,13,0.41,TRACED,research/stage3/R1-RESULT-g3.txt,bar  7: sealed real   16,0.4071,stratified S1 chance G3
+book/docs/field-notes/2026-11-11.md,13,0.31,TRACED,research/stage3/R1-RESULT-g2.txt,bar  7: sealed real   32,0.3141,stratified S1 chance G2
+book/docs/field-notes/2026-11-11.md,13,0.005,TRACED,research/stage3/R1-PREREGISTRATION.md,Fisher chance 0.005 or less,,
+book/docs/field-notes/2026-11-11.md,14,5,TRACED,research/stage3/R1-RESULT-g3.txt,about 5.2 times,5.2,"G3 power as printed; corrected 13 Nov to 4.8 to 5.1 (MORNING-REPORT line 20); T129 (14 Nov): star-level about 5.5 to 5.9"
+book/docs/field-notes/2026-11-11.md,14,3.3,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,corrected 13 Nov: 3.3 to 3.7,,"G2 power corrected 13 Nov; T129: star-level about 4.0 to 4.5"
+book/docs/field-notes/2026-11-11.md,14,3.7,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,corrected 13 Nov: 3.3 to 3.7,,
+book/docs/field-notes/2026-11-11.md,14,2.7,TRACED,research/stage3/R1-RESULT-g2.txt,about 2.7 times,,the superseded first figure
+book/docs/field-notes/2026-11-11.md,14,4,DERIVED,,,,"'about 4 in 10': S4 completeness 39%, 52%, 50% per G3 bin (MORNING-REPORT-2026-11-11 line 29)"
+book/docs/field-notes/2026-11-11.md,14,10,DERIVED,,,,'about 4 in 10' (see the 4 on this line)
+book/docs/field-notes/2026-11-11.md,15,803,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,of the 803 rows,,
+book/docs/field-notes/2026-11-11.md,15,91,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,91 of the 803 rows,,
+book/docs/field-notes/2026-11-11.md,15,14,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,14 day and longer,,
+book/docs/field-notes/2026-11-11.md,15,335,TRACED,research/stage3/MORNING-REPORT-2026-11-11.md,The other 335 slow,,
+book/docs/field-notes/2026-11-11.md,19,5,DERIVED,,,,"scope of the null: the R1 binary-period bins 5 to 10 and 10 to 14 d hold almost all unseen tier-1 events (R1-RESULT per-bin counts, bar 7: G2 20/4 9/8 2/1 1/0 0/0; G3 9/5 4/1 3/0 0/0 0/0)"
+book/docs/field-notes/2026-11-11.md,19,14,DERIVED,,,,see the 5 on this line
+book/docs/field-notes/2026-11-11.md,28,4,DERIVED,,,,quiz answer: 'about 4 in 10' as on line 14
+book/docs/field-notes/2026-11-11.md,28,10,DERIVED,,,,quiz answer: 'about 4 in 10' as on line 14
