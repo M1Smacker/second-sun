@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 12:53 Kuwait): FABLE METHOD SKILL PLANNED
+Ahmed: before Fable access ends (reset Tue 17 Nov 01:00 Kuwait) Fable writes its working method as a skill for Opus. Plan `research/fable-method/PLAN-2026-11-14.md`: prepare Sunday, Fable block Monday 16 Nov (three real Road-to-G1 tasks with work logs, distil, review one Claude stint, test on a held-out task), install as second-sun-method with sync_kit. RS-025 gap split running.
+
 ## LATEST (14 Nov 2026, 12:32 Kuwait): AHMED YES TO FAIRNESS FIXES; BRIEF 009; ROAD TO G1 (3 OF 9)
 Ahmed: research root causes myself without being told (memory feedback_research_root_cause_first, auditor lesson); YES, fairness fixes count (Tree rule 1 amended: fixes a failing paired control, adds no upside-down alarms, costs at most about 0.5 points of P). Codex brief 009 written (second key on RS-024, OE/OA/OAE on T156 and 008 harness, no new fix designs). Tree: Road to G1, 9 steps, 3 done. Next: RS-025 (Claude) on the flags holding found planets (step, gap/dump, ramp, FIX 92).
 
