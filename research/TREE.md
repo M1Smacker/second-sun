@@ -15,6 +15,7 @@
 ## Scoreboard (T156, 13 Nov 2026)
 Saturn-like planets (3,000 to 6,000 ppm, 6 to 12 h): **R = 0.27 (0.21 to 0.34)**, so **FIX FIRST** under `research/stage3/G1-RECOVERY-BAR.md`. Old belief "about 4 in 10" was only for planets already inside a searched window.
 Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**, outside windows **45**, not found **41**, mask **15**, no safe windows **7**, caught **61**.
+Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST** under `research/stage3/G1-PLANET-BAR.md` (GO needs 0.50); no bin under 0.20. Check: `research/stage3/006-check/P-CHECK-2026-11-14.md`.
 
 ## ACTIVE path now
 1. **Codex brief 006, everything left on branch 1** (Ahmed's round, 13 Nov 23:30): P planet-level bench (decides G1 under the new `research/stage3/G1-PLANET-BAR.md`, written before any planet number) with a multi-transit combination design study; S short-binary noise fix (node 1.5); W window repair (node 1.2); M mask or support (node 1.4). Brief `research/astra/inbox/006-branch-one.md` on astra/006-branch-one, cap 40 weekly points of its bar.

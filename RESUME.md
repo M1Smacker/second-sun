@@ -1,3 +1,8 @@
+## LATEST (14 Nov 2026, 05:57 Kuwait): P VERDICT FIX FIRST, TWO KEYS
+- Codex 006 planet-summary.json (05:39): P 0.4837 equal-weight (95% 0.442 to 0.524), bump control 0.442, verdict FIX FIRST. Claude's recount (p_recount.py, 05:48): P 0.4864 equal-weight, pooled 531 of 1,098 = 0.4836 (0.442 to 0.526), control 0.443. 3 bins identical, 2 differ by 2 and 1 trials (cause UNCERTAIN, moves P 0.003). No bin under 0.20. Report `research/stage3/006-check/P-CHECK-2026-11-14.md`; Tree scoreboard line added (tree_check passes).
+- Meaning: FIX FIRST, 0.016 under GO. Next fixes aimed at held transits: FIX 92, FIX 93 (from T109). Codex part S (short-binary bench, 3,823 trials) running since 05:39; its report and fence_check still due; do not merge before.
+- Book 2.11.4 live (checked 05:14). Weekly about 94 to 95%, five-hour about 72%.
+
 ## LATEST (14 Nov 2026, 05:12 Kuwait): T130 TWELVE PAGES, BOOK 2.11.4 PUBLISHING, WAITING FOR TRIALS
 - T130: pages 11 (27 Oct, 183 numbers) and 12 (24 Oct, 57) mapped. 12 pages, 1,177 numbers, 5 FLAGGED (same 3 problems), 27 UNSOURCED (book-build or private details only). New recount script `research/number-map/check_eyes_1027.py` (25 rounds = 665 curves, 9 deep dips called odd in the first five rounds, thirds 77.8/83.1/82.8%, Wilson 10.7% at 0 of 32): all agree with the note.
 - Book fix (tiny, mine): 24 Oct note said 14 feedback checks and 14 mutations; tests have 16 and 18 since 24 Oct evening (rerun: 16 pass, 18 of 18 caught). Book 2.11.4 (footer, versions row), commit e9325ea; publish_book.ps1 -Test running in background (log C:\Users\hanzl\AppData\Local\Temp\publish-2.11.4.log); confirm live page after it ends.
