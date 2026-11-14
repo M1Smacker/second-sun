@@ -20,14 +20,15 @@
 - T125 follow-up protocol: drafted only. It binds only if you approve it.
 - tree_check fixed (it was skipping phase-tagged builds).
 
-## 4. Number audit (T130): 12 field notes, 1,177 numbers
-- 1,145 trace to a file, a recount script, or are not results.
+## 4. Number audit (T130): all 15 field notes, 1,544 numbers
+- 1,490 trace to a file, a recount script, or are not results. 49 have no saved source (build checks, Eyes generator settings, private event details); none is a verdict number.
 - **3 wording calls for you** (no verdict changes):
   1. 11 Nov note: "34 against 13" should be **32** against 13.
   2. 10 Nov note: 0.58/0.95 pools sizes K 12 to 25 only, not all tested sizes.
   3. The correction box "almost all in binaries slower than 20 days" is **wrong**: 31% (G2) and 5% (G3). It sits in **8 book places**.
 - Also still live: the old "82.7% of strong ones" sentence (corrections C3 and C4, waiting since 3 Nov).
 - One small fix done by me: the 24 Oct note's test counts (16 checks, 18 mutations). Book 2.11.4.
+- Small imprecision, your call: the 23 Oct note calls TOI-1338 b "the 0.2% dip"; it is about 0.26%.
 
 ## 5. Codex
 - It never got the 007 speed-up line (still 2 workers). Codex's own report and part S (short-binary bench, 3,823 trials) are still running.

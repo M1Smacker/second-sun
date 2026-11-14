@@ -1,3 +1,9 @@
+## LATEST (14 Nov 2026, 06:03 Kuwait): NIGHT RUN DONE EXCEPT THE 09:01 CONTINUATION
+- P verdict FIX FIRST by two keys (05:57 block). Morning report `research/stage3/MORNING-REPORT-2026-11-14.md` (commit, phone version given in chat). Book 2.11.5 live (home recap 14 Nov, checked 05:55).
+- T130: every field note mapped (15 pages, 1,544 numbers; 1,490 traced or not results; 5 FLAGGED, 3 distinct; 49 UNSOURCED, none a verdict number). 21 Oct readiness recounted from mission.yml at 8ce5e8e (35.75, 23 items). Next T130: Search window results page, chapters that quote results.
+- Meter at 06:00: weekly 95%, five-hour about 82% (resets 09:00 Kuwait). Background waiter bbtrow6ii wakes the session at 09:01 to continue the extra list toward 100% weekly (Search window page for T130, memory consolidation, slim RESUME draft).
+- Codex part S (short-binary bench, 3,823 trials) running; its report and fence_check due before any merge. Codex never got the 007 line.
+
 ## LATEST (14 Nov 2026, 05:57 Kuwait): P VERDICT FIX FIRST, TWO KEYS
 - Codex 006 planet-summary.json (05:39): P 0.4837 equal-weight (95% 0.442 to 0.524), bump control 0.442, verdict FIX FIRST. Claude's recount (p_recount.py, 05:48): P 0.4864 equal-weight, pooled 531 of 1,098 = 0.4836 (0.442 to 0.526), control 0.443. 3 bins identical, 2 differ by 2 and 1 trials (cause UNCERTAIN, moves P 0.003). No bin under 0.20. Report `research/stage3/006-check/P-CHECK-2026-11-14.md`; Tree scoreboard line added (tree_check passes).
 - Meaning: FIX FIRST, 0.016 under GO. Next fixes aimed at held transits: FIX 92, FIX 93 (from T109). Codex part S (short-binary bench, 3,823 trials) running since 05:39; its report and fence_check still due; do not merge before.
