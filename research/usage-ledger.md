@@ -210,3 +210,4 @@ Reading: porting and re-using existing scripts ran 0.2 to 0.4 of the estimate ag
 | 14 Nov 11:55 | Check Codex 008 plus fence check | small | ~0.3 | |
 | 14 Nov 12:22 | RS-024 dominated research + preregistered 4-rule test | research + runs | cap 8, used ~2 (1% to 3%) | Opus 5.5 medium |
 | 14 Nov 13:10 | RS-025 part 1 (flag prices, dumps, DS test) | research + runs | cap 8, used ~2 (3% to 5%) | Opus 5.5 medium |
+| 14 Nov 13:20 | Codex 009 check + RS-025 Q3 (408 never found) + brief 010 | research + runs | ~1 | Opus 5.5 medium |

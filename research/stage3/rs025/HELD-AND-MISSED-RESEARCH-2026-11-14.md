@@ -56,3 +56,17 @@
 - Open: Q2 for step and ramp; **Q3, the about 408 planets never found at SNR 7 (the biggest pool)**; Q5 (real known planets under these rules).
 - **Plain conclusion so far:** P 0.50 is within reach (DS alone gives 0.502; DS plus OAE not yet run), but every route found so far costs a few false alarms. The next decision is a trade-off rule (how many extra false alarms per planet gained is acceptable, judged on BOTH meters, since the upside-down meter is blind near dumps and gaps), not another single fix. That is the design task for Fable's round on Monday, with Codex's T156 second key.
 - Used: about 2 weekly points of the 8 cap (meter 3% to 5%).
+
+### Q3. Why about 4 in 10 planets are never found (`rs025_missed.py`, `rs025_stack.py`, `rs025_masklost.py`; 13:40). CONFIRMED (own data, one key)
+Found 690 of 1,098 (matches p_flags exactly); never found 408. One cause each, from the detector's own box score at every planted crossing:
+| Cause | Planets | What it means |
+|---|---:|---|
+| weak (best crossing SNR under 5) | 205 | median crossing SNR 2.0; mostly QLP light. Below what this data can see: a physical limit, not a bug |
+| near miss (SNR 5 to 7) | 61 | median 4.6 per crossing |
+| searched but no box scored at any crossing | 71 | median 1 crossing; data missing or masked at the crossing |
+| light curve never searched | 70 | statuses: too little data after masking, or no best-product light curve |
+| scored 7+ but no event | 1 | |
+- **Stacking cannot rescue the weak pool:** with the true crossing times known, the ideal combined SNR reaches 7 for only 26 of 61 near misses and 6 of 205 weak planets (upper bound; Codex's 006 combination study got P 48.63%).
+- **The mask blanks whole light curves:** of 21,924 design light curves, 711 (3.2%) have "too little data after masking" (under 200 points left), 8.8% in the 20 to 27.4 d bin (155 of 1,753), 1.2% in 10 to 14 d. **All 48 stars with a blanked curve have a catalogue timing-uncertainty term over 0.5 d at BTJD 2500** (`petrova_mask.windows`: half-width = 1.5 x width / 2 + 3 x sqrt(eT0^2 + (n eP)^2), n = cycles since the catalogue epoch); about 80 of 704 design stars do.
+- **The never-found planets sit on those stars** (G2 catalogue loaded; G3 stars not checked here, NOT TESTED): never searched 38 of 43, no box scored 26 of 39, against 77 of 690 found planets.
+**Plain conclusion:** the biggest fixable pool is not a flag but the mask's timing padding: up to about 64 planets (G2 alone) are lost because the eclipse windows widen with catalogue timing error until they swallow the sector. The fix direction is better eclipse times for the TESS years (measured from TESS's own eclipses, applied identically to both arms), not a narrower rule. Testing it needs a re-run of the search on injected light (the masking happens before detection), so it is a Codex harness job. Also unexplained: "no best-product light curve" cases (best-product table lists a product the design groups do not hold).

@@ -1,0 +1,23 @@
+{
+ "4 near_miss": {
+  "n": 61,
+  "median_crossing_snr": 4.64,
+  "median_ideal_stack": 6.67,
+  "ideal_stack_7plus": 26,
+  "ideal_stack_5_to_7": 32
+ },
+ "5 weak": {
+  "n": 205,
+  "median_crossing_snr": 2.04,
+  "median_ideal_stack": 2.85,
+  "ideal_stack_7plus": 6,
+  "ideal_stack_5_to_7": 25
+ },
+ "ideal_stack_7plus_by_bin": {
+  "0": 15,
+  "1": 7,
+  "2": 7,
+  "3": 1,
+  "4": 2
+ }
+}

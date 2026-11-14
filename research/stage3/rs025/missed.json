@@ -1,0 +1,115 @@
+{
+ "planets_with_crossings": 1098,
+ "found": 690,
+ "never_found": 408,
+ "cause": {
+  "1 not_searched": 70,
+  "2 not_scored": 71,
+  "3 scored_7plus_lost": 1,
+  "4 near_miss": 61,
+  "5 weak": 205
+ },
+ "cause_by_bin": {
+  "5-10": {
+   "1 not_searched": 10,
+   "2 not_scored": 10,
+   "4 near_miss": 25,
+   "5 weak": 66
+  },
+  "10-14": {
+   "1 not_searched": 12,
+   "2 not_scored": 16,
+   "3 scored_7plus_lost": 1,
+   "4 near_miss": 11,
+   "5 weak": 59
+  },
+  "14-20": {
+   "1 not_searched": 15,
+   "2 not_scored": 21,
+   "4 near_miss": 13,
+   "5 weak": 43
+  },
+  "20-27.4": {
+   "1 not_searched": 21,
+   "2 not_scored": 14,
+   "4 near_miss": 9,
+   "5 weak": 12
+  },
+  "27.4+": {
+   "1 not_searched": 12,
+   "2 not_scored": 10,
+   "4 near_miss": 3,
+   "5 weak": 25
+  }
+ },
+ "never_found_share_by_bin": {
+  "5-10": 0.459,
+  "10-14": 0.432,
+  "14-20": 0.416,
+  "20-27.4": 0.299,
+  "27.4+": 0.228
+ },
+ "not_searched_statuses": {
+  "too little data after masking": 37,
+  "no best-product file": 39
+ },
+ "4 near_miss": {
+  "n": 61,
+  "median_depth_ppm": 4040,
+  "median_crossings": 3.0,
+  "one_crossing": 11,
+  "in_eclipse_window": 1,
+  "best_product_mix": {
+   "QLP": 54,
+   "SPOC": 16,
+   "TESS-SPOC": 22,
+   "null": 9
+  },
+  "statuses": {
+   "ok": 61,
+   "no best-product file": 9
+  }
+ },
+ "5 weak": {
+  "n": 205,
+  "median_depth_ppm": 3976,
+  "median_crossings": 3.0,
+  "one_crossing": 47,
+  "in_eclipse_window": 4,
+  "best_product_mix": {
+   "SPOC": 46,
+   "QLP": 174,
+   "TESS-SPOC": 57,
+   "null": 40
+  },
+  "statuses": {
+   "ok": 205,
+   "no best-product file": 40,
+   "too little data after masking": 3
+  }
+ },
+ "2 not_scored": {
+  "n": 71,
+  "median_depth_ppm": 4070,
+  "median_crossings": 1.0,
+  "one_crossing": 38,
+  "in_eclipse_window": 0,
+  "best_product_mix": {
+   "SPOC": 14,
+   "QLP": 54,
+   "TESS-SPOC": 17,
+   "null": 10
+  },
+  "statuses": {
+   "too little data after masking": 14,
+   "ok": 71,
+   "no best-product file": 10
+  }
+ },
+ "found_for_comparison": {
+  "median_depth_ppm": 4374,
+  "median_crossings": 3.0,
+  "one_crossing_share": 0.162
+ },
+ "never_found_one_crossing_share": 0.355
+}

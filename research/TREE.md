@@ -25,12 +25,12 @@ Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST
 **Codex 005 findings:** A: the +59/-6 real-side change is NOT eclipse leftovers (54 of 56 classifiable sit 2+ eclipse widths away), spread over 33 stars, cause UNCERTAIN, no narrower lock supported. B (node 1.5): all 19 short-period misses are below SNR 7; depth survives detrending; higher noise in short binaries is LIKELY the cause (median best SNR 6.2 vs 9.3, scatter 3,070 vs 2,221 ppm); binary-phase origin UNCERTAIN; ceiling 7.9 points. C (node 1.2): of 52 window losses, 15 are true archive gaps, 21 lost at load, 16 have usable data before the window rule; ceiling 2.6 to 7.0 points. Needed for GO: +16.7 points and a lower bound of 40%; the two biggest ceilings together give 14.9 points even if perfect.
 
 ## Road to G1 (Claude, 14 Nov 2026, 12:30; replaces the 13 Nov estimate)
-Done 3 of 9: [###......]
+Done 4 of 9: [####.....]
 1. DONE: planet-level P measured, two keys (0.48, FIX FIRST).
 2. DONE: T109 known planets (TOI-1338 b found, the other missed; Codex second key with scope corrections).
 3. DONE: RS-024, root cause of "dominated" (fairness fix OAE found; cannot lift P by itself).
-4. Codex brief 009: second key on RS-024 and OAE on the T156 bench; adopt under the amended rule. One round.
-5. RS-025 (Claude): research the flags that hold found planets (step, gap/dump, ramp; FIX 92), own data first, then preregistered tests. One stint.
+4. DONE (14 Nov 12:56): Codex 009 second key agrees; OAE qualifies as a fairness fix (planet control passes every bin, upside-down background 83 unchanged, -0.17 points P; T156 stays passing). Adopted, not frozen.
+5. RS-025 (Claude, running): flags priced; the biggest fixable pool is the mask's timing padding (up to about 64 planets lost because eclipse windows swallow sectors), not a flag. Next: Codex 010 measures it on injected light.
 6. Fix rounds until P reaches 0.50 with no more false alarms, Codex second key each. One to three rounds: the biggest unknown.
 7. Freeze Petrova 1.1 (two proofs, outside audit).
 8. Re-measure P on frozen 1.1 and re-check the known planets: GO or not.
@@ -56,7 +56,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 - DONE: T158 multi-window study. Verdict (Codex 003): no demonstrated win. 41 more dips among 570 failures; the 22 to 55 was planted bumps recovered, NOT false alarms (Claude's earlier wording was wrong); no background alarm test exists. Requiring both extra windows to agree gains 1 dip: a low-priority lead only.
 - PARKED: FIX 11 longer detrending window; FIX 14 mask-before-detrend; FIX 16 B-lite follow-ups.
 
-**1.4 The eclipse mask eats the transit.** Loss: 15 of 222. *Status: PARKED (small).* FIX 24 G2 ephemeris for the eclipse flags.
+**1.4 The eclipse mask eats the transit.** Loss: 15 of 222 on T156; **planet bench: up to about 64 of 408 never-found planets (RS-025)**. *Status: ACTIVE (FIX 94, Codex 010).* FIX 24 G2 ephemeris for the eclipse flags; FIX 94 timing padding blanks light curves.
 
 **1.5 Blind spot: binaries of 5 to 10 days.** R 0.13 (6 of 48). *Status: NEXT after 1.1.* Codex 003: the loss is BEFORE detection (19 of 48 give no event, 40%, against 13% in other bins); flags are not the cause (6 of 48). Binary variability or residual structure upsetting the detrending is LIKELY, not shown. T161 diagnosis (build queue).
 

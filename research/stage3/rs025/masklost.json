@@ -1,0 +1,104 @@
+{
+ "light_curves": 21924,
+ "status": {
+  "too little data after masking": 711,
+  "ok": 20723,
+  "no safe windows": 485,
+  "too little data": 5
+ },
+ "blanked_by_mask_by_bin": {
+  "10-14": {
+   "n": 4906,
+   "blanked": 57
+  },
+  "14-20": {
+   "n": 4242,
+   "blanked": 138
+  },
+  "20-27.4": {
+   "n": 1753,
+   "blanked": 155
+  },
+  "27.4+": {
+   "n": 3539,
+   "blanked": 145
+  },
+  "5-10": {
+   "n": 7484,
+   "blanked": 216
+  }
+ },
+ "share_removed_ok_curves_quantiles": {
+  "10-14": [
+   0.066,
+   0.194,
+   0.804
+  ],
+  "14-20": [
+   0.05,
+   0.194,
+   0.685
+  ],
+  "20-27.4": [
+   0.046,
+   0.219,
+   0.573
+  ],
+  "27.4+": [
+   0.017,
+   0.212,
+   0.713
+  ],
+  "5-10": [
+   0.091,
+   0.298,
+   0.708
+  ]
+ },
+ "blanked_products": {
+  "QLP": 283,
+  "TESS-SPOC": 202,
+  "SPOC": 226
+ },
+ "blanked_cadence_min": {
+  "3.3": 282,
+  "10.0": 135,
+  "2.0": 226,
+  "30.0": 68
+ },
+ "blanked_with_catalogue_entry": 711,
+ "ephemeris_term_at_BTJD2500": {
+  "10-14": {
+   "stars": 176,
+   "median_unc_d": 0.055,
+   "stars_unc_over_0p5d": 12,
+   "stars_windows_cover_half_orbit": 5
+  },
+  "14-20": {
+   "stars": 151,
+   "median_unc_d": 0.042,
+   "stars_unc_over_0p5d": 22,
+   "stars_windows_cover_half_orbit": 14
+  },
+  "20-27.4": {
+   "stars": 61,
+   "median_unc_d": 0.061,
+   "stars_unc_over_0p5d": 13,
+   "stars_windows_cover_half_orbit": 6
+  },
+  "27.4+": {
+   "stars": 51,
+   "median_unc_d": 0.034,
+   "stars_unc_over_0p5d": 13,
+   "stars_windows_cover_half_orbit": 6
+  },
+  "5-10": {
+   "stars": 265,
+   "median_unc_d": 0.028,
+   "stars_unc_over_0p5d": 21,
+   "stars_windows_cover_half_orbit": 14
+  }
+ },
+ "blanked_stars": 48,
+ "blanked_stars_unc_over_0p5d": 48
+}

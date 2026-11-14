@@ -1,0 +1,31 @@
+{
+ "1 not_searched": {
+  "n": 70,
+  "unc_over_0p5d": 38,
+  "no_catalogue": 27
+ },
+ "2 not_scored": {
+  "n": 71,
+  "unc_over_0p5d": 26,
+  "no_catalogue": 32
+ },
+ "3 scored_7plus_lost": {
+  "n": 1,
+  "unc_over_0p5d": 0,
+  "no_catalogue": 1
+ },
+ "4 near_miss": {
+  "n": 61,
+  "unc_over_0p5d": 1,
+  "no_catalogue": 36
+ },
+ "5 weak": {
+  "n": 205,
+  "unc_over_0p5d": 8,
+  "no_catalogue": 132
+ },
+ "found": {
+  "n": 690,
+  "unc_over_0p5d": 77
+ }
+}
