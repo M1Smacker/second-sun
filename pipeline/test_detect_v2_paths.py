@@ -9,6 +9,10 @@ DATA = pathlib.Path(r"D:\second-sun\data")
 SCRATCH = pathlib.Path(r"D:\second-sun\.cache\tests")      # never C:
 
 
+
+class Skip(Exception):
+    """A test that could not run (input missing). Counted separately; FIX 83."""
+
 def dip_found(cad_min, rng):
     """8 h, 1,500 ppm dip, same noise per unit time at every cadence: SNR about 23 at any spacing."""
     t = np.arange(0, 27, cad_min / 1440)
@@ -33,7 +37,7 @@ def test_qlp_pre56_column():
     """B2: before sector 56 QLP has no sys_rm_flux; the detrended kspsap_flux eats long dips, so use sap_flux."""
     p = glob.glob(str(DATA / "**" / "hlsp_qlp*s0054*.fits"), recursive=True)
     if not p:
-        print("  skip B2: no pre-56 QLP file on disk"); return
+        raise Skip("B2: no pre-56 QLP file on disk")
     t, f, _, info = load(p[0], info=True)
     assert info["column"] == "sap_flux" and info["product"] == "QLP" and info["sector"] == 54, info
     assert info["needs_windows"], info
@@ -47,7 +51,7 @@ def test_spoc_all_nan_pdcsap():
     from astropy.io import fits
     src = glob.glob(str(DATA / "overnight" / "**" / "*s0082-0000000299096355*_lc.fits"), recursive=True)
     if not src:
-        print("  skip B5: Kepler-16 S82 SPOC file not on disk"); return
+        raise Skip("B5: Kepler-16 S82 SPOC file not on disk")
     SCRATCH.mkdir(parents=True, exist_ok=True)
     dst = SCRATCH / "pdcsap_all_nan.fits"
     with fits.open(src[0]) as h:
@@ -59,7 +63,12 @@ def test_spoc_all_nan_pdcsap():
     assert info["column"] != load(src[0], info=True)[3]["column"]
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":                      # FIX 83: a skip is counted and named, never printed as a pass
+    passed, skipped = [], []
     for name, fn in list(globals().items()):
         if name.startswith("test_"):
-            fn(); print("pass:", name)
+            try:
+                fn(); passed.append(name); print("pass:", name)
+            except Skip as e:
+                skipped.append(name); print("SKIP:", name, "-", e)
+    print(f"RESULT: {len(passed)} passed, {len(skipped)} SKIPPED" + (f" ({', '.join(skipped)})" if skipped else ""))
