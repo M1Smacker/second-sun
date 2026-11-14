@@ -2,3 +2,4 @@
 book/docs/field-notes/2026-11-11.md
 book/docs/field-notes/2026-11-10.md
 book/docs/field-notes/2026-11-04.md
+book/docs/field-notes/2026-11-03.md

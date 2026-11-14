@@ -188,3 +188,43 @@ book/docs/field-notes/2026-11-04.md,50,22,TRACED,research/stage3/Q1-EXPECTED-PLA
 book/docs/field-notes/2026-11-04.md,51,3000,TRACED,research/stage3/census_step1/census-worth2.txt,"Census  3000 G2-type stars, 3 sectors each: Census E  2.21 (adds 118%",3000,"'about 3,000 would roughly double it': adds 118% (rule A, f 1.5)"
 book/docs/field-notes/2026-11-04.md,84,3000,TRACED,research/stage3/census_step1/census-worth2.txt,"Census  3000 G2-type stars, 3 sectors each: Census E  2.21 (adds 118%",3000,
 book/docs/field-notes/2026-11-04.md,66,2.2,DERIVED,,,,"research/downloads.csv wave g3: 612 rows, 2.28 GB (2.12 GiB), summed 14 Nov 2026"
+book/docs/field-notes/2026-11-03.md,6,300,TRACED,research/stage3/G3-PREREGISTRATION.md,300,,"zero-difference proofs, line 41"
+book/docs/field-notes/2026-11-03.md,6,14,NOT A RESULT,,,,"a design setting (minimum text size, px), enforced by a browser test"
+book/docs/field-notes/2026-11-03.md,11,612,TRACED,research/stage3/G3-PREREGISTRATION.md,612 stars,,
+book/docs/field-notes/2026-11-03.md,11,1,TRACED,research/stage3/G3-PREREGISTRATION.md,searches 1%,,
+book/docs/field-notes/2026-11-03.md,11,80,TRACED,research/stage3/G3-PREREGISTRATION.md,the union searches 80%,,
+book/docs/field-notes/2026-11-03.md,13,300,TRACED,research/stage3/G3-PREREGISTRATION.md,300,,
+book/docs/field-notes/2026-11-03.md,14,300,TRACED,research/stage3/G3-PREREGISTRATION.md,300,,
+book/docs/field-notes/2026-11-03.md,15,12,NOT A RESULT,,,,text sizes in px
+book/docs/field-notes/2026-11-03.md,15,13,NOT A RESULT,,,,text sizes in px
+book/docs/field-notes/2026-11-03.md,15,14,NOT A RESULT,,,,text size in px
+book/docs/field-notes/2026-11-03.md,24,300,TRACED,research/stage3/G3-PREREGISTRATION.md,300,,
+book/docs/field-notes/2026-11-03.md,24,661,TRACED,research/stage3/G3-PREREGISTRATION.md,661,,
+book/docs/field-notes/2026-11-03.md,24,714,TRACED,research/stage3/G3-PREREGISTRATION.md,714,,
+book/docs/field-notes/2026-11-03.md,25,80,TRACED,research/stage3/G3-PREREGISTRATION.md,the union searches 80%,,
+book/docs/field-notes/2026-11-03.md,25,1,TRACED,research/stage3/G3-PREREGISTRATION.md,searches 1%,,
+book/docs/field-notes/2026-11-03.md,26,7,TRACED,research/stage3/G3-PREREGISTRATION.md,reaching SNR 7 in one 6.5 h crossing,,
+book/docs/field-notes/2026-11-03.md,26,10,TRACED,research/stage3/G3-PREREGISTRATION.md,above 10 Earth radii in 67%,,'about two thirds' = 67%
+book/docs/field-notes/2026-11-03.md,28,0.50,TRACED,research/uncertainty-register.md,median 0.50,,U01
+book/docs/field-notes/2026-11-03.md,28,0.38,TRACED,research/uncertainty-register.md,median 0.50,0.38,"U01, Prsa full widths on G1"
+book/docs/field-notes/2026-11-03.md,32,4206066,NOT A RESULT,,,,star name (a published candidate)
+book/docs/field-notes/2026-11-03.md,34,95,TRACED,research/stage3/rabtsevich-deep-2026-11-03.md,sensitivity of at least 95%,,
+book/docs/field-notes/2026-11-03.md,41,74,TRACED,research/stage3/rabtsevich-deep-2026-11-03.md,74 analyses,,
+book/docs/field-notes/2026-11-03.md,49,1,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-03.md,49,2,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-03.md,49,300,TRACED,research/stage3/G3-PREREGISTRATION.md,300,,
+book/docs/field-notes/2026-11-03.md,49,3,NOT A RESULT,,,,answer numbering
+book/docs/field-notes/2026-11-03.md,49,80,TRACED,research/stage3/G3-PREREGISTRATION.md,the union searches 80%,,
+book/docs/field-notes/2026-11-03.md,51,1,NOT A RESULT,,,,'Amendment 1': a section name
+book/docs/field-notes/2026-11-03.md,51,0.8,NOT A RESULT,,,,version inside file names (zero-diff-0.8.1)
+book/docs/field-notes/2026-11-03.md,55,125,TRACED,research/stage3/LEARNING-SPACE-PROPOSAL-2026-11-03.md,125 evidence chips in 15 chapters,,
+book/docs/field-notes/2026-11-03.md,55,15,TRACED,research/stage3/LEARNING-SPACE-PROPOSAL-2026-11-03.md,125 evidence chips in 15 chapters,,
+book/docs/field-notes/2026-11-03.md,55,8,TRACED,research/stage3/LEARNING-SPACE-PROPOSAL-2026-11-03.md,about 8 per 1000 words,,
+book/docs/field-notes/2026-11-03.md,55,1000,TRACED,research/stage3/LEARNING-SPACE-PROPOSAL-2026-11-03.md,about 8 per 1000 words,,
+book/docs/field-notes/2026-11-03.md,59,5,NOT A RESULT,,,,'Level 5 check 4': names
+book/docs/field-notes/2026-11-03.md,59,4,NOT A RESULT,,,,'Level 5 check 4': names
+book/docs/field-notes/2026-11-03.md,59,82.7,TRACED,research/stage3/learnings-2026-10-27.md,82.7 to 86.4%,,"the uncorrected sentence is still in book/docs/learn/index.md line 119 (correction C3 of LEARNING-SPACE-CORRECTIONS-2026-11-03.md, waiting for Ahmed since 3 Nov)"
+book/docs/field-notes/2026-11-03.md,59,72,TRACED,research/stage3/learnings-2026-10-27.md,"1,120 of 1,548 injections (72%)",,
+book/docs/field-notes/2026-11-03.md,68,12261,TRACED,research/stage3/SEARCH-WINDOW-2-PROPOSAL-2026-11-04.md,"Event records 12,261",12261,
+book/docs/field-notes/2026-11-03.md,68,2764,TRACED,research/stage3/SEARCH-WINDOW-2-PROPOSAL-2026-11-04.md,"scorecard detections 2,76",2764,
+book/docs/field-notes/2026-11-03.md,71,2,NOT A RESULT,,,,file name SEARCH-WINDOW-2
