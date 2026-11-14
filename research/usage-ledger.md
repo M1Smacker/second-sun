@@ -93,6 +93,7 @@ Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per
 | 14 Nov 11:44 to 11:50 pm | Codex 014 part 1 check: fence check, report read, two-key comparison (G2 real differs by 15), arithmetic re-derived, addendum 014a, corrections of 2 overstated lines, Tree, Fable brief, drop | 0.5 | 23 to 23 | 83 to 85 | 41 to 45% | about 0.25 | 0.5 |
 | 14 Nov 11:52 pm to 15 Nov 12:05 am | Ahmed: 'don't sit idle': watch_codex.py (stall and error wake, tested), Codex 014 part 2 read + RS-034 root cause (3 table checks), FIX 83 skip counting + run_tests.py, Tree, Fable brief, drop | 0.8 | 23 to 24 | 85 to 90 | 45 to 49% | about 0.6 | 0.75 |
 | 15 Nov 12:05 to 12:15 am | FIX 83 runner proof + full rerun + queue; FIX 84 measurement (4,403 QLP files, 60 loaded) and close; 2 drops | 0.4 | 24 to 24 | 90 to 93 | 49 to 53% | about 0.3 | 0.75 |
+| 15 Nov 12:16 am to 1:37 am | Watcher restart (false-stall fix), Codex 014 part 3 review: fence check + flagged-record look, second-key script (exact), radius split, key file, Tree, queue, Fable brief | 0.5 | 24 to 25 | 0 to about 5 (reset 1:30 am) | 19 to 27% | about 0.4 | 0.8 |
 **Rates so far:** a full research stint with web reading 1.5 to 2; a Codex report check with fence check about 0.3 to 0.5.
 
 ### Sonnet 5.5 Extra and Fable

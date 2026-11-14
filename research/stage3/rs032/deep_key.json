@@ -1,0 +1,165 @@
+{
+ "draws": 600,
+ "unique_trials": 600,
+ "per_bin": {
+  "0": 120,
+  "1": 120,
+  "2": 120,
+  "3": 120,
+  "4": 120
+ },
+ "observable": 523,
+ "planted_over_cap_codex": 0,
+ "planted_over_cap_mine": 0,
+ "planted_star_without_radius_mine": 0,
+ "bands": [
+  {
+   "band": "0-6000",
+   "drawn": 280,
+   "observable": 250,
+   "real": {
+    "recovered": 73,
+    "equal_bin_P": 0.3046,
+    "lost_to_cap": 0,
+    "guarded_full": 73
+   },
+   "flip": {
+    "recovered": 72,
+    "equal_bin_P": 0.298,
+    "lost_to_cap": 0,
+    "guarded_full": 72
+   }
+  },
+  {
+   "band": "6000-15000",
+   "drawn": 155,
+   "observable": 132,
+   "real": {
+    "recovered": 85,
+    "equal_bin_P": 0.6577,
+    "lost_to_cap": 0,
+    "guarded_full": 85
+   },
+   "flip": {
+    "recovered": 82,
+    "equal_bin_P": 0.6392,
+    "lost_to_cap": 1,
+    "guarded_full": 81
+   }
+  },
+  {
+   "band": "15000-30000",
+   "drawn": 94,
+   "observable": 81,
+   "real": {
+    "recovered": 64,
+    "equal_bin_P": 0.7966,
+    "lost_to_cap": 0,
+    "guarded_full": 64
+   },
+   "flip": {
+    "recovered": 63,
+    "equal_bin_P": 0.7871,
+    "lost_to_cap": 0,
+    "guarded_full": 63
+   }
+  },
+  {
+   "band": "30000-inf",
+   "drawn": 71,
+   "observable": 60,
+   "real": {
+    "recovered": 42,
+    "equal_bin_P": 0.6488,
+    "lost_to_cap": 0,
+    "guarded_full": 42
+   },
+   "flip": {
+    "recovered": 42,
+    "equal_bin_P": 0.6488,
+    "lost_to_cap": 2,
+    "guarded_full": 40
+   }
+  }
+ ],
+ "real_recovered_total": 264,
+ "real_lost_to_cap_total": 0,
+ "flip_recovered_total": 259,
+ "flip_lost_to_cap_total": 3,
+ "background_B": {
+  "real": {
+   "events": 174,
+   "held_mine": 50,
+   "unknown_mine": 16,
+   "held_codex": 50,
+   "unknown_codex": 16,
+   "disagree_with_codex": 0
+  },
+  "flip": {
+   "events": 79,
+   "held_mine": 26,
+   "unknown_mine": 2,
+   "held_codex": 26,
+   "unknown_codex": 2,
+   "disagree_with_codex": 0
+  }
+ },
+ "held_by_period_bin": {
+  "0": {
+   "real": "10/33",
+   "flip": "12/25"
+  },
+  "1": {
+   "real": "9/26",
+   "flip": "6/17"
+  },
+  "2": {
+   "real": "21/46",
+   "flip": "5/11"
+  },
+  "3": {
+   "real": "4/10",
+   "flip": "2/8"
+  },
+  "4": {
+   "real": "6/43",
+   "flip": "1/16"
+  }
+ },
+ "held_by_product": {
+  "QLP": {
+   "real": "35/56",
+   "flip": "14/32"
+  },
+  "SPOC": {
+   "real": "2/40",
+   "flip": "6/23"
+  },
+  "SPOC-SAP": {
+   "real": "0/6",
+   "flip": "0/2"
+  },
+  "TESS-SPOC": {
+   "real": "12/47",
+   "flip": "5/16"
+  },
+  "TESS-SPOC-SAP": {
+   "real": "1/9",
+   "flip": "1/4"
+  }
+ },
+ "held_by_depth": {
+  "6000-15000": {
+   "real": "3/18",
+   "flip": "7/19"
+  },
+  "<6000": {
+   "real": "1/88",
+   "flip": "1/33"
+  },
+  ">=15000": {
+   "real": "46/52",
+   "flip": "18/25"
+  }
+ }
+}
