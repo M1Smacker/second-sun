@@ -89,6 +89,7 @@ Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per
 | 14 Nov 10:24 pm to 10:36 pm | plan (high), Codex brief 014, RS-031 research (4 papers via script) + DSp bench script and run, FIX 88 (+2 readout reruns), FIX 85, 89, 90, G1 prereg draft v2, field note + glossary | about 3 | 19 to 20 | 51 to 62 | 47 to 60% | about 1.3 | 0.4 |
 | 14 Nov 10:56 to 11:10 pm | Ahmed: 'work, don't idle': RS-032 wobble study (method first, script, lookup bug fixed, write-up, Tree, drop); T32/T31 nd-dg bench script launched; T52 run_inputs + 8 tests + mutations; T130 re-map + tonight's page | 3.1 (wobble 1.5, T32 0.5, T52 0.6, T130 0.5) | 21 to 22 | 68 to 76 | 19 to 33% | about 1 (8 five-hour points) | 0.3 |
 | 14 Nov 11:10 to 11:30 pm | T35 split + B3 bench, nd/dg bench results, second key for Codex 014 part 1 (dump map), 3 write-ups, Tree, drops, 2 clock-time fixes | 0.8 | 22 to 23 | 76 to 80 | 33 to 38% | about 0.5 | 0.6 |
+| 14 Nov 11:30 to 11:36 pm | RS-033 pointing feasibility: MAST listing, 427 MB download, quaternion jitter and drift profiles, pre-dump excess by star, write-up, Tree, Fable brief, drop | 0.6 | 23 to 23 | 80 to 83 | 38 to 41% | about 0.4 | 0.7 |
 **Rates so far:** a full research stint with web reading 1.5 to 2; a Codex report check with fence check about 0.3 to 0.5.
 
 ### Sonnet 5.5 Extra and Fable
