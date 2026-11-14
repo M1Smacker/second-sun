@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 10:08 Kuwait): BOOK 2.11.6, THREE WORDING FIXES (AHMED SAID FIX)
+Ahmed woke 10:03, asked for a simple recap, then said fix the three T130 wording calls; he is sending Codex note 008. Fixed: 11 Nov "34 against 13" to 32; 10 Nov 0.58/0.95 now "the three larger sizes"; correction-box "almost all in binaries slower than 20 days" replaced in 8 pages (loss grows with period; most lost dips in 5 to 14 d binaries). Commit a17ee2c, book 2.11.6 publishing. Still open: C3/C4 (82.7%), 23 Oct "0.2%" (0.26%), and T125 (lead follow-up protocol, LEADS-RULES Amendment 2) plus T127 (novelty check, pipeline/novelty_check.py) into the G1 preregistration: explained to Ahmed in plain words, waiting for his yes. New memory: explain every id.
+
 ## LATEST (14 Nov 2026, 10:06 Kuwait): THE DOMINATED GAP: MECHANISM GUESS WITHDRAWN, CAUSE UNCERTAIN
 - p_competitor.py (all trials): the real dips that beat held bumps in slow bins are mostly OFF catalogue eclipses (16 of 21, 20 of 23; median 3.8 and 5.7 d), only 5 of 21 and 5 of 23 within 1 d of the planted crossing, most much stronger, 5 of each repeaters. The eclipse-leftover mechanism I filed at 09:15 is WRONG; withdrawn in P-CHECK, FIX 93, inbox 008 (both copies) and the morning report. Untested idea for Codex: offset secondary eclipses of eccentric slow binaries.
 - Weekly about 97 to 98%; five-hour about 20%.
