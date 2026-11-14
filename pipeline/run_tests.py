@@ -28,7 +28,8 @@ def main():
         print(lines[-1], flush=True)
     summary = "RESULT: " + ", ".join(f"{len(v)} {k}" for k, v in res.items()) + (f"; not passing: {res['SKIPPED'] + res['FAIL'] + res['TIMEOUT']}" if len(res["PASS"]) < len(tests) else "")
     print(summary)
-    (HERE / "test-run.txt").write_text("\n".join(lines + [summary]) + "\n", encoding="utf-8")
+    if not o.names:                                   # only a full run is the record
+        (HERE / "test-run.txt").write_text("\n".join(lines + [summary]) + "\n", encoding="utf-8")
     sys.exit(0 if len(res["PASS"]) == len(tests) else 1)
 
 

@@ -1,0 +1,17 @@
+PASS     test_detect_v2_paths.py              33 s    warnings.warn(
+PASS     test_eyes_scores.py                   1 s  eyes_scores checks passed: test rounds ignored, deterministic file, report numbers right, empty case handled, rehearsal rounds kept apart wi
+PASS     test_funnel_scorecard.py             12 s  funnel equals the scorecard counts
+PASS     test_g3_prep.py                      29 s  pass: test_union_windows_table
+PASS     test_gate_judge.py                    0 s  test_gate_judge: all passed
+PASS     test_hunt_prep.py                     7 s    warnings.warn(
+PASS     test_leads.py                         0 s  test_leads ok
+PASS     test_novelty_check.py                 0 s  test_novelty_check ok
+PASS     test_number_map.py                    0 s  test_number_map ok
+PASS     test_recipe_diff.py                   0 s  recipe_diff tests passed: the 29 Oct baseline is refused, the fresh baseline passes, a run against itself passes
+PASS     test_run_inputs.py                    4 s  test_run_inputs: 8 cases passed
+PASS     test_run_record.py                    1 s  test_run_record ok
+PASS     test_s1_sensitivity.py               32 s  test_s1_sensitivity: all passed
+PASS     test_scorecard_plus.py                8 s  17 of 17 checks passed
+PASS     test_stage3_prep.py                   5 s    warnings.warn(
+PASS     test_vopts.py                         4 s    warnings.warn(
+RESULT: 16 PASS, 0 SKIPPED, 0 FAIL, 0 TIMEOUT
