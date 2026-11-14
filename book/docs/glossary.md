@@ -5,6 +5,9 @@ Every technical word in the book, in plain words. Pages link here the first time
 ### Aperture
 The group of pixels whose light is added up to make a star's light curve. Choosing it well keeps the star's light in and the neighbours' light out. See [Chapter 3](book/03-our-data.md).
 
+### Aperture loss
+Light from the star that falls outside the aperture, so the star looks fainter than it is. When TESS's pointing wobbles (worst just before a momentum dump) the star's image smears and some light spills out: a dip that only ever goes down. See the [14 Nov 2026 field note](field-notes/2026-11-14.md).
+
 ### Arcsecond
 A tiny angle: 1/3,600 of a degree. A TESS pixel covers 21 arcseconds. Written ″; an arcminute (′) is 60 of them. See [Chapter 1](book/01-stars-names-missions.md).
 

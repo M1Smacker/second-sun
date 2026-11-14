@@ -23,3 +23,5 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [3 November 2026](2026-11-03.md) | When a frozen version refuses to freeze, believe it: five files had moved the fingerprint, a test (not the code) caused two mismatches, and text on the phone got a 14 px floor |
 | [4 November 2026](2026-11-04.md) | The G3 search ran once and found nothing: what a clean null is, why it is not the same as no planets, and why 'no excess' can still show fewer real dips than noise |
 | [10 November 2026](2026-11-10.md) | Our eclipse mask was deleting planets and our tests could not see it: what the audit found, how we measured it, and what every floor number in the book now means |
+| [11 November 2026](2026-11-11.md) | We searched the hidden light again, found nothing, and learned how to read a null |
+| [14 November 2026](2026-11-14.md) | The spacecraft's own hiccups make fake dips, and a fairness check that only sees bumps cannot catch them |
