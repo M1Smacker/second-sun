@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (14 Nov 2026, night):** two small fixes together lift our planet score from 0.48 to 0.4998, a hair under the 0.50 bar, with no extra upside-down alarms: flagging NASA's known spacecraft trouble moments, and judging dump-time dips by their shape. Fable weighs it on Monday; Codex is measuring true eclipse times. Begin with [Start here](start/index.md).
+    **Two-minute recap (14 Nov 2026, late night):** the known spacecraft-events flag is adopted (two keys). A dump-shape rule nearly reaches the 0.50 bar but lets in fake dips from the telescope's wobble before each momentum dump, which our upside-down check cannot see ([today's field note](field-notes/2026-11-14.md)). Fable designs fixes on Monday; Codex maps the dumps and re-times the eclipses. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 
