@@ -5,7 +5,8 @@ Ahmed (12:16 am): start on your own after the reset; is Codex suitable for my wo
 - **Codex 014 part 3 (FIX 96 deep bench) keyed exact** (`research/stage3/rs032/CODEX-014-PART3-KEY-2026-11-15.md`, `rs032_deep_key.py`, `deep_key.json`): 600 draws, 523 observable, recovered 264 dips / 259 bumps, cap loses 0 / 3; background B 174/79, held 50/26, unknown radius 16/2 (0 disagreements with my own cap). Background after cap 124/53, excess 95 to 71. Half the held events on hosts of 2+ solar radii; 14 held under 30,000 ppm on such hosts; bench partly circular. FIX 96 OPEN for Fable with a radius check (Gaia DR3) first.
 - Filed: FIX-QUEUE 96, TREE log + node 1.6, Fable brief task 2, ledger, drop. Branch not merged.
 - **Codex next:** addendum 014a (reconcile the 15 G2 real events), already in its inbox; Ahmed sends the line. Codex 014 overall: part 1 no replicated dump excess, part 2 FAIL (error model, RS-034), part 3 cap safe.
-- Next: radius check on the big hosts for FIX 96 (about 0.5 point, Gaia DR3 download), then next build item.
+- **FIX 96 radius check PASS (1:39 am)** (`research/stage3/fix96/FIX96-RADIUS-CHECK-2026-11-15.md`): most generous of four radii (header, TIC 8.2, Gaia DR3 GSP-Phot, FLAME) keeps all 76 held events held (50 real, 26 upside-down); header/smallest median 1.00, max 1.25; 22 held events within 2x of the cap. Downloads 24 KB in data/fix96_radii_2026-11-15 (downloads.csv, jobs.md). First run crashed on my own duplicate key, fixed, no re-download.
+- Next: next build or fix item (no-input ones).
 
 ## LATEST (14 Nov 2026, 11:13 pm Kuwait): WORK-NOT-IDLE BLOCK (Opus 5.5 MEDIUM; weekly 21% to 22%, target 25% before Codex 014 lands; cap 30%)
 Ahmed (10:56 pm): don't sit idle when the list is done; report, say what's next, start it; reach into the build list. Plan approved ("Go").

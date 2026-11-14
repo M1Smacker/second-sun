@@ -1,0 +1,23 @@
+{
+ "rule": "held fraction under the most generous radius must be >= 0.80",
+ "arms": {
+  "real": {
+   "events_with_radius": 158,
+   "held_header": 50,
+   "still_held_generous": 50,
+   "kept_fraction": 1.0,
+   "held_events_with_any_gaia_radius": 43
+  },
+  "flip": {
+   "events_with_radius": 77,
+   "held_header": 26,
+   "still_held_generous": 26,
+   "kept_fraction": 1.0,
+   "held_events_with_any_gaia_radius": 21
+  }
+ },
+ "hosts": 130,
+ "hosts_smallest_under_half_header": 0,
+ "hosts_with_gaia_radius": 110,
+ "verdict": "PASS: radius risk small"
+}

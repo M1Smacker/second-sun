@@ -94,6 +94,7 @@ Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per
 | 14 Nov 11:52 pm to 15 Nov 12:05 am | Ahmed: 'don't sit idle': watch_codex.py (stall and error wake, tested), Codex 014 part 2 read + RS-034 root cause (3 table checks), FIX 83 skip counting + run_tests.py, Tree, Fable brief, drop | 0.8 | 23 to 24 | 85 to 90 | 45 to 49% | about 0.6 | 0.75 |
 | 15 Nov 12:05 to 12:15 am | FIX 83 runner proof + full rerun + queue; FIX 84 measurement (4,403 QLP files, 60 loaded) and close; 2 drops | 0.4 | 24 to 24 | 90 to 93 | 49 to 53% | about 0.3 | 0.75 |
 | 15 Nov 12:16 am to 1:37 am | Watcher restart (false-stall fix), Codex 014 part 3 review: fence check + flagged-record look, second-key script (exact), radius split, key file, Tree, queue, Fable brief | 0.5 | 24 to 25 | 0 to about 5 (reset 1:30 am) | 19 to 27% | about 0.4 | 0.8 |
+| 15 Nov 1:38 to 1:39 am | FIX 96 radius check: rule first, MAST + Gaia DR3 query (138 stars, 24 KB), crash on own bug fixed, margin check, write-up, filing | 0.3 | 25 to 25 | about 5 to 8 | 27 to 31% | about 0.3 | 1.0 |
 **Rates so far:** a full research stint with web reading 1.5 to 2; a Codex report check with fence check about 0.3 to 0.5.
 
 ### Sonnet 5.5 Extra and Fable
