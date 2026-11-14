@@ -33,7 +33,7 @@ Where bugs hide, and what to check:
 - **Sentinels and selection.** -1, NaN, empty string passing a `<` test; `drop_duplicates` choosing a row; a regex reading `s2019` as a sector.
 - **Counts that share a name.** 4,080 (G3 groups searched) and 3,425 (G3 star-sectors scored) are both "G3 star-sectors". Say which.
 - **Hard paths, wrong venv.** `D:\second-sun\.venv\Scripts\python.exe` has lightkurve; plain `python` does not. A check that never ran looks like a pass.
-- **Privacy.** Before anything is pushed or published, search the payload for `tic`, `center`, `source_id`. A commit message is not evidence ("counts only" was written on commits that carried star ids).
+- **Blind and fences, not privacy.** Star ids and star data may be published (Ahmed, 14 Nov 2026). Before a push, still check the payload does not unblind a sealed run, touch fence A or B stars, or show a named lead before two keys. A commit message is not evidence.
 
 ## 2. How to fix without making new bugs
 1. Write the failing test first and watch it fail on the unfixed code.
@@ -73,6 +73,7 @@ Where bugs hide, and what to check:
 | A test that cannot fail, or tests a path the planet never takes | Mutation check; inject before every step. |
 | Calling a fix done without running it | Paste the output or say "not run". |
 | Reading for hours, then guessing | Script first (section 0). |
+| Fix guesses after fixes fail, cause unknown (dominated, 14 Nov 2026: three blind fixes, Ahmed had to order research) | Two failed fixes or cause UNCERTAIN on a decision item: open a research stint on the root cause myself, before any more fixes. |
 | Budget overruns on research | Cap by tool calls, written first. |
 | Guessing the clock | `Get-Date`. `resetsAt` is UTC; Kuwait is UTC+3. |
 | Expensive helpers for cheap reading (cost 10 points on 10 Nov 2026) | Cheapest model that can do it; one at a time. |
@@ -80,6 +81,7 @@ Where bugs hide, and what to check:
 | Pooled statistics hiding a split | Always bin by binary period, brightness, product, era. |
 | Old numbers left standing in RESUME after a correction | Mark the old line "superseded by" in the same commit. |
 | Commit messages or labels that describe the intent, not the content | Check the payload. |
+| Writing a "LIKELY" mechanism into the queue before testing it (14 Nov 2026: "dominated holds bumps because of eclipse leftovers" was refuted by a 12-minute run, `research/stage3/006-check/p_competitor.py`) | Run the cheap test first, or file it as "idea, untested". |
 
 ## 7. Stop signs (Petrova and statistics only) [core]
 Stop, label UNCERTAIN, and ask Ahmed or flag for Opus or Fable when:

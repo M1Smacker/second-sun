@@ -1,3 +1,9 @@
+## LATEST (14 Nov 2026, 16:25 Kuwait): CODEX 010 CHECKED; STAR DATA NOT PRIVATE; DROPS STARTED
+- Codex 010 (mask timing) done: V1 (padding off) P 48.37% to 50.68% (+25 planets), V2 (recentred, capped) 50.54% (+23); affected 112 G2 stars real/upside-down background 61/3 to 95/5 (V1) or 90/8 (V2). Slow-bin paired failure is in V0 too (pre-OAE baseline). Not adoptable yet: re-run with OAE on and explain the new real events. Fence check: NEEDS A LOOK, looked: old Stop-Process of its own run and one number inside a git stash line; frozen files 0, star ids 0. Branch not merged (report read in place). TREE.md log updated.
+- Ahmed lifted the star-data privacy rule: star ids, star data and event details may go plainly in repo, book and Tree. Science rules stay (blind sealed runs, fences A and B, outward actions need his yes). Asked: may named leads show before two keys. Edited CLAUDE.md, memory book-private file and index, both auditor SKILL copies, plan sections 5 and 9; sync_kit run. publish privacy scan must be loosened before the first id is published (T160).
+- Drops started: `drops/README.md` (format) and three drops (Codex 010, drop-box decision, star-data rule). Builder still T160 after G1.
+- Next: Codex 011 brief: V1 and V2 with OAE on, plus where the new real events sit.
+
 ## LATEST (14 Nov 2026, 16:08 Kuwait): AHMED'S DROP-BOX IDEA FILED
 Ahmed proposed: put every update in one folder, Python sorts it into website data and publishes. Filed as section 9 of `research/tree/TREE-BRAIN-PLAN-2026-11-14.md`: `drops/` folder in main, one card-shaped file per finished piece of work (written by Claude or Codex, words never written by Python), `brain_build.py` fans each drop into Tree JSON, field note, recap, versions, RESUME, ledger, refuses bad or private drops, then publish_book.ps1 pushes. Drops can start before G1 (replace the commit trailer); builder is T160 after G1. Waiting: Ahmed's answer on starting drops now.
 
