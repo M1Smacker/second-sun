@@ -1,3 +1,7 @@
+## LATEST (14 Nov 2026, 04:53 Kuwait): T130 SEVEN PAGES; CONTEXT COMPACTING
+- T130: 7 field notes (20, 29, 30 Oct; 3, 4, 10, 11 Nov), 574 numbers, 559 traced or not results, 5 flags (3 distinct: 32 not 34; K 12 to 25 not all sizes; the 20-day sentence, wrong in 8 book places) and 10 UNSOURCED (20 Oct STANLEY debug range and site stress-test counts). New helpers: `research/number-map/map_claims.py` (auto-traces numbers to the facts-register claim cited on the same line), `check_slow20.py`. Next T130 pages if meter remains: 10-28, 10-27, 10-23, 10-24, 10-21, 10-19, 10-31, 11-02 field notes.
+- Weekly 91%, five-hour 50% (resets 06:00 Kuwait). Codex 962 of 1,250 at 04:52; P check steps in the 04:46 block. Waiter bha2sojxw armed.
+
 ## LATEST (14 Nov 2026, 04:52 Kuwait): T130 SIX PAGES; THE 20-DAY SENTENCE IS WRONG IN 8 BOOK PLACES
 - T130 now 6 field notes (29 Oct to 11 Nov): 448 numbers, 444 traced or not results. The 10 Nov correction-box sentence 'lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days' is CONFIRMED wrong (`research/number-map/check_slow20.py`: file-weighted, slower than 20 d holds 31% of lost strong dips in G2 and 5% in G3; 5 to 14 d holds 45% and 78%). It sits in 8 places (Ch 8, Ch 9, field notes 20 Oct, 29 Oct, 4 Nov, Labs 6 and 9, learn index). Book not edited: Ahmed's wording call; suggested wording in `research/number-map/T130-RESULT-2026-11-14.md`.
 - Still waiting for Codex P (947 of 1,250 at 04:49). Steps for the P check are in the 04:46 block below.
