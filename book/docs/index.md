@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (14 Nov 2026):** we planted 1,250 test planets in real light, every transit in every sector. About one in two (0.48) reaches the top list, just under our 0.50 bar, so we fix before the next hunt. Two real known planets: one found, one held back. Begin with [Start here](start/index.md).
+    **Two-minute recap (14 Nov 2026, evening):** our planet score is 0.48, just under the 0.50 bar. A narrower eclipse mask catches more test planets but lets in real eclipses whose catalogue times are wrong, so Codex now measures each binary's true eclipse times and Fable designs the fix on Monday. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

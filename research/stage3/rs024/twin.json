@@ -1,0 +1,178 @@
+{
+ "trials": 1250,
+ "with_crossing": 1098,
+ "OAE": {
+  "real_new": 527,
+  "real_all": 529,
+  "P_real_equal_weight": 0.4828,
+  "flip_new": 514,
+  "flip_all": 516,
+  "P_flip_equal_weight": 0.4695,
+  "paired_control": {
+   "5-10": {
+    "n": 242,
+    "dip": 99,
+    "bump": 97,
+    "diff_99": [
+     -4.02,
+     5.62
+    ],
+    "passes": true
+   },
+   "10-14": {
+    "n": 229,
+    "dip": 103,
+    "bump": 101,
+    "diff_99": [
+     -3.14,
+     5.24
+    ],
+    "passes": true
+   },
+   "14-20": {
+    "n": 221,
+    "dip": 90,
+    "bump": 94,
+    "diff_99": [
+     -7.93,
+     4.04
+    ],
+    "passes": true
+   },
+   "20-27.4": {
+    "n": 187,
+    "dip": 96,
+    "bump": 85,
+    "diff_99": [
+     -1.53,
+     14.12
+    ],
+    "passes": true
+   },
+   "27.4+": {
+    "n": 219,
+    "dip": 139,
+    "bump": 137,
+    "diff_99": [
+     -2.86,
+     5.15
+    ],
+    "passes": true
+   }
+  },
+  "paired_control_passes_all_bins": true,
+  "background_tier1": {
+   "real": 176,
+   "flip": 83
+  },
+  "background_tier1_by_bin": {
+   "5-10": {
+    "real": 33,
+    "flip": 28
+   },
+   "10-14": {
+    "real": 29,
+    "flip": 20
+   },
+   "14-20": {
+    "real": 56,
+    "flip": 11
+   },
+   "20-27.4": {
+    "real": 12,
+    "flip": 8
+   },
+   "27.4+": {
+    "real": 46,
+    "flip": 16
+   }
+  }
+ },
+ "OAEt": {
+  "real_new": 529,
+  "real_all": 531,
+  "P_real_equal_weight": 0.4846,
+  "flip_new": 515,
+  "flip_all": 517,
+  "P_flip_equal_weight": 0.4703,
+  "paired_control": {
+   "5-10": {
+    "n": 242,
+    "dip": 99,
+    "bump": 97,
+    "diff_99": [
+     -3.49,
+     5.51
+    ],
+    "passes": true
+   },
+   "10-14": {
+    "n": 229,
+    "dip": 104,
+    "bump": 102,
+    "diff_99": [
+     -3.76,
+     5.34
+    ],
+    "passes": true
+   },
+   "14-20": {
+    "n": 221,
+    "dip": 91,
+    "bump": 94,
+    "diff_99": [
+     -6.79,
+     3.54
+    ],
+    "passes": true
+   },
+   "20-27.4": {
+    "n": 187,
+    "dip": 96,
+    "bump": 85,
+    "diff_99": [
+     -1.8,
+     13.98
+    ],
+    "passes": true
+   },
+   "27.4+": {
+    "n": 219,
+    "dip": 139,
+    "bump": 137,
+    "diff_99": [
+     -2.83,
+     4.92
+    ],
+    "passes": true
+   }
+  },
+  "paired_control_passes_all_bins": true,
+  "background_tier1": {
+   "real": 182,
+   "flip": 90
+  },
+  "background_tier1_by_bin": {
+   "5-10": {
+    "real": 33,
+    "flip": 29
+   },
+   "10-14": {
+    "real": 31,
+    "flip": 21
+   },
+   "14-20": {
+    "real": 60,
+    "flip": 13
+   },
+   "20-27.4": {
+    "real": 12,
+    "flip": 8
+   },
+   "27.4+": {
+    "real": 46,
+    "flip": 19
+   }
+  }
+ }
+}

@@ -30,7 +30,7 @@ Done 5 of 9: [#####....]
 2. DONE: T109 known planets (TOI-1338 b found, the other missed; Codex second key with scope corrections).
 3. DONE: RS-024, root cause of "dominated" (fairness fix OAE found; cannot lift P by itself).
 4. DONE (14 Nov 12:56): Codex 009 second key agrees; OAE qualifies as a fairness fix (planet control passes every bin, upside-down background 83 unchanged, -0.17 points P; T156 stays passing). Adopted, not frozen.
-5. DONE: RS-025 (Claude) flags priced; Q5 (14 Nov 16:37): OAE lifts real TOI-1338 b transits at tier 1 from 4 to 6 of 13 but lets a planet's stronger transit hide its weaker one (TIC 172900988 b); the biggest fixable pool is the mask's timing padding (up to about 64 planets lost because eclipse windows swallow sectors), not a flag. Next: Codex 010 measures it on injected light.
+5. DONE: RS-025 (Claude) flags priced; Q5 (14 Nov 16:37): OAE lifts real TOI-1338 b transits at tier 1 from 4 to 6 of 13 but lets a planet's stronger transit hide its weaker one (TIC 172900988 b); a twin-transit exemption was tested and REJECTED (+2 planets, +7 upside-down alarms); the biggest fixable pool is the mask's timing padding (up to about 64 planets lost because eclipse windows swallow sectors), not a flag. Next: Codex 010 measures it on injected light.
 6. Fix rounds until P reaches 0.50 with no more false alarms, Codex second key each. One to three rounds: the biggest unknown.
 7. Freeze Petrova 1.1 (two proofs, outside audit).
 8. Re-measure P on frozen 1.1 and re-check the known planets: GO or not.
