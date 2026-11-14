@@ -1,0 +1,41 @@
+{
+ "dev_events_snr7": {
+  "real": {
+   "total": 13290,
+   "touching": 745
+  },
+  "flip": {
+   "total": 7810,
+   "touching": 552
+  }
+ },
+ "dev_by_kind": {
+  "coarse_pointing real": 6,
+  "engineering_test flip": 12,
+  "engineering_test real": 83,
+  "fine_pointing_lost flip": 1,
+  "fine_pointing_lost real": 16,
+  "jitter flip": 3,
+  "jitter real": 22,
+  "pointing_shift flip": 43,
+  "pointing_shift real": 32,
+  "pointing_test flip": 23,
+  "pointing_test real": 28,
+  "thermal flip": 470,
+  "thermal real": 558
+ },
+ "tier1_background_V0_OAE": {
+  "real": {
+   "total": 176,
+   "touching": 2
+  },
+  "flip": {
+   "total": 83,
+   "touching": 4
+  }
+ },
+ "planted_crossings": {
+  "total": 5308,
+  "touching": 33
+ }
+}

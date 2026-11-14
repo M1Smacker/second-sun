@@ -1,3 +1,8 @@
+## LATEST (14 Nov 2026, 19:44 Kuwait): RS-028 KNOWN SPACECRAFT EVENTS LIST (Opus 5.5 high; weekly 11%)
+- Downloaded HEASARC sector summaries 1 to 105 (2.3 MB, data/heasarc_sector_notes_2026-11-14/, logged in downloads.csv and jobs.md). 19 intervals with TJD times into `research/stage3/rs028/known_events.csv` (pointing shifts, lost fine pointing, ACS tests, heater recoveries, wheel calibrations).
+- `rs028_known.py`: 1,297 of 21,100 SNR 7+ dev events touch a known event (mostly heater recoveries, already held); only 2 real and 4 upside-down tier-1 background events (Codex 011 V0+OAE) do; 33 of 5,308 planted crossings touch. Verdict: add as a switch in the next fix round, price it on the bench. FIX 95, TREE, Fable brief task 2, research-sessions RS-028 updated; drop.
+- Waiting: Codex 012. Next: Fable Monday.
+
 ## LATEST (14 Nov 2026, 19:40 Kuwait): EVENING LIST DONE (Opus 5.5 high; weekly 10% to 11%)
 Ahmed: brief Codex 012, give a work list, stop at 20% weekly to let him see (may continue), keep usage predictions, always ask model and effort (memory feedback_ask_model_and_effort.md, sync_kit run).
 - Codex 012 briefed (`research/astra/inbox/012-own-eclipse-ephemerides.md`, copied to astra): own TESS ephemerides, period and epoch, primary and secondary, 112 affected + 60 control stars, checks (control agreement, 011 deep events on fitted eclipses, injection). Branch astra/012-own-ephemerides.
