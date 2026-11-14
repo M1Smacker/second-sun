@@ -25,6 +25,8 @@
   "rival": {
    "rival off eclipses": 1,
    "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 2,
+   "rival stronger by under 20%": 0,
    "rival on an eclipse (c5 or ecl_overlap)": 1
   },
   "rival_ph_d_median": 0.9556645000025069,
@@ -58,7 +60,11 @@
   "rival": {
    "rival off eclipses": 2,
    "rival is a repeater or orbit-locked": 0,
-   "rival on an eclipse (c5 or ecl_overlap)": 2
+   "rival 1 to 3 d away": 1,
+   "rival stronger by under 20%": 0,
+   "rival on an eclipse (c5 or ecl_overlap)": 2,
+   "rival within 1 d of a planted crossing": 2,
+   "rival over 3 d away": 1
   },
   "rival_ph_d_median": 0.41131600000238877,
   "rival_ph_d_n": 4
@@ -88,7 +94,11 @@
   "rival": {
    "rival on an eclipse (c5 or ecl_overlap)": 4,
    "rival is a repeater or orbit-locked": 2,
-   "rival off eclipses": 5
+   "rival over 3 d away": 7,
+   "rival stronger by under 20%": 0,
+   "rival off eclipses": 5,
+   "rival 1 to 3 d away": 1,
+   "rival within 1 d of a planted crossing": 1
   },
   "rival_ph_d_median": 0.7731999999996328,
   "rival_ph_d_n": 9
@@ -118,7 +128,9 @@
   },
   "rival": {
    "rival off eclipses": 5,
-   "rival is a repeater or orbit-locked": 0
+   "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 5,
+   "rival stronger by under 20%": 1
   },
   "rival_ph_d_median": 1.526375000000314,
   "rival_ph_d_n": 5
@@ -147,7 +159,10 @@
   },
   "rival": {
    "rival off eclipses": 12,
-   "rival is a repeater or orbit-locked": 3
+   "rival is a repeater or orbit-locked": 3,
+   "rival 1 to 3 d away": 5,
+   "rival stronger by under 20%": 3,
+   "rival over 3 d away": 7
   },
   "rival_ph_d_median": 2.360323050000862,
   "rival_ph_d_n": 12
@@ -177,7 +192,10 @@
   },
   "rival": {
    "rival off eclipses": 3,
-   "rival is a repeater or orbit-locked": 0
+   "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 2,
+   "rival stronger by under 20%": 1,
+   "rival 1 to 3 d away": 1
   },
   "rival_ph_d_median": 0.48873049999988266,
   "rival_ph_d_n": 3
@@ -211,7 +229,11 @@
   "rival": {
    "rival off eclipses": 16,
    "rival is a repeater or orbit-locked": 5,
-   "rival on an eclipse (c5 or ecl_overlap)": 5
+   "rival within 1 d of a planted crossing": 5,
+   "rival stronger by under 20%": 3,
+   "rival over 3 d away": 14,
+   "rival on an eclipse (c5 or ecl_overlap)": 5,
+   "rival 1 to 3 d away": 2
   },
   "rival_ph_d_median": 3.82068590000097,
   "rival_ph_d_n": 21
@@ -245,6 +267,8 @@
   "rival": {
    "rival off eclipses": 5,
    "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 6,
+   "rival stronger by under 20%": 4,
    "rival on an eclipse (c5 or ecl_overlap)": 1
   },
   "rival_ph_d_median": 3.1160999999988226,
@@ -276,7 +300,11 @@
   "rival": {
    "rival off eclipses": 20,
    "rival is a repeater or orbit-locked": 5,
-   "rival on an eclipse (c5 or ecl_overlap)": 3
+   "rival over 3 d away": 17,
+   "rival stronger by under 20%": 3,
+   "rival within 1 d of a planted crossing": 5,
+   "rival on an eclipse (c5 or ecl_overlap)": 3,
+   "rival 1 to 3 d away": 1
   },
   "rival_ph_d_median": 5.650700100002918,
   "rival_ph_d_n": 23
@@ -307,7 +335,10 @@
   },
   "rival": {
    "rival off eclipses": 3,
-   "rival is a repeater or orbit-locked": 0
+   "rival is a repeater or orbit-locked": 0,
+   "rival 1 to 3 d away": 2,
+   "rival stronger by under 20%": 1,
+   "rival within 1 d of a planted crossing": 1
   },
   "rival_ph_d_median": 8.296619300000636,
   "rival_ph_d_n": 3

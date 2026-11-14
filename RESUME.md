@@ -1,3 +1,7 @@
+## LATEST (14 Nov 2026, 10:06 Kuwait): THE DOMINATED GAP: MECHANISM GUESS WITHDRAWN, CAUSE UNCERTAIN
+- p_competitor.py (all trials): the real dips that beat held bumps in slow bins are mostly OFF catalogue eclipses (16 of 21, 20 of 23; median 3.8 and 5.7 d), only 5 of 21 and 5 of 23 within 1 d of the planted crossing, most much stronger, 5 of each repeaters. The eclipse-leftover mechanism I filed at 09:15 is WRONG; withdrawn in P-CHECK, FIX 93, inbox 008 (both copies) and the morning report. Untested idea for Codex: offset secondary eclipses of eccentric slow binaries.
+- Weekly about 97 to 98%; five-hour about 20%.
+
 ## LATEST (14 Nov 2026, 09:35 Kuwait): T130 SEARCH WINDOW PAGE; MEMORY CONSOLIDATED
 - T130 page 16: book/docs/watch.md (6 result numbers traced; the rest is CSS). 16 pages, 1,627 numbers. Next: chapter pages that quote results.
 - Memory pass (consolidate-memory skill): retired feedback_daily_usage_cap (27 Oct, superseded; caps rule folded into feedback_usage_ledger_calibration, links repointed); freeze-plan memory marked DONE; overnight memory gained the five-hour-first rule (keep the window for the decision task, arm a wake at the reset). sync_kit run: 7 copied, 1 removed, 0 refused.
