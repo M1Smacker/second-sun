@@ -1,0 +1,193 @@
+{
+ "files": {
+  "56+": {
+   "files": 4403,
+   "cadences": 50280979,
+   "with_b31": 4403,
+   "b31": 4802943,
+   "b13": 0
+  },
+  "<56": {
+   "files": 5220,
+   "cadences": 12162476,
+   "with_b31": 0,
+   "b31": 0,
+   "b13": 1826445
+  }
+ },
+ "loaded_files": 60,
+ "flagged_in_loaded": 61289,
+ "flagged_survived": 0,
+ "files_with_survivors": 0,
+ "share_of_kept_cadences_flagged": 0.0,
+ "by_sector": {
+  "56": {
+   "flagged": 320,
+   "survived": 0
+  },
+  "57": {
+   "flagged": 510,
+   "survived": 0
+  },
+  "58": {
+   "flagged": 1158,
+   "survived": 0
+  },
+  "59": {
+   "flagged": 2593,
+   "survived": 0
+  },
+  "60": {
+   "flagged": 1082,
+   "survived": 0
+  },
+  "61": {
+   "flagged": 3045,
+   "survived": 0
+  },
+  "62": {
+   "flagged": 415,
+   "survived": 0
+  },
+  "63": {
+   "flagged": 1399,
+   "survived": 0
+  },
+  "64": {
+   "flagged": 256,
+   "survived": 0
+  },
+  "65": {
+   "flagged": 1006,
+   "survived": 0
+  },
+  "66": {
+   "flagged": 1281,
+   "survived": 0
+  },
+  "67": {
+   "flagged": 5214,
+   "survived": 0
+  },
+  "68": {
+   "flagged": 1833,
+   "survived": 0
+  },
+  "69": {
+   "flagged": 1378,
+   "survived": 0
+  },
+  "70": {
+   "flagged": 1534,
+   "survived": 0
+  },
+  "73": {
+   "flagged": 1163,
+   "survived": 0
+  },
+  "74": {
+   "flagged": 287,
+   "survived": 0
+  },
+  "75": {
+   "flagged": 90,
+   "survived": 0
+  },
+  "76": {
+   "flagged": 371,
+   "survived": 0
+  },
+  "77": {
+   "flagged": 390,
+   "survived": 0
+  },
+  "78": {
+   "flagged": 94,
+   "survived": 0
+  },
+  "79": {
+   "flagged": 407,
+   "survived": 0
+  },
+  "80": {
+   "flagged": 42,
+   "survived": 0
+  },
+  "81": {
+   "flagged": 81,
+   "survived": 0
+  },
+  "82": {
+   "flagged": 200,
+   "survived": 0
+  },
+  "83": {
+   "flagged": 173,
+   "survived": 0
+  },
+  "84": {
+   "flagged": 786,
+   "survived": 0
+  },
+  "85": {
+   "flagged": 1175,
+   "survived": 0
+  },
+  "86": {
+   "flagged": 4625,
+   "survived": 0
+  },
+  "87": {
+   "flagged": 2535,
+   "survived": 0
+  },
+  "88": {
+   "flagged": 422,
+   "survived": 0
+  },
+  "89": {
+   "flagged": 139,
+   "survived": 0
+  },
+  "90": {
+   "flagged": 716,
+   "survived": 0
+  },
+  "93": {
+   "flagged": 1316,
+   "survived": 0
+  },
+  "94": {
+   "flagged": 4474,
+   "survived": 0
+  },
+  "95": {
+   "flagged": 2793,
+   "survived": 0
+  },
+  "96": {
+   "flagged": 1068,
+   "survived": 0
+  },
+  "97": {
+   "flagged": 6199,
+   "survived": 0
+  },
+  "98": {
+   "flagged": 3018,
+   "survived": 0
+  },
+  "99": {
+   "flagged": 674,
+   "survived": 0
+  },
+  "101": {
+   "flagged": 2868,
+   "survived": 0
+  },
+  "103": {
+   "flagged": 2159,
+   "survived": 0
+  }
+ }
+}
