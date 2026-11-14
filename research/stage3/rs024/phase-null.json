@@ -1,0 +1,182 @@
+{
+ "real 5-10 clean": {
+  "n": 337,
+  "stars": 44,
+  "recur": 263,
+  "chance": 212.6,
+  "recur_stars": 19,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 99
+ },
+ "real 5-10 flagged": {
+  "n": 1213,
+  "stars": 161,
+  "recur": 548,
+  "chance": 466.1,
+  "recur_stars": 47,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "real 10-14 clean": {
+  "n": 123,
+  "stars": 46,
+  "recur": 50,
+  "chance": 29.8,
+  "recur_stars": 18,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 19
+ },
+ "real 10-14 flagged": {
+  "n": 1052,
+  "stars": 142,
+  "recur": 380,
+  "chance": 319.9,
+  "recur_stars": 41,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "real 14-20 clean": {
+  "n": 590,
+  "stars": 61,
+  "recur": 492,
+  "chance": 417.5,
+  "recur_stars": 30,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 104
+ },
+ "real 14-20 flagged": {
+  "n": 1296,
+  "stars": 108,
+  "recur": 660,
+  "chance": 588.4,
+  "recur_stars": 52,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "real 20-27.4 clean": {
+  "n": 298,
+  "stars": 34,
+  "recur": 257,
+  "chance": 154.9,
+  "recur_stars": 22,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 145
+ },
+ "real 20-27.4 flagged": {
+  "n": 483,
+  "stars": 50,
+  "recur": 200,
+  "chance": 174.6,
+  "recur_stars": 24,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "real 27.4+ clean": {
+  "n": 365,
+  "stars": 37,
+  "recur": 284,
+  "chance": 159.9,
+  "recur_stars": 28,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 234
+ },
+ "real 27.4+ flagged": {
+  "n": 1026,
+  "stars": 46,
+  "recur": 517,
+  "chance": 426.1,
+  "recur_stars": 38,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "flip 5-10 clean": {
+  "n": 83,
+  "stars": 42,
+  "recur": 26,
+  "chance": 20.2,
+  "recur_stars": 16,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 6
+ },
+ "flip 5-10 flagged": {
+  "n": 1091,
+  "stars": 154,
+  "recur": 388,
+  "chance": 350.3,
+  "recur_stars": 45,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "flip 10-14 clean": {
+  "n": 83,
+  "stars": 43,
+  "recur": 34,
+  "chance": 28.9,
+  "recur_stars": 13,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 20
+ },
+ "flip 10-14 flagged": {
+  "n": 1015,
+  "stars": 127,
+  "recur": 361,
+  "chance": 316.9,
+  "recur_stars": 41,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "flip 14-20 clean": {
+  "n": 59,
+  "stars": 30,
+  "recur": 27,
+  "chance": 23.1,
+  "recur_stars": 12,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 11
+ },
+ "flip 14-20 flagged": {
+  "n": 1029,
+  "stars": 111,
+  "recur": 327,
+  "chance": 328.0,
+  "recur_stars": 41,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "flip 20-27.4 clean": {
+  "n": 42,
+  "stars": 19,
+  "recur": 4,
+  "chance": 10.7,
+  "recur_stars": 3,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "flip 20-27.4 flagged": {
+  "n": 452,
+  "stars": 44,
+  "recur": 164,
+  "chance": 125.0,
+  "recur_stars": 21,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ },
+ "flip 27.4+ clean": {
+  "n": 98,
+  "stars": 27,
+  "recur": 48,
+  "chance": 43.7,
+  "recur_stars": 15,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 21
+ },
+ "flip 27.4+ flagged": {
+  "n": 961,
+  "stars": 45,
+  "recur": 410,
+  "chance": 397.8,
+  "recur_stars": 32,
+  "recur_with_orbit_lock": 0,
+  "recur_tier1": 0
+ }
+}

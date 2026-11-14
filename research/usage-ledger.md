@@ -208,3 +208,4 @@ Reading: porting and re-using existing scripts ran 0.2 to 0.4 of the estimate ag
 | 14 Nov 10:08 | Book 2.11.6 wording fixes, T125/T127 explained, memory rule | small | ~0.3 | |
 | 14 Nov 10:26 | T125/T127 approved into new G1 preregistration draft | small | ~0.2 | |
 | 14 Nov 11:55 | Check Codex 008 plus fence check | small | ~0.3 | |
+| 14 Nov 12:22 | RS-024 dominated research + preregistered 4-rule test | research + runs | cap 8, used ~2 (1% to 3%) | Opus 5.5 medium |

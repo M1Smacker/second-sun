@@ -1,0 +1,410 @@
+{
+ "light curves with both arms": 2446,
+ "events read": 21100,
+ "A: share of light curves where the strongest dip beats the strongest bump (noise alone 0.5)": {
+  "5-10": {
+   "n": 613,
+   "dip_stronger": 0.548,
+   "n_strong": 613,
+   "dip_stronger_when_one_is_strong": 0.548,
+   "median_ratio_dip_over_bump": 1.059,
+   "strongest_dip_median": 11.1,
+   "strongest_bump_median": 10.77
+  },
+  "10-14": {
+   "n": 548,
+   "dip_stronger": 0.56,
+   "n_strong": 548,
+   "dip_stronger_when_one_is_strong": 0.56,
+   "median_ratio_dip_over_bump": 1.085,
+   "strongest_dip_median": 10.8,
+   "strongest_bump_median": 10.57
+  },
+  "14-20": {
+   "n": 521,
+   "dip_stronger": 0.564,
+   "n_strong": 521,
+   "dip_stronger_when_one_is_strong": 0.564,
+   "median_ratio_dip_over_bump": 1.069,
+   "strongest_dip_median": 12.07,
+   "strongest_bump_median": 10.41
+  },
+  "20-27.4": {
+   "n": 255,
+   "dip_stronger": 0.635,
+   "n_strong": 255,
+   "dip_stronger_when_one_is_strong": 0.635,
+   "median_ratio_dip_over_bump": 1.188,
+   "strongest_dip_median": 13.2,
+   "strongest_bump_median": 10.75
+  },
+  "27.4+": {
+   "n": 509,
+   "dip_stronger": 0.619,
+   "n_strong": 509,
+   "dip_stronger_when_one_is_strong": 0.619,
+   "median_ratio_dip_over_bump": 1.23,
+   "strongest_dip_median": 13.02,
+   "strongest_bump_median": 10.24
+  },
+  "all": {
+   "n": 2446,
+   "dip_stronger": 0.578,
+   "n_strong": 2446,
+   "dip_stronger_when_one_is_strong": 0.578,
+   "median_ratio_dip_over_bump": 1.115,
+   "strongest_dip_median": 11.93,
+   "strongest_bump_median": 10.52
+  }
+ },
+ "B: strong winners (SNR 7+) by bin and side": {
+  "10-14 bump wins": {
+   "n": 241,
+   "on_catalogue_eclipse": 42,
+   "off": 199,
+   "off_with_step": 174,
+   "off_with_ramp": 90,
+   "off_with_gap_dump": 159,
+   "off_repeat_n_3plus": 41,
+   "off_any_of_these_flags": 187,
+   "off_clean": 12,
+   "off_dur_h_median": 6.5,
+   "off_depth_ppm_median": 2895.0,
+   "off_ph_d_median": 1.53,
+   "off_phase_known": 199,
+   "off_phase_hist_10": [
+    29,
+    35,
+    29,
+    18,
+    15,
+    7,
+    16,
+    15,
+    23,
+    12
+   ],
+   "products": {
+    "TESS-SPOC-SAP": 30,
+    "SPOC": 46,
+    "QLP": 71,
+    "TESS-SPOC": 65,
+    "SPOC-SAP": 29
+   }
+  },
+  "10-14 dip wins": {
+   "n": 307,
+   "on_catalogue_eclipse": 38,
+   "off": 269,
+   "off_with_step": 210,
+   "off_with_ramp": 129,
+   "off_with_gap_dump": 204,
+   "off_repeat_n_3plus": 69,
+   "off_any_of_these_flags": 256,
+   "off_clean": 13,
+   "off_dur_h_median": 8.0,
+   "off_depth_ppm_median": 4393.0,
+   "off_ph_d_median": 1.53,
+   "off_phase_known": 269,
+   "off_phase_hist_10": [
+    27,
+    28,
+    34,
+    28,
+    15,
+    13,
+    31,
+    20,
+    47,
+    26
+   ],
+   "products": {
+    "SPOC": 59,
+    "SPOC-SAP": 60,
+    "TESS-SPOC": 70,
+    "QLP": 60,
+    "TESS-SPOC-SAP": 58
+   }
+  },
+  "14-20 bump wins": {
+   "n": 227,
+   "on_catalogue_eclipse": 30,
+   "off": 197,
+   "off_with_step": 180,
+   "off_with_ramp": 91,
+   "off_with_gap_dump": 172,
+   "off_repeat_n_3plus": 47,
+   "off_any_of_these_flags": 194,
+   "off_clean": 3,
+   "off_dur_h_median": 6.5,
+   "off_depth_ppm_median": 2857.0,
+   "off_ph_d_median": 2.03,
+   "off_phase_known": 197,
+   "off_phase_hist_10": [
+    16,
+    22,
+    16,
+    23,
+    15,
+    26,
+    17,
+    27,
+    18,
+    17
+   ],
+   "products": {
+    "SPOC": 54,
+    "SPOC-SAP": 37,
+    "TESS-SPOC-SAP": 34,
+    "QLP": 47,
+    "TESS-SPOC": 55
+   }
+  },
+  "14-20 dip wins": {
+   "n": 294,
+   "on_catalogue_eclipse": 27,
+   "off": 267,
+   "off_with_step": 178,
+   "off_with_ramp": 104,
+   "off_with_gap_dump": 175,
+   "off_repeat_n_3plus": 99,
+   "off_any_of_these_flags": 239,
+   "off_clean": 28,
+   "off_dur_h_median": 5.0,
+   "off_depth_ppm_median": 4134.0,
+   "off_ph_d_median": 2.15,
+   "off_phase_known": 267,
+   "off_phase_hist_10": [
+    24,
+    31,
+    18,
+    39,
+    40,
+    23,
+    33,
+    28,
+    16,
+    15
+   ],
+   "products": {
+    "SPOC-SAP": 59,
+    "SPOC": 55,
+    "TESS-SPOC-SAP": 53,
+    "QLP": 66,
+    "TESS-SPOC": 61
+   }
+  },
+  "20-27.4 bump wins": {
+   "n": 93,
+   "on_catalogue_eclipse": 9,
+   "off": 84,
+   "off_with_step": 77,
+   "off_with_ramp": 39,
+   "off_with_gap_dump": 64,
+   "off_repeat_n_3plus": 31,
+   "off_any_of_these_flags": 80,
+   "off_clean": 4,
+   "off_dur_h_median": 6.5,
+   "off_depth_ppm_median": 6010.5,
+   "off_ph_d_median": 2.86,
+   "off_phase_known": 84,
+   "off_phase_hist_10": [
+    12,
+    5,
+    11,
+    7,
+    8,
+    9,
+    11,
+    9,
+    4,
+    8
+   ],
+   "products": {
+    "SPOC": 18,
+    "TESS-SPOC": 24,
+    "TESS-SPOC-SAP": 11,
+    "QLP": 28,
+    "SPOC-SAP": 12
+   }
+  },
+  "20-27.4 dip wins": {
+   "n": 162,
+   "on_catalogue_eclipse": 24,
+   "off": 138,
+   "off_with_step": 89,
+   "off_with_ramp": 48,
+   "off_with_gap_dump": 87,
+   "off_repeat_n_3plus": 36,
+   "off_any_of_these_flags": 111,
+   "off_clean": 27,
+   "off_dur_h_median": 5.0,
+   "off_depth_ppm_median": 5456.5,
+   "off_ph_d_median": 3.83,
+   "off_phase_known": 138,
+   "off_phase_hist_10": [
+    4,
+    23,
+    17,
+    4,
+    10,
+    12,
+    14,
+    16,
+    25,
+    13
+   ],
+   "products": {
+    "SPOC": 37,
+    "TESS-SPOC-SAP": 31,
+    "TESS-SPOC": 39,
+    "SPOC-SAP": 24,
+    "QLP": 31
+   }
+  },
+  "27.4+ bump wins": {
+   "n": 194,
+   "on_catalogue_eclipse": 10,
+   "off": 184,
+   "off_with_step": 153,
+   "off_with_ramp": 92,
+   "off_with_gap_dump": 147,
+   "off_repeat_n_3plus": 32,
+   "off_any_of_these_flags": 169,
+   "off_clean": 15,
+   "off_dur_h_median": 8.0,
+   "off_depth_ppm_median": 3471.5,
+   "off_ph_d_median": 6.22,
+   "off_phase_known": 184,
+   "off_phase_hist_10": [
+    14,
+    14,
+    19,
+    17,
+    16,
+    19,
+    21,
+    16,
+    22,
+    26
+   ],
+   "products": {
+    "TESS-SPOC": 44,
+    "TESS-SPOC-SAP": 31,
+    "SPOC": 40,
+    "QLP": 43,
+    "SPOC-SAP": 36
+   }
+  },
+  "27.4+ dip wins": {
+   "n": 315,
+   "on_catalogue_eclipse": 14,
+   "off": 301,
+   "off_with_step": 216,
+   "off_with_ramp": 98,
+   "off_with_gap_dump": 188,
+   "off_repeat_n_3plus": 91,
+   "off_any_of_these_flags": 257,
+   "off_clean": 44,
+   "off_dur_h_median": 6.5,
+   "off_depth_ppm_median": 5388.0,
+   "off_ph_d_median": 6.51,
+   "off_phase_known": 301,
+   "off_phase_hist_10": [
+    31,
+    24,
+    34,
+    34,
+    33,
+    22,
+    50,
+    30,
+    16,
+    27
+   ],
+   "products": {
+    "SPOC": 58,
+    "SPOC-SAP": 67,
+    "QLP": 62,
+    "TESS-SPOC": 63,
+    "TESS-SPOC-SAP": 65
+   }
+  },
+  "5-10 bump wins": {
+   "n": 277,
+   "on_catalogue_eclipse": 60,
+   "off": 217,
+   "off_with_step": 190,
+   "off_with_ramp": 105,
+   "off_with_gap_dump": 178,
+   "off_repeat_n_3plus": 45,
+   "off_any_of_these_flags": 210,
+   "off_clean": 7,
+   "off_dur_h_median": 6.5,
+   "off_depth_ppm_median": 3728.0,
+   "off_ph_d_median": 1.11,
+   "off_phase_known": 217,
+   "off_phase_hist_10": [
+    24,
+    29,
+    22,
+    20,
+    15,
+    7,
+    24,
+    35,
+    20,
+    21
+   ],
+   "products": {
+    "SPOC-SAP": 39,
+    "SPOC": 54,
+    "QLP": 71,
+    "TESS-SPOC": 67,
+    "TESS-SPOC-SAP": 46
+   }
+  },
+  "5-10 dip wins": {
+   "n": 336,
+   "on_catalogue_eclipse": 64,
+   "off": 272,
+   "off_with_step": 218,
+   "off_with_ramp": 129,
+   "off_with_gap_dump": 196,
+   "off_repeat_n_3plus": 71,
+   "off_any_of_these_flags": 245,
+   "off_clean": 27,
+   "off_dur_h_median": 5.75,
+   "off_depth_ppm_median": 3858.5,
+   "off_ph_d_median": 1.26,
+   "off_phase_known": 272,
+   "off_phase_hist_10": [
+    16,
+    21,
+    60,
+    26,
+    24,
+    14,
+    32,
+    36,
+    26,
+    17
+   ],
+   "products": {
+    "TESS-SPOC": 77,
+    "SPOC-SAP": 72,
+    "TESS-SPOC-SAP": 71,
+    "QLP": 59,
+    "SPOC": 57
+   }
+  }
+ },
+ "C: recurrence of off-eclipse dip winners at the same binary phase": {
+  "stars with off-eclipse dip winners in only 1 sector": 139,
+  "stars with winners in 2+ sectors": 175,
+  "... of which some pair agrees within 0.02 in phase": 60,
+  "... expected by chance (pairs x 0.04), summed": 0,
+  "_pairs": 2054
+ },
+ "C: chance level": "a random pair agrees within 0.02 with probability 0.04; compare the 'agrees' count to 0.04 x pairs per star (upper bound: 1 - 0.96^pairs)"
+}

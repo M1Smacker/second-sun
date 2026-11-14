@@ -1,0 +1,346 @@
+{
+ "bin0_flip": {
+  "n": 242,
+  "found": 133,
+  "tier1": 98,
+  "held": 35,
+  "flags": {
+   "step": 18,
+   "gap_dump": 13,
+   "ramp": 12,
+   "c5": 8,
+   "ecl_overlap": 4,
+   "orbit_lock": 2,
+   "dominated": 2,
+   "burst": 1,
+   "flipmatch": 1
+  },
+  "only_flag": {
+   "step": 6,
+   "ramp": 4,
+   "orbit_lock": 2,
+   "gap_dump": 2,
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 1,
+   "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 2,
+   "rival stronger by under 20%": 0,
+   "rival on an eclipse (c5 or ecl_overlap)": 1
+  },
+  "rival_ph_d_median": 0.9556645000025069,
+  "rival_ph_d_n": 2
+ },
+ "bin0_real": {
+  "n": 242,
+  "found": 131,
+  "tier1": 98,
+  "held": 33,
+  "flags": {
+   "step": 16,
+   "gap_dump": 15,
+   "ramp": 14,
+   "c5": 5,
+   "dominated": 4,
+   "orbit_lock": 3,
+   "flipmatch": 2,
+   "burst": 1,
+   "ecl_overlap": 1,
+   "common": 1
+  },
+  "only_flag": {
+   "step": 4,
+   "gap_dump": 4,
+   "ramp": 4,
+   "orbit_lock": 3,
+   "dominated": 2,
+   "c5": 1
+  },
+  "rival": {
+   "rival off eclipses": 2,
+   "rival is a repeater or orbit-locked": 0,
+   "rival 1 to 3 d away": 1,
+   "rival stronger by under 20%": 0,
+   "rival on an eclipse (c5 or ecl_overlap)": 2,
+   "rival within 1 d of a planted crossing": 2,
+   "rival over 3 d away": 1
+  },
+  "rival_ph_d_median": 0.41131600000238877,
+  "rival_ph_d_n": 4
+ },
+ "bin1_flip": {
+  "n": 229,
+  "found": 125,
+  "tier1": 100,
+  "held": 25,
+  "flags": {
+   "gap_dump": 9,
+   "step": 9,
+   "dominated": 9,
+   "ramp": 7,
+   "c5": 3,
+   "ecl_overlap": 2,
+   "orbit_lock": 2,
+   "p1_veto": 1
+  },
+  "only_flag": {
+   "dominated": 5,
+   "ramp": 2,
+   "step": 2,
+   "gap_dump": 1,
+   "orbit_lock": 1
+  },
+  "rival": {
+   "rival on an eclipse (c5 or ecl_overlap)": 4,
+   "rival is a repeater or orbit-locked": 2,
+   "rival over 3 d away": 7,
+   "rival stronger by under 20%": 0,
+   "rival off eclipses": 5,
+   "rival 1 to 3 d away": 1,
+   "rival within 1 d of a planted crossing": 1
+  },
+  "rival_ph_d_median": 0.7731999999996328,
+  "rival_ph_d_n": 9
+ },
+ "bin1_real": {
+  "n": 229,
+  "found": 130,
+  "tier1": 105,
+  "held": 25,
+  "flags": {
+   "step": 12,
+   "gap_dump": 12,
+   "ramp": 10,
+   "dominated": 5,
+   "c5": 4,
+   "ecl_overlap": 2,
+   "orbit_lock": 1,
+   "repeater": 1,
+   "p1_veto": 1
+  },
+  "only_flag": {
+   "step": 2,
+   "ramp": 2,
+   "gap_dump": 2,
+   "orbit_lock": 1,
+   "dominated": 1
+  },
+  "rival": {
+   "rival off eclipses": 5,
+   "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 5,
+   "rival stronger by under 20%": 1
+  },
+  "rival_ph_d_median": 1.526375000000314,
+  "rival_ph_d_n": 5
+ },
+ "bin2_flip": {
+  "n": 221,
+  "found": 134,
+  "tier1": 90,
+  "held": 44,
+  "flags": {
+   "gap_dump": 20,
+   "step": 16,
+   "dominated": 12,
+   "ramp": 8,
+   "ecl_overlap": 6,
+   "c5": 6,
+   "p1_veto": 3
+  },
+  "only_flag": {
+   "gap_dump": 10,
+   "step": 6,
+   "dominated": 6,
+   "ramp": 3,
+   "ecl_overlap": 1,
+   "p1_veto": 1
+  },
+  "rival": {
+   "rival off eclipses": 12,
+   "rival is a repeater or orbit-locked": 3,
+   "rival 1 to 3 d away": 5,
+   "rival stronger by under 20%": 3,
+   "rival over 3 d away": 7
+  },
+  "rival_ph_d_median": 2.360323050000862,
+  "rival_ph_d_n": 12
+ },
+ "bin2_real": {
+  "n": 221,
+  "found": 129,
+  "tier1": 93,
+  "held": 36,
+  "flags": {
+   "step": 17,
+   "gap_dump": 15,
+   "ramp": 9,
+   "ecl_overlap": 6,
+   "c5": 6,
+   "p1_veto": 3,
+   "dominated": 3,
+   "common": 1
+  },
+  "only_flag": {
+   "gap_dump": 6,
+   "step": 5,
+   "ecl_overlap": 2,
+   "p1_veto": 2,
+   "ramp": 2,
+   "dominated": 1
+  },
+  "rival": {
+   "rival off eclipses": 3,
+   "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 2,
+   "rival stronger by under 20%": 1,
+   "rival 1 to 3 d away": 1
+  },
+  "rival_ph_d_median": 0.48873049999988266,
+  "rival_ph_d_n": 3
+ },
+ "bin3_flip": {
+  "n": 187,
+  "found": 129,
+  "tier1": 76,
+  "held": 53,
+  "flags": {
+   "gap_dump": 25,
+   "step": 22,
+   "dominated": 21,
+   "ramp": 9,
+   "p1_veto": 6,
+   "c5": 3,
+   "flipmatch": 2,
+   "burst": 2,
+   "ecl_overlap": 2,
+   "orbit_lock": 1,
+   "common": 1
+  },
+  "only_flag": {
+   "dominated": 10,
+   "gap_dump": 6,
+   "p1_veto": 3,
+   "ramp": 2,
+   "step": 1,
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 16,
+   "rival is a repeater or orbit-locked": 5,
+   "rival within 1 d of a planted crossing": 5,
+   "rival stronger by under 20%": 3,
+   "rival over 3 d away": 14,
+   "rival on an eclipse (c5 or ecl_overlap)": 5,
+   "rival 1 to 3 d away": 2
+  },
+  "rival_ph_d_median": 3.82068590000097,
+  "rival_ph_d_n": 21
+ },
+ "bin3_real": {
+  "n": 187,
+  "found": 131,
+  "tier1": 95,
+  "held": 36,
+  "flags": {
+   "gap_dump": 18,
+   "step": 18,
+   "ramp": 9,
+   "dominated": 6,
+   "p1_veto": 5,
+   "orbit_lock": 3,
+   "repeater": 2,
+   "c5": 2,
+   "flipmatch": 1,
+   "ecl_overlap": 1
+  },
+  "only_flag": {
+   "gap_dump": 6,
+   "step": 4,
+   "dominated": 2,
+   "orbit_lock": 1,
+   "ramp": 1,
+   "p1_veto": 1,
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 5,
+   "rival is a repeater or orbit-locked": 0,
+   "rival over 3 d away": 6,
+   "rival stronger by under 20%": 4,
+   "rival on an eclipse (c5 or ecl_overlap)": 1
+  },
+  "rival_ph_d_median": 3.1160999999988226,
+  "rival_ph_d_n": 6
+ },
+ "bin4_flip": {
+  "n": 219,
+  "found": 165,
+  "tier1": 124,
+  "held": 41,
+  "flags": {
+   "dominated": 23,
+   "gap_dump": 15,
+   "step": 15,
+   "ramp": 6,
+   "flipmatch": 3,
+   "p1_veto": 2,
+   "ecl_overlap": 2,
+   "common": 1,
+   "c5": 1
+  },
+  "only_flag": {
+   "dominated": 11,
+   "gap_dump": 7,
+   "step": 2,
+   "ramp": 1,
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 20,
+   "rival is a repeater or orbit-locked": 5,
+   "rival over 3 d away": 17,
+   "rival stronger by under 20%": 3,
+   "rival within 1 d of a planted crossing": 5,
+   "rival on an eclipse (c5 or ecl_overlap)": 3,
+   "rival 1 to 3 d away": 1
+  },
+  "rival_ph_d_median": 5.650700100002918,
+  "rival_ph_d_n": 23
+ },
+ "bin4_real": {
+  "n": 219,
+  "found": 169,
+  "tier1": 140,
+  "held": 29,
+  "flags": {
+   "gap_dump": 16,
+   "step": 15,
+   "dominated": 3,
+   "ramp": 3,
+   "p1_veto": 1,
+   "common": 1,
+   "orbit_lock": 1,
+   "ecl_overlap": 1
+  },
+  "only_flag": {
+   "gap_dump": 8,
+   "step": 5,
+   "dominated": 2,
+   "p1_veto": 1,
+   "orbit_lock": 1,
+   "ramp": 1,
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 3,
+   "rival is a repeater or orbit-locked": 0,
+   "rival 1 to 3 d away": 2,
+   "rival stronger by under 20%": 1,
+   "rival within 1 d of a planted crossing": 1
+  },
+  "rival_ph_d_median": 8.296619300000636,
+  "rival_ph_d_n": 3
+ }
+}
