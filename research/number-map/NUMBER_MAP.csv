@@ -332,3 +332,84 @@ book/docs/field-notes/2026-10-30.md,90,6877,TRACED,research/stage3/benchmark-g2-
 book/docs/field-notes/2026-10-30.md,90,2,NOT A RESULT,,,,'tier 2'
 book/docs/field-notes/2026-10-30.md,92,6,TRACED,research/stage3/DEEP-ANALYSIS-AFTER-SEALED-2026-10-30.md,"| Leads (stars, known hosts removed",,
 book/docs/field-notes/2026-10-30.md,92,25,TRACED,research/stage3/DEEP-ANALYSIS-AFTER-SEALED-2026-10-30.md,"| Leads (stars, known hosts removed",,
+book/docs/field-notes/2026-10-29.md,6,4,DERIVED,,,,'4 to 6 of every 10': hunt-level m 0.40 to 0.69 (research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 2)
+book/docs/field-notes/2026-10-29.md,6,6,DERIVED,,,,see the 4
+book/docs/field-notes/2026-10-29.md,6,10,DERIVED,,,,see the 4
+book/docs/field-notes/2026-10-29.md,6,20,MISMATCH,,,,"same pasted 10 Nov correction box as the 4 Nov note: 'almost all of them in binaries slower than 20 days' is not what research/fable-audit-2026-11/WO-F01-PART-A-RESULT-2026-11-10.md Result 1 shows (heavy losses already at 10 to 14 d). Ahmed's wording call (T130, 14 Nov 2026)"
+book/docs/field-notes/2026-10-29.md,9,549,TRACED,book/data/claims.csv,Our first real search covered 549 stars,,
+book/docs/field-notes/2026-10-29.md,13,0.67,TRACED,research/stage3/learnings-2026-10-29.md,0.67% of the cadences,,
+book/docs/field-notes/2026-10-29.md,13,8.5,TRACED,research/stage3/learnings-2026-10-29.md,real (8.5%),,
+book/docs/field-notes/2026-10-29.md,13,7.8,TRACED,research/stage3/learnings-2026-10-29.md,upside-down (7.8%),,
+book/docs/field-notes/2026-10-29.md,13,21,TRACED,research/stage3/learnings-2026-10-29.md,The only silent skips are 21 QLP files,,
+book/docs/field-notes/2026-10-29.md,14,14,TRACED,research/stage3/learnings-2026-10-29.md,"So 10 of the ""14 cleaned-light""",,
+book/docs/field-notes/2026-10-29.md,14,10,TRACED,research/stage3/learnings-2026-10-29.md,"So 10 of the ""14 cleaned-light""",,
+book/docs/field-notes/2026-10-29.md,14,56,TRACED,research/stage3/learnings-2026-10-29.md,no cleaned column before sector 56,,
+book/docs/field-notes/2026-10-29.md,15,299,TRACED,research/stage3/learnings-2026-10-29.md,in 299 of 299 star-sectors,,
+book/docs/field-notes/2026-10-29.md,16,14352,TRACED,research/stage3/learnings-2026-10-29.md,"14,352 injections",14352,
+book/docs/field-notes/2026-10-29.md,16,299,TRACED,research/stage3/learnings-2026-10-29.md,299 random star-sectors,,
+book/docs/field-notes/2026-10-29.md,16,4,TRACED,research/stage3/learnings-2026-10-29.md,"4 box lengths, 6 depths",,
+book/docs/field-notes/2026-10-29.md,16,6,TRACED,research/stage3/learnings-2026-10-29.md,"4 box lengths, 6 depths",,
+book/docs/field-notes/2026-10-29.md,16,18,TRACED,research/stage3/learnings-2026-10-29.md,At 18 times the 8 h noise,,
+book/docs/field-notes/2026-10-29.md,16,44,TRACED,research/stage3/learnings-2026-10-29.md,At 18 times the 8 h noise,,
+book/docs/field-notes/2026-10-29.md,16,64,TRACED,research/stage3/learnings-2026-10-29.md,At 18 times the 8 h noise,,
+book/docs/field-notes/2026-10-29.md,16,11,TRACED,book/data/claims.csv,half are recovered at about 11 times,,
+book/docs/field-notes/2026-10-29.md,16,8,TRACED,book/data/claims.csv,half are recovered at about 11 times,8,the 8 hour noise
+book/docs/field-notes/2026-10-29.md,16,8000,TRACED,book/data/claims.csv,half are recovered at about 11 times,8000,
+book/docs/field-notes/2026-10-29.md,17,8000,TRACED,research/stage3/learnings-2026-10-29.md,"So against 8,000 ppm",8000,
+book/docs/field-notes/2026-10-29.md,17,16,TRACED,research/stage3/learnings-2026-10-29.md,"So against 8,000 ppm",16,Kepler-16 b: a name; listed for the trace
+book/docs/field-notes/2026-10-29.md,17,3100,TRACED,research/stage3/learnings-2026-10-29.md,"about 3,100 ppm",3100,'roughly half': 8 of 15
+book/docs/field-notes/2026-10-29.md,18,32,TRACED,book/data/claims.csv,32% against 34%,,
+book/docs/field-notes/2026-10-29.md,18,34,TRACED,book/data/claims.csv,32% against 34%,,
+book/docs/field-notes/2026-10-29.md,19,895,TRACED,book/data/claims.csv,531 of the 895 stars,,
+book/docs/field-notes/2026-10-29.md,19,1,TRACED,research/stage3/g2-counts-2026-10-29.md,My earlier guess of 1 to 4 GB,,
+book/docs/field-notes/2026-10-29.md,19,4,TRACED,research/stage3/g2-counts-2026-10-29.md,My earlier guess of 1 to 4 GB,,
+book/docs/field-notes/2026-10-29.md,19,28,TRACED,research/stage3/learnings-2026-10-29.md,G2 needs about 28 GB,,
+book/docs/field-notes/2026-10-29.md,26,18,TRACED,research/stage3/learnings-2026-10-29.md,At 18 times the 8 h noise,,
+book/docs/field-notes/2026-10-29.md,26,99,TRACED,research/stage3/learnings-2026-10-29.md,98 to 99% of cases,,
+book/docs/field-notes/2026-10-29.md,26,55,DERIVED,,,,"mean of the four boxes at K 18 (62, 64, 51, 44%) = 55% (research/stage3/learnings-2026-10-29.md line 14); the K 12+ pool is also 55% (line 16)"
+book/docs/field-notes/2026-10-29.md,26,45,DERIVED,,,,100 minus 55
+book/docs/field-notes/2026-10-29.md,32,1,DERIVED,,,,'wrong by a factor of seven': 28 GB against the guess of at most 4 GB (research/stage3/g2-counts-2026-10-29.md line 32)
+book/docs/field-notes/2026-10-29.md,32,4,DERIVED,,,,see the 1 on this line
+book/docs/field-notes/2026-10-29.md,44,0.67,TRACED,research/stage3/learnings-2026-10-29.md,0.67% of the cadences,,
+book/docs/field-notes/2026-10-29.md,44,44,TRACED,research/stage3/learnings-2026-10-29.md,At 18 times the 8 h noise,,
+book/docs/field-notes/2026-10-29.md,44,64,TRACED,research/stage3/learnings-2026-10-29.md,At 18 times the 8 h noise,,
+book/docs/field-notes/2026-10-29.md,44,11,TRACED,book/data/claims.csv,half are recovered at about 11 times,,
+book/docs/field-notes/2026-10-29.md,44,8,TRACED,book/data/claims.csv,half are recovered at about 11 times,8,
+book/docs/field-notes/2026-10-29.md,44,32,TRACED,book/data/claims.csv,32% against 34%,,
+book/docs/field-notes/2026-10-29.md,44,34,TRACED,book/data/claims.csv,32% against 34%,,
+book/docs/field-notes/2026-10-29.md,45,10,TRACED,research/stage3/learnings-2026-10-29.md,"So 10 of the ""14 cleaned-light""",,
+book/docs/field-notes/2026-10-29.md,45,14,TRACED,research/stage3/learnings-2026-10-29.md,"So 10 of the ""14 cleaned-light""",,
+book/docs/field-notes/2026-10-29.md,46,549,TRACED,book/data/claims.csv,Our first real search covered 549 stars,,
+book/docs/field-notes/2026-10-29.md,47,10,TRACED,research/stage3/learnings-2026-10-29.md,10% of 4 and 8 h dips,,
+book/docs/field-notes/2026-10-29.md,47,37,TRACED,research/stage3/learnings-2026-10-29.md,37% of 20 h,,
+book/docs/field-notes/2026-10-29.md,47,20,TRACED,research/stage3/learnings-2026-10-29.md,37% of 20 h,,
+book/docs/field-notes/2026-10-29.md,47,2,TRACED,research/stage3/learnings-2026-10-29.md,the 2 day detrending window,,
+book/docs/field-notes/2026-10-29.md,48,90,TRACED,research/stage3/learnings-2026-10-29.md,a 90% level cannot be located,,
+book/docs/field-notes/2026-10-29.md,48,18,TRACED,research/stage3/learnings-2026-10-29.md,depth grid stops at 18 times,,
+book/docs/field-notes/2026-10-29.md,49,28,TRACED,research/stage3/learnings-2026-10-29.md,G2 needs about 28 GB,,
+book/docs/field-notes/2026-10-29.md,49,20,NOT A RESULT,,,,'20 second files': a cadence name
+book/docs/field-notes/2026-10-29.md,53,1,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-29.md,53,7,NOT A RESULT,,,,the SNR 7 bar
+book/docs/field-notes/2026-10-29.md,53,99,TRACED,research/stage3/learnings-2026-10-29.md,98 to 99% of cases,,
+book/docs/field-notes/2026-10-29.md,53,55,DERIVED,,,,as on line 26
+book/docs/field-notes/2026-10-29.md,53,44,DERIVED,,,,99 minus 55
+book/docs/field-notes/2026-10-29.md,54,2,NOT A RESULT,,,,'tier 2'
+book/docs/field-notes/2026-10-29.md,56,2,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-29.md,59,3,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-29.md,59,16,NOT A RESULT,,,,planet name Kepler-16 b
+book/docs/field-notes/2026-10-29.md,59,14000,TRACED,research/stage3/learnings-2026-10-29.md,"Kepler-16 b 14,250 ppm",14250,"'about 14,000'"
+book/docs/field-notes/2026-10-29.md,59,38,NOT A RESULT,,,,planet name Kepler-38 b
+book/docs/field-notes/2026-10-29.md,59,500,TRACED,research/stage3/learnings-2026-10-29.md,Kepler-38 b 506,506,'about 500'
+book/docs/field-notes/2026-10-29.md,59,50,TRACED,research/stage3/learnings-2026-10-29.md,clears the 50% depth,,
+book/docs/field-notes/2026-10-29.md,60,50,TRACED,research/stage3/learnings-2026-10-29.md,clears the 50% depth,,
+book/docs/field-notes/2026-10-29.md,60,8000,TRACED,research/stage3/learnings-2026-10-29.md,"So against 8,000 ppm",8000,
+book/docs/field-notes/2026-10-29.md,60,3100,TRACED,research/stage3/learnings-2026-10-29.md,"about 3,100 ppm",3100,
+book/docs/field-notes/2026-10-29.md,62,4,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-29.md,65,5,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-29.md,65,1,TRACED,research/stage3/g2-counts-2026-10-29.md,My earlier guess of 1 to 4 GB,,
+book/docs/field-notes/2026-10-29.md,65,4,TRACED,research/stage3/g2-counts-2026-10-29.md,My earlier guess of 1 to 4 GB,,
+book/docs/field-notes/2026-10-29.md,65,28,TRACED,research/stage3/learnings-2026-10-29.md,G2 needs about 28 GB,,
+book/docs/field-notes/2026-10-29.md,68,6,NOT A RESULT,,,,quiz numbering
+book/docs/field-notes/2026-10-29.md,69,10,TRACED,research/stage3/learnings-2026-10-29.md,"So 10 of the ""14 cleaned-light""",,
+book/docs/field-notes/2026-10-29.md,69,14,TRACED,research/stage3/learnings-2026-10-29.md,"So 10 of the ""14 cleaned-light""",,
+book/docs/field-notes/2026-10-29.md,69,56,TRACED,research/stage3/learnings-2026-10-29.md,no cleaned column before sector 56,,
