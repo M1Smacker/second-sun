@@ -137,7 +137,7 @@ def run(n, procs):
     gl = [tuple(int(x) for x in p.stem.split("_")) for p in sorted((X.RUN / "groups").glob("*.json"))]
     meta = {}
     for p in (X.RUN / "groups").glob("*.json"):                  # period of each group, to stratify (30 per bin when n = 150)
-        m = json.load(open(p))["meta"]; q = next((x.get("p1") for x in m if x.get("p1")), None)
+        m = json.load(open(p, encoding="utf-8"))["meta"]; q = next((x.get("p1") for x in m if x.get("p1")), None)
         meta[tuple(int(x) for x in p.stem.split("_"))] = (q or {}).get("P", np.nan)
     random.Random(20261111).shuffle(gl)
     jobs = []

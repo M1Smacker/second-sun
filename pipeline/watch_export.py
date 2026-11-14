@@ -27,7 +27,7 @@ def now_iso():
 
 
 def summarise(path):
-    g = json.load(open(path))
+    g = json.load(open(path, encoding="utf-8"))
     ev = g["events"]; first = Counter(); tiers = Counter(); kinds = Counter(); boxes = Counter(); bands = Counter()
     for e in ev:
         kinds[e["kind"]] += 1; tiers[e.get("tier", "?")] += 1; boxes[str(e["dur_h"])] += 1
@@ -61,13 +61,13 @@ def scan(folder):
 def totals(run):
     f = run / "watch_plan.json"
     if f.exists():
-        return json.load(open(f))
+        return json.load(open(f, encoding="utf-8"))
     sys.path.insert(0, str(HERE))
     import stage3 as S3, stage2_search as S2
     S2.STARS = S3.PREP / "g2_dev_stars_LOCAL.csv" if (S3.PREP / "g2_dev_stars_LOCAL.csv").exists() else S3.STARS_ALL
     gl = S2.groups()
     plan = dict(groups=len(gl), sap=len(S3.sap_pass_groups(gl)), stars=len({g[0] for g in gl}))
-    json.dump(plan, open(f, "w"))
+    json.dump(plan, open(f, "w", encoding="utf-8"))
     return plan
 
 
@@ -87,7 +87,7 @@ def run_info(run):
     info = dict(folder=run.name, version="Vesper 0.7.1 (development use)")
     s = {}
     if (run / "settings.json").exists():
-        j = json.load(open(run / "settings.json")); s = j.get("settings", {}); info["hash"] = j.get("hash")
+        j = json.load(open(run / "settings.json", encoding="utf-8")); s = j.get("settings", {}); info["hash"] = j.get("hash")
         info["git_commit"] = (j.get("provenance") or {}).get("git_commit", "")[:7]
         if s.get("options") == ["c6"]:
             info["version"] = "Vesper 0.8.1 (frozen)" if j.get("frozen_v81") else "Vesper 0.8.0 (frozen)"       # g3_run.py writes frozen_v81 into the run's settings.json
@@ -98,20 +98,20 @@ def run_info(run):
 
 def history(run, done, nev, per_min):
     f = run / "watch_history.json"
-    h = json.load(open(f)) if f.exists() else []
+    h = json.load(open(f, encoding="utf-8")) if f.exists() else []
     t = time.time()
     if not h or t - h[-1]["t"] >= 50:
         h.append(dict(t=round(t), done=done, events=nev, per_min=per_min)); h = h[-400:]
-        json.dump(h, open(f, "w"))
+        json.dump(h, open(f, "w", encoding="utf-8"))
     return h
 
 
 def notes():
-    return json.load(open(NOTES)) if NOTES.exists() else []
+    return json.load(open(NOTES, encoding="utf-8")) if NOTES.exists() else []
 
 
 def add_note(text):
-    n = notes(); n.append(dict(at=now_iso(), text=text)); NOTES.parent.mkdir(exist_ok=True); json.dump(n[-30:], open(NOTES, "w"), indent=1)
+    n = notes(); n.append(dict(at=now_iso(), text=text)); NOTES.parent.mkdir(exist_ok=True); json.dump(n[-30:], open(NOTES, "w", encoding="utf-8"), indent=1)
 
 
 WHAT = {"gap_dump": "Right next to a data gap or a momentum dump. The dashed lines mark gaps. The instrument is settling there, so the dip is probably not the star.",
@@ -153,7 +153,7 @@ def card(tic, sec, e, blind, mtime):
 def gallery(run, A, blind, per_loop=3):
     """Keeps the last 8 kept (tier 1) and the last 8 stopped events as pictures; new ones come from the groups finished since the last call. Persisted in the run folder."""
     f = run / "watch_gallery.json"
-    st = json.load(open(f)) if f.exists() else dict(last=0, kept=[], stopped=[])
+    st = json.load(open(f, encoding="utf-8")) if f.exists() else dict(last=0, kept=[], stopped=[])
     new = sorted([r for r in A.values() if r["mtime"] > st["last"]], key=lambda r: -r["mtime"])[:30]
     if new:
         st["last"] = max(r["mtime"] for r in new)
@@ -169,7 +169,7 @@ def gallery(run, A, blind, per_loop=3):
                     print("gallery skip", r["tic"], r["sector"], type(ex).__name__, str(ex)[:80], flush=True); c = None
                 if c:
                     st[key] = ([c] + st[key])[:8]
-        json.dump(st, open(f, "w"))
+        json.dump(st, open(f, "w", encoding="utf-8"))
     return dict(kept=st["kept"], stopped=st["stopped"])
 
 
@@ -178,14 +178,14 @@ def ready(label):
     Needs SS_SET and VESPER_OPTS set as for the search (the same star-sector grouping as g3_run.py)."""
     sys.path.insert(0, str(HERE))
     import dataset as DS, stage3 as S3, stage2_search as S2
-    fz = json.load(open(ROOT / "research" / "stage3" / "SETTINGS_FROZEN_V81.json")); s = fz["settings"]
+    fz = json.load(open(ROOT / "research" / "stage3" / "SETTINGS_FROZEN_V81.json", encoding="utf-8")); s = fz["settings"]
     S2.STARS = DS.PREP / "g3_stars_LOCAL.csv"
     cache = DS.PREP / "watch_plan_ready.json"                                   # S2.groups() takes about two minutes; the list and the files on disk do not change while the campaign waits
     if cache.exists():
-        plan = json.load(open(cache))
+        plan = json.load(open(cache, encoding="utf-8"))
     else:
         gl = S2.groups(); plan = dict(groups=len(gl), sap=len(S3.sap_pass_groups(gl)), stars=len({g[0] for g in gl}), list_stars=sum(1 for _ in open(S2.STARS, encoding="utf-8")) - 1)
-        json.dump(plan, open(cache, "w"))
+        json.dump(plan, open(cache, "w", encoding="utf-8"))
     n = notes()
     return dict(label=label, blind=True, counts_only=True, phase="ready", updated=now_iso(), loop_s=0, machine=dict(workers=None, cpu=None), started=None,
                 run=dict(folder="g3_" + fz["hash"][:12], version="Vesper 0.8.1 (frozen)", hash=fz["hash"], git_commit="",
@@ -209,7 +209,7 @@ def ready_r1(label):
     """Re-search 1 prepared and not started (no run folder, nothing read from light): the size of the UNSEEN list of G2 and G3 (G1 waits for its own eclipse widths, see the preregistration) and the version.
     Counts only; never an event."""
     fz = ROOT / "research" / "stage3" / "SETTINGS_FROZEN_P100.json"
-    f = json.load(open(fz)) if fz.exists() else None
+    f = json.load(open(fz, encoding="utf-8")) if fz.exists() else None
     cnt = [_r1_unseen(x) for x in ("g2", "g3")]
     n = notes()
     return dict(label=label, blind=True, counts_only=True, phase="ready", updated=now_iso(), loop_s=0, machine=dict(workers=None, cpu=None), started=None,

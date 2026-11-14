@@ -93,6 +93,17 @@ def power_note(sealed, ref):
     return "power: not reached below 100000"
 
 
+def star_cluster_ci(k_by_star, n_by_star, B=100000, seed=20261114):
+    """FIX 88: percentile 95% interval per 1,000 of sum(k)/sum(n), resampling stars with replacement (stars with exposure; k 0 when absent)."""
+    stars = list(n_by_star)
+    if not stars:
+        return float("nan"), float("nan")
+    k = np.array([k_by_star.get(s, 0) for s in stars], float); n = np.array([n_by_star[s] for s in stars], float)
+    rng = np.random.default_rng(seed); idx = rng.integers(0, len(stars), size=(B, len(stars)))
+    r = 1000 * k[idx].sum(1) / np.maximum(n[idx].sum(1), 1)
+    return float(np.percentile(r, 2.5)), float(np.percentile(r, 97.5))
+
+
 def t1_counts(E):
     t1 = E[E.tier.isin(T1)]
     r, f = R.pdc_half(t1[t1.kind == "real"]), R.pdc_half(t1[t1.kind == "flip"])
@@ -116,7 +127,7 @@ def main(out_file=None):
     name, run = C.DS.NAME, os.environ["SS_RUN"]
     sealed_run = run.startswith("r1_") and "unseen" in run
     folder = C.DS.RUNS / run
-    plan = json.load(open(folder / "watch_plan.json"))
+    plan = json.load(open(folder / "watch_plan.json", encoding="utf-8"))
     nfile = len(glob.glob(str(folder / "groups" / "*.json"))); nsap = len(glob.glob(str(folder / "groups_sap" / "*.json")))
     ref, refb = ref_counts(), ref_bins()
     ev, meta = R.load(str(folder / "groups"))
@@ -164,7 +175,10 @@ def main(out_file=None):
     P("")
     k = int(((rec.kind == "flip") & rec.tier.isin(T1) & (rec.snr >= 7)).sum()); n = len(rec_ss)
     lo, hi = B.pois(k, max(n, 1))
-    P(f"S2. False alarms in recovered light (no pass mark, Ahmed's decision of 10 Nov): upside-down tier-1 {k} in {n} star-sectors with recovered light = {1000 * k / max(n, 1):.2f} per 1,000 (95 percent interval {lo:.2f} to {hi:.2f}); stars are correlated, so the interval is a floor")
+    fl = rec[(rec.kind == "flip") & rec.tier.isin(T1) & (rec.snr >= 7)]           # FIX 88 (14 Nov 2026): star-clustered bootstrap beside the Poisson interval; "floor" was wrong (Codex 002 part B)
+    kb = fl.groupby("tic").size().to_dict(); nb = rec_ss.groupby("tic").size().to_dict()
+    clo, chi = star_cluster_ci(kb, nb)
+    P(f"S2. False alarms in recovered light (no pass mark, Ahmed's decision of 10 Nov): upside-down tier-1 {k} in {n} star-sectors with recovered light = {1000 * k / max(n, 1):.2f} per 1,000 (Poisson 95 percent interval {lo:.2f} to {hi:.2f}, which ignores that events cluster on stars; a star-clustered bootstrap over {len(nb)} stars gives {clo:.2f} to {chi:.2f}; its coverage is not tested, with only {len(kb)} stars carrying events)")
     txt = "\n".join(OUT)
     assert not re.search(r"\b\d{8,9}\b", txt), "a long number (possible star id) in the readout"
     f = out_file or (C.ROOT / "research" / "stage3" / (f"R1-RESULT-{name}.txt" if sealed_run else f"R1-READOUT-smoketest-{name}.txt"))

@@ -70,7 +70,7 @@ def freeze():
     st = stars_file("seen"); s, h = settings(st); pv = S3.provenance()
     if pv["pipeline_dirty"]:
         sys.exit("pipeline or targets have uncommitted changes: commit first, then freeze")
-    f81 = json.load(open(FROZEN81)); a, b = norm(s), f81["settings"]
+    f81 = json.load(open(FROZEN81, encoding="utf-8")); a, b = norm(s), f81["settings"]
     other = sorted(k for k in set(a) | set(b) if k not in ("code", "options") and a.get(k) != b.get(k))
     changed = sorted(k for k in set(a["code"]) | set(b["code"]) if a["code"].get(k) != b["code"].get(k))
     if other or set(changed) != CHANGED_FILES or a["options"] != ["c6", "p1"]:
@@ -97,7 +97,7 @@ def guard(stratum, dev=False):
         return st, s, h
     if not FROZENP.exists():
         sys.exit("not frozen: run `r1_run.py freeze` first")
-    fz = json.load(open(FROZENP))
+    fz = json.load(open(FROZENP, encoding="utf-8"))
     if h != fz["hash"]:
         sys.exit(f"REFUSED: the code and settings on disk hash to {h[:12]}, the frozen Petrova 1.0.0 hash is {fz['hash'][:12]}")
     if fz.get("extra_inputs") != json.loads(json.dumps(extra_inputs())):
@@ -129,10 +129,10 @@ def run_search(stars, dst, n, h, s, pv, extra):
     dst.mkdir(parents=True, exist_ok=True)
     hashes = dict(r1_targets=C.sha(R1LIST), stars=C.sha(stars), targets=C.sha(C.TARGETS), manifest=C.sha(DS.MANIFEST), best_product=C.sha(DS.BEST), audit=C.sha(DS.AUDIT / "audit_all.csv"))
     (dst / "settings.json").write_text(json.dumps(dict(hash=h, settings=s, provenance=pv, data_hashes=hashes, **extra), indent=1), encoding="utf-8")
-    with open(dst / "starts.log", "a") as f:
+    with open(dst / "starts.log", "a", encoding="utf-8") as f:
         f.write(datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds") + f" start, {n} workers, git {pv['git_commit'][:7]}\n")
     S2.STARS = stars
-    gl = S2.groups(); (dst / "watch_plan.json").write_text(json.dumps(dict(groups=len(gl), sap=len(S3.sap_pass_groups(gl)), stars=len({g[0] for g in gl}))))
+    gl = S2.groups(); (dst / "watch_plan.json").write_text(json.dumps(dict(groups=len(gl), sap=len(S3.sap_pass_groups(gl)), stars=len({g[0] for g in gl}))), encoding="utf-8")
     print("SEARCH", h[:12], "->", dst, flush=True)
     S3.search(stars, dst, DS.NAME, n, C.GRID_V5)                          # PDCSAP / QLP products, second-product check, flags
     S3.search(stars, dst, DS.NAME + "sap", n, C.GRID_V5, sap=True)        # the SAP twins of the best product
