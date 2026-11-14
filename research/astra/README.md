@@ -15,6 +15,7 @@ Started 12 Nov 2026. Ahmed bought (or will buy) ChatGPT Plus for one month to gi
 - `scripts/`: Codex's scripts.
 - `tools/sync_kit.py`: Claude copies its private memory and skills into the kit (`claude-memory/`, `.agents/skills/`). Rerun after memory changes; `--check` says if the copy is stale.
 - `tools/fence_check.py` (+ `test_fence_check.py`): proves Codex did not touch the blind stars (G1, and the 803 hold-out stars), the frozen filter files, or `data\` outside `data\astra\`. Counts only.
+- `tools/watch_codex.py`: Claude's background watcher for a Codex branch; wakes on a new commit, a stalled progress file (no update for 45 min while "running"), a growing error log, or a time-out. Reads git metadata and `datastraNNN` only.
 - `claude-memory/`: Claude's memory, copied (rules Ahmed gave, decisions, lessons). Local only: it lives in the Codex worktree, is gitignored, and must never be committed (the repo is public).
 - `USAGE.md`: Codex's usage rows. Claude's own ledger stays `research/usage-ledger.md`.
 - `SETUP-FOR-AHMED.md`: the one-time steps after buying.
