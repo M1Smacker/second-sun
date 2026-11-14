@@ -1,3 +1,7 @@
+## LATEST (14 Nov 2026, 04:52 Kuwait): T130 SIX PAGES; THE 20-DAY SENTENCE IS WRONG IN 8 BOOK PLACES
+- T130 now 6 field notes (29 Oct to 11 Nov): 448 numbers, 444 traced or not results. The 10 Nov correction-box sentence 'lost 4 to 6 of every 10 strong dips, almost all of them in binaries slower than 20 days' is CONFIRMED wrong (`research/number-map/check_slow20.py`: file-weighted, slower than 20 d holds 31% of lost strong dips in G2 and 5% in G3; 5 to 14 d holds 45% and 78%). It sits in 8 places (Ch 8, Ch 9, field notes 20 Oct, 29 Oct, 4 Nov, Labs 6 and 9, learn index). Book not edited: Ahmed's wording call; suggested wording in `research/number-map/T130-RESULT-2026-11-14.md`.
+- Still waiting for Codex P (947 of 1,250 at 04:49). Steps for the P check are in the 04:46 block below.
+
 ## LATEST (14 Nov 2026, 04:46 Kuwait): NIGHT RUN PART 3: T130 FIVE PAGES; WAITING FOR CODEX P
 - **T130**: 5 field notes mapped (30 Oct, 3, 4, 10, 11 Nov): 367 numbers, 364 traced to a file line or not results, 3 wording flags (see `research/number-map/T130-RESULT-2026-11-14.md`). Also noted: the old '82.7% of strong ones' sentence is still live in `book/docs/learn/index.md` line 119 and `book/docs/book/09-fake-planets.md` line 80 (corrections C3, C4 waiting for Ahmed since 3 Nov).
 - Codex at 04:45: 925 of 1,250 (2 workers), generation done about 05:45; nobody has sent Codex the 007 line yet. Weekly 90%, five-hour 43% (resets 06:00 Kuwait).
