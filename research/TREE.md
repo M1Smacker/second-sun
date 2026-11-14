@@ -94,7 +94,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 **2.4 Parked new systems.** *Status: PARKED (three-weeks rule of 3 Nov).* T119 Horizon, T120 Vigil, T121 Witness (no-go), T122 research, T123 OMS (deferred), T124 evidence index. T163 eclipse-timing lane, feasibility first (IDEA, 14 Nov; parked until after G1).
 
 ## 3. How we prove it (honesty and statistics)
-**3.1 Statistics and controls.** *Status: NEXT for 86 and 87 (they touch how the next result is read).* FIX 86 power line test; FIX 87 gate PASS on empty bins; FIX 88 "floor" wording; PARKED: T101 scrambled control, T129 effective sample size, T117 evidence ladder, T118 negative controls, T54 funnel test.
+**3.1 Statistics and controls.** *Status: 86 and 87 FIXED 14 Nov 2026 night (tested, mutation red, filed results unchanged; drop 2026-11-14-2109).* FIX 86 power line test (now `pipeline/s1_sensitivity.py`, the full stratified rule, worded as a sensitivity, reproduces Codex 002); FIX 87 gate PASS on empty bins (now `pipeline/gate_judge.py`: PASS ON TESTED BINS with coverage); FIX 88 "floor" wording; PARKED: T101 scrambled control, T129 effective sample size, T117 evidence ladder, T118 negative controls, T54 funnel test.
 
 **3.2 Records, reproducibility and tests.** *Status: PARKED.* FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T130 number-to-file audit; T52 settings read from the run.
 

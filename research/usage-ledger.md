@@ -62,6 +62,31 @@ Ahmed uses Opus 5.5 (high on 29 Oct, medium from phase B on) for the Vesper stud
 | 29 Oct, evening | Opus 5.5 (Ahmed set medium for B; this turn started on the same setting) | Phases A and B of the Vesper study: version notes, per-flag loss ledger, step-flag causes, long-dip split, research on five questions, filing | 2.0 to 3.5 (gut for code plus research; research uncalibrated) | 51 to 51 | 79 to 83 | about 37K (377K to 414K) | about 0.5 (weekly meter did not move at its rounding; 5-hour ruler 4 points = 0.5 by the Sonnet ruler) | about 1.4 by the 5-hour ruler | ratio about 0.2 of the mid: much cheaper than guessed. Two scripts, one 150-star-sector machine run (not polled), 7 web searches, 4 files. If Opus cost the same per token as Sonnet this would be about 0.35 point by the context ruler; the 5-hour ruler says 0.5, so Opus looks at most about 1.4 x Sonnet per token on this row (n = 1, weak) |
 | 29 Oct, evening | Opus 5.5 | Before phase C: yardstick precision (bootstrap), primary sources read properly (about 10 minutes), TIC 172900988 download (Ahmed's yes), designs for C1+C2 and C4 | 1.0 to 1.5 | 51 to 52 | 84 to 87 | about 27K (421K to 448K) | about 0.4 to 0.6 (weekly meter 51 to 52 at its rounding; 5-hour ruler 3 points) | about 1.5 to 2 by the 5-hour ruler (weak, n = 2) | ratio about 0.4 of the mid. One bootstrap script, one 10 MB download, 6 primary pages read in the browser as HTML, 2 web searches, plan and literature edits. Opus rows so far: about 0.5 point per session-sized research task; the per-token rate against Sonnet is still not separable from the meter rounding |
 
+## Per model and effort tables (Ahmed, 14 Nov 2026: one table per model AND effort; predict from the matching table, log every task in it)
+Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per weekly point, weak, n small). Ratio = actual / predicted.
+
+### Opus 5.5 high
+| When | Task (type) | Predicted | Weekly | 5-hour | Context | Actual | Ratio |
+|---|---|---|---|---|---|---|---|
+| 14 Nov 7:18 to 7:24 pm | Codex brief, memory, web check, 2 counting scripts, prereg contents (notes + small scripts) | 4.0 | 10 to 10 | 15 to 20 | 35 to 42% | about 0.6 | 0.15 |
+| 14 Nov 7:24 to 7:40 pm | twin result read, book publish, live check, moment-flag script | 1.5 | 10 to 11 | 20 to 21 | 42 to 44% | about 0.3 | 0.2 |
+| 14 Nov 7:40 to 7:44 pm | RS-028: 105-page download, list, pricing script | 0.8 | 11 to 11 | 21 to 24 | 44 to 48% | about 0.4 | 0.5 |
+| 14 Nov 9:00 to 9:10 pm | per-effort tables; RS-029 bench script launched; FIX 87 gate_judge + test + rerun; FIX 86 s1_sensitivity + test + readout rerun; FIX 91/92 script and smoke run; queue, Tree, drop (code + tests + reruns) | 1.2 | 12 to 13 | 8 to 14 | 19 to 31% | about 1.0 | 0.8 |
+**Rates so far (n = 3):** notes and small scripts about 0.1 to 0.2 per task; a script that runs on stored data about 0.2 to 0.4; a book publish about 0.2. Predict from these, not from gut.
+
+### Opus 5.5 medium
+| When | Task (type) | Predicted | Weekly | 5-hour | Context | Actual | Ratio |
+|---|---|---|---|---|---|---|---|
+| 14 Nov 12:22 pm | RS-024 research + 4-rule test run | cap 8 | 1 to 3 | | | about 2 | |
+| 14 Nov 1:10 pm | RS-025 part 1 (flag prices, dumps, DS test) | cap 8 | 3 to 5 | | | about 2 | |
+| 14 Nov 2:00 pm | RS-026 eclipse times + wide scan | cap 8 | 6 to 7 | | | about 1.5 | |
+| 14 Nov 4:28 to 4:40 pm | Fable brief, FIX 94 rule, RS-025 Q5 script | not written | 9 to 9 | 6 to 10 | 24 to 30% | about 0.5 | |
+| 14 Nov 7:04 pm | Codex 011 check, fence check, RS-027 | not written | 9 to 10 | 10 to 15 | 30 to 35% | about 0.6 | |
+**Rates so far:** a full research stint with web reading 1.5 to 2; a Codex report check with fence check about 0.3 to 0.5.
+
+### Sonnet 5.5 Extra and Fable
+Sonnet rows are in the main ledger above (calibration sections). Fable: first rows on Mon 16 Nov.
+
 ## Small tasks, bundled (each under 1 point)
 | When | Task | Context tokens added | 5-hour | Weekly | Note |
 |---|---|---|---|---|---|

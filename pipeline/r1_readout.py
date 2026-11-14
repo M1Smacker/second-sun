@@ -140,8 +140,9 @@ def main(out_file=None):
     r_ref = {b: ref[(name, "recovered", b)] for b in BARS}; k_ref = {b: ref[(name, "kept", b)] for b in BARS}
     ex, rows = strat_block(name, E[E.rec], refb, "recovered light, stratified")
     P(f"   VERDICT S1 for {name.upper()}: {'EXCESS (opens private two-key checks only; not a discovery)' if ex else 'NO EXCESS'}   [rule (Amendment 3): stratified chance <= {ALPHA} at bar 7 and sealed real count above the count expected from the seen share of each bin at bars 8, 10, 12]")
-    P("   " + power_note(sealed, r_ref))
-    P("   Wording fixed in Amendments 2 and 3: a null means no excess beyond the real-over-upside-down imbalance measured on the 704 design stars, and only an excess of the size given by the power line would have been seen.")
+    import s1_sensitivity as SENS                # FIX 86 (14 Nov 2026): the full stratified rule, Codex 002 part B design; replaces power_note (unstratified, worded as an exclusion)
+    P("   " + SENS.note({r[0]: r[5] for r in rows}, strat_exact, ALPHA))
+    P("   Wording: a null means no excess beyond the real-over-upside-down imbalance measured on the design stars; the sensitivity line is conditional on its stated assumptions and is not an exclusion.")
     P("   The unweighted test of Amendment 2, for the record:")
     exu, rowsu = fisher_block(name, sealed, r_ref, "recovered light, unweighted")
     P("")

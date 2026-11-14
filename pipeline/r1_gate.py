@@ -172,19 +172,24 @@ def summary():
     inj = inj.assign(bin=[binlab(p) for p in inj.P])
     order = [binlab(lo) if False else (f"{lo:g}-{hi:g}" if hi < 1e8 else f"over {lo:g}") for lo, hi in BINS]
     ok = {1: True, -1: True}
+    from gate_judge import judge                 # FIX 87 (14 Nov 2026): a bin with no injections or an undefined ratio is reported, never a silent PASS
     for sign, gate, lab in ((1, "(a)", "dips (real arm)"), (-1, "(b)", "bumps (upside-down arm)")):
         out.append(f"{gate} {lab}: tier-1 recovery, injected before the mask / after the mask = m (mark: at least 0.95 per bin); counts are injections")
+        per_bin = {}
         for b in order:
             g = inj[(inj.sign == sign) & (inj.bin == b)]
             bf, af = g[g["mode"] == "before"], g[g["mode"] == "after"]
             if not len(af):
+                per_bin[b] = None
                 out.append(f"   {b:>9} d: no injections"); continue
             rb, ra = bf.tier1.mean(), af.tier1.mean()
             m = rb / ra if ra > 0 else np.nan
             byK = "; ".join(f"K{k:g} {bf[bf.K == k].tier1.mean() / max(af[af.K == k].tier1.mean(), 1e-9):.2f}" for k in KS)
             out.append(f"   {b:>9} d: before {100 * rb:3.0f}% ({int(bf.tier1.sum())}/{len(bf)}), after {100 * ra:3.0f}% ({int(af.tier1.sum())}/{len(af)}), m = {('%.2f' % m) if m == m else 'n/a (nothing found even after the mask, not judged)'} ({byK}); lost to the veto: {int(bf.vetoed.sum())} of {len(bf)}")
-            ok[sign] &= (m != m) or bool(m >= 0.95)
-        out.append(f"{gate} {'PASS' if ok[sign] else 'FAIL'}")
+            per_bin[b] = float(m)
+        status, line = judge(per_bin, 0.95)
+        ok[sign] = status != "FAIL"
+        out.append(f"{gate} {line}")
     out += exchange()
     OUT.write_text("\n".join(out), encoding="utf-8"); print("\n".join(out))
 
