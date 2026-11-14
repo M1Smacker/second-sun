@@ -10,3 +10,4 @@ book/docs/field-notes/2026-10-31.md
 book/docs/field-notes/2026-11-02.md
 book/docs/field-notes/2026-10-28.md
 book/docs/field-notes/2026-10-27.md
+book/docs/field-notes/2026-10-24.md

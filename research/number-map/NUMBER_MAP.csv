@@ -995,3 +995,60 @@ book/docs/field-notes/2026-10-27.md,86,2,NOT A RESULT,,,,'Stage 2'
 book/docs/field-notes/2026-10-27.md,86,3,NOT A RESULT,,,,'Stage 3'
 book/docs/field-notes/2026-10-27.md,88,4,NOT A RESULT,,,,"chapter, level, item, stage or quiz numbering"
 book/docs/field-notes/2026-10-27.md,88,93,TRACED,research/decisions.md,clear dips 102/110 (93%,,
+book/docs/field-notes/2026-10-24.md,11,7.3,TRACED,research/compass-reviews/2026-10-24-feedback-engine.md,"our banner number 7.3, the engine 10.2",,
+book/docs/field-notes/2026-10-24.md,11,10.2,TRACED,research/compass-reviews/2026-10-24-feedback-engine.md,"our banner number 7.3, the engine 10.2",,
+book/docs/field-notes/2026-10-24.md,12,3,UNSOURCED,,,,"card lengths of the first generator (best quiet box about 3 h, fakes about 6.5 h) measured during the 24 Oct build; not saved in a tracked file. The leak it caused is traced: width AUC 0.84 (research/decisions.md line 111)"
+book/docs/field-notes/2026-10-24.md,12,6.5,UNSOURCED,,,,"card lengths of the first generator (best quiet box about 3 h, fakes about 6.5 h) measured during the 24 Oct build; not saved in a tracked file. The leak it caused is traced: width AUC 0.84 (research/decisions.md line 111)"
+book/docs/field-notes/2026-10-24.md,12,12,TRACED,research/decisions.md,fakes 3 to 12 h,,
+book/docs/field-notes/2026-10-24.md,13,36,TRACED,RESUME-ARCHIVE.md,compose three lines of 36 to 44 words,,
+book/docs/field-notes/2026-10-24.md,13,44,TRACED,RESUME-ARCHIVE.md,compose three lines of 36 to 44 words,,
+book/docs/field-notes/2026-10-24.md,13,1,NOT A RESULT,,,,'Line 1' (and an example sentence)
+book/docs/field-notes/2026-10-24.md,13,2,NOT A RESULT,,,,'line 2'
+book/docs/field-notes/2026-10-24.md,13,3,NOT A RESULT,,,,'line 3'
+book/docs/field-notes/2026-10-24.md,13,20,DERIVED,,,,"'about 20 kinds of fact': 19 lesson ids in book/docs/assets/eyes-feedback.js at the note's commit 71375eb (git show, counted 14 Nov)"
+book/docs/field-notes/2026-10-24.md,15,7,NOT A RESULT,,,,"the hunt's bar of 7, a setting"
+book/docs/field-notes/2026-10-24.md,16,7,NOT A RESULT,,,,"the hunt's bar of 7, a setting"
+book/docs/field-notes/2026-10-24.md,16,3,TRACED,research/decisions.md,a miss returns 3 to 5 cards later,,
+book/docs/field-notes/2026-10-24.md,16,5,TRACED,research/decisions.md,a miss returns 3 to 5 cards later,,
+book/docs/field-notes/2026-10-24.md,18,18,TRACED,RESUME-ARCHIVE.md,Mutations: 18 of 18 caught,,
+book/docs/field-notes/2026-10-24.md,22,0,NOT A RESULT,,,,definition of AUC (0 to 1)
+book/docs/field-notes/2026-10-24.md,22,1,NOT A RESULT,,,,definition of AUC (0 to 1)
+book/docs/field-notes/2026-10-24.md,22,0.5,NOT A RESULT,,,,definition of AUC (0.5 = a coin)
+book/docs/field-notes/2026-10-24.md,22,0.84,TRACED,research/decisions.md,width 0.84 to 0.66,,
+book/docs/field-notes/2026-10-24.md,22,0.66,TRACED,research/decisions.md,width 0.84 to 0.66,,
+book/docs/field-notes/2026-10-24.md,22,0.47,TRACED,research/decisions.md,position 0.47,,
+book/docs/field-notes/2026-10-24.md,22,0.46,TRACED,research/decisions.md,holes 0.46,,
+book/docs/field-notes/2026-10-24.md,22,0.40,TRACED,research/decisions.md,rivals 0.40,,
+book/docs/field-notes/2026-10-24.md,24,0.71,TRACED,research/decisions.md,strength now 0.71,,
+book/docs/field-notes/2026-10-24.md,24,0.50,TRACED,research/compass-reviews/2026-10-24-feedback-engine.md,On our cards it is **0.53**,0.53,"'0.50' on the page, 0.53 in the review: both read as no better than a coin"
+book/docs/field-notes/2026-10-24.md,26,16,TRACED,research/decisions.md,label-aware lead would differ on 16%,,
+book/docs/field-notes/2026-10-24.md,28,3,TRACED,research/decisions.md,(3.3% of ordinary cards,3.3,'about 3 times in 100'
+book/docs/field-notes/2026-10-24.md,28,100,NOT A RESULT,,,,"'in 100', a unit"
+book/docs/field-notes/2026-10-24.md,28,0.8,TRACED,research/decisions.md,0.8% of artifact cards,,
+book/docs/field-notes/2026-10-24.md,32,16,DERIVED,,,,"checks in book/tools/test_eyes_feedback.mjs: 14 when the note was written (commit 71375eb), 16 from 79b4e70 the same evening; run 14 Nov: all 16 passed. The note said 14 and was corrected to 16 on 14 Nov"
+book/docs/field-notes/2026-10-24.md,33,18,DERIVED,,,,"mutations in book/tools/test_eyes_mutations.mjs: 14 at the note's commit, 18 from a632adb the same evening; run 14 Nov: 18 of 18 caught. The note said 14 and was corrected to 18 on 14 Nov"
+book/docs/field-notes/2026-10-24.md,38,95,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,0,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,640,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,94,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,0.2,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,100,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,72,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,1.1,UNSOURCED,,,,"detector rates printed during the 24 Oct build on 160-card decks (4 x 160 = 640 ordinary cards); the print was not saved. Recount 14 Nov with the committed test's 80-card decks (test_eyes_feedback.mjs, then and now): gap-dip sag 96% (0 of 320 false), spikes 96% (0 false), eclipses 100%, level jumps 70% (1.25% false): same story, different deck size. A book-build fact, not a planet result"
+book/docs/field-notes/2026-10-24.md,38,2,TRACED,research/compass-reviews/2026-10-24-feedback-engine.md,In the 2 hours before the hole at 10.5 hours,,
+book/docs/field-notes/2026-10-24.md,38,10.5,TRACED,research/compass-reviews/2026-10-24-feedback-engine.md,In the 2 hours before the hole at 10.5 hours,,
+book/docs/field-notes/2026-10-24.md,38,1100,TRACED,research/compass-reviews/2026-10-24-feedback-engine.md,In the 2 hours before the hole at 10.5 hours,,
+book/docs/field-notes/2026-10-24.md,39,60,TRACED,research/decisions.md,28 to 38 distinct second lines per 60,,
+book/docs/field-notes/2026-10-24.md,39,28,TRACED,research/decisions.md,28 to 38 distinct second lines per 60,,
+book/docs/field-notes/2026-10-24.md,39,38,TRACED,research/decisions.md,28 to 38 distinct second lines per 60,,
+book/docs/field-notes/2026-10-24.md,39,20,TRACED,research/decisions.md,(prototype: 20),,
+book/docs/field-notes/2026-10-24.md,40,4.5,TRACED,RESUME-ARCHIVE.md,hard noise median strength 4.5 and 17% reach 7,,
+book/docs/field-notes/2026-10-24.md,40,1,TRACED,RESUME-ARCHIVE.md,hard noise median strength 4.5 and 17% reach 7,17,'about 1 in 6'
+book/docs/field-notes/2026-10-24.md,40,6,TRACED,RESUME-ARCHIVE.md,hard noise median strength 4.5 and 17% reach 7,17,'about 1 in 6' = 17%
+book/docs/field-notes/2026-10-24.md,40,7,TRACED,RESUME-ARCHIVE.md,hard noise median strength 4.5 and 17% reach 7,,
+book/docs/field-notes/2026-10-24.md,40,4,UNSOURCED,,,,"near-limit fakes measured at 4 to 9 once noise is added: a 24 Oct build measurement, not saved"
+book/docs/field-notes/2026-10-24.md,40,9,UNSOURCED,,,,see the 4 on this line
+book/docs/field-notes/2026-10-24.md,45,1,NOT A RESULT,,,,list or quiz numbering
+book/docs/field-notes/2026-10-24.md,48,2,NOT A RESULT,,,,list or quiz numbering
+book/docs/field-notes/2026-10-24.md,48,0.5,NOT A RESULT,,,,quiz text (AUC 0.5)
+book/docs/field-notes/2026-10-24.md,51,3,NOT A RESULT,,,,list or quiz numbering
