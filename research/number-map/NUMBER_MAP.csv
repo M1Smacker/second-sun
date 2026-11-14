@@ -1052,3 +1052,296 @@ book/docs/field-notes/2026-10-24.md,45,1,NOT A RESULT,,,,list or quiz numbering
 book/docs/field-notes/2026-10-24.md,48,2,NOT A RESULT,,,,list or quiz numbering
 book/docs/field-notes/2026-10-24.md,48,0.5,NOT A RESULT,,,,quiz text (AUC 0.5)
 book/docs/field-notes/2026-10-24.md,51,3,NOT A RESULT,,,,list or quiz numbering
+book/docs/field-notes/2026-10-23.md,10,19,TRACED,research/BOOK-REDESIGN-BRIEF.md,"de, from Ahmed's answers to ",,
+book/docs/field-notes/2026-10-23.md,11,310,UNSOURCED,,,,"bright stars drawn on the home map (from the Bright Star Catalogue in book/data/sky.json); book-build fact, count not written down"
+book/docs/field-notes/2026-10-23.md,11,546,TRACED,research/decisions.md,"alogue V/50 via VizieR, the ",,
+book/docs/field-notes/2026-10-23.md,11,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,14,1,NOT A RESULT,,,,'1-minute summary'
+book/docs/field-notes/2026-10-23.md,16,48,TRACED,RESUME-ARCHIVE.md,"per Part (`review.md`, the ",,
+book/docs/field-notes/2026-10-23.md,18,7,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,18,1,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,19,16,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,19,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,20,5,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,20,6.52,DERIVED,,,,planet period 95.2 d over binary period 14.6 d = 6.52 (claim F-047)
+book/docs/field-notes/2026-10-23.md,20,7,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,20,2,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,20,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,20,98,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,20,10,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,20,0.2,DERIVED,,,,"TOI-1338 b depth about 2,600 ppm (research/astra/reports/003-published-reference.md line 22), written '0.2%' on the page (it is 0.26%)"
+book/docs/field-notes/2026-10-23.md,22,1,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,22,3,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,22,4,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,22,6,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,26,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,26,5,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,26,20,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,26,50,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,26,100,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,38,61,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,39,4,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,39,6,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,40,15,NOT A RESULT,,,,'your 15 minutes' of reading
+book/docs/field-notes/2026-10-23.md,47,15,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,47,24,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,47,44,TRACED,research/decisions.md,"for offline use, 375 px and ",,
+book/docs/field-notes/2026-10-23.md,48,2,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,48,5.1,NOT A RESULT,,,,"old chapter value, quoted as corrected"
+book/docs/field-notes/2026-10-23.md,48,0.4,NOT A RESULT,,,,"old chapter value, quoted as corrected"
+book/docs/field-notes/2026-10-23.md,48,6,TRACED,book/data/claims.csv,bout 6% deep at the bottom (,5.7,'about 6% at the bottom (5.7% typical)'
+book/docs/field-notes/2026-10-23.md,48,5.7,TRACED,book/data/claims.csv,bout 6% deep at the bottom (,,
+book/docs/field-notes/2026-10-23.md,48,0.3,TRACED,book/data/claims.csv,"pical inside it), secondary ",,
+book/docs/field-notes/2026-10-23.md,49,14,TRACED,research/deep-review-2026-10-23/review.md,About 40% of the 14 known transiting CBPs,,
+book/docs/field-notes/2026-10-23.md,50,7,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,50,1,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,58,20,TRACED,research/decisions.md,arget files and checked all ,,
+book/docs/field-notes/2026-10-23.md,58,7,TRACED,research/compass-reviews/2026-10-23-deep-review.md,view so far. Unlike Gemini (,,
+book/docs/field-notes/2026-10-23.md,58,12,TRACED,research/compass-reviews/2026-10-23-deep-review.md,so far. Unlike Gemini (7 of ,,
+book/docs/field-notes/2026-10-23.md,60,1,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,60,30,TRACED,research/audit-2026-10-23/README.md,| B1: no events on ,,
+book/docs/field-notes/2026-10-23.md,60,10,TRACED,research/audit-2026-10-23/README.md,a | `bin_width()`: bins are ,,
+book/docs/field-notes/2026-10-23.md,60,80,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,60,23,UNSOURCED,,,,the injected test dip's strength (23 times the noise) in the 23 Oct cadence test; not written in a tracked file
+book/docs/field-notes/2026-10-23.md,60,2,TRACED,research/audit-2026-10-23/README.md,unchanged) | `test_detect_v,,
+book/docs/field-notes/2026-10-23.md,60,3.3,TRACED,research/audit-2026-10-23/README.md,"_cadences`: dip found at 2, ",,
+book/docs/field-notes/2026-10-23.md,60,2020,DERIVED,,,,"TESS full-frame images were 30-minute in sectors 1 to 26 (claim F-012), which ended in 2020"
+book/docs/field-notes/2026-10-23.md,61,2,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,61,56,TRACED,research/compass-reviews/2026-10-23-deep-review.md,| **B2** QLP before sector ,,
+book/docs/field-notes/2026-10-23.md,61,6,TRACED,research/compass-reviews/2026-10-23-deep-review.md,t_flux` lost about 70% of a ,,
+book/docs/field-notes/2026-10-23.md,61,70,TRACED,research/compass-reviews/2026-10-23-deep-review.md,says `det_flux` lost about ,,
+book/docs/field-notes/2026-10-23.md,61,98,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,63,20,TRACED,research/compass-reviews/2026-10-23-deep-review.md,e moves from 15% to **about ,,
+book/docs/field-notes/2026-10-23.md,63,5,TRACED,research/compass-reviews/2026-10-23-deep-review.md,m 15% to **about 20% (range ,,
+book/docs/field-notes/2026-10-23.md,63,45,TRACED,research/compass-reviews/2026-10-23-deep-review.md,to **about 20% (range 5 to ,,
+book/docs/field-notes/2026-10-23.md,63,21,TRACED,research/deep-review-2026-10-23/review.md,least one) = 1 − e^(−λ) ≈ **,,
+book/docs/field-notes/2026-10-23.md,63,39,TRACED,research/deep-review-2026-10-23/review.md,one) = 1 − e^(−λ) ≈ **21 to ,,
+book/docs/field-notes/2026-10-23.md,63,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,63,16,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,63,17,TRACED,research/compass-reviews/2026-10-23-deep-review.md,idate; β 2.0 → 22%; β 2.8 → ,,
+book/docs/field-notes/2026-10-23.md,64,2027,TRACED,RESUME-ARCHIVE.md,ectors 119-120 (July-August ,,
+book/docs/field-notes/2026-10-23.md,70,2,TRACED,research/audit-2026-10-23/README.md,unchanged) | `test_detect_v,,
+book/docs/field-notes/2026-10-23.md,70,3.3,TRACED,research/audit-2026-10-23/README.md,"_cadences`: dip found at 2, ",,
+book/docs/field-notes/2026-10-23.md,70,10,TRACED,research/audit-2026-10-23/README.md,a | `bin_width()`: bins are ,,
+book/docs/field-notes/2026-10-23.md,70,29.4,TRACED,research/audit-2026-10-23/README.md,"`: dip found at 2, 3.3, 10, ",,
+book/docs/field-notes/2026-10-23.md,70,30,TRACED,research/audit-2026-10-23/README.md,| B1: no events on ,,
+book/docs/field-notes/2026-10-23.md,71,10,TRACED,research/audit-2026-10-23/README.md,a | `bin_width()`: bins are ,,
+book/docs/field-notes/2026-10-23.md,72,51,TRACED,RESUME-ARCHIVE.md,ld code); regression on all ,,
+book/docs/field-notes/2026-10-23.md,72,50,TRACED,RESUME-ARCHIVE.md,all 51 local light curves: ,,
+book/docs/field-notes/2026-10-23.md,73,7,TRACED,research/audit-2026-10-23/README.md,.9. VERIFIED (small sample: ,,
+book/docs/field-notes/2026-10-23.md,73,1.76,TRACED,research/audit-2026-10-23/README.md,"C, 27 star-sectors): median ",,
+book/docs/field-notes/2026-10-23.md,73,16,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,73,1.9,TRACED,research/audit-2026-10-23/README.md,"easures, Kepler-16 is about ",,
+book/docs/field-notes/2026-10-23.md,73,2.8,TRACED,research/audit-2026-10-23/README.md,"58.7 (outlier below). The """,,
+book/docs/field-notes/2026-10-23.md,73,20,TRACED,research/compass-reviews/2026-10-23-deep-review.md,e moves from 15% to **about ,,
+book/docs/field-notes/2026-10-23.md,73,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,74,16,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,74,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,74,1.2,TRACED,research/audit-2026-10-23/README.md,s old QLP raw flux is about ,,
+book/docs/field-notes/2026-10-23.md,78,30,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,78,16,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,78,34,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,78,35,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,78,52,UNSOURCED,,,,"Kepler download for Kepler-16, 34 and 35 (52 files, 21 MB): in research/downloads.csv rows, not as a total"
+book/docs/field-notes/2026-10-23.md,78,21,UNSOURCED,,,,see the 52 on this line
+book/docs/field-notes/2026-10-23.md,78,7,TRACED,RESUME-ARCHIVE.md,holds the easier transits (,,
+book/docs/field-notes/2026-10-23.md,78,4,TRACED,RESUME-ARCHIVE.md,"easier transits (7/7, 7/9, ",,
+book/docs/field-notes/2026-10-23.md,78,18,TRACED,RESUME-ARCHIVE.md,"""Do kepler test first""):** ",,
+book/docs/field-notes/2026-10-23.md,78,13,TRACED,RESUME-ARCHIVE.md,ound in PDCSAP and SAP (SNR ,,
+book/docs/field-notes/2026-10-23.md,78,320,TRACED,RESUME-ARCHIVE.md,n PDCSAP and SAP (SNR 13 to ,,
+book/docs/field-notes/2026-10-23.md,78,9,TRACED,RESUME-ARCHIVE.md,"the easier transits (7/7, 7/",,
+book/docs/field-notes/2026-10-23.md,82,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,84,175,TRACED,RESUME-ARCHIVE.md,line/test_hunt_prep.py`: B3 ,,
+book/docs/field-notes/2026-10-23.md,84,2.4,DERIVED,,,,within 0.1 days = 2.4 hours (same-moment rule)
+book/docs/field-notes/2026-10-23.md,84,4,TRACED,research/decisions.md,hance test showed 2 flagged ,,
+book/docs/field-notes/2026-10-23.md,84,0.5,TRACED,RESUME-ARCHIVE.md,"+camera, chance flags under ",,
+book/docs/field-notes/2026-10-23.md,85,549,TRACED,RESUME-ARCHIVE.md,- **Stage 1 (audit all ,,
+book/docs/field-notes/2026-10-23.md,85,8400,TRACED,RESUME-ARCHIVE.md,and QLP light curve (about ,,
+book/docs/field-notes/2026-10-23.md,85,6,TRACED,RESUME-ARCHIVE.md,"e (about 8,400 files, about ",6.3,'6 GB' = about 6.3 GB planned
+book/docs/field-notes/2026-10-23.md,89,549,TRACED,RESUME-ARCHIVE.md,[x] Stage 1 download DONE: ,,
+book/docs/field-notes/2026-10-23.md,89,8100,TRACED,research/audit-2026-10-23/README.md,`yield_measured.py`. Data: ,,
+book/docs/field-notes/2026-10-23.md,89,5.4,TRACED,research/audit-2026-10-23/README.md,"a: 8,100 light-curve files, ",,
+book/docs/field-notes/2026-10-23.md,91,1629,TRACED,research/audit-2026-10-23/README.md,ge table over-counted SPOC (,,
+book/docs/field-notes/2026-10-23.md,91,2,NOT A RESULT,,,,"'2-minute', a cadence name"
+book/docs/field-notes/2026-10-23.md,91,1304,TRACED,research/audit-2026-10-23/README.md,"counted SPOC (1,629 vs real ",,
+book/docs/field-notes/2026-10-23.md,91,325,DERIVED,,,,"1,629 minus 1,304 = 325"
+book/docs/field-notes/2026-10-23.md,92,6.5,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,92,6,TRACED,research/audit-2026-10-23/README.md,t that reaches SNR 7 in ONE ,,
+book/docs/field-notes/2026-10-23.md,92,196,DERIVED,,,,below 4 R_earth 69 plus 4 to 6 127 = 196 (research/audit-2026-10-23/README.md line 35)
+book/docs/field-notes/2026-10-23.md,92,5064,TRACED,research/audit-2026-10-23/README.md,"rage:** 5,082 star-sectors; ",,
+book/docs/field-notes/2026-10-23.md,92,15,TRACED,research/audit-2026-10-23/README.md,"o 6 127, 6 to 10 743, 10 to ",,
+book/docs/field-notes/2026-10-23.md,92,1944,DERIVED,,,,"69 + 127 + 743 + 1,005 = 1,944 star-sectors below 15 R_earth (research/audit-2026-10-23/README.md line 35)"
+book/docs/field-notes/2026-10-23.md,92,143,TRACED,research/audit-2026-10-23/README.md,"tars reach 6 R⊕ or smaller, ",,
+book/docs/field-notes/2026-10-23.md,92,10,TRACED,research/audit-2026-10-23/README.md,"w 4 R⊕ 69, 4 to 6 127, 6 to ",,
+book/docs/field-notes/2026-10-23.md,92,269,TRACED,research/audit-2026-10-23/README.md,"⊕ or smaller, 143 reach 10, ",,
+book/docs/field-notes/2026-10-23.md,92,239,TRACED,research/audit-2026-10-23/README.md,"143 reach 10, 269 reach 15; ",,
+book/docs/field-notes/2026-10-23.md,92,43,TRACED,research/audit-2026-10-23/README.md,ng:** 239 of the 549 stars (,,
+book/docs/field-notes/2026-10-23.md,92,73,TRACED,research/audit-2026-10-23/README.md,k in 26.6% of star-sectors: ,,
+book/docs/field-notes/2026-10-23.md,92,11,TRACED,research/audit-2026-10-23/README.md,% of star-sectors: 73% at T<,,
+book/docs/field-notes/2026-10-23.md,92,8,TRACED,research/audit-2026-10-23/README.md,no TIC radius. The injected ,,
+book/docs/field-notes/2026-10-23.md,92,12,TRACED,research/audit-2026-10-23/README.md,": 73% at T<11, 57% at 11 to ",,
+book/docs/field-notes/2026-10-23.md,92,13,TRACED,research/audit-2026-10-23/README.md,"7% at 11 to 12, 8% at 12 to ",,
+book/docs/field-notes/2026-10-23.md,92,1,TRACED,research/audit-2026-10-23/README.md,"127, 6 to 10 743, 10 to 15 ",,
+book/docs/field-notes/2026-10-23.md,93,2.5,TRACED,research/audit-2026-10-23/README.md,e-noise prediction): median ,2.46,
+book/docs/field-notes/2026-10-23.md,93,1.7,TRACED,research/audit-2026-10-23/README.md,"on): median 2.46, quartiles ",1.71,
+book/docs/field-notes/2026-10-23.md,93,4.0,TRACED,research/audit-2026-10-23/README.md,"ian 2.46, quartiles 1.71 to ",3.96,
+book/docs/field-notes/2026-10-23.md,93,1.76,TRACED,research/audit-2026-10-23/README.md,"2.51, 13 to 13.5 2.73. The ",,
+book/docs/field-notes/2026-10-23.md,94,1.05,TRACED,research/audit-2026-10-23/README.md,ratio to SPOC):** TESS-SPOC ,,
+book/docs/field-notes/2026-10-23.md,94,1.2,TRACED,research/audit-2026-10-23/README.md,pairs); old QLP `sap_flux` ,1.18,
+book/docs/field-notes/2026-10-23.md,94,1.4,TRACED,research/audit-2026-10-23/README.md,; post-56 QLP `sys_rm_flux` ,1.39,
+book/docs/field-notes/2026-10-23.md,95,1298,TRACED,research/audit-2026-10-23/README.md,"tage 0 d), leave-one-out on ",,
+book/docs/field-notes/2026-10-23.md,95,87,TRACED,research/audit-2026-10-23/README.md,rowed windows keep a median ,,
+book/docs/field-notes/2026-10-23.md,96,0.17,TRACED,research/audit-2026-10-23/README.md,"ore in 5,064 star-sectors = ",,
+book/docs/field-notes/2026-10-23.md,96,869,TRACED,research/audit-2026-10-23/README.md,product per star-sector):** ,,
+book/docs/field-notes/2026-10-23.md,96,41,TRACED,research/audit-2026-10-23/README.md,filter flags **353 of 869 (,40.6,
+book/docs/field-notes/2026-10-23.md,96,520,TRACED,research/audit-2026-10-23/README.md,(SNR 7 / 8 / 9 / 10 / 12): ,516,
+book/docs/field-notes/2026-10-23.md,96,12,TRACED,research/audit-2026-10-23/README.md,face (SNR 7 / 8 / 9 / 10 / ,,
+book/docs/field-notes/2026-10-23.md,96,110,TRACED,research/audit-2026-10-23/README.md,2): 516 / 358 / 246 / 177 / ,112,
+book/docs/field-notes/2026-10-23.md,97,15,TRACED,research/audit-2026-10-23/README.md,m: **P(at least one) 21% or ,,
+book/docs/field-notes/2026-10-23.md,97,21,TRACED,research/audit-2026-10-23/README.md,ike term: **P(at least one) ,,
+book/docs/field-notes/2026-10-23.md,97,18,TRACED,research/audit-2026-10-23/README.md,or 15%.** Estimate: about **,,
+book/docs/field-notes/2026-10-23.md,97,5,TRACED,research/audit-2026-10-23/README.md,"stimate: about **18%, range ",,
+book/docs/field-notes/2026-10-23.md,97,40,TRACED,research/audit-2026-10-23/README.md,"te: about **18%, range 5 to ",,
+book/docs/field-notes/2026-10-23.md,99,1.76,TRACED,research/audit-2026-10-23/README.md,"2.51, 13 to 13.5 2.73. The ",,
+book/docs/field-notes/2026-10-23.md,99,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,99,2.5,TRACED,research/audit-2026-10-23/README.md,e-noise prediction): median ,2.46,
+book/docs/field-notes/2026-10-23.md,101,4,TRACED,research/decisions.md,hance test showed 2 flagged ,,
+book/docs/field-notes/2026-10-23.md,109,50,TRACED,research/stage2-2026-10-23/README.md,50 stars = the 5 kno,,
+book/docs/field-notes/2026-10-23.md,109,5,TRACED,research/stage2-2026-10-23/README.md,50 stars = the ,,
+book/docs/field-notes/2026-10-23.md,109,45,TRACED,research/stage2-2026-10-23/README.md,"er-16, 38, 64, 453, 1647) + ",,
+book/docs/field-notes/2026-10-23.md,113,0.08,TRACED,research/stage2-2026-10-23/README.md,sector (best product): real ,0.076,
+book/docs/field-notes/2026-10-23.md,113,0.18,TRACED,research/stage2-2026-10-23/README.md,"t): real 0.076, upside-down ",0.178,
+book/docs/field-notes/2026-10-23.md,114,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,115,36,TRACED,research/stage2-2026-10-23/README.md,ed one after another to the ,,
+book/docs/field-notes/2026-10-23.md,115,12,TRACED,research/stage2-2026-10-23/README.md,side-down):** gap/dump flag ,,
+book/docs/field-notes/2026-10-23.md,115,7,TRACED,research/stage2-2026-10-23/README.md,another to the 36 real SNR ,,
+book/docs/field-notes/2026-10-23.md,115,4,TRACED,research/stage2-2026-10-23/README.md,atalogue eclipse phase (C5) ,,
+book/docs/field-notes/2026-10-23.md,116,9,DERIVED,,,,'about 9 times in 10' = 91% (research/stage2-2026-10-23/README.md line 13)
+book/docs/field-notes/2026-10-23.md,116,10,DERIVED,,,,see the 9
+book/docs/field-notes/2026-10-23.md,116,91,TRACED,research/stage2-2026-10-23/README.md,them at SNR 4 or more in **,,
+book/docs/field-notes/2026-10-23.md,116,49,TRACED,research/stage2-2026-10-23/README.md,false alarms were confirmed ,,
+book/docs/field-notes/2026-10-23.md,117,19,TRACED,research/stage2-2026-10-23/README.md,are of real (17%) and fake (,,
+book/docs/field-notes/2026-10-23.md,117,17,TRACED,research/stage2-2026-10-23/README.md,ths of the masked eclipses: ,,
+book/docs/field-notes/2026-10-23.md,118,453,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,118,0.1,TRACED,research/stage2-2026-10-23/README.md,"roduct at SNR 4.6, and sits ",0.10,
+book/docs/field-notes/2026-10-23.md,119,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,119,60,TRACED,research/stage2-2026-10-23/README.md,t at an eclipse phase about ,,
+book/docs/field-notes/2026-10-23.md,119,350,TRACED,research/stage2-2026-10-23/README.md,flagged real events (about ,,
+book/docs/field-notes/2026-10-23.md,136,30,TRACED,research/decisions.md,test composition is fixed (,10,
+book/docs/field-notes/2026-10-23.md,136,10,TRACED,research/decisions.md,test composition is fixed (,,
+book/docs/field-notes/2026-10-23.md,136,4,TRACED,research/decisions.md,"lear incl. the real planet, ",,
+book/docs/field-notes/2026-10-23.md,136,8,TRACED,research/decisions.md,". the real planet, 4 faint, ",,
+book/docs/field-notes/2026-10-23.md,136,85,TRACED,RESUME-ARCHIVE.md,ults** (pass line Standard: ,,
+book/docs/field-notes/2026-10-23.md,136,1,TRACED,RESUME-ARCHIVE.md,"rd: 85% clear dips, at most ",10,'at most 1 in 10' = 10%
+book/docs/field-notes/2026-10-23.md,136,60,TRACED,RESUME-ARCHIVE.md,"most 10% quiet called dip, ",,
+book/docs/field-notes/2026-10-23.md,136,2,TRACED,RESUME-ARCHIVE.md,"iet called dip, 60+ curves, ",,
+book/docs/field-notes/2026-10-23.md,139,17,TRACED,RESUME-ARCHIVE.md,`book/tools/test_eyes.mjs` (,,
+book/docs/field-notes/2026-10-23.md,139,33,TRACED,RESUME-ARCHIVE.md,book/tools/site_check.mjs` (,,
+book/docs/field-notes/2026-10-23.md,149,3,NOT A RESULT,,,,example text of the status line
+book/docs/field-notes/2026-10-23.md,153,5,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,154,20,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,154,11,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,154,14,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,154,34,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,154,10,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,163,30,UNSOURCED,,,,Planet Hunters TESS rate of fake dips at the start (30%) as read in the paper on 24 Oct; the review keeps only the 1% end
+book/docs/field-notes/2026-10-23.md,163,1,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,"classifications, falling to ",,
+book/docs/field-notes/2026-10-23.md,163,10,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,sit rate: 30% for the first ,,
+book/docs/field-notes/2026-10-23.md,163,45,UNSOURCED,,,,45% accuracy of experts with a wrong AI hint: read in news coverage only (LIKELY on the page); no tracked file holds the figure
+book/docs/field-notes/2026-10-23.md,164,84,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,"event"" window out of 5 in **",,
+book/docs/field-notes/2026-10-23.md,164,20,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,random stretches (chance is ,,
+book/docs/field-notes/2026-10-23.md,166,75,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,| ,,
+book/docs/field-notes/2026-10-23.md,166,12,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,| 75% / ,,
+book/docs/field-notes/2026-10-23.md,166,9,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,| 75% / 12% | ,,
+book/docs/field-notes/2026-10-23.md,166,90,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,| ,,
+book/docs/field-notes/2026-10-23.md,166,8,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,| 90% / ,,
+book/docs/field-notes/2026-10-23.md,166,55,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,| 90% / 8% | ,,
+book/docs/field-notes/2026-10-23.md,167,36,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,Our Eyes test shows a plain ,,
+book/docs/field-notes/2026-10-23.md,174,20,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,random stretches (chance is ,,
+book/docs/field-notes/2026-10-23.md,174,84,TRACED,research/compass-reviews/2026-10-24-vetting-page-research.md,"event"" window out of 5 in **",,
+book/docs/field-notes/2026-10-23.md,178,11,TRACED,research/decisions.md,hmed's first official test (,,
+book/docs/field-notes/2026-10-23.md,178,25,TRACED,research/decisions.md,"1 test rounds + 1 practice, ",,
+book/docs/field-notes/2026-10-23.md,180,102,TRACED,research/decisions.md,eyes_scores.py): clear dips ,,
+book/docs/field-notes/2026-10-23.md,180,110,TRACED,research/decisions.md,_scores.py): clear dips 102/,,
+book/docs/field-notes/2026-10-23.md,180,93,TRACED,research/decisions.md,es.py): clear dips 102/110 (,,
+book/docs/field-notes/2026-10-23.md,180,95,DERIVED,,,,"'95% range' is a confidence level; '84 of 88 (95%)' = 95.5% (research/decisions.md line 96, odd named right 84/88)"
+book/docs/field-notes/2026-10-23.md,180,86,TRACED,research/decisions.md,"ar dips 102/110 (93%, range ",,
+book/docs/field-notes/2026-10-23.md,180,96,TRACED,research/decisions.md,"s 102/110 (93%, range 86 to ",,
+book/docs/field-notes/2026-10-23.md,180,37,TRACED,research/decisions.md,"93%, range 86 to 96), faint ",,
+book/docs/field-notes/2026-10-23.md,180,44,TRACED,research/decisions.md,", range 86 to 96), faint 37/",,
+book/docs/field-notes/2026-10-23.md,180,84,TRACED,research/decisions.md,"nge 86 to 96), faint 37/44 (",,
+book/docs/field-notes/2026-10-23.md,180,10,TRACED,research/decisions.md,"/44 (84%), quiet called dip ",,
+book/docs/field-notes/2026-10-23.md,180,88,TRACED,research/decisions.md,"(84%), quiet called dip 10/",,
+book/docs/field-notes/2026-10-23.md,180,11,TRACED,research/decisions.md,"%), quiet called dip 10/88 (",,
+book/docs/field-notes/2026-10-23.md,181,6,TRACED,research/decisions.md,"alled dip 10/88 (11%, range ",,
+book/docs/field-notes/2026-10-23.md,181,10,TRACED,research/decisions.md,"/44 (84%), quiet called dip ",,
+book/docs/field-notes/2026-10-23.md,181,48,TRACED,research/decisions.md,ounds quiet false alarms 10/,,
+book/docs/field-notes/2026-10-23.md,181,21,TRACED,research/decisions.md,s quiet false alarms 10/48 (,,
+book/docs/field-notes/2026-10-23.md,181,5,TRACED,research/decisions.md,"se alarms 10/48 (21%), last ",,
+book/docs/field-notes/2026-10-23.md,181,0,TRACED,research/decisions.md,"10/48 (21%), last 5 rounds ",,
+book/docs/field-notes/2026-10-23.md,181,40,TRACED,research/decisions.md,"0/48 (21%), last 5 rounds 0/",,
+book/docs/field-notes/2026-10-23.md,181,50,TRACED,research/decisions.md,", last 5 rounds 0/40, clear ",,
+book/docs/field-notes/2026-10-23.md,181,3,NOT A RESULT,,,,"'about 3 is excellent', a scale description"
+book/docs/field-notes/2026-10-23.md,181,2.1,TRACED,research/decisions.md,50/50; d-prime 2.67 pooled (,,
+book/docs/field-notes/2026-10-23.md,181,3.7,TRACED,research/decisions.md,"2.67 pooled (2.1 first six, ",,
+book/docs/field-notes/2026-10-23.md,182,9,DERIVED,,,,"deep (4,000 ppm) dips called odd: 9 in the first five rounds (research/number-map/check_eyes_1027.py)"
+book/docs/field-notes/2026-10-23.md,182,12,UNSOURCED,,,,'9 of the first 12 misses': the 12 is from the 24 Oct reading; not written in a tracked file (the 9 is recounted)
+book/docs/field-notes/2026-10-23.md,182,4000,DERIVED,,,,"the deep fakes are kind dip4000 (depth 4,000 ppm) in research/eyes-scores/rounds.jsonl"
+book/docs/field-notes/2026-10-23.md,182,6,UNSOURCED,,,,"fake dip lengths 6 to 8 h: a generator setting of the first Eyes version, not written in a tracked file"
+book/docs/field-notes/2026-10-23.md,182,8,UNSOURCED,,,,see the 6 on this line
+book/docs/field-notes/2026-10-23.md,182,4,DERIVED,,,,"deep dips called odd per standard test round: 4, 2, 2, then 0 from test round 4 on (research/number-map/check_eyes_1027.py)"
+book/docs/field-notes/2026-10-23.md,183,2.2,TRACED,research/decisions.md,ut 0; wrong answers slower (,,
+book/docs/field-notes/2026-10-23.md,183,1.1,TRACED,research/decisions.md,ng answers slower (2.2 s vs ,,
+book/docs/field-notes/2026-10-23.md,184,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,184,5,TRACED,research/decisions.md,"se alarms 10/48 (21%), last ",,
+book/docs/field-notes/2026-10-23.md,184,330,DERIVED,,,,11 test rounds of 30 curves = 330 (research/decisions.md line 95)
+book/docs/field-notes/2026-10-23.md,185,2,TRACED,research/decisions.md,"0/40, clear 50/50; d-prime ",,
+book/docs/field-notes/2026-10-23.md,185,5,TRACED,research/decisions.md,"se alarms 10/48 (21%), last ",,
+book/docs/field-notes/2026-10-23.md,185,21,TRACED,research/decisions.md,s quiet false alarms 10/48 (,,
+book/docs/field-notes/2026-10-23.md,185,0,TRACED,research/decisions.md,"10/48 (21%), last 5 rounds ",,
+book/docs/field-notes/2026-10-23.md,185,20,NOT A RESULT,,,,"'the last 20 minutes', a phrase"
+book/docs/field-notes/2026-10-23.md,193,30,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,195,80,TRACED,research/decisions.md,ar fake planets said Dip >= ,,
+book/docs/field-notes/2026-10-23.md,195,20,TRACED,research/decisions.md,hard-noise called a dip <= ,,
+book/docs/field-notes/2026-10-23.md,195,4,TRACED,research/decisions.md,"<= 20% (Not sure free), >= ",,
+book/docs/field-notes/2026-10-23.md,195,120,TRACED,research/decisions.md,"re free), >= 4 hard rounds, ",,
+book/docs/field-notes/2026-10-23.md,195,2,TRACED,research/decisions.md,"4 hard rounds, 120 curves, ",,
+book/docs/field-notes/2026-10-23.md,196,6,TRACED,research/decisions.md,sector made by reshuffling ,,
+book/docs/field-notes/2026-10-23.md,197,10,TRACED,research/decisions.md,"s, 2 days; strengths: clear ",,
+book/docs/field-notes/2026-10-23.md,197,16,TRACED,research/decisions.md,ays; strengths: clear 10 to ,,
+book/docs/field-notes/2026-10-23.md,197,5,TRACED,research/decisions.md,"clear 10 to 16, near limit ",,
+book/docs/field-notes/2026-10-23.md,197,8.5,TRACED,research/decisions.md,"r 10 to 16, near limit 5 to ",,
+book/docs/field-notes/2026-10-23.md,197,7,TRACED,research/decisions.md,mit 5 to 8.5 (hunt keeps >= ,,
+book/docs/field-notes/2026-10-23.md,199,6.1,TRACED,research/decisions.md,hard-noise median strength ,,
+book/docs/field-notes/2026-10-23.md,199,30,TRACED,research/decisions.md,"-noise median strength 6.1, ",,
+book/docs/field-notes/2026-10-23.md,199,7,TRACED,research/decisions.md,mit 5 to 8.5 (hunt keeps >= ,,
+book/docs/field-notes/2026-10-23.md,199,5,TRACED,research/decisions.md,"clear 10 to 16, near limit ",,
+book/docs/field-notes/2026-10-23.md,199,6.5,TRACED,research/decisions.md,y noise card; fakes at 5 to ,,
+book/docs/field-notes/2026-10-23.md,200,19,TRACED,research/decisions.md,e gave a median strength of ,,
+book/docs/field-notes/2026-10-23.md,201,15,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,201,10,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,202,4,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,202,10,UNSOURCED,,,,book-build check of 23 Oct; its output was not saved in a tracked file; not a planet result
+book/docs/field-notes/2026-10-23.md,203,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,203,98,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,211,1,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,214,2,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,214,546,TRACED,research/decisions.md,"alogue V/50 via VizieR, the ",,
+book/docs/field-notes/2026-10-23.md,214,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,217,3,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,217,10,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,217,30,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,218,80,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,218,10,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,218,30,NOT A RESULT,,,,"a setting or rule value, not a result"
+book/docs/field-notes/2026-10-23.md,220,4,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,220,1.76,TRACED,research/audit-2026-10-23/README.md,"2.51, 13 to 13.5 2.73. The ",,
+book/docs/field-notes/2026-10-23.md,220,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,220,2.5,TRACED,research/audit-2026-10-23/README.md,e-noise prediction): median ,2.46,
+book/docs/field-notes/2026-10-23.md,221,549,TRACED,research/audit-2026-10-23/README.md,ED. **Reading:** 239 of the ,,
+book/docs/field-notes/2026-10-23.md,223,5,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,224,1338,NOT A RESULT,,,,star name or sector number
+book/docs/field-notes/2026-10-23.md,226,6,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
+book/docs/field-notes/2026-10-23.md,226,17,TRACED,research/stage2-2026-10-23/README.md,ths of the masked eclipses: ,,
+book/docs/field-notes/2026-10-23.md,226,19,TRACED,research/stage2-2026-10-23/README.md,are of real (17%) and fake (,,
+book/docs/field-notes/2026-10-23.md,229,7,NOT A RESULT,,,,"chapter, part, bug, list or quiz numbering"
