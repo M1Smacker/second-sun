@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 13:10 Kuwait): RS-025 PART 1
+Started unasked. Prices (one flag off at a time): step +30 planets for +105 upside-down; gap/dump +31 for +14 upside-down but +83 real; ramp +14 for +12. Dump half of gap/dump holds 23 planets; near dumps false dips outnumber bumps 3 to 1 (upside-down meter blind there); distance does not separate fakes from planets, baseline shape does. Preregistered DS (dump zone holds only uneven baselines): P 0.5024, +5 upside-down, +37 real: not adopted. Conclusion: 0.50 is reachable but every route costs a few false alarms; next is a trade-off rule judged on both meters (Fable design round Monday, Codex second key). Open: 408 never-found planets (Q3), real known planets (Q5). Meter 5%.
+
 ## LATEST (14 Nov 2026, 12:53 Kuwait): FABLE METHOD SKILL PLANNED
 Ahmed: before Fable access ends (reset Tue 17 Nov 01:00 Kuwait) Fable writes its working method as a skill for Opus. Plan `research/fable-method/PLAN-2026-11-14.md`: prepare Sunday, Fable block Monday 16 Nov (three real Road-to-G1 tasks with work logs, distil, review one Claude stint, test on a held-out task), install as second-sun-method with sync_kit. RS-025 gap split running.
 

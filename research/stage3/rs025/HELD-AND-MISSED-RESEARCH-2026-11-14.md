@@ -42,3 +42,17 @@
 ## Test plan 2, written BEFORE running (14 Nov 2026, 13:00 Kuwait)
 - **DS, dump zone judged by shape:** an event in the momentum-dump zone is held only if its baseline is uneven: the larger side lift is above 0.25 of the dip depth (half of STEP_LIFT, the step rule's limit), or a lift is unmeasured. The gap-edge half is unchanged. Honest note: 0.25 was chosen after seeing the design-bench shapes above (bench data, not search results); Codex must check it on the T156 bench, and Fable's design round may replace it.
 - Judged by the Tree rule (P up, upside-down background not up), and **also reported: the real background**, because near dumps the upside-down meter is blind to most false dips.
+
+### Result of test plan 2 (`rs025_dumpshape_test.py`, 13:09; identity baseline exact). CONFIRMED (one key)
+| Rule | Planets (new) | P equal weight | Background real / upside-down | Paired control |
+|---|---:|---:|---|---|
+| frozen | 529 | 0.4845 | 176 / 83 | fails 2 bins (dominated, RS-024) |
+| dump half off | 552 (+23) | 0.5060 | 240 / 90 | fails |
+| **DS, dump zone judged by shape** | 548 (+19) | **0.5024** | 213 / 88 | fails (dominated not changed here) |
+**Not adopted under the Tree rule** (+5 upside-down). DS keeps 19 of the 23 planets and cuts the extra real background from +64 to +37. No rule tested today frees planets with zero extra false alarms.
+
+## Where RS-025 stands (13:10)
+- Answered: Q1 (prices), Q2 for dumps (distance does not separate, shape partly does), Q4 for gaps (LEO-Vetter, Kepler Rubble).
+- Open: Q2 for step and ramp; **Q3, the about 408 planets never found at SNR 7 (the biggest pool)**; Q5 (real known planets under these rules).
+- **Plain conclusion so far:** P 0.50 is within reach (DS alone gives 0.502; DS plus OAE not yet run), but every route found so far costs a few false alarms. The next decision is a trade-off rule (how many extra false alarms per planet gained is acceptable, judged on BOTH meters, since the upside-down meter is blind near dumps and gaps), not another single fix. That is the design task for Fable's round on Monday, with Codex's T156 second key.
+- Used: about 2 weekly points of the 8 cap (meter 3% to 5%).
