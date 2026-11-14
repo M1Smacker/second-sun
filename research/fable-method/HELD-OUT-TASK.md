@@ -1,0 +1,6 @@
+# Held-out task for the skill test (Claude, 14 Nov 2026). NOT for Fable: Fable must not read this file.
+
+**Task (design, same kind as Fable's task 1):** design a fair fix for the step flag. RS-025 priced it: switching it off frees about 30 planets but adds 188 upside-down background events (flip), so it holds real planets and true noise alike. Deliver a production design (what the flag tests instead, fallbacks, test, what proof rejects it), ready to build.
+**Files:** `research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md` (Q1 flag prices), `research/stage3/rs025/flag-price.json`, `pipeline/stage3_core.py` step flag (read only, STEP_LIFT 0.5, STEP_COVER 0.5).
+
+**Test (after the Fable block):** a fresh Opus 5.5 session does the task twice is too costly, so: one Opus session WITH `second-sun-method` loaded, its work log kept the same way. Compare against (a) Claude's RS-024 and RS-025 habits (what Opus did before the skill) and (b) the skill's own checklist: did it name the check that could prove it wrong and run it; did it test before reading past about 20 KB; did it write the pass rule before scoring. Fable, if meter remains, or Ahmed judges. A rule in the skill that changed nothing is trimmed.

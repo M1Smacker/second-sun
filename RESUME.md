@@ -1,3 +1,11 @@
+## LATEST (14 Nov 2026, 16:40 Kuwait): FABLE BRIEF, FIX 94 DECISION RULE, RS-025 Q5
+Ahmed: do all three while Codex runs 011; cap 30% weekly today; he runs Opus 5.5 medium.
+- Fable brief `research/fable-method/FABLE-BRIEF-2026-11-16.md` (three tasks: FIX 94 production design, what goes into Petrova 1.1, shortest safe path to G1; work logs; skill `second-sun-method`; finish Mon 23:00). Held-out task `HELD-OUT-TASK.md` (step flag fair fix), Fable told not to open it. PLAN step 1 DONE.
+- FIX 94: RS-026 file "Update after Codex 010": V2 gets 23 of 25 planets (92%), so the full template fit adds at most about 2; decision rule for 011 written before its result (V2 passes: adopt V2; fails only on upside-down near eclipses: build the fit; events far from eclipses: research first; both pass: V2). FIX-QUEUE 94 line updated.
+- RS-025 Q5 (`rs025_q5_known.py`): TOI-1338 b tier-1 transits 4 to 6 of 13 under OAE (sectors 89, 93; identity 10/10); mask change cannot touch it (term 0.005 d). OAE side effect: TIC 172900988 b's stronger transit (4.95 d away) dominates its weaker one; no effect today. Fed into Fable task 2.
+- Road to G1 now 5 of 9. Drops added (Fable brief, FIX 94 rule, Q5). Slip: wrote guessed clock times (16:50 to 17:05), corrected from date.
+- Meter: weekly 9%, 5-hour 10%, context 30%. Waiting: Codex 011.
+
 ## LATEST (14 Nov 2026, 16:40 Kuwait): CODEX 011 BRIEFED
 Brief `research/astra/inbox/011-mask-timing-with-oae.md` (copied to the astra worktree): re-score 010's V0, V1, V2 with OAE on (identity: 009 OAE P 48.196%, 176/83), preregistered pass rule (P 50%+, paired control every bin, upside-down background not higher than V0+OAE, T156 more planets no more alarms), and explain the new real-light events by distance from eclipses (rows to datastra	). Branch astra/011-mask-timing-oae. TREE log and a drop added. Meter: weekly 9%, Fable 0%, context 24%. While Codex works: Fable brief and tasks for Monday, FIX 94 design updated with 010 numbers, RS-025 Q5 (known planets under the new rules).
 

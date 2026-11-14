@@ -25,12 +25,12 @@ Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST
 **Codex 005 findings:** A: the +59/-6 real-side change is NOT eclipse leftovers (54 of 56 classifiable sit 2+ eclipse widths away), spread over 33 stars, cause UNCERTAIN, no narrower lock supported. B (node 1.5): all 19 short-period misses are below SNR 7; depth survives detrending; higher noise in short binaries is LIKELY the cause (median best SNR 6.2 vs 9.3, scatter 3,070 vs 2,221 ppm); binary-phase origin UNCERTAIN; ceiling 7.9 points. C (node 1.2): of 52 window losses, 15 are true archive gaps, 21 lost at load, 16 have usable data before the window rule; ceiling 2.6 to 7.0 points. Needed for GO: +16.7 points and a lower bound of 40%; the two biggest ceilings together give 14.9 points even if perfect.
 
 ## Road to G1 (Claude, 14 Nov 2026, 12:30; replaces the 13 Nov estimate)
-Done 4 of 9: [####.....]
+Done 5 of 9: [#####....]
 1. DONE: planet-level P measured, two keys (0.48, FIX FIRST).
 2. DONE: T109 known planets (TOI-1338 b found, the other missed; Codex second key with scope corrections).
 3. DONE: RS-024, root cause of "dominated" (fairness fix OAE found; cannot lift P by itself).
 4. DONE (14 Nov 12:56): Codex 009 second key agrees; OAE qualifies as a fairness fix (planet control passes every bin, upside-down background 83 unchanged, -0.17 points P; T156 stays passing). Adopted, not frozen.
-5. RS-025 (Claude, running): flags priced; the biggest fixable pool is the mask's timing padding (up to about 64 planets lost because eclipse windows swallow sectors), not a flag. Next: Codex 010 measures it on injected light.
+5. DONE: RS-025 (Claude) flags priced; Q5 (14 Nov 16:37): OAE lifts real TOI-1338 b transits at tier 1 from 4 to 6 of 13 but lets a planet's stronger transit hide its weaker one (TIC 172900988 b); the biggest fixable pool is the mask's timing padding (up to about 64 planets lost because eclipse windows swallow sectors), not a flag. Next: Codex 010 measures it on injected light.
 6. Fix rounds until P reaches 0.50 with no more false alarms, Codex second key each. One to three rounds: the biggest unknown.
 7. Freeze Petrova 1.1 (two proofs, outside audit).
 8. Re-measure P on frozen 1.1 and re-check the known planets: GO or not.
