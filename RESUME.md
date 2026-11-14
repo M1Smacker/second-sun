@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 9:41 pm Kuwait): CODEX 013 BRIEFED (Opus 5.5 high; weekly 14%)
+Ahmed: "Yes, brief 013". `research/astra/inbox/013-known-events-and-dump-shape.md` (commit d6e8e96, copied to astra): second key incl. T156 on B+K and B+K+DS (B = repeater b + FIX 91 + OAE), identity vs RS-029 (527/514, P 0.4828, 176/83), RS-029 pass rules copied, root cause of the +28 real background under DS (hours to the nearest dump, lifts, SAP twin; both arms). Branch astra/013-known-events-ds, no push. Line handed to Ahmed. Next: check 013 when it reports (fence check first); Fable round Mon 16 Nov.
+
 ## LATEST (14 Nov 2026, 9:27 pm Kuwait): NIGHT BUILD LIST DONE (Opus 5.5 high; weekly 12% to 14%, stop line 20%)
 Ahmed (8:41 pm): "Yes, go. Build." Usage tables per model AND effort (new section in usage-ledger.md; predict from the matching table). Check Codex after everything.
 - **FIX 87 FIXED:** `pipeline/gate_judge.py` + test (mutation red), wired into r1_gate.py; sealed G3 rerun into temp: numbers identical, (a)/(b) now 'PASS ON TESTED BINS (3 of 5)'. Filed reports unchanged.

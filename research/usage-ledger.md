@@ -73,6 +73,7 @@ Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per
 | 14 Nov 7:40 to 7:44 pm | RS-028: 105-page download, list, pricing script | 0.8 | 11 to 11 | 21 to 24 | 44 to 48% | about 0.4 | 0.5 |
 | 14 Nov 9:00 to 9:10 pm | per-effort tables; RS-029 bench script launched; FIX 87 gate_judge + test + rerun; FIX 86 s1_sensitivity + test + readout rerun; FIX 91/92 script and smoke run; queue, Tree, drop (code + tests + reruns) | 1.2 | 12 to 13 | 8 to 14 | 19 to 31% | about 1.0 | 0.8 |
 | 14 Nov 9:10 to 9:27 pm | RS-029 results (2 bench runs in background, read + write-ups), FIX 91 correction, FIX 92 verdict, Codex 012 check + fence check, RS-030 root cause, Tree, queues, 4 drops, recap, RESUME | 1.0 | 13 to 14 | 14 to 20 | 31 to 39% | about 1.0 | 1.0 |
+| 14 Nov 9:40 to 9:41 pm | Codex brief 013 + copy + commit + Tree, RESUME, drop (brief writing) | 0.3 | 14 to 14 | | | about 0.2 | 0.7 |
 **Rates so far (n = 5):** a full evening block of code + tests + bench runs + write-ups about 1 point per hour of work (5-hour meter about 6 points per weekly point tonight); notes and small scripts about 0.1 to 0.2 per task; a script that runs on stored data about 0.2 to 0.4; a book publish about 0.2. Predict from these, not from gut.
 
 ### Opus 5.5 medium
