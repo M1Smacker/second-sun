@@ -20,3 +20,9 @@
 - Claude's dump map (second key for Codex 014 part 1, `rs032/T35-BOX-RULE-2026-11-14.md` side file) shows a real excess 6 to 12 h before dumps (G2 19 / 3). In sector 11 neither the fast jitter nor the slow drift has anything special in that window. So that excess is UNCERTAIN in cause; NOT TESTED alternatives: a counting effect of the dump-rule window (it reaches exactly 12 h before a dump), eclipse leftovers that happen to sit there, or eras other than year 1. Codex 014 part 1 (exposure-normalised, G3 check) is the right next look.
 - **For Fable (task 2, T164):** do not download all sectors. If she wants the pointing record, take 2 or 3 sectors from later eras (14 to 26, 27 to 55, 56 on) where dump cadence and pointing changed, and test the same two profiles first (about 1.3 GB).
 - One sector only: the profiles are CONFIRMED for sector 11 and UNCERTAIN for other eras.
+
+## Follow-up (11:34 pm): who makes the pre-dump excess? (`rs032/rs032_dumpmap_rows.py`, rows in `data/rs032/dumpmap-rows.csv`). CONFIRMED counts
+- 6 to 12 h before a dump (G2 + G3, tier 1 under B with the dump half off): 22 real, 4 upside-down. The 22 real events come from **19 stars and 22 star-sectors, all in different sectors** (sectors 5 to 97, every product). Not a few stars repeating, not one era.
+- Their boxes: 9 of 22 are 3 h; 13 are long (8 to 20 h), whose far edge reaches within a few hours of the dump.
+- "Box contains a dump": 35 real, 8 upside-down, 31 stars, 35 star-sectors, spread the same way.
+- Reading (LIKELY): a widespread instrumental effect tied to the approach of a dump, not a property of a few stars. The pointing record of sector 11 does not show it as jitter or drift, so the cause is still UNCERTAIN (candidates, NOT TESTED: the long boxes picking up the dump's own disturbance at their edge; detrending edge effects near the data gap a dump leaves; era-specific pointing). Codex 014 part 1 (exposure normalised, by product and era) is the next look.
