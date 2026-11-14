@@ -16,7 +16,7 @@
 - **Pass (written first):** the wobble is a USEFUL separator if on G2 the A and Pl2 distributions differ (Mann-Whitney one-sided, A larger, p < 0.01) AND on G3 the guard holds at least half of A while keeping at least 80% of Pl2. Otherwise NOT USEFUL as built. Either way it is a measurement; no rule is adopted (Fable designs, Ahmed decides).
 - **Not tested here:** the full bench under a DS + wobble rule (P and T156); only if the pass holds, as a follow-up.
 
-## Results (14 Nov 2026, 11:15 pm; `rs032_wobble.py`, `wobble.json`, rows in `data/rs032/wobble-rows.csv`)
+## Results (14 Nov 2026, 11:05 pm; `rs032_wobble.py`, `wobble.json`, rows in `data/rs032/wobble-rows.csv`)
 **Verdict: NOT USEFUL as built (preregistered pass fails). CONFIRMED on our data: the centroid wobble we can measure does not separate the DS-freed real events from where planets land.**
 - **Run defect, fixed before reading any result as final:** the first run read SPOC file names "tess2019..." as sector 2019 (a trap the auditor skill lists) and did not map "-SAP" product names to their files, so SPOC events had no J. Only the file lookup changed; method, threshold rule and pass check unchanged. Numbers below are the second run.
 - **Groups:** G2: A 27 real and F 4 upside-down DS-freed events (G3: A 3, F 0; total 30 and 4, as RS-029 and Codex 013), Pl2 422 planted crossings in the dump zone (G3 118).
