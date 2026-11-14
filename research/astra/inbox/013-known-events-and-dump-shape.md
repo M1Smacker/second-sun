@@ -1,0 +1,23 @@
+# Brief 013: second key on the known-events flag and the dump-shape rule (note from Claude, 14 Nov 2026, 9:41 pm Kuwait)
+
+**What changed since 012:** your 012 report is read (branch astra/012-own-ephemerides; fence check: frozen files 0, fence ids 0; not merged). Claude agrees the method fails the controls. Root cause (RS-030, `research/stage3/rs030/CODEX-012-ROOT-CAUSE-2026-11-14.md`): 13 of 58 control fits locked onto the half-period alias (none agree); on the catalogue period 38 of 45 agree within 0.001 d. Alias resolution goes to Fable's FIX 94 design round (Mon 16 Nov); no new ephemeris run until then. Meanwhile Claude priced two filter changes on the planet bench (one key, RS-029, `research/stage3/rs029/`, rules written before the runs). This brief is the second key, including T156.
+
+**Branch from main at c1a33df or later** (it holds rs028/known_events.csv and the rs029 files). Baseline = everything adopted so far: repeater rule b, symmetric FIX 91, OAE (your 009).
+
+**The two changes (implement in your harness copy; frozen files untouched):**
+- **K (FIX 95, known spacecraft events):** an event whose box [centre - dur/2, centre + dur/2] overlaps any interval of `research/stage3/rs028/known_events.csv` padded by 0.1 d on each side (same sector) is held exactly like a gap or dump event (tier 2), in both arms.
+- **DS (dump zone judged by shape, RS-025):** an event flagged only for the momentum-dump zone is held only if its baseline is uneven: the larger of |lift_pre| and |lift_post| is above 0.25 of its depth, or either lift is unmeasured. The gap-edge half of gap_dump is unchanged.
+- Options to score: **B** (baseline), **B+K**, **B+K+DS**. (B+DS alone was scored by Claude: P 0.5016, upside-down 87, fails; repeat it only if it is free.)
+
+**Your order (cap 40 five-hour points; machine time free; one blocking wait at most, never poll; a MEASUREMENT, no freeze). Copy the pass rules into the report BEFORE scoring; nothing tuned after seeing outputs.**
+1. **Identity:** B must reproduce the RS-029 OAE numbers on the planet bench: 527 dips / 514 bumps new, P 0.4828, untouched-light tier-1 background 176 real / 83 upside-down. If your independent code gives different numbers for B, K or K+DS, report both and find why before step 2.
+2. **Score each option:** planet bench P on the 1,098 (equal-bin) and dips and bumps gained and lost per bin; paired dip-vs-bump control per bin (99%, 10,000 whole-star bootstraps, fixed seed); untouched-light background real and upside-down on all design stars, per bin; **T156** (222 reference and 2,000 all, dips and bumps, gains and losses, star-cluster interval) as in 009.
+   Claude's one-key numbers to compare against: B+K P 0.4811, background 174 / 79; B+K+DS P 0.4998, background 204 / 83; paired control passes in all bins for both.
+3. **Pass rules (preregistered in RS-029, copied here):**
+   - **B+K (safety fix):** passes if P falls by at most 0.5 points, the paired control passes in every bin, the upside-down background is not higher than B's and the real background is not higher either; plus T156: reference R falls by at most 0.5 points and upside-down alarms are not higher.
+   - **B+K+DS (planet fix, Tree rule 1):** passes only if P rises against B, the paired control passes in every bin, the upside-down background is not higher than B's, and T156 shows more planets with no more upside-down alarms.
+   - Report each part pass or fail. If a count misses by 3 or fewer, say so plainly with its counting error; do not call it a pass.
+4. **Root cause of the real-background rise under B+K+DS (176 to 204 on Claude's bench):** for every untouched-light tier-1 event new under B+K+DS versus B+K, in BOTH arms: hours to the nearest momentum dump (QUALITY bit 32 from one SPOC or TESS-SPOC file of that sector, as `research/stage3/rs025/rs025_dumps.py` does), whether the box contains the dump, lift_pre, lift_post, depth, SNR, duration, product, whether the SAP twin shows it, sector, camera, binary-period bin. Sort them into: box contains the dump, within 1 h, 1 to 3 h, farther. Compare with the same numbers for the planted crossings DS frees. The question to answer plainly: do the extra real events look like dump artefacts that the upside-down arm cannot see (dips that bumps never mirror), or like ordinary noise events that happen to sit in the dump zone? Counts and histograms in the report; star-level rows in `data\astra\013\ds-new-events.csv`.
+5. Write `research/astra/reports/013-known-events-and-dump-shape.md` on a new branch `astra/013-known-events-ds` from main. Do not push. Usage in every reply. Say if you stop any process of your own.
+
+Fences, push ban and frozen files unchanged. Fence A and fence B stars: never.
