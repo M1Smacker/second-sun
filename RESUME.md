@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 10:26 Kuwait): T125 AND T127 APPROVED INTO G1
+Ahmed said "Add it." New draft `research/stage3/G1-PREREGISTRATION.md` (not frozen; G1 waits for planet-bar GO) lists T125 (follow-up protocol, LEADS-RULES Amendment 2) and T127 (novelty_check.py) as approved parts; LEADS-RULES and BUILD-QUEUE marked APPROVED. Still open: C3/C4 (82.7%), 23 Oct "0.2%". Codex on note 008.
+
 ## LATEST (14 Nov 2026, 10:08 Kuwait): BOOK 2.11.6, THREE WORDING FIXES (AHMED SAID FIX)
 Ahmed woke 10:03, asked for a simple recap, then said fix the three T130 wording calls; he is sending Codex note 008. Fixed: 11 Nov "34 against 13" to 32; 10 Nov 0.58/0.95 now "the three larger sizes"; correction-box "almost all in binaries slower than 20 days" replaced in 8 pages (loss grows with period; most lost dips in 5 to 14 d binaries). Commit a17ee2c, book 2.11.6 publishing. Still open: C3/C4 (82.7%), 23 Oct "0.2%" (0.26%), and T125 (lead follow-up protocol, LEADS-RULES Amendment 2) plus T127 (novelty check, pipeline/novelty_check.py) into the G1 preregistration: explained to Ahmed in plain words, waiting for his yes. New memory: explain every id.
 
