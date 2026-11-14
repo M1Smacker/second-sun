@@ -34,7 +34,7 @@ def named_in_tree(kind, ident):
 
 
 problems = []
-for kind, name, pat in (("FIX", "FIX-QUEUE.md", r"^(\d+)\. "), ("BUILD", "BUILD-QUEUE.md", r"^- \[ \] \*\*(T\d+[a-z]?)[ .:]|^- \[ \] (T\d+[a-z]?) ")):
+for kind, name, pat in (("FIX", "FIX-QUEUE.md", r"^(\d+)\. "), ("BUILD", "BUILD-QUEUE.md", r"^- \[ \] (?:\[[^\]]*\] )?\*\*(T\d+[a-z]?)[ .:]|^- \[ \] (?:\[[^\]]*\] )?(T\d+[a-z]?) ")):  # phase tag [..] since the 14 Nov triage
     node = None
     count = 0
     for line in (ROOT / "research" / "stage3" / name).read_text(encoding="utf-8").splitlines():
@@ -54,6 +54,9 @@ for kind, name, pat in (("FIX", "FIX-QUEUE.md", r"^(\d+)\. "), ("BUILD", "BUILD-
         if not named_in_tree(kind, ident):
             problems.append(f"{name}: {kind} {ident} is not named in TREE.md")
     print(f"{name}: {count} open items checked")
+    open_lines = sum(1 for l in (ROOT / "research" / "stage3" / name).read_text(encoding="utf-8").splitlines() if re.match(r"^(\d+\. |- \[ \] )", l))
+    if count != open_lines:  # a pattern that silently stops matching must fail, not pass (14 Nov: 0 of 59 builds were checked)
+        problems.append(f"{name}: {open_lines} open lines but only {count} matched the item pattern")
 print(f"TREE.md nodes: {len(nodes)}")
 if problems:
     print("TREE CHECK FAILED:")

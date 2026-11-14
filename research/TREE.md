@@ -41,6 +41,8 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ## 1. How well we see (Petrova, the engine)
 **1.1 Tier-1 flags hold found planets back.** Loss: 53 of 222 Saturn-like; 158 of 439 strong (6,000 ppm or more). The biggest and most fixable. *Status: NEXT (first after Codex's report).*
 - NEXT: repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, `stage3_core.py` 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags).
+- **Real-planet evidence (T109 early run, 14 Nov night, `research/stage3/T109-known-planets-2026-11-14.md`):** TOI-1338 b FOUND at planet level (4 of 13 transits tier 1, 31%, matching the bench); TIC 172900988 b MISSED (both transits found, SNR 8.3 and 15.7, Petrova mask removes 0%, but held at tier 2 by ramp, gap edge, step). Real losses are these flags, plus "dominated" (FIX 93) and a too-noisy second product (FIX 92).
+- NEXT: FIX 92 second product judged by the SNR it could show; FIX 93 "dominated" price on the bench.
 - NEXT: T157 phase-key and veto synthetic study; FIX 90 veto summary text; FIX 30 and T145 orbit-locked dips (why real dips repeat at the binary phase).
 
 **1.2 Planet falls outside the searched windows.** Loss: 45 + 7 of 222. *Status: NEXT (second).*
