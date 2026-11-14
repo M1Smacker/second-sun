@@ -1,3 +1,8 @@
+## LATEST (14 Nov 2026, 10:18 pm Kuwait): FIX 95 ADOPTED; DS HELD FOR FABLE (Opus 5.5 high)
+- Ahmed: "yes, adopt the known events flag, do what u think is best for this one". FIX 95 ADOPTED for Petrova 1.1 (not frozen). Adopted set now: repeater b + FIX 91 + OAE + K (P 48.11%, T156 ref R 34.21%, bg 174/79). DS held for Fable (my call). FIX-QUEUE, TREE baseline line, Fable brief (task 1: Codex 012 + RS-030 alias; task 2: K adopted, DS dump-artefact question, FIX 92 failed) updated.
+- Ahmed: the 14 to 19 weekly jump was HIS Claude Cowork task (limits are shared across Claude Code, claude.ai, Cowork). Ledger row corrected (my share about 0.4 to 0.5); memory feedback_usage_ledger_calibration.md updated; sync_kit run. Keep tracking my usage and leave headroom for his other work.
+- Next: Fable round Mon 16 Nov (brief ready). Branches 010 to 013 not merged (fence checks clean for each).
+
 ## LATEST (14 Nov 2026, 10:14 pm Kuwait): CODEX 013 CHECKED (Opus 5.5 high; weekly 14% to 19%, stop line 20%: STOPPED)
 - Codex 013 (report 10:02 pm, branch astra/013-known-events-ds, not merged): identity exact vs RS-029; T156 B 500/509, B+K 499/507 (ref R 34.64 to 34.21%), B+K+DS 536/545 (R 35.50%); all gates pass for both. Root cause: DS frees 30 real vs 4 upside-down untouched events, 23 of 30 before a dump: LIKELY dump artefacts the upside-down meter cannot see.
 - Recommendation to Ahmed: adopt K (FIX 95) for Petrova 1.1 (two keys); hold DS for Fable's round (Mon 16 Nov). Waiting for his yes.
