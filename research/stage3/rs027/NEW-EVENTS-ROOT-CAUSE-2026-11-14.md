@@ -13,3 +13,16 @@
 - **So the full FIX 94 design is needed (case 2 of the decision rule in RS-026, not case 3):** measure our own TESS eclipse times, and fit the PERIOD as well as the epoch (step 2 must not keep the catalogue period: TIC 140760434 is off by 0.84 d), primary and secondary separately; centre windows on the fit. Test: those 18 to 21 deep events must disappear, and the planet gain must survive.
 - Add a cheap guard to the design: any new real event deeper than the star's own catalogue eclipse depth or deeper than 30,000 ppm is an eclipse candidate, never a planet (NOT TESTED as a rule).
 - Feeds Fable's task 1 on Monday.
+
+
+## Follow-up: price of a "too deep to be a planet" guard (Claude, 14 Nov 2026, 19:22)
+Counts from Codex 011's background and new-event rows (tier 1, untouched design light, g2 plus g3), and the 006 planet journals:
+| Depth over | V0+OAE background real / upside-down (176 / 83) | V2 new real / upside-down (38 / 6) |
+|---|---|---|
+| 10,000 ppm | 75 / 35 | 17 / 1 |
+| 20,000 ppm | 56 / 19 | 9 / 0 |
+| 30,000 ppm | 51 / 16 | 7 / 0 |
+| 50,000 ppm | 39 / 7 | 6 / 0 |
+- **CONFIRMED:** 51 of the 176 tier-1 real background events and 16 of the 83 upside-down ones are deeper than 30,000 ppm (3%). The planet bench cannot price the guard: its deepest planted planet is 5,990 ppm, so any guard above that costs zero planets there BY CONSTRUCTION (a blind spot, not evidence of safety).
+- **The guard is not a substitute for FIX 94:** at 30,000 ppm it removes only 7 of the 38 new V2 real events; the 10,000 ppm eclipse of TIC 140760434 passes it.
+- **Design idea (NOT TESTED, filed as FIX 96):** a per-star physical ceiling instead of a fixed number: the deepest transit a planet of 1.5 Jupiter radii could make across the primary (TIC radius), diluted by the companion's light; events deeper than that are labelled eclipse-like, both arms the same. A fixed 3% would wrongly cut a Jupiter crossing a small M dwarf (about 4% before dilution, UNCERTAIN, rough arithmetic); the known transiting circumbinary planets are far shallower (TOI-1338 b about 2,000 to 3,000 ppm, T109).

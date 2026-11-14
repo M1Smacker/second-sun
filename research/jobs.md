@@ -38,3 +38,4 @@ abtsevich_zenodo | zenodo.org | RS-007 research; each logged in research/downloa
 | 14 Nov 12:12 | RS-024 rival dump (`research/stage3/rs024/rs024_rivals.py`) over all 006 planet trials, private rows to data/rs024 | local, about 12 min | DONE 12:40 |
 | 14 Nov 12:15 | RS-024 option test (`rs024_options.py`): P, paired control and background under 4 preregistered dominated rules | local, about 30 min | DONE 12:21 |
 | 14 Nov 12:36 | RS-025 flag price (`research/stage3/rs025/rs025_price.py`): P, paired control and background with step, gap/dump, ramp cleared one at a time | local, about 10 min | RUNNING |
+| 2026-11-14 19:21 | Claude | rs024_twin.py full run (OAE vs OAEt twin-transit refinement, 1,250 trials + background), background, local data only, expected 20 to 40 min, log data/rs024/twin-run.log |
