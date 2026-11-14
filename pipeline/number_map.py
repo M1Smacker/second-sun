@@ -73,6 +73,9 @@ def check():
                 else:
                     n_ok += 1
                 continue
+            if st == "UNSOURCED":                    # checked by hand: no tracked file holds it; listed so it can be sourced or removed
+                problems.append(f"UNSOURCED {page}:{line_no} {num}: {r['note']}")
+                continue
             if st == "MISMATCH":
                 problems.append(f"FLAGGED {page}:{line_no} {num}: {r['note']}")
                 continue
@@ -111,6 +114,10 @@ def suggest(page, sources):
 
 
 if __name__ == "__main__":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")          # pages hold characters (a minus sign) the Windows console code page cannot print
+    except Exception:
+        pass
     if len(sys.argv) >= 4 and sys.argv[1] == "suggest":
         suggest(sys.argv[2], sys.argv[3:]); sys.exit(0)
     if len(sys.argv) == 3 and sys.argv[1] == "list":
