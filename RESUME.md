@@ -1,3 +1,13 @@
+## LATEST (14 Nov 2026, 11:13 pm Kuwait): WORK-NOT-IDLE BLOCK (Opus 5.5 MEDIUM; weekly 21% to 22%, target 25% before Codex 014 lands; cap 30%)
+Ahmed (10:56 pm): don't sit idle when the list is done; report, say what's next, start it; reach into the build list. Plan approved ("Go").
+- **RS-032 wobble study** (`research/stage3/rs032/WOBBLE-STUDY-2026-11-14.md`, a8830f0): light-centre wobble from our own files does NOT separate DS-freed real events from planted planets near dumps (G2 Mann-Whitney p 0.53; guard at planets' 90th pct holds 4 of 25; G3 1 of 3). FAIL of preregistered pass. LIKELY cause: jitter faster than one exposure. First run had the s2019 sector-name bug (fixed before results). New idea **T164** (2-second pointing records, node 1.6, waits for Fable). Fable brief task 2 updated.
+- **T32/T31 (nd, dg) bench under B** running (`rs032_nd_bench.py`, rule `ND-DG-RULE-2026-11-14.md` written first) -> `rs032/nd.json`.
+- **T52 BUILT** (be91f1f): `pipeline/run_inputs.py` + `test_run_inputs.py` (8 pass, 2 mutations red); not hashed; G1 runner imports it.
+- **T130** (9d6612f): re-mapped after book 2.11.6 fixes, tonight's field note mapped; 17 pages, 1,644 numbers, 97.0%; 1 FLAG left (10 Nov line 19, 0.58 'all sizes' pools K 12 to 25 only: Ahmed's wording call).
+- **T35 3 h box**: part 1 done (`T35-BOX-RULE-2026-11-14.md`): under B the 3 h box holds 99/40 of 174/79 (57% / 51%) and 59 of the 95 real excess; 8 h+ boxes balanced 29/27. Part 2 bench B vs B3 (3 h box held) queued after nd -> `rs032/box.json`.
+- Codex 014 watcher (b2e1h20qp) still waiting for part 1; nothing committed by Codex since 10:38 pm.
+- Next: read nd and box benches, write results, Tree + drops; review Codex 014 parts as they land; stop near 25 to 28% weekly.
+
 ## LATEST (14 Nov 2026, 10:49 pm Kuwait): LATE-NIGHT BLOCK (Opus 5.5 MEDIUM; weekly 19% to 21%, new cap 30%, Ahmed: continue past the 1:30 am 5-hour reset)
 Ahmed (10:24 pm): new limit 30%, give Codex real work. Plan approved ("Go as planned").
 - **Codex 014 briefed** (`research/astra/inbox/014-dumps-ephemerides-deep-bench.md`, afb2614): part 1 dump-artefact map (G2 derive, G3 check), part 2 eclipse times v2 (alias resolution, calibrated errors, synthetic twin-eclipse trap, seed-14 hold-out), part 3 deep-planet bench for FIX 96. Ahmed sent it about 10:37 pm (I buried the line at first; memory rule tightened: end the turn on the line). Codex committed its method 10:38 pm, running.
