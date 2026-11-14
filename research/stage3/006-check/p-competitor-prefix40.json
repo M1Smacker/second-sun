@@ -1,0 +1,199 @@
+{
+ "bin0_flip": {
+  "n": 15,
+  "found": 9,
+  "tier1": 6,
+  "held": 3,
+  "flags": {
+   "step": 2,
+   "c5": 1,
+   "ecl_overlap": 1
+  },
+  "only_flag": {
+   "step": 2
+  },
+  "rival": {},
+  "rival_ph_d_median": null,
+  "rival_ph_d_n": 0
+ },
+ "bin0_real": {
+  "n": 15,
+  "found": 7,
+  "tier1": 4,
+  "held": 3,
+  "flags": {
+   "step": 1,
+   "gap_dump": 1,
+   "dominated": 1
+  },
+  "only_flag": {
+   "step": 1,
+   "gap_dump": 1,
+   "dominated": 1
+  },
+  "rival": {
+   "rival off eclipses": 1,
+   "rival is a repeater or orbit-locked": 0
+  },
+  "rival_ph_d_median": 0.41131600000238877,
+  "rival_ph_d_n": 1
+ },
+ "bin1_flip": {
+  "n": 15,
+  "found": 6,
+  "tier1": 5,
+  "held": 1,
+  "flags": {
+   "step": 1,
+   "dominated": 1
+  },
+  "only_flag": {},
+  "rival": {
+   "rival off eclipses": 1,
+   "rival is a repeater or orbit-locked": 0
+  },
+  "rival_ph_d_median": 1.3824250000005045,
+  "rival_ph_d_n": 1
+ },
+ "bin1_real": {
+  "n": 15,
+  "found": 6,
+  "tier1": 4,
+  "held": 2,
+  "flags": {
+   "step": 1,
+   "c5": 1,
+   "repeater": 1,
+   "ramp": 1
+  },
+  "only_flag": {
+   "step": 1
+  },
+  "rival": {},
+  "rival_ph_d_median": null,
+  "rival_ph_d_n": 0
+ },
+ "bin2_flip": {
+  "n": 16,
+  "found": 10,
+  "tier1": 7,
+  "held": 3,
+  "flags": {
+   "step": 2,
+   "ecl_overlap": 1,
+   "gap_dump": 1,
+   "dominated": 1
+  },
+  "only_flag": {
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 1,
+   "rival is a repeater or orbit-locked": 0
+  },
+  "rival_ph_d_median": 2.2430090000012948,
+  "rival_ph_d_n": 1
+ },
+ "bin2_real": {
+  "n": 16,
+  "found": 8,
+  "tier1": 5,
+  "held": 3,
+  "flags": {
+   "step": 2,
+   "ramp": 1,
+   "p1_veto": 1,
+   "ecl_overlap": 1,
+   "gap_dump": 1,
+   "dominated": 1
+  },
+  "only_flag": {
+   "ecl_overlap": 1
+  },
+  "rival": {
+   "rival off eclipses": 1,
+   "rival is a repeater or orbit-locked": 0
+  },
+  "rival_ph_d_median": 0.4231999999992703,
+  "rival_ph_d_n": 1
+ },
+ "bin3_flip": {
+  "n": 13,
+  "found": 10,
+  "tier1": 4,
+  "held": 6,
+  "flags": {
+   "step": 3,
+   "dominated": 3,
+   "gap_dump": 2,
+   "p1_veto": 1,
+   "ramp": 1
+  },
+  "only_flag": {
+   "dominated": 2,
+   "p1_veto": 1
+  },
+  "rival": {
+   "rival off eclipses": 3,
+   "rival is a repeater or orbit-locked": 1
+  },
+  "rival_ph_d_median": 4.531828000001333,
+  "rival_ph_d_n": 3
+ },
+ "bin3_real": {
+  "n": 13,
+  "found": 10,
+  "tier1": 7,
+  "held": 3,
+  "flags": {
+   "gap_dump": 2,
+   "step": 2,
+   "ramp": 1,
+   "dominated": 1
+  },
+  "only_flag": {
+   "dominated": 1
+  },
+  "rival": {
+   "rival off eclipses": 1,
+   "rival is a repeater or orbit-locked": 0
+  },
+  "rival_ph_d_median": 3.1160999999988226,
+  "rival_ph_d_n": 1
+ },
+ "bin4_flip": {
+  "n": 13,
+  "found": 7,
+  "tier1": 5,
+  "held": 2,
+  "flags": {
+   "dominated": 2,
+   "flipmatch": 1,
+   "step": 1
+  },
+  "only_flag": {
+   "dominated": 1
+  },
+  "rival": {
+   "rival off eclipses": 2,
+   "rival is a repeater or orbit-locked": 0
+  },
+  "rival_ph_d_median": 0.524099999998722,
+  "rival_ph_d_n": 2
+ },
+ "bin4_real": {
+  "n": 13,
+  "found": 7,
+  "tier1": 6,
+  "held": 1,
+  "flags": {
+   "step": 1
+  },
+  "only_flag": {
+   "step": 1
+  },
+  "rival": {},
+  "rival_ph_d_median": null,
+  "rival_ph_d_n": 0
+ }
+}

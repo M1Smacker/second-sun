@@ -32,7 +32,7 @@
 
 ## 5. Codex (updated 09:20)
 - Codex finished 006 at 07:56: the same P (48.4%, FIX FIRST). The short-binary fix (S) passes but only lifts P to 48.6%; the window repair fails its gate.
-- New: the planted bumps lose to the planted dips in slow binaries because of one flag, "dominated" (it holds 21 bumps against 6 dips in the 20 to 27 day bin). In slow eclipsing binaries the real eclipse leftovers are dips, so a fair-looking rule meets an unfair sky. Same flag as FIX 93.
+- New: the planted bumps lose to the planted dips in slow binaries because of one flag, "dominated" (it holds 21 bumps against 6 dips in the 20 to 27 day bin). Why the flag does this is not known yet: my first guess (eclipse leftovers) was tested and is wrong. Same flag as FIX 93.
 - Fence check of its branch: clean (no frozen file, no fenced star).
 - The 007 line is now stale. **Send this instead:** "Read research/astra/inbox/008-after-006.md and do it in order. No polling."
 
