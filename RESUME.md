@@ -1,3 +1,6 @@
+## LATEST (14 Nov 2026, 14:10 Kuwait): THE TREE NOW HOLDS EVERY STINT AND BRIEF; T160 FIRST AFTER G1
+Ahmed: the Tree is crucial; first build after G1 is locked; PC primary, mobile works; every research, update, fix explorable. Done: TREE.md "Research and Codex log" (RS-023 to RS-026, Codex 006 to 010); tree_check now also fails on a missing stint (RS-023+) or brief (006+); T160 tagged FIRST BUILD AFTER G1 IS LOCKED; road says so; memory updated, kit synced.
+
 ## LATEST (14 Nov 2026, 14:00 Kuwait): RS-026 TESS-ERA ECLIPSE TIMES + WIDE SCAN
 Ahmed: research the FIX 94 fix design and anything else that improves the filter (full control; memory research-freely widened). Findings: timing problem is G2 only (Prsa 2022; G3 table has no errors); 706 of 711 blanked light curves on 110 of 420 G2 stars with term over 0.5 d; own per-sector offsets give a clean line for 33 of 76 such stars; TTC covers none of them; Villanova live entry not refit; Oddo et al. 2026 (arXiv 2610.22625) recentre eclipse phases per sector after Sector 55 and mask 0.5 d near gaps; Marcadon 2024: template eclipse times, ETVs in about 20% of close binaries. Best product is already the quietest (weak pool = data limit). Dump distance rule has no counterpart in Oddo, LEO-Vetter, mono-cbp. Fix design draft for FIX 94 written for Fable Monday. Codex on 010. Meter 7%.
 

@@ -35,12 +35,24 @@ Done 4 of 9: [####.....]
 7. Freeze Petrova 1.1 (two proofs, outside audit).
 8. Re-measure P on frozen 1.1 and re-check the known planets: GO or not.
 9. Finish and freeze the G1 preregistration (Ahmed approves), prepare the Search window, Ahmed's go, run G1 once.
-After G1: housekeeping phase, then Census (unchanged).
+After G1 is locked: **the interactive Tree page is the first build (T160, Ahmed 14 Nov: PC first, works on mobile, every research stint, update, fix and Codex brief explorable)**, then the rest of housekeeping, then Census.
 
 ## Triage of 14 Nov 2026 (Ahmed approved; file `research/tree/TRIAGE-2026-11-14.md`)
 Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148); merged 8 into 4 (T51 and T53 into T159, T106 into T141, T128 into T142, T57a to T58b into T57); parked 17 with a wake-up trigger; the rest keep a phase: NOW (Petrova via Codex), G1 PREPARATION, HOUSEKEEPING PHASE (after G1, before Census: fix every bug on the chain Census uses, build what is kept, archive the rest), CENSUS. Node lists below may still name dropped tasks; the build queue is the source of each task's status. No cap on the queue size (Ahmed).
 
 ---
+
+## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
+- **RS-026** (14 Nov, node 1.4): TESS-era eclipse times; timing bug is G2 only (110 of 420 stars, 706 of 711 blanked curves); Oddo et al. 2026 recentre per sector; FIX 94 design draft for Fable. `research/stage3/rs026/EPHEMERIS-AND-FILTER-RESEARCH-2026-11-14.md`
+- **Codex 010** (14 Nov, node 1.4): measure the mask's timing padding (V1 term off, V2 recentred windows). Running. `research/astra/inbox/010-mask-timing.md`
+- **RS-025** (14 Nov, nodes 1.1, 1.3, 1.4): flag prices (gap/dump cheapest, step dearest); dump-shape rule DS P 0.502, not adopted; 408 never-found planets: 205 weak, 61 near miss, 141 lost to masking or no data. `research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md`
+- **Codex 009** (14 Nov, nodes 1.1, 1.6): second key on RS-024 agrees; OAE adopted as a fairness fix. Branch astra/009-dominated.
+- **RS-024** (14 Nov, nodes 1.1, 1.6): root cause of "dominated": sign-asymmetric binary light, missed eclipses veto before they are labelled; Kepler Chases, LEO-Vetter, mono-cbp. `research/stage3/rs024/DOMINATED-RESEARCH-2026-11-14.md`
+- **Codex 008** (14 Nov, nodes 1.1, 3.2): three dominated fixes all failed; T109 second key with scope corrections. Branch astra/008-after-006.
+- **Codex 007** (14 Nov, night, node 1.1): never delivered; replaced by 008 at 09:20 before Codex read it. `research/astra/inbox/007-night-14-nov.md`
+- **Codex 006** (14 Nov, nodes 1.2, 1.4, 1.5, 2.2): planet-level P 0.48, FIX FIRST (two keys). Branch astra/006-branch-one.
+- **RS-023** (13 Nov, node 3.3): Rabtsevich comparison, are we over-engineering. `research/stage3/rabtsevich-compare-2026-11-13.md`
+- Earlier stints (RS-001 to RS-022) and briefs 001 to 005 predate the Tree: `research/research-sessions.md` and `research/astra/reports/`.
 
 ## 1. How well we see (Petrova, the engine)
 **1.1 Tier-1 flags hold found planets back.** Loss: 53 of 222 Saturn-like; 158 of 439 strong (6,000 ppm or more). The biggest and most fixable. *Status: NEXT (first after Codex's report).*
