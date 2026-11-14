@@ -1,3 +1,8 @@
+## LATEST (14 Nov 2026, 05:01 Kuwait): T130 TEN PAGES
+- T130 pages 8 to 10 mapped and committed (31 Oct, 2 Nov, 28 Oct): 10 pages, 914 numbers, 899 traced or not results; still the same 5 flags (3 distinct) and 10 UNSOURCED, no new problem. 28 Oct (252 numbers) sources: audit report, mono-cbp B-lite, v5 to v7 aggregates, `research/stage3/learnings-2026-10-27.md`. Commits e531832, af8514d.
+- Correction to the 04:53 block: the five-hour meter resets 06:00 UTC = 09:00 Kuwait, not 06:00 Kuwait. Weekly 92%, five-hour 60% at 05:00.
+- Codex 1,002 of 1,250 at 04:59. Waiter bha2sojxw armed; P check steps in the 04:46 block. Next T130 pages: 27, 26, 24, 23, 21, 19 Oct.
+
 ## LATEST (14 Nov 2026, 04:53 Kuwait): T130 SEVEN PAGES; CONTEXT COMPACTING
 - T130: 7 field notes (20, 29, 30 Oct; 3, 4, 10, 11 Nov), 574 numbers, 559 traced or not results, 5 flags (3 distinct: 32 not 34; K 12 to 25 not all sizes; the 20-day sentence, wrong in 8 book places) and 10 UNSOURCED (20 Oct STANLEY debug range and site stress-test counts). New helpers: `research/number-map/map_claims.py` (auto-traces numbers to the facts-register claim cited on the same line), `check_slow20.py`. Next T130 pages if meter remains: 10-28, 10-27, 10-23, 10-24, 10-21, 10-19, 10-31, 11-02 field notes.
 - Weekly 91%, five-hour 50% (resets 06:00 Kuwait). Codex 962 of 1,250 at 04:52; P check steps in the 04:46 block. Waiter bha2sojxw armed.
