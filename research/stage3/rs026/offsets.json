@@ -1,0 +1,37 @@
+{
+ "light_curves": 18470,
+ "stars": 420,
+ "term over 0.5 d": {
+  "light_curves": 2525,
+  "stars": 110,
+  "blanked": 706,
+  "median_term_d": 1.931,
+  "median_abs_offset_d": 0.284,
+  "abs_offset_quantiles_50_90_99": [
+   0.284,
+   2.778,
+   7.095
+  ],
+  "offset_over_width": 1139
+ },
+ "term 0.5 d or less": {
+  "light_curves": 15934,
+  "stars": 395,
+  "blanked": 0,
+  "median_term_d": 0.012,
+  "median_abs_offset_d": 0.0,
+  "abs_offset_quantiles_50_90_99": [
+   0.0,
+   0.064,
+   0.32
+  ],
+  "offset_over_width": 218
+ },
+ "per_star_line_fit": {
+  "stars": 373,
+  "median_scatter_d": 0.011,
+  "scatter_under_quarter_width": 306,
+  "stars_term_over_0p5d": 76,
+  "of_those_scatter_under_quarter_width": 33
+ }
+}
