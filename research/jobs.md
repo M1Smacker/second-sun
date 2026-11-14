@@ -37,3 +37,4 @@ abtsevich_zenodo | zenodo.org | RS-007 research; each logged in research/downloa
 - 14 Nov 09:10 Kuwait: Claude's flag diagnostic (`research/stage3/006-check/p_flags.py`) on the 1,250 Codex 006 trials: why planted dips beat planted bumps in the 20 to 27.4 d bin; about 12 min, no download; output p-flags.json (counts). DONE: "dominated" holds bumps 21 against 6 dips (20 to 27.4 d).
 | 14 Nov 12:12 | RS-024 rival dump (`research/stage3/rs024/rs024_rivals.py`) over all 006 planet trials, private rows to data/rs024 | local, about 12 min | DONE 12:40 |
 | 14 Nov 12:15 | RS-024 option test (`rs024_options.py`): P, paired control and background under 4 preregistered dominated rules | local, about 30 min | DONE 12:21 |
+| 14 Nov 12:36 | RS-025 flag price (`research/stage3/rs025/rs025_price.py`): P, paired control and background with step, gap/dump, ramp cleared one at a time | local, about 10 min | RUNNING |
