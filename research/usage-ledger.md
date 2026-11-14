@@ -86,6 +86,7 @@ Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per
 | 14 Nov 2:00 pm | RS-026 eclipse times + wide scan | cap 8 | 6 to 7 | | | about 1.5 | |
 | 14 Nov 4:28 to 4:40 pm | Fable brief, FIX 94 rule, RS-025 Q5 script | not written | 9 to 9 | 6 to 10 | 24 to 30% | about 0.5 | |
 | 14 Nov 7:04 pm | Codex 011 check, fence check, RS-027 | not written | 9 to 10 | 10 to 15 | 30 to 35% | about 0.6 | |
+| 14 Nov 10:24 pm to 10:36 pm | plan (high), Codex brief 014, RS-031 research (4 papers via script) + DSp bench script and run, FIX 88 (+2 readout reruns), FIX 85, 89, 90, G1 prereg draft v2, field note + glossary | about 3 | 19 to 20 | 51 to 62 | 47 to 60% | about 1.3 | 0.4 |
 **Rates so far:** a full research stint with web reading 1.5 to 2; a Codex report check with fence check about 0.3 to 0.5.
 
 ### Sonnet 5.5 Extra and Fable

@@ -35,3 +35,13 @@ Before: the day-scale growth of scatter supports holding before the dump (0.5 d 
 - **B** = adopted set (repeater b + FIX 91 + OAE + K). **B+DS** = Codex 013's B+K+DS (identity: P 0.4998, background 204 / 83). **B+DSp** = DS shape relief only for an event whose whole box lies AFTER every dump in its flag window (box start at or after the dump time); boxes before or containing a dump keep the dump hold whatever their shape. Dump times: QUALITY bit 32 from design stars' SPOC or TESS-SPOC files, one per sector (as rs025_dumps.py).
 - **Pass rule:** Tree rule 1 against B (P rises, upside-down background not higher, paired control passes in every bin). Reported beside it, not part of the rule: the real background change and the real : upside-down ratio of the untouched events DSp frees (DS: 30 : 4).
 - Script `research/stage3/rs031/rs031_dsp_bench.py` (RS-024 harness, own output files).
+
+## DSp bench result (read 10:44 pm; `dsp.json`, trials `data/rs031/dsp-trials.csv`)
+| Option | Dips / bumps new | P | Paired control | Background real / upside-down |
+|---|---|---|---|---|
+| B (adopted set) | 525 / 513 | 0.4811 | passes | 174 / 79 |
+| B+DS | 545 / 531 | 0.4998 | passes | 204 / 83 |
+| B+DSp | 529 / 519 | 0.4847 | passes | 176 / 80 |
+Identity: B and B+DS reproduce RS-029 and Codex 013 exactly.
+**Verdict: DSp FAILS the rule as written** (upside-down 79 to 80; a miss of 1, inside counting error, Poisson sd about 9; not called a pass). P +0.36 points (+4 dips).
+**What it shows (CONFIRMED counts):** the after-dump relief is balanced (frees 2 real and 1 upside-down untouched events, against DS's 30 and 4) but small. 16 of DS's 20 extra dips come from boxes before or containing a dump, the same zone as its one-sided artefacts. So no time cut around the dump separates planets from artefacts; separating them needs a measure of the wobble itself (PSF width, centroid scatter or quaternions, Q3). For Fable: DS in any time-cut form is not the route to 0.50; FIX 94 (eclipse timing, about 23 planets) remains the biggest lever, and a jitter-based dump test is a later build (filed idea, node 1.6).
