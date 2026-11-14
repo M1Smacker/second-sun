@@ -3,7 +3,7 @@
 **Started 13 Nov 2026 (Ahmed's decision, question round after the T156 result).** Every bug, fix, study, build and idea hangs under exactly ONE node here. The fix and build queues are storage, grouped by these same node numbers. **Nothing is filed without a node**, and `research/tree/tree_check.py` fails if an item has no place. Only the ACTIVE path is worked on; NEXT waits its turn; WAITS names what it waits for; PARKED sleeps until a node above wakes it.
 
 **Rules of the Tree**
-1. **The scoreboard decides Petrova work.** A Petrova change counts only if the fixed T156 test (2,000 planted planets, raw light) shows more planets reaching tier 1 *without* more upside-down false alarms. No bench result, no change.
+1. **The scoreboard decides Petrova work.** A Petrova change counts only if the fixed T156 test (2,000 planted planets, raw light) shows more planets reaching tier 1 *without* more upside-down false alarms. No bench result, no change. **Amended by Ahmed, 14 Nov 2026 (RS-024): a FAIRNESS fix also counts** when it makes a failing paired dip-against-bump control pass, adds NO upside-down false alarms, and costs at most about 0.5 points of planet P (example: dominated option OAE, -2 of 1,098 planets, background unchanged).
 2. **Biggest loss first.** Branch 1 nodes are ordered by how many planets they lose on the scoreboard.
 3. **Outside audits (Codex, Fable) only at a version freeze**, not after every fix. Bugs found between freezes are filed on their node and wait their turn unless they break a running result.
 4. **One active path at a time.** A new finding goes on its node; it does not jump the queue unless it is bigger than the active loss.
@@ -24,15 +24,18 @@ Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST
 **Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS).
 **Codex 005 findings:** A: the +59/-6 real-side change is NOT eclipse leftovers (54 of 56 classifiable sit 2+ eclipse widths away), spread over 33 stars, cause UNCERTAIN, no narrower lock supported. B (node 1.5): all 19 short-period misses are below SNR 7; depth survives detrending; higher noise in short binaries is LIKELY the cause (median best SNR 6.2 vs 9.3, scatter 3,070 vs 2,221 ppm); binary-phase origin UNCERTAIN; ceiling 7.9 points. C (node 1.2): of 52 window losses, 15 are true archive gaps, 21 lost at load, 16 have usable data before the window rule; ceiling 2.6 to 7.0 points. Needed for GO: +16.7 points and a lower bound of 40%; the two biggest ceilings together give 14.9 points even if perfect.
 
-## Road ahead (Claude's estimate, 13 Nov 2026; Codex rounds counted, not promised)
-1. **Brief 006** (running next): planet-level P decides G1. One round.
-2. **One or two fix rounds** on what 006 finds (likely the multi-transit combination, if it helps). One to two rounds.
-3. **T109 real known-planet check** (synthetic bench against real planets), after 006 and its fixes, before the freeze (Ahmed agreed 14 Nov).
-4. **Freeze Petrova 1.1** (all accepted fixes into the real code, two proofs, outside audit by Fable or Codex). One round.
-5. **G1 preparation and the one-shot G1 search**, then the plain verdict. One to two rounds.
-6. **Housekeeping phase** (Ahmed, 14 Nov): fix every bug on the chain Census uses, build the kept tasks (Tree home page, control room, learning rebuild, F4), archive the rest.
-7. **Census** (new fuel, about 1,400 stars), (the learning rebuild and the Tree home page move into step 6).
-About 4 to 6 more Codex rounds before G1, roughly one to two weeks at this pace if both meters allow.
+## Road to G1 (Claude, 14 Nov 2026, 12:30; replaces the 13 Nov estimate)
+Done 3 of 9: [###......]
+1. DONE: planet-level P measured, two keys (0.48, FIX FIRST).
+2. DONE: T109 known planets (TOI-1338 b found, the other missed; Codex second key with scope corrections).
+3. DONE: RS-024, root cause of "dominated" (fairness fix OAE found; cannot lift P by itself).
+4. Codex brief 009: second key on RS-024 and OAE on the T156 bench; adopt under the amended rule. One round.
+5. RS-025 (Claude): research the flags that hold found planets (step, gap/dump, ramp; FIX 92), own data first, then preregistered tests. One stint.
+6. Fix rounds until P reaches 0.50 with no more false alarms, Codex second key each. One to three rounds: the biggest unknown.
+7. Freeze Petrova 1.1 (two proofs, outside audit).
+8. Re-measure P on frozen 1.1 and re-check the known planets: GO or not.
+9. Finish and freeze the G1 preregistration (Ahmed approves), prepare the Search window, Ahmed's go, run G1 once.
+After G1: housekeeping phase, then Census (unchanged).
 
 ## Triage of 14 Nov 2026 (Ahmed approved; file `research/tree/TRIAGE-2026-11-14.md`)
 Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148); merged 8 into 4 (T51 and T53 into T159, T106 into T141, T128 into T142, T57a to T58b into T57); parked 17 with a wake-up trigger; the rest keep a phase: NOW (Petrova via Codex), G1 PREPARATION, HOUSEKEEPING PHASE (after G1, before Census: fix every bug on the chain Census uses, build what is kept, archive the rest), CENSUS. Node lists below may still name dropped tasks; the build queue is the source of each task's status. No cap on the queue size (Ahmed).
