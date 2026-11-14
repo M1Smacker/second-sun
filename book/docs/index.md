@@ -9,7 +9,7 @@ Ahmed, this is your book: the diary of everything we do while hunting for planet
 !!! plain "Where you are"
     <!-- ss:progress-line -->
 
-    **Two-minute recap (11 Nov 2026):** the new filter, Petrova 1.0.0, is frozen and searched the hidden light of 803 binary stars. Real dips did not beat the control: nothing found, no leads. The test is weak for slow binaries; the Kepler list comes next. Begin with [Start here](start/index.md).
+    **Two-minute recap (14 Nov 2026):** we planted 1,250 test planets in real light, every transit in every sector. About one in two (0.48) reaches the top list, just under our 0.50 bar, so we fix before the next hunt. Two real known planets: one found, one held back. Begin with [Start here](start/index.md).
 
 <!-- ss:mission-bar -->
 

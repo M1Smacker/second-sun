@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 2.11.4 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
+| The book | 2.11.5 | 2.4.0 (kept before the redesign) | it changes often and you read it daily |
 | Learning track | 1.11 | 1.3 | a "level done" mark means what the level contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -110,6 +110,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.2 | 11 Nov | New field note (Re-search 1: the hidden light searched again, nothing found, how to read a null); the Search window note and the home recap updated; a seventh check after level 6 in the learning track (track 1.11) |
 | 2.11.3 | 13 Nov | Fixes: Vesper 0.8.1 is marked as used once, for the G3 search; the 11 Nov field note now gives the corrected G2 power (3.3 to 3.7) |
 | 2.11.4 | 14 Nov | Fix: the 24 Oct field note now gives the Eyes test counts as they are (16 feedback checks, 18 mutations; it said 14 and 14) |
+| 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.9.10 | 4 Nov | Wording corrected after a tilt test (our nulls are consistent with Kepler's rate in most, not all, of the cases tried); two claims upgraded to verified (STANLEY, Planet Hunters PH1 b) |
 | 2.9.9 | 4 Nov | Seven new facts on the claims page (target-list counts, the 10% occurrence rate, the transit-geometry formula, Gaia counts, the geometry probe, the fetch speed test, the pooled false-alarm rate), each with its label and source |
 | 2.9.8 | 4 Nov | Field note 4 Nov extended (the transit-geometry probe: the null is consistent with Kepler's rate; fetching the light is cheaper than G3 suggested); recap refreshed; an eleventh check after level 5 and a longer tenth (track 1.10) |
