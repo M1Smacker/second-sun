@@ -19,7 +19,7 @@ Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**,
 Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST** under `research/stage3/G1-PLANET-BAR.md` (GO needs 0.50); no bin under 0.20. Check: `research/stage3/006-check/P-CHECK-2026-11-14.md`.
 
 ## ACTIVE path now
-1. **Now (15 Nov 2026, early afternoon): the audit's bug fixes are in Book 3.3.0, checked in Chrome and Safari's engine before every publish; the Tree is being rebuilt to ChatGPT mockup A (golden vine, side panel, no zoom) and waits for Ahmed's look.** The hunt stays paused so Ahmed can learn first; it resumes at a learning milestone, when he says so (state in HUNT-PAUSED.md).
+1. **Now (15 Nov 2026, afternoon): the bug fixes are live in Book 3.3.0; the new Tree, built to the mockup Ahmed chose, goes live next.** The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).
 2. **Active: Book 3.0 and the learning rebuild (node 4.1).** The Tree page, the learning app and the first lessons; plan `research/stage3/BOOK3-BUILD-PLAN-2026-11-15.md`, decisions `research/stage3/REDESIGN-DECISIONS-2026-11-15.md`.
 
 **Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS). **Update 14 Nov 2026, 10:18 pm: adopted set (not frozen) = repeater rule b + FIX 91 + OAE (Codex 009) + known spacecraft events flag FIX 95 (Ahmed's yes, two keys: RS-029, Codex 013). On it: P 48.11%, T156 reference R 34.21%, background 174 real / 79 upside-down. DS held for Fable (frees mostly pre-dump real events the upside-down meter cannot see).**
