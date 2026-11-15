@@ -37,7 +37,11 @@ Build the current main with `D:\second-sun\.venv-docs\Scripts\mkdocs.exe build -
    - the theme switch;
    - offline (service worker);
    - the 404 page and /v2/.
-4. **Claude's release gates.** Run `release_gates.mjs` and `webkit_gates.mjs` (research/burn-3-book/tools) on your build. Then ask what they CANNOT see: name at least three reader problems they would miss and show whether any exists now.
+4. **Three more changes in 3.4.0 (Claude, 15 Nov 2026 afternoon).**
+   - **Light mode is now a soft sky blue with white cards** (extra.css tokens). Check readability in both themes on every page, with special care for the Tree's gold and any element that hard-coded white or the old near-white.
+   - **The Eyes, rehearsal and Search window scripts now load only on their own pages** (overrides/main.html, T161). Check those three pages still work locally, offline and with JavaScript off, and that no other page lost a feature. Never use the cloud modes.
+   - **The ten Book 2 labs left Book 3.** Their links and old addresses now go to /v2/labs/. Check every lab link and redirect lands on the right v2 lab.
+5. **Claude's release gates.** Run `release_gates.mjs` and `webkit_gates.mjs` (research/burn-3-book/tools) on your build. Then ask what they CANNOT see: name at least three reader problems they would miss and show whether any exists now.
 
 ## Report
 `research/astra/reports/021-report.md`:
