@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T14:12",
+ "generated": "2026-11-15T14:13",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -22,7 +22,7 @@
    "title": "repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, stage3_core.py 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags)"
   }
  },
- "now": "15 Nov 2026, afternoon: the bug fixes are live in Book 3.3.0; the new Tree, built to the mockup Ahmed chose, goes live next. The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).",
+ "now": "15 Nov 2026, afternoon: Book 3.4.0 brings the new Tree (the mockup Ahmed chose), a sky-blue light mode and faster pages; the 32 audit bugs are fixed. The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).",
  "nodes": [
   {
    "id": "1",
