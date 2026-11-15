@@ -52,7 +52,7 @@ def binned(t, f, minutes):
     for i in np.unique(k):
         m = k == i
         if m.sum() >= 3:
-            tt.append(t[m].mean()); ff.append(np.median(f[m]))
+            tt.append(t[m].mean()); ff.append(f[m].mean())   # plain average, the same operation lesson 1.3 teaches (Codex 017)
     return np.array(tt), np.array(ff)
 
 

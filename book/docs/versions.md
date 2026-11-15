@@ -6,8 +6,8 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 3.0.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
-| Learning (Twinlight) | 1.0 (lessons 1.1 to 1.3) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
+| The book | 3.1.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
+| Learning (Twinlight) | 1.1 (lessons 1.1 to 1.4) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
 Version numbers follow one rule: the first number changes when the old and new results or pages are no longer directly comparable, the second when something is added, the third for fixes that change no result.
@@ -113,6 +113,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
 | 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
+| 3.1.0 | 15 Nov | Lesson 1.4 (what a dip looks like, on the planet's real dips); lessons 1.1 to 1.3 corrected after Codex's independent fact-check (plain averages instead of medians in the plots, so the noise numbers are now 357 and 233 ppm; the pair's combined light; bell-shaped noise; the drift's size; claims that were too strong); phone fix for long formulas; Tree search box 44 px |
 | 3.0.0 | 15 Nov | Book 3.0: the Tree is the home page (mission and journey views, built from the drop box); Twinlight, the new textbook app, with its first three lessons on real TESS light; night observatory look in blue, new logo and opening; the menu is Tree, Learning and the Shelf; Book 2 kept whole at /v2/ and old links redirect |
 | 2.12.0 | 14 Nov | New field note (14 Nov: momentum dumps and the fairness check's blind spot), glossary word 'aperture loss', late-night recap |
 | 2.11.6 | 14 Nov | Three wording fixes from the number audit: 32 (not 34) against 13 on 11 Nov; the 0.58 against 0.95 sizes on 10 Nov; the slow-binary sentence in the correction box (8 pages) |

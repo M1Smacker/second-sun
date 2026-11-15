@@ -22,22 +22,22 @@ This picture is called a **light curve**. It is the simplest thing an astronomer
 The telescope is TESS, a NASA satellite launched in 2018 that watches large patches of sky for about four weeks at a time. One of those four-week stretches is called a **sector**. This plot is sector 44, taken in October and November 2021.
 
 <aside class="tw-mn" markdown>
-**Sector.** One stretch of about 27 days when TESS points at the same patch of sky. This one has 24 days of good data because of a gap in the middle, when the data are sent down to Earth.
+**Sector.** One stretch of about 27 days when TESS points at the same patch of sky. The light in this file runs over 24 days, with a gap of almost 3 days in the middle while the data are sent down to Earth.
 </aside>
 
-The star is called TIC 172900988. That long number is its entry in the TESS Input Catalog, the telescope's list of stars. You cannot see it with your eyes, but a small telescope would find it easily. And it is not one star. It is two stars, so close together that TESS sees them as one point of light. They circle each other every 19.7 days. Once per orbit, one star passes in front of the other, and from here we see less light. That is what the deep drops are: **eclipses**.
+The star is called TIC 172900988. That long number is its entry in the TESS Input Catalog, the telescope's list of stars. You cannot see it with your eyes, but a small telescope would find it easily. And it is not one star. It is two stars, so close together that TESS sees them as one point of light. They circle each other every 19.7 days. Twice in each orbit one star passes in front of the other (first one way round, then the other), and from here we see less light. That is what the deep drops are: **eclipses**.
 
 <aside class="tw-mn" markdown>
 **Eclipse.** One object passing in front of another and blocking part of its light.
 </aside>
 
-There is a third thing in this system, too: a planet as big as Jupiter that circles both stars. Astronomers found it in 2021 from this same kind of light curve. It does not cross the stars in this sector, so you will not see it here. We will come back to it.
+There is a third thing in this system, too: a planet as big as Jupiter that circles both stars. Astronomers found it in 2021 from this same kind of light curve, taken in an earlier sector. No crossing of it stands out in this plot. You will meet its real dips in lesson 1.4.
 
 ## From counts to a percentage
 
-TESS does not measure "brightness" directly. Its camera counts the light that lands in a few pixels around the star, every 2 minutes. For this star the usual count is about 22,437 units each second. That number on its own means little: a brighter star gives a bigger number, a fainter one a smaller number.
+TESS does not measure "brightness" directly. Its camera counts the light that lands in a few pixels around the star, every 2 minutes. For this star the usual count is about 22,437 units each second (the units are electrons freed in the camera by the light, after the pipeline's corrections). That number on its own means little: a brighter star gives a bigger number, a fainter one a smaller number.
 
-So the first thing anyone does with a light curve is to compare every point with the star's normal light. We call a point's light \(F\) and the star's normal light \(F_{\text{normal}}\). Their ratio, \(F / F_{\text{normal}}\), is 1 when the star looks normal and less than 1 when something blocks it. Subtract 1 and multiply by 100, and you have the change in percent:
+So the first thing anyone does with a light curve is to compare every point with the star's normal light. We call a point's light \(F\) and the star's normal light \(F_{\text{normal}}\). Their ratio, \(F / F_{\text{normal}}\), is 1 when the star looks normal and less than 1 when it looks fainter. Fainter can mean something blocked the light, as in an eclipse, but also a spot on the star, a wobble of the spacecraft or plain noise (lesson 1.3); telling these apart is much of the work. Subtract 1 and multiply by 100, and you have the change in percent:
 
 \[ \text{change (\%)} = \left( \frac{F}{F_{\text{normal}}} - 1 \right) \times 100 \]
 
@@ -85,7 +85,7 @@ The shape tells a story. The light does not switch off and on. It slides down as
 
 ## In a few sentences
 
-A light curve is a star's brightness against time. We divide every point by the star's normal light so that 1 (or 0%) means normal and anything lower means something blocked some light. This pair of stars blocks up to 45% of its own light once per orbit; a planet blocks far, far less, which is why the next lessons are about small numbers and about noise.
+A light curve is a star's brightness against time. We divide every point by the star's normal light so that 1 (or 0%) means normal and anything lower means the star looked fainter. In an eclipse, this pair of stars loses up to 45% of its combined light; a planet blocks far, far less, which is why the next lessons are about small numbers and about noise.
 
 ## Problems
 
@@ -116,19 +116,19 @@ Ratio: \(19{,}800 / 20{,}000 = 0.99\). Subtract 1: \(-0.01\). Times 100: \(-1\%\
 
 A day has \(24 \times 60 = 1{,}440\) minutes. One point every 2 minutes gives \(1{,}440 / 2 = 720\) points.
 
-(This sector has 15,243 good points over 24 days, a little fewer than \(24 \times 720 = 17{,}280\), because some points are flagged as bad and removed.)
+(This sector has 15,243 good points over 24 days, fewer than \(24 \times 720 = 17{,}280\), mostly because of the almost 3-day gap in the middle while the data are sent to Earth, and partly because some points are flagged as bad and removed.)
 
 </details>
 </div>
 
 <div class="tw-prob" data-answer="11.87" data-abs="0.03" data-unit="days" data-hints='{"9.85":"Half of 19.7 days would be 9.85. The real gap is different: read it from the times given."}' data-why="2519.27 minus 2507.40 = 11.87 days." markdown>
-**4.** On the TESS clock, the bottoms of the two eclipses are at day 2507.40 and day 2519.27. How many days apart are they?
+**4.** On the TESS clock, the middles of the two eclipses (halfway through the time the light stays below 90% of normal) are at day 2507.40 and day 2519.27. How many days apart are they?
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
 \(2519.27 - 2507.40 = 11.87\) days.
 
-Here is a puzzle to keep: the stars take 19.7 days to go round, so you might expect the two eclipses to be half of that, 9.85 days, apart. They are not. The orbit is not a circle but a stretched oval, so one half of it is travelled faster than the other. Unit 3 shows how astronomers read that from this one gap.
+Here is a puzzle to keep: the stars take 19.7 days to go round, so you might expect the two eclipses to be half of that, 9.85 days, apart. They are not. The orbit is not a circle but a stretched oval, so one half of it is travelled faster than the other (how uneven the gap looks also depends on the angle we see the oval from). Unit 3 shows how astronomers read that from this one gap.
 
 </details>
 </div>

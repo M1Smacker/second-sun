@@ -5,7 +5,7 @@ title: "1.2 Percent and parts per million"
 
 # Percent and parts per million
 
-In the last lesson one star hid 45% of the other's light. Planets are far gentler. Here is the same pair of stars again, at the scale you will need for planets.
+In the last lesson the pair of stars lost 45% of its combined light in an eclipse. Planets are far gentler. Here is the same pair of stars again, at the scale you will need for planets.
 
 <div class="tw-plot" data-src="u1-quiet-day"></div>
 
@@ -48,7 +48,7 @@ So \(1\% = 10{,}000\) ppm, and the Earth's dip across the Sun is \(0.0000840 \ti
 
     **Step 4. Into ppm.** \(0.00556 \times 1{,}000{,}000 = 5{,}560\) ppm, which is 0.56%.
 
-    In the real system the second star adds its light too, so the planet's dip is diluted: it shows up at roughly half that depth. Unit 3 explains dilution properly. Either way, compare it with the eclipse: 0.56% against 45%. The planet's dip is about 80 times smaller.
+    In the real system the second star adds its light too, so the planet's dip is diluted: it shows up at roughly half that depth. Unit 3 explains dilution properly. Compare even the undiluted 0.56% with the eclipse's 45%: the planet's dip is about 80 times smaller, and the real, diluted one smaller still.
 
 !!! question "Your turn, half done: Jupiter across the Sun"
     Jupiter is 11.21 Earths wide; the Sun is 109.08. Step 1: \(11.21 / 109.08 = 0.1028\). Steps 2 and 3 are yours: square the ratio and turn it into ppm.
@@ -69,11 +69,11 @@ The rule: **depth is the radius ratio squared.** That is why Jupiter's dip (abou
 
 The same conversion works on any point of a light curve. If a point sits at \(F / F_{\text{normal}} = 0.9988\), it is \(1 - 0.9988 = 0.0012\) below normal: 0.12%, or 1,200 ppm.
 
-Now look again at the quiet day at the top of this lesson. Nothing is crossing either star, yet the points scatter by a few thousand ppm. A dip from an Earth-sized planet (under 100 ppm around a star this size) would be invisible in any single point. Finding planets is the art of seeing small dips through that scatter. That is the next lesson.
+Now look again at the quiet day at the top of this lesson. No eclipse happens on this day, yet the points scatter by up to about 3,500 ppm either side of normal. A dip from an Earth-sized planet (under 100 ppm around a star this size) would be invisible in any single point. Finding planets is the art of seeing small dips through that scatter. That is the next lesson.
 
 ## In a few sentences
 
-A planet blocks the fraction \((R_p / R_\star)^2\) of its star's light. For planets that fraction is tiny, so we write it in parts per million: 1% is 10,000 ppm. Jupiter across the Sun is about 10,600 ppm, the Earth only 84 ppm.
+A planet blocks the fraction \((R_p / R_\star)^2\) of its star's light. For planets that fraction is tiny, so we write it in parts per million: 1% is 10,000 ppm. Jupiter across the Sun is about 10,600 ppm, the Earth only 84 ppm. (All of this is for a planet in front of one star whose light we see alone; around two stars the depth is diluted, as Unit 3 shows.)
 
 ## Problems
 
