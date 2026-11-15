@@ -1,3 +1,11 @@
+## LATEST (15 Nov 2026, 7:40 pm Kuwait): RS-038 tasks A to C done; Fable brief F2 and F4 sharpened
+- Ahmed (7:13 pm): run all three, Codex status first. Codex 024 at 7:14 pm: generation G3 done, G2 3,845 of 7,253; Codex 5-hour 22%, weekly 18%.
+- A (jitter, `data/rs037/jitter.py`, metric fixed first): dump-flagged false alarms J 12+ 12%, planted dips 3%; J 5+ 51% vs 30%; arms symmetric; QLP uses SAP_X/SAP_Y. Partial; combine with cross-star and vouching. Aperture test (QLP SML/LAG) needs injection into all apertures to bench fairly.
+- B (`data/rs037/neverscored.py`, `phase.py`): 1,271 never-scored crossings = 76 quality-only (stray light 32), 308 failed prepare (no safe windows 165, too little data after masking 143), 887 good data cut inside the chain; about 220 at eclipse times, so about 600 good-data crossings away from eclipses lost for an unnamed reason. F2's first target.
+- C: TESS DRN S1, S14, S56 downloaded to data/tess-drn (9.7 MB, logged): dump about 5 min, stable after 10 min, flags with 20 min buffer; S56 one dump per orbit at data start. Our 0.5 d pre-dump window has no support beyond Year 1 jitter.
+- Findings `research/stage3/rs038/KEEP-PLANETS-THROUGH-VETTING-2026-11-15.md`. Meter 65% at 7:36 pm.
+- Open: Codex 024 running, 025 after; Fable Monday go; universe lesson pick.
+
 ## LATEST (15 Nov 2026, 7:05 pm Kuwait): RS-038 done; 3-point task list offered, NOT run
 - Ahmed (6:54 pm): second, different research round with full papers; then real tasks costing about 3 weekly points to reach 67% today; do not run them until he says.
 - RS-038 `research/stage3/rs038/KEEP-PLANETS-THROUGH-VETTING-2026-11-15.md`: blanket dump hold (0.25 d after to 0.5 d before bit-32 cadences) covers 20% of Sector 1 to 26 data, 7.5% later; mono-cbp's cross-star check costs a few per cent of planted transits; TOI-1338 b team used per-pixel jitter tests; all 443 checked SPOC/TESS-SPOC files have centroid columns; TOI-1338 b lost 3 crossings to a stray-light quality cut in mono-cbp; published per-transit efficiency 0.41 to 0.61 for our depths. F4 in Fable's brief strengthened.
