@@ -2,6 +2,8 @@
 
 **Verdict: our biggest single planet loss is a blanket rule the field does not use. We hold every dip that falls 0.25 d after to 0.5 d before a thruster firing (momentum dump) at tier 2; that window covers about 20% of all data in Sectors 1 to 26 and about 7.5% later. mono-cbp instead uses a cross-star coincidence check that costs only "a few per cent" of planted transits, a 4-shape model comparison for steps, and the TOI-1338 b team used a pixel test (jitter makes dips in some pixels and bumps in others). Our files already carry the star-position columns such a test needs.** (CONFIRMED for the papers and our files; LIKELY for the gain.)
 
+**Trace (7:40 to 8:45 pm): the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of stars in recent sectors; about 1.7 points of P (up to 6.4); see 'FOUND' below.**
+
 **Tasks A to C (7:13 to 7:40 pm, Ahmed's go):** (A) star-position jitter separates dump false alarms from planted dips only partly (J 12+: 12% of false alarms, 3% of dips), so it is one signal to combine, not the fix; (B) of 1,271 never-scored crossings, about 600 had good data, away from eclipses, in prepared sectors, and were cut for an unnamed reason: the biggest silent loss found, now F2's first target; (C) TESS release notes put dump disturbance at tens of minutes, not half a day; from Sector 56 one dump per orbit, at the start of data collection.
 
 ## Full paper read: mono-cbp (Davies, Brown, Gill, French 2026, [arXiv 2604.09435](https://arxiv.org/html/2604.09435v1)), sections 2 to 8 and Appendix A
@@ -52,6 +54,28 @@ Of 1,271 crossings that fall inside observed data but never got a score:
 - The rest, about **600 crossings with good data, prepared, not near an eclipse, still never scored**, is the largest unexplained silent loss in the project. Candidates: the safe-windows rule, the choice of the single scored product (another product had data), gap-edge trimming. This is F2's first target and the most promising "second F-01".
 - 308 crossings sit in star-sectors that fail to prepare: "no safe windows" (165) is a rule we chose, not physics. Overlaps Astra 025 (load losses on T156).
 - Stray light (bit 13) removes 32 crossings; small here, but mono-cbp lost three TOI-1338 b crossings this way.
+
+## Trace: which step drops each never-scored crossing (Ahmed's go 7:40 pm; read-only replay of the frozen chain, `data/rs037/replay.py`, outputs `replay-g2.txt`, `replay-g3.txt`)
+Replayed load (hard quality mask), safe windows (QLP), Petrova eclipse mask (p1), and the score step, for all 1,292 never-scored crossings (G2 931, G3 361):
+
+| First step that drops it (best product) | G2 | G3 | Total | Share |
+|---|---|---|---|---|
+| Eclipse mask, or too little data left after it | 481 | 45 | **526** | 41% |
+| No finite score (sector edge, gap, box does not fit) | 179 | 69 | 248 | 19% |
+| Safe windows (QLP only) | 126 | 109 | 235 | 18% |
+| Best-product table has no entry for that star-sector | 75 | 117 | 192 | 15% |
+| Kept to the score step (capture mismatch) | 49 | 11 | 60 | 5% |
+| Load (hard quality mask, NaN flux) | 21 | 10 | 31 | 2% |
+
+- In 124 cases another product kept the crossing to the score step; the bench captured only the table's best product.
+- **Correction to RS-037:** part of the "never scored" pool (13.8 points) is a measurement gap of the bench (best product missing from the table: 192; capture mismatch: 60; another product kept it: 124), not a planet loss of the search: the real search scans every product. The true never-scored loss is smaller than 13.8 points (UNCERTAIN how much; up to about a quarter of the pool is bench artefact). B's own recovery flag is unaffected.
+- **The eclipse mask drops 526 crossings, far more than the about 220 that sit at eclipse times.** Measured next: how much of each sector the mask removes in those cases.
+
+## FOUND: a silent loss in the Petrova eclipse mask (CONFIRMED as a mechanism; LIKELY as a planet cost) (`replay_mask.py`, `drift.py`, `drift_planets.py`)
+- In the 481 G2 crossings lost at the mask step, the mask removed a median 51% of the sector's windowed light; in 35% of cases over 90%; 31% left under 200 points (whole sector dropped). Binaries of 30 days or more: median 75% removed, while only 15% of the lost crossings sit near an eclipse. A correct eclipse mask removes a few per cent.
+- Cause: `pipeline/petrova_mask.py` `windows()` widens every catalogue eclipse window by a drift term `3 x sqrt(eT0^2 + (n x eP)^2)`, n = cycles since the catalogue epoch. Some catalogue period errors eP are huge (examples: TIC 453831755 P 20.2 d with eP 3.0 d; TIC 264679887 P 13.8 d with eP 0.58 d), so the window grows every year until it covers the whole orbit. Over 864 catalogue binaries the share with windows over half the orbit is 8% at BTJD 1500, 14% at 2500, 18% at 3500 (over 90%: 5%, 9%, 13.5%). The windows ignore the sector's own refit offset, which the repeat lane already computes (`refit`).
+- Planet cost on the 006 bench: 100 of 1,075 planets (9.4% of P weight) sit on stars whose windows are blown by drift (more than a quarter of the orbit added); only 126 of their 412 crossings were scored (31%, against 79% elsewhere), and B recovers 32% of them against 50% elsewhere. Realistic gain of a fix about 1.7 points of P (upper bound 6.4). The cost grows with newer sectors, which G1 will rely on.
+- Not physics, a rule: a "3 sigma" drift built on catalogue uncertainties that are themselves wrong. Fix candidates for Fable (bench copy, Tree rule 1): cap the drift term (for example at the width, or a fixed hours value); centre the windows on the sector's own refit offset; or drop the catalogue windows where the drift exceeds a share of the orbit and rely on the repeat lane. Each must be checked on both arms (a wider unmasked orbit may let eclipse residue in: RS-027 warns of deep eclipses at wrong catalogue times).
 
 ## Our data (CONFIRMED, `data/rs037/dumpcover.py`, 443 SPOC and TESS-SPOC files)
 - Share of cadences inside our dump window: Sectors 1 to 26 median 20.0% (90th percentile 28.3%); 27 to 55: 7.5%; 56 on: 7.3%.

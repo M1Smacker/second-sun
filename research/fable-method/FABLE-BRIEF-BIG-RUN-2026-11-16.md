@@ -45,6 +45,8 @@ On 10 Nov your audit found the bug that mattered most: the eclipse mask deleted 
 ## New bar (15 Nov, Ahmed)
 G1 GO now needs P at least 0.75 with lower bound at least 0.65 (`research/stage3/G1-PLANET-BAR-75-2026-11-15.md`). Judge F1 against it and say how far each candidate is from it. RS-037 puts the realistic ceiling of all known levers at about 0.71 to 0.74 (LIKELY), so say plainly if 0.75 is out of reach and what would change that.
 
+**F2 top lead (found 15 Nov, 8:40 pm, RS-038 trace):** the Petrova eclipse mask's catalogue drift term (`pipeline/petrova_mask.py` `windows()`, 3 x sqrt(eT0^2 + (n x eP)^2)) grows each year on bad catalogue period errors until windows cover the whole orbit: 18% of catalogue binaries over half the orbit by BTJD 3500; on the bench 100 planets on such stars get 31% of crossings scored (79% elsewhere), recovery 0.32 vs 0.50; realistic gain about 1.7 P points, up to 6.4, more in new sectors. Prototype the fix (cap, refit-centred windows, or repeat lane only) with a failing-first test, both arms, and the eclipse-residue control. Also: the trace shows about a quarter of the 'never scored' pool is a bench capture gap (best-product table), not a search loss.
+
 **F2 starting point from RS-038 task B:** of 1,271 planted crossings never scored (Astra 006), 887 had good data in a prepared sector and were removed inside the chain; about 220 of them sit at eclipse times (mask), so about **600 crossings with good data, away from eclipses, are lost for a reason nobody has named**: safe windows, the single scored product, or gap trimming. Another 308 sit in sectors that failed to prepare ('no safe windows' 165, 'too little data after masking' 143). Start there; scripts `data/rs037/neverscored.py` and `phase.py`.
 
 ## F4 (after F2)

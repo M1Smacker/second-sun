@@ -1,3 +1,8 @@
+## LATEST (15 Nov 2026, 8:45 pm Kuwait): trace done; FIX 101 found (eclipse-mask drift term)
+- Ahmed (7:40 pm): 'Yes, trace it'. Read-only replay of load, windows, Petrova mask, score (`data/rs037/replay.py`, `replay_mask.py`): of 1,292 never-scored crossings, mask 526 (41%), no finite score 248, safe windows 235, best-product table gap 192, capture mismatch 60, load 31; 124 kept by another product. So about a quarter of RS-037's 13.8-point pool is a bench capture gap, not a search loss.
+- FIX 101 (FIX-QUEUE, Tree node 1.2): `petrova_mask.windows()` drift term 3 x sqrt(eT0^2+(n eP)^2) on bad catalogue eP (up to 3 d) blows windows to the whole orbit; 18% of 864 catalogue binaries over half the orbit at BTJD 3500 (8% at 1500). Bench: 100 planets, 31% of crossings scored vs 79%, recovery 0.32 vs 0.50; about 1.7 P points, up to 6.4. Frozen file: fix only as a new version after the bench. Added as F2's top lead in Fable's brief.
+- Findings `research/stage3/rs038/KEEP-PLANETS-THROUGH-VETTING-2026-11-15.md`. Codex 024 still running.
+
 ## LATEST (15 Nov 2026, 7:40 pm Kuwait): RS-038 tasks A to C done; Fable brief F2 and F4 sharpened
 - Ahmed (7:13 pm): run all three, Codex status first. Codex 024 at 7:14 pm: generation G3 done, G2 3,845 of 7,253; Codex 5-hour 22%, weekly 18%.
 - A (jitter, `data/rs037/jitter.py`, metric fixed first): dump-flagged false alarms J 12+ 12%, planted dips 3%; J 5+ 51% vs 30%; arms symmetric; QLP uses SAP_X/SAP_Y. Partial; combine with cross-star and vouching. Aperture test (QLP SML/LAG) needs injection into all apertures to bench fairly.
