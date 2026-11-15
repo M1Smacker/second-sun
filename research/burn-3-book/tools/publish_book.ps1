@@ -61,7 +61,8 @@ Step "2b. Mission readiness rules still hold (negative and positive tests, run o
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_mission.py"
 
 Step "2b2. Tree builder: every unsafe or broken drop is refused, awkward files pass, 1,000 drops build fast (Book 3.0)"
-Run "$live\.venv-docs\Scripts\python.exe" "$srcesearch	ree	est_brain_build.py"
+Run "$live\.venv-docs\Scripts\python.exe" "$src\research\tree\test_brain_build.py"
+esearch	ree	est_brain_build.py"
 
 Step "2c. Colour contrast still 7:1 or better (high-contrast rule)"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_contrast.py"
