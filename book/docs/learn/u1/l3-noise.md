@@ -1,5 +1,5 @@
 ---
-hide: [navigation, toc, footer]
+hide: [toc, footer]
 title: "1.3 Noise: the spread of the points"
 ---
 

@@ -1,5 +1,5 @@
 ---
-hide: [navigation, toc, footer]
+hide: [toc, footer]
 title: "2.2 How long a dip lasts"
 ---
 

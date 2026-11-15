@@ -32,6 +32,17 @@
 .md-tabs__link { font-family: var(--ss-head); letter-spacing: .02em; opacity: .78; transition: opacity var(--ss-t1) var(--ss-e-out), color var(--ss-t1) var(--ss-e-out); }
 .md-tabs__link--active, .md-tabs__link:hover { opacity: 1; color: var(--ss-accent); }
 .md-tabs__item { position: relative; }
+/* FIX 99 M-02 (15 Nov 2026): the glass header takes the page colour, so its text must take the page text colour too
+   (Material kept the old light-on-dark --md-primary-bg-color; in daylight that was 1.14:1). */
+.md-header, .md-tabs { color: var(--ss-text); }
+.md-tabs__link { color: var(--ss-text-2); }
+.md-tabs__link--active, .md-tabs__link:hover { color: var(--ss-accent); }
+[data-md-color-scheme="default"] .md-search__input { background-color: var(--ss-surface); color: var(--ss-text); }
+[data-md-color-scheme="default"] .md-search__input::placeholder { color: var(--ss-text-3); }
+[data-md-color-scheme="default"] .md-search__icon { color: var(--ss-text-2); }
+/* FIX 99 M-01: the Tree and Twinlight keep the phone menu (front matter no longer hides navigation);
+   on a wide screen they still show no side list, as designed. */
+@media screen and (min-width: 76.25em) { body:has(#ss-tree, #tw-home, .tw-kicker) .md-sidebar--primary { display: none; } }
 .md-tabs__item--active::after { content: ""; position: absolute; left: .6rem; right: .6rem; bottom: 0; height: 2px; border-radius: 2px; background: var(--ss-accent); box-shadow: 0 0 10px var(--ss-glow); animation: ss3-grow var(--ss-t2) var(--ss-e-out) both; }
 @keyframes ss3-grow { from { transform: scaleX(0); opacity: 0; } }
 

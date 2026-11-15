@@ -1,5 +1,5 @@
 ---
-hide: [navigation, toc, footer]
+hide: [toc, footer]
 title: "1.1 A light curve"
 ---
 

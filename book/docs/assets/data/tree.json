@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T06:41",
+ "generated": "2026-11-15T10:50",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -287,6 +287,7 @@
    "detail": "FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T165 the G1 runner (not built: waits for the Petrova 1.1 freeze and the G1 preregistration; pins the G1 manifest hash for FIX 70); T130 number-to-file audit; T52 settings read from the run.",
    "history": [
     "d:2026-11-15-0008-fix83-test-runner",
+    "l:1",
     "d:2026-11-14-2309-t130-map",
     "d:2026-11-14-2308-t52-run-inputs",
     "l:25"
@@ -330,7 +331,7 @@
    "weight": 5,
    "status": "ACTIVE",
    "status_text": "ACTIVE: Book 3.0 and the learning rebuild (15 Nov 2026; the hunt is paused until a learning milestone).",
-   "detail": "T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign; FIX 97 (lab 9 example star is a blind G1 star; re-point before the G1 re-search); FIX 98 (Tree branches under 44 px while the canvas zooms to fit; flaky test); FIX 73 to 76 chips, Back button, voice, formulas.",
+   "detail": "T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign; FIX 97 (lab 9 example star is a blind G1 star; re-point before the G1 re-search); FIX 98 (Tree branches under 44 px while the canvas zooms to fit; flaky test); FIX 99 (Book 3 audit, 32 bugs, phone menu dead on the Tree and Twinlight, light header unreadable; waits for Ahmed's go); FIX 73 to 76 chips, Back button, voice, formulas.",
    "history": [
     "d:2026-11-15-0635-twinlight-factcheck",
     "d:2026-11-15-0429-twinlight-app",
@@ -672,7 +673,9 @@
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
-   "also": [],
+   "also": [
+    "3.2"
+   ],
    "date": "2026-11-15",
    "when": "2026-11-15T00:00",
    "status": "done",

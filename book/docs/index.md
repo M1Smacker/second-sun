@@ -1,5 +1,5 @@
 ---
-hide: [navigation, toc, footer]
+hide: [toc, footer]
 title: Second Sun
 ---
 

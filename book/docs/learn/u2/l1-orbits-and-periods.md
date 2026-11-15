@@ -1,5 +1,5 @@
 ---
-hide: [navigation, toc, footer]
+hide: [toc, footer]
 title: "2.1 Orbits and periods"
 ---
 
