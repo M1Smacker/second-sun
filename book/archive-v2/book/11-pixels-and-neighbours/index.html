@@ -1,0 +1,3130 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/book/11-pixels-and-neighbours/">
+      
+      
+        <link rel="prev" href="../10-vetting/">
+      
+      
+        <link rel="next" href="../../parts/part5/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>11. Pixels and neighbours - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../assets/shape.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <meta name="theme-color" content="#0c1018">
+  <link rel="apple-touch-icon" href="../../assets/icon-180.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-pixels-and-neighbours-is-the-dip-on-our-star" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.9 8.9-1.7 1-4-6.9 1.7-1zm-12.1-1 3 5.2 6.1-3.5-3-5.2zm1.6 4.8-2-3.5-4.3 2.5 2 3.5zm-9.3 1.9 1 1.7 2.6-1.5-1-1.7zm10-.6-.3-.4-4.3 2.5.3.4c.2.3.5.6.8.8L7 22h2l1.4-4.3h.1L12 22h2l-1.9-5.6c.5-.7.5-1.6 0-2.4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11. Pixels and neighbours
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../start/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Read
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../progress/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hunt
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/for-astronomers/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.9 8.9-1.7 1-4-6.9 1.7-1zm-12.1-1 3 5.2 6.1-3.5-3-5.2zm1.6 4.8-2-3.5-4.3 2.5 2 3.5zm-9.3 1.9 1 1.7 2.6-1.5-1-1.7zm10-.6-.3-.4-4.3 2.5.3.4c.2.3.5.6.8.8L7 22h2l1.4-4.3h.1L12 22h2l-1.9-5.6c.5-.7.5-1.6 0-2.4"/></svg>
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../start/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Read
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Read
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The learning track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/how-to-read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to read this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/story-so-far/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The story so far
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/first-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The first real search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/journey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the project unfolded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 · The sky and the data
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_7" id="__nav_1_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 · The sky and the data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-stars-names-missions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Stars, names and missions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-light-curves/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Light curves
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-our-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Our data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 · Two suns
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_8" id="__nav_1_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 · Two suns
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-two-suns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Two suns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-wandering-transits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Wandering transits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-orbits-three-body/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Orbits and the three-body problem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 · Finding dips
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_9" id="__nav_1_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 · Finding dips
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-noise-and-statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Noise and statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-our-detector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Our detector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-fake-planets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Fake planets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_10" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 · Is it real?
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_10" id="__nav_1_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 · Is it real?
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-vetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Vetting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Pixels and neighbours
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Pixels and neighbours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-the-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 The intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-the-scientific-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 The scientific meaning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-the-technical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 The technical explanation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.3 The technical explanation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dilution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dilution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-centre-of-the-light-centroid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The centre of the light (centroid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-shift-to-expect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What shift to expect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-honest-error-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An honest error bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-our-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Our implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115-worked-example-toi-1338s-crossing-on-16-december-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 Worked example: TOI-1338's crossing on 16 December 2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116-what-this-lets-us-conclude-and-what-it-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 What this lets us conclude, and what it doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117-check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 Check your understanding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part5/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 · The professionals' tool
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_11" id="__nav_1_11_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 · The professionals' tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-stanley/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. STANLEY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part6/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 · How the project runs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_12" id="__nav_1_12_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 · How the project runs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-your-workshop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Your workshop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-credit-and-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Credit and publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-mistakes-as-lessons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Our mistakes, as lessons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hunt
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hunt
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Field notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Field notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-the-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 The intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-the-scientific-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 The scientific meaning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-the-technical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 The technical explanation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.3 The technical explanation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dilution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dilution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-centre-of-the-light-centroid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The centre of the light (centroid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-shift-to-expect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What shift to expect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-honest-error-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An honest error bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-our-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Our implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115-worked-example-toi-1338s-crossing-on-16-december-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 Worked example: TOI-1338's crossing on 16 December 2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116-what-this-lets-us-conclude-and-what-it-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 What this lets us conclude, and what it doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117-check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 Check your understanding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../start/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Read
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../parts/part4/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Part 4 · Is it real?
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<nav class="ss-rail" aria-label="Where you are and the learning track"><div class="ss-rail__in"><p class="ss-rail__lab">Where you are</p><p class="ss-rail__here"><b>Chapter 11</b> · Pixels and neighbours<small>Level 6 · step 11 of 15 on the track</small></p><p class="ss-rail__lab">The track: 7 levels, in learning order</p><ol class="ss-rail__track"><li><a class="ss-rail__lv" href="../../learn/#l0"><span class="tag">L0</span>What a light curve is</a><em>Chapters <a href="../../book/01-stars-names-missions/">1</a>, <a href="../../book/02-light-curves/">2</a>, <a href="../../book/03-our-data/">3</a></em></li><li><a class="ss-rail__lv" href="../../learn/#l1"><span class="tag">L1</span>How big is the dip?</a><em>The Level 1 lesson</em></li><li><a class="ss-rail__lv" href="../../learn/#l2"><span class="tag">L2</span>From dip depth back to size</a><em>Parts of chapters 2 and 11</em></li><li><a class="ss-rail__lv" href="../../learn/#l3"><span class="tag">L3</span>Bright stars, faint stars, noise</a><em>Chapters <a href="../../book/07-noise-and-statistics/">7</a>, <a href="../../book/08-our-detector/">8</a></em></li><li><a class="ss-rail__lv" href="../../learn/#l4"><span class="tag">L4</span>Orbits, and why our dips wander</a><em>Chapters <a href="../../book/04-two-suns/">4</a>, <a href="../../book/05-wandering-transits/">5</a>, <a href="../../book/06-orbits-three-body/">6</a></em></li><li><a class="ss-rail__lv" href="../../learn/#l5"><span class="tag">L5</span>The fakes</a><em>Chapters <a href="../../book/09-fake-planets/">9</a>, <a href="../../book/10-vetting/">10</a></em></li><li class="cur"><a class="ss-rail__lv" href="../../learn/#l6"><span class="tag">L6</span>Two-key vetting</a><ul><li><a href="../../book/11-pixels-and-neighbours/" aria-current="page">11 Pixels and neighbours</a></li><li><a href="../../book/12-stanley/">12 STANLEY</a></li></ul></li><li><a class="ss-rail__lv" href="../../learn/#after"><span class="tag">+</span>Running the project</a><em>Chapters <a href="../../book/13-your-workshop/">13</a>, <a href="../../book/14-credit-and-publishing/">14</a>, <a href="../../book/15-mistakes-as-lessons/">15</a></em></li></ol><p class="ss-rail__lab">The 15 chapters, by fixed number</p><div class="ss-rail__nums"><a href="../../book/01-stars-names-missions/" title="1. Stars, names and missions">1</a><a href="../../book/02-light-curves/" title="2. Light curves">2</a><a href="../../book/03-our-data/" title="3. Our data">3</a><a href="../../book/04-two-suns/" title="4. Two suns">4</a><a href="../../book/05-wandering-transits/" title="5. Wandering transits">5</a><a href="../../book/06-orbits-three-body/" title="6. Orbits and the three-body problem">6</a><a href="../../book/07-noise-and-statistics/" title="7. Noise and statistics">7</a><a href="../../book/08-our-detector/" title="8. Our detector">8</a><a href="../../book/09-fake-planets/" title="9. Fake planets">9</a><a href="../../book/10-vetting/" title="10. Vetting">10</a><a href="../../book/11-pixels-and-neighbours/" title="11. Pixels and neighbours" aria-current="page">11</a><a href="../../book/12-stanley/" title="12. STANLEY">12</a><a href="../../book/13-your-workshop/" title="13. Your workshop">13</a><a href="../../book/14-credit-and-publishing/" title="14. Credit and publishing">14</a><a href="../../book/15-mistakes-as-lessons/" title="15. Our mistakes, as lessons">15</a></div><p class="ss-rail__small">Numbers are topics and never change. The track decides which to read next, so 7 comes before 4.</p><p class="ss-rail__lab">In this chapter</p><ol class="ss-rail__toc"></ol></div></nav>
+
+<nav class="ss-strip" aria-label="Where you are on the learning path"><p><a href="../../">Map</a> · <a href="../../learn/#l6">Level 6: Two-key vetting</a> · Step 11 of 15 on your path · Chapter 11, Part 4</p><ol><li class=""><a data-ch="1" href="../../book/01-stars-names-missions/" aria-label="Chapter 1: Stars, names and missions"></a></li><li class=""><a data-ch="2" href="../../book/02-light-curves/" aria-label="Chapter 2: Light curves"></a></li><li class=""><a data-ch="3" href="../../book/03-our-data/" aria-label="Chapter 3: Our data"></a></li><li class="ss-gap"><a data-ch="7" href="../../book/07-noise-and-statistics/" aria-label="Chapter 7: Noise and statistics"></a></li><li class=""><a data-ch="8" href="../../book/08-our-detector/" aria-label="Chapter 8: Our detector"></a></li><li class="ss-gap"><a data-ch="4" href="../../book/04-two-suns/" aria-label="Chapter 4: Two suns"></a></li><li class=""><a data-ch="5" href="../../book/05-wandering-transits/" aria-label="Chapter 5: Wandering transits"></a></li><li class=""><a data-ch="6" href="../../book/06-orbits-three-body/" aria-label="Chapter 6: Orbits and the three-body problem"></a></li><li class="ss-gap"><a data-ch="9" href="../../book/09-fake-planets/" aria-label="Chapter 9: Fake planets"></a></li><li class=""><a data-ch="10" href="../../book/10-vetting/" aria-label="Chapter 10: Vetting"></a></li><li class="ss-gap"><a data-ch="11" href="../../book/11-pixels-and-neighbours/" aria-label="Chapter 11: Pixels and neighbours" aria-current="page"></a></li><li class=""><a data-ch="12" href="../../book/12-stanley/" aria-label="Chapter 12: STANLEY"></a></li><li class="ss-gap"><a data-ch="13" href="../../book/13-your-workshop/" aria-label="Chapter 13: Your workshop"></a></li><li class=""><a data-ch="14" href="../../book/14-credit-and-publishing/" aria-label="Chapter 14: Credit and publishing"></a></li><li class=""><a data-ch="15" href="../../book/15-mistakes-as-lessons/" aria-label="Chapter 15: Our mistakes, as lessons"></a></li></ol></nav>
+
+<h1 id="11-pixels-and-neighbours-is-the-dip-on-our-star">11. Pixels and neighbours: is the dip on our star?<a class="headerlink" href="#11-pixels-and-neighbours-is-the-dip-on-our-star" title="Permanent link">&para;</a></h1>
+<p class="ss-meta">Chapter 11 · about 20 min · Maths: weighted averages, fractions</p>
+
+<div class="ss-listen" hidden role="group" aria-label="Read this chapter aloud"><button type="button" data-say="play">Listen</button><button type="button" data-say="pause" hidden>Pause</button><button type="button" data-say="stop" hidden>Stop</button><label>Speed <select data-say-rate><option value="0.85">Slow</option><option value="1" selected>Normal</option><option value="1.2">Fast</option></select></label><span>Uses the voice on your own device.</span></div>
+
+<figure class="ss-dg"><svg viewBox="0 0 420 150" role="img" aria-label="Whose light dimmed? Look at the pixels."><title>Whose light dimmed? Look at the pixels.</title><rect x="150" y="15" width="22" height="22" class="g" /><rect x="174" y="15" width="22" height="22" class="g" /><rect x="198" y="15" width="22" height="22" class="g" /><rect x="222" y="15" width="22" height="22" class="g" /><rect x="246" y="15" width="22" height="22" class="g" /><rect x="150" y="39" width="22" height="22" class="g" /><rect x="174" y="39" width="22" height="22" class="g" /><rect x="198" y="39" width="22" height="22" class="g" /><rect x="222" y="39" width="22" height="22" class="g" /><rect x="246" y="39" width="22" height="22" class="g" /><rect x="150" y="63" width="22" height="22" class="g" /><rect x="174" y="63" width="22" height="22" class="g" /><rect x="198" y="63" width="22" height="22" class="g" /><rect x="222" y="63" width="22" height="22" class="g" /><rect x="246" y="63" width="22" height="22" class="g" /><rect x="150" y="87" width="22" height="22" class="g" /><rect x="174" y="87" width="22" height="22" class="g" /><rect x="198" y="87" width="22" height="22" class="g" /><rect x="222" y="87" width="22" height="22" class="g" /><rect x="246" y="87" width="22" height="22" class="g" /><rect x="150" y="111" width="22" height="22" class="g" /><rect x="174" y="111" width="22" height="22" class="g" /><rect x="198" y="111" width="22" height="22" class="g" /><rect x="222" y="111" width="22" height="22" class="g" /><rect x="246" y="111" width="22" height="22" class="g" /><circle cx="246" cy="75" r="7" class="fa"/><circle cx="318" cy="112" r="3" class="f"/><circle cx="246" cy="75" r="30" class="dash"/><text x="360" y="42" text-anchor="middle" class="sm">neighbour</text><text x="100" y="79" text-anchor="middle" class="sm">our star</text><line x1="318" y1="112" x2="345" y2="48" class="g"/></svg><figcaption>Whose light dimmed? Look at the pixels.</figcaption></figure>
+
+<div class="admonition abstract">
+<p class="admonition-title">1-minute summary</p>
+<ul>
+<li><strong>What:</strong> checking the pixels to see whether a dip sits on our star or on a faint neighbour.</li>
+<li><strong>Why:</strong> TESS pixels are big, so several stars share them.</li>
+<li><strong>You will be able to:</strong> say what "the centre of light moved" means and why it matters.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">The story</p>
+<p>On 16 December 2025 TOI-1338 b crossed, and the pixel test asked whose light had dimmed. The dimming sat on the target's own pixels, and the centre of light moved by 0.001 arcseconds, a tenth of the chance wobble <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20" data-cid="F-049" data-claim="Lab 7 on TOI-1338 sector 98: during the planet crossing the dimming sits on the target&#x27;s own pixels (brightest pixel row 4 col 4, most dimmed row 4 col 5); the light centre moved +0.001 and -0.000 arcseconds, 0.1 and 0.0 times the chance spread measured from 128 same-length windows; 8 catalogued stars brighter than Tmag 16 fall on the 11 x 11 pixels" data-src="Second Sun Lab 7 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. One TESS pixel spans about 21 arcseconds <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-024" title="VERIFIED · Ricker et al. 2015 (JATIS 1, 014003), arXiv:1406.0151 full text read 4 Nov 2026: each lens forms a 24 by 24 degree image on a four-CCD mosaic; each CCID-80 is a 2048 by 2048 array of 15 micron pixels; one pixel is 0.35 arcmin, which is 21 arcseconds · checked 2026-11-04" data-cid="F-024" data-claim="TESS has 4 cameras of 24 by 24 degrees, each with 4 CCDs of 2048 by 2048 pixels; each pixel covers about 21 arcseconds of sky" data-src="Ricker et al. 2015 (JATIS 1, 014003), arXiv:1406.0151 full text read 4 Nov 2026: each lens forms a 24 by 24 degree image on a four-CCD mosaic; each CCID-80 is a 2048 by 2048 array of 15 micron pixels; one pixel is 0.35 arcmin, which is 21 arcseconds" data-checked="2026-11-04">VERIFIED</a>, so neighbours crowd in, and eight catalogued stars share this 11 by 11 patch. The test says the dip belongs to our star.</p>
+</div>
+<div class="admonition plain">
+<p class="admonition-title">In plain words</p>
+<p><a href="../../glossary/#tess">TESS</a>'s pixels are big, so a dip in our star's <a href="../../glossary/#light-curve">light curve</a> could really come from a faint neighbour. We look at the pixels themselves to see where the dimming sits.</p>
+</div>
+<p><strong>What this chapter answers:</strong> how can a neighbour fake a planet, how do we tell, and what did TOI-1338's pixels say?</p>
+<h2 id="111-the-intuition">11.1 The intuition<a class="headerlink" href="#111-the-intuition" title="Permanent link">&para;</a></h2>
+<p>A street has three lamps close together, and you're measuring their combined glow from far away. The glow dips. Which lamp flickered? Take a photo during the dip and one before, subtract them, and the flickering lamp is the only one that shows up in the difference. Or watch the <strong>centre</strong> of the glow: if the left lamp dims, the glow's centre shifts right.</p>
+<h2 id="112-the-scientific-meaning">11.2 The scientific meaning<a class="headerlink" href="#112-the-scientific-meaning" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Big pixels.</strong> One TESS pixel is 21 <a href="../../glossary/#arcsecond">arcseconds</a> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-024" title="VERIFIED · Ricker et al. 2015 (JATIS 1, 014003), arXiv:1406.0151 full text read 4 Nov 2026: each lens forms a 24 by 24 degree image on a four-CCD mosaic; each CCID-80 is a 2048 by 2048 array of 15 micron pixels; one pixel is 0.35 arcmin, which is 21 arcseconds · checked 2026-11-04" data-cid="F-024" data-claim="TESS has 4 cameras of 24 by 24 degrees, each with 4 CCDs of 2048 by 2048 pixels; each pixel covers about 21 arcseconds of sky" data-src="Ricker et al. 2015 (JATIS 1, 014003), arXiv:1406.0151 full text read 4 Nov 2026: each lens forms a 24 by 24 degree image on a four-CCD mosaic; each CCID-80 is a 2048 by 2048 array of 15 micron pixels; one pixel is 0.35 arcmin, which is 21 arcseconds" data-checked="2026-11-04">VERIFIED</a>. Kepler-16 has 15 catalogued stars within 1 arcminute, 4 of them bright enough to matter <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-035" title="VERIFIED · Second Sun Lab 1 run, TIC via MAST, 2026-10-20 · checked 2026-10-20" data-cid="F-035" data-claim="Kepler-16 is TIC 299096355 = KIC 12644769 = Gaia DR3 2133476355197071616; TESS magnitude 10.94, 75 parsecs away; 15 catalogued stars sit within 1 arcminute, 4 of them less than 5 magnitudes fainter" data-src="Second Sun Lab 1 run, TIC via MAST, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. TOI-1338's 11 × 11 pixel stamp holds 8 stars brighter than <a href="../../glossary/#magnitude">magnitude</a> 16 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20" data-cid="F-049" data-claim="Lab 7 on TOI-1338 sector 98: during the planet crossing the dimming sits on the target&#x27;s own pixels (brightest pixel row 4 col 4, most dimmed row 4 col 5); the light centre moved +0.001 and -0.000 arcseconds, 0.1 and 0.0 times the chance spread measured from 128 same-length windows; 8 catalogued stars brighter than Tmag 16 fall on the 11 x 11 pixels" data-src="Second Sun Lab 7 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>.</li>
+<li><strong>Blends.</strong> A neighbour 5 magnitudes fainter gives 1% of the light. If it's an <a href="../../glossary/#eclipsing-binary">eclipsing binary</a> dipping by 20%, our light curve dips by 0.2%: exactly a planet-sized dip. This is one of the commonest impostors (Chapter 10, rule C6).</li>
+<li><strong>Dilution.</strong> Even when the dip <strong>is</strong> on our star, neighbours' light makes it look shallower, so the planet looks smaller. <a href="../../glossary/#spoc">SPOC</a> estimates the share of light that's really from the target (CROWDSAP): 0.89 for Kepler-16, 0.99 for TOI-1338 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-050" title="VERIFIED · Second Sun: read from the light-curve file headers, 2026-10-20 · checked 2026-10-20" data-cid="F-050" data-claim="SPOC estimates how much of the light in its aperture comes from the target (CROWDSAP): 0.89 for Kepler-16 (sector 82) and 0.99 for TOI-1338 (sector 98); PDCSAP light curves are corrected for this" data-src="Second Sun: read from the light-curve file headers, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. Cleaned <a href="../../glossary/#pdcsap-and-sap">PDCSAP</a> light curves are corrected for this; raw SAP ones aren't.</li>
+<li><strong>How professionals check.</strong> <a href="../../glossary/#kepler">Kepler</a>'s validation stage used <strong>difference images</strong> and <strong><a href="../../glossary/#centroid">centroid</a> offsets</strong> for every <a href="../../glossary/#candidate">candidate</a> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-051" title="VERIFIED · Opened 6 Nov 2026: Christiansen et al. 2013 abstract (arXiv:1303.0255: &#x27;injecting simulated transits into the pixel-level data&#x27;); Bryson et al. 2013 full text (arXiv:1303.0052: the photometric centroid technique and &#x27;the use of difference images to localize the transit signal source&#x27;); Twicken et al. 2018 full text (arXiv:1803.04526: the validation stage computes &#x27;difference images, difference image centroids, and centroid offsets&#x27;) · checked 2026-11-06" data-cid="F-051" data-claim="Kepler&#x27;s pipeline measured its own detection efficiency by injecting fake transits into real pixel data (Christiansen et al. 2013); its validation stage checks where a dip comes from with difference images and centroid offsets (Bryson et al. 2013; Twicken et al. 2018)" data-src="Opened 6 Nov 2026: Christiansen et al. 2013 abstract (arXiv:1303.0255: &#x27;injecting simulated transits into the pixel-level data&#x27;); Bryson et al. 2013 full text (arXiv:1303.0052: the photometric centroid technique and &#x27;the use of difference images to localize the transit signal source&#x27;); Twicken et al. 2018 full text (arXiv:1803.04526: the validation stage computes &#x27;difference images, difference image centroids, and centroid offsets&#x27;)" data-checked="2026-11-06">VERIFIED</a>. A centroid shift is a warning sign, not a verdict: it has to be compared with the shift you'd <strong>expect</strong> if the dip were on target.</li>
+</ul>
+<h2 id="113-the-technical-explanation">11.3 The technical explanation<a class="headerlink" href="#113-the-technical-explanation" title="Permanent link">&para;</a></h2>
+<h3 id="dilution">Dilution<a class="headerlink" href="#dilution" title="Permanent link">&para;</a></h3>
+<div class="ss-eq" data-eq="Eq. 11.1 · dilution">
+<p>observed depth = true depth × <em>f</em><sub>target</sub></p>
+</div>
+<ul>
+<li><em>f</em><sub>target</sub>: the target's share of the light in the <a href="../../glossary/#aperture">aperture</a>.</li>
+<li>Kepler-16 (<em>f</em> = 0.89): a true 1,000 <a href="../../glossary/#ppm">ppm</a> dip shows as 890 ppm. Ignore that, and the planet's size comes out √0.89 = 0.94 times too small.</li>
+</ul>
+<h3 id="the-centre-of-the-light-centroid">The centre of the light (centroid)<a class="headerlink" href="#the-centre-of-the-light-centroid" title="Permanent link">&para;</a></h3>
+<div class="ss-eq" data-eq="Eq. 11.2 · flux-weighted centroid">
+<p><em>x̄</em> = Σ <em>x</em><sub><em>i</em></sub> <em>F</em><sub><em>i</em></sub> / Σ <em>F</em><sub><em>i</em></sub></p>
+</div>
+<ul>
+<li>Each pixel's position <em>x</em><sub><em>i</em></sub> weighted by its light <em>F</em><sub><em>i</em></sub>: the balance point of the light.</li>
+</ul>
+<h3 id="what-shift-to-expect">What shift to expect<a class="headerlink" href="#what-shift-to-expect" title="Permanent link">&para;</a></h3>
+<p>Think of just two sources: our target (share <em>f</em><sub>t</sub>) and the neighbours lumped together (share <em>f</em><sub>o</sub>), a distance <em>d</em> apart. Working through Eq. 11.2 for a small dip of <a href="../../glossary/#depth">depth</a> δ (our own rough calculation):</p>
+<div class="ss-eq" data-eq="Eq. 11.3 · expected centroid shift">
+<p>dip on target: Δ<em>x̄</em> ≈ δ × <em>f</em><sub>t</sub> × <em>f</em><sub>o</sub> × <em>d</em>  ·  dip on a neighbour: Δ<em>x̄</em> ≈ δ × <em>f</em><sub>t</sub> × <em>d</em></p>
+</div>
+<ul>
+<li>If the target dims, the centre moves slightly <strong>away</strong> from it, toward the neighbours, by a tiny amount (<em>f</em><sub>o</sub> is small).</li>
+<li>If the neighbour dims, the centre moves <strong>toward</strong> the target, about 1 ÷ <em>f</em><sub>o</sub> times more. That difference is the whole test.</li>
+</ul>
+<h3 id="an-honest-error-bar">An honest error bar<a class="headerlink" href="#an-honest-error-bar" title="Permanent link">&para;</a></h3>
+<p>The light centre wobbles all the time: pointing jitter, slow drifts. Dividing the scatter by √<em>N</em> assumes <a href="../../glossary/#white-noise">white noise</a> (Chapter 7) and makes a shift look more significant than it is. Compass found that mistake in our first pixel script. The better way: slide a window of the same length over quiet stretches, measure the shift each time, and take the spread of those <strong>chance shifts</strong> as the error.</p>
+<h2 id="114-our-implementation">11.4 Our implementation<a class="headerlink" href="#114-our-implementation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>What</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research/wave-3-pipeline/toi1338_pixel_check.py</code></td>
+<td>first manual check: difference image + centroid shift</td>
+<td>error bar assumed white noise</td>
+</tr>
+<tr>
+<td><code>labs/lab7_pixels.py</code></td>
+<td>difference image, centroid shift with chance-spread error, neighbours from the TIC placed on the pixels with the file's sky map (WCS)</td>
+<td><strong>VERIFIED</strong> on TOI-1338</td>
+</tr>
+<tr>
+<td>automated pixel tool for G1 survivors, with the expected-shift model of Eq. 11.3</td>
+<td>Compass priority 3</td>
+<td>not tested (not built)</td>
+</tr>
+</tbody>
+</table>
+<p>Pixel files are about 50 MB per <a href="../../glossary/#sector">sector</a> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-026" title="VERIFIED · Second Sun wave 2 hands-on downloads · checked 2026-10-19" data-cid="F-026" data-claim="Measured on our PC: a ready-made TESS light curve is 0.7 to 2 MB per star per sector; a raw pixel cutout is about 11 to 50 MB" data-src="Second Sun wave 2 hands-on downloads" data-checked="2026-10-19">VERIFIED</a>, so we only fetch them for events that survive the earlier checks.</p>
+<h2 id="115-worked-example-toi-1338s-crossing-on-16-december-2025">11.5 Worked example: TOI-1338's crossing on 16 December 2025<a class="headerlink" href="#115-worked-example-toi-1338s-crossing-on-16-december-2025" title="Permanent link">&para;</a></h2>
+<p>From <a href="../../labs/lab7-pixels/">Lab 7</a>, run on your PC <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20" data-cid="F-049" data-claim="Lab 7 on TOI-1338 sector 98: during the planet crossing the dimming sits on the target&#x27;s own pixels (brightest pixel row 4 col 4, most dimmed row 4 col 5); the light centre moved +0.001 and -0.000 arcseconds, 0.1 and 0.0 times the chance spread measured from 128 same-length windows; 8 catalogued stars brighter than Tmag 16 fall on the 11 x 11 pixels" data-src="Second Sun Lab 7 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>:</p>
+<figure>
+<p><img alt="Two pixel images: normal light with the bright star at the centre inside the aperture outline; the dimming image bright only on the central aperture pixels; red circles mark neighbours" loading="lazy" src="../../labs/img/lab7-toi1338-pixels.png" width="100%" /></p>
+<figcaption>TOI-1338, sector 98. Left: normal light. Right: dimming during the crossing. White: SPOC's aperture. Red circles: catalogued stars.</figcaption>
+</figure>
+<ul>
+<li><strong>The dimming sits on the target's own pixels</strong> (row 4, columns 4 to 5). The bright neighbour at upper left (12.8 mag, 103″ away) shows none.</li>
+<li><strong>Centre shift:</strong> +0.001″ in row, 0.000″ in column. Chance spread from 128 quiet windows: 0.006″ and 0.012″. So the shift is 0.1 and 0.0 times the chance spread: <strong>no shift</strong>.</li>
+<li><strong>Expected (Eq. 11.3)</strong> with δ = 0.002, <em>f</em><sub>o</sub> ≈ 0.01, <em>d</em> ≈ 60″: on target, about <strong>0.001″</strong>; on a neighbour 60″ away, about <strong>0.12″</strong>, which would be 10 to 20 times the chance spread and obvious.</li>
+<li><strong>Verdict:</strong> consistent with the dip being on TOI-1338, as expected for a known planet. A neighbour within a few arcseconds couldn't be ruled out this way; that needs sharper images from other telescopes.</li>
+</ul>
+<h2 id="116-what-this-lets-us-conclude-and-what-it-doesnt">11.6 What this lets us conclude, and what it doesn't<a class="headerlink" href="#116-what-this-lets-us-conclude-and-what-it-doesnt" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>We can:</strong> rule out neighbours far enough away to shift the centre measurably, using an honest error bar.</li>
+<li><strong>We can't:</strong> rule out a faint star almost exactly behind ours. Professionals use high-resolution imaging for that, which we can't do from TESS data.</li>
+<li><strong>Not built yet:</strong> the automated version for G1, and the expected-shift model in code (Compass priority 3).</li>
+</ul>
+<h2 id="117-check-your-understanding">11.7 Check your understanding<a class="headerlink" href="#117-check-your-understanding" title="Permanent link">&para;</a></h2>
+<p>The questions for this chapter are on the <a href="../../parts/part4/review/">Part 4 review page</a>.</p>
+<nav class="ss-end" aria-label="Finish this chapter"><button type="button" class="ss-read-btn" data-ch="11" aria-pressed="false">Mark as read</button><div class="ss-pager" data-path="track"><a rel="prev" href="../../book/10-vetting/"><small>Previous</small><b>10. Vetting</b></a><a rel="next" href="../../book/12-stanley/"><small>Next</small><b>12. STANLEY</b><em>the professionals&#x27; way to stack crossings that do not keep time</em></a></div><p class="ss-partend">That is the end of Part 4. <a href="../../parts/part4/review/">Check yourself</a> · <a href="../../parts/part4/cheat/">Cheat sheet</a> · <a href="../../parts/part4/labs/">Try it yourself (optional)</a></p></nav>
+
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>In the <a href="../../claims/">claims register</a>: F-024, F-026, F-035, F-049, F-050, F-051. Bryson et al. 2013 (PASP 125, 889) and Twicken et al. 2018 (PASP 130, 064502), checked on ADS.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 2.12.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/eyes-core.js"></script>
+      
+        <script src="../../assets/eyes-strength.js"></script>
+      
+        <script src="../../assets/eyes-hard.js"></script>
+      
+        <script src="../../assets/eyes-feedback.js"></script>
+      
+        <script src="../../assets/eyes-cloud.js"></script>
+      
+        <script src="../../assets/rehearsal.js"></script>
+      
+        <script src="../../assets/demos.js"></script>
+      
+        <script src="../../assets/watch.js"></script>
+      
+    
+  <script src="../../assets/book.js" data-sw="../../sw.js"></script>
+
+  </body>
+</html>
