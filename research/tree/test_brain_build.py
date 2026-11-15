@@ -1,16 +1,20 @@
 """Tests for brain_build.py (Claude, 15 Nov 2026). Every refusal must refuse; awkward but valid files must pass; 1,000 drops must be quick.
 Runs on a temporary copy of the real inputs; never prints a fenced star id. Run: python research/tree/test_brain_build.py"""
-import csv, shutil, sys, tempfile, time
+import csv, shutil, sys, tempfile, time, os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
+SCRATCH = ROOT / "data" / "astra" / "020" / "builder-tests"
+SCRATCH.mkdir(parents=True, exist_ok=True)
+os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+sys.dont_write_bytecode = True
 sys.path.insert(0, str(HERE))
 import brain_build as B
 
 
 def fresh():
-    t = Path(tempfile.mkdtemp())
+    t = Path(tempfile.mkdtemp(dir=SCRATCH))
     (t / "research" / "tree").mkdir(parents=True)
     shutil.copy(ROOT / "research" / "TREE.md", t / "research" / "TREE.md")
     for f in ("node-plain.yml", "phases.yml"):
@@ -61,6 +65,50 @@ r = B.build(ROOT, write=False); n += 1
 assert len(r["nodes"]) >= 20 and any(l["kind"] == "drop" for l in r["leaves"]), "real data"
 print(f"  real data passes: {len(r['nodes'])} branches, {len(r['leaves'])} leaves")
 
+def design_fields(result):
+    ns = {v["id"]: v for v in result["nodes"]}
+    return {
+        "sub": ns["1"].get("sub") == "Petrova · 222 test planets" and ns["2.1"].get("sub") == "Our own binary star list",
+        "loss": ns["1.1"].get("loss") == {"count": 53, "total": 222} and ns["1.2"].get("loss") == {"count": 52, "total": 222} and ns["2.1"].get("loss") is None,
+        "bench": result.get("bench") == {"label": "Petrova 1.0.0", "rate": 27.5, "lower": 20.7, "upper": 33.7, "verdict": "Fix first"},
+        "path": result.get("path", {}).get("active", {}).get("id") == "4.1" and result.get("path", {}).get("next", {}).get("id") == "1.1",
+    }
+
+fields = design_fields(r)
+for field, passed in fields.items():
+    print(f"  design field {field}: {'PASS' if passed else 'FAIL'}")
+assert all(fields.values()), "incorrect design A fields"
+n += len(fields)
+
+# Change the source values as well as checking today's values. This catches a
+# builder which returns constants that happen to match the current Tree.
+t = fresh()
+source = (t / "research" / "TREE.md").read_text(encoding="utf-8")
+changed = source.replace("Loss: 45 + 7 of 222", "Loss: 12 + 8 of 90")
+changed = changed.replace("R 27.5% [20.7, 33.7]", "R 31.25% [21.125, 41.875]")
+changed = changed.replace("(node 4.1).** The Tree page", "(node 4.2).** The Tree page")
+changed = changed.replace("- NEXT:", "- NEXT: first test item (node 3.2).\n- NEXT:", 1)
+(t / "research" / "TREE.md").write_text(changed, encoding="utf-8")
+plain_path = t / "research" / "tree" / "node-plain.yml"
+plain_path.write_text(plain_path.read_text(encoding="utf-8").replace("Our own binary star list", "A changed subtitle"), encoding="utf-8")
+mutated = B.build(t, write=False)
+ns = {v["id"]: v for v in mutated["nodes"]}
+assert ns["2.1"]["sub"] == "A changed subtitle"
+assert ns["1.2"]["loss"] == {"count": 20, "total": 90}
+assert mutated["bench"]["rate"] == 31.25 and mutated["bench"]["lower"] == 21.125 and mutated["bench"]["upper"] == 41.875
+assert mutated["path"]["active"]["id"] == "4.2" and mutated["path"]["next"]["id"] == "3.2"
+assert mutated["path"]["next"]["title"] == "first test item (node 3.2)"
+print("  source changes propagate: sub, summed loss, unrounded bench, first path item")
+n += 4
+(t / "research" / "TREE.md").write_text(source.replace("(node 4.1).** The Tree page", ".** The Tree page"), encoding="utf-8")
+assert B.build(t, write=False)["path"]["active"]["id"] is None
+print("  an active item without a node keeps a null id")
+n += 1
+(t / "research" / "TREE.md").write_text(source.replace("R 27.5% [20.7, 33.7]", "R 27.5% [30, 33.7]"), encoding="utf-8")
+refused("bench range excludes rate", t, "bench range")
+n += 1
+shutil.rmtree(t)
+
 with open(ROOT / "targets" / "r1_targets.csv", encoding="utf-8-sig") as f:
     g1 = next(int(float(x["tic"])) for x in csv.DictReader(l for l in f if not l.startswith("#")) if x.get("list") == "g1" and int(float(x["tic"])) not in B.ALLOW)
 
@@ -71,6 +119,7 @@ cases = [
     ("future date", lambda t: drop(t, "2026-11-15-0300-x.md", date="2031-01-01 00:00"), "outside the project's time"),
     ("bare id", lambda t: drop(t, "2026-11-15-0300-x.md", ids="FIX 96"), "no plain words in brackets"),
     ("fence A star", lambda t: drop(t, "2026-11-15-0300-x.md", plain=f"Star {g1} looked odd."), "sealed lists"),
+    ("fence B star", lambda t: drop(t, "2026-11-15-0300-x.md", plain=f"Star {next(iter(B.fences(ROOT)[1]))} looked odd."), "sealed lists"),
     ("lead not marked", lambda t: drop(t, "2026-11-15-0300-x.md", type="lead"), "not checked yet"),
     ("unknown type", lambda t: drop(t, "2026-11-15-0300-x.md", type="gossip"), "unknown type"),
     ("supersedes missing", lambda t: drop(t, "2026-11-15-0300-x.md", sup="2026-11-01-0000-nothing.md"), "not in drops/"),

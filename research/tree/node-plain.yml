@@ -7,6 +7,7 @@ goal:
 branches:
   "1":
     title: How well we see
+    sub: Petrova · 222 test planets
     plain: Our search tool, Petrova. Every branch here is a way a real planet could slip past it, ordered by how many test planets each one loses.
   "1.1":
     title: Found, but held back
@@ -31,12 +32,15 @@ branches:
     plain: The fixed test of 2,000 planted planets that decides whether any change to the tool counts.
   "2":
     title: Where we look
+    sub: Which stars, which data
     plain: Which stars we search, and the data we search them in.
   "2.1":
-    title: Census, our own binary list
+    title: Census
+    sub: Our own binary star list
     plain: A list of eclipsing binaries we build ourselves from newer TESS data, so our searches reach stars nobody has searched this way.
   "2.2":
-    title: G1, the last untouched list
+    title: G1
+    sub: The last unseen list, one shot
     plain: 552 Kepler binaries that TESS also watched. Searched only once, sealed, after the tool is fixed and frozen.
   "2.3":
     title: Data and downloads
@@ -46,6 +50,7 @@ branches:
     plain: Bigger systems we designed but parked until the main search is done.
   "3":
     title: How we prove it
+    sub: Statistics and evidence
     plain: The rules and statistics that keep us honest, so a result means what it says.
   "3.1":
     title: Statistics and controls
@@ -54,13 +59,15 @@ branches:
     title: Records and tests
     plain: Every run leaves a record that lets anyone repeat it, and every tool has tests that can fail.
   "3.3":
-    title: From a dip to a claim
+    title: Leads
+    sub: How a dip becomes a claim
     plain: The steps a promising dip must pass, with two independent checks and your yes, before we ever call it a planet.
   "3.4":
     title: Going public later
     plain: How and when a result would be shared with astronomers, once there is something to share.
   "4":
     title: Tools and book
+    sub: The notebook and workshop
     plain: The book, the textbook, and the pages and tools around the search.
   "4.1":
     title: Book and learning

@@ -1163,63 +1163,132 @@ async function learnTest() {
 }
 
 async function treeTest() {
-  const b = await launch("tree"), out = { mode: "tree", checks: 0, fails: [] };
-  const ok = (condition, message) => { out.checks++; if (!condition) out.fails.push(message); };
-  const click = async (selector, touch = false) => {
-    const point = await b.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return null; e.scrollIntoView({ block: "center" }); const r = e.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`);
-    if (!point) throw new Error("Tree target missing: " + selector);
-    if (touch) {
-      await b.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [point] });
-      await b.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
-    } else {
-      await b.send("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });
-      await b.send("Input.dispatchMouseEvent", { type: "mouseReleased", button: "left", clickCount: 1, ...point });
-    }
-  };
+  const { createRequire } = await import("node:module");
+  const require = createRequire(import.meta.url);
+  process.env.PLAYWRIGHT_BROWSERS_PATH = path.resolve("data/tools/ms-playwright");
+  const { chromium } = require(path.resolve("data/tools/playwright/node_modules/playwright"));
+  const browser = await chromium.launch({ executablePath: CHROME, args: ["--no-sandbox"] });
+  const out = { mode: "tree", checks: 0, fails: [], measurements: [], errors: [] };
+  const check = (id, pass, evidence) => { out.checks++; out.measurements.push({id,pass:!!pass,evidence}); if (!pass) out.fails.push(id); };
+  const ctx = await browser.newContext({ viewport:{width:1440,height:1000}, reducedMotion:"reduce", serviceWorkers:"block" });
+  if (opt.baseline) await ctx.route(/\/assets\/(tree\.(js|css)|tour\.js)(\?.*)?$/, r => r.fulfill({path:path.resolve(opt.baseline,new URL(r.request().url()).pathname.split("/").at(-1))}));
+  await ctx.addInitScript(() => { localStorage.setItem("ss-tour-3","done"); sessionStorage.setItem("ss-open","1"); localStorage.setItem("sst-view","mission"); });
+  if (opt.mutate) await ctx.addInitScript(({kind}) => {
+    addEventListener('DOMContentLoaded',()=>{
+      const css = {
+        layout: '.ssta-colL { grid-column:3 !important; }',
+        phone: '.ssta-phcard { top:0 !important; }',
+        gold: '.sst { --ssta-gold:#67bddd !important; --ssta-gold-2:#67bddd !important; --ssta-gold-dim:#67bddd !important; }',
+        text: '.ssta-row { width:500px !important; }',
+        wheel: '.sst-card { overflow-y:visible !important; overscroll-behavior:auto !important; }',
+        journey: '.sst-day:nth-of-type(odd) { margin-left:30% !important; width:65% !important; }',
+        contrast: '.sst { --ssta-gold:#777777 !important; }',
+      }[kind];
+      if(css){const style=document.createElement('style');style.textContent=css;document.head.append(style);}
+      if(kind==='scroll')document.addEventListener('wheel',e=>{if(e.target.closest('.ssta-mission'))e.preventDefault();},{passive:false});
+    });
+  },{kind:opt.mutate});
+  const page = await ctx.newPage();
+  page.on("pageerror",e=>out.errors.push(e.message));
+  const output = path.resolve(opt.output || "data/astra/020"); fs.mkdirSync(output,{recursive:true});
+  const screenshot = name => page.screenshot({path:path.join(output,name+".png"),fullPage:false});
   try {
-    await b.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
-    await goto(b, base);
-    ok(await waitFor(b, `document.querySelectorAll(".sst-stage .sst-node").length >= 20`), "1440x900: mission must draw at least 20 branch nodes");
-    await waitFor(b, `!document.querySelector("#ss-splash") && !document.querySelector(".sst-grow")`, 8000);
-    out.nodes = await b.evaluate(`document.querySelectorAll(".sst-stage .sst-node").length`);
-    const branch = '.sst-stage .sst-node:not(.is-root)';
-    await click(branch);
-    ok(await waitFor(b, `document.querySelectorAll(".sst-card").length === 1`, 5000), "branch click must open exactly one card");
-    await b.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
-    await b.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
-    ok(await waitFor(b, `!document.querySelector(".sst-card")`, 5000), "Escape must remove the card");
-    await sleep(400);
-    await click(branch);
-    ok(await waitFor(b, `document.querySelectorAll(".sst-card").length === 1`, 5000), "a second branch click must reopen one card");
-    await click(".sst-card .sst-x");
-    ok(await waitFor(b, `!document.querySelector(".sst-card")`, 5000), "close button must remove the card");
-    await sleep(400);
-    await click('[data-view="journey"]');
-    out.journey = await b.evaluate(`({ phases: document.querySelectorAll(".sst-phase").length, days: document.querySelectorAll(".sst-day").length })`);
-    ok(out.journey.phases > 0 && out.journey.days > 0, "Journey must draw phases and days");
-    await click('[data-view="mission"]');
-    out.search = await b.evaluate(`(() => { const n = [...document.querySelectorAll(".sst-node:not(.is-root)")].find((e) => e.querySelector("text")); const title = n.querySelector("text").textContent; const word = title.match(/[a-z]{3,}/i)[0]; const i = document.querySelector(".sst-search input"); i.value = word; i.dispatchEvent(new Event("input", { bubbles: true })); return { word, id: n.dataset.node }; })()`);
-    ok(await waitFor(b, `document.querySelectorAll(".sst-node.is-dim").length > 0`, 5000), "search must dim non-matching branches");
-    ok(await b.evaluate(`!document.querySelector('.sst-node[data-node="${out.search.id}"]').classList.contains("is-dim")`), "a branch matching its title must stay bright");
-    await b.evaluate(`const i = document.querySelector(".sst-search input"); i.value = ""; i.dispatchEvent(new Event("input", { bubbles: true }));`);
-    ok(await waitFor(b, `!document.querySelector(".sst-node.is-dim")`, 5000), "clearing search must restore the branches");
-    await b.send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
-    await b.send("Emulation.setTouchEmulationEnabled", { enabled: true });
-    await goto(b, base);
-    ok(await waitFor(b, `!!document.querySelector(".sst-list") && document.querySelector(".sst-list").checkVisibility() && document.querySelectorAll(".sst-item").length > 0`), "390x844: phone list must show");
-    await waitFor(b, `!document.querySelector("#ss-splash") && !document.querySelector(".sst-grow")`, 8000);
-    const historyBefore = await b.send("Page.getNavigationHistory");
-    await click(".sst-item", true);
-    ok(await waitFor(b, `document.querySelectorAll(".sst-sheet").length === 1`, 5000), "phone tap must open exactly one sheet");
-    out.phoneOverflowOpen = await b.evaluate(`document.documentElement.scrollWidth - document.documentElement.clientWidth`);
-    await b.send("Page.navigateToHistoryEntry", { entryId: historyBefore.result.entries[historyBefore.result.currentIndex].id });
-    ok(await waitFor(b, `!document.querySelector(".sst-sheet") && !document.querySelector(".sst-scrim")`, 5000), "history Back must close the phone sheet and scrim");
-    out.phoneOverflowClosed = await b.evaluate(`document.documentElement.scrollWidth - document.documentElement.clientWidth`);
-    ok(out.phoneOverflowOpen <= 0 && out.phoneOverflowClosed <= 0, `phone sideways scroll: open ${out.phoneOverflowOpen}px, closed ${out.phoneOverflowClosed}px`);
-    out.errors = b.errors;
-    out.pass = !out.fails.length && !out.errors.length;
-  } finally { await b.close(); }
-  return out;
+    await page.goto(base); await page.waitForSelector(".sst-view"); await page.waitForTimeout(500);
+    const ready = await page.locator(".ssta-pc-cols").count() === 1;
+    if (!ready) {
+      for (const id of ["A1/pc-layout","A2/phone-layout","A3/golden-uniform","A4/text-fits","A5/normal-scroll","A6/panel-wheel","A7/journey-column","A8/gold-contrast"]) check(id,false,"Design A structure absent on baseline");
+      out.pass=false; return out;
+    }
+    const pc = await page.evaluate(() => {
+      const box=s=>document.querySelector(s).getBoundingClientRect();
+      const l=box('.ssta-colL'),r=box('.ssta-colR'),d=box('.ssta-detail-slot'),g=box('.ssta-goal'),s=box('.ssta-score');
+      return {left:[...document.querySelectorAll('.ssta-colL [data-branch]')].map(e=>e.dataset.branch),right:[...document.querySelectorAll('.ssta-colR [data-branch]')].map(e=>e.dataset.branch),goalBesideScore:g.right<=s.left+1,panelRight:d.left>r.right,branchGap:r.left-l.right};
+    });
+    check("A1/pc-layout",pc.left.join()==="1,4"&&pc.right.join()==="2,3"&&pc.goalBesideScore&&pc.panelRight&&pc.branchGap>0,pc);
+    await page.locator('.ssta-row[data-node="1.1"]').click();
+    await page.waitForSelector('.sst-card');
+    check("A1/detail",await page.locator('.sst-card .ssta-metric').innerText().then(t=>t.includes('53 of 222')) && await page.locator('.sst-card').getByRole('heading',{name:'What it is',exact:true}).count()===1,await page.locator('.sst-card').innerText());
+    const panel=await page.locator('.sst-card').evaluate(e=>({position:getComputedStyle(e).position,overflow:getComputedStyle(e).overflowY,contain:getComputedStyle(e).overscrollBehaviorY}));
+    await page.locator('.sst-card').hover(); const before=await page.evaluate(()=>({y:scrollY,top:document.querySelector('.sst-card').scrollTop}));
+    await page.mouse.wheel(0,500); await page.waitForTimeout(150);
+    const after=await page.evaluate(()=>({y:scrollY,top:document.querySelector('.sst-card').scrollTop}));
+    check("A6/panel-wheel",panel.position==='sticky'&&panel.overflow==='auto'&&panel.contain==='contain'&&before.y===after.y&&after.top>before.top,{panel,before,after});
+    await page.keyboard.press('Escape'); await page.waitForTimeout(100);
+    const ordinaryBefore=await page.evaluate(()=>scrollY); await page.mouse.move(600,500); await page.mouse.wheel(0,250); await page.waitForTimeout(150);
+    check("A5/normal-scroll",await page.locator('[data-z],.sst-stage,canvas').count()===0&&await page.evaluate(()=>scrollY)>ordinaryBefore,{before:ordinaryBefore,after:await page.evaluate(()=>scrollY)});
+    await page.evaluate(()=>scrollTo(0,0));
+    for (const theme of ['slate','default']) {
+      await page.evaluate(t=>document.body.dataset.mdColorScheme=t,theme);
+      const gold=await page.evaluate(()=>{
+        const paths=[...document.querySelectorAll('.ssta-vine path')];
+        const strokes=[...new Set(paths.map(e=>getComputedStyle(e).stroke))];
+        const colors=[...new Set([...document.querySelectorAll('.ssta-row .ssta-status')].map(e=>getComputedStyle(e).color))];
+        const rgb=c=>{const x=document.createElement('canvas').getContext('2d');x.fillStyle=c;x.fillRect(0,0,1,1);return [...x.getImageData(0,0,1,1).data].slice(0,3);};
+        const lum=c=>rgb(c).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((n,v,i)=>n+v*[.2126,.7152,.0722][i],0);
+        const e=document.querySelector('.ssta-br-h .ssta-n'),s=getComputedStyle(e),bg=getComputedStyle(e.closest('.ssta-box')).backgroundColor,a=lum(s.color),b=lum(bg);
+        return {strokes,colors,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05),gold:rgb(s.color),paths:paths.length};
+      });
+      check(`A3/golden-uniform/${theme}`,gold.paths>10&&gold.colors.length===1&&gold.strokes.every(s=>{const n=s.match(/[\d.]+/g).map(Number);return n[0]>n[2]&&n[1]>n[2];}),gold);
+      check(`A8/gold-contrast/${theme}`,gold.ratio>=4.5,gold.ratio);
+      await page.goto(base+'#n=1.1'); await page.waitForSelector('.sst-card'); await page.waitForTimeout(100);
+      await screenshot('design-a-pc-'+theme);
+      await page.keyboard.press('Escape'); await page.waitForTimeout(100);
+    }
+    // Use the release gate's composited contrast measurement, including opacity.
+    const { MEASURE: releaseMeasure } = await import('./gates_measure.mjs');
+    await page.setViewportSize({width:1280,height:1000});
+    for (const theme of ['slate','default']) {
+      await page.evaluate(value=>document.body.dataset.mdColorScheme=value,theme);
+      const measured = await page.evaluate(releaseMeasure(1280));
+      const low = measured.low.filter(item=>!item.header);
+      check(`A8/desktop-text/${theme}`, low.length===0, low);
+    }
+    for (const width of [900,1024,1440]) {
+      await page.setViewportSize({width,height:1000}); await page.waitForTimeout(100);
+      const overflow=await page.locator('.ssta-row,.ssta-br-h,.ssta-chip,.ssta-goal,.ssta-score').evaluateAll(es=>es.filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>e.textContent));
+      check(`A4/text-fits/${width}`,!overflow.length&&await page.evaluate(w=>document.documentElement.scrollWidth<=w,width),overflow);
+    }
+    await page.setViewportSize({width:1440,height:1000});
+    await page.locator('[data-view="journey"]').click();
+    const journey=await page.locator('.sst-journey').evaluate(e=>{
+      const days=[...e.querySelectorAll('.sst-day')],positions=days.map(d=>d.getBoundingClientRect().left),dates=days.map(d=>d.dataset.date);
+      const vine=parseFloat(getComputedStyle(e,'::before').left)+e.getBoundingClientRect().left;
+      return {positions,dates,clear:days.every(d=>d.getBoundingClientRect().left+parseFloat(getComputedStyle(d).paddingLeft)>vine+2)};
+    });
+    check('A7/journey-column',journey.positions.length>1&&new Set(journey.positions).size===1&&journey.clear&&journey.dates.every((d,i,a)=>!i||a[i-1]>=d),journey);
+    await screenshot('design-a-journey');
+    await page.locator('[data-view="mission"]').click();
+    await page.setViewportSize({width:390,height:844}); await page.waitForTimeout(150);
+    const phone=await page.locator('.ssta-phtree').evaluate(e=>{const c=[...e.querySelectorAll('.ssta-phcard')].map(e=>({id:e.dataset.pb,x:e.offsetLeft,y:e.offsetTop,b:e.offsetTop+e.offsetHeight}));return {c,overlap:c.some((v,i)=>i&&v.y<c[i-1].b)};});
+    check('A2/phone-layout',phone.c.map(c=>c.id).join()==='1,2,3,4'&&phone.c[0].x<phone.c[1].x&&phone.c[2].x<phone.c[3].x&&phone.c.every((c,i,a)=>!i||c.y>a[i-1].y)&&phone.overlap,phone);
+    await page.evaluate(()=>scrollTo(0,0)); await screenshot('design-a-phone');
+    await page.locator('[data-pb="4"]').click();
+    check('A2/chosen-list',await page.locator('.ssta-phrows .ssta-row[data-node="4.1"]').count()===1,'branch 4 rows');
+    await page.locator('.ssta-phrows .ssta-row').first().click(); await page.waitForSelector('.sst-sheet'); await screenshot('design-a-phone-sheet');
+    const locked=await page.evaluate(()=>getComputedStyle(document.body).position==='fixed'); await page.locator('.sst-x').focus();await page.keyboard.press('Shift+Tab');
+    check('keep/focus-lock',locked&&await page.evaluate(()=>!!document.activeElement.closest('.sst-sheet')),locked);
+    await page.goBack();await page.waitForTimeout(100);await page.goForward();await page.waitForSelector('.sst-sheet');
+    check('keep/history',await page.locator('.sst-sheet').count()===1,'Back and Forward');
+    await page.setViewportSize({width:1440,height:1000});await page.waitForTimeout(150);
+    check('keep/resize',await page.locator('.sst-sheet').count()===0&&await page.locator('.sst-card').count()===1,'sheet to panel');
+    await page.keyboard.press('Escape');
+    const input=page.locator('.sst-search input');await input.fill('zzzzunmatchable');await input.press('Enter');
+    check('keep/no-matches',await page.locator('.sst-results').isVisible(),'unmatched Enter');
+    await input.fill('1.4');await input.press('Enter');await page.waitForSelector('.sst-card');
+    check('keep/search-enter',(await page.locator('.sst-card .ssta-crumb').innerText()).includes('1.4'),'node search');
+    await page.keyboard.press('Escape');await input.fill('');await input.press('Escape');
+    // A long translated title must grow the normal HTML box.
+    await page.locator('.ssta-row .ssta-t').first().evaluate(e=>e.textContent='A longer title with several extra words '.repeat(8));
+    check('A4/long-title',await page.locator('.ssta-row').first().evaluate(e=>e.scrollHeight<=e.clientHeight+1&&e.scrollWidth<=e.clientWidth+1),'content-sized row');
+    for(const width of [320,390,900,1440]) {
+      await page.setViewportSize({width,height:844});await page.waitForTimeout(120);
+      const targets=await page.locator('#ss-tree button,#ss-tree a[href]').evaluateAll(es=>es.filter(e=>e.getClientRects().length).map(e=>{const r=e.getBoundingClientRect();return {t:e.textContent.trim().slice(0,40),w:r.width,h:r.height};}).filter(r=>r.w<43.9||r.h<43.9));
+      check(`keep/targets/${width}`,targets.length===0,targets);
+    }
+    const nojs=await browser.newContext({javaScriptEnabled:false});const staticPage=await nojs.newPage();await staticPage.goto(base);
+    check('keep/static',await staticPage.locator('.sst-static').isVisible(),'JavaScript disabled');await nojs.close();
+    check('script-errors',!out.errors.length,out.errors);out.pass=!out.fails.length;return out;
+  } catch(e) {out.error=String(e);out.pass=false;return out;} finally {await ctx.close();await browser.close();}
 }
 
 async function repairsTest() {
@@ -1295,7 +1364,7 @@ async function repairsTest() {
       for (const width of [320,390]) {
         await page.setViewportSize({width,height:844});
         for (const theme of ["default","slate"]) {
-          for (const [url, selectors] of [["",[".sst-item .t small"]],["learn/",[".tw-unit.is-soon small",".tw-unit.is-soon li"]],["learn/u1/l1-a-light-curve/",[".tw-pn small"]]]) {
+          for (const [url, selectors] of [["",[".ssta-row .ssta-id"]],["learn/",[".tw-unit.is-soon small",".tw-unit.is-soon li"]],["learn/u1/l1-a-light-curve/",[".tw-pn small"]]]) {
             await load(url); await page.evaluate(t=>document.body.dataset.mdColorScheme=t,theme);
             for (const selector of selectors) {
               const ratio=await contrast(selector);
@@ -1337,7 +1406,7 @@ async function repairsTest() {
       for (const theme of ["default", "slate"]) {
         await page.setViewportSize({ width, height: 844 }); await load();
         await page.evaluate(t => document.body.dataset.mdColorScheme = t, theme);
-        const ratio = await contrast(".sst-item .t small");
+        const ratio = await contrast(".ssta-row .ssta-id");
         check(`M-21/tree/${width}/${theme}`, ratio >= 4.5, ratio);
         await page.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-tree-${width}-${theme}.png`)});
       }
@@ -1420,44 +1489,26 @@ async function repairsTest() {
     for (let i=0;i<4;i++) { await page.locator('[data-view="journey"]').click(); await page.locator('[data-view="mission"]').click(); }
     const afterRegistrations = await page.evaluate(() => window.resizeRegistrations);
     check("M-15/listeners", afterRegistrations === registrations, { registrations, afterRegistrations });
-    await page.locator('[data-z="in"]').click(); await page.waitForTimeout(300);
-    const transform = await page.locator(".sst-stage svg > g").getAttribute("transform");
-    await page.setViewportSize({ width: 1250, height: 800 }); await page.waitForTimeout(400);
-    const afterTransform = await page.locator(".sst-stage svg > g").getAttribute("transform");
-    check("M-15/view", transform === afterTransform, { transform, afterTransform });
-    const overflow = await page.locator(".sst-node").evaluateAll(es => es.flatMap(e => {
-      const r = e.querySelector("rect").getBBox();
-      return [...e.querySelectorAll("text")].filter(t => { const b=t.getBBox(); return b.x < r.x || b.x+b.width > r.x+r.width; }).map(t=>t.textContent);
+    // The old zoom, fit and SVG-label checks are replaced by the design-A
+    // layout, normal scrolling, dynamic text and panel-wheel checks in tree mode.
+    const rows = await page.locator('.ssta-row').evaluateAll(es => es.map(e => {
+      const r=e.getBoundingClientRect();return {w:r.width,h:r.height,overflow:e.scrollWidth-e.clientWidth};
     }));
-    check("M-18", !overflow.length, overflow);
-    const dots = await page.locator("[data-leaf]").evaluateAll(es => es.map(e => {const r=e.getBoundingClientRect();return Math.min(r.width,r.height);}));
-    check("M-16/dots", dots.length > 0 && Math.min(...dots) >= 44, Math.min(...dots));
-    await page.locator('[data-z="fit"]').click(); await page.waitForTimeout(200);
-    const hint = await page.locator(".sst-hint").innerText();
-    check("M-20", /outside|whole|fit/i.test(hint), hint);
-    for (const width of [1024,1280]) {
-      await page.setViewportSize({width,height:800});
-      await page.locator('[data-z="fit"]').click(); await page.waitForTimeout(150);
-      const minHeight = await page.locator(".sst-node rect").evaluateAll(es=>Math.min(...es.map(e=>e.getBoundingClientRect().height)));
-      check(`M-20/targets/${width}`, minHeight >= 44, minHeight);
-      const overlaps = await page.locator(".sst-leaf").evaluateAll(es => es.some((e,i)=>es.slice(i+1).some(f=>{
-        const a=e.getBoundingClientRect(),b=f.getBoundingClientRect();return a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
-      })));
-      check(`M-16/distinct/${width}`, !overlaps, overlaps);
-      for (const theme of ["default","slate"]) {
-        await page.evaluate(t=>document.body.dataset.mdColorScheme=t, theme);
-        await page.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-canvas-${width}-${theme}.png`)});
-      }
-    }
-    await page.evaluate(() => document.querySelector('.sst-node[data-node="1.4"]').dispatchEvent(new MouseEvent("click",{bubbles:true})));
-    await page.waitForTimeout(250);
-    let bounds = await page.locator(".sst-card").boundingBox();
-    check("M-19/mission", bounds.y >= 0 && bounds.y+bounds.height <= 800, bounds);
-    await page.keyboard.press("Escape"); await page.waitForTimeout(200);
-    await page.locator('[data-view="journey"]').click(); await page.locator(".sst-day button").first().click();
-    await page.waitForTimeout(200); bounds = await page.locator(".sst-card").boundingBox();
-    check("M-19/journey", bounds.y >= 0 && bounds.y+bounds.height <= 800, bounds);
-    await page.keyboard.press("Escape"); await page.waitForTimeout(200);
+    check("M-18/html-labels", rows.length>0 && rows.every(r=>r.overflow<=1), rows);
+    check("M-20/normal-page", await page.locator('[data-z],.sst-stage').count()===0, "ordinary page scroll");
+    await page.locator('.ssta-row[data-node="1.4"]').click();
+    const panelStyle = await page.locator('.sst-card').evaluate(element => {
+      const before = element.scrollTop, pageBefore = scrollY;
+      const wheel = new WheelEvent('wheel', { deltaY: 80, bubbles: true, cancelable: true });
+      element.dispatchEvent(wheel);
+      const manual = element.dataset.wheelContain === 'manual' && wheel.defaultPrevented && scrollY === pageBefore && (element.scrollTop > before || element.scrollHeight <= element.clientHeight);
+      return { position:getComputedStyle(element).position, overflow:getComputedStyle(element).overflowY, contain:getComputedStyle(element).overscrollBehaviorY, manual };
+    });
+    check("M-19/mission",panelStyle.position==='sticky'&&panelStyle.overflow==='auto'&&(panelStyle.contain==='contain'||panelStyle.manual),panelStyle);
+    await page.keyboard.press('Escape');
+    await page.locator('[data-view="journey"]').click();await page.locator('.sst-day button').first().click();
+    check("M-19/journey",await page.locator('.sst-card').evaluate(e=>getComputedStyle(e).position==='sticky'),"sticky journey panel");
+    await page.keyboard.press('Escape');
     await page.evaluate(() => localStorage.setItem("sst-last-visit", "2000")); await load();
     const oldVisit = await page.evaluate(() => localStorage.getItem("sst-last-visit")); await page.waitForTimeout(4200);
     check("M-31/unread", await page.evaluate(() => localStorage.getItem("sst-last-visit")) === oldVisit, "unread visit after 4.2 seconds");
@@ -1482,7 +1533,7 @@ async function repairsTest() {
     const lock = await tour.evaluate(() => getComputedStyle(document.body).position === "fixed");
     check("M-04", modal === "true" && lock, {modal,lock});
     const ringError = await tour.evaluate(() => {
-      const ring=document.querySelector(".ss-tour__ring").getBoundingClientRect(),target=document.querySelector(".sst-item").getBoundingClientRect();
+      const ring=document.querySelector(".ss-tour__ring").getBoundingClientRect(),target=document.querySelector(".ssta-phcard").getBoundingClientRect();
       return Math.max(Math.abs(ring.left-target.left+6),Math.abs(ring.top-target.top+6));
     });
     if (engine === "webkit") await tour.evaluate(()=>scrollBy(0,500));

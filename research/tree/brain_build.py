@@ -81,8 +81,10 @@ def read_tree(root):
         word = next((k for k in NODE_STATUS if re.match(r"\W*" + k, stext)), None) or next((k for k in NODE_STATUS if k in stext), "PARKED")
         detail = re.sub(r"\*Weight \d\.\*", "", rest)
         detail = detail.replace(st.group(0), "") if st else detail
+        loss = re.search(r"\bLoss:\s*(\d+(?:\s*\+\s*\d+)*)\s+of\s+(\d+)", rest)
         nodes[nid] = {"id": nid, "parent": nid.split(".")[0], "title_tree": title, "weight": int(w.group(1)) if w else 2,
-                      "status": word, "status_text": plainify(stext), "detail": plainify(detail)}
+                      "status": word, "status_text": plainify(stext), "detail": plainify(detail),
+                      "loss": {"count": sum(int(v) for v in re.findall(r"\d+", loss.group(1))), "total": int(loss.group(2))} if loss else None}
     if not nodes:
         raise BuildRefused("research/TREE.md: no nodes found (lines like **1.1 Title.**)")
     log = []
@@ -95,8 +97,34 @@ def read_tree(root):
         date = dt.date(2026, MONTHS[dm.group(2)], int(dm.group(1))).isoformat() if dm else None
         log.append({"ident": ident, "nodes": [n for n in ns if n in nodes], "date": date, "body": plainify(body)})
     active = re.search(r"^## ACTIVE path now\n1\. (.+)$", s, re.M)
+    bench = re.search(r"\*\*Bench so far:\*\*\s*(.+?)\s+R\s+([\d.]+)%\s*\[([\d.]+),\s*([\d.]+)\]", s)
+    if not bench:
+        raise BuildRefused("research/TREE.md: Bench so far rate and bounds are missing")
+    rate, lower, upper = (float(bench.group(i)) for i in (2, 3, 4))
+    if not 0 <= lower <= rate <= upper <= 100:
+        raise BuildRefused("research/TREE.md: bench range must contain the rate, between 0 and 100")
+    active_section = s.split("## ACTIVE path now\n", 1)[-1].split("\n## ", 1)[0]
+    active_item = re.search(r"^\d+\. \*\*Active:\s*(.+?)\*\*", active_section, re.M)
+    next_item = re.search(r"^- NEXT:\s*(.+)$", s, re.M)
+    def path_item(value, position=None):
+        label = plainify(value).rstrip(".")
+        node = re.search(r"\bnode\s+(\d\.\d)\b", label)
+        if not node and position is not None:
+            # NEXT work lines live underneath their parent node heading.
+            preceding = s[:position]
+            headings = list(re.finditer(r"^\*\*(\d\.\d) ", preceding, re.M))
+            node_id = headings[-1].group(1) if headings else None
+        elif node:
+            node_id = node.group(1)
+        else:
+            node_id = None
+        return {"id": node_id if node_id in nodes else None, "title": label}
+    path = {"active": path_item(active_item.group(1)) if active_item else None,
+            "next": path_item(next_item.group(1), next_item.start()) if next_item else None}
     return {"goal": plainify(goal.group(1)) if goal else "", "branches": branches, "nodes": nodes, "log": log,
-            "now": plainify(active.group(1)) if active else ""}
+            "now": plainify(active.group(1)) if active else "", "path": path,
+            "bench": {"label": bench.group(1).strip(), "rate": rate, "lower": lower, "upper": upper,
+                      "verdict": "Fix first" if "**FIX FIRST**" in s.split("## ACTIVE path now", 1)[0] else ""}}
 
 
 # ---------------- drops ----------------
@@ -259,6 +287,7 @@ def build(root=ROOT, write=True):
     for b in sorted(tree["branches"]):
         kids = sorted(n for n in nodes if nodes[n]["parent"] == b)
         out_nodes.append({"id": b, "parent": "goal", "title": pb[b]["title"], "plain": pb[b]["plain"], "lesson": pb[b].get("lesson"),
+                          "sub": pb[b].get("sub", ""), "loss": None,
                           "weight": max(nodes[n]["weight"] for n in kids) if kids else 2,
                           "status": next((s for s in NODE_STATUS if any(nodes[n]["status"] == s for n in kids)), "PARKED"),
                           "children": kids})
@@ -266,6 +295,7 @@ def build(root=ROOT, write=True):
         v = nodes[n]
         hist = sorted((l for l in leaves if l["node"] == n or n in l.get("also", [])), key=lambda l: l["when"] or "", reverse=True)
         out_nodes.append({"id": n, "parent": v["parent"], "title": pb[n]["title"], "id_tree": v["title_tree"], "plain": pb[n]["plain"],
+                          "sub": pb[n].get("sub", ""), "loss": v["loss"],
                           "lesson": pb[n].get("lesson"), "weight": v["weight"], "status": v["status"], "status_text": v["status_text"],
                           "detail": v["detail"], "history": [l["id"] for l in hist]})
     notes = sorted(p.stem for p in (root / "book" / "docs" / "field-notes").glob("20??-??-??.md"))
@@ -280,6 +310,7 @@ def build(root=ROOT, write=True):
     for ph in phases:
         ph["from"] = str(ph["from"])
     result = {"generated": dt.datetime.now().strftime("%Y-%m-%dT%H:%M"), "goal": {"title": plain["goal"]["title"], "plain": plain["goal"]["plain"], "tree": tree["goal"]},
+              "bench": tree["bench"], "path": tree["path"],
               "now": tree["now"], "nodes": out_nodes, "leaves": sorted(leaves, key=lambda l: l["when"] or "", reverse=True),
               "days": sorted(days.values(), key=lambda d: d["date"]), "phases": sorted(phases, key=lambda p: p["from"])}
     if write:
