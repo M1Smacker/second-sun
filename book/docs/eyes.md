@@ -11,7 +11,17 @@
 <div class="ss-demo" data-demo="eyes"></div>
 <p class="ss-fallback">With JavaScript on, this spot is a practice game: you look at short stretches of the real TOI-1338 light curve and say whether you see a dip.</p>
 
-## How it works
+<details class="ss-eyes-help" markdown="1">
+<summary>How it works</summary>
+<div markdown="1">
+
+- Look for a dip that comes back up. Choose Dip, No dip, Odd or Not sure.
+- Practice reveals the truth after each answer. Tests reveal it at the end.
+- Answers are locked and saved after every card. Use Review to look back.
+- Standard, hard and rehearsal results each have their own pass line.
+
+<details markdown="1">
+<summary>Full guidance and test rules</summary>
 
 - **Blind first.** Nothing is marked until you answer, then the hidden thing is outlined.
 - **Four answers.** *Dip* is a planet-like dip that comes back up. *No dip* means nothing there. *Odd* is something that is not a planet: an eclipse, a spike or a sudden jump. *Not sure* is always allowed, and it is honest.
@@ -30,3 +40,7 @@
 - **Your results are saved after every answer**, on this device, and a round you leave half done is kept as abandoned, then sent to the cloud like the others. The *My results* button shows every round: right, wrong, not sure, dips found and false alarms. You never have to send anything to Claude: the moment you finish a round (or leave one half done), it is sent by itself to a private cloud copy. If you were offline, it waits on your phone and goes the moment the internet is back. A line under the results says so ("all 3 finished rounds are safe in the cloud, and Claude can read them"). Add this book to your phone's Home Screen so the phone keeps your rounds while they wait.
 - **Practice only for now.** Every stretch comes from the real TOI-1338 light curve (TESS sector 98) with answers we know. The real candidates of the hunt get their own tab here once Claude agrees your results are good enough.
 - **Looking exercise.** This page has no text version, because the skill is seeing the picture. The [light-curve explorer](../v2/book/02-light-curves/) in Chapter 2 and the numbers in Chapter 7 cover the same ideas in words.
+
+</details>
+</div>
+</details>

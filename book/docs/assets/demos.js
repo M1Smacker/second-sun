@@ -268,7 +268,11 @@ function eyesEngine(el, src, core, hard) {
   }
 
   const NAMES = core.NAME, WINSZ = EYES_WIN, fitEyes = (c) => fit(c, 0.55, 170, 340);   // the plot's height: 0.55 of its width, kept between 170 and 340 px
-  const btn = (label, fn, cls = "") => { const b = mk("button", { type: "button", className: "ss-demo__btn " + cls }, label); b.addEventListener("click", fn); return b; };
+  const btn = (label, fn, cls = "") => {
+    const b = mk("button", { type: "button", className: "ss-demo__btn " + cls }, label);
+    b.addEventListener("click", () => { b.focus({ preventScroll: true }); fn(); });
+    return b;
+  };
   const note = (t, extra = {}) => mk("p", { className: "ss-demo__result", ...extra }, t);
   const cloud = () => (window.SSEyesCloud ? window.SSEyesCloud.status() : "Cloud backup: not available in this page, so Claude cannot see these rounds yet. They are saved on this device.");
   const cloudNote = () => note(cloud(), { className: "ss-demo__result ss-eyes__cloud" });
@@ -279,6 +283,16 @@ function eyesEngine(el, src, core, hard) {
   el.append(mk("h4", {}, "Eyes mode"));
   const stage = mk("div", { className: "ss-eyes" });
   el.append(stage);
+  const flow = window.SSEyesFlow(stage);
+  let screen = "home", homePosition = null, finishPosition = null, questionPosition = null, resultsBack = null;
+  flow.keep(el, "eyes", () => screen !== "play", () => {
+    window.SSEyesStore = store;
+    if (window.SSEyesCloud) window.SSEyesCloud.attach(store);
+  });
+  // Buttons are rebuilt on return, so retain their label as well as the page coordinates.
+  function rememberHome() {
+    if (screen === "home") homePosition = { ...flow.remember(), label: document.activeElement.textContent };
+  }
   let mode, cards, at, answered, round, view, review, cv, C, prog, banner, ansBtns, nextBtn, navRow, backBtn, earlierBtn, laterBtn, returnBtn, t0q, lastDraw;
   // The three lines under a card (assets/eyes-feedback.js): measured from the card's own dots. Made once when the card is answered (silently in a test, so the review can show them), then shown unchanged.
   const FB = window.SSFeedback; let curSrc = null, fbState = null, fbText = [];
@@ -306,6 +320,12 @@ function eyesEngine(el, src, core, hard) {
         ...(hard.twins ? [mk("div", { className: "ss-demo__row" }, btn("Twin drill 10", () => twinDrill(10), "ss-demo__sm")),
           note("Twin drill: two curves with exactly the same noise. One hides a faint fake planet (strength 5 to 8.5), the other is only noise. Say which. It is not saved and does not count towards any line.")] : [])] : []),
       note(saveNote(), { ariaLive: "polite" }), cloudNote());
+    screen = "home";
+    flow.reveal();
+    if (homePosition) {
+      homePosition.focus = Array.from(stage.querySelectorAll("button")).find((b) => b.textContent === homePosition.label);
+      flow.move(stage, homePosition);
+    }
   }
 
   function draw(card, reveal, ov) { lastDraw = [card, reveal, ov]; paint(C, card, reveal, ov); }
@@ -365,10 +385,13 @@ function eyesEngine(el, src, core, hard) {
   }
 
   function begin(m, n, s = src) {
+    rememberHome(); screen = "play";
+    finishPosition = null; questionPosition = null;
     mode = m; cards = s.compose(m, n).map(s.build); at = 0; view = null; review = false;
     curSrc = s; fbState = FB ? FB.newLearner() : null; fbText = [];
     round = store.startRound({ mode: m, source: s.id, n: cards.length });
     buildPlay(); show();
+    flow.move(prog);
   }
   function show() {
     view = null; answered = false; t0q = Date.now();
@@ -377,6 +400,7 @@ function eyesEngine(el, src, core, hard) {
     banner.replaceChildren(); banner.className = "ss-eyes__banner";
     ansBtns.forEach((b) => { b.disabled = false; b.hidden = false; }); nextBtn.hidden = true; nav(); draw(cards[at], false);
     if (kept) ansBtns[0].focus({ preventScroll: true });
+    flow.reveal();
   }
   function answer(k) {
     if (answered || view !== null || review) return;
@@ -395,6 +419,7 @@ function eyesEngine(el, src, core, hard) {
 
   function look(j) {                                                                // read only: shows the answer you gave, never lets you change it
     if (j < 0 || j > lastViewable()) return;
+    if (view === null && !review) questionPosition = flow.remember();
     view = j;
     const c = cards[j], e = round.a[j], reveal = mode === "practice" || review;
     if (!review) store.noteLookBack(round.id, j);
@@ -403,6 +428,8 @@ function eyesEngine(el, src, core, hard) {
     ansBtns.forEach((b) => { b.hidden = true; b.disabled = true; }); nextBtn.hidden = true;
     if (reveal) setBanner(c, e.ans, j); else neutral(e.ans, "You answered:");
     nav();
+    flow.reveal();
+    flow.move(prog);
   }
   function ret() {
     if (review) { showFinish(); return; }
@@ -412,6 +439,8 @@ function eyesEngine(el, src, core, hard) {
     ansBtns.forEach((b) => { b.hidden = false; b.disabled = answered; });
     if (answered) { draw(c, mode === "practice", mode === "practice" && fbText[at] ? fbText[at].F : null); if (mode === "practice") setBanner(c, round.a[at].ans, at); else neutral(round.a[at].ans, "Answer recorded:"); } else { draw(c, false); banner.replaceChildren(); banner.className = "ss-eyes__banner"; }
     nextBtn.hidden = !answered; nav();
+    flow.reveal();
+    flow.move(prog, questionPosition);
   }
 
   // The calibrated results (core.resultsView): the verdict says only what the numbers say, each measure is a bar with its target marked, and every older line stays under "All the numbers".
@@ -445,15 +474,24 @@ function eyesEngine(el, src, core, hard) {
 
   function finish() { store.finishRound(round.id); showFinish(); }
   function showFinish() {
+    screen = "finish";
     review = false; view = null;
     const isH = core.isHard(round), lines = isH ? core.hardLines(core.summarizeHard(round.a)) : core.summaryLines(round.s), sc = core.scoreLines(round.a), kids = [mk("h4", {}, mode === "test" ? "Test finished" : "How you did"), mk("p", { className: "ss-eyes__score" }, sc.head), note(sc.sub)];
+    kids.splice(2, 0, mk("div", { className: "ss-demo__row ss-eyes__finish-actions" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
     if (mode === "test") kids.push(...resultsDom(core.resultsView(store.rounds(), isH ? "hard" : "standard")),
       det("All the numbers", [mk("p", { className: "ss-eyes__fbh" }, "This round"), ...lines.map((l) => note(l)), mk("p", { className: "ss-eyes__fbh" }, isH ? "Hard line so far" : "Pass line so far"), ...(isH ? core.hardLine(store.rounds()) : core.passLine(store.rounds())).lines.map((l) => note(l))]));
     else kids.push(...lines.map((l) => note(l)));
-    kids.push(note(saveNote()), cloudNote(), mk("div", { className: "ss-demo__row" }, btn("Review this round", startReview), btn("Another sitting", start), btn("My results", results)));
+    kids.push(note(saveNote()), cloudNote());
     stage.replaceChildren(...kids);
+    flow.reveal();
+    if (finishPosition) {
+      const label = finishPosition.focus && finishPosition.focus.textContent;
+      finishPosition.focus = Array.from(stage.querySelectorAll("button")).find((b) => b.textContent === label) || kids[0];
+    }
+    flow.move(kids[0], finishPosition);
   }
   function twinDrill(n) {                                                           // same noise twice: which curve hides the planet? Never touches the store, the cloud or any line.
+    rememberHome(); screen = "twins";
     cards = null; review = false; curSrc = null;
     const pairs = hard.twins.compose(n).map((sp) => { const p = hard.twins.build(sp), top = Math.random() < 0.5; return { planetTop: top, top: top ? p.planet : p.quiet, bottom: top ? p.quiet : p.planet }; });
     const tally = { right: 0, wrong: 0, unsure: 0, planetSt: 0, quietSt: 0 };
@@ -465,6 +503,7 @@ function eyesEngine(el, src, core, hard) {
       stage.replaceChildren(note(`Pair ${i + 1} of ${n}: one of these two curves hides a faint planet. The other has exactly the same noise and no planet. Which one is it?`),
         note("Top curve"), cvTop, note("Bottom curve"), cvBottom, mk("div", { className: "ss-demo__row" }, ...choices), out, mk("div", { className: "ss-demo__row" }, next));
       const Ct = fit(cvTop, 0.4), Cb = fit(cvBottom, 0.4), p = pairs[i]; paint(Ct, p.top, false); paint(Cb, p.bottom, false);
+      flow.reveal(); flow.move(stage.firstElementChild);
       function choose(k) {
         choices.forEach((b) => { b.disabled = true; });
         const stT = hard.twins.strength(p.top), stB = hard.twins.strength(p.bottom), where = p.planetTop ? "top" : "bottom", ok = k !== "unsure" && k === where;
@@ -480,16 +519,21 @@ function eyesEngine(el, src, core, hard) {
     const done = () => {
       const m = tally.planetSt / n, q = tally.quietSt / n;
       stage.replaceChildren(mk("h4", {}, "Twin drill finished"), note(`You found the planet in ${tally.right} of ${n} pairs${tally.unsure ? `, Not sure on ${tally.unsure}` : ""}. Chance is 5 of 10.`),
+        mk("div", { className: "ss-demo__row" }, btn("Another drill", () => twinDrill(n)), btn("Back", start)),
         note(`On average the curve with the planet scored ${m.toFixed(1)} and the same noise without it ${q.toFixed(1)}. The closer those two numbers, the harder the pair.`),
-        note("This drill is not saved, not sent anywhere and does not count towards any line."), mk("div", { className: "ss-demo__row" }, btn("Another drill", () => twinDrill(n)), btn("Back", start)));
+        note("This drill is not saved, not sent anywhere and does not count towards any line."));
+      flow.reveal(); flow.move(stage.firstElementChild);
     };
     ask();
   }
 
-  function startReview() { review = true; view = null; buildPlay(); ansBtns.forEach((b) => { b.hidden = true; }); look(0); }
+  function startReview() { finishPosition = flow.remember(); review = true; view = null; buildPlay(); ansBtns.forEach((b) => { b.hidden = true; }); look(0); }
 
   function results() {
-    cards = null; review = false;
+    rememberHome();
+    resultsBack = screen === "finish" ? showFinish : start;
+    if (screen === "finish") finishPosition = flow.remember();
+    screen = "results"; review = false;
     const rs = store.rounds(), shown = rs.slice(0, 30), p = core.passLine(rs), ph = core.hardLine(rs);
     const head = ["Date", "Mode", "Curves", "Right", "Wrong", "Not sure", "Dips found", "False alarms", "Status"];
     const rows = shown.map((r) => { const s = r.s || core.summarize(r.a); return [core.fmtDate(r.t0), r.mode + (core.isHard(r) ? " (hard)" : ""), `${r.a.length}/${r.n}`, s.right, s.wrong, s.unsure, s.dips ? `${s.dipsFound}/${s.dips}` : "", s.quiet ? `${s.falseAlarms}/${s.quiet}` : "", r.status]; });
@@ -497,12 +541,13 @@ function eyesEngine(el, src, core, hard) {
       mk("tbody", {}, ...rows.map((r) => mk("tr", {}, ...r.map((c) => mk("td", {}, String(c)))))));
     const label = mk("input", { type: "text", className: "ss-eyes__input", value: store.device.label, placeholder: "e.g. iPhone", maxLength: 40, ariaLabel: "Device name" });
     label.addEventListener("change", () => store.setLabel(label.value));
-    stage.replaceChildren(mk("h4", {}, "My results"), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
+    stage.replaceChildren(mk("h4", {}, "My results"), mk("div", { className: "ss-demo__row" }, btn("Back", () => resultsBack())), note(rs.length ? `${rs.length} round(s) saved on this device.${rs.length > 30 ? " The last 30 are shown." : ""}` : "No rounds yet. Take a practice sitting or the test."),
       ...(rs.some((r) => r.mode === "test" && r.status === "done") ? resultsDom(core.resultsView(rs)) : [note("No finished test rounds yet. Practice rounds do not count towards a line.")]),
       det("All the numbers", [mk("p", { className: "ss-eyes__fbh" }, "Official test pass line"), ...p.lines.map((l) => note(l)), ...(ph.rounds ? [mk("p", { className: "ss-eyes__fbh" }, "Hard test line"), ...ph.lines.map((l) => note(l))] : [])]),
       mk("h4", {}, "Your habit by strength"), ...core.habitLines(core.habit(rs)).map((l) => note(l)),
       rows.length ? mk("div", { className: "ss-eyes__scroll" }, table) : note(""), note(saveNote()), cloudNote(),
-      mk("label", {}, "Device name: ", label), mk("div", { className: "ss-demo__row" }, btn("Back", start)));
+      mk("label", {}, "Device name: ", label));
+    flow.reveal(); flow.move(stage.firstElementChild);
   }
 
   el.addEventListener("keydown", (e) => {
@@ -519,6 +564,7 @@ function eyesEngine(el, src, core, hard) {
 }
 
 async function initEyesDemo(el) {
+  if (window.SSEyesFlow.resume(el, "eyes")) return;
   let J;
   try { J = await (await fetch(DATA_BASE + "toi1338-s98.json")).json(); }
   catch (e) { el.append(mk("p", {}, "The practice light curve could not be loaded. Check your connection and reload.")); return; }

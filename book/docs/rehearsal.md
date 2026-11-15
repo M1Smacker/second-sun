@@ -8,7 +8,16 @@
 <div class="ss-rehearsal" data-deck="../assets/rehearsal-deck.json"></div>
 <p class="ss-fallback">With JavaScript on, this spot is the rehearsal: eight sessions of 20 items each.</p>
 
-## How it works
+<details class="ss-eyes-help" markdown="1">
+<summary>How it works</summary>
+<div markdown="1">
+
+- Look at the whole sector, the event up close and its place in the binary orbit.
+- Choose an answer and optionally your confidence, then lock it to see the truth.
+- Every locked answer is saved. Back to the start returns to the session controls.
+
+<details markdown="1">
+<summary>Full guidance and test rules</summary>
 
 - **Three panels, the same every time.** Panel 1 is the whole sector of light, with the binary's eclipses shaded grey and the event shown as a highlighted column. Panel 2 is the event up close, on a fixed scale (the same for every item of a star), with a faint line for every 6 minutes and a bold line for every 30 minutes. Panel 3 shows where the event falls in the binary's orbit.
 - **Six answers.** *Planet-like*, *Eclipse*, *Flare*, *Instrumental*, *Step*, and *Unclear* (nothing there, or you cannot tell). No answer is pre-selected. You can say how sure you are, then you lock.
@@ -17,6 +26,10 @@
 - **What the hidden things are.** Fake planets are planted into real light (three clearly visible and three near the limit in every session). Eclipses are the real eclipses of the binary. Instrument effects are a ramp after a data gap or a dip that ends where the data stop. A flare brightens fast and fades slowly. A step is a level change that stays. "Nothing hidden" items are the best wiggle the hunt's own search finds in another part of the sector.
 - **The line.** Over eight sessions on at least four different days: at least 80% of the clearly visible fake planets called planet-like, at most 15% of everything else called planet-like, and a d-prime of at least 2. The numbers were written down before this page existed. Claude decides whether your results are enough; the page only does the arithmetic.
 - **Saved after every answer**, on this device, and sent by itself to the private cloud copy like the other Eyes rounds. A session you leave half done is kept as abandoned.
+
+</details>
+</div>
+</details>
 
 ## Honest limits of this first version
 
