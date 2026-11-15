@@ -100,7 +100,7 @@ async function goto(b, url) {
 
 const offline = (b, on) => b.send("Network.emulateNetworkConditions", { offline: on, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
 const shellLength = () => JSON.parse(fs.readFileSync(path.join(opt.site, "sw.js"), "utf8").match(/const SHELL = (\[.*\]);/)[1]).length;
-const SHELL_COUNT = `(async () => { const k = (await caches.keys()).find((x) => x.startsWith("ss-shell-")); return k ? (await (await caches.open(k)).keys()).length : 0; })()`;
+const SHELL_COUNT = `(async () => { const k = (await caches.keys()).find((x) => x.startsWith("b3-shell-")); return k ? (await (await caches.open(k)).keys()).length : 0; })()`;
 const PAGE_STATE = `({ title: document.title, css: [...document.styleSheets].reduce((a, s) => { try { return a + s.cssRules.length } catch (e) { return a } }, 0), controlled: !!navigator.serviceWorker.controller, text: document.querySelector("article") ? document.querySelector("article").innerText.length : 0 })`;
 
 const MEASURE = `(() => {
@@ -202,6 +202,17 @@ async function offlineTest() {
     out.precached = await waitFor(b, `navigator.serviceWorker.controller && ${SHELL_COUNT}.then((n) => n >= ${expected})`);
     out.shell = `${await b.evaluate(SHELL_COUNT)} / ${expected}`;
     out.firstVisitNavigations = b.navigations.length;             // must be 1: the first install never reloads
+    // FIX 100 CX2-01: opening the frozen Book 2 (its own worker at /v2/) must not delete Book 3's saved pages.
+    if (fs.existsSync(path.join(opt.site, "v2", "sw.js"))) {
+      const navs = b.navigations.length;
+      await goto(b, base + "v2/");
+      out.archiveWorker = await waitFor(b, `navigator.serviceWorker.getRegistrations().then((r) => r.some((x) => x.scope.endsWith("/v2/") && x.active && x.active.state === "activated"))`, 30000);
+      await sleep(1500);
+      out.shellAfterArchive = await b.evaluate(SHELL_COUNT);
+      out.keptAfterArchive = out.archiveWorker && out.shellAfterArchive >= expected;
+      await goto(b, base);
+      out.archiveNavigations = b.navigations.length - navs;
+    }
     await goto(b, base + "training/");                  // a visited page
     await offline(b, true);
     out.pages = {};
@@ -227,7 +238,7 @@ async function offlineTest() {
     out.noSlashOffline = { url: await b.evaluate("location.href"), title: await b.evaluate("document.title") };
     out.errors = b.errors.filter((e) => !/ERR_INTERNET_DISCONNECTED|no-such-page|404/.test(e));
     const okPages = Object.values(out.pages).every((s) => s.controlled && s.css > 900 && s.text > 100);
-    out.pass = out.precached && out.firstVisitNavigations === 1 && okPages && out.treeReady && out.treeOffline && out.search > 0 && out.unknownPage && out.unvisitedImage
+    out.pass = out.precached && out.firstVisitNavigations === 1 && out.keptAfterArchive !== false && okPages && out.treeReady && out.treeOffline && out.search > 0 && out.unknownPage && out.unvisitedImage
       && out.noSlashOffline.url.endsWith("/learn/") && !out.errors.length;
   } finally { await b.close(); }
   return out;
@@ -260,12 +271,12 @@ async function update() {
   // Mutate only the disposable built copy. No source page or rebuild is needed.
   const index = path.join(opt.site, "index.html"), worker = path.join(opt.site, "sw.js");
   const original = fs.readFileSync(index, "utf8"), originalWorker = fs.readFileSync(worker, "utf8");
-  const shells = () => b.evaluate(`caches.keys().then((k) => k.filter((x) => x.startsWith("ss-shell-")).sort())`);
+  const shells = () => b.evaluate(`caches.keys().then((k) => k.filter((x) => x.startsWith("b3-shell-")).sort())`);
   const publish = (letter) => {
     const version = Buffer.from(`book3-test-${letter}`).toString("hex");
     fs.writeFileSync(index, original.replace("</article>", `<p>Update test marker: version ${letter}.</p></article>`));
     fs.writeFileSync(worker, originalWorker.replace(/const VERSION = "[0-9a-f]+"/, `const VERSION = "${version}"`));
-    return "ss-shell-" + version;
+    return "b3-shell-" + version;
   };
   try {
     await goto(b, base);
@@ -287,11 +298,11 @@ async function update() {
     const vc = publish("C");
     await goto(b, base);
     out.freshC = await waitFor(b, `document.body.innerText.includes("version C")`, 15000);
-    out.prunedB = await waitFor(b, `caches.keys().then((k) => { const s = k.filter((x) => x.startsWith("ss-shell-")); return s.length === 2 && s.includes(${JSON.stringify(vc)}) && s.includes(${JSON.stringify(a)}); })`, 30000);
+    out.prunedB = await waitFor(b, `caches.keys().then((k) => { const s = k.filter((x) => x.startsWith("b3-shell-")); return s.length === 2 && s.includes(${JSON.stringify(vc)}) && s.includes(${JSON.stringify(a)}); })`, 30000);
     out.cachesWithC = await shells();
     const navAtClick = b.navigations.length;
     await b.evaluate(`document.querySelector(".ss-update button").click()`);
-    await waitFor(b, `caches.keys().then((k) => k.filter((x) => x.startsWith("ss-shell-")).length === 1)`, 30000);
+    await waitFor(b, `caches.keys().then((k) => k.filter((x) => x.startsWith("b3-shell-")).length === 1)`, 30000);
     await sleep(5000);                                              // watch for any extra reloads
     out.reloadsAfterClick = b.navigations.length - navAtClick;      // must be exactly 1
     out.onC = await b.evaluate(`document.body.innerText.includes("version C")`);
@@ -368,7 +379,7 @@ async function images() {
     await waitFor(b, `[...document.images].every((i) => i.complete)`, 30000);
     await sleep(1500);
     out.imagesOnPage = await b.evaluate(`document.images.length`);
-    out.imageCache = await b.evaluate(`(async () => { const k = (await caches.keys()).find((x) => x.startsWith("ss-images-")); return k ? (await (await caches.open(k)).keys()).length : -1; })()`);
+    out.imageCache = await b.evaluate(`(async () => { const k = (await caches.keys()).find((x) => x.startsWith("b3-images-")); return k ? (await (await caches.open(k)).keys()).length : -1; })()`);
     out.pass = out.imageCache > 0 && out.imageCache <= out.cap;
   } finally { await b.close(); }
   return out;
@@ -1213,7 +1224,7 @@ async function treeTest() {
     await page.locator('.sst-card').hover(); const before=await page.evaluate(()=>({y:scrollY,top:document.querySelector('.sst-card').scrollTop}));
     await page.mouse.wheel(0,500); await page.waitForTimeout(150);
     const after=await page.evaluate(()=>({y:scrollY,top:document.querySelector('.sst-card').scrollTop}));
-    check("A6/panel-wheel",panel.position==='sticky'&&panel.overflow==='auto'&&panel.contain==='contain'&&before.y===after.y&&after.top>before.top,{panel,before,after});
+    check("A6/panel-wheel",panel.position==='fixed'&&panel.overflow==='auto'&&panel.contain==='contain'&&before.y===after.y&&after.top>before.top,{panel,before,after});
     await page.keyboard.press('Escape'); await page.waitForTimeout(100);
     const ordinaryBefore=await page.evaluate(()=>scrollY); await page.mouse.move(600,500); await page.mouse.wheel(0,250); await page.waitForTimeout(150);
     check("A5/normal-scroll",await page.locator('[data-z],.sst-stage,canvas').count()===0&&await page.evaluate(()=>scrollY)>ordinaryBefore,{before:ordinaryBefore,after:await page.evaluate(()=>scrollY)});
@@ -1505,10 +1516,28 @@ async function repairsTest() {
       const manual = element.dataset.wheelContain === 'manual' && wheel.defaultPrevented && scrollY === pageBefore && (element.scrollTop > before || element.scrollHeight <= element.clientHeight);
       return { position:getComputedStyle(element).position, overflow:getComputedStyle(element).overflowY, contain:getComputedStyle(element).overscrollBehaviorY, manual };
     });
-    check("M-19/mission",panelStyle.position==='sticky'&&panelStyle.overflow==='auto'&&(panelStyle.contain==='contain'||panelStyle.manual),panelStyle);
+    check("M-19/mission",panelStyle.overflow==='auto'&&(panelStyle.contain==='contain'||panelStyle.manual),panelStyle);
+    // FIX 100 CX2-02: the whole panel and its Close button must sit on screen, below the header (a CSS property alone proved nothing).
+    const onScreen = () => page.locator('.sst-card').evaluate(element => {
+      element.scrollTop = 0;   // placement only: Close scrolls with the panel's own content (Escape and Back still close)
+      const r = element.getBoundingClientRect(), x = element.querySelector('.sst-x').getBoundingClientRect(), hb = Math.max(...[document.querySelector('.md-header'), document.querySelector('.md-tabs')].filter(e => e && !e.hidden && e.getClientRects().length).map(e => e.getBoundingClientRect().bottom));
+      const hit = document.elementFromPoint(x.left + x.width / 2, x.top + x.height / 2);
+      return { top: Math.round(r.top), bottom: Math.round(r.bottom), header: Math.round(hb), vh: innerHeight, hit: hit ? hit.tagName + '.' + hit.className + '@' + Math.round(hit.getBoundingClientRect().top) + '-' + Math.round(hit.getBoundingClientRect().bottom) : null, close: Math.round(x.top), sy: Math.round(scrollY), ok: r.top >= hb - 1 && r.bottom <= innerHeight + 1 && !!hit && !!hit.closest('.sst-x') };
+    });
+    let geo = await onScreen(); check("M-19/on-screen-1280-1.4", geo.ok, geo);
     await page.keyboard.press('Escape');
+    for (const [w, h, node] of [[1280, 800, "1.1"], [1440, 1000, "4.1"]]) {
+      await page.setViewportSize({ width: w, height: h }); await page.waitForTimeout(300);
+      await page.locator(`.ssta-row[data-node="${node}"]`).scrollIntoViewIfNeeded(); await page.waitForTimeout(150);
+      await page.locator(`.ssta-row[data-node="${node}"]`).click(); await page.waitForTimeout(200);
+      geo = await onScreen(); check(`M-19/on-screen-${w}-${node}`, geo.ok, geo);
+      await page.evaluate(() => scrollBy(0, 900)); await page.waitForTimeout(250);   // mobile WebKit has no mouse wheel
+      geo = await onScreen(); check(`M-19/on-screen-after-scroll-${w}-${node}`, geo.ok, geo);
+      await page.keyboard.press('Escape');
+    }
+    await page.setViewportSize({ width: 1280, height: 800 }); await page.waitForTimeout(300);
     await page.locator('[data-view="journey"]').click();await page.locator('.sst-day button').first().click();
-    check("M-19/journey",await page.locator('.sst-card').evaluate(e=>getComputedStyle(e).position==='sticky'),"sticky journey panel");
+    geo = await onScreen(); check("M-19/journey-on-screen", geo.ok, geo);
     await page.keyboard.press('Escape');
     await page.evaluate(() => localStorage.setItem("sst-last-visit", "2000")); await load();
     const oldVisit = await page.evaluate(() => localStorage.getItem("sst-last-visit")); await page.waitForTimeout(4200);

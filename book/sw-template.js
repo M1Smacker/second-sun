@@ -12,9 +12,12 @@
 const VERSION = "__VERSION__";
 const IMG_VERSION = "__IMG_VERSION__";
 const SHELL = __SHELL__;
-const SHELL_CACHE = "ss-shell-" + VERSION;
-const IMAGE_CACHE = "ss-images-" + IMG_VERSION;
-const META_CACHE = "ss-meta";                       // one entry: the shell cache of the worker that is running
+// FIX 100 CX2-01 (Codex 021): Book 3 caches start "b3-". The frozen Book 2 worker at /v2/ deletes every "ss-" cache but its own
+// when it activates, and cache names are shared by the whole site, so Book 3 must never use "ss-"; and Book 3 deletes only "b3-" caches.
+const P = "b3-";
+const SHELL_CACHE = P + "shell-" + VERSION;
+const IMAGE_CACHE = P + "images-" + IMG_VERSION;
+const META_CACHE = P + "meta";                       // one entry: the shell cache of the worker that is running
 const IMAGE_CAP = 150;
 const BATCH = 8;
 const FRESH_MS = 3000;
@@ -42,7 +45,7 @@ async function pruneReplaced() {
   if (!note) return;
   const running = await note.text();
   const keys = await caches.keys();
-  await Promise.all(keys.filter((k) => k.startsWith("ss-shell-") && k !== SHELL_CACHE && k !== running).map((k) => caches.delete(k)));
+  await Promise.all(keys.filter((k) => k.startsWith(P + "shell-") && k !== SHELL_CACHE && k !== running).map((k) => caches.delete(k)));
 }
 
 self.addEventListener("install", (e) => e.waitUntil(precache().then(pruneReplaced)));
@@ -51,7 +54,7 @@ self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(keys
-        .filter((k) => k.startsWith("ss-") && k !== SHELL_CACHE && k !== IMAGE_CACHE && k !== META_CACHE)
+        .filter((k) => k.startsWith(P) && k !== SHELL_CACHE && k !== IMAGE_CACHE && k !== META_CACHE)
         .map((k) => caches.delete(k))))
       .then(() => caches.open(META_CACHE))
       .then((meta) => meta.put("active", new Response(SHELL_CACHE)))

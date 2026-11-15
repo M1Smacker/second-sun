@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 3.5.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
+| The book | 3.5.1 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
 | Learning (Twinlight) | 1.2 (lessons 1.1 to 2.2) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -113,6 +113,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
 | 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
+| 3.5.1 | 15 Nov | Two fixes from Codex's audit: opening the old Book 2 no longer wipes Book 3's offline copy, and on a PC the Tree's side panel and its Close button now always stay on screen below the header. Lesson plots can now also show graphs that are not light curves |
 | 3.5.0 | 15 Nov | Twinlight grows into a real course: 47 lessons planned in 11 units (Units 1 to 7 for the big exam, 8 to 11 on the Sun, stars, black holes, galaxies, the Big Bang and life). Three new lessons: 2.3 why stars differ (size, heat and light), 2.4 light from two stars at once (dilution), 2.5 gravity from scratch (Kepler's law worked out from Newton). New in lessons: a short 'Think it through' set before the worked example |
 | 3.4.0 | 15 Nov | The Tree rebuilt to the design Ahmed chose: a golden vine up the middle, the four branches as cards on both sides, a side panel (PC) or a sheet from the bottom (phone) for each branch, no zoom or pan, and the Journey in one column. Light mode is a soft sky blue with white cards. The old Book 2 labs now live only in the frozen Book 2. Pages load faster: the Eyes, rehearsal and Search window code (about 200 KB) now loads only on those pages |
 | 3.3.0 | 15 Nov | Fixes from the full bug audit (32 found): the phone menu works on every page; the light-mode header is readable; the Tree's toolbar scrolls away instead of covering the cards; the tour holds the page still and its ring stays on target; minus answers can be typed on an iPhone; notes save; answers with units and commas are read correctly; sheets keep focus and hold the page; Back and Forward reopen cards; labels fit their boxes; small text is readable in both themes; a page-not-found page with links home; no opening logo for readers who ask for less motion. Every publish now runs reader checks in Chrome and Safari's engine first |
