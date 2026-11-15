@@ -1,3 +1,9 @@
+## LATEST (15 Nov 2026, 6:35 pm Kuwait): G1 bar raised to 0.75; RS-037 prepped, waits for Ahmed
+- Ahmed (6:30 pm): "I want it 75". New dated bar `research/stage3/G1-PLANET-BAR-75-2026-11-15.md`: GO needs P >= 0.75 and lower bound >= 0.65; old 0.50 file kept on record. Written before F1 and before any combined method.
+- He asked to research the multi-crossing search (adding up a planet's weak crossings) while Codex works, after approving a prep. Prep: `research/stage3/rs037/PREP-2026-11-15.md` (5 questions: bench ceiling first, methods, false alarms, cost, looser tier plus twice-seen rule). Cap 2.5 weekly points, HARD STOP at 67% weekly (63% at 6:30 pm); 67 to 70 is his study.
+- Codex 024 still running (task bzqmp5ge8). 025 queued. Fable waits for his Monday go. Universe lesson pick still open.
+- Next: on his approval run RS-037; then add F4 to the Fable brief.
+
 ## LATEST (15 Nov 2026, 12:34 pm Kuwait): BOOK 3.3.0 LIVE WITH THE AUDIT FIXES, TREE DESIGN A BUILDING (Opus 5.5 HIGH; weekly 44% to 49%, target 55% or more, stop new work near 58%)
 - **Ahmed's approval (late morning):** fix all 32 audit bugs, install WebKit, give Codex real work, reach 55% weekly by his return, housekeeping, research optional, checkpoint updates with both meters; G1 prep only if nothing else is left. New rule: if Claude or Codex weekly is within 1 to 2% of full, save, stop and tell him (memory limits-near-tell-ahmed).
 - **Done by Claude (commit 345d2522, not published):** M-01 menu, M-02 light header, chips, Claims cards at 320 px, light code colours, starfield only when seen and dark, glossary heading order, 404 page and v2 404, splash skipped under reduced motion (new N-01). Release gates: release_gates.mjs (Chrome CDP) and webkit_gates.mjs (Playwright WebKit 18.2, iPhone 13) wired into publish_book.ps1 step 4b2; proven to fail on 3.2.1 and on deliberate breaks (data/astra/gates).
