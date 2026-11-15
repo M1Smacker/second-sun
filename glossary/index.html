@@ -3177,7 +3177,7 @@
 <h2 id="false-alarm">False alarm<a class="headerlink" href="#false-alarm" title="Permanent link">&para;</a></h2>
 <p>A "detection" caused by noise or spacecraft effects instead of a real dip. We count them by searching upside-down data.</p>
 <h2 id="fits">FITS<a class="headerlink" href="#fits" title="Permanent link">&para;</a></h2>
-<p>The standard file format of astronomy since 1981: a header of labels plus tables or images. Every TESS file is FITS. See <a href="../labs/lab2-get-the-data/">Lab 2</a>.</p>
+<p>The standard file format of astronomy since 1981: a header of labels plus tables or images. Every TESS file is FITS. See <a href="../v2/labs/lab2-get-the-data/">Lab 2</a>.</p>
 <h2 id="flag">Flag<a class="headerlink" href="#flag" title="Permanent link">&para;</a></h2>
 <p>A reason to doubt a dip. We flag and sort dips, we never delete them. See <a href="../v2/book/08-our-detector/">Chapter 8</a>.</p>
 <h2 id="flat-baseline-test">Flat-baseline test<a class="headerlink" href="#flat-baseline-test" title="Permanent link">&para;</a></h2>
@@ -3205,11 +3205,11 @@
 <h2 id="magnitude">Magnitude<a class="headerlink" href="#magnitude" title="Permanent link">&para;</a></h2>
 <p>Astronomy's brightness scale, where bigger numbers are fainter. 5 magnitudes is a factor of 100. See <a href="../v2/book/01-stars-names-missions/">Chapter 1</a>.</p>
 <h2 id="mast">MAST<a class="headerlink" href="#mast" title="Permanent link">&para;</a></h2>
-<p>The Mikulski Archive for Space Telescopes: NASA's public archive holding all TESS and Kepler data. See <a href="../labs/lab1-name-to-number/">Lab 1</a>.</p>
+<p>The Mikulski Archive for Space Telescopes: NASA's public archive holding all TESS and Kepler data. See <a href="../v2/labs/lab1-name-to-number/">Lab 1</a>.</p>
 <h2 id="matched-filter">Matched filter<a class="headerlink" href="#matched-filter" title="Permanent link">&para;</a></h2>
 <p>Sliding a template shaped like the signal you want (for us, a box-shaped dip) along the data and scoring how well each stretch matches.</p>
 <h2 id="momentum-dump">Momentum dump<a class="headerlink" href="#momentum-dump" title="Permanent link">&para;</a></h2>
-<p>A short thruster firing that TESS uses every few days to stay pointed. It jolts the camera and can fake a dip; it's flagged in the data (quality bit 32). See <a href="../labs/lab2-get-the-data/">Lab 2</a>.</p>
+<p>A short thruster firing that TESS uses every few days to stay pointed. It jolts the camera and can fake a dip; it's flagged in the data (quality bit 32). See <a href="../v2/labs/lab2-get-the-data/">Lab 2</a>.</p>
 <h2 id="n-body-simulation">N-body simulation<a class="headerlink" href="#n-body-simulation" title="Permanent link">&para;</a></h2>
 <p>A computer calculation that moves several objects (like two stars and a planet) step by step under each other's gravity. STANLEY uses one to predict when a two-star planet crosses.</p>
 <h2 id="orbit-start-ramp">Orbit-start ramp<a class="headerlink" href="#orbit-start-ramp" title="Permanent link">&para;</a></h2>
@@ -3229,7 +3229,7 @@
 <h2 id="qlp">QLP<a class="headerlink" href="#qlp" title="Permanent link">&para;</a></h2>
 <p>MIT's Quick-Look Pipeline: makes light curves from full-frame images for a huge number of stars. All 549 G1 stars have QLP data. See <a href="../v2/book/03-our-data/">Chapter 3</a>.</p>
 <h2 id="quality-flag">Quality flag<a class="headerlink" href="#quality-flag" title="Permanent link">&para;</a></h2>
-<p>A number stored with each measurement that warns about problems (thruster firing, scattered light...). 0 means fine. See <a href="../labs/lab2-get-the-data/">Lab 2</a>.</p>
+<p>A number stored with each measurement that warns about problems (thruster firing, scattered light...). 0 means fine. See <a href="../v2/labs/lab2-get-the-data/">Lab 2</a>.</p>
 <h2 id="ra-and-dec">RA and Dec<a class="headerlink" href="#ra-and-dec" title="Permanent link">&para;</a></h2>
 <p>The sky's longitude (Right Ascension) and latitude (Declination). Every star's address. See <a href="../v2/book/01-stars-names-missions/">Chapter 1</a>.</p>
 <h2 id="radius">Radius<a class="headerlink" href="#radius" title="Permanent link">&para;</a></h2>
@@ -3265,7 +3265,7 @@
 <h2 id="transit">Transit<a class="headerlink" href="#transit" title="Permanent link">&para;</a></h2>
 <p>A planet passing in front of its star as seen from Earth, which makes a small dip in the light curve.</p>
 <h2 id="virtual-environment">Virtual environment<a class="headerlink" href="#virtual-environment" title="Permanent link">&para;</a></h2>
-<p>A private copy of Python with its own toolkits, kept inside a project folder so it doesn't clash with anything else. Ours is <code>D:\second-sun\.venv</code>. See <a href="../labs/lab0-workbench/">Lab 0</a>.</p>
+<p>A private copy of Python with its own toolkits, kept inside a project folder so it doesn't clash with anything else. Ours is <code>D:\second-sun\.venv</code>. See <a href="../v2/labs/lab0-workbench/">Lab 0</a>.</p>
 <h2 id="white-noise">White noise<a class="headerlink" href="#white-noise" title="Permanent link">&para;</a></h2>
 <p>Random wobble where each measurement is independent. Averaging N measurements shrinks it by √N. See <a href="../v2/book/07-noise-and-statistics/">Chapter 7</a>.</p>
 
@@ -3303,7 +3303,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.3.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.4.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
@@ -3328,27 +3328,12 @@
   
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../assets/eyes-flow.js"></script>
-      
-        <script src="../assets/eyes-core.js"></script>
-      
-        <script src="../assets/eyes-strength.js"></script>
-      
-        <script src="../assets/eyes-hard.js"></script>
-      
-        <script src="../assets/eyes-feedback.js"></script>
-      
-        <script src="../assets/eyes-cloud.js"></script>
-      
-        <script src="../assets/rehearsal.js"></script>
-      
-        <script src="../assets/demos.js"></script>
-      
-        <script src="../assets/watch.js"></script>
-      
         <script src="../assets/book3.js"></script>
       
     
+  
+  
+  
   <script src="../assets/book.js" data-sw="../sw.js"></script>
   
 

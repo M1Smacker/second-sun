@@ -1,11 +1,28 @@
 {
- "generated": "2026-11-15T12:01",
+ "generated": "2026-11-15T14:22",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
   "tree": "Find a circumbinary planet in TESS data, or prove a clean, measured null. Both are wins (29 Oct 2026)."
  },
- "now": "Now (15 Nov 2026, early afternoon): the audit's bug fixes are in Book 3.3.0, checked in Chrome and Safari's engine before every publish; the Tree is being rebuilt to ChatGPT mockup A (golden vine, side panel, no zoom) and waits for Ahmed's look. The hunt stays paused so Ahmed can learn first; it resumes at a learning milestone, when he says so (state in HUNT-PAUSED.md).",
+ "bench": {
+  "label": "Petrova 1.0.0",
+  "rate": 27.5,
+  "lower": 20.7,
+  "upper": 33.7,
+  "verdict": "Fix first"
+ },
+ "path": {
+  "active": {
+   "id": "4.1",
+   "title": "Book 3.0 and the learning rebuild (node 4.1)"
+  },
+  "next": {
+   "id": "1.1",
+   "title": "repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, stage3_core.py 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags)"
+  }
+ },
+ "now": "15 Nov 2026, afternoon: Book 3.4.0 brings the new Tree (the mockup Ahmed chose), a sky-blue light mode and faster pages; the 32 audit bugs are fixed. The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).",
  "nodes": [
   {
    "id": "1",
@@ -13,6 +30,8 @@
    "title": "How well we see",
    "plain": "Our search tool, Petrova. Every branch here is a way a real planet could slip past it, ordered by how many test planets each one loses.",
    "lesson": null,
+   "sub": "Petrova · 222 test planets",
+   "loss": null,
    "weight": 5,
    "status": "ACTIVE",
    "children": [
@@ -31,6 +50,8 @@
    "title": "Where we look",
    "plain": "Which stars we search, and the data we search them in.",
    "lesson": null,
+   "sub": "Which stars, which data",
+   "loss": null,
    "weight": 5,
    "status": "WAITS",
    "children": [
@@ -46,6 +67,8 @@
    "title": "How we prove it",
    "plain": "The rules and statistics that keep us honest, so a result means what it says.",
    "lesson": null,
+   "sub": "Statistics and evidence",
+   "loss": null,
    "weight": 4,
    "status": "PARKED",
    "children": [
@@ -61,6 +84,8 @@
    "title": "Tools and book",
    "plain": "The book, the textbook, and the pages and tools around the search.",
    "lesson": null,
+   "sub": "The notebook and workshop",
+   "loss": null,
    "weight": 5,
    "status": "ACTIVE",
    "children": [
@@ -76,6 +101,11 @@
    "title": "Found, but held back",
    "id_tree": "Tier-1 flags hold found planets back",
    "plain": "The tool finds the dip but a safety flag keeps it from the top tier. The biggest fixable loss on our test bench.",
+   "sub": "",
+   "loss": {
+    "count": 53,
+    "total": 222
+   },
    "lesson": null,
    "weight": 5,
    "status": "NEXT",
@@ -85,10 +115,10 @@
     "d:2026-11-14-2125-fix91-92-bench",
     "d:2026-11-14-1933-twin-transit-rejected",
     "d:2026-11-14-1637-known-planets-oae",
-    "l:25",
-    "l:26",
     "l:27",
-    "l:28"
+    "l:28",
+    "l:29",
+    "l:30"
    ]
   },
   {
@@ -97,13 +127,18 @@
    "title": "Outside the searched windows",
    "id_tree": "Planet falls outside the searched windows",
    "plain": "The planet's dip falls in a stretch of data the search never looks at, so it cannot be found at all.",
+   "sub": "",
+   "loss": {
+    "count": 52,
+    "total": 222
+   },
    "lesson": null,
    "weight": 4,
    "status": "NEXT",
    "status_text": "NEXT (second).",
    "detail": "Loss: 45 + 7 of 222.",
    "history": [
-    "l:29"
+    "l:31"
    ]
   },
   {
@@ -112,6 +147,11 @@
    "title": "The dip is missed",
    "id_tree": "The detector misses the dip",
    "plain": "The detector itself does not see the dip, usually because it is too shallow for the noise around it.",
+   "sub": "",
+   "loss": {
+    "count": 41,
+    "total": 222
+   },
    "lesson": null,
    "weight": 4,
    "status": "WAITS",
@@ -125,6 +165,11 @@
    "title": "The eclipse mask hides the transit",
    "id_tree": "The eclipse mask eats the transit",
    "plain": "We blank out the binary's own eclipses before searching. If those blanks are too wide or in the wrong place, they swallow the planet too.",
+   "sub": "",
+   "loss": {
+    "count": 15,
+    "total": 222
+   },
    "lesson": null,
    "weight": 5,
    "status": "ACTIVE",
@@ -137,8 +182,8 @@
     "d:2026-11-14-1635-codex-011-brief",
     "d:2026-11-14-1635-fix94-decision-rule",
     "d:2026-11-14-1530-codex-010-mask-timing",
-    "l:7",
-    "l:29"
+    "l:9",
+    "l:31"
    ]
   },
   {
@@ -147,13 +192,15 @@
    "title": "Blind spot for fast binaries",
    "id_tree": "Blind spot: binaries of 5 to 10 days",
    "plain": "Binaries that orbit each other in 5 to 10 days are noisier, and the tool finds very few test planets around them.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 3,
    "status": "NEXT",
    "status_text": "NEXT after 1.1.",
    "detail": "R 0.13 (6 of 48). Codex 003: the loss is BEFORE detection (19 of 48 give no event, 40%, against 13% in other bins); flags are not the cause (6 of 48). Binary variability or residual structure upsetting the detrending is LIKELY, not shown. T161 diagnosis (build queue).",
    "history": [
-    "l:29"
+    "l:31"
    ]
   },
   {
@@ -162,6 +209,8 @@
    "title": "False alarms",
    "id_tree": "False alarms (keep the upside-down count low)",
    "plain": "The other side of every fix. A change that finds more planets but also more fake ones is no gain. The upside-down test light counts the fake ones.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 4,
    "status": "PARKED",
@@ -184,10 +233,10 @@
     "d:2026-11-14-1939-moment-flag-rejected",
     "d:2026-11-14-1922-too-deep-guard",
     "d:2026-11-14-1920-sector4-pointing-shift",
-    "l:12",
-    "l:13",
-    "l:25",
-    "l:26"
+    "l:14",
+    "l:15",
+    "l:27",
+    "l:28"
    ]
   },
   {
@@ -196,6 +245,8 @@
    "title": "The scoreboard",
    "id_tree": "The scoreboard and its tools",
    "plain": "The fixed test of 2,000 planted planets that decides whether any change to the tool counts.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 2,
    "status": "DONE",
@@ -206,9 +257,11 @@
   {
    "id": "2.1",
    "parent": "2",
-   "title": "Census, our own binary list",
+   "title": "Census",
    "id_tree": "Census: our own binary list from TESS after sector 26",
    "plain": "A list of eclipsing binaries we build ourselves from newer TESS data, so our searches reach stars nobody has searched this way.",
+   "sub": "Our own binary star list",
+   "loss": null,
    "lesson": null,
    "weight": 4,
    "status": "WAITS",
@@ -219,16 +272,18 @@
   {
    "id": "2.2",
    "parent": "2",
-   "title": "G1, the last untouched list",
+   "title": "G1",
    "id_tree": "G1: the last unseen list (552 rows, one shot)",
    "plain": "552 Kepler binaries that TESS also watched. Searched only once, sealed, after the tool is fixed and frozen.",
+   "sub": "The last unseen list, one shot",
+   "loss": null,
    "lesson": null,
    "weight": 5,
    "status": "WAITS",
    "status_text": "WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.",
    "detail": "T37b (a fresh-set test) folds into this.",
    "history": [
-    "l:29"
+    "l:31"
    ]
   },
   {
@@ -237,6 +292,8 @@
    "title": "Data and downloads",
    "id_tree": "Data and downloads",
    "plain": "Getting the light files from NASA's archive and keeping them complete and correct.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 2,
    "status": "PARKED",
@@ -252,6 +309,8 @@
    "title": "Ideas on hold",
    "id_tree": "Parked new systems",
    "plain": "Bigger systems we designed but parked until the main search is done.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 1,
    "status": "PARKED",
@@ -265,6 +324,8 @@
    "title": "Statistics and controls",
    "id_tree": "Statistics and controls",
    "plain": "How we decide that a signal is more than chance, using the upside-down light as a fair comparison.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 4,
    "status": "PARKED",
@@ -280,6 +341,8 @@
    "title": "Records and tests",
    "id_tree": "Records, reproducibility and tests",
    "plain": "Every run leaves a record that lets anyone repeat it, and every tool has tests that can fail.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 3,
    "status": "PARKED",
@@ -287,25 +350,27 @@
    "detail": "FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T165 the G1 runner (not built: waits for the Petrova 1.1 freeze and the G1 preregistration; pins the G1 manifest hash for FIX 70); T130 number-to-file audit; T52 settings read from the run.",
    "history": [
     "d:2026-11-15-0008-fix83-test-runner",
-    "l:3",
+    "l:5",
     "d:2026-11-14-2309-t130-map",
     "d:2026-11-14-2308-t52-run-inputs",
-    "l:27"
+    "l:29"
    ]
   },
   {
    "id": "3.3",
    "parent": "3",
-   "title": "From a dip to a claim",
+   "title": "Leads",
    "id_tree": "Leads: how a dip becomes a claim",
    "plain": "The steps a promising dip must pass, with two independent checks and your yes, before we ever call it a planet.",
+   "sub": "How a dip becomes a claim",
+   "loss": null,
    "lesson": null,
    "weight": 3,
    "status": "PARKED",
    "status_text": "PARKED until a lead exists.",
    "detail": "FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven: after 26 Nov 2026 Claude checks the Sector 110 result and tells Ahmed plainly either way; note his candidate is a single-star planet, not circumbinary). T162 exploratory lane for sub-bar events (IDEA, RS-023; PARKED until after G1, then decided with a rule written first, Ahmed agreed 14 Nov).",
    "history": [
-    "l:30"
+    "l:32"
    ]
   },
   {
@@ -314,12 +379,17 @@
    "title": "Going public later",
    "id_tree": "Going public later",
    "plain": "How and when a result would be shared with astronomers, once there is something to share.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 1,
    "status": "PARKED",
    "status_text": "PARKED.",
    "detail": "T108 playbook; T149 is our upside-down result new.",
-   "history": []
+   "history": [
+    "l:1",
+    "l:2"
+   ]
   },
   {
    "id": "4.1",
@@ -327,6 +397,8 @@
    "title": "Book and learning",
    "id_tree": "Book and learning",
    "plain": "This book and its textbook, built so you can follow and check everything we do.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 5,
    "status": "ACTIVE",
@@ -338,8 +410,10 @@
     "d:2026-11-15-0415-rs035-how-to-teach",
     "l:0",
     "l:1",
+    "l:2",
     "l:3",
     "l:5",
+    "l:7",
     "d:2026-11-14-1935-book-2117",
     "d:2026-11-14-1634-fable-brief",
     "d:2026-11-14-1615-star-data-not-private",
@@ -352,6 +426,8 @@
    "title": "Search window and control room",
    "id_tree": "Search window and control room",
    "plain": "The live page that shows a search while it runs.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 2,
    "status": "WAITS",
@@ -365,6 +441,8 @@
    "title": "Machine and housekeeping",
    "id_tree": "Machine, scripts and housekeeping",
    "plain": "The computer, the scripts and the small repairs that keep the work running.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 1,
    "status": "PARKED",
@@ -378,13 +456,15 @@
    "title": "Eyes pages",
    "id_tree": "Eyes pages",
    "plain": "The practice pages where you learn to tell real dips from fake ones.",
+   "sub": "",
+   "loss": null,
    "lesson": null,
    "weight": 2,
    "status": "PARKED",
    "status_text": "PARKED.",
    "detail": "T59d, T59e, T59g, T110.",
    "history": [
-    "l:6"
+    "l:8"
    ]
   }
  ],
@@ -673,9 +753,55 @@
   {
    "id": "l:0",
    "kind": "log",
-   "type": "build",
+   "type": "codex job",
    "node": "4.1",
    "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see.",
+   "why": "",
+   "explanation": "",
+   "technical": "independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see. research/astra/inbox/021-audit-book-3-4.md",
+   "ids": [
+    "Codex 021"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:1",
+   "kind": "log",
+   "type": "build",
+   "node": "4.1",
+   "also": [
+    "3.4"
+   ],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Build: load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos.",
+   "why": "",
+   "explanation": "",
+   "technical": "load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos. Build queue.",
+   "ids": [
+    "T161"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:2",
+   "kind": "log",
+   "type": "build",
+   "node": "4.1",
+   "also": [
+    "3.4"
+   ],
    "date": "2026-11-15",
    "when": "2026-11-15T00:00",
    "status": "done",
@@ -692,7 +818,7 @@
    "label": null
   },
   {
-   "id": "l:1",
+   "id": "l:3",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -713,7 +839,7 @@
    "label": null
   },
   {
-   "id": "l:3",
+   "id": "l:5",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -736,7 +862,7 @@
    "label": null
   },
   {
-   "id": "l:5",
+   "id": "l:7",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -757,7 +883,7 @@
    "label": null
   },
   {
-   "id": "l:6",
+   "id": "l:8",
    "kind": "log",
    "type": "codex job",
    "node": "4.4",
@@ -1780,7 +1906,7 @@
    "superseded": true
   },
   {
-   "id": "l:7",
+   "id": "l:9",
    "kind": "log",
    "type": "research",
    "node": "1.4",
@@ -1801,7 +1927,7 @@
    "label": null
   },
   {
-   "id": "l:12",
+   "id": "l:14",
    "kind": "log",
    "type": "build",
    "node": "1.6",
@@ -1822,7 +1948,7 @@
    "label": null
   },
   {
-   "id": "l:13",
+   "id": "l:15",
    "kind": "log",
    "type": "build",
    "node": "1.6",
@@ -1843,7 +1969,7 @@
    "label": null
   },
   {
-   "id": "l:25",
+   "id": "l:27",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -1866,7 +1992,7 @@
    "label": null
   },
   {
-   "id": "l:26",
+   "id": "l:28",
    "kind": "log",
    "type": "research",
    "node": "1.1",
@@ -1889,7 +2015,7 @@
    "label": null
   },
   {
-   "id": "l:27",
+   "id": "l:29",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -1912,7 +2038,7 @@
    "label": null
   },
   {
-   "id": "l:28",
+   "id": "l:30",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -1933,7 +2059,7 @@
    "label": null
   },
   {
-   "id": "l:29",
+   "id": "l:31",
    "kind": "log",
    "type": "codex job",
    "node": "1.2",
@@ -1958,7 +2084,7 @@
    "label": null
   },
   {
-   "id": "l:30",
+   "id": "l:32",
    "kind": "log",
    "type": "research",
    "node": "3.3",
@@ -2059,21 +2185,21 @@
    "date": "2026-11-13",
    "diary": null,
    "leaves": [
-    "l:30"
+    "l:32"
    ]
   },
   {
    "date": "2026-11-14",
    "diary": "field-notes/2026-11-14/",
    "leaves": [
-    "l:7",
-    "l:12",
-    "l:13",
-    "l:25",
-    "l:26",
+    "l:9",
+    "l:14",
+    "l:15",
     "l:27",
     "l:28",
     "l:29",
+    "l:30",
+    "l:31",
     "d:2026-11-14-1530-codex-010-mask-timing",
     "d:2026-11-14-1605-drop-box-idea",
     "d:2026-11-14-1615-star-data-not-private",
@@ -2111,9 +2237,11 @@
    "leaves": [
     "l:0",
     "l:1",
+    "l:2",
     "l:3",
     "l:5",
-    "l:6",
+    "l:7",
+    "l:8",
     "d:2026-11-15-0002-codex-014-part2",
     "d:2026-11-15-0008-fix83-test-runner",
     "d:2026-11-15-0013-fix84-closed",

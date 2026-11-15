@@ -1789,8 +1789,8 @@
 <p><strong>Debugging by stepping through:</strong> the STANLEY bug was found by calling its pieces one at a time. Did the orbit calculation give transit times? Yes, 13 to 29. Did they survive the next step? No. The fault sat between those two calls.</p>
 <h2 id="how-you-could-do-it-yourself">How you could do it yourself<a class="headerlink" href="#how-you-could-do-it-yourself" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../labs/lab4-find-a-dip/">Lab 4</a> runs our box search on TOI-1338.</li>
-<li><a href="../../labs/lab6-fake-planets/">Lab 6</a> hides fake planets of several sizes and asks the search to find them.</li>
+<li><a href="../../v2/labs/lab4-find-a-dip/">Lab 4</a> runs our box search on TOI-1338.</li>
+<li><a href="../../v2/labs/lab6-fake-planets/">Lab 6</a> hides fake planets of several sizes and asks the search to find them.</li>
 </ul>
 <h2 id="what-we-found-and-what-we-didnt">What we found, and what we didn't<a class="headerlink" href="#what-we-found-and-what-we-didnt" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1817,9 +1817,9 @@
 <summary>3. Why did one star's one-hour noise come out anywhere from 229 to 908 ppm?</summary>
 <p>Each method flattens the light curve differently first. The harder you flatten, the more slow wobble you remove, and the smaller the noise looks. Quote the number that matches how your search treats the data.</p>
 </details>
-<p><strong>Later, batch 3 of the overhaul:</strong> writing <a href="../../labs/lab8-read-stanley/">Lab 8</a> caught a second slip. STANLEY's strongest orbit is at <strong>96.1 days</strong>, not the 93.8 reported overnight. The search log prints the period range high to low, but the results file runs low to high. The real planet's period is 95.2 days, so the conclusion ("close") survives, but the number was wrong for half a day. Lesson: read an array's order from the data file, and check one known feature lines up. <a href="../../v2/book/12-stanley/">Chapter 12</a> and <a href="../../v2/book/06-orbits-three-body/">Chapter 6</a> are new.</p>
+<p><strong>Later, batch 3 of the overhaul:</strong> writing <a href="../../v2/labs/lab8-read-stanley/">Lab 8</a> caught a second slip. STANLEY's strongest orbit is at <strong>96.1 days</strong>, not the 93.8 reported overnight. The search log prints the period range high to low, but the results file runs low to high. The real planet's period is 95.2 days, so the conclusion ("close") survives, but the number was wrong for half a day. Lesson: read an array's order from the data file, and check one known feature lines up. <a href="../../v2/book/12-stanley/">Chapter 12</a> and <a href="../../v2/book/06-orbits-three-body/">Chapter 6</a> are new.</p>
 <p><strong>Batch 4:</strong> <a href="../../v2/book/09-fake-planets/">Chapter 9</a> (fake planets) and <a href="../../v2/book/11-pixels-and-neighbours/">Chapter 11</a> (pixels and neighbours), with Labs 6 and 7. Two things worth knowing: three different fake-planet tests now agree on a floor of about 6 Earth radii <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-048" title="LIKELY · Second Sun Lab 6 run, 2026-10-20 · checked 2026-10-20" data-cid="F-048" data-claim="Lab 6 on TOI-1338 sector 98: fake planets (realistic transit shape, added before cleaning) at 4 times were found 4 of 4 at 6 and 8 Earth radii, 1 of 4 at 5, 0 of 4 at 3 and 4; the 2-day cleaning kept 92-96% of the 6 and 8 Earth-radius dips&#x27; centre depth (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun Lab 6 run, 2026-10-20" data-checked="2026-10-20">LIKELY</a>; and TOI-1338's pixels show the 16 December dip on the right star, with the light's centre steady to about a thousandth of an arcsecond <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-049" title="VERIFIED · Second Sun Lab 7 run, 2026-10-20 · checked 2026-10-20" data-cid="F-049" data-claim="Lab 7 on TOI-1338 sector 98: during the planet crossing the dimming sits on the target&#x27;s own pixels (brightest pixel row 4 col 4, most dimmed row 4 col 5); the light centre moved +0.001 and -0.000 arcseconds, 0.1 and 0.0 times the chance spread measured from 128 same-length windows; 8 catalogued stars brighter than Tmag 16 fall on the 11 x 11 pixels" data-src="Second Sun Lab 7 run, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. The pixel lab uses a better error bar than our first pixel script (Compass's point): the chance spread of the same measurement at quiet times.</p>
-<p><strong>Batch 5:</strong> <a href="../../v2/book/13-your-workshop/">Chapter 13</a> (a tour of the project), <a href="../../v2/book/15-mistakes-as-lessons/">Chapter 15</a> (our 15 mistakes, as five lessons), <a href="../../labs/lab9-your-star/">Lab 9</a> (the whole route on a G1 star of your choice), a rebuilt <a href="../../learn/">learning track</a> and a <a href="../../reference/reading-list/">reading list</a>. Writing Lab 9 found a real problem in the G1 list: our rule "morph &lt; 0.5" also lets in stars whose shape was <strong>never measured</strong> (morph = −1): <strong>136 of 552 rows</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-052" title="VERIFIED · Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20 · checked 2026-10-20" data-cid="F-052" data-claim="The G1 cut morph &lt; 0.5 also admits morph = -1 (not measured in the Villanova catalogue): 136 of the 552 rows. One such star (TIC 138638780) shows no eclipse deeper than about 440 ppm in 3 TESS sectors" data-src="Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. The first star I tried was one of them, and it showed no eclipse at all. Not fixed (the hunt is paused); it's a decision for you in the decision log, explained in <a href="../../v2/book/01-stars-names-missions/">Chapter 1</a>.</p>
+<p><strong>Batch 5:</strong> <a href="../../v2/book/13-your-workshop/">Chapter 13</a> (a tour of the project), <a href="../../v2/book/15-mistakes-as-lessons/">Chapter 15</a> (our 15 mistakes, as five lessons), <a href="../../v2/labs/lab9-your-star/">Lab 9</a> (the whole route on a G1 star of your choice), a rebuilt <a href="../../learn/">learning track</a> and a <a href="../../reference/reading-list/">reading list</a>. Writing Lab 9 found a real problem in the G1 list: our rule "morph &lt; 0.5" also lets in stars whose shape was <strong>never measured</strong> (morph = −1): <strong>136 of 552 rows</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-052" title="VERIFIED · Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20 · checked 2026-10-20" data-cid="F-052" data-claim="The G1 cut morph &lt; 0.5 also admits morph = -1 (not measured in the Villanova catalogue): 136 of the 552 rows. One such star (TIC 138638780) shows no eclipse deeper than about 440 ppm in 3 TESS sectors" data-src="Second Sun recount of targets/g1_targets.csv and a fold of 3 sectors, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. The first star I tried was one of them, and it showed no eclipse at all. Not fixed (the hunt is paused); it's a decision for you in the decision log, explained in <a href="../../v2/book/01-stars-names-missions/">Chapter 1</a>.</p>
 <p><strong>Batch 6, the stress test (overhaul complete):</strong> every one of the 10 lab scripts was run again from scratch and reproduced its page's "what you should see" output exactly. The built site: 40 pages, 3,743 internal links and anchors checked, <strong>0 broken</strong>; no long dashes in visible text; no sideways scrolling on any page at phone width (375 px) or desktop width; all 11 lab and chapter pictures load; all 39 pages are in the offline cache; the "Next" links lead through all 25 chapters and labs in one line, with no loops. Your progress page now shows TOI-1338 b's recovery (19 October) and this overhaul as milestones.</p>
 <h2 id="evening-the-quality-filter-experiment-you-approved-it-i-ran-it">Evening: the quality-filter experiment (you approved it, I ran it)<a class="headerlink" href="#evening-the-quality-filter-experiment-you-approved-it-i-ran-it" title="Permanent link">&para;</a></h2>
 <div class="admonition plain">
@@ -1876,7 +1876,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.3.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.4.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
@@ -1901,27 +1901,12 @@
   
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../assets/eyes-flow.js"></script>
-      
-        <script src="../../assets/eyes-core.js"></script>
-      
-        <script src="../../assets/eyes-strength.js"></script>
-      
-        <script src="../../assets/eyes-hard.js"></script>
-      
-        <script src="../../assets/eyes-feedback.js"></script>
-      
-        <script src="../../assets/eyes-cloud.js"></script>
-      
-        <script src="../../assets/rehearsal.js"></script>
-      
-        <script src="../../assets/demos.js"></script>
-      
-        <script src="../../assets/watch.js"></script>
-      
         <script src="../../assets/book3.js"></script>
       
     
+  
+  
+  
   <script src="../../assets/book.js" data-sw="../../sw.js"></script>
   
 

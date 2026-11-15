@@ -26,11 +26,12 @@
   --ss-violet: #b9adff; --ss-glow: rgba(122, 215, 234, .35);
   --md-hue: 224;
 }
+/* Light mode is a soft sky blue with white cards (Ahmed, 15 Nov 2026: not all white, readable in full sunlight). */
 [data-md-color-scheme="default"] {
-  --ss-bg: #f5f7fb; --ss-surface: #eaeef6; --ss-raised: #ffffff; --ss-line: #cfd7e6;
-  --ss-text: #0b1220; --ss-text-2: #2f3a50; --ss-text-3: #546078;
+  --ss-bg: #e8f2fc; --ss-surface: #d9e9f8; --ss-raised: #ffffff; --ss-line: #b7cde4;
+  --ss-text: #0b1220; --ss-text-2: #2f3a50; --ss-text-3: #4a5670;
   --ss-accent: #084656; --ss-on-accent: #ffffff;
-  --ss-violet: #4b3fa8; --ss-glow: rgba(8, 70, 86, .18);
+  --ss-violet: #42369c; --ss-glow: rgba(8, 70, 86, .18);
 }
 [data-md-color-scheme] {
   --md-default-bg-color: var(--ss-bg);
