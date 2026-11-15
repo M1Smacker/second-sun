@@ -44,6 +44,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ---
 
 ## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
+- **Codex 016** (15 Nov, node 4.1): move the publish browser tests to Book 3.0 pages, retire Book 2-only checks out loud, add a Tree test mode. `research/astra/inbox/016-browser-tests-book3.md`
 - **Codex 015** (15 Nov, node 4.4): Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions). Run headless by `research/astra/tools/codex_run.py`. `research/astra/inbox/015-eyes-flow-fixes.md`
 - **RS-026** (14 Nov, node 1.4): TESS-era eclipse times; timing bug is G2 only (110 of 420 stars, 706 of 711 blanked curves); Oddo et al. 2026 recentre per sector; FIX 94 design draft for Fable. `research/stage3/rs026/EPHEMERIS-AND-FILTER-RESEARCH-2026-11-14.md`
 - **Codex 010** (14 Nov, node 1.4): measure the mask's timing padding (V1 term off, V2 recentred windows). DONE 14 Nov 15:30: V1 P 48.4% to 50.7% (+25 planets), V2 50.5% (+23); on the 112 affected G2 stars real background 61 to 95 (V1) or 90 (V2), upside-down 3 to 5 or 8; the slow-bin paired failure is inherited from the pre-OAE baseline, not caused by the variants. Not adoptable yet: must be re-run with OAE on and the new real events explained. Report on branch astra/010-mask-timing, `research/astra/reports/010-mask-timing.md`
