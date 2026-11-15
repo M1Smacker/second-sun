@@ -37,12 +37,14 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - toc: {permalink: true}
+  - pymdownx.arithmatex: {generic: true, inline_syntax: [round], block_syntax: [square]}
 
 extra:
   generator: false
 
 not_in_nav: |
   /labs/*.md
+  /learn/u*/*.md
 
 nav:
   - Tree: index.md

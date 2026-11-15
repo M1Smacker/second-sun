@@ -86,6 +86,7 @@
     const a = e.target.closest && e.target.closest('.md-typeset a[href*="glossary/#"]');
     if (!a) { if (pop && !pop.contains(e.target)) closePop(); return; }
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button || /\/glossary\/?(index\.html)?$/.test(location.pathname) || !SRC) return;
+    if (document.documentElement.classList.contains("tw-reading")) return;     // Twinlight lessons open their own glossary sheet (learn.js)
     e.preventDefault(); e.stopImmediatePropagation();
     const hit = (await glossary())[decodeURIComponent(a.hash.slice(1))];
     if (hit) showPop(hit[0], hit[1], a.href); else location.href = a.href;

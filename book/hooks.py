@@ -251,6 +251,7 @@ def on_config(config):
         brain_build.build()
     except brain_build.BuildRefused as e:
         raise PluginError("Tree builder refused: " + str(e)) from e
+    learn_build()
     try:
         DATA["path"] = None                       # Book 3.0 (15 Nov 2026): Book 2's chapter scaffolding retired; data/path-book2.yml kept as record
         if (ROOT / "data" / "path.yml").exists():
@@ -264,7 +265,52 @@ def on_config(config):
 
 
 ALIAS = {"full-frame-image-ffi": [r"full-frame images?", r"FFIs?"], "pdcsap-and-sap": [r"PDCSAP", r"SAP"], "ra-and-dec": [], "radius": []}
-KEEP = re.compile(r"(\[[^\]]*\]\([^)]*\)|`[^`]*`|<[^>]+>|\{\{[^}]*\}\})")   # spans we never link inside
+KEEP = re.compile(r"(\[[^\]]*\]\([^)]*\)|`[^`]*`|<[^>]+>|\{\{[^}]*\}\}|\\\(.+?\\\))")   # spans we never link inside (links, code, tags, claim chips, inline maths)
+
+
+def learn_build():
+    """Twinlight, the learning app (Book 3.0): units and lessons from data/learn-units.yml -> docs/assets/data/learn.json.
+    A lesson with a file is live and must exist; one without is shown as coming. Lesson ids are 'unit.lesson'."""
+    u = yaml.safe_load((ROOT / "data" / "learn-units.yml").read_text(encoding="utf-8"))
+    units, flat = [], []
+    for unit in u["units"]:
+        ls = []
+        for i, l in enumerate(unit["lessons"], 1):
+            e = {"id": f"{unit['n']}.{i}", "title": l["title"]}
+            if l.get("file"):
+                if not (ROOT / "docs" / "learn" / l["file"]).exists():
+                    raise PluginError(f"learn-units.yml names learn/{l['file']}, which does not exist")
+                e.update(src="learn/" + l["file"], url="learn/" + l["file"][:-3] + "/", minutes=l.get("minutes"))
+                flat.append(e)
+            ls.append(e)
+        units.append({"n": unit["n"], "title": unit["title"], "lessons": ls})
+    out = ROOT / "docs" / "assets" / "data" / "learn.json"
+    new = json.dumps({"units": units}, ensure_ascii=False, separators=(",", ":"))
+    if not out.exists() or out.read_text(encoding="utf-8") != new:      # write only on change, so mkdocs serve does not loop
+        out.write_text(new, encoding="utf-8")
+    DATA["learn"] = {"units": units, "flat": flat, "by_src": {e["src"]: (i, e) for i, e in enumerate(flat)}}
+
+
+def lesson_wrap(md, page):
+    """A Twinlight lesson: glossary words linked, a quiet kicker above the title, plain previous/next links at the end (they work without JavaScript)."""
+    L = DATA["learn"]
+    i, e = L["by_src"][page.file.src_uri]
+    up = "../" * page.file.src_uri.count("/")
+    head, sep, tail = md.partition("\n## Sources")
+    md = autolink(head, up) + sep + tail                      # glossary links in the lesson, never inside the source list
+    unit = next(u for u in L["units"] if u["n"] == int(e["id"].split(".")[0]))
+    kicker = f'<p class="tw-kicker" data-lesson="{e["id"]}">Unit {unit["n"]} · {escape(unit["title"])} · Lesson {e["id"]}' + (f' · {e["minutes"]} min' if e.get("minutes") else "") + "</p>\n\n"
+    md = re.sub(r"^(# .+)$", lambda m: kicker + m.group(1), md, count=1, flags=re.M)
+    rel = lambda s: "../" + s[len("learn/"):]                  # lessons live in learn/uN/, so ../uM/x.md reaches any other lesson
+    nav = ['<nav class="tw-pn" aria-label="Lessons" markdown>']
+    if i > 0:
+        p = L["flat"][i - 1]; nav.append(f'[<small>Previous</small> {p["id"]} {escape(p["title"])}]({rel(p["src"])}){{ .tw-prev rel="prev" }}')
+    if i < len(L["flat"]) - 1:
+        n = L["flat"][i + 1]; nav.append(f'[<small>Next</small> {n["id"]} {escape(n["title"])}]({rel(n["src"])}){{ .tw-next rel="next" }}')
+    else:
+        nav.append('[<small>Back to</small> Twinlight home](../index.md){ .tw-next }')
+    nav.append("</nav>")
+    return md.rstrip("\n") + "\n\n" + "\n\n".join(nav) + "\n"
 
 
 def gloss_patterns():
@@ -301,7 +347,7 @@ def autolink(md, up):
             eq = False
             out.append(line)
             continue
-        if fence or eq or not s or s[0] in "#<|" or s.startswith(("!!!", "???", "---", "$$", "[^")):
+        if fence or eq or not s or s[0] in "#<|" or s.startswith(("!!!", "???", "---", "$$", "[^", "\\[", "\\]")):
             out.append(line)
             continue
         for slug, rx in gloss_patterns():
@@ -352,6 +398,15 @@ def on_page_markdown(markdown, page, config, files):
     P, to_root = DATA["path"], "../" * page.url.count("/")
     if page.file.src_uri == "index.md" and "<!-- ss:tree-static -->" in markdown:
         markdown = markdown.replace("<!-- ss:tree-static -->", tree_static())
+    if page.file.src_uri in DATA["learn"]["by_src"]:
+        markdown = lesson_wrap(markdown, page)
+    if page.file.src_uri == "learn/index.md" and "<!-- tw:units -->" in markdown:     # the plain unit list (no JavaScript); the app draws its own home over it
+        rows = []
+        for u in DATA["learn"]["units"]:
+            rows.append(f"**Unit {u['n']}. {escape(u['title'])}**\n")
+            rows += [f"- [{l['id']} {escape(l['title'])}]({l['src'][len('learn/'):]})" if l.get("src") else f"- {l['id']} {escape(l['title'])} (coming)" for l in u["lessons"]]
+            rows.append("")
+        markdown = markdown.replace("<!-- tw:units -->", '<div class="tw-static" markdown>\n\n' + "\n".join(rows) + "\n</div>")
     if P is None:                                 # Book 3.0: no Book 2 chapter templates; claim chips and blocks still expand
         return expand(markdown, page.url, DATA)
     c = shape.chapter_for(P, page.file.src_uri)
