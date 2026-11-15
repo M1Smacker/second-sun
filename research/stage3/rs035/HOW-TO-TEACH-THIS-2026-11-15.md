@@ -12,7 +12,7 @@
 5. **Margin notes and maths.** How should definitions and side explanations be placed so they help rather than split attention? How to build maths just in time from basic algebra? Decides margin notes and the maths layer.
 6. **Content facts.** Primary sources for the physics the first units teach (transit depth, light curves, eclipsing binaries, circumbinary planets, TESS). Decides what the first lessons may state as fact.
 
-## Findings (records read 15 Nov 2026, 4:05 to 4:20 am; raw abstracts in `data/rs035_sources_2026-11-15/abstracts.json`)
+## Findings (records read 15 Nov 2026, 4:00 to 4:15 am; raw abstracts in `data/rs035_sources_2026-11-15/abstracts.json`)
 How read: journal sites (SAGE, PubMed) showed bot checks, which I do not bypass, so each paper's official record and abstract came from Crossref, Europe PMC, OpenAlex or Semantic Scholar, the Fyfe abstract from the Springer page, the astronomy abstracts from arXiv. Abstracts only: full texts were not read, so every label below rests on the authors' own summary.
 
 **Q1 Lesson template.**
