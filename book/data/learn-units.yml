@@ -7,7 +7,7 @@ units:
       - {file: u1/l1-a-light-curve.md, title: "A light curve", minutes: 12}
       - {file: u1/l2-percent-and-ppm.md, title: "Percent and parts per million", minutes: 12}
       - {file: u1/l3-noise.md, title: "Noise: the spread of the points", minutes: 14}
-      - {title: "What a dip looks like"}
+      - {file: u1/l4-what-a-dip-looks-like.md, title: "What a dip looks like", minutes: 15}
   - n: 2
     title: What makes a dip
     lessons:
