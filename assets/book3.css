@@ -66,7 +66,7 @@
 /* FIX 99 M-16, M-21: calm by colour, not by opacity (opacity .6 gave 3.3:1 in daylight); 44 px tap area */
 .md-typeset a.ss-chip { font-size: 14px; color: var(--ss-text-3); border-color: color-mix(in srgb, var(--ss-text-3) 55%, transparent); padding: 0 4px; }
 .md-typeset a.ss-chip--verified { color: var(--ss-text-2); }
-.md-typeset a.ss-chip::after { inset: -14px -4px; }
+.md-typeset a.ss-chip::after { inset: -16px -6px; }   /* FIX 100 CX2-07: -14px gave 42 px on a 14 px chip */
 .md-typeset a.ss-chip:hover { opacity: 1; }
 .md-typeset a.ss-gl, .md-typeset a[data-gloss] { color: inherit; text-decoration: underline dotted color-mix(in srgb, var(--ss-text-3) 70%, transparent); text-underline-offset: 3px; background: none; }
 

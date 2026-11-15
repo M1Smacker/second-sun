@@ -1585,10 +1585,10 @@
 <p class="tw-kicker" data-lesson="2.5">Unit 2 · What makes a dip · Lesson 2.5 · 18 min</p>
 
 <h1 id="gravity-from-scratch">Gravity from scratch<a class="headerlink" href="#gravity-from-scratch" title="Permanent link">&para;</a></h1>
-<p>The two stars' clock from lesson 2.1: an eclipse every 19.7 days, again and again.</p>
+<p>The two stars' clock from lesson 2.1: the deeper eclipse comes back every 19.7 days, again and again.</p>
 <div class="tw-plot" data-src="u2-four-sectors"></div>
 
-<p class="tw-plot__ask">These stars are about 3 billion years old and have kept this beat the whole time. Nothing pushes them. What keeps them going round, and what sets the 19.7 days?</p>
+<p class="tw-plot__ask">Nothing pushes these stars along, yet they keep going round. What keeps them moving, and what sets the 19.7 days?</p>
 
 <h2 id="falling-and-missing">Falling, and missing<a class="headerlink" href="#falling-and-missing" title="Permanent link">&para;</a></h2>
 <p>In lesson 2.1 we used <a href="../../../glossary/#kepler">Kepler</a>'s law, <span class="arithmatex">\(P^2 = a^3 / M\)</span>, as a rule handed down. Kepler found it in 1619 by staring at tables of planet positions, and he never knew why it worked. Isaac Newton found the why about 70 years later, and you can follow his argument with nothing more than the maths you already have.</p>
@@ -1605,7 +1605,7 @@
 <div class="arithmatex">\[ g = \frac{G M}{r^2} \]</div>
 <p>where <span class="arithmatex">\(G\)</span> is Newton's gravitational constant, the same everywhere in the universe. For the Sun, the product <span class="arithmatex">\(GM\)</span> is measured very precisely: <span class="arithmatex">\(1.3271 \times 10^{20}\)</span> in metres cubed per second squared.</p>
 <aside class="tw-mn">
-<p><strong><span class="arithmatex">\(G\)</span>.</strong> Newton's constant, <span class="arithmatex">\(6.674 \times 10^{-11}\)</span> in SI units. Tiny: gravity is by far the weakest force, and only matters because stars and planets are so massive.</p>
+<p><strong><span class="arithmatex">\(G\)</span>.</strong> Newton's constant, <span class="arithmatex">\(6.674 \times 10^{-11}\)</span> in SI units (the standard system of metres, kilograms and seconds; here m³ per kg per s²). Tiny: gravity is by far the weakest force, and only matters because stars and planets are so massive.</p>
 </aside>
 <h2 id="think-it-through">Think it through<a class="headerlink" href="#think-it-through" title="Permanent link">&para;</a></h2>
 <div class="tw-prob" data-answer="9" data-hints="{&quot;3&quot;:&quot;Inverse square: 3 times farther means 3 x 3.&quot;,&quot;0.111&quot;:&quot;The question asks how many times weaker: 9.&quot;}" data-tol="0.01" data-why="The pull goes as 1/r squared: 3 x 3 = 9 times weaker.">
@@ -1643,7 +1643,7 @@
 <h2 id="keplers-law-falls-out">Kepler's law falls out<a class="headerlink" href="#keplers-law-falls-out" title="Permanent link">&para;</a></h2>
 <p>Now the period. One trip round the circle is a distance <span class="arithmatex">\(2\pi r\)</span>, done at speed <span class="arithmatex">\(v\)</span>, so <span class="arithmatex">\(P = 2\pi r / v\)</span>. Put in the speed and square both sides:</p>
 <div class="arithmatex">\[ P^2 = \frac{4\pi^2 r^2}{v^2} = \frac{4\pi^2 r^2}{G M / r} = \frac{4\pi^2}{G}\,\frac{r^3}{M} \]</div>
-<p>That is Kepler's third law: <span class="arithmatex">\(P^2\)</span> grows with <span class="arithmatex">\(r^3\)</span> and shrinks with <span class="arithmatex">\(M\)</span>. The only extra piece is the constant <span class="arithmatex">\(4\pi^2 / G\)</span>. Measure <span class="arithmatex">\(P\)</span> in years, <span class="arithmatex">\(r\)</span> in AU and <span class="arithmatex">\(M\)</span> in Suns, and that constant becomes exactly 1, because those units are defined by the Earth's own orbit. That is why lesson 2.1 could write simply <span class="arithmatex">\(P^2 = a^3/M\)</span>.</p>
+<p>That is Kepler's third law: <span class="arithmatex">\(P^2\)</span> grows with <span class="arithmatex">\(r^3\)</span> and shrinks with <span class="arithmatex">\(M\)</span>. The only extra piece is the constant <span class="arithmatex">\(4\pi^2 / G\)</span>. Measure <span class="arithmatex">\(P\)</span> in years, <span class="arithmatex">\(r\)</span> in AU and <span class="arithmatex">\(M\)</span> in Suns, and that constant comes out as 1.00004: one, to better than a hundredth of a percent. That is no coincidence: the year and the AU are the Earth's own period and orbit size, and the Earth's mass is tiny next to the Sun's, so Kepler's law in these units must give about 1 for the Earth. That is why lesson 2.1 could write simply <span class="arithmatex">\(P^2 = a^3/M\)</span>.</p>
 <p>The same law, read backwards, is how astronomers <strong>weigh</strong> things. Measure an orbit's size and period, and the mass inside it follows. The discovery paper weighed our two stars to better than 0.1% this way, from their eclipses and their measured speeds.</p>
 <h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
 <p>An orbit is falling while moving sideways fast enough to keep missing. Gravity pulls each kilogram with <span class="arithmatex">\(GM/r^2\)</span>, weaker as the square of the distance, the same for a pebble and a planet. Making that pull bend the path into a circle gives the orbit speed <span class="arithmatex">\(v = \sqrt{GM/r}\)</span>: 29.8 km/s for the Earth, 49 km/s for the planet around our pair. Working out the period from that speed gives Kepler's third law, and turns every orbit into a scale for weighing stars.</p>
@@ -1680,9 +1680,9 @@
 <ul>
 <li><span class="arithmatex">\(GM\)</span> of the Sun <span class="arithmatex">\(1.32712 \times 10^{20}\)</span> m³/s² and of the Earth <span class="arithmatex">\(3.986004 \times 10^{14}\)</span> m³/s²: IAU 2015 Resolution B3 nominal values; 1 AU = 149,597,870,700 m (IAU 2012 Resolution B2). <span class="arithmatex">\(G = 6.674 \times 10^{-11}\)</span> (CODATA).</li>
 <li>Kepler's third law, 1619 (Harmonices Mundi); Newton's cannon and law of gravitation, Principia (1687). Any history of astronomy, for example OpenStax Astronomy 2e, chapter 3 "Orbits and Gravity" (<a href="https://openstax.org/details/books/astronomy-2e">the book</a>, CC BY-NC-SA 4.0).</li>
-<li>The stars' age (3.1 billion years) and masses (to better than 0.1%): Kostov et al. 2021 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>).</li>
+<li>The stars' masses (to better than 0.1%): Kostov et al. 2021 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>).</li>
 <li>Space station altitude about 400 km, gravity there about 90% of the surface value (<span class="arithmatex">\((6371/6771)^2 = 0.885\)</span>): our arithmetic; the station's real height varies, roughly 400 to 420 km.</li>
-<li>All speeds and periods in this lesson: our own arithmetic (15 Nov 2026).</li>
+<li>All speeds and periods in this lesson: our own arithmetic (15 Nov 2026), checked independently by Codex 022. The constant <span class="arithmatex">\(4\pi^2 / G\)</span> in years, AU and Suns: 1.00004 with a Julian year and the IAU AU and solar GM (Codex 022, JPL constants).</li>
 </ul>
 <nav aria-label="Lessons" class="tw-pn">
 <p><a class="tw-prev" href="../l4-light-from-two-stars/" rel="prev"><small>Previous</small> 2.4 Light from two stars at once</a></p>
@@ -1728,7 +1728,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.5.1 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.5.2 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
