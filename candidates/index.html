@@ -70,7 +70,8 @@
   <meta name="apple-mobile-web-app-title" content="Second Sun">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   
-  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
   
 
   </head>
@@ -1545,7 +1546,7 @@
 <p class="admonition-title">In plain words</p>
 <p>A <strong><a href="../glossary/#candidate">candidate</a></strong> is a dip that passed our first checks. It is <em>not</em> a planet. Each one gets an ID (SS-0001, SS-0002, ...) and, once it survives vetting, a nickname. It needs <strong>two keys</strong> before it goes anywhere: my analysis, and your own check.</p>
 </div>
-<section class="ss-card"><p class="ss-meta">Layout example, not a real candidate</p><h3><code>SS-0000</code></h3><p class="ss-meta"><span class="ss-status">layout example</span> · Keys: Claude: pending · Ahmed: pending</p><dl class="ss-facts"><dt>TIC</dt><dd>0000000000</dd><dt>Quest</dt><dd>main</dd><dt>Events seen</dt><dd>1</dd><dt>Depth</dt><dd>0.4% (4 ppt)</dd><dt>Duration</dt><dd>6 h</dd><dt>Found</dt><dd>2026-10-19</dd></dl><p>Layout example only. Every number on this card is made up.</p></section>
+<section class="ss-card"><p class="ss-meta">Layout example, not a real candidate</p><h2 class="ss-card-h"><code>SS-0000</code></h2><p class="ss-meta"><span class="ss-status">layout example</span> · Keys: Claude: pending · Ahmed: pending</p><dl class="ss-facts"><dt>TIC</dt><dd>0000000000</dd><dt>Quest</dt><dd>main</dd><dt>Events seen</dt><dd>1</dd><dt>Depth</dt><dd>0.4% (4 ppt)</dd><dt>Duration</dt><dd>6 h</dd><dt>Found</dt><dd>2026-10-19</dd></dl><p>Layout example only. Every number on this card is made up.</p></section>
 
 
 
@@ -1581,7 +1582,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.2.1 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.3.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   

@@ -70,7 +70,8 @@
   <meta name="apple-mobile-web-app-title" content="Second Sun">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   
-  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
   
 
   </head>
@@ -1705,7 +1706,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.2.1 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.3.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   

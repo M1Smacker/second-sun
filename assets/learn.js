@@ -22,6 +22,7 @@
   /* ---------- sheet: one at a time, Back closes it, the page underneath never moves ---------- */
   let open = null;
   const sheet = (title, body, cls = "") => {
+    const replacing = !!open;
     close(true);
     const s = el("div", "tw-sheet " + cls), card = el("div", "tw-sheet__card");
     card.setAttribute("role", "dialog"); card.setAttribute("aria-modal", "true"); card.setAttribute("aria-label", title);
@@ -29,20 +30,39 @@
     x.type = "button"; x.addEventListener("click", () => close());
     head.append(x); card.append(head, body); s.append(card);
     s.addEventListener("click", (e) => { if (e.target === s) close(); });
+    const back = document.activeElement, y = scrollY, style = document.body.getAttribute("style");
+    const inerted = [...document.body.children].filter(e => !e.inert);
+    inerted.forEach(e => e.inert = true);
+    Object.assign(document.body.style, { position: "fixed", top: `-${y}px`, width: "100%" });
+    document.documentElement.classList.remove("tw-hide");
     document.body.append(s);
+    s.restore = () => {
+      inerted.forEach(e => e.inert = false);
+      if (style == null) document.body.removeAttribute("style"); else document.body.setAttribute("style", style);
+      scrollTo(0, y); back?.focus({ preventScroll: true });
+    };
+    card.addEventListener("keydown", e => {
+      if (e.key !== "Tab") return;
+      const items = $$('button,a[href],input,select,textarea', card).filter(e => !e.disabled && e.getClientRects().length);
+      if (e.shiftKey && document.activeElement === items[0]) { e.preventDefault(); items.at(-1).focus(); }
+      else if (!e.shiftKey && document.activeElement === items.at(-1)) { e.preventDefault(); items[0].focus(); }
+    });
     requestAnimationFrame(() => s.classList.add("is-open"));
-    open = s; history.pushState({ twSheet: 1 }, "");
-    setTimeout(() => (card.querySelector("button:not(.tw-x),a,input,select,textarea") || x).focus({ preventScroll: true }), RM ? 0 : 180);
+    open = s;
+    if (!replacing) history.pushState({ twSheet: 1 }, "");
+    setTimeout(() => { if (open === s) (card.querySelector("button:not(.tw-x),a,input,select,textarea") || x).focus({ preventScroll: true }); }, RM ? 0 : 180);
     return card;
   };
   function close(silent) {
     if (!open) return;
     const s = open; open = null;
+    s.inert = true;
+    s.restore();
     s.classList.remove("is-open");
     setTimeout(() => s.remove(), RM ? 0 : 220);
     if (!silent && history.state && history.state.twSheet) history.back();
   }
-  addEventListener("popstate", () => { if (open) { const s = open; open = null; s.classList.remove("is-open"); setTimeout(() => s.remove(), RM ? 0 : 220); } });
+  addEventListener("popstate", () => close(true));
   addEventListener("keydown", (e) => { if (e.key === "Escape" && open) close(); });
 
   /* ---------- formulas ---------- */
@@ -104,9 +124,22 @@
   };
 
   /* ---------- problems: typed answer, instant check, a specific hint, the worked solution ---------- */
-  const num = (s) => { const t = String(s).trim().replace(/,/g, "").replace(/\s+/g, "").replace(/[×x]10\^?(-?\d+)/i, "e$1").replace(/%$/, ""); return t !== "" && isFinite(+t) ? +t : null; };
-  const same = (given, want, tol, abs) => {
-    const a = num(given), b = num(want);
+  const num = (s, unit = "") => {
+    let t = String(s).trim().toLowerCase().replace(/\u2212/g, "-");
+    const parts = /^([+\-]?[\d.,]+(?:\s*[×x]\s*10\^?[+\-]?\d+|e[+\-]?\d+)?)(?:\s*(.*))?$/.exec(t);
+    if (!parts) return null;
+    const aliases = { percent: ["percent", "%"], days: ["days", "day", "d"], hours: ["hours", "hour", "h"], years: ["years", "year", "yr"], points: ["points", "point"] };
+    const suffix = (parts[2] || "").trim(), expected = unit.toLowerCase();
+    if (suffix && !(aliases[expected] || [expected]).includes(suffix)) return null;
+    t = parts[1].replace(/\s+/g, "").replace(/[×x]10\^?([+\-]?\d+)/i, "e$1");
+    // A single comma with a short fractional part is decimal. Three-digit groups retain the book's thousands notation.
+    if (/^[+\-]?(?:\d+,\d{1,2}|0,\d+)(?:e[+\-]?\d+)?$/.test(t)) t = t.replace(",", ".");
+    else if (/^[+\-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?(?:e[+\-]?\d+)?$/.test(t)) t = t.replace(/,/g, "");
+    else if (t.includes(",")) return null;
+    return Number.isFinite(+t) ? +t : null;
+  };
+  const same = (given, want, tol, abs, unit) => {
+    const a = num(given, unit), b = num(want);
     if (a != null && b != null) return Math.abs(a - b) <= Math.max(abs || 0, Math.abs(b) * tol);
     return String(given).trim().toLowerCase().replace(/[.\s]+$/g, "") === String(want).trim().toLowerCase();
   };
@@ -123,7 +156,7 @@
       const sol = $("details.tw-sol", p);
       const f = el("form", "tw-answer"), inp = el("input"), btn = el("button", "tw-btn", "Check"), fb = el("p", "tw-fb");
       inp.type = "text"; inp.autocomplete = "off"; inp.setAttribute("aria-label", `Your answer to problem ${k + 1}`);
-      inp.inputMode = answers.every((a) => num(a) != null) ? "decimal" : "text";
+      inp.inputMode = answers.every((a) => num(a) != null && num(a) >= 0) ? "decimal" : "text";
       inp.placeholder = p.dataset.unit ? `Answer in ${p.dataset.unit}` : "Your answer";
       btn.type = "submit"; fb.setAttribute("aria-live", "polite");
       f.append(inp, btn); p.insertBefore(f, sol); p.insertBefore(fb, sol);
@@ -133,14 +166,14 @@
         e.preventDefault();
         const v = inp.value; if (!v.trim()) { fb.textContent = "Type an answer first, or open the worked solution."; return; }
         const s = get("tw-prob", {});
-        if (answers.some((a) => same(v, a, tol, abs))) {
+        if (answers.some((a) => same(v, a, tol, abs, p.dataset.unit))) {
           p.classList.remove("is-wrong"); p.classList.add("is-right");
           fb.innerHTML = "<strong>Right.</strong> " + esc(p.dataset.why || "Open the worked solution to compare your steps.");
           s[pid] = "right"; set("tw-prob", s); setDue(pid, null);
           if (sol) sol.open = true;
         } else {
           p.classList.remove("is-right"); p.classList.add("is-wrong");
-          const h = Object.keys(hints).find((w) => same(v, w, tol, abs));
+          const h = Object.keys(hints).find((w) => same(v, w, tol, abs, p.dataset.unit));
           fb.innerHTML = "<strong>Not yet.</strong> " + esc(h ? hints[h] : "Try once more, or open the worked solution and follow each step.");
           s[pid] = "wrong"; set("tw-prob", s);
           setDue(pid, { pid, lesson: lessonId, title, url: location.pathname.replace(/[^/]*$/, ""), n: k + 1, label, at: today() });
@@ -198,8 +231,9 @@
       pill.style.left = `${Math.min(innerWidth - 220, Math.max(8, box.left + box.width / 2 - 100))}px`;
     };
     document.addEventListener("selectionchange", () => { clearTimeout(where.t); where.t = setTimeout(where, 250); });
-    const add = (note) => { if (!pend) return; const l = mine(); l.push({ ...pend, note: note || "", lesson: lessonId, title, at: today() }); save(l); pend = null; getSelection().removeAllRanges(); pill.hidden = true; paint(); };
+    const add = (note, selection = pend) => { if (!selection) return; const l = mine(); l.push({ ...selection, note: note || "", lesson: lessonId, title, at: today() }); save(l); pend = null; getSelection().removeAllRanges(); pill.hidden = true; paint(); };
     const noteSheet = (h, i) => {
+      const selection = pend && { ...pend };
       const body = el("div", "tw-sheet__body");
       body.innerHTML = `<blockquote>${esc(h ? h.text : pend.text)}</blockquote><label class="tw-lab" for="tw-note">Your note</label><textarea id="tw-note" rows="4"></textarea><div class="tw-row"><button type="button" class="tw-btn" data-a="save">Save</button>${h ? '<button type="button" class="tw-btn tw-btn--quiet" data-a="del">Remove highlight</button>' : ""}</div>`;
       $("textarea", body).value = h ? h.note : "";
@@ -207,7 +241,7 @@
       $("textarea", card).focus({ preventScroll: true });
       body.addEventListener("click", (e) => {
         const a = e.target.dataset.a; if (!a) return;
-        if (a === "save") { const v = $("textarea", body).value.trim(); if (h) { const l = mine(); l[i].note = v; save(l); paint(); } else add(v); close(); }
+        if (a === "save") { const v = $("textarea", body).value.trim(); if (h) { const l = mine(); l[i].note = v; save(l); paint(); } else add(v, selection); close(); }
         if (a === "del") { const l = mine(); l.splice(i, 1); save(l); paint(); close(); }
       });
     };
@@ -306,7 +340,7 @@
     const title = (($("h1", art) || {}).textContent || id).replace(/¶/g, "").trim();
     document.documentElement.classList.add("tw-reading");
     maths(art);
-    $$(".tw-plot[data-src]").forEach(plot);
+    const plotsReady = Promise.all($$(".tw-plot[data-src]").map(plot));
     let rw = innerWidth, rt = 0;
     addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { if (Math.abs(innerWidth - rw) > 40) { rw = innerWidth; $$(".tw-plot[data-src]").forEach(plot); } }, 300); });
     problems(id, title);
@@ -318,24 +352,36 @@
     const fill = $("i", bar);
     let lastY = scrollY, saveT = 0;
     const onScroll = () => {
+      if (open) return;
       const max = document.documentElement.scrollHeight - innerHeight, f = max > 0 ? Math.min(1, scrollY / max) : 1;
       fill.style.transform = `scaleX(${f})`;
-      document.documentElement.classList.toggle("tw-hide", scrollY > 80 && scrollY > lastY + 2 && !open);
+      if (scrollY > 80 && scrollY > lastY + 2 && !open) document.documentElement.classList.add("tw-hide");
       if (scrollY < lastY - 6 || scrollY < 80) document.documentElement.classList.remove("tw-hide");
       lastY = scrollY;
-      clearTimeout(saveT); saveT = setTimeout(() => set("tw-place", { id, title, url: location.pathname, y: f, at: Date.now() }), 400);
+      const px = scrollY;
+      clearTimeout(saveT); saveT = setTimeout(() => set("tw-place", { id, title, url: location.pathname, y: f, px, width: innerWidth, at: Date.now() }), 400);
     };
-    addEventListener("scroll", onScroll, { passive: true }); onScroll();
+    const savedPlace = get("tw-place", null);
+    await plotsReady;
+    await document.fonts.ready;
+    await Promise.all($$("img", art).map(img => img.decode().catch(() => {})));
     const edge = el("button", "tw-edge"); edge.type = "button"; edge.setAttribute("aria-label", "Show the menu");
     edge.addEventListener("click", () => document.documentElement.classList.remove("tw-hide")); document.body.append(edge);
     // resume at the exact place when opened from Continue
     try {
       if (sessionStorage.getItem("tw-resume") === location.pathname) {
         sessionStorage.removeItem("tw-resume");
-        const p = get("tw-place", null);
-        if (p && p.url === location.pathname) requestAnimationFrame(() => scrollTo(0, p.y * (document.documentElement.scrollHeight - innerHeight)));
+        const p = savedPlace;
+        if (p && p.url === location.pathname) {
+          if (document.readyState !== "complete") await new Promise(resolve => addEventListener("load", resolve, { once: true }));
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+          const y = p.width === innerWidth && Number.isFinite(p.px) ? p.px : p.y * (document.documentElement.scrollHeight - innerHeight);
+          scrollTo(0, y);
+        }
       }
     } catch (e) { /* storage blocked */ }
+    lastY = scrollY;
+    addEventListener("scroll", onScroll, { passive: true }); onScroll();
     // finished: the end links come into view (checked on scroll; no IntersectionObserver, which some hidden or old views never fire)
     const end = $(".tw-pn");
     let finished = false;

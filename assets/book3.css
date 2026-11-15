@@ -32,6 +32,17 @@
 .md-tabs__link { font-family: var(--ss-head); letter-spacing: .02em; opacity: .78; transition: opacity var(--ss-t1) var(--ss-e-out), color var(--ss-t1) var(--ss-e-out); }
 .md-tabs__link--active, .md-tabs__link:hover { opacity: 1; color: var(--ss-accent); }
 .md-tabs__item { position: relative; }
+/* FIX 99 M-02 (15 Nov 2026): the glass header takes the page colour, so its text must take the page text colour too
+   (Material kept the old light-on-dark --md-primary-bg-color; in daylight that was 1.14:1). */
+.md-header, .md-tabs { color: var(--ss-text); }
+.md-tabs__link { color: var(--ss-text-2); }
+.md-tabs__link--active, .md-tabs__link:hover { color: var(--ss-accent); }
+[data-md-color-scheme="default"] .md-search__input { background-color: var(--ss-surface); color: var(--ss-text); }
+[data-md-color-scheme="default"] .md-search__input::placeholder { color: var(--ss-text-3); }
+[data-md-color-scheme="default"] .md-search__icon { color: var(--ss-text-2); }
+/* FIX 99 M-01: the Tree and Twinlight keep the phone menu (front matter no longer hides navigation);
+   on a wide screen they still show no side list, as designed. */
+@media screen and (min-width: 76.25em) { body:has(#ss-tree, #tw-home, .tw-kicker) .md-sidebar--primary { display: none; } }
 .md-tabs__item--active::after { content: ""; position: absolute; left: .6rem; right: .6rem; bottom: 0; height: 2px; border-radius: 2px; background: var(--ss-accent); box-shadow: 0 0 10px var(--ss-glow); animation: ss3-grow var(--ss-t2) var(--ss-e-out) both; }
 @keyframes ss3-grow { from { transform: scaleX(0); opacity: 0; } }
 
@@ -52,7 +63,10 @@
 .ss-reveal.is-in { opacity: 1; transform: none; }
 
 /* ---------- Calm marks: evidence chips and glossary words no longer shout (FIX 73) ---------- */
-.md-typeset a.ss-chip { font-size: 14px; opacity: .6; border-color: color-mix(in srgb, var(--ss-line) 80%, transparent); padding: 0 4px; }
+/* FIX 99 M-16, M-21: calm by colour, not by opacity (opacity .6 gave 3.3:1 in daylight); 44 px tap area */
+.md-typeset a.ss-chip { font-size: 14px; color: var(--ss-text-3); border-color: color-mix(in srgb, var(--ss-text-3) 55%, transparent); padding: 0 4px; }
+.md-typeset a.ss-chip--verified { color: var(--ss-text-2); }
+.md-typeset a.ss-chip::after { inset: -14px -4px; }
 .md-typeset a.ss-chip:hover { opacity: 1; }
 .md-typeset a.ss-gl, .md-typeset a[data-gloss] { color: inherit; text-decoration: underline dotted color-mix(in srgb, var(--ss-text-3) 70%, transparent); text-underline-offset: 3px; background: none; }
 
@@ -91,7 +105,8 @@ html[data-splash="quick"] #ss-splash .ss-sp-in { animation: ss3-name 300ms var(-
   .md-typeset table.ss-cards { border: 0; background: none; box-shadow: none; }
   .md-typeset table.ss-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .md-typeset table.ss-cards tr { margin: 0 0 12px; padding: 10px 14px; border: 1px solid var(--ss-line); border-radius: 12px; background: color-mix(in srgb, var(--ss-surface) 85%, transparent); }
-  .md-typeset table.ss-cards td { border: 0; padding: 5px 0; display: grid; grid-template-columns: minmax(84px, 38%) 1fr; gap: 10px; }
+  .md-typeset table.ss-cards td { border: 0; padding: 5px 0; display: grid; grid-template-columns: minmax(84px, 38%) minmax(0, 1fr); gap: 10px; overflow-wrap: anywhere; }   /* FIX 99 M-10: minmax(0, 1fr) so a long cell cannot widen the page (Claims was 362 px on a 320 px phone) */
+  .md-typeset table.ss-cards td > * { min-width: 0; }
   .md-typeset table.ss-cards td::before { content: attr(data-label); font: 600 12px/1.5 var(--ss-head); letter-spacing: .04em; text-transform: uppercase; color: var(--ss-text-3); }
   .md-typeset table.ss-cards td:first-child { font-weight: 600; }
   .md-typeset table.ss-cards td[data-label=""] { grid-template-columns: 1fr; }
@@ -120,3 +135,6 @@ body:has(#ss-tree) .md-content__inner > h1 { position: absolute; width: 1px; hei
 body:has(#ss-tree) .md-main__inner { margin-top: 0; }
 body:has(#ss-tree) .md-content { max-width: none; }
 body:has(#ss-tree) .md-grid { max-width: none; }
+
+/* FIX 99 M-21: two code colours were just under 4.5:1 on the light code background */
+[data-md-color-scheme="default"] { --md-code-hl-constant-color: #5640c0; --md-code-hl-string-color: #17663f; }
