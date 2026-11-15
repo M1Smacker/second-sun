@@ -245,7 +245,7 @@ def build(root=ROOT, write=True):
             continue                                           # the drop tells this piece better
         first = re.split(r"(?<=\.)\s", e["body"], 1)[0][:240]
         leaves.append({"id": f"l:{i}", "kind": "log", "type": kind_of(e["ident"]).lower(), "node": e["nodes"][0], "also": e["nodes"][1:],
-                       "date": e["date"], "when": (e["date"] + "T12:00") if e["date"] else None, "status": "done",
+                       "date": e["date"], "when": (e["date"] + "T00:00") if e["date"] else None, "status": "done",
                        "plain": f"{kind_of(e['ident'])}: {first}", "why": "", "explanation": "", "technical": e["body"],
                        "ids": [e["ident"]], "links": [], "superseded": False, "by": "Claude" if not e["ident"].startswith("Codex") else "Codex",
                        "label": None})

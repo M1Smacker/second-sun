@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T03:53",
+ "generated": "2026-11-15T04:02",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -382,27 +382,6 @@
  ],
  "leaves": [
   {
-   "id": "l:0",
-   "kind": "log",
-   "type": "codex job",
-   "node": "4.4",
-   "also": [],
-   "date": "2026-11-15",
-   "when": "2026-11-15T12:00",
-   "status": "done",
-   "plain": "Codex job: Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions).",
-   "why": "",
-   "explanation": "",
-   "technical": "Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions). Run headless by research/astra/tools/codex_run.py. research/astra/inbox/015-eyes-flow-fixes.md",
-   "ids": [
-    "Codex 015"
-   ],
-   "links": [],
-   "superseded": false,
-   "by": "Codex",
-   "label": null
-  },
-  {
    "id": "d:2026-11-15-0139-fix96-radius-check",
    "file": "2026-11-15-0139-fix96-radius-check.md",
    "kind": "drop",
@@ -576,6 +555,27 @@
    ],
    "supersedes": [],
    "superseded": false
+  },
+  {
+   "id": "l:0",
+   "kind": "log",
+   "type": "codex job",
+   "node": "4.4",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions).",
+   "why": "",
+   "explanation": "",
+   "technical": "Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions). Run headless by research/astra/tools/codex_run.py. research/astra/inbox/015-eyes-flow-fixes.md",
+   "ids": [
+    "Codex 015"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
   },
   {
    "id": "d:2026-11-14-2347-codex-014-part1",
@@ -1586,7 +1586,7 @@
    "node": "1.4",
    "also": [],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Research: TESS-era eclipse times; timing bug is G2 only (110 of 420 stars, 706 of 711 blanked curves); Oddo et al.",
    "why": "",
@@ -1607,7 +1607,7 @@
    "node": "1.6",
    "also": [],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Build: the broken-light-curve guards nd and dg change nothing under B (P 48.11%, background 174/79 unchanged; 61 unphysical design events already ignored by OAE).",
    "why": "",
@@ -1628,7 +1628,7 @@
    "node": "1.6",
    "also": [],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Build: it holds 57% of real and 51% of upside-down tier-1 background and 59 of the 95 real excess, but holding it costs 40 planets (P 48.1% to 44.6%, fast binaries) and fails the paired control in one bin.",
    "why": "",
@@ -1651,7 +1651,7 @@
     "1.6"
    ],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Codex job: second key on RS-024 agrees; OAE adopted as a fairness fix.",
    "why": "",
@@ -1674,7 +1674,7 @@
     "1.6"
    ],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Research: root cause of \"dominated\": sign-asymmetric binary light, missed eclipses veto before they are labelled; Kepler Chases, LEO-Vetter, mono-cbp.",
    "why": "",
@@ -1697,7 +1697,7 @@
     "3.2"
    ],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Codex job: three dominated fixes all failed; T109 second key with scope corrections.",
    "why": "",
@@ -1718,7 +1718,7 @@
    "node": "1.1",
    "also": [],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Codex job: never delivered; replaced by 008 at 09:20 before Codex read it.",
    "why": "",
@@ -1743,7 +1743,7 @@
     "2.2"
    ],
    "date": "2026-11-14",
-   "when": "2026-11-14T12:00",
+   "when": "2026-11-14T00:00",
    "status": "done",
    "plain": "Codex job: planet-level P 0.48, FIX FIRST (two keys).",
    "why": "",
@@ -1764,7 +1764,7 @@
    "node": "3.3",
    "also": [],
    "date": "2026-11-13",
-   "when": "2026-11-13T12:00",
+   "when": "2026-11-13T00:00",
    "status": "done",
    "plain": "Research: Rabtsevich comparison, are we over-engineering.",
    "why": "",
@@ -1909,12 +1909,12 @@
    "date": "2026-11-15",
    "diary": null,
    "leaves": [
+    "l:0",
     "d:2026-11-15-0002-codex-014-part2",
     "d:2026-11-15-0008-fix83-test-runner",
     "d:2026-11-15-0013-fix84-closed",
     "d:2026-11-15-0137-codex014-part3-key",
-    "d:2026-11-15-0139-fix96-radius-check",
-    "l:0"
+    "d:2026-11-15-0139-fix96-radius-check"
    ]
   }
  ],

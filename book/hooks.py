@@ -319,6 +319,23 @@ def autolink(md, up):
     return "\n".join(out)
 
 
+def tree_static():
+    """The Tree as a plain list, for readers without JavaScript (the script hides it and draws the real Tree)."""
+    t = json.loads((ROOT / "docs" / "assets" / "data" / "tree.json").read_text(encoding="utf-8"))
+    nodes = {n["id"]: n for n in t["nodes"]}
+    out = ['<div class="sst-static">', f'<p><strong>{escape(t["goal"]["title"])}.</strong> {escape(t["goal"]["plain"])}</p>']
+    if t.get("now"):
+        out.append(f'<p><strong>Now:</strong> {escape(t["now"])}</p>')
+    for b in [n for n in t["nodes"] if n["parent"] == "goal"]:
+        out.append(f'<h2>{escape(b["title"])}</h2><p>{escape(b["plain"])}</p><ul>')
+        for c in b["children"]:
+            n = nodes[c]
+            out.append(f'<li><strong>{escape(n["title"])}</strong> <small>({escape(n["id"])}, {escape(n["status"].lower())})</small>: {escape(n["plain"])}</li>')
+        out.append("</ul>")
+    out.append("</div>")
+    return chr(10).join(out)
+
+
 def chapter_wrap(md, c, to_root):
     """Chapter template: map strip above the title, 1-minute summary (and story) before the plain-words box,
     mark-as-read and Next/Previous (with a reason) before Sources. The pages keep only their own content."""
@@ -333,6 +350,8 @@ def chapter_wrap(md, c, to_root):
 
 def on_page_markdown(markdown, page, config, files):
     P, to_root = DATA["path"], "../" * page.url.count("/")
+    if page.file.src_uri == "index.md" and "<!-- ss:tree-static -->" in markdown:
+        markdown = markdown.replace("<!-- ss:tree-static -->", tree_static())
     if P is None:                                 # Book 3.0: no Book 2 chapter templates; claim chips and blocks still expand
         return expand(markdown, page.url, DATA)
     c = shape.chapter_for(P, page.file.src_uri)

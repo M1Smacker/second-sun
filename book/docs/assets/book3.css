@@ -113,3 +113,10 @@ html[data-splash="quick"] #ss-splash .ss-sp-in { animation: ss3-name 300ms var(-
 .md-typeset .ss3-shelf__item span, .md-typeset .ss3-deck__k { font: 600 17px/1.3 var(--ss-head); color: var(--ss-text); }
 .md-typeset .ss3-shelf__item small, .md-typeset .ss3-deck__t { font: 400 14px/1.45 var(--ss-head); color: var(--ss-text-2); }
 .md-typeset .ss3-shelf__item:hover, .md-typeset .ss3-deck__card:hover { border-color: color-mix(in srgb, var(--ss-accent) 55%, var(--ss-line)); transform: translateY(-2px); box-shadow: 0 10px 30px -18px var(--ss-glow); }
+
+/* The Tree page: full width, no title (the Tree is the page) */
+body:has(#ss-tree) .md-content__inner { margin: 0; padding: 0; max-width: none; }
+body:has(#ss-tree) .md-content__inner > h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+body:has(#ss-tree) .md-main__inner { margin-top: 0; }
+body:has(#ss-tree) .md-content { max-width: none; }
+body:has(#ss-tree) .md-grid { max-width: none; }
