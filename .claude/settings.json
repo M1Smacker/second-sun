@@ -29,6 +29,17 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); case \"$input\" in *\"\\\"stop_hook_active\\\":true\"*|*\"\\\"stop_hook_active\\\": true\"*) exit 0;; esac; printf %s \"{\\\"decision\\\":\\\"block\\\",\\\"reason\\\":\\\"Before ending the turn (Ahmed, 15 Nov 2026: stop sitting idle): list what is still open on the plan, the queues and RESUME Next. If any item does not depend on a running job, start it now. End the turn only if Ahmed asked you to pause or to plan only, or if every open item truly waits on something; then say in one line which item waits on what.\\\"}\"",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }
