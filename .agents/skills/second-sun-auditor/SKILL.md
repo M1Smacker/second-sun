@@ -70,6 +70,7 @@ Where bugs hide, and what to check:
 | Mistake | The rule that stops it |
 |---|---|
 | Quoting a number from a formula or an assumption as if measured | Run the injection or the count. Label it otherwise. |
+| (15 Nov 2026, Book 3 audit, 32 bugs) Calling a UI done on checks that measure my intent, not a reader's path (no menu tap, no light-mode contrast, tour skipped in tests, overflow vs innerWidth so it could never fail) | Release gates in memory `book-release-gates`: tap every path at 390 px in both themes, look at the screenshots, show each check can fail, broad Codex UI audit. |
 | A test that cannot fail, or tests a path the planet never takes | Mutation check; inject before every step. |
 | Calling a fix done without running it | Paste the output or say "not run". |
 | Reading for hours, then guessing | Script first (section 0). |
