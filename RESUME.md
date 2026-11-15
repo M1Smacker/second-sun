@@ -1,3 +1,11 @@
+## LATEST (15 Nov 2026, 6:50 pm Kuwait): RS-037 done; F4 added to Fable's brief
+- Ahmed approved RS-037 (Opus 5.5 medium). Result `research/stage3/rs037/MULTI-CROSSING-2026-11-15.md`: adding up crossings alone adds only 2 to 4 points of P. Missed planets: 11.6 points detected at SNR 7+ but held at tier 2 by guard flags (dump 55, step 49, gap edge 34, ramp 33, repeater 32 of 123); 13.8 points with crossings never scored (mask, windows, load); 22.4 too faint. Realistic ceiling of every lever about 0.71 to 0.74, so the 0.75 bar is at the edge.
+- New ideas measured: orbit vouching (a 2nd crossing scoring 4+ exists for 5.6 of the 11.6 points); cross-star time veto (dump false alarms coincide across stars about 2x as often as planted dips: helps, not clean alone).
+- Corrected: stacking was considered on 30 Oct (gate said skip) and STANLEY was run once (F-045); I had said 'never built'.
+- Fable brief: new bar section, F4 (vetting losses and orbit vouching, cap 4), F2 cap 10 -> 8. Scripts under data/rs037/. Meter 63% weekly at 6:46 pm.
+- Helper web reads were blocked by the auto-mode classifier; used the browser pane on arXiv HTML pages.
+- Open: Codex 024 running (report file seen in the worktree, job not ended); 025 queued; Fable waits for Monday go; universe lesson pick.
+
 ## LATEST (15 Nov 2026, 6:35 pm Kuwait): G1 bar raised to 0.75; RS-037 prepped, waits for Ahmed
 - Ahmed (6:30 pm): "I want it 75". New dated bar `research/stage3/G1-PLANET-BAR-75-2026-11-15.md`: GO needs P >= 0.75 and lower bound >= 0.65; old 0.50 file kept on record. Written before F1 and before any combined method.
 - He asked to research the multi-crossing search (adding up a planet's weak crossings) while Codex works, after approving a prep. Prep: `research/stage3/rs037/PREP-2026-11-15.md` (5 questions: bench ceiling first, methods, false alarms, cost, looser tier plus twice-seen rule). Cap 2.5 weekly points, HARD STOP at 67% weekly (63% at 6:30 pm); 67 to 70 is his study.

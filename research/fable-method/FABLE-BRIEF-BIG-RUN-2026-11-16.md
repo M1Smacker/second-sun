@@ -26,7 +26,7 @@ For each task keep `research/fable-method/WORK-LOG-F<n>.md` WHILE you work: what
 Write `research/fable-method/F0-PREMORTEM.md`: the three most likely ways this run could produce a FALSE breakthrough (a P that looks above 0.50 but is not), and the check that would catch each. Known one to start from: **picking the best of eight combinations on the same planet bench that scores them inflates its P (winner's curse)**; with P near 0.50 and an interval of about plus or minus 0.04, that bias can decide GO.
 
 ## Per-task meter caps (weekly bar points; stop the task at its cap and write what is left)
-F0 and F1 together 8; F2 10; F3 4; reserve 2 for the report. Never start a task with less than its cap left before 92%.
+F0 and F1 together 8; F2 8; F4 4; F3 4; reserve 2 for the report. Order: F0, F1, F2, F4, F3. Never start a task with less than its cap left before 92%.
 
 ## Where the benches are
 Astra's harness copies, scripts and data are under `D:\second-sun-astra\data\astra\0NN\` and named in each report's reproduce section (006 planet bench, 013 and 014 background and deep bench, 023 matrix). Run them as they are, or copy them under `data\fable\`; never edit `pipeline/`. Read the report's reproduce lines before writing new code.
@@ -42,8 +42,14 @@ From Astra's 023 matrix (eight combinations of the adopted set B with the FIX 96
 ## F2 (the bug hunt): the second "F-01"
 On 10 Nov your audit found the bug that mattered most: the eclipse mask deleted planet dips in slow binaries, and every earlier test missed it because planets were injected after the mask. Do the same kind of hunt on today's adopted set, aimed at the pools nobody has opened: **"not found" (41 of 222 Saturn-like test planets on T156)** and **"outside the searched windows" (45 + 7)**, using 025's load-loss findings as a start. Inject into RAW light, follow planets step by step, and look for any step that loses planets for a reason that is not physics. **Deliver:** ranked silent losses, each with a measured ceiling (planets) and, for the top one, a prototype fix on a bench copy with its failing-first test and its bench numbers.
 
+## New bar (15 Nov, Ahmed)
+G1 GO now needs P at least 0.75 with lower bound at least 0.65 (`research/stage3/G1-PLANET-BAR-75-2026-11-15.md`). Judge F1 against it and say how far each candidate is from it. RS-037 puts the realistic ceiling of all known levers at about 0.71 to 0.74 (LIKELY), so say plainly if 0.75 is out of reach and what would change that.
+
+## F4 (after F2)
+**F4: the vetting-loss pool and orbit vouching (cap 4 points).** RS-037 (`research/stage3/rs037/MULTI-CROSSING-2026-11-15.md`) shows 11.6 points of P are planets detected at SNR 7+ and held at tier 2 by guard flags (dump 55, step 49, gap edge 34, ramp 33, repeater 32 of 123), and that a second crossing scoring 4+ exists for 5.6 points. Design, and if the meter allows prototype on a bench copy: (a) a cross-star coincidence veto (STANLEY's deep-timestamp list idea) to replace the blanket dump flag; (b) orbit vouching: promote a tier-2 dip when a circumbinary orbit through it predicts another crossing that scores 4+; with a preregistered pass rule under Tree rule 1 (upside-down alarms not above B), the zero-planet identity check, and the fresh-seed confirmation. Say which flag loses the most planets for the fewest prevented false alarms.
+
 ## F3: the method skill, from both models
 Write `research/fable-method/second-sun-method/SKILL.md` from your logs (F1, F2) AND Astra's logs (`023-worklog.md`, `024-worklog.md`, `025-worklog.md`): an ordered procedure for a hard Second Sun task; decision rules ("if X, do Y before Z"); stop signs; two or three worked examples quoted from the logs; a short section on where you and Astra worked differently and which way served better, with evidence. Frontmatter like the auditor skill (name, a description saying when to load it). It must work for any Claude model and for Codex models. Do not repeat the auditor skill; point to it. Do NOT open `research/fable-method/HELD-OUT-TASK.md` (Claude uses it to test the skill afterwards).
 
 ## Done means
-F1 verdict file `research/fable-method/F1-PETROVA-1.1-VERDICT.md`; F2 file `research/fable-method/F2-SILENT-LOSSES.md` (plus any prototype under `data\fable\`); the skill; the work logs; the ledger rows; `research/fable-method/FABLE-REPORT-BIG-RUN.md` (what was done, what is unfinished, the single most important thing for Ahmed). Commit on main; do not push (Claude pushes after reading).
+F4 file `research/fable-method/F4-VETTING-VOUCHING.md`; F1 verdict file `research/fable-method/F1-PETROVA-1.1-VERDICT.md`; F2 file `research/fable-method/F2-SILENT-LOSSES.md` (plus any prototype under `data\fable\`); the skill; the work logs; the ledger rows; `research/fable-method/FABLE-REPORT-BIG-RUN.md` (what was done, what is unfinished, the single most important thing for Ahmed). Commit on main; do not push (Claude pushes after reading).
