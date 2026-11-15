@@ -115,7 +115,7 @@
   const setDue = (pid, entry) => { const l = due().filter((x) => x.pid !== pid); if (entry) l.push(entry); set(dueKey, l); };
   const problems = (lessonId, title) => {
     $$(".tw-prob").forEach((p, k) => {
-      const pid = `${lessonId}-p${k + 1}`, answers = (p.dataset.answer || "").split("|"), tol = +(p.dataset.tol || 0.02), abs = +(p.dataset.abs || 0);
+      const pid = `${lessonId}-p${k + 1}`, answers = (p.dataset.answer || "").split("|"), tol = p.dataset.tol != null ? +p.dataset.tol : (p.dataset.abs != null ? 0 : 0.02), abs = +(p.dataset.abs || 0);   // an absolute tolerance alone means no relative one (2615.5 was accepted for 2625.3)
       let hints = {}; try { hints = JSON.parse(p.dataset.hints || "{}"); } catch (e) { /* no hints */ }
       p.id = p.id || `prob-${k + 1}`;
       const lab = (($("strong", p) || {}).textContent || "").trim().replace(/\.$/, ""), label = /^\d+$/.test(lab) ? `problem ${lab}` : (lab || `problem ${k + 1}`).toLowerCase();
@@ -220,7 +220,7 @@
   };
 
   /* ---------- read aloud ---------- */
-  const TEX = [[/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1 over $2"], [/\\sqrt\{([^{}]+)\}/g, "the square root of $1"], [/\^\{?2\}?/g, " squared"], [/\^\{?3\}?/g, " cubed"],
+  const TEX = [[/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1 over $2"], [/\\sqrt\[3\]\{([^{}]+)\}/g, "the cube root of $1"], [/\\sqrt\{([^{}]+)\}/g, "the square root of $1"], [/\^\{?2\}?/g, " squared"], [/\^\{?3\}?/g, " cubed"],
     [/\^\{([^{}]+)\}/g, " to the power $1"], [/\^(\w)/g, " to the power $1"], [/_\{([^{}]+)\}/g, " $1"], [/_(\w)/g, " $1"], [/\\times/g, " times "], [/\\cdot/g, " times "],
     [/\\approx/g, " is about "], [/\\Delta\s*/g, "delta "], [/\\pi/g, "pi"], [/\\text\{([^{}]+)\}/g, "$1"], [/\\mathrm\{([^{}]+)\}/g, "$1"], [/=/g, " equals "], [/\\%/g, " percent"],
     [/-/g, " minus "], [/\+/g, " plus "], [/[{}\\]/g, " "]];

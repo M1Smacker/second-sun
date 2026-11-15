@@ -112,3 +112,16 @@ if __name__ == "__main__":
         write(name, tic, 21, tt, ff / trend, "The planet crossing a star" + (" (first time)" if name.endswith("a") else ", 4.9 days later"),
               "Each point is 30 minutes. Slow changes are divided out, as in lesson 1.3.", unit="ppm",
               source="TESS sector 21, QLP full-frame light curve (30-minute), quality flags removed, slow changes divided out with the dip masked; MAST")
+
+    # four sectors in a row (lesson 2.1, orbits and periods): sectors 44 to 47, 2-minute light, 1-hour averages
+    import glob
+    T, F = [], []
+    for p in sorted(glob.glob(str(ROOT / "data" / "known" / "172900988" / "tess2021*-s004[4-7]-*_lc.fits"))):
+        tt, ff, _ = load(p, tic)
+        T.append(tt); F.append(ff / np.median(ff))
+    tb4, fb4 = [], []
+    for tt, ff in zip(T, F):
+        a, b = binned(tt, ff, 60); tb4.append(a); fb4.append(b)
+    write("u2-four-sectors", tic, 44, np.concatenate(tb4), np.concatenate(fb4), "Four TESS sectors in a row (44 to 47)",
+          "Each point is 1 hour of light averaged. About 106 days, with a gap every 27 days.",
+          source="TESS sectors 44 to 47, SPOC 2-minute light curves (PDCSAP), quality flags removed, each sector divided by its own median; MAST")

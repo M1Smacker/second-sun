@@ -11,10 +11,10 @@ units:
   - n: 2
     title: What makes a dip
     lessons:
-      - {title: "Shadow size and depth"}
-      - {title: "Orbits and periods"}
+      - {file: u2/l1-orbits-and-periods.md, title: "Orbits and periods", minutes: 15}
       - {title: "How long a dip lasts"}
       - {title: "Why stars differ"}
+      - {title: "Light from two stars at once"}
   - n: 3
     title: Two suns
     lessons:
