@@ -190,7 +190,7 @@ def candidates(d):
         facts = "".join(f"<dt>{escape(k)}</dt><dd>{escape(str(v))}</dd>" for k, v in c["facts"].items())
         keys = " · ".join(f"{escape(k)}: {escape(v)}" for k, v in c["keys"].items())
         nick = f' "{escape(c["nickname"])}"' if c.get("nickname") else ""
-        out.append(f'<section class="ss-card">{demo}<h3><code>{escape(c["id"])}</code>{nick}</h3>'
+        out.append(f'<section class="ss-card">{demo}<h2 class="ss-card-h"><code>{escape(c["id"])}</code>{nick}</h2>'
                    f'<p class="ss-meta"><span class="ss-status">{escape(c["status"])}</span> · Keys: {keys}</p>'
                    f'<dl class="ss-facts">{facts}</dl><p>{escape(c["note"])}</p></section>')
     return "".join(out)
