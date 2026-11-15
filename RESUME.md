@@ -1,5 +1,6 @@
 ## LATEST (15 Nov 2026, 11:20 pm Kuwait): EVERYTHING PAUSED, Ahmed travelling
 - Ahmed: family emergency in Pakistan (grandmother unwell); flight 10 am 16 Nov, away one to two weeks. 'Everything else paused.' He may use Remote Control from his phone.
+- Codex 025 ended 11:45 pm (not reviewed, not merged, per the pause): traced all 21 load losses; the stray-light (bit 4096) prototype restores loaded data in 15 of 21; Codex says its final report still needs one render command after the bench. Review when Ahmed resumes.
 - Paused: Fable big run (will NOT run Monday; Fable access ends at the 17 Nov 1 am reset; plan and brief stay ready in research/fable-method/), Codex 025 review and merge (job finishes by itself about 12:30 am; do not merge or start anything until Ahmed says), all lessons and fixes.
 - Advice given: keep PC awake (no sleep), pause Windows updates, back up his study files first, family member can press power; Claude cannot restart Remote Control after a reboot.
 
