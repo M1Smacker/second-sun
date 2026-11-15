@@ -93,3 +93,20 @@ Build tasks this covers: T160 (Tree as home page), T59c (F4 redesign), FIX 73 (h
 - **Recap / "where we are":** Ahmed (correcting round 5): it need not sit on top of the Tree; the Tree holds things together but not everything must be on it; some things can live on their own page. Claude decides the design.
 - **Old links:** redirect to the Tree or the right new place.
 - **Hunt pause snapshot:** `HUNT-PAUSED.md` at the repo root (beside COMING-BACK.md), plus a card on the Tree.
+
+## Tree rounds (after the plan, 3:05 am)
+### Tree round 1
+- **Views:** both: the mission tree (root = find a planet around two suns; branches = what stops us, as TREE.md) and a journey view (the same items through time), with a toggle.
+- **Alive:** grows on open; branches changed since the last visit pulse softly; zoom and pan (very high quality and smooth, research how the best do it, never a static generic zoom); search lights up matching branches.
+- **Thickness / brightness:** importance (how much a branch matters for finding a planet).
+- **Since last visit:** a small quiet "N new" badge; tap to see only the new things.
+### Tree round 2
+- **Status sign:** small icons on each branch end (active, parked, done, blocked).
+- **Importance (thickness):** a weight per node written in TREE.md; Claude sets it, Ahmed can change it.
+- **Journey view:** a vertical trunk through time with dates; each day's work as leaves, phases as big branches.
+- **Leaf tap:** its card pops up (plain words, why it matters, result) with a quiet option to read the full report page; nothing forced in his face; calm and minimal.
+### Tree round 3
+- **Learning on the Tree:** linked leaves only: project branches link to their lesson; no separate learning tree.
+- **PC card:** preferably opens right where the branch is on the Tree (anchored popover), not a side panel; Claude may choose a side panel if it works better.
+- **Sound:** none.
+- **Reports:** stay in chat as now; the Tree is extra.
