@@ -1,9 +1,12 @@
 // Stress / regression checks for the book prototype, driving headless Chrome over CDP (no npm packages).
 // Usage: node site_check.mjs <mode> <base-url> [options]
-//   modes: layout | offline | fail404 | update | jsoff | redirect | images
+//   modes: layout | tree | chapter (responsive reading pages) | offline | fail404 | update | jsoff
+//          redirect | images | shots | hammer | eyes | eyeslayout | eyescloud
+//          eyesreal (writes to real cloud) | rehearsal | rehearsalcloud | watchtimers | headertitle | textfloor
+// --chrome-no-sandbox=1 is an explicit opt-in for a restricted local runner.
 // Every mode prints one JSON line {mode, pass, ...evidence}; exit code 1 if pass is false.
 // The Claude desktop browser pane can't register service workers, so offline/update tests run here.
-import { spawn, execFileSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -11,25 +14,27 @@ const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const [mode, base, ...rest] = process.argv.slice(2);
 const opt = Object.fromEntries(rest.map((a) => a.replace(/^--/, "").split("=")));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const PAGES = ["", "start/", "start/journey/", "progress/", "quests/", "candidates/", "learn/", "learn/l1-dip-depth/", "book/02-light-curves/", "eyes/", "parts/part3/cheat/", "book/05-wandering-transits/", "book/07-noise-and-statistics/", "book/08-our-detector/", "book/14-credit-and-publishing/", "parts/part1/", "parts/part3/review/", "labs/lab3-plot-and-read/", "glossary/", "claims/", "field-notes/2026-10-23/"];
+const PAGES = ["", "learn/", "shelf/", "training/", "candidates/", "eyes/", "rehearsal/", "glossary/", "claims/", "field-notes/", "field-notes/2026-11-14/", "watch/", "versions/", "labs/lab3-plot-and-read/", "reference/for-astronomers/"];
 
 async function launch(tag) {
-  const profile = `D:/second-sun/.cache/cdp-${tag}-${process.pid}`;
+  const profile = path.resolve(opt.profiles || "data/astra/016/profiles", `cdp-${tag}-${process.pid}`);
+  fs.mkdirSync(path.dirname(profile), { recursive: true });
   const port = 9300 + Math.floor(Math.random() * 500);
   fs.rmSync(profile, { recursive: true, force: true });
-  const proc = spawn(CHROME, ["--headless=new", `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`,
-    "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: "ignore" });
+  const proc = spawn(CHROME, ["--headless=new", ...(opt["chrome-no-sandbox"] ? ["--no-sandbox", "--disable-gpu"] : []), `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`,
+    "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: ["ignore", "ignore", opt.debug ? fs.openSync(opt.debug + ".chrome", "a") : "ignore"] });
   let target;
   for (let i = 0; i < 100 && !target; i++) {
     await sleep(150);
     try { target = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find((t) => t.type === "page"); } catch {}
   }
-  if (!target) throw new Error("chrome did not start");
+  if (!target) { proc.kill(); throw new Error("chrome did not start"); }
   const ws = new WebSocket(target.webSocketDebuggerUrl);
   await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
   let id = 0;
   const pending = new Map(), listeners = new Set(), errors = [], navigations = [];
   ws.onmessage = (m) => {
+    if (opt.debug) fs.appendFileSync(opt.debug, "message " + String(m.data).slice(0, 300) + "\n");
     const d = JSON.parse(m.data);
     if (d.id && pending.has(d.id)) { pending.get(d.id)(d); pending.delete(d.id); return; }
     if (!d.method) return;
@@ -39,21 +44,37 @@ async function launch(tag) {
     if (d.method === "Page.frameNavigated" && !d.params.frame.parentId) navigations.push(d.params.frame.url);
     listeners.forEach((f) => f(d));
   };
-  const send = (method, params = {}) => new Promise((r) => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
+  if (opt.debug) {
+    ws.onclose = (e) => fs.appendFileSync(opt.debug, `closed ${e.code} ${e.reason}\n`);
+    ws.onerror = (e) => fs.appendFileSync(opt.debug, `socket error ${e.message} ${e.error?.stack}\n`);
+  }
+  const send = (method, params = {}) => new Promise((resolve, reject) => {
+    const i = ++id;
+    const timer = setTimeout(() => { pending.delete(i); reject(new Error("CDP timed out: " + method)); }, 20000);
+    pending.set(i, (reply) => {
+      clearTimeout(timer);
+      if (reply.error) reject(new Error(method + ": " + JSON.stringify(reply.error)));
+      else resolve(reply);
+    });
+    ws.send(JSON.stringify({ id: i, method, params }));
+  });
   const evaluate = async (expression) => {
     const r = await send("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true });
     if (r.result?.exceptionDetails) throw new Error("eval: " + JSON.stringify(r.result.exceptionDetails).slice(0, 300));
     return r.result?.result?.value;
   };
-  await send("Page.enable"); await send("Runtime.enable"); await send("Log.enable"); await send("Network.enable");
   const close = async () => {
-    try { await send("Browser.close"); } catch {}
+    // Chrome may close the CDP socket before acknowledging Browser.close.
+    try { await Promise.race([send("Browser.close"), sleep(1000)]); } catch {}
     try { ws.close(); } catch {}
     proc.kill();
     await sleep(500);
     try { fs.rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 300 }); }
     catch (e) { console.error("note: could not delete the scratch browser profile " + profile + " (" + e.code + "); it is only a temporary folder, the test result is not affected"); }   // 24 Oct 2026: a locked profile file made a passing run report failure
   };
+  try {
+    await send("Page.enable"); await send("Runtime.enable"); await send("Log.enable"); await send("Network.enable");
+  } catch (e) { await close(); throw e; }
   return { send, evaluate, listeners, errors, navigations, close };
 }
 
@@ -130,112 +151,39 @@ async function layout() {
       return { before, after: document.body.dataset.mdColorScheme, changes: n, ready: document.documentElement.classList.contains("ss-ready"), bodyTransition: getComputedStyle(document.body).transitionDuration };
     })()`);
     await b.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
-    await goto(b, base + "learn/l1-dip-depth/");
-    await sleep(300);
-    out.reducedMotion = await b.evaluate(`({ body: getComputedStyle(document.body).transitionDuration, content: getComputedStyle(document.querySelector(".md-content__inner")).animationName, slider: getComputedStyle(document.querySelector(".ss-demo__lc span")).transitionDuration })`);
+    await goto(b, base);
+    await waitFor(b, `!!document.querySelector(".sst-seg button")`);
+    out.reducedMotion = await b.evaluate(`({ body: getComputedStyle(document.body).transitionDuration, content: getComputedStyle(document.querySelector(".md-content__inner")).animationName, contentDuration: getComputedStyle(document.querySelector(".md-content__inner")).animationDuration, toolbar: getComputedStyle(document.querySelector(".sst-seg button")).transitionDuration })`);
     await b.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "no-preference" }] });
-    await goto(b, base + "learn/l1-dip-depth/");
-    await sleep(300);
-    out.normalMotion = await b.evaluate(`({ content: getComputedStyle(document.querySelector(".md-content__inner")).animationName + " " + getComputedStyle(document.querySelector(".md-content__inner")).animationDuration, slider: getComputedStyle(document.querySelector(".ss-demo__lc span")).transitionDuration, link: getComputedStyle(document.querySelector(".md-typeset p a")).transitionDuration, headerlink: getComputedStyle(document.querySelector(".headerlink")).transitionDuration })`);
+    await goto(b, base);
+    await waitFor(b, `!!document.querySelector(".sst-seg button")`);
+    out.normalMotion = await b.evaluate(`({ content: getComputedStyle(document.querySelector(".md-content__inner")).animationName + " " + getComputedStyle(document.querySelector(".md-content__inner")).animationDuration, toolbar: getComputedStyle(document.querySelector(".sst-seg button")).transitionDuration, link: getComputedStyle(document.querySelector(".md-tabs__link")).transitionDuration })`);
     out.hiddenShown = await b.evaluate(`[...document.querySelectorAll("[hidden]")].filter((e) => e.getClientRects().length).length`);
     out.paletteToggles = await b.evaluate(`[...document.querySelectorAll('[data-md-component="palette"] label')].filter((e) => e.getClientRects().length).length`);
     out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
     out.pass = out.hiddenShown === 0 && out.paletteToggles === 1 && !out.overflow.length && !out.small.length && !out.schemeMismatch.length && out.toggle.changes === 1 && out.toggle.before !== out.toggle.after
-      && out.reducedMotion.body === "0s" && out.reducedMotion.content === "none" && out.reducedMotion.slider === "0s" && !out.errors.length;
+      && out.reducedMotion.body.split(",").every((t) => parseFloat(t) <= 0.001) && (out.reducedMotion.content === "none" || parseFloat(out.reducedMotion.contentDuration) <= 0.001) && out.reducedMotion.toolbar.split(",").every((t) => parseFloat(t) <= 0.001) && !out.errors.length;
   } finally { await b.close(); }
   return out;
 }
 
-// F4 (27 Oct 2026): the chapter page on a PC. Rail 232 | text 540 | margin 260 from 1120 px, one note open, 60 to 75 characters a line, no sideways scroll at any width;
-// under 1120 px (and at 200% zoom) the rail and margin are gone and the strip is back.
-const CHAPTER_MEASURE = `(() => {
-  const q = (s) => document.querySelector(s), box = (el) => { if (!el) return null; const r = el.getBoundingClientRect(); return { l: Math.round(r.left), r: Math.round(r.right), t: Math.round(r.top), w: Math.round(r.width) }; };
-  const shown = (el) => !!el && getComputedStyle(el).display !== "none" && el.getClientRects().length > 0;
-  const inner = q(".md-content__inner"), rail = q(".ss-rail"), mar = q(".ss-margin"), strip = q(".ss-strip");
-  const para = [...inner.querySelectorAll(":scope > p")].find((x) => x.textContent.length > 250 && x.getClientRects().length);
-  let lines = [];
-  if (para) { const w = document.createTreeWalker(para, NodeFilter.SHOW_TEXT); let n, top = null, cnt = 0;
-    outer: while ((n = w.nextNode())) for (let i = 0; i < n.length; i++) { const rg = document.createRange(); rg.setStart(n, i); rg.setEnd(n, i + 1); const rr = rg.getClientRects()[0]; if (!rr) continue;
-      if (top === null) top = rr.top; if (Math.abs(rr.top - top) > 4) { lines.push(cnt); cnt = 0; top = rr.top; if (lines.length === 4) break outer; } cnt++; } }
-  const open = mar ? [...mar.querySelectorAll(".mn.on")] : [];
-  const anchorOf = (el) => { const n = [...mar.querySelectorAll(".mn")].indexOf(el); return n; };
-  return { overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, rail: shown(rail), margin: shown(mar), strip: shown(strip),
-    sidebar: shown(q(".md-sidebar--primary")), railBox: box(rail), paraBox: box(para), marBox: box(mar), mainW: Math.round(q(".md-main__inner").getBoundingClientRect().width),
-    chars: lines.length >= 3 ? Math.round(lines.slice(0, 3).reduce((a, b) => a + b, 0) / 3) : 0, notes: mar ? mar.querySelectorAll(".mn:not([hidden])").length : 0, open: open.length,
-    far: (() => { if (!mar) return { shown: 0, hidden: 0, worst: 0, orphan: 0 }; let worst = 0, orphan = 0, wk = ""; const all = [...mar.querySelectorAll(".mn")], shown = all.filter((n) => !n.hidden);
-      for (const n of shown) { const key = n.dataset.key, a = key.startsWith("g:") ? [...document.querySelectorAll('.md-content__inner a[href*="glossary/#"]')].find((x) => x.hash === key.slice(2)) : document.querySelector('.md-content__inner a.ss-chip[data-cid="' + key + '"]');
-        if (!a) { orphan++; continue; } const dd = Math.abs(n.getBoundingClientRect().top - a.getBoundingClientRect().top); if (dd > worst) { worst = dd; wk = key + " note@" + Math.round(n.getBoundingClientRect().top) + " anchor@" + Math.round(a.getBoundingClientRect().top) + " scrollY " + Math.round(scrollY) + " docH " + document.documentElement.scrollHeight + " notes " + all.length + " hidden " + (all.length - shown.length) + " fonts " + (document.fonts ? document.fonts.status : "n/a"); } }
-      return { shown: shown.length, hidden: all.length - shown.length, worst: Math.round(worst), wk, orphan }; })(),
-    toc: rail ? rail.querySelectorAll(".ss-rail__toc a").length : 0, ariaHidden: mar ? mar.getAttribute("aria-hidden") : null, marginLinks: mar ? mar.querySelectorAll("a, button, [tabindex]").length : 0 };
-})()`;
-
+// Book 2's chapter template was removed from Book 3.
 async function chapterLayout() {
-  const b = await launch("chapter");
-  const out = { mode: "chapter", checks: 0, fails: [] };
-  const fail = (m) => out.fails.push(m);
+  const retired = "Book 3 removed the chapter rail, margin-note sweep, chapter strip and fixed chapter-column template, including its line-length and column-width rules.";
+  console.log("RETIRED chapter template: " + retired);
+  const b = await launch("chapter"), out = { mode: "chapter", retired, checks: 0, fails: [] };
   try {
-    for (const p of ["book/02-light-curves/", "book/07-noise-and-statistics/"]) {
-      for (const [w, h] of [[390, 844], [683, 800], [1100, 800], [1119, 800], [1120, 800], [1366, 650], [1440, 900], [1500, 900]]) {
-        await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 768 });
+    // Keep the original narrow, breakpoint-adjacent and wide overflow sweep.
+    for (const p of ["reference/for-astronomers/", "field-notes/2026-11-14/"]) {
+      for (const [width, height] of [[390, 844], [683, 800], [1100, 800], [1119, 800], [1120, 800], [1366, 650], [1440, 900], [1500, 900]]) {
+        await b.send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: 1, mobile: width < 768 });
         await goto(b, base + p);
-        const wide = w >= 1120;
-        await waitFor(b, wide ? `document.querySelectorAll(".ss-margin .mn").length > 0` : "document.readyState === 'complete'", 8000);
         await sleep(400);
-        const m = await b.evaluate(CHAPTER_MEASURE), tag = `${p} ${w}x${h}`;
+        const overflow = await b.evaluate(`document.documentElement.scrollWidth - document.documentElement.clientWidth`);
         out.checks++;
-        if (m.overflow > 0) fail(`${tag}: sideways scroll +${m.overflow}`);
-        if (m.mainW > 1400) fail(`${tag}: page wider than 1400 (${m.mainW})`);
-        if (wide) {
-          if (!m.rail || !m.margin) fail(`${tag}: rail or margin missing`);
-          if (m.strip) fail(`${tag}: the strip should be hidden next to the rail`);
-          if (m.sidebar) fail(`${tag}: Material's own sidebar still shows`);
-          if (m.paraBox && Math.abs(m.paraBox.w - 540) > 1) fail(`${tag}: reading column is ${m.paraBox.w}, want 540`);
-          if (m.railBox && Math.abs(m.railBox.w - 232) > 1) fail(`${tag}: rail is ${m.railBox.w}, want 232`);
-          if (m.marBox && Math.abs(m.marBox.w - 260) > 1) fail(`${tag}: margin is ${m.marBox.w}, want 260`);
-          if (m.paraBox && m.railBox && m.paraBox.l < m.railBox.r + 15) fail(`${tag}: text touches the rail`);
-          if (m.paraBox && m.marBox && m.marBox.l < m.paraBox.r + 15) fail(`${tag}: text touches the margin`);
-          if (m.chars < 58 || m.chars > 76) fail(`${tag}: ${m.chars} characters a line (want 58 to 76)`);
-          if (!m.notes) fail(`${tag}: no notes in the margin`);
-          if (m.open > 1) fail(`${tag}: ${m.open} notes open at once`);
-          if (m.far.worst > 124 || m.far.orphan) fail(`${tag}: a margin note sits ${m.far.worst} px from its anchor (limit 120, ${m.far.orphan} without an anchor) [${m.far.wk}]`);
-          out.farSeen = Math.max(out.farSeen || 0, m.far.shown + m.far.hidden);
-          if (m.toc < 3) fail(`${tag}: 'In this chapter' has ${m.toc} entries`);
-          if (m.ariaHidden !== "true" || m.marginLinks) fail(`${tag}: margin must be aria-hidden with no links or tab stops (${m.ariaHidden}, ${m.marginLinks})`);
-        } else {
-          if (m.rail || m.margin) fail(`${tag}: rail or margin shows under 1120 px`);
-          if (!m.strip) fail(`${tag}: the strip is missing under 1120 px`);
-          if (m.paraBox && m.paraBox.w > 540.5) fail(`${tag}: text column ${m.paraBox.w} is wider than 540`);
-        }
+        if (overflow > 0) out.fails.push(`${p} ${width}x${height}: sideways scroll +${overflow}px`);
       }
     }
-    // scroll to the middle of a chapter at 1366x650: the rail stays in view, exactly one note is open, and it sits near the thing it explains
-    await b.send("Emulation.setDeviceMetricsOverride", { width: 1366, height: 650, deviceScaleFactor: 1, mobile: false });
-    await goto(b, base + "book/02-light-curves/");
-    await waitFor(b, `document.querySelectorAll(".ss-margin .mn").length > 0`, 8000);
-    out.scroll = await b.evaluate(`(async () => {
-      scrollTo(0, document.documentElement.scrollHeight * 0.45); await new Promise((r) => setTimeout(r, 700));
-      const mar = document.querySelector(".ss-margin"), on = [...mar.querySelectorAll(".mn.on")], rail = document.querySelector(".ss-rail__in").getBoundingClientRect();
-      const o = on[0], r = o ? o.getBoundingClientRect() : null;
-      return { open: on.length, railTop: Math.round(rail.top), railBottom: Math.round(rail.bottom), vh: innerHeight, noteTop: r ? Math.round(r.top) : null, noteInView: r ? r.top > 0 && r.top < innerHeight : false, label: o ? o.querySelector(".t").textContent : "" };
-    })()`);
-    if (out.scroll.open !== 1) fail(`scroll: ${out.scroll.open} notes open (want exactly 1)`);
-    if (!(out.scroll.railTop >= 90 && out.scroll.railTop <= 130 && out.scroll.railBottom <= out.scroll.vh)) fail(`scroll: the rail is not pinned inside the window (${JSON.stringify(out.scroll)})`);
-    if (!out.scroll.noteInView) fail(`scroll: the open note is not on screen (${JSON.stringify(out.scroll)})`);
-    // F4, Claude AI's review: at 1440x900, down the whole page, no margin note may sit more than 120 px from its anchor (notes that cannot are left out), and at most one is open
-    await b.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
-    out.sweep = { positions: 0, worst: 0, maxHidden: 0, maxNotes: 0 };
-    for (const p of ["book/02-light-curves/", "book/07-noise-and-statistics/"]) {
-      await goto(b, base + p);
-      await waitFor(b, `document.querySelectorAll(".ss-margin .mn").length > 0`, 8000);
-      for (let f = 0; f <= 0.9; f += 0.1) {
-        await b.evaluate(`scrollTo(0, document.documentElement.scrollHeight * ${f.toFixed(2)})`); await sleep(350);
-        const m = await b.evaluate(CHAPTER_MEASURE);
-        out.sweep.positions++; out.sweep.worst = Math.max(out.sweep.worst, m.far.worst); out.sweep.maxHidden = Math.max(out.sweep.maxHidden, m.far.hidden); out.sweep.maxNotes = Math.max(out.sweep.maxNotes, m.far.shown + m.far.hidden);
-        if (m.far.worst > 124 || m.far.orphan) fail(`sweep ${p} at ${f.toFixed(1)}: a note sits ${m.far.worst} px from its anchor (limit 120) [${m.far.wk}]`);
-        if (m.open > 1) fail(`sweep ${p} at ${f.toFixed(1)}: ${m.open} notes open`);
-      }
-    }
-    if (out.sweep.maxNotes < 8) fail(`sweep: only ${out.sweep.maxNotes} notes on the pages, the dense-passage check needs at least 8`);
     out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
     out.pass = !out.fails.length && !out.errors.length;
   } finally { await b.close(); }
@@ -246,19 +194,23 @@ async function offlineTest() {
   const b = await launch("offline");
   const out = { mode: "offline" };
   try {
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
     const expected = shellLength();
     await goto(b, base);
     out.precached = await waitFor(b, `navigator.serviceWorker.controller && ${SHELL_COUNT}.then((n) => n >= ${expected})`);
     out.shell = `${await b.evaluate(SHELL_COUNT)} / ${expected}`;
     out.firstVisitNavigations = b.navigations.length;             // must be 1: the first install never reloads
-    await goto(b, base + "learn/l1-dip-depth/");                  // a visited page
+    await goto(b, base + "training/");                  // a visited page
     await offline(b, true);
     out.pages = {};
-    for (const p of ["", "candidates/", "glossary/", "claims/", "book/14-credit-and-publishing/", "learn/l1-dip-depth/"]) {   // demo + search are tested on the last one
+    for (const p of ["", "candidates/", "glossary/", "claims/", "shelf/", "training/"]) {   // demo + search are tested on the last one
       await goto(b, base + p);
       out.pages[p || "/"] = await b.evaluate(PAGE_STATE);
     }
-    out.demo = await b.evaluate(`(() => { const r = document.querySelector('[name="rp"]'); r.value = 11; r.dispatchEvent(new Event("input")); return document.querySelector(".ss-demo__result").textContent; })()`);
+    console.log("RETIRED offline slider: the Book 2 dip-depth demo has no Book 3 page. Offline Tree interaction is checked instead.");
+    await goto(b, base);
+    out.treeReady = await waitFor(b, `document.querySelectorAll(".sst-node").length >= 20`);
+    out.treeOffline = await b.evaluate(`(() => { document.querySelector('[data-view="journey"]').click(); return document.querySelectorAll(".sst-phase").length > 0 && document.querySelectorAll(".sst-day").length > 0; })()`);
     out.search = await b.evaluate(`(async () => {
       const i = document.querySelector(".md-search__input"); i.focus(); i.value = "depth";
       for (const t of ["focus", "input", "keyup"]) i.dispatchEvent(new Event(t, { bubbles: true }));
@@ -272,7 +224,7 @@ async function offlineTest() {
     out.noSlashOffline = { url: await b.evaluate("location.href"), title: await b.evaluate("document.title") };
     out.errors = b.errors.filter((e) => !/ERR_INTERNET_DISCONNECTED|no-such-page|404/.test(e));
     const okPages = Object.values(out.pages).every((s) => s.controlled && s.css > 900 && s.text > 100);
-    out.pass = out.precached && out.firstVisitNavigations === 1 && okPages && /1\.0[0-9]%/.test(out.demo) && out.search > 0 && out.unknownPage && out.unvisitedImage
+    out.pass = out.precached && out.firstVisitNavigations === 1 && okPages && out.treeReady && out.treeOffline && out.search > 0 && out.unknownPage && out.unvisitedImage
       && out.noSlashOffline.url.endsWith("/learn/") && !out.errors.length;
   } finally { await b.close(); }
   return out;
@@ -302,12 +254,16 @@ async function fail404() {
 async function update() {
   const b = await launch("update");
   const out = { mode: "update" };
-  const index = path.join(opt.proto, "docs", "index.md");
-  const original = fs.readFileSync(index, "utf8");
-  const build = () => execFileSync(opt.mkdocs, ["build", "--strict", "-q"], { cwd: opt.proto, env: { ...process.env, XDG_CACHE_HOME: "D:/second-sun/.cache" }, stdio: "pipe" });
+  // Mutate only the disposable built copy. No source page or rebuild is needed.
+  const index = path.join(opt.site, "index.html"), worker = path.join(opt.site, "sw.js");
+  const original = fs.readFileSync(index, "utf8"), originalWorker = fs.readFileSync(worker, "utf8");
   const shells = () => b.evaluate(`caches.keys().then((k) => k.filter((x) => x.startsWith("ss-shell-")).sort())`);
-  const versionOf = () => "ss-shell-" + fs.readFileSync(path.join(opt.site, "sw.js"), "utf8").match(/const VERSION = "([0-9a-f]+)"/)[1];
-  const publish = (letter) => { fs.writeFileSync(index, original + `\n\nUpdate test marker: version ${letter}.\n`); build(); return versionOf(); };
+  const publish = (letter) => {
+    const version = Buffer.from(`book3-test-${letter}`).toString("hex");
+    fs.writeFileSync(index, original.replace("</article>", `<p>Update test marker: version ${letter}.</p></article>`));
+    fs.writeFileSync(worker, originalWorker.replace(/const VERSION = "[0-9a-f]+"/, `const VERSION = "${version}"`));
+    return "ss-shell-" + version;
+  };
   try {
     await goto(b, base);
     out.aReady = await waitFor(b, `navigator.serviceWorker.controller && ${SHELL_COUNT}.then((n) => n >= ${shellLength()})`);
@@ -321,7 +277,7 @@ async function update() {
     out.lineShown = await waitFor(b, `document.querySelectorAll(".ss-update").length === 1`);
     await sleep(2000);
     out.linesAfter2s = await b.evaluate(`document.querySelectorAll(".ss-update").length`);
-    out.barDismissible = await b.evaluate(`(() => { const c = document.querySelector(".ss-update .ss-update__close"); if (!c || !document.body.classList.contains("ss-has-update") || c.getBoundingClientRect().height < 44) return false; c.click(); return !document.querySelector(".ss-update") && !document.body.classList.contains("ss-has-update"); })()`);   // FIX-QUEUE 65: a 44 px close button, room for the line, and it goes away
+    out.barDismissible = await b.evaluate(`(async () => { const c = document.querySelector(".ss-update .ss-update__close"); if (!c || !document.body.classList.contains("ss-has-update") || c.getBoundingClientRect().height < 44) return false; c.click(); await new Promise((r) => setTimeout(r, 600)); return !document.querySelector(".ss-update") && !document.body.classList.contains("ss-has-update"); })()`);   // Book 3 animates dismissal for 300 ms. Keep the 44 px and eventual-removal checks.
     out.navigationsForB = b.navigations.length - navBefore;        // the reopen itself: 1, no extra reload
     out.cachesWithB = await shells();                               // A (running) and B (waiting)
     // C is published before anyone tapped Reload: B never ran, so its saved copy must be deleted when C installs.
@@ -349,32 +305,29 @@ async function update() {
       && out.offlineAfter.controlled && out.offlineAfter.css > 900 && out.offlineAfter.text > 100 && !out.errors.length;
   } finally {
     fs.writeFileSync(index, original);
-    build();
+    fs.writeFileSync(worker, originalWorker);
     await b.close();
   }
   return out;
 }
 
 async function jsoff() {
-  const b = await launch("jsoff");
-  const out = { mode: "jsoff" };
+  const b = await launch("jsoff"), out = { mode: "jsoff", pages: {}, checks: 0, fails: [] };
+  console.log("RETIRED jsoff lesson quiz/demo: Book 2 lesson removed. Book 3 static Tree, native details and reading/navigation are checked instead.");
   try {
     await b.send("Emulation.setScriptExecutionDisabled", { value: true });
-    await goto(b, base + "learn/l1-dip-depth/");
-    out.state = await b.evaluate(`(() => {
-      const d = [...document.querySelectorAll("details")];
-      const before = d.map((x) => x.open);
-      d[0].querySelector("summary").click();                        // native toggle, no page script needed
-      return { htmlClass: document.documentElement.className, quizBoxes: d.length, closedBefore: before.every((o) => !o), firstOpensOnClick: d[0].open,
-        answerText: d[0].innerText.includes("25%"), demoHidden: getComputedStyle(document.querySelector(".ss-demo")).display === "none",
-        fallbackVisible: document.querySelector(".ss-fallback").offsetHeight > 0, fallbackSvg: !!document.querySelector(".ss-fallback svg"),
-        articleChars: document.querySelector("article").innerText.length, navLinks: document.querySelectorAll(".md-nav__link").length };
-    })()`);
-    await goto(b, base + "candidates/");
-    out.candidates = await b.evaluate(`({ cards: document.querySelectorAll(".ss-card").length, text: document.querySelector("article").innerText.length })`);
-    const s = out.state;
-    out.pass = s.htmlClass.includes("no-js") && s.quizBoxes === 3 && s.closedBefore && s.firstOpensOnClick && s.answerText && s.demoHidden
-      && s.fallbackVisible && s.fallbackSvg && s.articleChars > 1000 && out.candidates.cards >= 1;
+    for (const p of PAGES) {
+      await goto(b, base + p);
+      const state = await b.evaluate(`({ noJS: document.documentElement.classList.contains("no-js"), text: document.querySelector("article").innerText.length, links: document.querySelectorAll("article a[href]").length, redirect: !!document.querySelector('meta[name="ss-redirect"]') })`);
+      out.pages[p || "/"] = state; out.checks++;
+      if (!state.noJS || state.text < 50 || state.redirect) out.fails.push((p || "/") + ": missing no-JS reading content or redirected");
+    }
+    await goto(b, base);
+    out.staticTree = await b.evaluate(`document.querySelector(".sst-static").checkVisibility() && document.querySelector(".sst-static").innerText.length > 100 && document.querySelectorAll(".sst-static li").length >= 15 && document.querySelectorAll("article a[href]").length > 0`);
+    await goto(b, base + "eyes/");
+    out.details = await b.evaluate(`(() => { const d = document.querySelector("details"); if (!d) return { exists: false }; const before = d.open; d.querySelector("summary").click(); return { exists: true, before, after: d.open, text: d.innerText.length }; })()`);
+    out.errors = b.errors.filter((e) => !/serviceWorker|sw\.js/.test(e));
+    out.pass = !out.fails.length && out.staticTree && out.details.exists && out.details.before !== out.details.after && out.details.text > 50 && !out.errors.length;
   } finally { await b.close(); }
   return out;
 }
@@ -408,6 +361,7 @@ async function images() {
     await goto(b, base);
     await waitFor(b, `navigator.serviceWorker.controller && ${SHELL_COUNT}.then((n) => n >= ${shellLength() - Number(opt.missing || 0)})`, 60000);
     await goto(b, base + opt.gallery);
+    await b.evaluate(`document.querySelectorAll("img").forEach((i) => { i.loading = "eager"; })`);
     await waitFor(b, `[...document.images].every((i) => i.complete)`, 30000);
     await sleep(1500);
     out.imagesOnPage = await b.evaluate(`document.images.length`);
@@ -423,10 +377,10 @@ async function shots() {
   const b = await launch("shots");
   const list = [
     ["home-390-dark", 390, "slate", "", null], ["home-390-light", 390, "default", "", null],
-    ["l1-390-dark", 390, "slate", "learn/l1-dip-depth/", null], ["l1-quiz-open-390-dark", 390, "slate", "learn/l1-dip-depth/", "quiz"],
-    ["search-open-390-dark", 390, "slate", "", "search"], ["chapter-1280-dark", 1280, "slate", "book/14-credit-and-publishing/", null],
-    ["chapter-1280-light", 1280, "default", "book/14-credit-and-publishing/", null], ["search-1280-light", 1280, "default", "", "search"],
-    ["claims-390-light", 390, "default", "claims/", null], ["progress-1280-dark", 1280, "slate", "progress/", null],
+    ["training-390-dark", 390, "slate", "training/", null], ["eyes-details-390-dark", 390, "slate", "eyes/", "details"],
+    ["search-open-390-dark", 390, "slate", "", "search"], ["shelf-1280-dark", 1280, "slate", "shelf/", null],
+    ["shelf-1280-light", 1280, "default", "shelf/", null], ["search-1280-light", 1280, "default", "", "search"],
+    ["claims-390-light", 390, "default", "claims/", null], ["journey-1280-dark", 1280, "slate", "", "journey", null],
   ];
   const out = { mode: "shots", files: [] };
   try {
@@ -435,14 +389,19 @@ async function shots() {
       const { result } = await b.send("Page.addScriptToEvaluateOnNewDocument", { source: `localStorage.setItem(${JSON.stringify(new URL(base).pathname + ".__palette")}, ${JSON.stringify(pal)})` });
       await b.send("Emulation.setDeviceMetricsOverride", { width: w, height: w < 768 ? 844 : 900, deviceScaleFactor: 1, mobile: w < 768 });
       await goto(b, base + page);
+      await waitFor(b, `!document.querySelector("#ss-splash") && !document.querySelector(".sst-grow")`, 8000);
       await sleep(400);
       if (action === "search") {
         await b.evaluate(`(() => { const i = document.querySelector(".md-search__input"); document.querySelector('label[for="__search"]').click(); i.focus(); i.value = "depth"; for (const t of ["focus","input","keyup"]) i.dispatchEvent(new Event(t, { bubbles: true })); })()`);
         await sleep(1500);
       }
-      if (action === "quiz") {
-        await b.evaluate(`(() => { const d = document.querySelector("details.quiz"); d.querySelector("summary").click(); d.scrollIntoView({ block: "center" }); })()`);
+      if (action === "details") {
+        await b.evaluate(`(() => { const d = document.querySelector("details"); d.querySelector("summary").click(); d.scrollIntoView({ block: "center" }); })()`);
         await sleep(600);
+      }
+      if (action === "journey") {
+        await waitFor(b, `!!document.querySelector('[data-view="journey"]')`);
+        await b.evaluate(`document.querySelector('[data-view="journey"]').click()`);
       }
       const shot = await b.send("Page.captureScreenshot", { format: "png" });
       const file = `${opt.out}/${name}.png`;
@@ -588,7 +547,10 @@ async function eyesTest() {
     const hres = await text();
     checks.hardInResults = /Hard test · 1 round\(s\) · 30 curves/i.test(hres) && /test \(hard\)/.test(hres) && /Standard test · 1 round\(s\) · 30 curves/i.test(hres);          // the official pass line still counts only the official test
     checks.resultsDetailsClosed = await b.evaluate(`(() => { const d = document.querySelector(".ss-eyes details.ss-res__det"); return !!d && !d.open && /Official test pass line/.test(d.textContent) && /Hard test line/.test(d.textContent); })()`);
-    await click("Back"); await click("Hard practice 20"); await click("Dip");
+    await click("Back");
+    checks.resultsReturnToFinish = /Test finished/.test(await text()) && await visible("Another sitting");
+    await click("Another sitting");
+    checks.hardPracticeStarts = await click("Hard practice 20") && await click("Dip");
     checks.hardPracticeShowsTruth = /THIS WAS: (A DIP|NOT A DIP)/.test(await text());
     checks.plotBarExplained = /dashed line is how deep a dip must be here to score 7/.test(await text());
     const fbl = await b.evaluate(`[...document.querySelectorAll(".ss-eyes__fb")].map((e) => e.textContent)`), fbw = fbl.join(" ").split(/\s+/).filter(Boolean).length;
@@ -984,7 +946,7 @@ async function headerTitleTest() {
   const b = await launch("headertitle"), out = { mode: "headertitle", checks: 0, fails: [], pages: {} };
   const ok = (c, m) => { out.checks++; if (!c) out.fails.push(m); };
   try {
-    for (const path of ["book/02-light-curves/", "book/10-vetting/", "field-notes/2026-11-02/"]) {
+    for (const path of ["shelf/", "reference/for-astronomers/", "field-notes/2026-11-14/"]) {
       await goto(b, base + path); await sleep(500);
       const read = () => b.evaluate(`(() => { const t = [...document.querySelectorAll(".md-header__topic")]; const vis = (e) => e && getComputedStyle(e).display !== "none" && Number(getComputedStyle(e).opacity) > 0.5; return { n: t.length, first: vis(t[0]), second: vis(t[1]), text: t[0] ? t[0].innerText.trim() : "" }; })()`);
       const top = await read();
@@ -1020,7 +982,67 @@ async function textFloorTest() {
   return out;
 }
 
-const modes = { hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
+async function treeTest() {
+  const b = await launch("tree"), out = { mode: "tree", checks: 0, fails: [] };
+  const ok = (condition, message) => { out.checks++; if (!condition) out.fails.push(message); };
+  const click = async (selector, touch = false) => {
+    const point = await b.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return null; e.scrollIntoView({ block: "center" }); const r = e.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`);
+    if (!point) throw new Error("Tree target missing: " + selector);
+    if (touch) {
+      await b.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [point] });
+      await b.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    } else {
+      await b.send("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });
+      await b.send("Input.dispatchMouseEvent", { type: "mouseReleased", button: "left", clickCount: 1, ...point });
+    }
+  };
+  try {
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+    await goto(b, base);
+    ok(await waitFor(b, `document.querySelectorAll(".sst-stage .sst-node").length >= 20`), "1440x900: mission must draw at least 20 branch nodes");
+    await waitFor(b, `!document.querySelector("#ss-splash") && !document.querySelector(".sst-grow")`, 8000);
+    out.nodes = await b.evaluate(`document.querySelectorAll(".sst-stage .sst-node").length`);
+    const branch = '.sst-stage .sst-node:not(.is-root)';
+    await click(branch);
+    ok(await waitFor(b, `document.querySelectorAll(".sst-card").length === 1`, 5000), "branch click must open exactly one card");
+    await b.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+    await b.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+    ok(await waitFor(b, `!document.querySelector(".sst-card")`, 5000), "Escape must remove the card");
+    await sleep(400);
+    await click(branch);
+    ok(await waitFor(b, `document.querySelectorAll(".sst-card").length === 1`, 5000), "a second branch click must reopen one card");
+    await click(".sst-card .sst-x");
+    ok(await waitFor(b, `!document.querySelector(".sst-card")`, 5000), "close button must remove the card");
+    await sleep(400);
+    await click('[data-view="journey"]');
+    out.journey = await b.evaluate(`({ phases: document.querySelectorAll(".sst-phase").length, days: document.querySelectorAll(".sst-day").length })`);
+    ok(out.journey.phases > 0 && out.journey.days > 0, "Journey must draw phases and days");
+    await click('[data-view="mission"]');
+    out.search = await b.evaluate(`(() => { const n = [...document.querySelectorAll(".sst-node:not(.is-root)")].find((e) => e.querySelector("text")); const title = n.querySelector("text").textContent; const word = title.match(/[a-z]{3,}/i)[0]; const i = document.querySelector(".sst-search input"); i.value = word; i.dispatchEvent(new Event("input", { bubbles: true })); return { word, id: n.dataset.node }; })()`);
+    ok(await waitFor(b, `document.querySelectorAll(".sst-node.is-dim").length > 0`, 5000), "search must dim non-matching branches");
+    ok(await b.evaluate(`!document.querySelector('.sst-node[data-node="${out.search.id}"]').classList.contains("is-dim")`), "a branch matching its title must stay bright");
+    await b.evaluate(`const i = document.querySelector(".sst-search input"); i.value = ""; i.dispatchEvent(new Event("input", { bubbles: true }));`);
+    ok(await waitFor(b, `!document.querySelector(".sst-node.is-dim")`, 5000), "clearing search must restore the branches");
+    await b.send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+    await b.send("Emulation.setTouchEmulationEnabled", { enabled: true });
+    await goto(b, base);
+    ok(await waitFor(b, `!!document.querySelector(".sst-list") && document.querySelector(".sst-list").checkVisibility() && document.querySelectorAll(".sst-item").length > 0`), "390x844: phone list must show");
+    await waitFor(b, `!document.querySelector("#ss-splash") && !document.querySelector(".sst-grow")`, 8000);
+    const historyBefore = await b.send("Page.getNavigationHistory");
+    await click(".sst-item", true);
+    ok(await waitFor(b, `document.querySelectorAll(".sst-sheet").length === 1`, 5000), "phone tap must open exactly one sheet");
+    out.phoneOverflowOpen = await b.evaluate(`document.documentElement.scrollWidth - document.documentElement.clientWidth`);
+    await b.send("Page.navigateToHistoryEntry", { entryId: historyBefore.result.entries[historyBefore.result.currentIndex].id });
+    ok(await waitFor(b, `!document.querySelector(".sst-sheet") && !document.querySelector(".sst-scrim")`, 5000), "history Back must close the phone sheet and scrim");
+    out.phoneOverflowClosed = await b.evaluate(`document.documentElement.scrollWidth - document.documentElement.clientWidth`);
+    ok(out.phoneOverflowOpen <= 0 && out.phoneOverflowClosed <= 0, `phone sideways scroll: open ${out.phoneOverflowOpen}px, closed ${out.phoneOverflowClosed}px`);
+    out.errors = b.errors;
+    out.pass = !out.fails.length && !out.errors.length;
+  } finally { await b.close(); }
+  return out;
+}
+
+const modes = { tree: treeTest, hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));
