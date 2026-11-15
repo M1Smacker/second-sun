@@ -1,3 +1,8 @@
+## LATEST (15 Nov 2026, 9:15 pm Kuwait): 024 merged (fails); 025 RUNNING
+- Codex 024 done 9:07 pm, fence check read (RESUME text ids, bench runs), merged 4b533bba: subtraction 0 of 2 pass; P 48.11 to 48.52%; short-bin detections 131 to 141 (interval above zero) but tier 1 99 to 103 (within noise); scatter 3,273 to 3,008 ppm only. Review notes in ASTRA-REVIEW-2026-11-16.md.
+- 025 brief got an update (RS-038 trace counts, FIX 101, drift-cap prototype variants); launched 9:13 pm (background task bq0etjg0l, branch astra/025-load-losses, cap 50 five-hour points; Codex 5-hour 36% at launch, resets 10:29 pm; weekly 20%).
+- Next: when 025 ends, fence check, review, merge, Tree; then Fable on Ahmed's Monday go. Claude weekly 66%.
+
 ## LATEST (15 Nov 2026, 8:45 pm Kuwait): trace done; FIX 101 found (eclipse-mask drift term)
 - Ahmed (7:40 pm): 'Yes, trace it'. Read-only replay of load, windows, Petrova mask, score (`data/rs037/replay.py`, `replay_mask.py`): of 1,292 never-scored crossings, mask 526 (41%), no finite score 248, safe windows 235, best-product table gap 192, capture mismatch 60, load 31; 124 kept by another product. So about a quarter of RS-037's 13.8-point pool is a bench capture gap, not a search loss.
 - FIX 101 (FIX-QUEUE, Tree node 1.2): `petrova_mask.windows()` drift term 3 x sqrt(eT0^2+(n eP)^2) on bad catalogue eP (up to 3 d) blows windows to the whole orbit; 18% of 864 catalogue binaries over half the orbit at BTJD 3500 (8% at 1500). Bench: 100 planets, 31% of crossings scored vs 79%, recovery 0.32 vs 0.50; about 1.7 P points, up to 6.4. Frozen file: fix only as a new version after the bench. Added as F2's top lead in Fable's brief.
