@@ -224,16 +224,20 @@
       const k = Math.min(KMAX, Math.max(KMIN, G.k * factor)); const f = k / G.k;
       G.x = px - (px - G.x) * f; G.y = py - (py - G.y) * f; G.k = k; vel.x = vel.y = 0; kick();
     };
-    const fit = (instant) => {
+    const fit = (instant, readable) => {
       const r = stage.getBoundingClientRect(), pad = 30;
-      const k = Math.min((r.width - pad * 2) / L.W, (r.height - pad * 2) / L.H, 1.1);
-      G.k = k; G.x = (r.width - L.W * k) / 2; G.y = (r.height - L.H * k) / 2 + 6;
+      let k = Math.min((r.width - pad * 2) / L.W, (r.height - pad * 2) / L.H, 1.1);
+      const kMin = 44 / LH;                                   // FIX 98: the first view keeps every branch at least 44 px tall (readable text, real tap size)
+      if (readable && k < kMin) {
+        k = kMin;                                              // too big to fit: centre across, root at the bottom; "0" or the fit button still shows it all
+        G.k = k; G.x = (r.width - L.W * k) / 2; G.y = r.height - L.H * k - pad;
+      } else { G.k = k; G.x = (r.width - L.W * k) / 2; G.y = (r.height - L.H * k) / 2 + 6; }
       if (instant) { T.x = G.x; T.y = G.y; T.k = G.k; apply(); } else kick();
     };
     stage._fit = fit; stage._goTo = (wx, wy, k) => { const r = stage.getBoundingClientRect(); G.k = k || Math.max(G.k, 1); G.x = r.width / 2 - wx * G.k; G.y = r.height / 2 - wy * G.k; vel.x = vel.y = 0; kick(); };
     stage._pos = P;
-    fit(true);
-    addEventListener("resize", () => { size(); fit(false); });
+    fit(true, true);
+    addEventListener("resize", () => { size(); fit(false, true); });
     stage.addEventListener("wheel", (e) => {
       e.preventDefault();
       const r = stage.getBoundingClientRect();

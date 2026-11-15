@@ -1561,18 +1561,18 @@
 <aside class="tw-mn">
 <p><strong>Primary and secondary eclipse.</strong> The deeper and the shallower of the two eclipses that a pair of stars makes in each orbit.</p>
 </aside>
-<p>The time from one primary eclipse to the next is the time the stars take to go once round each other: the <strong>period</strong>, written <span class="arithmatex">\(P\)</span>. Every orbit, the same lineup repeats, so a period is the most exact clock a star pair can give you.</p>
+<p>The time from one primary eclipse to the next is the time the stars take to go once round each other: the <strong>period</strong>, written <span class="arithmatex">\(P\)</span>. Every orbit, the same lineup repeats (almost exactly: over years this oval orbit slowly turns, which the discovery paper measured), so a period is a very exact clock.</p>
 <aside class="tw-mn">
 <p><strong>Period (<span class="arithmatex">\(P\)</span>).</strong> The time for one full orbit. Here, the time from one primary eclipse to the next.</p>
 </aside>
-<p>Look closely and you will notice that not every orbit shows both eclipses. Our script finds the middles of five primary eclipses, at days 2507.395, 2527.053, 2546.710, 2586.028 and 2605.685 on the TESS clock. The one that should come between 2546.710 and 2586.028, near day 2566.4, fell in a gap in the data (a 2.8-day pause while TESS sent its data home). One secondary eclipse is lost the same way. Gaps like these are why a single planet crossing can be missed even when the telescope is looking at the right star.</p>
+<p>Look closely and you will notice that not every orbit shows both eclipses. Our script finds the middles of five primary eclipses, at days 2507.395, 2527.053, 2546.710, 2586.028 and 2605.685 on the TESS clock. The one that should come between 2546.710 and 2586.028, near day 2566.4, fell in a gap in the data (a gap of about 2.8 days, most likely while TESS sent its data home). One secondary eclipse is lost the same way. Gaps like these are why a single planet crossing can be missed even when the telescope is looking at the right star.</p>
 <div class="admonition example">
 <p class="admonition-title">Worked example: measuring the period</p>
 <p><strong>Step 1. Take the first and the last primary eclipse.</strong> Days 2507.395 and 2605.685.</p>
 <p><strong>Step 2. Subtract.</strong> <span class="arithmatex">\(2605.685 - 2507.395 = 98.290\)</span> days.</p>
 <p><strong>Step 3. Count the orbits in between.</strong> The gaps between neighbours are about 19.7, 19.7, 39.3 and 19.7 days. The 39.3 is two orbits (the missing eclipse), so the total is <span class="arithmatex">\(1 + 1 + 2 + 1 = 5\)</span> orbits.</p>
 <p><strong>Step 4. Divide.</strong> <span class="arithmatex">\(P = 98.290 / 5 = 19.658\)</span> days.</p>
-<p>Why not just subtract two neighbours? Each eclipse time has a small error. Spreading that error over five orbits makes the period five times more exact. The discovery paper gives 19.7 days, the same value rounded.</p>
+<p>Why not just subtract two neighbours? Each eclipse time has a small error. Spreading that error over five orbits makes the period's error five times smaller. The discovery paper gives 19.7 days, the same value rounded.</p>
 </div>
 <h2 id="how-far-apart-are-the-stars-keplers-third-law">How far apart are the stars? Kepler's third law<a class="headerlink" href="#how-far-apart-are-the-stars-keplers-third-law" title="Permanent link">&para;</a></h2>
 <p>About 400 years ago Johannes <a href="../../../glossary/#kepler">Kepler</a> found a rule linking how long an orbit takes to how big it is. In the form astronomers use for stars:</p>
@@ -1594,7 +1594,7 @@
 <p><strong>Step 2. Square it.</strong> <span class="arithmatex">\(0.05382^2 = 0.002897\)</span>.</p>
 <p><strong>Step 3. Times the mass.</strong> <span class="arithmatex">\(2.440 \times 0.002897 = 0.007069\)</span>.</p>
 <p><strong>Step 4. Cube root.</strong> <span class="arithmatex">\(\sqrt[3]{0.007069} = 0.192\)</span> AU.</p>
-<p>The two stars sit about 0.19 AU apart: half of Mercury's distance from the Sun. That is about 41 times the width of the Sun, while each star is only about 1.4 times as wide as the Sun. Close, but far from touching.</p>
+<p>The two stars sit about 0.19 AU apart: half of Mercury's distance from the Sun. That is about 41 Sun radii, while each star's radius is only about 1.4 Sun radii. Close, but far from touching. (0.19 AU is the orbit's average size: on this stretched oval the distance swings between about 0.11 and 0.28 AU.)</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">Your turn, half done: the planet's orbit</p>
@@ -1696,7 +1696,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.2.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.2.1 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
