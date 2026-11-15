@@ -246,9 +246,11 @@ def on_config(config):
     DATA.clear()
     DATA.update(load())
     try:
-        DATA["path"] = shape.load()
-        shape.validate(DATA["path"])
-        shape.check_nav(config["nav"], DATA["path"])
+        DATA["path"] = None                       # Book 3.0 (15 Nov 2026): Book 2's chapter scaffolding retired; data/path-book2.yml kept as record
+        if (ROOT / "data" / "path.yml").exists():
+            DATA["path"] = shape.load()
+            shape.validate(DATA["path"])
+            shape.check_nav(config["nav"], DATA["path"])
         validate(DATA)
     except ValueError as e:
         raise PluginError(str(e)) from e
@@ -325,6 +327,8 @@ def chapter_wrap(md, c, to_root):
 
 def on_page_markdown(markdown, page, config, files):
     P, to_root = DATA["path"], "../" * page.url.count("/")
+    if P is None:                                 # Book 3.0: no Book 2 chapter templates; claim chips and blocks still expand
+        return expand(markdown, page.url, DATA)
     c = shape.chapter_for(P, page.file.src_uri)
     if c or page.file.src_uri == "start/story-so-far.md":
         markdown = autolink(markdown, "../" * page.file.src_uri.count("/"))      # before the template adds its own text, so the first mention is the reader's first sight of the word

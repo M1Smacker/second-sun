@@ -89,15 +89,15 @@ Push-Location "$src\book"
 Run $mkdocs build --strict -d $build
 Pop-Location
 
+Step "3d. The frozen Book 2 (tag book-2-final) goes to /v2/ unchanged (Ahmed, 15 Nov 2026: keep the old book as a backup he can open)"
+if (-not (Test-Path "$src\book\archive-v2\index.html")) { throw "book/archive-v2 is missing: the frozen Book 2 must be published at /v2/." }
+Copy-Item -Recurse -Force "$src\book\archive-v2" "$build\v2"
+Write-Host "ok: Book 2 copied to /v2/ ($((Get-ChildItem "$build\v2" -Recurse -File).Count) files)"
 Step "3b. Every link and anchor in the built site resolves; every chapter has the template"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\check_site.py" $build
 
 Step "3c. Fonts: every non-ASCII character in the sources and in the built pages is drawn by a font the book serves (F4)"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_fonts.py" $build
-Step "3d. The frozen Book 2 (tag book-2-final) goes to /v2/ unchanged (Ahmed, 15 Nov 2026: keep the old book as a backup he can open)"
-if (-not (Test-Path "$src\book\archive-v2\index.html")) { throw "book/archive-v2 is missing: the frozen Book 2 must be published at /v2/." }
-Copy-Item -Recurse -Force "$src\book\archive-v2" "$build\v2"
-Write-Host "ok: Book 2 copied to /v2/ ($((Get-ChildItem "$build\v2" -Recurse -File).Count) files)"
 
 Step "4. Safety checks on the built site"
 $html = Get-ChildItem $build -Recurse -Filter *.html

@@ -7,6 +7,10 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
+if not (ROOT / "data" / "path.yml").exists():
+    print("RETIRED: Book 2's chapter shape rules ended with Book 3.0 (15 Nov 2026; data/path-book2.yml kept as record). "
+          "The learning app's own structure test replaces this check.")
+    sys.exit(0)
 sys.path.insert(0, str(ROOT))
 import shape  # noqa: E402
 

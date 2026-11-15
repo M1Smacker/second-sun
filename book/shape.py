@@ -383,7 +383,7 @@ def sky(p, d, to_root):
     g.append(f'<text class="ss-lbl ss-dim" x="{vx - 12:.0f}" y="{vy + 5:.0f}" text-anchor="end">Vega</text>')
     fx = sum(xy(*q)[0] for q in s["field"]) / len(s["field"])
     fy = min(xy(*q)[1] for q in s["field"])
-    g.append(f'<text class="ss-lbl ss-amber" x="{fx:.0f}" y="{fy - 14:.0f}" text-anchor="middle">Our {s.get("g1_total", 549)} Kepler stars ({s["g1_with_position"]} drawn)</text>')
+    g.append(f'<text class="ss-lbl ss-violet" x="{fx:.0f}" y="{fy - 14:.0f}" text-anchor="middle">Our {s.get("g1_total", 549)} Kepler stars ({s["g1_with_position"]} drawn)</text>')
 
     nodes = ""
     for part in p["parts"]:

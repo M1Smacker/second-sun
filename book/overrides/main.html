@@ -4,10 +4,19 @@
   {# Unannounced book: ask search engines not to index. robots.txt can't do this on a project site (RFC 9309 §2.3). #}
   <meta name="robots" content="noindex, nofollow">
   <link rel="manifest" href="{{ 'manifest.webmanifest' | url }}">
-  <meta name="theme-color" content="#0c1018">
+  <meta name="theme-color" content="#070c19">
   <link rel="apple-touch-icon" href="{{ 'assets/icon-180.png' | url }}">
+  <link rel="icon" type="image/png" href="{{ 'assets/favicon-64.png' | url }}">
   <meta name="apple-mobile-web-app-title" content="Second Sun">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  {# Book 3.0 opening: full logo on the first open of the day, a quick fade on other opens, nothing between pages of one visit.
+     Never in automated test browsers (navigator.webdriver), so publish tests are never covered. CSS ends it on its own. #}
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+{% endblock %}
+
+{% block header %}
+  {% include "partials/ss-splash.html" %}
+  {{ super() }}
 {% endblock %}
 
 {% block scripts %}

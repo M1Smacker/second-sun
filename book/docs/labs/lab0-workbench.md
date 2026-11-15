@@ -79,4 +79,4 @@ Open the file `D:\second-sun\labs\lab0_check.py` in Notepad (right-click, Open w
 
 **Tell me:** "Lab 0 done" and your free space on C:.
 
-**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)
+**Back to:** [Try it yourself, Part 1](../../v2/parts/part1/labs/)

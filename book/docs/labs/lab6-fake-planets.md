@@ -68,4 +68,4 @@ Picture saved: D:\second-sun\labs\out\lab6_fake_5re.png
 
 **Tell me:** "Lab 6 done", the size where "usually found" begins, and what happened at 4010.18.
 
-**Back to:** [Try it yourself, Part 3](../parts/part3/labs.md)
+**Back to:** [Try it yourself, Part 3](../../v2/parts/part3/labs/)

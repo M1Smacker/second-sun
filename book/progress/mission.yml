@@ -43,7 +43,7 @@ stages:
       - {what: "Pixel check as an automatic tool", weight: 4, credit: 0.25, evidence: ["claim:F-049"], note: "a hand-run lab exists (Lab 7), not an automatic tool"}
       - {what: "Second-product check (rule C8) automatic", weight: 3, credit: 0.75, evidence: ["file:pipeline/stage2_search.py", "file:research/stage2-2026-10-23/README.md"], note: "automatic and measured on 50 stars: keeps 91% of strong injected dips, removes half of false alarms; weak dips and QLP-only stars (no second product) not covered"}
       - {what: "Neighbour check with catalogue positions inside the tool", weight: 2, credit: 0}
-      - {what: "Two-key process written down", weight: 2, credit: 1.0, evidence: ["file:book/docs/book/14-credit-and-publishing.md"]}
+      - {what: "Two-key process written down", weight: 2, credit: 1.0, evidence: ["file:book/archive-v2/book/14-credit-and-publishing/index.html"]}
   - id: calibration
     name: Calibration
     weight: 10

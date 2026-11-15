@@ -1,0 +1,115 @@
+/* (Literata's @font-face rules live in observatory.css with the other fonts: tools/test_fonts.py reads them there.)
+   Book 3.0 layer (Claude, 15 Nov 2026; Ahmed's decisions: research/stage3/REDESIGN-DECISIONS-2026-11-15.md).
+   Loaded last. The night observatory in deep blue with one ice-cyan accent (never orange or yellow), a serif for reading,
+   calm motion on everything (reduced motion respected), a quieter starfield, the logo opening, phone tables as cards. */
+
+
+:root {
+  --ss-read: "Literata", "SS Symbols", "SS Cross", Georgia, "Times New Roman", serif;
+  --ss-head: "IBM Plex Sans", "SS Symbols", "SS Cross", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ss-e-out: cubic-bezier(.16, 1, .3, 1);      /* expo-like ease-out: quick start, soft landing */
+  --ss-e-io: cubic-bezier(.65, 0, .35, 1);
+  --ss-t1: 180ms; --ss-t2: 280ms; --ss-t3: 520ms;
+}
+
+/* ---------- Page and background ---------- */
+[data-md-color-scheme="slate"] body { background: radial-gradient(120% 90% at 50% -10%, #0f1a33 0%, var(--ss-bg) 55%, #04070f 100%) fixed; }
+[data-md-color-scheme="slate"] .md-main, [data-md-color-scheme="slate"] .md-container { background: transparent; }
+#ss-sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .55; }
+[data-md-color-scheme="default"] #ss-sky { display: none; }
+
+/* ---------- Type: serif for reading, sans for labels and headings ---------- */
+.md-typeset { font-family: var(--ss-read); font-size: 17.5px; line-height: 1.68; font-optical-sizing: auto; }
+.md-typeset :is(h1, h2, h3, h4) { font-family: var(--ss-head); font-weight: 600; letter-spacing: -.005em; }
+.md-typeset h1 { font-weight: 600; letter-spacing: -.015em; }
+@media (min-width: 60em) { .md-typeset { font-size: 18.5px; line-height: 1.72; } }
+.md-typeset p, .md-typeset li { text-wrap: pretty; }
+
+/* ---------- Header and menu: glass bar, the logo, three calm tabs ---------- */
+.md-header { background: color-mix(in srgb, var(--ss-bg) 78%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid color-mix(in srgb, var(--ss-line) 70%, transparent); }
+.md-tabs { background: color-mix(in srgb, var(--ss-bg) 70%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.md-header__button.md-logo img, .md-nav__button.md-logo img { height: 30px; width: 30px; border-radius: 8px; }
+.md-tabs__link { font-family: var(--ss-head); letter-spacing: .02em; opacity: .78; transition: opacity var(--ss-t1) var(--ss-e-out), color var(--ss-t1) var(--ss-e-out); }
+.md-tabs__link--active, .md-tabs__link:hover { opacity: 1; color: var(--ss-accent); }
+.md-tabs__item { position: relative; }
+.md-tabs__item--active::after { content: ""; position: absolute; left: .6rem; right: .6rem; bottom: 0; height: 2px; border-radius: 2px; background: var(--ss-accent); box-shadow: 0 0 10px var(--ss-glow); animation: ss3-grow var(--ss-t2) var(--ss-e-out) both; }
+@keyframes ss3-grow { from { transform: scaleX(0); opacity: 0; } }
+
+/* ---------- Motion: pages, content, folds, buttons ---------- */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: ss3-leave var(--ss-t2) var(--ss-e-io) both; }
+::view-transition-new(root) { animation: ss3-enter var(--ss-t3) var(--ss-e-out) both; }
+@keyframes ss3-leave { to { opacity: 0; transform: translateY(-6px) scale(.995); } }
+@keyframes ss3-enter { from { opacity: 0; transform: translateY(10px); } }
+.md-content__inner { animation: ss3-enter var(--ss-t3) var(--ss-e-out) both; }
+.md-typeset details { transition: background-color var(--ss-t2) var(--ss-e-out), border-color var(--ss-t2) var(--ss-e-out); }
+.md-typeset details[open] > :not(summary) { animation: ss3-unfold var(--ss-t2) var(--ss-e-out) both; }
+@keyframes ss3-unfold { from { opacity: 0; transform: translateY(-4px); } }
+.md-typeset a, .md-typeset button, .md-button { transition: color var(--ss-t1) var(--ss-e-out), background-color var(--ss-t1) var(--ss-e-out), border-color var(--ss-t1) var(--ss-e-out), transform var(--ss-t1) var(--ss-e-out), box-shadow var(--ss-t1) var(--ss-e-out); }
+.md-typeset button:active, .md-button:active { transform: scale(.97); }
+.md-typeset .md-button--primary, .md-typeset a.ss-start { box-shadow: 0 0 0 1px var(--ss-accent), 0 6px 22px -10px var(--ss-glow); }
+.ss-reveal { opacity: 0; transform: translateY(14px); transition: opacity var(--ss-t3) var(--ss-e-out), transform var(--ss-t3) var(--ss-e-out); }
+.ss-reveal.is-in { opacity: 1; transform: none; }
+
+/* ---------- Calm marks: evidence chips and glossary words no longer shout (FIX 73) ---------- */
+.md-typeset a.ss-chip { font-size: 14px; opacity: .6; border-color: color-mix(in srgb, var(--ss-line) 80%, transparent); padding: 0 4px; }
+.md-typeset a.ss-chip:hover { opacity: 1; }
+.md-typeset a.ss-gl, .md-typeset a[data-gloss] { color: inherit; text-decoration: underline dotted color-mix(in srgb, var(--ss-text-3) 70%, transparent); text-underline-offset: 3px; background: none; }
+
+/* ---------- Opening: the logo, first open of the day full, otherwise a quick fade ---------- */
+#ss-splash { display: none; }
+html[data-splash] #ss-splash { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: radial-gradient(90% 70% at 50% 40%, #10203f 0%, #070c19 60%, #03060d 100%); cursor: pointer; }
+#ss-splash .ss-sp-in { display: grid; justify-items: center; gap: 18px; }
+#ss-splash svg { width: 132px; height: 132px; filter: drop-shadow(0 0 28px rgba(122, 215, 234, .25)); }
+#ss-splash .ss-sp-name { font: 600 15px/1 var(--ss-head); letter-spacing: .42em; text-indent: .42em; color: #c4cee2; text-transform: uppercase; }
+html[data-splash="full"] #ss-splash { animation: ss3-out 560ms 1900ms var(--ss-e-io) forwards; }
+html[data-splash="full"] #ss-splash :is(.ss-logo-a, .ss-logo-b) { animation: ss3-ignite 900ms var(--ss-e-out) both; transform-box: fill-box; transform-origin: center; }
+html[data-splash="full"] #ss-splash .ss-logo-b { animation-delay: 160ms; }
+html[data-splash="full"] #ss-splash .ss-logo-orbit path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: ss3-draw 1100ms 260ms var(--ss-e-out) forwards; }
+html[data-splash="full"] #ss-splash .ss-logo-p { animation: ss3-pop 500ms 1050ms var(--ss-e-out) both; transform-box: fill-box; transform-origin: center; }
+html[data-splash="full"] #ss-splash .ss-sp-name { animation: ss3-name 900ms 500ms var(--ss-e-out) both; }
+html[data-splash="quick"] #ss-splash { animation: ss3-out 380ms 220ms var(--ss-e-io) forwards; }
+html[data-splash="quick"] #ss-splash .ss-sp-in { animation: ss3-name 300ms var(--ss-e-out) both; }
+#ss-splash.is-out { animation: ss3-out 420ms var(--ss-e-io) forwards !important; }
+@keyframes ss3-ignite { from { opacity: 0; transform: scale(.4); } }
+@keyframes ss3-draw { to { stroke-dashoffset: 0; } }
+@keyframes ss3-pop { from { opacity: 0; transform: scale(0); } }
+@keyframes ss3-name { from { opacity: 0; letter-spacing: .9em; } }
+@keyframes ss3-out { to { opacity: 0; visibility: hidden; transform: scale(1.04); } }
+
+/* ---------- The update line ("Updated. Reload") slides in, says what is new ---------- */
+.ss-update { animation: ss3-slideup var(--ss-t3) var(--ss-e-out) both; border: 1px solid color-mix(in srgb, var(--ss-accent) 35%, var(--ss-line)); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 18px 40px -18px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .03) inset; }
+.ss-update.is-leaving { animation: ss3-slidedown var(--ss-t2) var(--ss-e-io) forwards; }
+.ss-update a.ss-update__new { color: var(--ss-accent); font-size: 14px; margin-right: 6px; }
+@keyframes ss3-slideup { from { opacity: 0; transform: translate(-50%, 24px) scale(.98); } }
+@keyframes ss3-slidedown { to { opacity: 0; transform: translate(-50%, 24px) scale(.98); } }
+
+/* ---------- Phone tables become cards (PC keeps the table) ---------- */
+@media (max-width: 599px) {
+  .md-typeset table.ss-cards, .md-typeset table.ss-cards tbody, .md-typeset table.ss-cards tr, .md-typeset table.ss-cards td { display: block; width: 100%; }
+  .md-typeset .md-typeset__table:has(table.ss-cards), .md-typeset .md-typeset__scrollwrap:has(table.ss-cards) { overflow: visible; }
+  .md-typeset table.ss-cards { border: 0; background: none; box-shadow: none; }
+  .md-typeset table.ss-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .md-typeset table.ss-cards tr { margin: 0 0 12px; padding: 10px 14px; border: 1px solid var(--ss-line); border-radius: 12px; background: color-mix(in srgb, var(--ss-surface) 85%, transparent); }
+  .md-typeset table.ss-cards td { border: 0; padding: 5px 0; display: grid; grid-template-columns: minmax(84px, 38%) 1fr; gap: 10px; }
+  .md-typeset table.ss-cards td::before { content: attr(data-label); font: 600 12px/1.5 var(--ss-head); letter-spacing: .04em; text-transform: uppercase; color: var(--ss-text-3); }
+  .md-typeset table.ss-cards td:first-child { font-weight: 600; }
+  .md-typeset table.ss-cards td[data-label=""] { grid-template-columns: 1fr; }
+  .md-typeset table.ss-cards td[data-label=""]::before { display: none; }
+}
+
+/* ---------- Shelf: the folded menu; Book 2 link ---------- */
+.ss-shelf-note { font-size: 14px; color: var(--ss-text-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  #ss-sky { display: none; }
+}
+
+/* ---------- Shelf and Training deck cards ---------- */
+.md-typeset .ss3-shelf, .md-typeset .ss3-deck { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin: 18px 0 28px; }
+.md-typeset .ss3-shelf__item, .md-typeset .ss3-deck__card { display: grid; gap: 4px; padding: 16px 18px; border: 1px solid var(--ss-line); border-radius: 14px; background: color-mix(in srgb, var(--ss-surface) 82%, transparent); color: var(--ss-text); text-decoration: none; }
+.md-typeset .ss3-shelf__item span, .md-typeset .ss3-deck__k { font: 600 17px/1.3 var(--ss-head); color: var(--ss-text); }
+.md-typeset .ss3-shelf__item small, .md-typeset .ss3-deck__t { font: 400 14px/1.45 var(--ss-head); color: var(--ss-text-2); }
+.md-typeset .ss3-shelf__item:hover, .md-typeset .ss3-deck__card:hover { border-color: color-mix(in srgb, var(--ss-accent) 55%, var(--ss-line)); transform: translateY(-2px); box-shadow: 0 10px 30px -18px var(--ss-glow); }

@@ -61,4 +61,4 @@ Picture saved: D:\second-sun\labs\out\lab4_toi1338_s98.png
 
 **Tell me:** "Lab 4 done", your guess from the picture, and how many events appeared at SNR 5.
 
-**Back to:** [Try it yourself, Part 3](../parts/part3/labs.md)
+**Back to:** [Try it yourself, Part 3](../../v2/parts/part3/labs/)

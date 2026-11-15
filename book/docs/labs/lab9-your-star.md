@@ -77,4 +77,4 @@ Ask, in this order (the short version of Chapter 10):
 
 **Tell me:** "Lab 9 done", the TIC you chose, and your notes. This is the lab where I check your judgment, not just your numbers.
 
-**Back to:** [Try it yourself, Part 6](../parts/part6/labs.md)
+**Back to:** [Try it yourself, Part 6](../../v2/parts/part6/labs/)

@@ -90,4 +90,4 @@ This file contains the values 8, 16, 32, 40, 128 and 160 (checked by script). A 
 
 **Tell me:** "Lab 2 done", the sector you picked, and your three numbers.
 
-**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)
+**Back to:** [Try it yourself, Part 1](../../v2/parts/part1/labs/)

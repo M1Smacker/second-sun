@@ -60,4 +60,4 @@ Picture saved: D:\second-sun\labs\out\lab5_toi1338_fold.png
 
 **Tell me:** "Lab 5 done", what the wrong period did, and the phase you calculated.
 
-**Back to:** [Try it yourself, Part 2](../parts/part2/labs.md)
+**Back to:** [Try it yourself, Part 2](../../v2/parts/part2/labs/)

@@ -93,13 +93,13 @@ function initOrbitDemo(el) {
     const X = (x) => cx + x * sc, Y = (y) => cy - y * sc, ap = Math.pow(Q, 2 / 3);
     g.strokeStyle = "rgba(170,177,192,.3)"; g.setLineDash([2, 5]); g.beginPath(); g.arc(cx, cy, ap * sc, 0, 7); g.stroke(); g.setLineDash([]);
     const { A, B, P } = pos(t), disc = (p, r, c, min) => { g.fillStyle = c; g.beginPath(); g.arc(X(p[0]), Y(p[1]), Math.max(min, r * sc), 0, 7); g.fill(); };
-    const order = [["B", B, RB, "#ff9f7a", 2], ["A", A, RA, "#ffe9b0", 3], ["P", P, RP, "#9fd0ff", 2.4]].sort((p, q2) => q2[1][1] - p[1][1]);   // farther first
+    const order = [["B", B, RB, "#b9adff", 2], ["A", A, RA, "#f2f6ff", 3], ["P", P, RP, "#7ad7ea", 2.4]].sort((p, q2) => q2[1][1] - p[1][1]);   // farther first
     order.forEach(([, p, r, c, m]) => disc(p, r, c, m));
     g.fillStyle = "#aab1c0"; g.font = "13px system-ui, sans-serif"; g.textAlign = "center";
     g.fillText("you look from here", cx, h - 8); g.beginPath(); g.moveTo(cx, h - 26); g.lineTo(cx - 5, h - 19); g.lineTo(cx + 5, h - 19); g.closePath(); g.fill();
     const lw = L.w, lh = L.h, lo = 0.88, hi = 1.005;
     L.g.fillStyle = "#070b14"; L.g.fillRect(0, 0, lw, lh);
-    [["e", "rgba(170,177,192,.55)", 1], ["p", "#e2b45f", 2]].forEach(([k, col, wd]) => {      // grey: the stars eclipsing; amber: the planet
+    [["e", "rgba(170,177,192,.55)", 1], ["p", "#b9adff", 2]].forEach(([k, col, wd]) => {      // grey: the stars eclipsing; amber: the planet
       L.g.strokeStyle = col; L.g.lineWidth = wd; L.g.beginPath();
       curve[k].forEach((f, i) => { const x = lw * i / NS, y = lh - (f - lo) / (hi - lo) * (lh - 6) - 3; i ? L.g.lineTo(x, y) : L.g.moveTo(x, y); }); L.g.stroke();
     });
@@ -145,7 +145,7 @@ function initNoiseDemo(el) {
     g.fillStyle = "#070b14"; g.fillRect(0, 0, w, h);
     g.fillStyle = "rgba(255,255,255,.09)"; g.fillRect(w * D0 / N, 0, w * DL / N, h);       // where the dip is
     g.fillStyle = "rgba(200,210,230,.55)"; y.forEach((v, i) => g.fillRect(w * i / N, Y(v) - 0.9, 1.8, 1.8));
-    g.strokeStyle = "#e2b45f"; g.lineWidth = 2; g.beginPath();
+    g.strokeStyle = "#b9adff"; g.lineWidth = 2; g.beginPath();
     for (let i = 0; i + B <= N; i += B) { const m = mean(y.slice(i, i + B)); g.moveTo(w * i / N, Y(m)); g.lineTo(w * (i + B) / N, Y(m)); } g.stroke();
     const wins = []; for (let i = 0; i + DL <= N; i += 6) if (i + DL < D0 - 20 || i > D0 + DL + 20) wins.push(mean(y.slice(i, i + DL)));
     const spread = sd(wins), snr = D / spread;
@@ -192,7 +192,7 @@ async function initExplorerDemo(el) {
     g.fillStyle = "rgba(220,226,240,.85)";
     for (let i = i0; i <= i1; i++) { const v = J.ppm[i]; if (v !== null) g.fillRect(X(t0 + (i + 0.5) * dt) - 0.9, Y(v) - 0.9, 1.8, 1.8); }
     const tick = (t, col) => { if (t >= a && t <= b) { g.fillStyle = col; g.beginPath(); g.moveTo(X(t), T + 14); g.lineTo(X(t) - 5, T + 3); g.lineTo(X(t) + 5, T + 3); g.closePath(); g.fill(); } };
-    J.eclipses_btjd.forEach((t) => tick(t, "#aab1c0")); tick(J.planet_btjd, "#e2b45f");
+    J.eclipses_btjd.forEach((t) => tick(t, "#aab1c0")); tick(J.planet_btjd, "#b9adff");
     const low = n ? Math.min(0, ...J.ppm.slice(i0, i1 + 1).filter((v) => v !== null)) : 0;
     note.textContent = `Showing ${span.toFixed(2)} days (BTJD ${a.toFixed(1)} to ${b.toFixed(1)}). Lowest point in view: ${(-low / 1e4).toFixed(2)}% below normal. Grey markers: one star passing in front of the other. Amber marker: the planet's crossing.`;
   }
@@ -318,7 +318,7 @@ function eyesEngine(el, src, core, hard) {
     g.font = "12px system-ui, sans-serif"; g.fillStyle = "#aab1c0"; g.strokeStyle = "rgba(170,177,192,.18)"; g.textAlign = "right";
     [lo, 0, hi].forEach((v) => { g.beginPath(); g.moveTo(L, Y(v)); g.lineTo(w - 6, Y(v)); g.stroke(); g.fillText((v / 1e4).toFixed(1) + "%", L - 4, Y(v) + 4); });
     g.textAlign = "center"; for (let hr = 0; hr < 36; hr += 6) g.fillText(hr + " h", X(hr * 6), h - 6);
-    if (reveal && card.box) { g.fillStyle = "rgba(226,180,95,.16)"; g.strokeStyle = "#e2b45f"; g.setLineDash([4, 3]); g.fillRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.strokeRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.setLineDash([]); }
+    if (reveal && card.box) { g.fillStyle = "rgba(185,173,255,.16)"; g.strokeStyle = "#b9adff"; g.setLineDash([4, 3]); g.fillRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.strokeRect(X(card.box[0]), T, X(card.box[1]) - X(card.box[0]), ph); g.setLineDash([]); }
     g.fillStyle = "rgba(220,226,240,.9)";
     card.y.forEach((v, k) => { if (v !== null) g.fillRect(X(k + 0.5) - 1, Y(v) - 1, 2, 2); });
     if (reveal && ov && isFinite(ov.med) && ov.best_w > 0) {                        // dashed: how deep a dip must be here to score 7. Solid: how deep the best stretch really is.

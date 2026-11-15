@@ -63,12 +63,15 @@ for f, p in pages.items():
         if r[1:] not in p.ids and not r.startswith("#__"):
             bad.append(f"{rel}: missing anchor {r}")
 
+REDIRECT = re.compile(r'<meta name="ss-redirect"')          # Book 3.0 redirect pages at old addresses: reached by old links, not by ours
 for f in pages:
     rel = f.relative_to(SITE).as_posix()
-    if f not in inbound and rel not in ("index.html", "404.html"):
+    if f not in inbound and rel not in ("index.html", "404.html") and not REDIRECT.search(f.read_text(encoding="utf-8")):
         bad.append(f"{rel}: orphan page (nothing links to it)")
 for f in sorted((SITE / "book").glob("[0-9][0-9]-*/index.html")):
     t = f.read_text(encoding="utf-8")
+    if REDIRECT.search(t):                                     # Book 3.0: the Book 2 chapters are redirects now (the template rule retired with them)
+        continue
     n = f.parent.name
     for need in ('class="ss-strip"', 'class="ss-end"', "1-minute summary", 'class="ss-read-btn"', 'class="ss-pager"'):
         if need not in t:

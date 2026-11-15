@@ -8,19 +8,19 @@
 .ss-sky-bg { fill: #070b14; stroke: #2a3448; }
 .ss-grid polyline { stroke: #7f8fc4; stroke-opacity: .22; stroke-width: 1; }
 .ss-grid text { font: 600 13px var(--ss-label); fill: #8a96b8; letter-spacing: .06em; }
-.ss-g1 circle { fill: #e2b45f; opacity: .8; }
+.ss-g1 circle { fill: #b9adff; opacity: .8; }
 .ss-fig line { stroke: #9fb4ff; stroke-opacity: .55; stroke-width: 1.6; stroke-dasharray: 1; animation: ss-draw 2s var(--ss-ease) both; }
 @keyframes ss-draw { from { stroke-dashoffset: 1; } }
 .ss-lbl { font: 600 22px var(--ss-ui); fill: #eef0f6; paint-order: stroke; stroke: #070b14; stroke-width: 5px; stroke-linejoin: round; }
 .ss-lbl.ss-dim { fill: #8a92a6; font-size: 18px; font-weight: 500; }
-.ss-lbl.ss-amber { fill: #e2b45f; font-size: 18px; font-weight: 500; }
+.ss-lbl.ss-violet { fill: #b9adff; font-size: 18px; font-weight: 500; }
 .ss-ring { fill: none; stroke: #aab1c0; stroke-opacity: .3; stroke-dasharray: 2 5; }
 .ss-hit { fill: transparent; }
-.ss-ch { fill: #070b14; stroke: #e2b45f; stroke-width: 1.8; transition: fill var(--ss-dur) var(--ss-ease), stroke-width var(--ss-dur-fast) var(--ss-ease); }
-.ss-ch.is-read { fill: #e2b45f; }
+.ss-ch { fill: #070b14; stroke: #b9adff; stroke-width: 1.8; transition: fill var(--ss-dur) var(--ss-ease), stroke-width var(--ss-dur-fast) var(--ss-ease); }
+.ss-ch.is-read { fill: #b9adff; }
 .ss-sky a:hover .ss-ch, .ss-sky a:focus-visible .ss-ch { stroke-width: 3.4; }
 .ss-sky a { outline: none !important; }
-.ss-sky a:focus-visible .ss-hit { stroke: #e2b45f; stroke-width: 2; }
+.ss-sky a:focus-visible .ss-hit { stroke: #b9adff; stroke-width: 2; }
 .ss-halo { pointer-events: none; }
 [dir] .md-typeset .ss-sky-wrap figcaption { max-width: var(--ss-measure); }
 

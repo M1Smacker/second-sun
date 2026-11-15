@@ -74,4 +74,4 @@ Pick a star from your G1 list. Open `D:\second-sun\targets\g1_targets.csv` in No
 
 **Tell me:** its TIC number (check it against the `tic` column), its TESS magnitude, how many neighbours sit within 1 arcminute, and which teams made light curves for it.
 
-**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)
+**Back to:** [Try it yourself, Part 1](../../v2/parts/part1/labs/)

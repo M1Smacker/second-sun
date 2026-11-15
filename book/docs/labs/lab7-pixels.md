@@ -73,4 +73,4 @@ Picture saved: D:\second-sun\labs\out\lab7_toi1338_pixels.png
 
 **Tell me:** "Lab 7 done" and your three answers.
 
-**Back to:** [Try it yourself, Part 4](../parts/part4/labs.md)
+**Back to:** [Try it yourself, Part 4](../../v2/parts/part4/labs/)

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Second Sun logo: two suns with a planet's orbit around both">
+  <defs>
+    <radialGradient id="ss-bgx" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#13213f"/><stop offset=".65" stop-color="#091127"/><stop offset="1" stop-color="#050913"/>
+    </radialGradient>
+    <radialGradient id="ss-sa" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ff"/><stop offset=".75" stop-color="#9fd9ff" stop-opacity=".55"/><stop offset="1" stop-color="#9fd9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ss-sb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f4fbff"/><stop offset=".42" stop-color="#7ad7ea"/><stop offset=".75" stop-color="#7ad7ea" stop-opacity=".45"/><stop offset="1" stop-color="#7ad7ea" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect class="ss-logo-bg" width="512" height="512" rx="112" fill="url(#ss-bgx)"/>
+  <g class="ss-logo-orbit" fill="none" stroke="#b9e9f4" stroke-width="7" stroke-linecap="round" opacity=".9">
+    <path d="M78 300 A178 96 -14 0 1 434 212" opacity=".35"/>
+    <path d="M434 212 A178 96 -14 0 1 78 300"/>
+  </g>
+  <circle class="ss-logo-a" cx="214" cy="262" r="96" fill="url(#ss-sa)"/>
+  <circle cx="214" cy="262" r="46" fill="#ffffff"/>
+  <circle class="ss-logo-b" cx="322" cy="226" r="62" fill="url(#ss-sb)"/>
+  <circle cx="322" cy="226" r="27" fill="#e6f8fc"/>
+  <circle class="ss-logo-p" cx="431" cy="213" r="13" fill="#b9adff"/>
+</svg>

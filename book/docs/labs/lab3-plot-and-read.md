@@ -78,4 +78,4 @@ Run it on the sector you downloaded in Lab 2's "Your turn" (2019). Give the path
 
 **Tell me:** your 1-hour "measured" and "if white" numbers. Is the 2019 sector quieter or noisier than 2024? Does the picture show an eclipse?
 
-**Back to:** [Try it yourself, Part 1](../parts/part1/labs.md)
+**Back to:** [Try it yourself, Part 1](../../v2/parts/part1/labs/)
