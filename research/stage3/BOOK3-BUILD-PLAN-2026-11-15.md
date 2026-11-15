@@ -113,3 +113,4 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 - 6:43 am: 3.1.0 live (lessons fixed after Codex 017, lesson 1.4); lessons 2.1 and 2.2 written and browser-checked (all answers, hints, near misses rejected); answer-checker tolerance bug found and fixed; guided tour built (tour.js); Codex 018 running; 3.2.0 publishing. NEXT: confirm 3.2.0; Codex 018 review; Unit 2 lessons 2.3 and 2.4; morning report.
 - 6:48 am: Book 3.2.0 LIVE (all publish checks passed first time; confirmed by fetch: Tree with tour.js, lessons 2.1 and 2.2). Waiting for Codex 018.
 - 7:03 am: Codex 018 merged, its corrections in 3.2.1 (publishing); FIX 98 fixed (Tree readable start view). Morning report next. Open: FIX 97, lessons 2.3 and 2.4, Units 3 to 6.
+- 7:08 am: Book 3.2.1 LIVE (all checks first time; confirmed by fetch). Overnight build complete for the morning.
