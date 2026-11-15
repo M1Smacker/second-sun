@@ -983,10 +983,13 @@ async function textFloorTest() {
 }
 
 async function learnTest() {
+  const manifest = JSON.parse(fs.readFileSync(path.join(opt.site, "assets/data/learn.json"), "utf8"));
+  const lessons = manifest.units.flatMap(unit => unit.lessons).filter(lesson => lesson.url);
   const b = await launch("learn");
   const out = { mode: "learn", checks: 0, fails: [], views: [], texToWords: "NOT TESTED: say() is private to learn.js; no page API exposes it" };
   const ok = (value, message) => { out.checks++; if (!value) out.fails.push(message); };
-  const lessonPaths = ["learn/u1/l1-a-light-curve/", "learn/u1/l2-percent-and-ppm/", "learn/u1/l3-noise/"];
+  out.lessons = lessons.map(({ id, url }) => ({ id, url }));
+  ok(lessons.length > 0, "built manifest has live lessons");
   const click = async (selector) => {
     const found = await b.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return false; e.scrollIntoView({block:"center",behavior:"instant"}); return true; })()`);
     if (!found) return false;
@@ -1020,7 +1023,7 @@ async function learnTest() {
   try {
     await b.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
     for (const width of [390, 1440]) {
-      const view = { width, pages: [], accepted: 0, hints: 0, panels: [] };
+      const view = { width, pages: [], accepted: 0, hints: 0, numericRejected: 0, panels: [] };
       out.views.push(view);
       const checkPanel = async (name) => {
         const text = await measure();
@@ -1036,7 +1039,8 @@ async function learnTest() {
       ok(view.home.continue && view.home.stats === 3, `${width}: Continue and three stats`);
       view.home.text = await measure();
       ok(!view.home.text.small.length && view.home.text.overflow <= 0, `${width}: home text floor and overflow ${JSON.stringify(view.home.text)}`);
-      for (const [index, page] of lessonPaths.entries()) {
+      for (const [index, lesson] of lessons.entries()) {
+        const page = lesson.url;
         await goto(b, base + page);
         ok(await waitFor(b, '!!document.querySelector(".tw-answer input") && [...document.querySelectorAll(".tw-plot")].every(e=>e.querySelector("svg"))'), `${width} ${page}: reader ready`);
         await b.evaluate('document.querySelectorAll("details.tw-sol").forEach(e=>e.open=true)');
@@ -1044,8 +1048,11 @@ async function learnTest() {
         view.pages.push(info);
         info.math = await b.evaluate('({errors:document.querySelectorAll(".katex-error").length,rendered:document.querySelectorAll(".katex").length,raw:document.querySelector("article").innerText.includes(String.fromCharCode(92)+"(")})');
         ok(info.math.errors === 0 && info.math.rendered > 0 && !info.math.raw, `${width} ${page}: formulas ${JSON.stringify(info.math)}`);
-        info.plots = await b.evaluate('[...document.querySelectorAll(".tw-plot svg")].map(e=>e.querySelectorAll(".tw-plot__pts circle").length)');
-        ok(info.plots.length === (index === 1 ? 1 : 2) && info.plots.every(n=>n>100 || index === 2 && n>=48), `${width} ${page}: plot point counts ${info.plots}`);
+        info.plots = await b.evaluate('[...document.querySelectorAll(".tw-plot")].map(e=>({source:e.dataset.src,svgs:e.querySelectorAll("svg").length,points:e.querySelectorAll(".tw-plot__pts circle").length}))');
+        ok(info.plots.every(plot=>plot.svgs === 1 && plot.points > 0), `${width} ${page}: populated plots ${JSON.stringify(info.plots)}`);
+        if (lesson.id === "1.1") ok(info.plots.length === 2 && info.plots.every(plot=>plot.points>100), `${width} ${page}: both introductory plots exceed 100 points`);
+        if (lesson.id === "1.2") ok(info.plots.length === 1 && info.plots[0].points>100, `${width} ${page}: percent plot exceeds 100 points`);
+        if (lesson.id === "1.3") ok(info.plots.length === 2 && info.plots.every(plot=>plot.source === "u1-quiet-day-30" ? plot.points>=48 : plot.points>100), `${width} ${page}: both noise plots retain their point counts`);
         info.text = await measure();
         ok(!info.text.small.length && info.text.overflow <= 0, `${width} ${page}: text floor or horizontal overflow`);
         const problems = await b.evaluate('[...document.querySelectorAll(".tw-prob")].map(p=>({answers:p.dataset.answer.split("|"),hints:JSON.parse(p.dataset.hints||"{}") }))');
@@ -1068,8 +1075,15 @@ async function learnTest() {
             ok(feedback.startsWith("Not yet.") && feedback.includes(hint), `${width} ${page} p${number + 1}: hint for ${key}, got ${feedback}`);
           }
           await answer("definitely incorrect");
-          const pid = `1.${index + 1}-p${number + 1}`;
+          const pid = `${lesson.id}-p${number + 1}`;
           ok(await b.evaluate(`JSON.parse(localStorage.getItem("tw-due")||"[]").some(p=>p.pid===${JSON.stringify(pid)})`), `${width} ${page} p${number + 1}: wrong answer queued`);
+          for (const value of problem.answers.filter(value=>value.trim() !== "" && Number.isFinite(Number(value)))) {
+            const expected = Number(value);
+            const wrong = expected === 0 ? 0.2 : expected * 1.2;
+            const feedback = await answer(String(wrong));
+            view.numericRejected++;
+            ok(feedback.startsWith("Not yet."), `${width} ${page} p${number + 1}: 20% off ${wrong} rejected, got ${feedback}`);
+          }
           for (const value of problem.answers) {
             const feedback = await answer(value);
             view.accepted++;
@@ -1126,14 +1140,14 @@ async function learnTest() {
         await b.evaluate('scrollTo(0,document.documentElement.scrollHeight)');
         await sleep(800);
         view.finished = await b.evaluate('({done:JSON.parse(localStorage.getItem("tw-done")||"{}"),due:JSON.parse(localStorage.getItem("tw-due")||"[]").length,problems:document.querySelectorAll(".tw-prob").length})');
-        ok(!!view.finished.done['1.1'] && view.finished.due === view.finished.problems, `${width}: finish marks read and queues unanswered problems ${JSON.stringify(view.finished)}`);
+        ok(!!view.finished.done[lesson.id] && view.finished.due === view.finished.problems, `${width}: finish marks read and queues unanswered problems ${JSON.stringify(view.finished)}`);
         await b.evaluate('localStorage.removeItem("tw-done");scrollTo(0,(document.documentElement.scrollHeight-innerHeight)*.5)');
         await sleep(700);
         view.savedFraction = await b.evaluate('JSON.parse(localStorage.getItem("tw-place")).y');
         await goto(b, base + "learn/");
         await waitFor(b, '!!document.querySelector(".tw-continue")');
         await click('.tw-continue');
-        await waitFor(b, '!!document.querySelector(".tw-tools") && document.querySelectorAll(".tw-plot svg").length===2');
+        await waitFor(b, `!!document.querySelector(".tw-tools") && document.querySelectorAll(".tw-plot svg").length===${info.plots.length}`);
         await sleep(900);
         view.resumedFraction = await b.evaluate('scrollY/(document.documentElement.scrollHeight-innerHeight)');
         ok(Math.abs(view.savedFraction-view.resumedFraction) <= .1, `${width}: Continue fraction ${view.savedFraction} to ${view.resumedFraction}`);
