@@ -1,11 +1,11 @@
 {
- "generated": "2026-11-15T13:35",
+ "generated": "2026-11-15T13:40",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
   "tree": "Find a circumbinary planet in TESS data, or prove a clean, measured null. Both are wins (29 Oct 2026)."
  },
- "now": "Now (15 Nov 2026, afternoon): the bug fixes are live in Book 3.3.0; the new Tree, built to the mockup Ahmed chose, goes live next. The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).",
+ "now": "15 Nov 2026, afternoon: the bug fixes are live in Book 3.3.0; the new Tree, built to the mockup Ahmed chose, goes live next. The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).",
  "nodes": [
   {
    "id": "1",
