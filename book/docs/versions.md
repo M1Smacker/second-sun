@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 3.2.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
+| The book | 3.2.1 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
 | Learning (Twinlight) | 1.2 (lessons 1.1 to 2.2) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -113,6 +113,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
 | 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
+| 3.2.1 | 15 Nov | Lessons 1.4, 2.1 and 2.2 corrected after Codex's second fact-check (one point of this planet would already stand out; the 10-hour estimate uses the smaller star it crosses; the short dip may come from an off-centre path as well as the moving star; faster points do not cut photon noise; radii, not widths; softer V-shape and flat-bottom wording); the Tree opens at a readable size on PC (FIX 98) |
 | 3.2.0 | 15 Nov | Lessons 2.1 (orbits and periods, Kepler's third law) and 2.2 (how long a dip lasts); a four-step guided tour on the first open of the Tree (Show the tour again is on the Shelf); answer checker fix: a problem with an exact allowance no longer also accepts answers 2% off |
 | 3.1.0 | 15 Nov | Lesson 1.4 (what a dip looks like, on the planet's real dips); lessons 1.1 to 1.3 corrected after Codex's independent fact-check (plain averages instead of medians in the plots, so the noise numbers are now 357 and 233 ppm; the pair's combined light; bell-shaped noise; the drift's size; claims that were too strong); phone fix for long formulas; Tree search box 44 px |
 | 3.0.0 | 15 Nov | Book 3.0: the Tree is the home page (mission and journey views, built from the drop box); Twinlight, the new textbook app, with its first three lessons on real TESS light; night observatory look in blue, new logo and opening; the menu is Tree, Learning and the Shelf; Book 2 kept whole at /v2/ and old links redirect |

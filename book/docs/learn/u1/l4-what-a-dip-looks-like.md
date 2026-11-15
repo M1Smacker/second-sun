@@ -13,7 +13,7 @@ This is the moment the whole project is about. Below is the planet around TIC 17
 
 ## The shape of a planet's dip
 
-Lesson 1.2 said a planet blocks the fraction \((R_p / R_\star)^2\) of its star's light. That is the depth at the deepest part. But the planet does not jump onto the star's face. It slides on, crosses, and slides off, and each part leaves its mark on the light:
+Lesson 1.2 said a planet blocks the fraction \((R_p / R_\star)^2\) of its star's light, for a star equally bright all over its face and seen on its own. That is roughly the depth at the deepest part. But the planet does not jump onto the star's face. It slides on, crosses, and slides off, and each part leaves its mark on the light:
 
 <figure class="tw-diagram">
 <svg viewBox="0 0 640 210" role="img" aria-label="The shape of a transit: the light is flat, slopes down while the planet moves onto the star, stays flat while it is fully in front, slopes back up as it leaves.">
@@ -29,13 +29,13 @@ Lesson 1.2 said a planet blocks the fraction \((R_p / R_\star)^2\) of its star's
 <figcaption>A planet's dip, drawn clean. Real dips are rounder at the corners, because a star's edge is a little darker than its centre.</figcaption>
 </figure>
 
-**Ingress** is the slope down: the planet's disc is only partly in front of the star. Once the whole disc is in front, the light stays at its lowest level: the **flat bottom**. **Egress** is the slope back up as the planet leaves. Because a planet is small next to its star, ingress and egress are short and the flat bottom is long. That box-like shape, with short sloping sides, is the signature of a small body crossing a big one.
+**Ingress** is the slope down: the planet's disc is only partly in front of the star. Once the whole disc is in front, the light stays near its lowest level: the **flat bottom** (nearly flat: a star's edge is a little darker than its centre, so the bottom is gently rounded too). **Egress** is the slope back up as the planet leaves. Because a planet is small next to its star, ingress and egress are short and the flat bottom is long. That box-like shape, with short sloping sides, is the signature of a small body crossing a big one.
 
 <aside class="tw-mn" markdown>
 **Ingress and egress.** The start and the end of a crossing, while the planet's disc is only partly in front of the star. Both are Latin: "going in" and "going out".
 </aside>
 
-Now go back to the eclipse in lesson 1.1. Its bottom is a point, not a flat line: our script finds only 2 of its 10-minute points within 1 percentage point of the lowest one. Two stars of nearly the same size never fit one inside the other, so the hidden part grows and shrinks without ever staying still. A **V shape** usually means two stars; a **U or box shape** with a flat bottom usually means something much smaller than its star. Planet searches use this difference all the time to throw out eclipsing stars that pretend to be planets.
+Now go back to the eclipse in lesson 1.1. Its bottom is a point, not a flat line: our script finds only 2 of its 10-minute points within 1 percentage point of the lowest one. When two stars of nearly the same size eclipse, one can cover the other completely only for a moment, if at all, so the hidden part grows and shrinks almost without staying still. A **V shape** usually means two stars; a **U or box shape** with a flat bottom usually means something much smaller than its star. Planet searches use this difference all the time to throw out eclipsing stars that pretend to be planets.
 
 <aside class="tw-mn" markdown>
 **V or U.** A rule of thumb, not a law: a planet that only grazes the edge of its star also makes a V. Unit 5 shows how searches handle that.
@@ -66,7 +66,7 @@ where depth is the average drop of the points inside the dip, \(\sigma\) is the 
 
     **Step 4. Divide.** \(\text{SNR} = 2{,}655 / 88 = 30\).
 
-    The dip is 30 times bigger than the noise left in its average. That is a strong signal: no honest search would miss it. Yet notice: that same planet in a single point would be lost in the noise. All of the power comes from \(\sqrt{N}\).
+    The dip is 30 times bigger than the noise left in its average. That is a strong signal: a search that looks at this stretch of light should not miss it. This planet is big enough that even one low point stands out a little (2,655 / 305 = 8.7). For an Earth-sized planet, with a dip under 100 ppm, a single point would be hopeless, and averaging is everything. (This simple SNR also assumes independent noise and a well-known normal level; red noise from lesson 1.3 makes the real number smaller.)
 
 The depth also matches lesson 1.2. There we worked out 5,560 ppm for this planet in front of the larger star if the other star were not there, and said the second star's light would roughly halve it. 2,000 to 3,000 ppm is what TESS saw.
 
@@ -97,7 +97,7 @@ The rule: **SNR is depth over the noise of the average, \(\sigma / \sqrt{N}\).**
 
 ## In a few sentences
 
-A planet's dip has a short slope down (ingress), a flat bottom and a short slope up (egress); two stars eclipsing each other usually make a V instead. A dip is seen through noise because many low points in a row average down the noise: the signal-to-noise ratio, depth over \(\sigma / \sqrt{N}\), says how clear it is. Around two suns, a planet's dips do not repeat like a clock, which is why they are hard to find.
+A planet's dip has a short slope down (ingress), a flat bottom and a short slope up (egress); two similar stars eclipsing each other usually make a V instead. A dip is seen through noise because many low points in a row average down the noise: the signal-to-noise ratio, depth over \(\sigma / \sqrt{N}\), says how clear it is. Around two suns, a planet's dips do not repeat like a clock, which is why they are hard to find.
 
 ## Problems
 
@@ -111,7 +111,7 @@ Noise of the average: \(400 / \sqrt{16} = 400 / 4 = 100\) ppm. SNR: \(2{,}000 / 
 </details>
 </div>
 
-<div class="tw-prob" data-answer="12" data-abs="0" data-hints='{"180":"That is minutes over points. One point every 30 minutes means 2 points per hour.","3":"Two points per hour, for 6 hours."}' data-why="6 hours has 360 minutes, and 360 / 30 = 12." markdown>
+<div class="tw-prob" data-answer="12" data-abs="0" data-hints='{"180":"That would be 2-minute points. This light curve has one point every 30 minutes: 2 points per hour.","3":"Two points per hour, for 6 hours."}' data-why="6 hours has 360 minutes, and 360 / 30 = 12." markdown>
 **2.** A dip lasts 6 hours. The light curve has one point every 30 minutes. How many points fall inside the dip?
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
@@ -136,7 +136,7 @@ Run lesson 1.2 backwards. Depth as a fraction: \(2{,}500 / 1{,}000{,}000 = 0.002
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(\text{SNR} = \text{depth} / \text{noise}\), so \(\text{depth} = \text{SNR} \times \text{noise} = 7 \times 100 = 700\) ppm. Anything shallower is lost, however real it is. Measuring exactly what a search can and cannot see is a whole part of this project (Unit 5).
+\(\text{SNR} = \text{depth} / \text{noise}\), so \(\text{depth} = \text{SNR} \times \text{noise} = 7 \times 100 = 700\) ppm. Shallower dips mostly slip under the bar, though noise can push a real dip a little above or below it. Measuring exactly what a search can and cannot see is a whole part of this project (Unit 5).
 
 </details>
 </div>
@@ -153,6 +153,6 @@ Run lesson 1.2 backwards. Depth as a fraction: \(2{,}500 / 1{,}000{,}000 = 0.002
 
 ## Sources
 
-- The planet's dips: TESS sector 21, QLP full-frame light curve of TIC 172900988 (30-minute points), from MAST; times, depths and noise measured by our scripts on 15 Nov 2026 (`book/tools/lesson_plots.py` and a check script): dips at day 1883.39 and 1888.31 on the TESS clock, 4.9 days apart; 305 ppm per point outside the second dip.
+- The planet's dips: TESS sector 21, QLP full-frame light curve of TIC 172900988 (30-minute points), from MAST; times, depths and noise measured by our scripts on 15 Nov 2026 (`book/tools/lesson_plots.py` and a check script): dips at day 1883.39 and 1888.31 on the TESS clock, 4.9 days apart; 305 ppm per point outside the second dip. The depths depend on how the slow changes are taken out: with a straight line instead of our running median, the first crossing's depth changes by about 16% and the second's by under 1% (Codex 018). They are illustrations, not a full fit.
 - The system: Kostov et al. 2021 ([arXiv 2105.08614](https://arxiv.org/abs/2105.08614)): "During Sector 21, the planet TIC 172900988b transited the primary star and then 5 days later it transited the secondary star."
 - Transit shape (ingress, egress, flat bottom, darker star edges): Winn 2010, "Transits and Occultations" ([arXiv 1001.2010](https://arxiv.org/abs/1001.2010)).

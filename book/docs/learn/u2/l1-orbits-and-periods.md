@@ -19,13 +19,13 @@ The drops come back again and again, and they come in two kinds. The deeper ones
 **Primary and secondary eclipse.** The deeper and the shallower of the two eclipses that a pair of stars makes in each orbit.
 </aside>
 
-The time from one primary eclipse to the next is the time the stars take to go once round each other: the **period**, written \(P\). Every orbit, the same lineup repeats, so a period is the most exact clock a star pair can give you.
+The time from one primary eclipse to the next is the time the stars take to go once round each other: the **period**, written \(P\). Every orbit, the same lineup repeats (almost exactly: over years this oval orbit slowly turns, which the discovery paper measured), so a period is a very exact clock.
 
 <aside class="tw-mn" markdown>
 **Period (\(P\)).** The time for one full orbit. Here, the time from one primary eclipse to the next.
 </aside>
 
-Look closely and you will notice that not every orbit shows both eclipses. Our script finds the middles of five primary eclipses, at days 2507.395, 2527.053, 2546.710, 2586.028 and 2605.685 on the TESS clock. The one that should come between 2546.710 and 2586.028, near day 2566.4, fell in a gap in the data (a 2.8-day pause while TESS sent its data home). One secondary eclipse is lost the same way. Gaps like these are why a single planet crossing can be missed even when the telescope is looking at the right star.
+Look closely and you will notice that not every orbit shows both eclipses. Our script finds the middles of five primary eclipses, at days 2507.395, 2527.053, 2546.710, 2586.028 and 2605.685 on the TESS clock. The one that should come between 2546.710 and 2586.028, near day 2566.4, fell in a gap in the data (a gap of about 2.8 days, most likely while TESS sent its data home). One secondary eclipse is lost the same way. Gaps like these are why a single planet crossing can be missed even when the telescope is looking at the right star.
 
 !!! example "Worked example: measuring the period"
     **Step 1. Take the first and the last primary eclipse.** Days 2507.395 and 2605.685.
@@ -36,7 +36,7 @@ Look closely and you will notice that not every orbit shows both eclipses. Our s
 
     **Step 4. Divide.** \(P = 98.290 / 5 = 19.658\) days.
 
-    Why not just subtract two neighbours? Each eclipse time has a small error. Spreading that error over five orbits makes the period five times more exact. The discovery paper gives 19.7 days, the same value rounded.
+    Why not just subtract two neighbours? Each eclipse time has a small error. Spreading that error over five orbits makes the period's error five times smaller. The discovery paper gives 19.7 days, the same value rounded.
 
 ## How far apart are the stars? Kepler's third law
 
@@ -71,7 +71,7 @@ We want \(a\), so we turn the law around: multiply both sides by \(M\) and take 
 
     **Step 4. Cube root.** \(\sqrt[3]{0.007069} = 0.192\) AU.
 
-    The two stars sit about 0.19 AU apart: half of Mercury's distance from the Sun. That is about 41 times the width of the Sun, while each star is only about 1.4 times as wide as the Sun. Close, but far from touching.
+    The two stars sit about 0.19 AU apart: half of Mercury's distance from the Sun. That is about 41 Sun radii, while each star's radius is only about 1.4 Sun radii. Close, but far from touching. (0.19 AU is the orbit's average size: on this stretched oval the distance swings between about 0.11 and 0.28 AU.)
 
 !!! question "Your turn, half done: the planet's orbit"
     The planet goes round both stars once in about 200 days (the paper allows six values between 189 and 204). It feels the pull of both stars together, so \(M = 2.440\) again. Step 1: \(200 / 365.25 = 0.5476\) years. Step 2: \(0.5476^2 = 0.2998\). Finish steps 3 and 4.

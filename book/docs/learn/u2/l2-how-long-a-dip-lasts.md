@@ -26,7 +26,7 @@ The distance is about the width of the star, \(2 R_\star\) (a little more, becau
 The formula says three things. A longer year (bigger \(P\)) means a longer dip. A bigger star (bigger \(R_\star\)) means a longer dip. A wider orbit (bigger \(a\)) means a shorter one, because the star looks smaller from far away... except that \(P\) also grows with \(a\) (lesson 2.1), and that wins: far-out planets make long dips.
 
 <aside class="tw-mn" markdown>
-**Same units.** \(R_\star\) and \(a\) must be in the same unit before you divide. 1 AU is 215 Sun widths (radii).
+**Same units.** \(R_\star\) and \(a\) must be in the same unit before you divide. 1 AU is 215 Sun radii.
 </aside>
 
 !!! example "Worked example: the Earth crossing the Sun"
@@ -52,18 +52,18 @@ The formula says three things. A longer year (bigger \(P\)) means a longer dip. 
 
 \(P / \pi = 3 / 3.1416 = 0.955\) days. Times \(0.1143\): \(0.109\) days. Times 24: 2.62 hours.
 
-The rule: **\(T = (P / \pi)(R_\star / a)\).** Close-in planets make short dips: a few hours, against 13 for the Earth and about 32 for Jupiter.
+The rule: **\(T = (P / \pi)(R_\star / a)\).** Close-in planets make short dips: a few hours, against 13 for the Earth and about 30 for Jupiter (33 if Jupiter's own size is counted).
 
 </details>
 </div>
 
 ## Around two suns, the clock runs differently
 
-Now try the formula on our planet. From lessons 1.2 and 2.1: \(P \approx 200\) days, \(a \approx 0.90\) AU \(= 193.5\) Sun radii, and the star it crosses is about 1.38 Sun radii wide. So \(R_\star / a = 1.38 / 193.5 = 0.00713\), \(P / \pi = 63.7\) days, and \(T = 63.7 \times 0.00713 = 0.454\) days, about 11 hours.
+Now try the formula on our planet. From lessons 1.2 and 2.1: \(P \approx 200\) days, \(a \approx 0.90\) AU \(= 193.5\) Sun radii, and the star it crosses in this plot is the smaller one, 1.31 Sun radii. So \(R_\star / a = 1.31 / 193.5 = 0.00677\), \(P / \pi = 63.7\) days, and \(T = 63.7 \times 0.00677 = 0.431\) days, about 10 hours.
 
 But the plot at the top shows a dip lasting only about 6 hours (our rough reading: the light stays more than 1,200 ppm low for about 6 hours). Why so short?
 
-Because the formula assumed the star stands still. Here it does not. Each star swings round the pair's centre every 19.7 days, at a speed our numbers put near 50 km/s, about as fast as the planet itself travels (also near 50 km/s). If the star happens to move towards the planet as it crosses, their speeds add up and the crossing is quick. If the star moves the same way as the planet, it is almost a race, and the crossing can last much longer. So around two suns, every dip has a different length, and its spacing and depth change too. Unit 3 takes this apart, because it is the very thing our search has to cope with.
+Two of the formula's assumptions can fail here. First, the planet may not cross through the middle of the star: an off-centre path is a shorter chord, and a crossing about 0.8 star radii off-centre would alone turn 10 hours into 6. Second, the star does not stand still. Each star swings round the pair's centre every 19.7 days, at a speed our numbers put near 50 km/s, about as fast as the planet itself travels (also near 50 km/s). If the star happens to move towards the planet as it crosses, their speeds add up and the crossing is quick. If the star moves the same way as the planet, it is almost a race, and the crossing can last much longer. From one dip we cannot tell which effect matters more; the discovery paper fits both with a full model of the three bodies. What is certain is that around two suns every dip has its own length, and its spacing and depth change too. Unit 3 takes this apart, because it is the very thing our search has to cope with.
 
 <aside class="tw-mn" markdown>
 **The speeds.** Star: about half of the 0.19 AU separation, once round in 19.7 days. Planet: 0.9 AU, once round in about 200 days. Both come to about 50 km/s.
@@ -90,17 +90,17 @@ A dip lasts as long as the planet takes to cross its star: \(T = (P / \pi)(R_\st
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(T\) is proportional to \(R_\star\): twice the star, twice the crossing time. (The depth, though, falls to a quarter, because depth goes with \(R_\star^2\).)
+\(T\) is proportional to \(R_\star\): twice the star, twice the crossing time. (The depth, though, falls to a quarter, because depth goes with \(1 / R_\star^2\).)
 
 </details>
 </div>
 
 <div class="tw-prob" data-answer="12" data-tol="0.05" data-unit="points" data-hints='{"6":"Two points per hour for 6 hours.","360":"That is minutes. One point every 30 minutes."}' data-why="6 hours at one point per 30 minutes gives 12 points." markdown>
-**3.** Our planet's dip lasts about 6 hours, and the light curve has one point every 30 minutes. How many points does the dip hold? (Why this matters: fewer points, less averaging, lower SNR.)
+**3.** Our planet's dip lasts about 6 hours, and the light curve has one point every 30 minutes. How many points does the dip hold? (Why this matters: it is how many points the dip's average uses, the N of lesson 1.4.)
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(6 \times 60 / 30 = 12\) points. With 2-minute data it would be 180 points, and the dip's noise would shrink by \(\sqrt{180 / 12} = 3.9\) times. That is one reason 2-minute data are prized.
+\(6 \times 60 / 30 = 12\) points. With 2-minute data it would be 180 points, but each would collect 15 times less light and so be noisier by \(\sqrt{15}\); for pure photon noise the two effects cancel and the dip is no clearer. What faster points do give is the dip's shape: ingress and egress become visible instead of blurred.
 
 </details>
 </div>
