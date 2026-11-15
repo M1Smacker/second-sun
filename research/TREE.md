@@ -44,12 +44,12 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ---
 
 ## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
-- **Codex 021** (15 Nov, node 4.1; RUNNING from 2:14 pm): independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see. `research/astra/inbox/021-audit-book-3-4.md`
+- **Codex 021** (DONE 3:03 pm, merged, 7 bugs filed as FIX 100; 15 Nov, node 4.1; RUNNING from 2:14 pm): independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see. `research/astra/inbox/021-audit-book-3-4.md`
 - **T161** (15 Nov, node 4.1; DONE 1:51 pm, ships in 3.4.0): load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos. Build queue.
 - **T160b and Codex 020** (15 Nov, node 4.1; DONE, merged 2:12 pm, Book 3.4.0): Tree design A, ChatGPT mockup A built into the book (golden vine, cards both sides, side panel, no zoom; M-33 wheel fix). Prototype `research/tree/design-a/`; brief `research/astra/inbox/020-tree-design-a.md`. Publish only after Ahmed sees the look.
 - **Codex 019** (15 Nov, node 4.1; DONE, merged at noon): 22 Tree, tour and Twinlight bugs from the Book 3 audit (FIX 99), each with a check that failed before; Claude's release gates rerun on the merge. `research/astra/inbox/019-fix-tree-tour-twinlight.md`
 - **RS-036** (Claude, 15 Nov, node 4.1; DONE 2:40 pm): a real astronomy course in Twinlight. Result: 47 lessons in 11 units, `research/stage3/rs036/COURSE-PLAN-2026-11-15.md`.
-- **Codex 022** (node 4.1; QUEUED after 021): fact-check of lessons 2.3 to 2.5 and the unit-number changes. `research/astra/inbox/022-factcheck-lessons-2-3-to-2-5.md`
+- **Codex 022** (node 4.1; RUNNING from 3:30 pm): fact-check of lessons 2.3 to 2.5 and the unit-number changes. `research/astra/inbox/022-factcheck-lessons-2-3-to-2-5.md`
 - **T166** (node 4.1; GO 2:46 pm, core first with one universe lesson after each core unit; Unit 2 done 3 pm): build the Twinlight course from 6 to 47 lessons per the RS-036 plan.
 - **RS-035** (Claude, 15 Nov, node 4.1): how to teach this: worked then faded examples, typed recall problems with specific feedback, data first (concreteness fading), plots only where they answer a question; lesson template and 7-unit outline. `research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md`
 - **Codex 018** (15 Nov, node 4.1; DONE, merged 6:58 am; numbers all reproduced, several explanations corrected in 3.2.1): independent fact-check of Twinlight lessons 1.4, 2.1, 2.2 and a learn mode that covers every live lesson. `research/astra/inbox/018-twinlight-check-2.md`
