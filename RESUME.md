@@ -1,4 +1,4 @@
-## LATEST (15 Nov 2026, 7:04 am Kuwait): BOOK 3.0 OVERNIGHT DONE FOR THE MORNING (Opus 5.5 MEDIUM; weekly 33% to 40% overnight, cap 60%)
+## LATEST (15 Nov 2026, 7:03 am Kuwait): BOOK 3.0 OVERNIGHT DONE FOR THE MORNING (Opus 5.5 MEDIUM; weekly 33% to 40% overnight, cap 60%)
 - **Live:** 3.0.0 (4:40 am), 3.1.0 (6:38 am), 3.2.0 (6:48 am); 3.2.1 publishing (task b2gmd1ncy, log data/astra/publish-3.2.1.log).
 - **Twinlight lessons:** 1.1 light curve, 1.2 percent and ppm, 1.3 noise, 1.4 what a dip looks like (planet's real dips, sector 21), 2.1 orbits and periods (Kepler's law), 2.2 how long a dip lasts. Every lesson fact-checked independently by Codex (017, 018) and corrected; learn test 498 checks pass; layout passes.
 - **Built tonight:** Tree page, Twinlight app, guided tour (tour.js), lesson plot generator with fence guard, answer-checker tolerance fix, Tree readable start view (FIX 98).
