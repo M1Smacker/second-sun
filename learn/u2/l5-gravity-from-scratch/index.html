@@ -1,0 +1,1770 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/learn/u2/l5-gravity-from-scratch/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon-64.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2.5 Gravity from scratch - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../../assets/shape.css">
+    
+      <link rel="stylesheet" href="../../../assets/book3.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <meta name="theme-color" content="#070c19">
+  <link rel="apple-touch-icon" href="../../../assets/icon-180.png">
+  <link rel="icon" type="image/png" href="../../../assets/favicon-64.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  
+  <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../../../assets/learn.css">
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gravity-from-scratch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <div id="ss-splash" aria-hidden="true"><div class="ss-sp-in"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="ss-sp-bgx" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#13213f"/><stop offset=".65" stop-color="#091127"/><stop offset="1" stop-color="#050913"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sa" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ff"/><stop offset=".75" stop-color="#9fd9ff" stop-opacity=".55"/><stop offset="1" stop-color="#9fd9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f4fbff"/><stop offset=".42" stop-color="#7ad7ea"/><stop offset=".75" stop-color="#7ad7ea" stop-opacity=".45"/><stop offset="1" stop-color="#7ad7ea" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect class="ss-logo-bg" width="512" height="512" rx="112" fill="url(#ss-sp-bgx)"/>
+  <g class="ss-logo-orbit" fill="none" stroke="#b9e9f4" stroke-width="7" stroke-linecap="round" opacity=".9">
+    <path d="M78 300 A178 96 -14 0 1 434 212" opacity=".35"/>
+    <path d="M434 212 A178 96 -14 0 1 78 300"/>
+  </g>
+  <circle class="ss-logo-a" cx="214" cy="262" r="96" fill="url(#ss-sp-sa)"/>
+  <circle cx="214" cy="262" r="46" fill="#ffffff"/>
+  <circle class="ss-logo-b" cx="322" cy="226" r="62" fill="url(#ss-sp-sb)"/>
+  <circle cx="322" cy="226" r="27" fill="#e6f8fc"/>
+  <circle class="ss-logo-p" cx="431" cy="213" r="13" fill="#b9adff"/>
+</svg>
+<div class="ss-sp-name">Second Sun</div></div></div>
+  
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.5 Gravity from scratch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tree
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Learning
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../shelf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Shelf
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shelf
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shelf
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shelf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Shelf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training deck
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#falling-and-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falling, and missing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-pull-newtons-law-of-gravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pull: Newton's law of gravity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#think-it-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Think it through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-speed-an-orbit-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The speed an orbit needs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keplers-law-falls-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kepler's law falls out
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-few-sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In a few sentences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p class="tw-kicker" data-lesson="2.5">Unit 2 · What makes a dip · Lesson 2.5 · 18 min</p>
+
+<h1 id="gravity-from-scratch">Gravity from scratch<a class="headerlink" href="#gravity-from-scratch" title="Permanent link">&para;</a></h1>
+<p>The two stars' clock from lesson 2.1: an eclipse every 19.7 days, again and again.</p>
+<div class="tw-plot" data-src="u2-four-sectors"></div>
+
+<p class="tw-plot__ask">These stars are about 3 billion years old and have kept this beat the whole time. Nothing pushes them. What keeps them going round, and what sets the 19.7 days?</p>
+
+<h2 id="falling-and-missing">Falling, and missing<a class="headerlink" href="#falling-and-missing" title="Permanent link">&para;</a></h2>
+<p>In lesson 2.1 we used <a href="../../../glossary/#kepler">Kepler</a>'s law, <span class="arithmatex">\(P^2 = a^3 / M\)</span>, as a rule handed down. Kepler found it in 1619 by staring at tables of planet positions, and he never knew why it worked. Isaac Newton found the why about 70 years later, and you can follow his argument with nothing more than the maths you already have.</p>
+<p>Start with a thought experiment Newton drew himself. Stand on a very tall mountain and throw a stone sideways. It curves down and lands. Throw it faster and it lands farther away. Now throw it so fast that, as it falls, the round Earth curves away beneath it just as fast as it drops. It keeps falling and never lands. That is an orbit: <strong>falling all the time, and always missing</strong>. The astronauts on the space station are not floating because gravity is gone up there (it is about 90% as strong as on the ground); they float because they and their station are falling together.</p>
+<aside class="tw-mn">
+<p><strong>Orbit.</strong> A path where an object falls towards another forever but moves sideways fast enough to keep missing it.</p>
+</aside>
+<h2 id="the-pull-newtons-law-of-gravity">The pull: Newton's law of gravity<a class="headerlink" href="#the-pull-newtons-law-of-gravity" title="Permanent link">&para;</a></h2>
+<p>Newton's second idea: every mass pulls every other mass, and the pull weakens with distance in a very particular way. Twice as far, a quarter of the pull. Three times as far, a ninth. This is the <strong>inverse-square law</strong>, and it is the same square as in lesson 2.3, for the same reason: whatever spreads out from a point is shared over a sphere whose area grows as the distance squared.</p>
+<aside class="tw-mn">
+<p><strong>Inverse-square law.</strong> A pull (or a light) that falls as <span class="arithmatex">\(1/r^2\)</span>: double the distance, a quarter of the strength.</p>
+</aside>
+<p>The pull on each kilogram of a planet, at distance <span class="arithmatex">\(r\)</span> from a star of mass <span class="arithmatex">\(M\)</span>, is</p>
+<div class="arithmatex">\[ g = \frac{G M}{r^2} \]</div>
+<p>where <span class="arithmatex">\(G\)</span> is Newton's gravitational constant, the same everywhere in the universe. For the Sun, the product <span class="arithmatex">\(GM\)</span> is measured very precisely: <span class="arithmatex">\(1.3271 \times 10^{20}\)</span> in metres cubed per second squared.</p>
+<aside class="tw-mn">
+<p><strong><span class="arithmatex">\(G\)</span>.</strong> Newton's constant, <span class="arithmatex">\(6.674 \times 10^{-11}\)</span> in SI units. Tiny: gravity is by far the weakest force, and only matters because stars and planets are so massive.</p>
+</aside>
+<h2 id="think-it-through">Think it through<a class="headerlink" href="#think-it-through" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="9" data-hints="{&quot;3&quot;:&quot;Inverse square: 3 times farther means 3 x 3.&quot;,&quot;0.111&quot;:&quot;The question asks how many times weaker: 9.&quot;}" data-tol="0.01" data-why="The pull goes as 1/r squared: 3 x 3 = 9 times weaker.">
+<p><strong>a.</strong> A planet moves to three times its old distance from its star. How many times weaker is the star's pull on it?</p>
+</div>
+<div class="tw-prob" data-answer="no" data-why="The pull per kilogram, GM/r squared, contains only the star's mass, so a pebble and a planet fall alike.">
+<p><strong>b.</strong> Look at <span class="arithmatex">\(g = GM/r^2\)</span>. Does the planet's own mass appear in it? (Yes or no.)</p>
+</div>
+<p>That answer b is Galileo's dropped balls all over again: a heavy and a light ball fall together, and a pebble and a giant planet at the same distance from a star follow the same orbit (as long as they are tiny next to the star).</p>
+<h2 id="the-speed-an-orbit-needs">The speed an orbit needs<a class="headerlink" href="#the-speed-an-orbit-needs" title="Permanent link">&para;</a></h2>
+<p>For a circle of radius <span class="arithmatex">\(r\)</span>, moving at speed <span class="arithmatex">\(v\)</span>, the pull needed to keep bending the path into the circle is <span class="arithmatex">\(v^2 / r\)</span> per kilogram. In an orbit, gravity supplies exactly that pull:</p>
+<div class="arithmatex">\[ \frac{v^2}{r} = \frac{G M}{r^2} \quad\Longrightarrow\quad v = \sqrt{\frac{G M}{r}} \]</div>
+<aside class="tw-mn">
+<p><strong>Why <span class="arithmatex">\(v^2/r\)</span>.</strong> Faster means more bending each second, and a tighter circle means sharper bending. Both together give <span class="arithmatex">\(v^2/r\)</span>, a result Christiaan Huygens and Newton worked out in the 1600s.</p>
+</aside>
+<div class="admonition example">
+<p class="admonition-title">Worked example: how fast is the Earth moving?</p>
+<p><strong>Step 1. The numbers.</strong> <span class="arithmatex">\(GM_\odot = 1.3271 \times 10^{20}\)</span>; <span class="arithmatex">\(r = 1\)</span> AU <span class="arithmatex">\(= 1.4960 \times 10^{11}\)</span> m.</p>
+<p><strong>Step 2. Divide.</strong> <span class="arithmatex">\(1.3271 \times 10^{20} / 1.4960 \times 10^{11} = 8.871 \times 10^{8}\)</span>.</p>
+<p><strong>Step 3. Square root.</strong> <span class="arithmatex">\(\sqrt{8.871 \times 10^{8}} = 29{,}780\)</span> m/s.</p>
+<p><strong>Step 4. Into km/s.</strong> About 29.8 km/s: the Earth carries you round the Sun at 30 km every second, about 100,000 km every hour.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Your turn, half done: the planet around our two stars</p>
+<p>It feels the pull of both stars, <span class="arithmatex">\(M = 2.440\)</span> Suns, at <span class="arithmatex">\(r = 0.90\)</span> AU (lesson 2.1). Since <span class="arithmatex">\(v = \sqrt{GM/r}\)</span>, compared with the Earth the speed changes by <span class="arithmatex">\(\sqrt{2.440 / 0.90}\)</span>. Step 1: <span class="arithmatex">\(2.440 / 0.90 = 2.711\)</span>. Finish: take the square root and multiply by 29.78 km/s.</p>
+</div>
+<div class="tw-prob" data-answer="49.0" data-hints="{&quot;1.65&quot;:&quot;That is the factor. Multiply by 29.78 km/s.&quot;,&quot;80.7&quot;:&quot;Take the square root of 2.711 first.&quot;}" data-tol="0.02" data-unit="km/s" data-why="The square root of 2.711 is 1.647; times 29.78 = 49.0 km/s.">
+<p><strong>Your turn.</strong> The planet's speed, in km/s:</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(\sqrt{2.711} = 1.647\)</span>, and <span class="arithmatex">\(1.647 \times 29.78 = 49.0\)</span> km/s. This is the "about 50 km/s" lesson 2.2 used.</p>
+<p>The rule: <strong><span class="arithmatex">\(v = \sqrt{GM/r}\)</span>.</strong> More mass, faster orbit; farther out, slower.</p>
+</details>
+</div>
+<h2 id="keplers-law-falls-out">Kepler's law falls out<a class="headerlink" href="#keplers-law-falls-out" title="Permanent link">&para;</a></h2>
+<p>Now the period. One trip round the circle is a distance <span class="arithmatex">\(2\pi r\)</span>, done at speed <span class="arithmatex">\(v\)</span>, so <span class="arithmatex">\(P = 2\pi r / v\)</span>. Put in the speed and square both sides:</p>
+<div class="arithmatex">\[ P^2 = \frac{4\pi^2 r^2}{v^2} = \frac{4\pi^2 r^2}{G M / r} = \frac{4\pi^2}{G}\,\frac{r^3}{M} \]</div>
+<p>That is Kepler's third law: <span class="arithmatex">\(P^2\)</span> grows with <span class="arithmatex">\(r^3\)</span> and shrinks with <span class="arithmatex">\(M\)</span>. The only extra piece is the constant <span class="arithmatex">\(4\pi^2 / G\)</span>. Measure <span class="arithmatex">\(P\)</span> in years, <span class="arithmatex">\(r\)</span> in AU and <span class="arithmatex">\(M\)</span> in Suns, and that constant becomes exactly 1, because those units are defined by the Earth's own orbit. That is why lesson 2.1 could write simply <span class="arithmatex">\(P^2 = a^3/M\)</span>.</p>
+<p>The same law, read backwards, is how astronomers <strong>weigh</strong> things. Measure an orbit's size and period, and the mass inside it follows. The discovery paper weighed our two stars to better than 0.1% this way, from their eclipses and their measured speeds.</p>
+<h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
+<p>An orbit is falling while moving sideways fast enough to keep missing. Gravity pulls each kilogram with <span class="arithmatex">\(GM/r^2\)</span>, weaker as the square of the distance, the same for a pebble and a planet. Making that pull bend the path into a circle gives the orbit speed <span class="arithmatex">\(v = \sqrt{GM/r}\)</span>: 29.8 km/s for the Earth, 49 km/s for the planet around our pair. Working out the period from that speed gives Kepler's third law, and turns every orbit into a scale for weighing stars.</p>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="14.9" data-hints="{&quot;7.4&quot;:&quot;The speed goes with one over the SQUARE ROOT of the distance: divide by 2, not 4.&quot;,&quot;59.6&quot;:&quot;Farther out is slower, not faster.&quot;}" data-tol="0.02" data-unit="km/s" data-why="v goes as 1/sqrt(r): the square root of 4 is 2, so 29.78 / 2 = 14.9 km/s.">
+<p><strong>1.</strong> How fast would a planet orbit the Sun at 4 AU, in km/s?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(v \propto 1/\sqrt{r}\)</span>. <span class="arithmatex">\(\sqrt{4} = 2\)</span>, so <span class="arithmatex">\(29.78 / 2 = 14.9\)</span> km/s. (Jupiter, at 5.2 AU, moves at about 13 km/s.)</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="92.4|92" data-hints="{&quot;5545&quot;:&quot;That is in seconds. Divide by 60.&quot;,&quot;1.54&quot;:&quot;That is in hours. The question asks for minutes.&quot;}" data-tol="0.02" data-unit="minutes" data-why="v = sqrt(3.986e14 / 6.771e6) = 7,673 m/s; P = 2 pi r / v = 5,545 s = 92.4 minutes.">
+<p><strong>2.</strong> The space station flies about 400 km up, so <span class="arithmatex">\(r = 6{,}771\)</span> km from the Earth's centre. For the Earth, <span class="arithmatex">\(GM = 3.986 \times 10^{14}\)</span>. First its speed, then its time for one orbit, in minutes.</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(r = 6.771 \times 10^6\)</span> m. <span class="arithmatex">\(v = \sqrt{3.986 \times 10^{14} / 6.771 \times 10^{6}} = \sqrt{5.887 \times 10^{7}} = 7{,}673\)</span> m/s. One orbit: <span class="arithmatex">\(2\pi r = 4.254 \times 10^{7}\)</span> m, so <span class="arithmatex">\(P = 4.254 \times 10^{7} / 7{,}673 = 5{,}545\)</span> s <span class="arithmatex">\(= 92.4\)</span> minutes. The crew sees about 16 sunrises a day.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="0.5|1/2|half" data-hints="{&quot;0.25&quot;:&quot;P squared goes as 1/M, so P goes as one over the SQUARE ROOT of M.&quot;,&quot;2&quot;:&quot;More mass pulls harder: the orbit is quicker, not slower.&quot;}" data-tol="0.02" data-why="P squared = r cubed / M: four times the mass makes P squared a quarter, so P is half.">
+<p><strong>3.</strong> A planet orbits at the same distance as the Earth, but around a star four times the Sun's mass. How many times the Earth's year is its year?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(P^2 = r^3/M = 1/4\)</span>, so <span class="arithmatex">\(P = 1/2\)</span>: half a year. A heavier star pulls harder, so the planet has to move faster to keep missing it, and goes round sooner.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="falling|they are falling|free fall|freefall" data-why="They and the station fall together around the Earth, so nothing presses them against the floor.">
+<p><strong>4.</strong> Astronauts on the space station float. Is gravity missing up there, or are they doing something? Say in one word what they are doing.</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><strong>Falling.</strong> Gravity there is about 90% of its pull on the ground. The crew and the station fall around the Earth together, so the floor never pushes back on their feet.</p>
+</details>
+</div>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="arithmatex">\(GM\)</span> of the Sun <span class="arithmatex">\(1.32712 \times 10^{20}\)</span> m³/s² and of the Earth <span class="arithmatex">\(3.986004 \times 10^{14}\)</span> m³/s²: IAU 2015 Resolution B3 nominal values; 1 AU = 149,597,870,700 m (IAU 2012 Resolution B2). <span class="arithmatex">\(G = 6.674 \times 10^{-11}\)</span> (CODATA).</li>
+<li>Kepler's third law, 1619 (Harmonices Mundi); Newton's cannon and law of gravitation, Principia (1687). Any history of astronomy, for example OpenStax Astronomy 2e, chapter 3 "Orbits and Gravity" (<a href="https://openstax.org/details/books/astronomy-2e">the book</a>, CC BY-NC-SA 4.0).</li>
+<li>The stars' age (3.1 billion years) and masses (to better than 0.1%): Kostov et al. 2021 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>).</li>
+<li>Space station altitude about 400 km, gravity there about 90% of the surface value (<span class="arithmatex">\((6371/6771)^2 = 0.885\)</span>): our arithmetic; the station's real height varies, roughly 400 to 420 km.</li>
+<li>All speeds and periods in this lesson: our own arithmetic (15 Nov 2026).</li>
+</ul>
+<nav aria-label="Lessons" class="tw-pn">
+<p><a class="tw-prev" href="../l4-light-from-two-stars/" rel="prev"><small>Previous</small> 2.4 Light from two stars at once</a></p>
+<p><a class="tw-next" href="../../"><small>Back to</small> Twinlight home</a></p>
+</nav>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 3.5.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/book3.js"></script>
+      
+    
+  
+  
+  
+  <script src="../../../assets/book.js" data-sw="../../../sw.js"></script>
+  
+  <script defer src="../../../assets/katex/katex.min.js"></script>
+  <script defer src="../../../assets/katex/auto-render.min.js"></script>
+  <script defer src="../../../assets/learn.js"></script>
+  
+
+  </body>
+</html>
