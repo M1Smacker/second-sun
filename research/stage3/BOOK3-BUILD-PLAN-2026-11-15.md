@@ -5,7 +5,7 @@ Read this first after any compaction. Tick phases in the log at the bottom. Morn
 ## Rules for the whole night
 - Ahmed asleep from about 3:15 am. No questions to him; defaults are written here. Only true stops: a science-rule hit (fence A/B star, sealed-run data, a lead), or a publish that cannot pass its checks.
 - Hunt and Petrova work paused. Nothing frozen is touched. The live Eyes page is never clicked; Eyes is tested on a local build only.
-- Usage: weekly 26% now, hard cap 40%. Ledger row after every phase. 5-hour limit: when it nears the end, start `tools/wake_at.py` for 1 minute after the reset (next reset 6:30 am Kuwait) and stop cleanly; resume from this file.
+- Usage: weekly 26% now, hard cap 60% (Ahmed, 3:16 am; was 40%). Ledger row after every phase. 5-hour limit: when it nears the end, start `tools/wake_at.py` for 1 minute after the reset (next reset 6:30 am Kuwait) and stop cleanly; resume from this file.
 - Context can grow to 500K; auto-compact at 600K. RESUME.md and this file carry the state.
 - Every piece: build, then test it at once (fix while building), then a full audit at the end. A drop file for every finished piece.
 - Sync between phone and PC is SCRAPPED (Ahmed, 3:02 am). Notes, highlights and progress stay on each device.
@@ -53,7 +53,7 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 - A publish check fails: fix forward (Ahmed's choice); the old book stays at /v2/.
 - Compaction mid-phase: RESUME LATEST block names the phase and the next step.
 - A drop with bad data: the builder refuses with a plain message; nothing broken reaches the site.
-- Weekly near 38%: stop new building, finish testing and publish what is done.
+- Weekly near 58%: stop new building, finish testing and publish what is done.
 
 ## Safeguards: expect the worst (added 3:13 am, before the go)
 
@@ -69,7 +69,7 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 ### My own limits
 - A wake script runs from the start for 1 minute after each 5-hour reset (next: 6:31 am Kuwait). If my limit cuts a turn, its exit restarts me; I resume from the plan log and RESUME.
 - Commit and push small and often (every finished piece), so a cut-off loses minutes, not hours.
-- Weekly: stop new building at 38%, finish tests and publish what works. Ahmed's other Claude use shares the meter; outside jumps are noted, not blamed on me.
+- Weekly: stop new building at 58%, finish tests and publish what works. Ahmed's other Claude use shares the meter; outside jumps are noted, not blamed on me.
 - Keep-awake requested from the app so Windows does not sleep. If the PC still sleeps or restarts, nothing can resume: the morning report says so plainly.
 - Network down: Codex and downloads wait and retry; offline work (code, tests, writing) continues.
 
@@ -94,4 +94,5 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 ## Log
 - 3:05 am plan written.
 - 3:11 am Tree rounds added.
-- 3:13 am safeguards added; WAITING FOR AHMED'S GO (nothing started).
+- 3:13 am safeguards added.
+- 3:19 am rounds 18 to 20 answered; GO given; weekly cap 60%. Build started.

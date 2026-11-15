@@ -59,7 +59,7 @@ Build tasks this covers: T160 (Tree as home page), T59c (F4 redesign), FIX 73 (h
 - **Structure:** units > lessons, one idea per lesson.
 - **Our project:** main text is general physics; our stars and runs appear as worked examples and problems.
 - **Order tonight:** build the learning interface FIRST (ask Ahmed about it so he knows what is being built), then as many lessons as fit; clear every doubt before building.
-- **Run rules:** weekly cap 40% (was 30%). When the 5-hour limit nears its end, set a Python wake script for 1 minute after the reset and continue. Keep working as context grows (auto-compact at 600K; carrying 500K is fine). Same for Codex: when its limit runs out, a script wakes Claude when it resets. Keep the usage ledger. Models: Claude Opus 5.5 medium; Codex GPT-6.1 Sol at medium. Rigorous bug testing after building; 5 to 6 hours is fine.
+- **Run rules:** weekly cap 60% (was 30%, then 40%; raised to 60% at 3:16 am). When the 5-hour limit nears its end, set a Python wake script for 1 minute after the reset and continue. Keep working as context grows (auto-compact at 600K; carrying 500K is fine). Same for Codex: when its limit runs out, a script wakes Claude when it resets. Keep the usage ledger. Models: Claude Opus 5.5 medium; Codex GPT-6.1 Sol at medium. Rigorous bug testing after building; 5 to 6 hours is fine.
 - **Codex:** a new chat per task (`codex exec`), not his onboarding chat.
 
 ## Learning interface (round 10)
@@ -110,3 +110,22 @@ Build tasks this covers: T160 (Tree as home page), T59c (F4 redesign), FIX 73 (h
 - **PC card:** preferably opens right where the branch is on the Tree (anchored popover), not a side panel; Claude may choose a side panel if it works better.
 - **Sound:** none.
 - **Reports:** stay in chat as now; the Tree is extra.
+
+## Last three rounds (3:16 am; the go is given once these are answered)
+### Round 18
+- **Maths today:** basic algebra (equations, fractions); powers, logs and trig rusty. The textbook builds maths from there.
+- **Physics today:** school basics.
+- **Device:** phone and PC equally.
+- **Old progress:** start fresh; old results kept in a file.
+### Round 19
+- **App name:** Claude chooses (not The Textbook, Second Sun Academy or Field Guide); must be cool.
+- **Logo:** refreshed by Claude: cleaner, two suns, blue theme, same idea; used in the opening animation and the app icon.
+- **Hunt gate:** yes, a milestone: the hunt resumes once Ahmed finishes the units that explain the filter and the hunt (he decides when).
+- **Diary:** Claude writes a short entry every work day, shown on the Tree timeline.
+### Round 20
+- **Handover:** a short in-app guided tour on the first open of 3.0 (Tree, Learning, Shelf), dismissible.
+- **Unsettled project data:** left out of lessons; only settled things are taught.
+- **Address:** "you", a general reader.
+- **Tradeoff tonight:** Tree first (fully polished), fewer lessons if needed.
+
+**GO given (Ahmed, 3:16 am): start as soon as round 20 is answered.**
