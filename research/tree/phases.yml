@@ -1,0 +1,22 @@
+# The journey's big branches (Claude, 15 Nov 2026), oldest first. Each phase covers the days from `from` up to the next phase's start.
+# Hand-written: a new phase is added when the project turns a real corner. The days and leaves inside come from the drops and the diary.
+- id: start
+  from: 2026-10-19
+  title: Learning the sky and the first tools
+  plain: The project starts. What is known, where the gap is, our first light curves and our first planet-finding tool, Vesper.
+- id: sealed
+  from: 2026-10-29
+  title: The first sealed searches
+  plain: G2 and G3, searches run once under rules written in advance. Both found no planet, and both taught us where the tool was weak.
+- id: audit
+  from: 2026-11-10
+  title: The audit and Petrova
+  plain: An outside audit found the eclipse mask could hide planets. The tool was rebuilt and frozen as Petrova, then searched the old lists again.
+- id: bench
+  from: 2026-11-12
+  title: The bench and the fix rounds
+  plain: Codex joins. Every proposed fix is measured on 2,000 planted planets, with fake ones counted too, before it may enter the tool.
+- id: book3
+  from: 2026-11-15
+  title: Learning first
+  plain: The hunt pauses so you can learn everything it rests on. The Tree and a new textbook are built.

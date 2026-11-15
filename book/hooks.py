@@ -245,6 +245,12 @@ def expand(markdown, page_url, d):
 def on_config(config):
     DATA.clear()
     DATA.update(load())
+    try:                                          # Book 3.0: the Tree's data is rebuilt from TREE.md and drops/ on every build; a refusal stops it
+        sys.path.insert(0, str(ROOT.parent / "research" / "tree"))
+        import brain_build
+        brain_build.build()
+    except brain_build.BuildRefused as e:
+        raise PluginError("Tree builder refused: " + str(e)) from e
     try:
         DATA["path"] = None                       # Book 3.0 (15 Nov 2026): Book 2's chapter scaffolding retired; data/path-book2.yml kept as record
         if (ROOT / "data" / "path.yml").exists():

@@ -60,8 +60,8 @@ else {
 Step "2b. Mission readiness rules still hold (negative and positive tests, run on the committed copy)"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_mission.py"
 
-Step "2b2. Book shape rules hold (path.yml, sidebar and sky data agree; broken copies are refused)"
-Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_shape.py"
+Step "2b2. Tree builder: every unsafe or broken drop is refused, awkward files pass, 1,000 drops build fast (Book 3.0)"
+Run "$live\.venv-docs\Scripts\python.exe" "$srcesearch	ree	est_brain_build.py"
 
 Step "2c. Colour contrast still 7:1 or better (high-contrast rule)"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\test_contrast.py"

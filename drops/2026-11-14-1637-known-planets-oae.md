@@ -6,7 +6,7 @@ label: CONFIRMED
 status: done
 by: Claude
 links: [research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md, research/stage3/rs025/rs025_q5_known.py, data/t109/toi1338_q5.csv]
-ids: [OAE (fairness fix for the dominated rule), RS-025 Q5 (known planets under the new rules), TOI-1338 b, TIC 172900988 b]
+ids: [OAE (fairness fix for the dominated rule), RS-025 Q5 (known planets under the new rules), TOI-1338 b (a known planet that orbits two suns), TIC 172900988 b (a known two-sun planet with two transits close together)]
 supersedes: []
 ---
 **Plain:** The fairness fix lets two more real TOI-1338 b transits through (6 of 13 instead of 4), but it can let a planet's stronger transit hide its weaker one.
