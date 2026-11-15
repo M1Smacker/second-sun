@@ -1,3 +1,10 @@
+## LATEST (15 Nov 2026, 7:04 am Kuwait): BOOK 3.0 OVERNIGHT DONE FOR THE MORNING (Opus 5.5 MEDIUM; weekly 33% to 40% overnight, cap 60%)
+- **Live:** 3.0.0 (4:40 am), 3.1.0 (6:38 am), 3.2.0 (6:48 am); 3.2.1 publishing (task b2gmd1ncy, log data/astra/publish-3.2.1.log).
+- **Twinlight lessons:** 1.1 light curve, 1.2 percent and ppm, 1.3 noise, 1.4 what a dip looks like (planet's real dips, sector 21), 2.1 orbits and periods (Kepler's law), 2.2 how long a dip lasts. Every lesson fact-checked independently by Codex (017, 018) and corrected; learn test 498 checks pass; layout passes.
+- **Built tonight:** Tree page, Twinlight app, guided tour (tour.js), lesson plot generator with fence guard, answer-checker tolerance fix, Tree readable start view (FIX 98).
+- **Open:** FIX 97 (lab 9 fence A example star), Unit 2 lessons 2.3 (why stars differ) and 2.4 (light from two stars: dilution; needs the paper's temperatures, not read yet), Units 3 to 6, Eyes phase 7 browser check (Codex 016 eyes modes pass), FIX 73 to 76 waiting for Ahmed's use.
+- **Morning report** given in chat at about 7:05 am. Next: Ahmed's reaction; then 2.3 and 2.4.
+
 ## LATEST (15 Nov 2026, 6:43 am Kuwait): BOOK 3.0 OVERNIGHT, MORNING STATE (Opus 5.5 MEDIUM; weekly about 40%, cap 60%; 5-hour reset 6:30 am, now low)
 - **Live:** Book 3.0.0 (4:40 am), 3.1.0 (about 6:38 am, lessons corrected after Codex 017 + lesson 1.4); 3.2.0 publishing now (task bflac60za, log data/astra/publish-3.2.0.log): lessons 2.1 orbits and periods, 2.2 how long a dip lasts, guided tour (`book/docs/assets/tour.js`, Shelf "Show the tour again"), answer-checker tolerance fix.
 - **Codex 017 merged** (43871e80; fence check benign): real lesson errors found (medians against a mean rule; pair's light; bell-shaped noise; drift size; too-strong claims; 12 px phone overflow from an unbreakable inline formula), all fixed (b7e9bdbb); learn browser mode added (239 checks pass).
