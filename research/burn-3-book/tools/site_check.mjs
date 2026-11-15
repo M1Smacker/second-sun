@@ -1,6 +1,6 @@
 // Stress / regression checks for the book prototype, driving headless Chrome over CDP (no npm packages).
 // Usage: node site_check.mjs <mode> <base-url> [options]
-//   modes: layout | tree | chapter (responsive reading pages) | offline | fail404 | update | jsoff
+//   modes: layout | tree | learn | chapter (responsive reading pages) | offline | fail404 | update | jsoff
 //          redirect | images | shots | hammer | eyes | eyeslayout | eyescloud
 //          eyesreal (writes to real cloud) | rehearsal | rehearsalcloud | watchtimers | headertitle | textfloor
 // --chrome-no-sandbox=1 is an explicit opt-in for a restricted local runner.
@@ -982,6 +982,170 @@ async function textFloorTest() {
   return out;
 }
 
+async function learnTest() {
+  const b = await launch("learn");
+  const out = { mode: "learn", checks: 0, fails: [], views: [], texToWords: "NOT TESTED: say() is private to learn.js; no page API exposes it" };
+  const ok = (value, message) => { out.checks++; if (!value) out.fails.push(message); };
+  const lessonPaths = ["learn/u1/l1-a-light-curve/", "learn/u1/l2-percent-and-ppm/", "learn/u1/l3-noise/"];
+  const click = async (selector) => {
+    const found = await b.evaluate(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return false; e.scrollIntoView({block:"center",behavior:"instant"}); return true; })()`);
+    if (!found) return false;
+    // Scroll-driven header changes can move controls after scrollIntoView.
+    await sleep(180);
+    const point = await b.evaluate(`(() => { const r = document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect(),v=visualViewport; return {x:(r.x+r.width/2-v.offsetLeft)*v.scale,y:(r.y+r.height/2-v.offsetTop)*v.scale}; })()`);
+    if (!point) return false;
+    await b.send("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });
+    await b.send("Input.dispatchMouseEvent", { type: "mouseReleased", button: "left", clickCount: 1, ...point });
+    return true;
+  };
+  const closeSheet = async () => {
+    await b.evaluate("history.back()");
+    return waitFor(b, '!document.querySelector(".tw-sheet")', 3000);
+  };
+  const measure = async () => b.evaluate(`(() => {
+    const small = [], katexScripts = new Set();
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const n = walker.currentNode, e = n.parentElement;
+      if (!n.data.trim() || !e || e.closest("script,style,.katex-mathml,[hidden]") || !e.checkVisibility({opacityProperty:true,visibilityProperty:true})) continue;
+      const range = document.createRange(); range.selectNodeContents(n);
+      if (![...range.getClientRects()].some(r => r.width && r.height)) continue;
+      const size = parseFloat(getComputedStyle(e).fontSize);
+      if (e.closest(".katex .msupsub,.katex .vlist .mtight")) { katexScripts.add(size); continue; }
+      if (size < 13.95) small.push({tag:e.tagName, class:e.className.baseVal ?? e.className, size, text:n.data.trim().slice(0,60)});
+    }
+    const overflowElements=[...document.querySelectorAll("body *")].filter(e=>!e.closest(".katex-mathml,svg") && e.checkVisibility() && e.getBoundingClientRect().right>innerWidth+1).slice(0,6).map(e=>({tag:e.tagName,class:e.className,text:e.textContent.slice(0,40),right:e.getBoundingClientRect().right}));
+    return {overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,viewport:{width:visualViewport.width,scale:visualViewport.scale},overflowElements,small,katexScriptSizes:[...katexScripts].sort((a,b)=>a-b)};
+  })()`);
+  try {
+    await b.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
+    for (const width of [390, 1440]) {
+      const view = { width, pages: [], accepted: 0, hints: 0, panels: [] };
+      out.views.push(view);
+      const checkPanel = async (name) => {
+        const text = await measure();
+        view.panels.push({ name, text });
+        ok(!text.small.length && text.overflow <= 0, `${width}: ${name} text floor or overflow`);
+      };
+      await b.send("Emulation.setDeviceMetricsOverride", { width, height: width === 390 ? 844 : 900, deviceScaleFactor: 1, mobile: width === 390 });
+      await goto(b, base + "learn/");
+      await b.evaluate('Object.keys(localStorage).filter(k=>k.startsWith("tw-")).forEach(k=>localStorage.removeItem(k))');
+      await goto(b, base + "learn/");
+      ok(await waitFor(b, 'document.querySelectorAll(".tw-unit").length === 7'), `${width}: seven unit cards`);
+      view.home = await b.evaluate('({continue:!!document.querySelector(".tw-continue"),stats:document.querySelectorAll(".tw-stats>div").length,units:document.querySelectorAll(".tw-unit").length})');
+      ok(view.home.continue && view.home.stats === 3, `${width}: Continue and three stats`);
+      view.home.text = await measure();
+      ok(!view.home.text.small.length && view.home.text.overflow <= 0, `${width}: home text floor and overflow ${JSON.stringify(view.home.text)}`);
+      for (const [index, page] of lessonPaths.entries()) {
+        await goto(b, base + page);
+        ok(await waitFor(b, '!!document.querySelector(".tw-answer input") && [...document.querySelectorAll(".tw-plot")].every(e=>e.querySelector("svg"))'), `${width} ${page}: reader ready`);
+        await b.evaluate('document.querySelectorAll("details.tw-sol").forEach(e=>e.open=true)');
+        const info = { page };
+        view.pages.push(info);
+        info.math = await b.evaluate('({errors:document.querySelectorAll(".katex-error").length,rendered:document.querySelectorAll(".katex").length,raw:document.querySelector("article").innerText.includes(String.fromCharCode(92)+"(")})');
+        ok(info.math.errors === 0 && info.math.rendered > 0 && !info.math.raw, `${width} ${page}: formulas ${JSON.stringify(info.math)}`);
+        info.plots = await b.evaluate('[...document.querySelectorAll(".tw-plot svg")].map(e=>e.querySelectorAll(".tw-plot__pts circle").length)');
+        ok(info.plots.length === (index === 1 ? 1 : 2) && info.plots.every(n=>n>100 || index === 2 && n>=48), `${width} ${page}: plot point counts ${info.plots}`);
+        info.text = await measure();
+        ok(!info.text.small.length && info.text.overflow <= 0, `${width} ${page}: text floor or horizontal overflow`);
+        const problems = await b.evaluate('[...document.querySelectorAll(".tw-prob")].map(p=>({answers:p.dataset.answer.split("|"),hints:JSON.parse(p.dataset.hints||"{}") }))');
+        for (const [number, problem] of problems.entries()) {
+          const id = `#prob-${number + 1}`;
+          const answer = async (value) => {
+            await b.evaluate(`(() => { const i = document.querySelector(${JSON.stringify(id + ' input')}); i.focus({preventScroll:true}); i.value=""; })()`);
+            await b.send("Input.insertText", { text: value });
+            await click(id + " button");
+            const feedback = await b.evaluate(`document.querySelector(${JSON.stringify(id + ' .tw-fb')}).textContent`);
+            if (!feedback) {
+              info.clickFailures ||= [];
+              info.clickFailures.push(await b.evaluate(`(() => {const p=document.querySelector(${JSON.stringify(id)}),i=p.querySelector("input"),r=p.querySelector("button").getBoundingClientRect();return {problem:${number + 1},value:i.value,active:document.activeElement.tagName,button:{x:r.x,y:r.y,width:r.width,height:r.height},hit:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.outerHTML.slice(0,200),scrollY};})()`));
+            }
+            return feedback;
+          };
+          for (const [key, hint] of Object.entries(problem.hints)) {
+            const feedback = await answer(key);
+            view.hints++;
+            ok(feedback.startsWith("Not yet.") && feedback.includes(hint), `${width} ${page} p${number + 1}: hint for ${key}, got ${feedback}`);
+          }
+          await answer("definitely incorrect");
+          const pid = `1.${index + 1}-p${number + 1}`;
+          ok(await b.evaluate(`JSON.parse(localStorage.getItem("tw-due")||"[]").some(p=>p.pid===${JSON.stringify(pid)})`), `${width} ${page} p${number + 1}: wrong answer queued`);
+          for (const value of problem.answers) {
+            const feedback = await answer(value);
+            view.accepted++;
+            ok(feedback.startsWith("Right"), `${width} ${page} p${number + 1}: answer ${value} got ${feedback}`);
+          }
+          ok(await b.evaluate(`!JSON.parse(localStorage.getItem("tw-due")||"[]").some(p=>p.pid===${JSON.stringify(pid)})`), `${width} ${page} p${number + 1}: right answer removed`);
+        }
+        info.feedbackText = await measure();
+        ok(!info.feedbackText.small.length && info.feedbackText.overflow <= 0, `${width} ${page}: feedback and solutions text floor or overflow`);
+        if (index !== 0) continue;
+        await b.evaluate('document.querySelectorAll("details.tw-sol").forEach(e=>e.open=false);scrollTo(0,500)');
+        await sleep(500);
+        // Capture scroll after bringing the actual link into view, before opening it.
+        await b.evaluate('document.querySelector(\'article a[href*="glossary/#"]\').scrollIntoView({block:"center"})');
+        const before = await b.evaluate('scrollY');
+        await click('article a[href*="glossary/#"]');
+        ok(await waitFor(b, 'document.querySelectorAll(".tw-sheet").length===1'), `${width}: glossary opens one sheet`);
+        await checkPanel("glossary");
+        ok(await closeSheet(), `${width}: Back closes glossary`);
+        view.glossaryScrollDelta = await b.evaluate(`Math.abs(scrollY-${before})`);
+        ok(view.glossaryScrollDelta <= 2, `${width}: glossary changed scroll by ${view.glossaryScrollDelta}px`);
+        await click('.tw-tools [data-a="toc"]');
+        await waitFor(b, '!!document.querySelector(".tw-toc")');
+        view.contents = await b.evaluate('(async()=>{const d=await (await fetch(new URL("assets/data/learn.json",'+JSON.stringify(base)+'))).json();const wanted=d.units.flatMap(u=>u.lessons).map(l=>l.id);const text=document.querySelector(".tw-toc").innerText;return {expected:wanted.length,missing:wanted.filter(id=>!text.includes(id+" "))};})()');
+        ok(view.contents.missing.length === 0, `${width}: Contents missing lessons ${view.contents.missing}`);
+        await checkPanel("Contents");
+        await closeSheet();
+        await b.evaluate(`(() => { const p=[...document.querySelectorAll("article>p")].find(p=>!p.closest(".tw-kicker,.tw-pn") && p.firstChild?.nodeType===3 && p.firstChild.length>30);p.scrollIntoView({block:"center",behavior:"instant"});const r=document.createRange();r.setStart(p.firstChild,0);r.setEnd(p.firstChild,25);getSelection().removeAllRanges();getSelection().addRange(r);document.dispatchEvent(new Event("selectionchange")); })()`);
+        ok(await waitFor(b, '!!document.querySelector(".tw-pill:not([hidden])")'), `${width}: selection shows highlight pill`);
+        await checkPanel("highlight pill");
+        await click('.tw-pill [data-a="hl"]');
+        ok(await b.evaluate('!!document.querySelector("mark.tw-hl")'), `${width}: Highlight paints mark`);
+        await goto(b, base + page);
+        ok(await waitFor(b, '!!document.querySelector("mark.tw-hl")'), `${width}: highlight survives reload`);
+        await click('mark.tw-hl');
+        ok(await waitFor(b, '!!document.querySelector("#tw-note")'), `${width}: note editor opens`);
+        await checkPanel("note editor");
+        await b.evaluate('document.querySelector("#tw-note").value="Twinlight local test note"');
+        await click('.tw-sheet [data-a="save"]');
+        await waitFor(b, '!document.querySelector(".tw-sheet")');
+        await goto(b, base + page);
+        ok(await waitFor(b, '!!document.querySelector("mark.tw-hl.has-note")'), `${width}: note highlight survives reload`);
+        ok(await b.evaluate('Object.values(JSON.parse(localStorage.getItem("tw-hl")||"{}")).flat().some(h=>h.note==="Twinlight local test note")'), `${width}: note text survives reload`);
+        await click('.tw-tools [data-a="listen"]');
+        ok(await waitFor(b, '!!document.querySelector(".tw-sheet--listen")'), `${width}: Listen opens`);
+        view.voices = await b.evaluate('({available:speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)).map(v=>v.name),listed:[...document.querySelectorAll("#tw-voice option")].map(e=>e.textContent)})');
+        ok(view.voices.available.every(v=>view.voices.listed.includes(v)), `${width}: Listen lists available English voices`);
+        await checkPanel("Listen");
+        await closeSheet();
+        // Clear answer state before finishing to exercise unanswered-problem scheduling.
+        await b.evaluate('localStorage.removeItem("tw-prob");localStorage.removeItem("tw-due");localStorage.removeItem("tw-done")');
+        await goto(b, base + page);
+        await waitFor(b, '!!document.querySelector(".tw-tools")');
+        await b.evaluate('scrollTo(0,document.documentElement.scrollHeight)');
+        await sleep(800);
+        view.finished = await b.evaluate('({done:JSON.parse(localStorage.getItem("tw-done")||"{}"),due:JSON.parse(localStorage.getItem("tw-due")||"[]").length,problems:document.querySelectorAll(".tw-prob").length})');
+        ok(!!view.finished.done['1.1'] && view.finished.due === view.finished.problems, `${width}: finish marks read and queues unanswered problems ${JSON.stringify(view.finished)}`);
+        await b.evaluate('localStorage.removeItem("tw-done");scrollTo(0,(document.documentElement.scrollHeight-innerHeight)*.5)');
+        await sleep(700);
+        view.savedFraction = await b.evaluate('JSON.parse(localStorage.getItem("tw-place")).y');
+        await goto(b, base + "learn/");
+        await waitFor(b, '!!document.querySelector(".tw-continue")');
+        await click('.tw-continue');
+        await waitFor(b, '!!document.querySelector(".tw-tools") && document.querySelectorAll(".tw-plot svg").length===2');
+        await sleep(900);
+        view.resumedFraction = await b.evaluate('scrollY/(document.documentElement.scrollHeight-innerHeight)');
+        ok(Math.abs(view.savedFraction-view.resumedFraction) <= .1, `${width}: Continue fraction ${view.savedFraction} to ${view.resumedFraction}`);
+      }
+    }
+    out.errors = b.errors;
+    ok(!out.errors.length, 'console errors: ' + out.errors.join(' | '));
+    out.pass = !out.fails.length;
+  } finally { await b.close(); }
+  return out;
+}
+
 async function treeTest() {
   const b = await launch("tree"), out = { mode: "tree", checks: 0, fails: [] };
   const ok = (condition, message) => { out.checks++; if (!condition) out.fails.push(message); };
@@ -1042,7 +1206,7 @@ async function treeTest() {
   return out;
 }
 
-const modes = { tree: treeTest, hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
+const modes = { learn: learnTest, tree: treeTest, hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));
