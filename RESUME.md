@@ -1,3 +1,10 @@
+## LATEST (15 Nov 2026, 10 pm Kuwait): Book 3.6.0 (lesson 3.1) publishing; Codex model slip found; CPU answer
+- Ahmed (9:51 pm): speed up 025 to 70% CPU if it is Python, leave it if it is Codex; write one lesson and stop; explain the Tree and the book layout (no Tree changes yet: he finds Book 3 navigation confusing, Book 2's side panel was easier).
+- CPU: 025's heavy work is Python (025_run.py supervisor, ThreadPoolExecutor max_workers=2 and NUMBA_NUM_THREADS=2 fixed at launch; CPU 40%). Not changed mid-run (killing Codex's workers would break its supervised run). Future briefs: 4 workers x 2 threads (about 70%).
+- FOUND: codex_run.py default model was gpt-6.1-sol; jobs 023, 024, 025 ran on GPT-6.1-Sol high, not GPT-6-Astra. Default now gpt-6-astra (commit with 3.6.0). Fable brief notes it for F3.
+- Lesson 3.1 'What light is' (book/docs/learn/u3/l1-what-light-is.md; plot from book/tools/lesson_plots_u3.py, TESS response v2.0: peak 0.785 at 722 nm, half max 580 to 982 nm). Ricker 2015 section 3.4 sentence checked (red because small planets are easier around small, cool, red stars); wording corrected. Book 3.6.0, Tree Now line updated. Published and confirmed live 10:19 pm (footer Book 3.6.0 on the lesson page, plot data 200).
+- Open: confirm 3.6.0 live; 025 running (bench expected about 12:35 am); Fable Monday go.
+
 ## LATEST (15 Nov 2026, 9:15 pm Kuwait): 024 merged (fails); 025 RUNNING
 - Codex 024 done 9:07 pm, fence check read (RESUME text ids, bench runs), merged 4b533bba: subtraction 0 of 2 pass; P 48.11 to 48.52%; short-bin detections 131 to 141 (interval above zero) but tier 1 99 to 103 (within noise); scatter 3,273 to 3,008 ppm only. Review notes in ASTRA-REVIEW-2026-11-16.md.
 - 025 brief got an update (RS-038 trace counts, FIX 101, drift-cap prototype variants); launched 9:13 pm (background task bq0etjg0l, branch astra/025-load-losses, cap 50 five-hour points; Codex 5-hour 36% at launch, resets 10:29 pm; weekly 20%).
@@ -256,7 +263,7 @@ Ahmed woke 10:03, asked for a simple recap, then said fix the three T130 wording
 
 ## LATEST (14 Nov 2026, 05:12 Kuwait): T130 TWELVE PAGES, BOOK 2.11.4 PUBLISHING, WAITING FOR TRIALS
 - T130: pages 11 (27 Oct, 183 numbers) and 12 (24 Oct, 57) mapped. 12 pages, 1,177 numbers, 5 FLAGGED (same 3 problems), 27 UNSOURCED (book-build or private details only). New recount script `research/number-map/check_eyes_1027.py` (25 rounds = 665 curves, 9 deep dips called odd in the first five rounds, thirds 77.8/83.1/82.8%, Wilson 10.7% at 0 of 32): all agree with the note.
-- Book fix (tiny, mine): 24 Oct note said 14 feedback checks and 14 mutations; tests have 16 and 18 since 24 Oct evening (rerun: 16 pass, 18 of 18 caught). Book 2.11.4 (footer, versions row), commit e9325ea; publish_book.ps1 -Test running in background (log C:\Users\hanzl\AppData\Local\Temp\publish-2.11.4.log); confirm live page after it ends.
+- Book fix (tiny, mine): 24 Oct note said 14 feedback checks and 14 mutations; tests have 16 and 18 since 24 Oct evening (rerun: 16 pass, 18 of 18 caught). Book 2.11.4 (footer, versions row), commit e9325ea; Published and confirmed live 10:19 pm (footer Book 3.6.0 on the lesson page, plot data 200).in background (log C:\Users\hanzl\AppData\Local\Temp\publish-2.11.4.log); confirm live page after it ends.
 - T130 paused (23 Oct has 293 numbers; 21 and 19 Oct left) to keep the five-hour meter for the P check: weekly 94%, five-hour 69% at 05:10 (resets 09:00 Kuwait).
 - Waiters: bjn2erujb (trial generation done, then start p_recount.py at once, it reads trial folders, not Codex's summary), bha2sojxw (planet-summary.json). Codex 1,034 of 1,250 at 05:04.
 
