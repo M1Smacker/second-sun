@@ -67,7 +67,7 @@ const fail = (gate, msg) => { failures.push(`${gate}: ${msg}`); gates[gate] = "F
 const pass = (gate) => { if (!gates[gate]) gates[gate] = "PASS"; };
 
 async function pageList(B) {
-  if (opt.pages === "quick") return ["", "learn/", "learn/u1/l1-a-light-curve/", "shelf/", "claims/", "glossary/", "field-notes/", "labs/lab3-plot-and-read/"];
+  if (opt.pages === "quick") return ["", "learn/", "learn/u1/l1-a-light-curve/", "shelf/", "claims/", "glossary/", "field-notes/", "reference/prior-work/"];
   const r = await (await fetch(new URL("sitemap.xml", base))).text();
   return [...r.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname.replace(/^\/second-sun\//, "").replace(/^\//, "")).filter((p) => !/^(eyes|rehearsal)\//.test(p));
 }

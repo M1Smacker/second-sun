@@ -14,7 +14,7 @@ const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const [mode, base, ...rest] = process.argv.slice(2);
 const opt = Object.fromEntries(rest.map((a) => a.replace(/^--/, "").split("=")));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const PAGES = ["", "learn/", "shelf/", "training/", "candidates/", "eyes/", "rehearsal/", "glossary/", "claims/", "field-notes/", "field-notes/2026-11-14/", "watch/", "versions/", "labs/lab3-plot-and-read/", "reference/for-astronomers/"];
+const PAGES = ["", "learn/", "shelf/", "training/", "candidates/", "eyes/", "rehearsal/", "glossary/", "claims/", "field-notes/", "field-notes/2026-11-14/", "watch/", "versions/", "reference/prior-work/", "reference/for-astronomers/"];
 
 async function launch(tag) {
   const profile = path.resolve(opt.profiles || "data/astra/016/profiles", `cdp-${tag}-${process.pid}`);
