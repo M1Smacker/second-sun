@@ -27,6 +27,16 @@
 
 {% block scripts %}
   {{ super() }}
+  {# T161 (15 Nov 2026): these scripts used to load on every page (about 200 KB) though only these pages use them. The Eyes cloud uploader
+     is started only by the Eyes and rehearsal screens (demos.js, rehearsal.js), and the book has no instant navigation, so nothing else needs them. #}
+  {% if page and page.url and (page.url.startswith('eyes/') or page.url.startswith('rehearsal/')) %}
+  {% for js in ['eyes-flow', 'eyes-core', 'eyes-strength', 'eyes-hard', 'eyes-feedback', 'eyes-cloud', 'rehearsal', 'demos'] %}
+  <script src="{{ ('assets/' ~ js ~ '.js') | url }}"></script>
+  {% endfor %}
+  {% endif %}
+  {% if page and page.url and page.url.startswith('watch/') %}
+  <script src="{{ 'assets/watch.js' | url }}"></script>
+  {% endif %}
   <script src="{{ 'assets/book.js' | url }}" data-sw="{{ 'sw.js' | url }}"></script>
   {% if page and page.url and page.url.startswith('learn/') %}
   <script defer src="{{ 'assets/katex/katex.min.js' | url }}"></script>

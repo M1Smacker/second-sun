@@ -45,7 +45,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 
 ## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
 - **Codex 021** (15 Nov, node 4.1; WAITS for 020's merge): independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see. `research/astra/inbox/021-audit-book-3-4.md`
-- **T161** (15 Nov, node 4.1; WAITS): load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos. Build queue.
+- **T161** (15 Nov, node 4.1; DONE 1:51 pm, ships in 3.4.0): load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos. Build queue.
 - **T160b and Codex 020** (15 Nov, node 4.1; RUNNING): Tree design A, ChatGPT mockup A built into the book (golden vine, cards both sides, side panel, no zoom; M-33 wheel fix). Prototype `research/tree/design-a/`; brief `research/astra/inbox/020-tree-design-a.md`. Publish only after Ahmed sees the look.
 - **Codex 019** (15 Nov, node 4.1; DONE, merged at noon): 22 Tree, tour and Twinlight bugs from the Book 3 audit (FIX 99), each with a check that failed before; Claude's release gates rerun on the merge. `research/astra/inbox/019-fix-tree-tour-twinlight.md`
 - **RS-035** (Claude, 15 Nov, node 4.1): how to teach this: worked then faded examples, typed recall problems with specific feedback, data first (concreteness fading), plots only where they answer a question; lesson template and 7-unit outline. `research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md`
