@@ -1,6 +1,6 @@
 // Stress / regression checks for the book prototype, driving headless Chrome over CDP (no npm packages).
 // Usage: node site_check.mjs <mode> <base-url> [options]
-//   modes: layout | tree | learn | chapter (responsive reading pages) | offline | fail404 | update | jsoff
+//   modes: layout | tree | learn | repairs (Book 3 audit, --engine=webkit optional) | chapter (responsive reading pages) | offline | fail404 | update | jsoff
 //          redirect | images | shots | hammer | eyes | eyeslayout | eyescloud
 //          eyesreal (writes to real cloud) | rehearsal | rehearsalcloud | watchtimers | headertitle | textfloor
 // --chrome-no-sandbox=1 is an explicit opt-in for a restricted local runner.
@@ -74,6 +74,8 @@ async function launch(tag) {
   };
   try {
     await send("Page.enable"); await send("Runtime.enable"); await send("Log.enable"); await send("Network.enable");
+    // Ordinary modes start after onboarding. The repairs mode exercises the real tour separately.
+    await send("Page.addScriptToEvaluateOnNewDocument", { source: 'try { localStorage.setItem("ss-tour-3", "done"); } catch {}' });
   } catch (e) { await close(); throw e; }
   return { send, evaluate, listeners, errors, navigations, close };
 }
@@ -1220,7 +1222,294 @@ async function treeTest() {
   return out;
 }
 
-const modes = { learn: learnTest, tree: treeTest, hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
+async function repairsTest() {
+  const { createRequire } = await import("node:module");
+  const require = createRequire(import.meta.url);
+  process.env.PLAYWRIGHT_BROWSERS_PATH = path.resolve("data/tools/ms-playwright");
+  const pw = require(path.resolve("data/tools/playwright/node_modules/playwright"));
+  const engine = opt.engine || "chromium";
+  const browser = await pw[engine].launch(engine === "chromium" ? { executablePath: CHROME, args: ["--no-sandbox"] } : {});
+  const out = { mode: "repairs", engine, checks: 0, fails: [], measurements: [] };
+  out.scriptErrors = [];
+  const check = (id, pass, evidence) => {
+    out.checks++;
+    out.measurements.push({ id, pass: !!pass, evidence });
+    if (!pass) out.fails.push(id);
+  };
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: "reduce", serviceWorkers: "block" });
+  ctx.on("page", p => p.on("pageerror", error => out.scriptErrors.push(error.message)));
+  const baseline = async context => {
+    if (opt.baseline) await context.route(/\/assets\/(tree\.(js|css)|tour\.js|learn\.(js|css))(\?.*)?$/, route => route.fulfill({ path: path.resolve(opt.baseline, new URL(route.request().url()).pathname.split("/").at(-1)) }));
+  };
+  await baseline(ctx);
+  await ctx.addInitScript(() => {
+    localStorage.setItem("ss-tour-3", "done");
+    window.resizeRegistrations = 0;
+    const add = window.addEventListener;
+    window.addEventListener = function(type, ...args) {
+      if (type === "resize") window.resizeRegistrations++;
+      return add.call(this, type, ...args);
+    };
+  });
+  const page = await ctx.newPage();
+  const load = async (url = "") => {
+    await page.goto(base + url);
+    await page.waitForSelector(url.startsWith("learn/u") ? ".tw-answer" : url === "learn/" ? ".tw-unit" : ".sst-view");
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(350);
+  };
+  const answer = async (url, expected, value, id, right) => {
+    await load(url);
+    const p = page.locator(`.tw-prob[data-answer="${expected}"]`).first();
+    await p.locator("input").fill(value);
+    await p.locator("form").evaluate(f => f.requestSubmit());
+    check(id, await p.evaluate((e, r) => e.classList.contains(r ? "is-right" : "is-wrong"), right), value);
+  };
+  const contrast = async selector => page.locator(selector).first().evaluate(e => {
+    const canvas = document.createElement("canvas"); canvas.width = canvas.height = 1;
+    const ctx = canvas.getContext("2d");
+    const rgba = color => {
+      ctx.clearRect(0,0,1,1); ctx.fillStyle = color; ctx.fillRect(0,0,1,1);
+      return [...ctx.getImageData(0,0,1,1).data];
+    };
+    const luminance = rgb => rgb.map(v => {
+      v /= 255;
+      return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4;
+    }).reduce((sum,v,i) => sum + v * [.2126,.7152,.0722][i], 0);
+    const chain = [];
+    for (let n=e;n;n=n.parentElement) chain.unshift(n);
+    let background = [255,255,255], opacity = 1;
+    for (const n of chain) {
+      const style = getComputedStyle(n), color = rgba(style.backgroundColor);
+      opacity *= +style.opacity;
+      const alpha = color[3] / 255 * opacity;
+      background = background.map((v,i)=>color[i]*alpha+v*(1-alpha));
+    }
+    const color = rgba(getComputedStyle(e).color), alpha = opacity*color[3]/255;
+    const foreground = background.map((v,i)=>color[i]*alpha+v*(1-alpha));
+    const a=luminance(foreground), b=luminance(background);
+    return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+  });
+  try {
+    if (opt["contrast-only"]) {
+      for (const width of [320,390]) {
+        await page.setViewportSize({width,height:844});
+        for (const theme of ["default","slate"]) {
+          for (const [url, selectors] of [["",[".sst-item .t small"]],["learn/",[".tw-unit.is-soon small",".tw-unit.is-soon li"]],["learn/u1/l1-a-light-curve/",[".tw-pn small"]]]) {
+            await load(url); await page.evaluate(t=>document.body.dataset.mdColorScheme=t,theme);
+            for (const selector of selectors) {
+              const ratio=await contrast(selector);
+              check(`M-21/${width}/${theme}/${selector}`,ratio>=4.5,ratio);
+            }
+          }
+        }
+      }
+      out.pass = out.fails.length === 0;
+      return out;
+    }
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: width === 320 ? 568 : 844 });
+      await load();
+      const position = await page.locator(".sst-bar").evaluate(e => getComputedStyle(e).position);
+      check(`M-03/${width}`, position === "static" || position === "relative", position);
+      const search = page.locator(".sst-search input");
+      await search.fill("zzzzunmatchable"); await search.press("Enter"); await page.waitForTimeout(500);
+      check(`M-17/empty/${width}`, await page.getByText("No matches", { exact: true }).isVisible(), "unmatched query");
+      const title = await page.locator(".sst-item .t").first().innerText();
+      await search.fill(title.split("\n")[0].trim()); await search.press("Enter"); await page.waitForTimeout(600);
+      check(`M-17/enter/${width}`, await page.locator(".sst-sheet").count() === 1, title);
+      // Open directly as well, so the modal check survives a broken search.
+      if (!await page.locator(".sst-sheet").count()) await page.locator(".sst-item").first().click();
+      await page.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-sheet-${width}.png`)});
+      const locked = await page.evaluate(() => ({ pos: getComputedStyle(document.body).position, overflow: getComputedStyle(document.body).overflow }));
+      await page.locator(".sst-sheet .sst-x").focus();
+      await page.keyboard.press("Shift+Tab");
+      const trapped = await page.evaluate(() => !!document.activeElement.closest(".sst-sheet"));
+      check(`M-11/tree/${width}`, trapped && (locked.pos === "fixed" || locked.overflow === "hidden"), { trapped, locked });
+      const closeSize = await page.locator(".sst-sheet .sst-x").boundingBox();
+      check(`M-16/tree-close/${width}`, closeSize.width >= 44 && closeSize.height >= 44, closeSize);
+      await page.goBack(); await page.waitForTimeout(350);
+      await page.goForward(); await page.waitForTimeout(350);
+      check(`M-13/${width}`, await page.locator(".sst-sheet").count() === 1, "Back then Forward");
+      if (!await page.locator(".sst-sheet").count()) await page.locator(".sst-item").first().click();
+      await page.setViewportSize({ width: 1280, height: 800 }); await page.waitForTimeout(450);
+      check(`M-14/${width}`, await page.locator(".sst-sheet").count() === 0 && await page.locator(".sst-card").count() === 1, "phone to PC");
+      for (const theme of ["default", "slate"]) {
+        await page.setViewportSize({ width, height: 844 }); await load();
+        await page.evaluate(t => document.body.dataset.mdColorScheme = t, theme);
+        const ratio = await contrast(".sst-item .t small");
+        check(`M-21/tree/${width}/${theme}`, ratio >= 4.5, ratio);
+        await page.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-tree-${width}-${theme}.png`)});
+      }
+      await load("learn/u1/l1-a-light-curve/");
+      const inputMode = await page.locator('.tw-prob[data-answer="-35.8"] input').getAttribute("inputmode");
+      check(`M-05/${width}`, inputMode === "text", inputMode);
+      const tools = await page.locator(".tw-tools > *, .tw-pn a").evaluateAll(es => es.map(e => { const r = e.getBoundingClientRect(); return [r.width,r.height]; }));
+      check(`M-16/learn/${width}`, tools.every(([w,h]) => w >= 44 && h >= 44), tools);
+      await page.locator('.tw-tools [data-a="toc"]').click(); await page.waitForTimeout(250);
+      await page.locator(".tw-x").focus(); await page.keyboard.press("Shift+Tab");
+      check(`M-11/learn/${width}`, await page.evaluate(() => !!document.activeElement.closest(".tw-sheet")), "Shift+Tab from Close");
+      await page.goBack(); await page.waitForTimeout(300);
+      await page.evaluate(()=>scrollTo(0,1000)); await page.waitForTimeout(500);
+      const placeBeforeSheet = await page.evaluate(()=>JSON.parse(localStorage.getItem("tw-place")));
+      await page.locator('.tw-tools [data-a="toc"]').click(); await page.waitForTimeout(550);
+      const placeInSheet = await page.evaluate(()=>JSON.parse(localStorage.getItem("tw-place")));
+      check(`M-11/place/${width}`, placeInSheet.y === placeBeforeSheet.y, {before:placeBeforeSheet.y,during:placeInSheet.y});
+      await page.goBack(); await page.waitForTimeout(300);
+      await page.evaluate(() => { scrollTo(0,0); dispatchEvent(new Event("scroll")); }); await page.waitForTimeout(100);
+      await page.evaluate(() => { scrollTo(0,500); dispatchEvent(new Event("scroll")); }); await page.waitForTimeout(100);
+      await page.evaluate(() => { scrollBy(0,1); dispatchEvent(new Event("scroll")); });
+      check(`M-30/${width}`, await page.evaluate(() => document.documentElement.classList.contains("tw-hide")), "down 500 then down 1");
+      // Select text, then deliberately wait after focus collapses the selection.
+      await page.evaluate(() => {
+        scrollTo(0,0);
+        const p = [...document.querySelectorAll("article > p")].find(e => !e.closest(".tw-kicker,.tw-pn") && e.firstChild?.nodeType === 3 && e.firstChild.length > 15);
+        const r = document.createRange(); r.setStart(p.firstChild,0); r.setEnd(p.firstChild,12);
+        getSelection().removeAllRanges(); getSelection().addRange(r); document.dispatchEvent(new Event("selectionchange"));
+      });
+      await page.waitForTimeout(350);
+      await page.locator('.tw-pill [data-a="note"]').click();
+      await page.locator("#tw-note").fill("Regression note");
+      await page.waitForTimeout(450);
+      await page.locator('[data-a="save"]').click(); await page.waitForTimeout(300);
+      const notes = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem("tw-hl") || "{}")).flat().filter(n => n.note === "Regression note").length);
+      check(`M-07/${width}`, notes > 0, notes);
+      await page.reload(); await page.waitForSelector(".tw-answer"); await page.waitForTimeout(400);
+      check(`M-07/reload/${width}`, await page.locator("mark.tw-hl.has-note").count() > 0, "highlight survives reload");
+      await page.evaluate(() => scrollTo(0,1800)); await page.waitForTimeout(650);
+      const savedY = await page.evaluate(() => scrollY);
+      await load("learn/"); await page.locator(".tw-continue").click(); await page.waitForSelector(".tw-answer"); await page.waitForTimeout(1000);
+      const resumedY = await page.evaluate(() => scrollY);
+      check(`M-12/${width}`, Math.abs(savedY-resumedY) <= 5, { savedY, resumedY });
+      for (const theme of ["default", "slate"]) {
+        await page.evaluate(t => document.body.dataset.mdColorScheme = t, theme);
+        const ratio = await contrast(".tw-pn small"); check(`M-21/next/${width}/${theme}`, ratio >= 4.5, ratio);
+        await load("learn/"); await page.evaluate(t => document.body.dataset.mdColorScheme = t, theme);
+        const coming = await contrast(".tw-unit.is-soon small"), unit = await contrast(".tw-unit.is-soon li");
+        check(`M-21/coming/${width}/${theme}`, Math.min(coming,unit) >= 4.5, { coming,unit });
+        await page.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-learn-${width}-${theme}.png`)});
+        await load("learn/u1/l1-a-light-curve/");
+      }
+    }
+    await page.setViewportSize({width:844,height:390}); await load();
+    await page.evaluate(()=>scrollTo(0,500));
+    const barBottom = await page.locator(".sst-bar").evaluate(e=>e.getBoundingClientRect().bottom);
+    check("M-03/landscape", barBottom < 0, barBottom);
+    await answer("learn/u1/l2-percent-and-ppm/", "2500", "2500%", "M-08", false);
+    await answer("learn/u2/l1-orbits-and-periods/", "0.90", "0,90", "M-09", true);
+    await answer("learn/u2/l1-orbits-and-periods/", "0.90", "0,900", "decimals/zero", true);
+    await answer("learn/u2/l1-orbits-and-periods/", "0.90", "0.9 AU", "M-22/AU", true);
+    await answer("learn/u2/l2-how-long-a-dip-lasts/", "2.62", "2.62 hours", "M-22/hours", true);
+    await answer("learn/u1/l1-a-light-curve/", "-35.8", "\u221235.8", "M-22/minus", true);
+    await answer("learn/u1/l2-percent-and-ppm/", "2500", "2,500 ppm", "units/grouped", true);
+    await answer("learn/u1/l2-percent-and-ppm/", "0.03", "0.03%", "units/percent", true);
+    await answer("learn/u2/l1-orbits-and-periods/", "0.90", "0.9 hours", "units/wrong", false);
+    // Old saves contain only the fractional position. Compare after the asynchronous plots and fonts finish.
+    await load("learn/");
+    await page.evaluate(() => {
+      const url = new URL("u1/l1-a-light-curve/",location.href).pathname;
+      localStorage.setItem("tw-place", JSON.stringify({id:"1.1",title:"A light curve",url,y:.3}));
+    });
+    await page.reload(); await page.locator(".tw-continue").click();
+    await page.waitForSelector(".tw-tools"); await page.waitForTimeout(500);
+    const legacy = await page.evaluate(() => ({actual:scrollY,expected:.3*(document.documentElement.scrollHeight-innerHeight)}));
+    check("M-12/legacy", Math.abs(legacy.actual-legacy.expected)<=5, legacy);
+    await page.setViewportSize({ width: 1280, height: 800 }); await load();
+    await page.evaluate(() => document.querySelector('[data-view="mission"]').click());
+    const registrations = await page.evaluate(() => window.resizeRegistrations);
+    for (let i=0;i<4;i++) { await page.locator('[data-view="journey"]').click(); await page.locator('[data-view="mission"]').click(); }
+    const afterRegistrations = await page.evaluate(() => window.resizeRegistrations);
+    check("M-15/listeners", afterRegistrations === registrations, { registrations, afterRegistrations });
+    await page.locator('[data-z="in"]').click(); await page.waitForTimeout(300);
+    const transform = await page.locator(".sst-stage svg > g").getAttribute("transform");
+    await page.setViewportSize({ width: 1250, height: 800 }); await page.waitForTimeout(400);
+    const afterTransform = await page.locator(".sst-stage svg > g").getAttribute("transform");
+    check("M-15/view", transform === afterTransform, { transform, afterTransform });
+    const overflow = await page.locator(".sst-node").evaluateAll(es => es.flatMap(e => {
+      const r = e.querySelector("rect").getBBox();
+      return [...e.querySelectorAll("text")].filter(t => { const b=t.getBBox(); return b.x < r.x || b.x+b.width > r.x+r.width; }).map(t=>t.textContent);
+    }));
+    check("M-18", !overflow.length, overflow);
+    const dots = await page.locator("[data-leaf]").evaluateAll(es => es.map(e => {const r=e.getBoundingClientRect();return Math.min(r.width,r.height);}));
+    check("M-16/dots", dots.length > 0 && Math.min(...dots) >= 44, Math.min(...dots));
+    await page.locator('[data-z="fit"]').click(); await page.waitForTimeout(200);
+    const hint = await page.locator(".sst-hint").innerText();
+    check("M-20", /outside|whole|fit/i.test(hint), hint);
+    for (const width of [1024,1280]) {
+      await page.setViewportSize({width,height:800});
+      await page.locator('[data-z="fit"]').click(); await page.waitForTimeout(150);
+      const minHeight = await page.locator(".sst-node rect").evaluateAll(es=>Math.min(...es.map(e=>e.getBoundingClientRect().height)));
+      check(`M-20/targets/${width}`, minHeight >= 44, minHeight);
+      const overlaps = await page.locator(".sst-leaf").evaluateAll(es => es.some((e,i)=>es.slice(i+1).some(f=>{
+        const a=e.getBoundingClientRect(),b=f.getBoundingClientRect();return a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+      })));
+      check(`M-16/distinct/${width}`, !overlaps, overlaps);
+      for (const theme of ["default","slate"]) {
+        await page.evaluate(t=>document.body.dataset.mdColorScheme=t, theme);
+        await page.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-canvas-${width}-${theme}.png`)});
+      }
+    }
+    await page.evaluate(() => document.querySelector('.sst-node[data-node="1.4"]').dispatchEvent(new MouseEvent("click",{bubbles:true})));
+    await page.waitForTimeout(250);
+    let bounds = await page.locator(".sst-card").boundingBox();
+    check("M-19/mission", bounds.y >= 0 && bounds.y+bounds.height <= 800, bounds);
+    await page.keyboard.press("Escape"); await page.waitForTimeout(200);
+    await page.locator('[data-view="journey"]').click(); await page.locator(".sst-day button").first().click();
+    await page.waitForTimeout(200); bounds = await page.locator(".sst-card").boundingBox();
+    check("M-19/journey", bounds.y >= 0 && bounds.y+bounds.height <= 800, bounds);
+    await page.keyboard.press("Escape"); await page.waitForTimeout(200);
+    await page.evaluate(() => localStorage.setItem("sst-last-visit", "2000")); await load();
+    const oldVisit = await page.evaluate(() => localStorage.getItem("sst-last-visit")); await page.waitForTimeout(4200);
+    check("M-31/unread", await page.evaluate(() => localStorage.getItem("sst-last-visit")) === oldVisit, "unread visit after 4.2 seconds");
+    await page.locator(".sst-new").click();
+    check("M-31/explicit", await page.getByRole("button", { name: "Mark updates read", exact: true }).count() === 1, "explicit acknowledgement");
+    if (await page.getByRole("button", { name: "Mark updates read", exact: true }).count()) {
+      await page.getByRole("button", { name: "Mark updates read", exact: true }).click();
+      check("M-31/read", await page.locator(".sst-new").count() === 0, "acknowledgement clears badge");
+    }
+    await page.screenshot({ path: path.resolve(opt.output || "data/astra/019", `${engine}-tree.png`) });
+    const tourCtx = await browser.newContext({ viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:"block" });
+    tourCtx.on("page", p => p.on("pageerror", error => out.scriptErrors.push(error.message)));
+    await baseline(tourCtx);
+    // Exercise the baseline's hidden tour too, without changing production code.
+    await tourCtx.addInitScript(() => Object.defineProperty(navigator,"webdriver",{get:()=>false}));
+    const tour = await tourCtx.newPage(); await tour.goto(base+"?tour=1");
+    await tour.waitForSelector(".ss-tour.is-in", {timeout:10000});
+    check("M-23/version", !(await tour.locator(".ss-tour").innerText()).includes("Book 3.0"), "welcome copy");
+    await tour.locator(".ss-tour__next").click();
+    await tour.waitForTimeout(1250);
+    const modal = await tour.locator(".ss-tour").getAttribute("aria-modal");
+    const lock = await tour.evaluate(() => getComputedStyle(document.body).position === "fixed");
+    check("M-04", modal === "true" && lock, {modal,lock});
+    const ringError = await tour.evaluate(() => {
+      const ring=document.querySelector(".ss-tour__ring").getBoundingClientRect(),target=document.querySelector(".sst-item").getBoundingClientRect();
+      return Math.max(Math.abs(ring.left-target.left+6),Math.abs(ring.top-target.top+6));
+    });
+    if (engine === "webkit") await tour.evaluate(()=>scrollBy(0,500));
+    else await tour.mouse.wheel(0,500);
+    await tour.waitForTimeout(150);
+    const pageY = await tour.evaluate(()=>scrollY);
+    check("M-04/position", ringError <= 1 && pageY === 0, {ringError,pageY});
+    await tour.screenshot({path:path.resolve(opt.output || "data/astra/019",`${engine}-tour.png`)});
+    await tour.locator(".ss-tour__next").click(); await tour.locator(".ss-tour__skip").click(); await tour.waitForTimeout(900);
+    check("M-06", await tour.locator(".ss-tour__ring").count() === 0, "skip during ring delay");
+    await tour.goto(base+"?tour=1"); await tour.waitForSelector(".ss-tour.is-in");
+    for(let i=0;i<3;i++) await tour.locator(".ss-tour__next").click();
+    check("M-23/menu-copy", (await tour.locator(".ss-tour").innerText()).includes("menu at the top left"), "step four");
+    await tour.locator(".ss-tour__next").click(); await tour.waitForTimeout(350);
+    await tour.locator('.md-header label[for="__drawer"]').click();
+    check("M-23/menu", await tour.locator('.md-sidebar--primary a[href*="learn"]').first().isVisible(), "menu opens after tour");
+    await tourCtx.close();
+    check("script-errors", out.scriptErrors.length === 0, out.scriptErrors);
+    out.pass = out.fails.length === 0;
+    return out;
+  } catch (error) {
+    out.pass = false; out.error = String(error);
+    return out;
+  } finally { await ctx.close(); await browser.close(); }
+}
+
+const modes = { repairs: repairsTest, learn: learnTest, tree: treeTest, hammer, shots, layout, chapter: chapterLayout, eyeslayout: eyesLayout, offline: offlineTest, fail404, update, jsoff, redirect, images, eyes: eyesTest, eyescloud: eyesCloudTest, eyesreal: eyesReal, rehearsal: rehearsalTest, rehearsalcloud: rehearsalCloudTest, watchtimers: watchTimersTest, headertitle: headerTitleTest, textfloor: textFloorTest };
 try {
   const r = await modes[mode]();
   console.log(JSON.stringify(r));
