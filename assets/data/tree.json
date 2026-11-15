@@ -1,0 +1,2074 @@
+{
+ "generated": "2026-11-15T04:34",
+ "goal": {
+  "title": "Find a planet around two suns",
+  "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
+  "tree": "Find a circumbinary planet in TESS data, or prove a clean, measured null. Both are wins (29 Oct 2026)."
+ },
+ "now": "The hunt is paused (Ahmed, 15 Nov 2026, 2 am) so he can learn first. Exact state and how to resume: HUNT-PAUSED.md. It resumes at a learning milestone, when he says so.",
+ "nodes": [
+  {
+   "id": "1",
+   "parent": "goal",
+   "title": "How well we see",
+   "plain": "Our search tool, Petrova. Every branch here is a way a real planet could slip past it, ordered by how many test planets each one loses.",
+   "lesson": null,
+   "weight": 5,
+   "status": "ACTIVE",
+   "children": [
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.5",
+    "1.6",
+    "1.7"
+   ]
+  },
+  {
+   "id": "2",
+   "parent": "goal",
+   "title": "Where we look",
+   "plain": "Which stars we search, and the data we search them in.",
+   "lesson": null,
+   "weight": 5,
+   "status": "WAITS",
+   "children": [
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4"
+   ]
+  },
+  {
+   "id": "3",
+   "parent": "goal",
+   "title": "How we prove it",
+   "plain": "The rules and statistics that keep us honest, so a result means what it says.",
+   "lesson": null,
+   "weight": 4,
+   "status": "PARKED",
+   "children": [
+    "3.1",
+    "3.2",
+    "3.3",
+    "3.4"
+   ]
+  },
+  {
+   "id": "4",
+   "parent": "goal",
+   "title": "Tools and book",
+   "plain": "The book, the textbook, and the pages and tools around the search.",
+   "lesson": null,
+   "weight": 5,
+   "status": "ACTIVE",
+   "children": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "4.4"
+   ]
+  },
+  {
+   "id": "1.1",
+   "parent": "1",
+   "title": "Found, but held back",
+   "id_tree": "Tier-1 flags hold found planets back",
+   "plain": "The tool finds the dip but a safety flag keeps it from the top tier. The biggest fixable loss on our test bench.",
+   "lesson": null,
+   "weight": 5,
+   "status": "NEXT",
+   "status_text": "NEXT (first after Codex's report).",
+   "detail": "Loss: 53 of 222 Saturn-like; 158 of 439 strong (6,000 ppm or more). The biggest and most fixable.",
+   "history": [
+    "d:2026-11-14-2125-fix91-92-bench",
+    "d:2026-11-14-1933-twin-transit-rejected",
+    "d:2026-11-14-1637-known-planets-oae",
+    "l:22",
+    "l:23",
+    "l:24",
+    "l:25"
+   ]
+  },
+  {
+   "id": "1.2",
+   "parent": "1",
+   "title": "Outside the searched windows",
+   "id_tree": "Planet falls outside the searched windows",
+   "plain": "The planet's dip falls in a stretch of data the search never looks at, so it cannot be found at all.",
+   "lesson": null,
+   "weight": 4,
+   "status": "NEXT",
+   "status_text": "NEXT (second).",
+   "detail": "Loss: 45 + 7 of 222.",
+   "history": [
+    "l:26"
+   ]
+  },
+  {
+   "id": "1.3",
+   "parent": "1",
+   "title": "The dip is missed",
+   "id_tree": "The detector misses the dip",
+   "plain": "The detector itself does not see the dip, usually because it is too shallow for the noise around it.",
+   "lesson": null,
+   "weight": 4,
+   "status": "WAITS",
+   "status_text": "WAITS (after 1.1 and 1.5).",
+   "detail": "Loss: 41 of 222 (570 of 2,000 over all depths, mostly shallow).",
+   "history": []
+  },
+  {
+   "id": "1.4",
+   "parent": "1",
+   "title": "The eclipse mask hides the transit",
+   "id_tree": "The eclipse mask eats the transit",
+   "plain": "We blank out the binary's own eclipses before searching. If those blanks are too wide or in the wrong place, they swallow the planet too.",
+   "lesson": null,
+   "weight": 5,
+   "status": "ACTIVE",
+   "status_text": "ACTIVE (FIX 94, Codex 010).",
+   "detail": "Loss: 15 of 222 on T156; planet bench: up to about 64 of 408 never-found planets (RS-025). FIX 24 G2 ephemeris for the eclipse flags; FIX 94 timing padding blanks light curves.",
+   "history": [
+    "d:2026-11-15-0002-codex-014-part2",
+    "d:2026-11-14-2127-codex-012-and-rs030",
+    "d:2026-11-14-1904-codex-011-and-rs027",
+    "d:2026-11-14-1635-codex-011-brief",
+    "d:2026-11-14-1635-fix94-decision-rule",
+    "d:2026-11-14-1530-codex-010-mask-timing",
+    "l:4",
+    "l:26"
+   ]
+  },
+  {
+   "id": "1.5",
+   "parent": "1",
+   "title": "Blind spot for fast binaries",
+   "id_tree": "Blind spot: binaries of 5 to 10 days",
+   "plain": "Binaries that orbit each other in 5 to 10 days are noisier, and the tool finds very few test planets around them.",
+   "lesson": null,
+   "weight": 3,
+   "status": "NEXT",
+   "status_text": "NEXT after 1.1.",
+   "detail": "R 0.13 (6 of 48). Codex 003: the loss is BEFORE detection (19 of 48 give no event, 40%, against 13% in other bins); flags are not the cause (6 of 48). Binary variability or residual structure upsetting the detrending is LIKELY, not shown. T161 diagnosis (build queue).",
+   "history": [
+    "l:26"
+   ]
+  },
+  {
+   "id": "1.6",
+   "parent": "1",
+   "title": "False alarms",
+   "id_tree": "False alarms (keep the upside-down count low)",
+   "plain": "The other side of every fix. A change that finds more planets but also more fake ones is no gain. The upside-down test light counts the fake ones.",
+   "lesson": null,
+   "weight": 4,
+   "status": "PARKED",
+   "status_text": "PARKED; each item is priced on the bench when its node is active.",
+   "detail": "The other side of every fix. FIX 95 known spacecraft events (sector 4 pointing shift) not flagged (RS-029: the hold PASSES as a safety fix, 4 upside-down and 2 real alarms removed for 2 planets; with DS it reaches P 49.98% at equal upside-down count); RS-028 built the known-events list (removes 2 real, 4 upside-down tier-1 events for 33 of 5,308 crossings). FIX 96 events deeper than any planet reach tier 1 (51 of 176 real background over 3%); deep bench done 15 Nov (Codex 014 part 3): the cap costs 0 planted dips, removes 50 real / 26 upside-down; radius check PASS (1:39 am: all 76 held events stay held with Gaia radii); ready for Fable.",
+   "history": [
+    "d:2026-11-15-0139-fix96-radius-check",
+    "d:2026-11-15-0137-codex014-part3-key",
+    "d:2026-11-14-2347-codex-014-part1",
+    "d:2026-11-14-2333-rs033-pointing",
+    "d:2026-11-14-2329-t35-box",
+    "d:2026-11-14-2318-nd-dg-priced",
+    "d:2026-11-14-2306-rs032-wobble",
+    "d:2026-11-14-2244-rs031-dumps",
+    "d:2026-11-14-2218-fix95-adopted",
+    "d:2026-11-14-2214-codex-013-result",
+    "d:2026-11-14-2141-codex-013-brief",
+    "d:2026-11-14-2116-fix95-bench-and-combined",
+    "d:2026-11-14-1943-known-spacecraft-events",
+    "d:2026-11-14-1939-moment-flag-rejected",
+    "d:2026-11-14-1922-too-deep-guard",
+    "d:2026-11-14-1920-sector4-pointing-shift",
+    "l:9",
+    "l:10",
+    "l:22",
+    "l:23"
+   ]
+  },
+  {
+   "id": "1.7",
+   "parent": "1",
+   "title": "The scoreboard",
+   "id_tree": "The scoreboard and its tools",
+   "plain": "The fixed test of 2,000 planted planets that decides whether any change to the tool counts.",
+   "lesson": null,
+   "weight": 2,
+   "status": "DONE",
+   "status_text": "DONE for now (T156 is the bench).",
+   "detail": "",
+   "history": []
+  },
+  {
+   "id": "2.1",
+   "parent": "2",
+   "title": "Census, our own binary list",
+   "id_tree": "Census: our own binary list from TESS after sector 26",
+   "plain": "A list of eclipsing binaries we build ourselves from newer TESS data, so our searches reach stars nobody has searched this way.",
+   "lesson": null,
+   "weight": 4,
+   "status": "WAITS",
+   "status_text": "WAITS on branch 1 (no new fuel into a 1-in-4 engine).",
+   "detail": "(about 1,400 good targets, about 1 to 2 planets expected at Kepler's rate).",
+   "history": []
+  },
+  {
+   "id": "2.2",
+   "parent": "2",
+   "title": "G1, the last untouched list",
+   "id_tree": "G1: the last unseen list (552 rows, one shot)",
+   "plain": "552 Kepler binaries that TESS also watched. Searched only once, sealed, after the tool is fixed and frozen.",
+   "lesson": null,
+   "weight": 5,
+   "status": "WAITS",
+   "status_text": "WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.",
+   "detail": "T37b (a fresh-set test) folds into this.",
+   "history": [
+    "l:26"
+   ]
+  },
+  {
+   "id": "2.3",
+   "parent": "2",
+   "title": "Data and downloads",
+   "id_tree": "Data and downloads",
+   "plain": "Getting the light files from NASA's archive and keeping them complete and correct.",
+   "lesson": null,
+   "weight": 2,
+   "status": "PARKED",
+   "status_text": "PARKED.",
+   "detail": "FIX 25 \"sector 1751\" files; FIX 72 MAST timeouts; T150 the Annex index; T151 machine-learning dataset (T150 gets a by-catch extension: IDEA, 14 Nov).",
+   "history": [
+    "d:2026-11-15-0013-fix84-closed"
+   ]
+  },
+  {
+   "id": "2.4",
+   "parent": "2",
+   "title": "Ideas on hold",
+   "id_tree": "Parked new systems",
+   "plain": "Bigger systems we designed but parked until the main search is done.",
+   "lesson": null,
+   "weight": 1,
+   "status": "PARKED",
+   "status_text": "PARKED (three-weeks rule of 3 Nov).",
+   "detail": "T119 Horizon, T120 Vigil, T121 Witness (no-go), T122 research, T123 OMS (deferred), T124 evidence index. T163 eclipse-timing lane, feasibility first (IDEA, 14 Nov; parked until after G1).",
+   "history": []
+  },
+  {
+   "id": "3.1",
+   "parent": "3",
+   "title": "Statistics and controls",
+   "id_tree": "Statistics and controls",
+   "plain": "How we decide that a signal is more than chance, using the upside-down light as a fair comparison.",
+   "lesson": null,
+   "weight": 4,
+   "status": "PARKED",
+   "status_text": "86 and 87 FIXED 14 Nov 2026 night (tested, mutation red, filed results unchanged; drop 2026-11-14-2109).",
+   "detail": "FIX 86 power line test (now pipeline/s1_sensitivity.py, the full stratified rule, worded as a sensitivity, reproduces Codex 002); FIX 87 gate PASS on empty bins (now pipeline/gate_judge.py: PASS ON TESTED BINS with coverage); FIX 88 \"floor\" wording; PARKED: T101 scrambled control, T129 effective sample size, T117 evidence ladder, T118 negative controls, T54 funnel test.",
+   "history": [
+    "d:2026-11-14-2109-fix86-87-statistics-tools"
+   ]
+  },
+  {
+   "id": "3.2",
+   "parent": "3",
+   "title": "Records and tests",
+   "id_tree": "Records, reproducibility and tests",
+   "plain": "Every run leaves a record that lets anyone repeat it, and every tool has tests that can fail.",
+   "lesson": null,
+   "weight": 3,
+   "status": "PARKED",
+   "status_text": "PARKED.",
+   "detail": "FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T165 the G1 runner (not built: waits for the Petrova 1.1 freeze and the G1 preregistration; pins the G1 manifest hash for FIX 70); T130 number-to-file audit; T52 settings read from the run.",
+   "history": [
+    "d:2026-11-15-0008-fix83-test-runner",
+    "d:2026-11-14-2309-t130-map",
+    "d:2026-11-14-2308-t52-run-inputs",
+    "l:24"
+   ]
+  },
+  {
+   "id": "3.3",
+   "parent": "3",
+   "title": "From a dip to a claim",
+   "id_tree": "Leads: how a dip becomes a claim",
+   "plain": "The steps a promising dip must pass, with two independent checks and your yes, before we ever call it a planet.",
+   "lesson": null,
+   "weight": 3,
+   "status": "PARKED",
+   "status_text": "PARKED until a lead exists.",
+   "detail": "FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven: after 26 Nov 2026 Claude checks the Sector 110 result and tells Ahmed plainly either way; note his candidate is a single-star planet, not circumbinary). T162 exploratory lane for sub-bar events (IDEA, RS-023; PARKED until after G1, then decided with a rule written first, Ahmed agreed 14 Nov).",
+   "history": [
+    "l:27"
+   ]
+  },
+  {
+   "id": "3.4",
+   "parent": "3",
+   "title": "Going public later",
+   "id_tree": "Going public later",
+   "plain": "How and when a result would be shared with astronomers, once there is something to share.",
+   "lesson": null,
+   "weight": 1,
+   "status": "PARKED",
+   "status_text": "PARKED.",
+   "detail": "T108 playbook; T149 is our upside-down result new.",
+   "history": []
+  },
+  {
+   "id": "4.1",
+   "parent": "4",
+   "title": "Book and learning",
+   "id_tree": "Book and learning",
+   "plain": "This book and its textbook, built so you can follow and check everything we do.",
+   "lesson": null,
+   "weight": 5,
+   "status": "ACTIVE",
+   "status_text": "ACTIVE: Book 3.0 and the learning rebuild (15 Nov 2026; the hunt is paused until a learning milestone).",
+   "detail": "T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign; FIX 97 (lab 9 example star is a blind G1 star; re-point before the G1 re-search); FIX 73 to 76 chips, Back button, voice, formulas.",
+   "history": [
+    "d:2026-11-15-0429-twinlight-app",
+    "d:2026-11-15-0415-rs035-how-to-teach",
+    "l:1",
+    "l:2",
+    "d:2026-11-14-1935-book-2117",
+    "d:2026-11-14-1634-fable-brief",
+    "d:2026-11-14-1615-star-data-not-private",
+    "d:2026-11-14-1605-drop-box-idea"
+   ]
+  },
+  {
+   "id": "4.2",
+   "parent": "4",
+   "title": "Search window and control room",
+   "id_tree": "Search window and control room",
+   "plain": "The live page that shows a search while it runs.",
+   "lesson": null,
+   "weight": 2,
+   "status": "WAITS",
+   "status_text": "WAITS: after G1 or Census (Ahmed).",
+   "detail": "T159 control room on Netlify (plan research/stage3/CONTROL-ROOM-PLAN.md); T51, T53, T50; FIX 77 exporter label.",
+   "history": []
+  },
+  {
+   "id": "4.3",
+   "parent": "4",
+   "title": "Machine and housekeeping",
+   "id_tree": "Machine, scripts and housekeeping",
+   "plain": "The computer, the scripts and the small repairs that keep the work running.",
+   "lesson": null,
+   "weight": 1,
+   "status": "PARKED",
+   "status_text": "PARKED.",
+   "detail": "FIX 82 hard-coded paths; FIX 69 preview loop; FIX 78 stale task records; FIX 80 flaky browser test; T55 preview recipe; T143 slim RESUME.",
+   "history": []
+  },
+  {
+   "id": "4.4",
+   "parent": "4",
+   "title": "Eyes pages",
+   "id_tree": "Eyes pages",
+   "plain": "The practice pages where you learn to tell real dips from fake ones.",
+   "lesson": null,
+   "weight": 2,
+   "status": "PARKED",
+   "status_text": "PARKED.",
+   "detail": "T59d, T59e, T59g, T110.",
+   "history": [
+    "l:3"
+   ]
+  }
+ ],
+ "leaves": [
+  {
+   "id": "d:2026-11-15-0429-twinlight-app",
+   "file": "2026-11-15-0429-twinlight-app.md",
+   "kind": "drop",
+   "type": "build",
+   "node": "4.1",
+   "when": "2026-11-15T04:29",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Claude",
+   "label": null,
+   "plain": "Twinlight, the new textbook app, is built: a home with Continue and Problems due, a full-screen reader, typed problems with worked solutions, formulas, read-aloud, notes on the device, and the first three lessons on a real two-sun planet system.",
+   "why": "Learning starts again from real light, built on what the research says works best (worked examples, then practice you type yourself); the hunt resumes after the first six units.",
+   "explanation": "",
+   "technical": "",
+   "ids": [
+    "RS-035 (how to teach this)",
+    "FIX 97 (lab 9 example star is a blind G1 star)"
+   ],
+   "links": [
+    {
+     "path": "book/docs/assets/learn.js",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/assets/learn.js"
+    },
+    {
+     "path": "book/docs/assets/learn.css",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/assets/learn.css"
+    },
+    {
+     "path": "book/data/learn-units.yml",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/data/learn-units.yml"
+    },
+    {
+     "path": "book/docs/learn/u1/l1-a-light-curve.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/learn/u1/l1-a-light-curve.md"
+    },
+    {
+     "path": "research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-15-0415-rs035-how-to-teach",
+   "file": "2026-11-15-0415-rs035-how-to-teach.md",
+   "kind": "drop",
+   "type": "research",
+   "node": "4.1",
+   "when": "2026-11-15T04:15",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "The research on how people learn best says: a fully worked example first, then one half done, then problems you answer yourself with quick, specific feedback; start from the real thing and build the idea up.",
+   "why": "Every Twinlight lesson follows that order, and the units start from a light curve on screen instead of from theory.",
+   "explanation": "",
+   "technical": "",
+   "ids": [
+    "RS-035 (how to teach this)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-15-0139-fix96-radius-check",
+   "file": "2026-11-15-0139-fix96-radius-check.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-15T01:39",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Claude",
+   "label": "LIKELY",
+   "plain": "The depth cap is not fooled by star sizes: with the most generous size from four catalogues (incl. Gaia), all 76 alarms it removed stay removed.",
+   "why": "FIX 96 can go to Fable as tested; Fable only has to choose how big a body the cap allows, because 22 removed alarms sit close to the line.",
+   "explanation": "",
+   "technical": "",
+   "ids": [
+    "FIX 96 (cap on events deeper than any planet)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/fix96/FIX96-RADIUS-CHECK-2026-11-15.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/fix96/FIX96-RADIUS-CHECK-2026-11-15.md"
+    },
+    {
+     "path": "research/stage3/fix96/fix96_radius_check.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/fix96/fix96_radius_check.py"
+    },
+    {
+     "path": "research/stage3/fix96/radius_check.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/fix96/radius_check.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-15-0137-codex014-part3-key",
+   "file": "2026-11-15-0137-codex014-part3-key.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-15T01:37",
+   "date": "2026-11-15",
+   "status": "open",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "A cap on how deep an event may be (no deeper than a 2 Jupiter-size planet could make on that star) loses none of 264 planted deep planets and removes 50 of 174 real and 26 of 79 upside-down background alarms; my own script reproduces every number.",
+   "why": "It is a safe guard against false alarms, not a gain in planets; half of what it removes sits on stars the catalogue calls large, so their sizes must be checked before it is adopted.",
+   "explanation": "",
+   "technical": "",
+   "ids": [
+    "Codex 014 part 3 (Codex's deep-planet bench)",
+    "FIX 96 (cap on events deeper than any planet)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs032/CODEX-014-PART3-KEY-2026-11-15.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/CODEX-014-PART3-KEY-2026-11-15.md"
+    },
+    {
+     "path": "research/stage3/rs032/rs032_deep_key.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/rs032_deep_key.py"
+    },
+    {
+     "path": "research/stage3/rs032/deep_key.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/deep_key.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-15-0013-fix84-closed",
+   "file": "2026-11-15-0013-fix84-closed.md",
+   "kind": "drop",
+   "type": "fix",
+   "node": "2.3",
+   "when": "2026-11-15T00:13",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "A feared gap in our bad-data filter for newer QLP light curves does not exist: every flagged moment is already removed.",
+   "why": "About 10% of newer QLP data are flagged bad; if they had slipped through, they could have made fake dips in G3 and future searches.",
+   "explanation": "QLP changed which bit marks bad exposures from sector 56. We feared our loader only knew the old bit. Counting on our own files shows the loading library uses the new bit for QLP files.",
+   "technical": "4,403 QLP files (S56+), 9.6% of cadences flagged with bit 2^30; 0 of 61,289 flagged cadences in 60 loaded files survive detect_v2.load. Closed, no code change.",
+   "ids": [
+    "FIX 84 (QLP's new quality flag after sector 56)",
+    "QLP (MIT's full-frame light curves)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/fix84/fix84_qlp_bit31.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/fix84/fix84_qlp_bit31.py"
+    },
+    {
+     "path": "research/stage3/fix84/fix84.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/fix84/fix84.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-15-0008-fix83-test-runner",
+   "file": "2026-11-15-0008-fix83-test-runner.md",
+   "kind": "drop",
+   "type": "fix",
+   "node": "3.2",
+   "when": "2026-11-15T00:08",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Claude",
+   "label": null,
+   "plain": "One command now runs every pipeline test and says plainly which passed, which were skipped and which failed; a skipped test can no longer look like a pass.",
+   "why": "Before the one-shot G1 run, every check must be known to have actually run.",
+   "explanation": "One test used to print \"skip\" and then \"pass\". Now a skip is named and counted, and the runner reports it separately. A new Codex watcher also wakes Claude when Codex stalls or errors, not only when it commits.",
+   "technical": "run_tests.py: each test_*.py in its own interpreter, PASS / SKIPPED / FAIL / TIMEOUT; full run 16 PASS, 0 SKIPPED; deliberate skip and broken tests reported SKIPPED and FAIL. Test files are outside the freeze hash list. CI (step 2) still needs Ahmed's go.",
+   "ids": [
+    "FIX 83 (tests could print pass after a skip)"
+   ],
+   "links": [
+    {
+     "path": "pipeline/run_tests.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/run_tests.py"
+    },
+    {
+     "path": "pipeline/test-run.txt",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/test-run.txt"
+    },
+    {
+     "path": "pipeline/test_detect_v2_paths.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/test_detect_v2_paths.py"
+    },
+    {
+     "path": "research/astra/tools/watch_codex.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/tools/watch_codex.py"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-15-0002-codex-014-part2",
+   "file": "2026-11-15-0002-codex-014-part2.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.4",
+   "when": "2026-11-15T00:02",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Codex, Claude",
+   "label": "CONFIRMED",
+   "plain": "Our own eclipse timing now gets the binaries' periods right, but it underestimates its own errors, so its quality check throws away most good results.",
+   "why": "The eclipse-timing fix is the main road to the 50% planet bar; it is closer than the FAIL suggests, and the remaining fix is known.",
+   "explanation": "Codex fixed the half-period trap (all test binaries right). The new fits match the catalogue periods for 50 of 58 control stars within about a minute and a half. But each eclipse time is quoted as about twice as precise as it really is, so ordinary scatter looks like a timing problem and the track is discarded.",
+   "technical": "Preregistered checks failed (3-sigma period 15/60 seed 12, 11/40 hold-out). 39 of 58 tracks large-residual flagged; 33 of them within 0.001 d of the catalogue. Reduced chi-square 4.69 after per-product scaling. Seed 14 hold-out now spent.",
+   "ids": [
+    "Codex 014 (brief 14, part 2 eclipse times v2)",
+    "RS-034 (research stint 34)",
+    "FIX 94 (eclipse-timing fix)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs034/CODEX-014-PART2-ROOT-CAUSE-2026-11-15.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs034/CODEX-014-PART2-ROOT-CAUSE-2026-11-15.md"
+    },
+    {
+     "path": "research/astra/reports/014-dumps-ephemerides-deep-bench.md (branch astra/014-dumps-ephemerides)",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/reports/014-dumps-ephemerides-deep-bench.md (branch astra/014-dumps-ephemerides)"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "l:1",
+   "kind": "log",
+   "type": "codex job",
+   "node": "4.1",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: independent fact-check of Twinlight lessons 1.1 to 1.3 (numbers re-derived from the FITS without our script) and a learn browser test mode.",
+   "why": "",
+   "explanation": "",
+   "technical": "independent fact-check of Twinlight lessons 1.1 to 1.3 (numbers re-derived from the FITS without our script) and a learn browser test mode. research/astra/inbox/017-twinlight-check.md",
+   "ids": [
+    "Codex 017"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:2",
+   "kind": "log",
+   "type": "codex job",
+   "node": "4.1",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: publish browser tests moved to Book 3.0 pages, Book 2-only checks retired out loud, tree mode added; found two real defects (Tree text under 14 px, controls under 44 px), fixed by Claude the same hour.",
+   "why": "",
+   "explanation": "",
+   "technical": "publish browser tests moved to Book 3.0 pages, Book 2-only checks retired out loud, tree mode added; found two real defects (Tree text under 14 px, controls under 44 px), fixed by Claude the same hour. research/astra/inbox/016-browser-tests-book3.md",
+   "ids": [
+    "Codex 016"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:3",
+   "kind": "log",
+   "type": "codex job",
+   "node": "4.4",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions).",
+   "why": "",
+   "explanation": "",
+   "technical": "Eyes mode flow fixes for Book 3.0 (result and Try again in view after a test, exact place restored on return, How it works folded, transitions). Run headless by research/astra/tools/codex_run.py. research/astra/inbox/015-eyes-flow-fixes.md",
+   "ids": [
+    "Codex 015"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "d:2026-11-14-2347-codex-014-part1",
+   "file": "2026-11-14-2347-codex-014-part1.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T23:47",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Codex",
+   "label": "CONFIRMED",
+   "plain": "Measured fairly (per hour of searched light), the extra real dips near momentum dumps are not a clear excess, and the second star list does not repeat the pattern.",
+   "why": "It weakens the idea that the dump-shape rule's extra events are simply dump artefacts, so Fable must design that rule without leaning on timing alone.",
+   "explanation": "Codex counted real and upside-down events by how far they sit from a dump, divided by how many hours of light were searched there, and checked the first star list's pattern on the second. Claude's quick count found more near-dump real events on the first list; Codex's full rerun is the faithful one, and the 15-event gap is being traced.",
+   "technical": "G2 contains-a-dump 25/5, E +0.157 per 1,000 h (95% -0.046 to +0.301); G3 7/3, -0.016. Two keys: G3 68/26 equal; G2 flip 62 equal; G2 real 166 (Claude) vs 151 (Codex).",
+   "ids": [
+    "Codex 014 (brief 14, part 1 dump map)",
+    "DS (dump-shape rule)",
+    "014a (follow-up note to Codex)"
+   ],
+   "links": [
+    {
+     "path": "research/astra/reports/014-dumps-ephemerides-deep-bench.md (branch astra/014-dumps-ephemerides)",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/reports/014-dumps-ephemerides-deep-bench.md (branch astra/014-dumps-ephemerides)"
+    },
+    {
+     "path": "research/stage3/rs032/T35-BOX-RULE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/T35-BOX-RULE-2026-11-14.md"
+    },
+    {
+     "path": "research/astra/inbox/014a-reconcile-15.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/inbox/014a-reconcile-15.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2333-rs033-pointing",
+   "file": "2026-11-14-2333-rs033-pointing.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T23:33",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "LIKELY",
+   "plain": "TESS's own 2-second pointing record shows the telescope shakes hard at each momentum dump but stays calm before it, so the shaking does not explain the extra fake-looking dips we see hours before dumps.",
+   "why": "It saves a 46 GB download and tells Fable the pre-dump excess needs another explanation.",
+   "explanation": "Our light curves smooth out fast shaking, so we read the spacecraft's pointing directly for one sector. The fast shake jumps 4.5 times at the dump and stays a little high for hours after. Before the dump the pointing only drifts slowly by a tiny amount.",
+   "technical": "Sector 11, 4 cameras, 15 dumps. 30-min RMS ratio: 0.95 at 12 to 6 h before, up to 1.06 in the last hour, 4.5 at the dump, 1.13 to 1.28 after. Slow drift 0.3 to 0.6 arcsec (about 0.02 to 0.03 pixel), smooth. One sector only (UNCERTAIN for other eras).",
+   "ids": [
+    "RS-033 (research stint 33)",
+    "T164 (pointing record study idea)",
+    "DS (dump-shape rule)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs033/POINTING-FEASIBILITY-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs033/POINTING-FEASIBILITY-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs033/quat.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs033/quat.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2329-t35-box",
+   "file": "2026-11-14-2329-t35-box.md",
+   "kind": "drop",
+   "type": "decision",
+   "node": "1.6",
+   "when": "2026-11-14T23:29",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "The shortest search box (3 hours) stays: dropping it would cut false alarms in half but lose 40 test planets.",
+   "why": "Most of the unexplained real dips and most fast-binary planets are found in the same box, so box length cannot sort them; the cause has to.",
+   "explanation": "Planets around fast binaries cross their stars quickly, so their dips are short. The same short box also picks up eclipse leftovers and spacecraft artefacts.",
+   "technical": "Under B the 3 h box holds 99/40 of 174/79 tier-1 background. Holding it (B3): P 0.4811 to 0.4463, background 75/39, paired control fails in 20 to 27.4 d (93/77). Rule written before the run.",
+   "ids": [
+    "T35 (the 3-hour search box)",
+    "B (the adopted filter set)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs032/T35-BOX-RULE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/T35-BOX-RULE-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs032/box.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/box.json"
+    },
+    {
+     "path": "research/stage3/rs032/box_split.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/box_split.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2318-nd-dg-priced",
+   "file": "2026-11-14-2318-nd-dg-priced.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T23:18",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "Two guards against broken light curves change nothing on our test bench: no planet lost, no false alarm removed.",
+   "why": "They are safe to keep as insurance for the rare broken file, but they are not a way to more planets.",
+   "explanation": "The design data hold 61 impossibly deep events. They are already-known eclipses, which the adopted rules already ignore, so the guards have nothing left to do.",
+   "technical": "B, Bnd, Bnddg all give 525 dips / 513 bumps new, P 0.4811, paired control passes in all bins, background 174/79. Rule written before the run.",
+   "ids": [
+    "T31 (depth sanity guard dg)",
+    "T32 (broken-light-curve guard nd)",
+    "B (the adopted filter set)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs032/ND-DG-RULE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/ND-DG-RULE-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs032/nd.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/nd.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2309-t130-map",
+   "file": "2026-11-14-2309-t130-map.md",
+   "kind": "drop",
+   "type": "build",
+   "node": "3.2",
+   "when": "2026-11-14T23:09",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": null,
+   "plain": "Every number on 17 book pages now points to the file it came from (97% coverage), including tonight's field note.",
+   "why": "A wrong number in the book is caught by a script, not by luck.",
+   "explanation": "This morning's wording fixes left four old map rows stale; they are re-mapped. One wording flag on the 10 Nov note still waits for Ahmed.",
+   "technical": "1,644 numbers: 1,173 traced or derived, 421 not results, 48 unsourced old checks (none a planet result), 1 flagged (10 Nov line 19, 0.58 pools K 12 to 25 only).",
+   "ids": [
+    "T130 (number-to-file audit)"
+   ],
+   "links": [
+    {
+     "path": "research/number-map/NUMBER_MAP.csv",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/number-map/NUMBER_MAP.csv"
+    },
+    {
+     "path": "research/number-map/T130-RESULT-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/number-map/T130-RESULT-2026-11-14.md"
+    },
+    {
+     "path": "pipeline/number_map.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/number_map.py"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2308-t52-run-inputs",
+   "file": "2026-11-14-2308-t52-run-inputs.md",
+   "kind": "drop",
+   "type": "build",
+   "node": "3.2",
+   "when": "2026-11-14T23:08",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": null,
+   "plain": "A run now takes its star set and options from its own settings file, and stops loudly if any input is missing.",
+   "why": "A leftover shell setting or an empty data folder could otherwise send the one-shot G1 run to the wrong stars without anyone noticing.",
+   "explanation": "The old runner read two shell variables and wrote \"missing\" into its fingerprint when a file was absent. The new helper refuses both cases before any light is read.",
+   "technical": "apply() sets SS_SET and VESPER_OPTS from JSON and refuses conflicting shell values; require() checks data folder, manifest, best-product table, targets and at least one light-curve file per star. 8 of 8 tests pass; mutations of the conflict and file checks go red. Not in the frozen hash list. G1 runner imports it.",
+   "ids": [
+    "T52 (runs read their own settings)",
+    "T142 (automatic run record)",
+    "G1 (the last unseen star list)"
+   ],
+   "links": [
+    {
+     "path": "pipeline/run_inputs.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/run_inputs.py"
+    },
+    {
+     "path": "pipeline/test_run_inputs.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/test_run_inputs.py"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2306-rs032-wobble",
+   "file": "2026-11-14-2306-rs032-wobble.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T23:06",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "The wobble of the star's light centre in our own files cannot tell the telescope's fake dips near momentum dumps from real planets.",
+   "why": "It rules out a cheap safety check for the dump-shape rule; the only independent check left needs TESS's 2-second pointing records.",
+   "explanation": "The fake dips come from fast pointing jitter. Our light curves average the light centre over 2 to 30 minutes, which smooths that jitter away. Events the shape rule would free wobble no more than planted planets do.",
+   "technical": "Method and pass written first. G2: 25 freed real events against 415 planted crossings in the dump zone, Mann-Whitney p 0.53 (needed under 0.01); a guard at the planets' 90th percentile (J 1.90) holds 4 of 25. G3: 3 events, holds 1 (needs 2). Exploratory drift measure: weak hint (p 0.05). First run had a sector-name lookup bug (s2019), fixed before reading results.",
+   "ids": [
+    "RS-032 (research stint 32)",
+    "DS (dump-shape rule)",
+    "T164 (pointing record study idea)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs032/WOBBLE-STUDY-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/WOBBLE-STUDY-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs032/rs032_wobble.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/rs032_wobble.py"
+    },
+    {
+     "path": "research/stage3/rs032/wobble.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs032/wobble.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2244-rs031-dumps",
+   "file": "2026-11-14-2244-rs031-dumps.md",
+   "kind": "drop",
+   "type": "research",
+   "node": "1.6",
+   "when": "2026-11-14T22:44",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "TESS's pointing wobbles more and more before each momentum dump, spilling starlight out of the aperture: a fake dip that our upside-down check can never see. A version of the dump-shape rule that only relaxes after the dump is fair but gains only 4 planets, so it is not the route to 0.50.",
+   "why": "explains the blind spot Codex found, and moves Fable's attention to the eclipse-timing fix, the bigger lever.",
+   "explanation": "Four papers agree: scatter grows for about a day before a dump (Vanderburg 2019), pointing stays disturbed for hours after (Eisner 2019), with ramps within half a day (Wong 2020), and dumps mimic transits (Guerrero 2021). The planet gains of the shape rule sit in the same place as its fake dips, so only a direct wobble measure could separate them.",
+   "technical": "B 525/513 P 0.4811 bg 174/79; B+DS 545/531 P 0.4998 bg 204/83; B+DSp 529/519 P 0.4847 bg 176/80 (fails by 1 upside-down).",
+   "ids": [
+    "RS-031 (momentum dump research)",
+    "DS (dump-shape rule)",
+    "DSp (dump-shape relief only after the dump)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs031/MOMENTUM-DUMPS-RESEARCH-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs031/MOMENTUM-DUMPS-RESEARCH-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs031/dsp.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs031/dsp.json"
+    },
+    {
+     "path": "book/docs/field-notes/2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/field-notes/2026-11-14.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2218-fix95-adopted",
+   "file": "2026-11-14-2218-fix95-adopted.md",
+   "kind": "drop",
+   "type": "decision",
+   "node": "1.6",
+   "when": "2026-11-14T22:18",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Ahmed (decision), Claude",
+   "label": "CONFIRMED",
+   "plain": "Ahmed adopted the known spacecraft-events flag for the next filter version; the dump-shape rule waits for Fable.",
+   "why": "the adopted set for Petrova 1.1 now has four changes, each with two keys; every later test starts from it.",
+   "explanation": "Adopted, not frozen: repeater rule b, the fair opposite-sign flag, OAE and now the known-events flag. On that set the planet score is 48.11% and the false alarms are 174 real and 79 upside-down. The dump-shape rule gains planets but likely lets in dump artefacts our upside-down check cannot see, so Fable decides on Monday how to make it safe.",
+   "technical": "B = repeater b + FIX 91 + OAE + K; P 0.4811, T156 reference R 34.21%, background 174/79. Fable brief updated with RS-029, RS-030, Codex 012 and 013.",
+   "ids": [
+    "FIX 95 (known spacecraft events flag)",
+    "DS (dump-shape rule)",
+    "Petrova 1.1 (the next filter version, not frozen yet)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/FIX-QUEUE.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/FIX-QUEUE.md"
+    },
+    {
+     "path": "research/TREE.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/TREE.md"
+    },
+    {
+     "path": "research/fable-method/FABLE-BRIEF-2026-11-16.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/fable-method/FABLE-BRIEF-2026-11-16.md"
+    }
+   ],
+   "supersedes": [
+    "2026-11-14-2214-codex-013-result.md"
+   ],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2214-codex-013-result",
+   "file": "2026-11-14-2214-codex-013-result.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T22:14",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Codex (second key), Claude (review)",
+   "label": "CONFIRMED",
+   "plain": "Codex checked tonight's two filter changes with its own code and got exactly the same numbers. The known-events flag is ready to adopt. The dump-shape rule passes every test, but most of the false alarms it lets back in sit just before spacecraft momentum dumps, where our upside-down check cannot see them, so it waits for Fable.",
+   "why": "the first filter change since OAE with two keys and every gate passed; and a blind spot in our pass rule is now named.",
+   "explanation": "The upside-down copy of the light is our false-alarm meter. Dump jitter makes dips, not bumps, so dump artefacts show up only in the real light. The dump-shape rule frees 30 real alarms but only 4 upside-down ones, while it frees test planets evenly in both copies. Also found and fixed during the check: one of my own scripts read spacecraft dump times from a sealed star's file; the times are the same for every star, and it now reads them from a design star.",
+   "technical": "B 527/514, P 48.28%, bg 176/83, T156 R 34.64%; B+K P 48.11%, 174/79, R 34.21%; B+K+DS P 49.98%, 204/83, R 35.50%, T156 536/545. Dump times identical within 0.0004 d after the file swap. Fence check: branch 013 frozen 0, fence ids 0.",
+   "ids": [
+    "Codex 013 (second key)",
+    "FIX 95 (known spacecraft events flag)",
+    "DS (dump-shape rule)",
+    "T156 (reference planet bench)",
+    "T109 (known planets test)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/t109/t109_tic172900988_tier.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/t109/t109_tic172900988_tier.py"
+    }
+   ],
+   "supersedes": [
+    "2026-11-14-2141-codex-013-brief.md"
+   ],
+   "superseded": true
+  },
+  {
+   "id": "d:2026-11-14-2141-codex-013-brief",
+   "file": "2026-11-14-2141-codex-013-brief.md",
+   "kind": "drop",
+   "type": "run",
+   "node": "1.6",
+   "when": "2026-11-14T21:41",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": "NOT TESTED",
+   "plain": "Codex now re-checks tonight's two promising filter changes on its own code and on the bigger reference bench, and finds out what the 28 extra real-light alarms are.",
+   "why": "no filter change is adopted on one key; this gives Fable checked numbers for Monday.",
+   "explanation": "Codex must first reproduce my baseline exactly, then score the known-events flag alone and with the dump-shape rule, under pass rules written before any of it ran.",
+   "technical": "options B, B+K, B+K+DS; identity 527/514, P 0.4828, 176/83; T156 222 reference and 2,000 all; root-cause rows to data/astra/013.",
+   "ids": [
+    "Codex 013 (second key on the two filter changes)",
+    "T156 (the 2,000-trial reference planet bench)",
+    "FIX 95 (known spacecraft events flag)",
+    "DS (dump zone judged by shape)"
+   ],
+   "links": [
+    {
+     "path": "research/astra/inbox/013-known-events-and-dump-shape.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/inbox/013-known-events-and-dump-shape.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": true
+  },
+  {
+   "id": "d:2026-11-14-2127-codex-012-and-rs030",
+   "file": "2026-11-14-2127-codex-012-and-rs030.md",
+   "kind": "drop",
+   "type": "run",
+   "node": "1.4",
+   "when": "2026-11-14T21:27",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Codex (run), Claude (root cause)",
+   "label": "CONFIRMED",
+   "plain": "Codex tried to measure each binary's true eclipse times from TESS itself; its own checks failed, mostly because the method sometimes mistakes a binary with two equal eclipses for one with half the period.",
+   "why": "the eclipse-mask fix (the biggest fixable planet loss) needs these times; the problem is now narrow and nameable, so Fable's Monday round can fix it.",
+   "explanation": "On control stars whose timing we trust, 13 of 58 fits landed on half the true period and none of those agreed; on the correct period, 38 of 45 agreed within about a minute and a half (0.001 d). The eclipses that the narrower mask let through do line up with Codex's flagged tracks (18 of 21), which supports the earlier finding that the catalogue's times are wrong for those stars.",
+   "technical": "control agreement 28/60 periods, 31/60 epochs (54 needed); injection robust on all 9 testable stars (max shift 0.039 widths), 11 untestable. Fence check: frozen files 0, fence ids 0; branch not merged.",
+   "ids": [
+    "Codex 012 (measure our own eclipse times)",
+    "RS-030 (why its checks failed)",
+    "FIX 94 (the eclipse mask's timing padding)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs030/CODEX-012-ROOT-CAUSE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs030/CODEX-012-ROOT-CAUSE-2026-11-14.md"
+    },
+    {
+     "path": "research/astra/inbox/012-own-eclipse-ephemerides.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/inbox/012-own-eclipse-ephemerides.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2125-fix91-92-bench",
+   "file": "2026-11-14-2125-fix91-92-bench.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.1",
+   "when": "2026-11-14T21:25",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "The \"too noisy second copy\" fix does not pay: it frees 5 false alarms for every planet it frees, so it is not adopted. The opposite-sign flag, made fair in both arms on 13 Nov, earns its place.",
+   "why": "two open questions on the Tree closed with numbers, so Fable's Monday round has fewer options to weigh.",
+   "explanation": "FIX 92 would stop counting a second product as \"disagreeing\" when it is too noisy to see the dip. On the bench it frees 1 planet but 5 upside-down events, and the upside-down background rises. Switching the opposite-sign flag off entirely adds 3 upside-down alarms with no planet gained.",
+   "technical": "OAE 527/514, P 0.4828, bg 176/83; OAE92 528/519, P 0.4837, bg 179/84; OAE91d bg 178/86. The mirror arm was an identity (FIX 91 is already applied in the bench), recorded as such.",
+   "ids": [
+    "RS-029 (bench pricing stint)",
+    "FIX 91 (the opposite-sign coincidence flag was one-sided)",
+    "FIX 92 (a too-noisy second product counted as disagreement)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs029/FIX91-FIX92-RULE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/FIX91-FIX92-RULE-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs029/fix9192.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/fix9192.json"
+    },
+    {
+     "path": "research/stage3/rs029/rs029_fix9192.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/rs029_fix9192.py"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2116-fix95-bench-and-combined",
+   "file": "2026-11-14-2116-fix95-bench-and-combined.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T21:16",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "Flagging NASA's known spacecraft trouble moments passes our rule: it costs almost nothing and removes 4 false alarms. Combined with the dump-shape rule, it lifts planet recovery to 49.98% with no more upside-down alarms, just under the 50% line G1 needs.",
+   "why": "the first combination that gains planets without more upside-down alarms; it goes to Fable's round on Monday and Codex's second key.",
+   "explanation": "On its own, the known-events flag loses 2 planets out of about 1,100 and removes 4 upside-down and 2 real false alarms. The dump-shape rule alone adds 20 planets but also 4 upside-down alarms; the known-events flag cancels exactly those. Caution: the real-light alarms rise by 28, and the upside-down meter is partly blind near dumps, so the real cost may be higher than it looks.",
+   "technical": "P (equal weight) OAE 0.4828, OAEk 0.4811, OAED 0.5016, OAEkD 0.4998; tier-1 background real/upside-down 176/83, 174/79, 207/87, 204/83; paired control passes in all 5 bins for all four. Rules written before the run.",
+   "ids": [
+    "RS-029 (bench pricing of FIX 95, the combined test, FIX 91 and FIX 92)",
+    "FIX 95 (known spacecraft events not flagged)",
+    "OAE (the adopted fairness fix for the 'dominated' flag)",
+    "DS (dump zone judged by baseline shape, RS-025)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/FIX95-AND-COMBINED-RULE-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs029/bench.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/bench.json"
+    },
+    {
+     "path": "research/stage3/rs029/rs029_bench.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs029/rs029_bench.py"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-2109-fix86-87-statistics-tools",
+   "file": "2026-11-14-2109-fix86-87-statistics-tools.md",
+   "kind": "drop",
+   "type": "fix",
+   "node": "3.1",
+   "when": "2026-11-14T21:09",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "Two of our statistics tools told small untruths; both are fixed and tested before G1 uses them.",
+   "why": "G1's verdict will be printed by these tools, so they must say exactly what was tested and what a null can and cannot rule out.",
+   "explanation": "The gate tool said PASS for the slow-binary bins even when no test dips had been planted there; it now says \"PASS ON TESTED BINS (3 of 5)\". The readout's \"power\" line used a simpler test than the real verdict and called its result an exclusion; it now runs the real rule on simulated strong signals and calls the result a sensitivity.",
+   "technical": "gate_judge: PASS, FAIL, PASS ON TESTED BINS, INCOMPLETE; rerun on sealed G3 rows: numbers identical. s1_sensitivity: 8 filed chances reproduced; crossings G3 55 and 60 added, G2 60 and 70 (equal to Codex 002); mutation red. Filed results unchanged.",
+   "ids": [
+    "FIX 86 (the readout's power line used the wrong test)",
+    "FIX 87 (gates said PASS on untested period bins)"
+   ],
+   "links": [
+    {
+     "path": "pipeline/gate_judge.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/gate_judge.py"
+    },
+    {
+     "path": "pipeline/test_gate_judge.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/test_gate_judge.py"
+    },
+    {
+     "path": "pipeline/r1_gate.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/r1_gate.py"
+    },
+    {
+     "path": "pipeline/s1_sensitivity.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/s1_sensitivity.py"
+    },
+    {
+     "path": "pipeline/test_s1_sensitivity.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/test_s1_sensitivity.py"
+    },
+    {
+     "path": "pipeline/r1_readout.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/pipeline/r1_readout.py"
+    },
+    {
+     "path": "research/stage3/FIX-QUEUE.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/FIX-QUEUE.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1943-known-spacecraft-events",
+   "file": "2026-11-14-1943-known-spacecraft-events.md",
+   "kind": "drop",
+   "type": "research",
+   "node": "1.6",
+   "when": "2026-11-14T19:43",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "We now have a list of 19 known moments when the telescope itself misbehaved, taken from NASA's sector notes; flagging them would remove a few false alarms at almost no cost.",
+   "why": "a cheap, low-risk fix for the sector 4 kind of false alarm, ready for the next fix round.",
+   "explanation": "Most events at those moments are already held by our flags; only 6 reached the top tier. The flag would touch 33 of 5,308 planted planet crossings.",
+   "technical": "2 real and 4 upside-down tier-1 background events removed; planet-level cost not yet measured.",
+   "ids": [
+    "RS-028 (known spacecraft events list)",
+    "FIX 95 (known spacecraft events not flagged)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs028/KNOWN-SPACECRAFT-EVENTS-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs028/KNOWN-SPACECRAFT-EVENTS-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs028/known_events.csv",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs028/known_events.csv"
+    }
+   ],
+   "supersedes": [
+    "2026-11-14-1939-moment-flag-rejected.md"
+   ],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1939-moment-flag-rejected",
+   "file": "2026-11-14-1939-moment-flag-rejected.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T19:39",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "Finding spacecraft glitches from our own data alone does not work: it would also flag about a quarter of real planet transits.",
+   "why": "the sector 4 type of false alarm needs a short list of known spacecraft events from TESS's own notes instead.",
+   "explanation": "With hundreds of stars, ordinary events line up by chance all the time, so \"many stars at once\" is not a clean signal across cameras.",
+   "technical": "K=3 other stars, any camera, 0.1 d: background 22 real / 15 upside-down, planted crossings 1,291 of 5,308 at risk.",
+   "ids": [
+    "FIX 95 (known spacecraft events not flagged)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs027/rs027_moments.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs027/rs027_moments.py"
+    },
+    {
+     "path": "research/stage3/rs027/moments.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs027/moments.json"
+    }
+   ],
+   "supersedes": [],
+   "superseded": true
+  },
+  {
+   "id": "d:2026-11-14-1935-book-2117",
+   "file": "2026-11-14-1935-book-2117.md",
+   "kind": "drop",
+   "type": "version",
+   "node": "4.1",
+   "when": "2026-11-14T19:35",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": null,
+   "plain": "Book 2.11.7: the home recap now tells the evening's eclipse-mask result and the next step.",
+   "why": "the daily recap rule.",
+   "explanation": "Recap only; no other page changed.",
+   "technical": "footer and versions row bumped.",
+   "ids": [],
+   "links": [
+    {
+     "path": "book/docs/index.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/index.md"
+    },
+    {
+     "path": "book/docs/versions.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/versions.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1933-twin-transit-rejected",
+   "file": "2026-11-14-1933-twin-transit-rejected.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.1",
+   "when": "2026-11-14T19:33",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "Letting a planet's look-alike second transit off the \"dominated\" rule catches 2 more test planets but adds 7 upside-down false alarms, so it is rejected.",
+   "why": "keeps OAE as it is for Petrova 1.1; the twin-transit side effect stays a known small cost.",
+   "explanation": "Noise also comes in look-alike pairs, so the exemption frees false events too.",
+   "technical": "OAE 527 dips, P 48.28%, background 176/83; OAEt 529, 48.46%, 182/90; paired control passes for both.",
+   "ids": [
+    "OAE (fairness fix for the dominated rule)",
+    "OAEt (OAE with a twin-transit exemption)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs024/rs024_twin.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs024/rs024_twin.py"
+    },
+    {
+     "path": "research/stage3/rs024/twin.json",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs024/twin.json"
+    },
+    {
+     "path": "research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1922-too-deep-guard",
+   "file": "2026-11-14-1922-too-deep-guard.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T19:22",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "About a third of our top-tier events on real light are deeper than any planet could make; they are almost surely eclipses.",
+   "why": "a guard that drops them would cut false work in G1, but our test bench cannot yet show it never drops a planet.",
+   "explanation": "51 of 176 real and 16 of 83 upside-down top-tier events are over 3% deep. The bench's planted planets stop at 0.6% deep, so it cannot price the guard. Better than a fixed number: a ceiling per star from its size.",
+   "technical": "thresholds 10k/20k/30k/50k ppm: real 75/56/51/39, upside-down 35/19/16/7; on V2's 38 new real events only 7 over 30k.",
+   "ids": [
+    "FIX 96 (events deeper than any planet reach tier 1)",
+    "Codex 011 (the mask-timing test with the fairness fix on)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs027/NEW-EVENTS-ROOT-CAUSE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs027/NEW-EVENTS-ROOT-CAUSE-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/FIX-QUEUE.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/FIX-QUEUE.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1920-sector4-pointing-shift",
+   "file": "2026-11-14-1920-sector4-pointing-shift.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.6",
+   "when": "2026-11-14T19:20",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "A known jump in the telescope's pointing in sector 4 makes fake dips and bumps on many stars at once; our filter catches most but not all.",
+   "why": "each one that slips through is a false alarm in G1.",
+   "explanation": "At TJD 1413.26 TESS loaded the right guide star table and its pointing shifted about 4 arcseconds. 50 of our sector 4 events straddle that moment; 3 reached tier 1 because only two stars per camera shared the moment, under the 3-star rule.",
+   "technical": "fix idea: a known-spacecraft-events list from the data release notes, flagged like a momentum dump for both arms; to be measured on T156 and the background meters.",
+   "ids": [
+    "FIX 95 (known spacecraft events not flagged)",
+    "Codex 011 (mask re-test)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/FIX-QUEUE.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/FIX-QUEUE.md"
+    },
+    {
+     "path": "https://heasarc.gsfc.nasa.gov/docs/tess/sector4_summary.html",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/https://heasarc.gsfc.nasa.gov/docs/tess/sector4_summary.html"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1904-codex-011-and-rs027",
+   "file": "2026-11-14-1904-codex-011-and-rs027.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.4",
+   "when": "2026-11-14T19:04",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Codex and Claude",
+   "label": "CONFIRMED",
+   "plain": "The narrower eclipse masks fail: they stay just under 50% and add a few false alarms, because the wide padding was hiding eclipses whose catalogue times are wrong.",
+   "why": "the fix for FIX 94 must measure where each binary's eclipses really are in TESS, period included, before narrowing anything.",
+   "explanation": "With the fairness fix on, both variants catch about 16 more planets (P about 49.6%). About half the extra events on real light are deep eclipses (up to 17% deep). One binary repeats a 10,000 ppm eclipse every 31.81 days; its catalogue says 30.98.",
+   "technical": "V0/V1/V2 + OAE: P 48.20 / 49.61 / 49.66%; all-design background 176/83, 209/86, 205/89; T156 dips 500, 524, 523; paired control passes every bin. 18 of 38 new V2 real events are 8,000 ppm+ or SNR 50+, on 10 stars.",
+   "ids": [
+    "Codex 011 (mask re-test with OAE)",
+    "RS-027 (root cause of the new events)",
+    "FIX 94 (mask timing padding)",
+    "TIC 140760434 (the binary whose catalogue period was off by 0.84 days)"
+   ],
+   "links": [
+    {
+     "path": "research/astra/reports/011-mask-timing-with-oae.md (branch astra/011-mask-timing-oae)",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/reports/011-mask-timing-with-oae.md (branch astra/011-mask-timing-oae)"
+    },
+    {
+     "path": "research/stage3/rs027/NEW-EVENTS-ROOT-CAUSE-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs027/NEW-EVENTS-ROOT-CAUSE-2026-11-14.md"
+    }
+   ],
+   "supersedes": [
+    "2026-11-14-1530-codex-010-mask-timing.md"
+   ],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1637-known-planets-oae",
+   "file": "2026-11-14-1637-known-planets-oae.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.1",
+   "when": "2026-11-14T16:37",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "The fairness fix lets two more real TOI-1338 b transits through (6 of 13 instead of 4), but it can let a planet's stronger transit hide its weaker one.",
+   "why": "the fix helps a real planet, not only planted ones; its one side effect is now explained.",
+   "explanation": "Sectors 89 and 93 were held because a rival event was as strong; under OAE eclipse-labelled rivals no longer count. TIC 172900988 b has two transits 4.95 d apart; OAE counts the stronger one as a rival of the weaker. No effect today (both held by edge flags), but it matters once those are fixed.",
+   "technical": "identity 10 of 10; single-transit tier-1 31% to 46%; mask timing change cannot touch TOI-1338 (term at most 0.005 d). Refinement idea (NOT TESTED): ignore a same-sign rival matching depth and duration.",
+   "ids": [
+    "OAE (fairness fix for the dominated rule)",
+    "RS-025 Q5 (known planets under the new rules)",
+    "TOI-1338 b (a known planet that orbits two suns)",
+    "TIC 172900988 b (a known two-sun planet with two transits close together)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md"
+    },
+    {
+     "path": "research/stage3/rs025/rs025_q5_known.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs025/rs025_q5_known.py"
+    },
+    {
+     "path": "data/t109/toi1338_q5.csv",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/data/t109/toi1338_q5.csv"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1635-codex-011-brief",
+   "file": "2026-11-14-1635-codex-011-brief.md",
+   "kind": "drop",
+   "type": "research",
+   "node": "1.4",
+   "when": "2026-11-14T16:35",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": null,
+   "plain": "Codex re-tests the narrower eclipse mask with our fairness fix switched on, against a pass rule written before the results.",
+   "why": "it decides whether the biggest known gain (+25 planets, past the 50% bar) can be adopted for G1.",
+   "explanation": "010 ran without OAE, so its fairness failures were inherited. 011 also finds out where the 30 or so new events on real light come from: eclipse leftovers or something else.",
+   "technical": "pass = P 50%+, paired control passes every bin, upside-down background not higher than V0+OAE, T156 more planets with no more upside-down alarms.",
+   "ids": [
+    "Codex 011 (mask timing with the OAE fix)",
+    "OAE (fairness fix for the dominated rule)",
+    "T156 (the bench)"
+   ],
+   "links": [
+    {
+     "path": "research/astra/inbox/011-mask-timing-with-oae.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/inbox/011-mask-timing-with-oae.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1635-fix94-decision-rule",
+   "file": "2026-11-14-1635-fix94-decision-rule.md",
+   "kind": "drop",
+   "type": "decision",
+   "node": "1.4",
+   "when": "2026-11-14T16:35",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Claude",
+   "label": null,
+   "plain": "Before Codex 011 reports, the rule for what we do with its result is written down.",
+   "why": "the decision cannot be bent to fit the numbers afterwards.",
+   "explanation": "V2 already gets 23 of the 25 possible planets, so the full eclipse-time fit can add at most about 2. If V2 passes, adopt V2; if it fails only on upside-down alarms near eclipses, build the full fit; if the new events sit far from eclipses, stop and research; if both pass, V2 over V1.",
+   "technical": "23/25 = 92% of the upper bound; V2 vs V1 upside-down 8 vs 5 is within counting error.",
+   "ids": [
+    "FIX 94 (mask timing padding)",
+    "Codex 011 (re-test with OAE)",
+    "V2 (windows recentred, capped)"
+   ],
+   "links": [
+    {
+     "path": "research/stage3/rs026/EPHEMERIS-AND-FILTER-RESEARCH-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs026/EPHEMERIS-AND-FILTER-RESEARCH-2026-11-14.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1634-fable-brief",
+   "file": "2026-11-14-1634-fable-brief.md",
+   "kind": "drop",
+   "type": "build",
+   "node": "4.1",
+   "when": "2026-11-14T16:34",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Claude",
+   "label": null,
+   "plain": "Fable's Monday brief is ready: three real tasks with a work log each, then it writes its working method as a skill for Opus.",
+   "why": "keeps Fable's way of working after access ends.",
+   "explanation": "Tasks: design the FIX 94 mask timing fix, judge what goes into Petrova 1.1, plan the shortest safe path to G1. A held-out design task (the step flag) tests the skill on Opus afterwards; Fable is told not to open it.",
+   "technical": "finish by Mon 23:00 Kuwait; meters read before and after each task.",
+   "ids": [
+    "Fable (the strongest model, access ends Tue 17 Nov 01:00 Kuwait)",
+    "FIX 94 (mask timing padding)"
+   ],
+   "links": [
+    {
+     "path": "research/fable-method/FABLE-BRIEF-2026-11-16.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/fable-method/FABLE-BRIEF-2026-11-16.md"
+    },
+    {
+     "path": "research/fable-method/HELD-OUT-TASK.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/fable-method/HELD-OUT-TASK.md"
+    },
+    {
+     "path": "research/fable-method/PLAN-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/fable-method/PLAN-2026-11-14.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1615-star-data-not-private",
+   "file": "2026-11-14-1615-star-data-not-private.md",
+   "kind": "drop",
+   "type": "rule",
+   "node": "4.1",
+   "when": "2026-11-14T16:15",
+   "date": "2026-11-14",
+   "status": "done",
+   "by": "Ahmed",
+   "label": null,
+   "plain": "Star ids and star data may appear plainly in the book and on the Tree; they are no longer treated as private.",
+   "why": "the Tree can now show real stars and events instead of counts only.",
+   "explanation": "Ahmed: the book is his own notebook and nobody knows the link. Science rules stay: sealed runs stay blind until the preregistered analysis, fence A and B stars are never searched, outward actions (emails, CTOI, ExoFOP, posts) need his yes. Leads show at once, marked 'not checked yet'.",
+   "technical": "the publish script's privacy scan has to be loosened to match before the first star id is published (part of T160).",
+   "ids": [],
+   "links": [
+    {
+     "path": "CLAUDE.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/CLAUDE.md"
+    },
+    {
+     "path": "research/tree/TREE-BRAIN-PLAN-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/tree/TREE-BRAIN-PLAN-2026-11-14.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1605-drop-box-idea",
+   "file": "2026-11-14-1605-drop-box-idea.md",
+   "kind": "drop",
+   "type": "decision",
+   "node": "4.1",
+   "when": "2026-11-14T16:05",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Ahmed",
+   "label": null,
+   "plain": "Every finished piece of work becomes one small drop file; a script turns the drops into the Tree, the book and the bookkeeping, and publishes.",
+   "why": "today each task needs about six hand edits; with drops it needs one file, so the Tree stays current without being a burden.",
+   "explanation": "Ahmed's idea. Drops start now; the builder is built after G1 as part of T160. Python sorts, checks and formats; it never writes the words.",
+   "technical": "plan section 9; drops are Markdown with a small header (type, node, date, label, status, links, ids, supersedes).",
+   "ids": [
+    "T160 (the Tree build, first after G1)"
+   ],
+   "links": [
+    {
+     "path": "research/tree/TREE-BRAIN-PLAN-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/tree/TREE-BRAIN-PLAN-2026-11-14.md"
+    },
+    {
+     "path": "drops/README.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/drops/README.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
+  {
+   "id": "d:2026-11-14-1530-codex-010-mask-timing",
+   "file": "2026-11-14-1530-codex-010-mask-timing.md",
+   "kind": "drop",
+   "type": "finding",
+   "node": "1.4",
+   "when": "2026-11-14T15:30",
+   "date": "2026-11-14",
+   "status": "open",
+   "by": "Codex",
+   "label": "CONFIRMED",
+   "plain": "Narrowing the eclipse mask's timing padding catches about 25 more test planets and lifts the score past the 50% bar, but lets more noise through on the stars it affects.",
+   "why": "it is the biggest single fixable loss we know, and the first change that crosses the G1 bar on its own.",
+   "explanation": "The mask hides eclipses with a window widened by how unsure the eclipse timing is. On 112 G2 stars with old timings that padding is so wide it blanks whole light curves. Turning the padding off (V1) or recentring the windows on the real eclipses with a cap (V2) gives the planets back, but the same stars then show more events on real light and a few more upside-down alarms.",
+   "technical": "P (equal-bin dip recovery, 1,098 planets) V0 48.37% (528), V1 50.68% (553), V2 50.54% (551); bumps 486, 501, 503. Affected-star background real/upside-down V0 61/3, V1 95/5, V2 90/8. Paired dip-vs-bump 99% intervals fail in 20 to 27.4 d and 27.4+ d for all three, including V0, so that failure is the pre-OAE baseline, not the variants. Eclipse-overlap proxy: no new real-event centres inside eclipse windows (approximate for missing secondaries). RS-025 cause counts reproduced exactly (690 found, 408 not). Not adoptable yet: re-run with OAE on, and explain the 29 to 34 new real-light events.",
+   "ids": [
+    "Codex 010 (mask timing test)",
+    "FIX 94 (mask timing padding blanks light curves)",
+    "RS-025 (flag prices and the 408 missed planets)"
+   ],
+   "links": [
+    {
+     "path": "research/astra/reports/010-mask-timing.md (branch astra/010-mask-timing)",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/reports/010-mask-timing.md (branch astra/010-mask-timing)"
+    },
+    {
+     "path": "research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/stage3/rs025/HELD-AND-MISSED-RESEARCH-2026-11-14.md"
+    }
+   ],
+   "supersedes": [],
+   "superseded": true
+  },
+  {
+   "id": "l:4",
+   "kind": "log",
+   "type": "research",
+   "node": "1.4",
+   "also": [],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Research: TESS-era eclipse times; timing bug is G2 only (110 of 420 stars, 706 of 711 blanked curves); Oddo et al.",
+   "why": "",
+   "explanation": "",
+   "technical": "TESS-era eclipse times; timing bug is G2 only (110 of 420 stars, 706 of 711 blanked curves); Oddo et al. 2026 recentre per sector; FIX 94 design draft for Fable. research/stage3/rs026/EPHEMERIS-AND-FILTER-RESEARCH-2026-11-14.md",
+   "ids": [
+    "RS-026"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:9",
+   "kind": "log",
+   "type": "build",
+   "node": "1.6",
+   "also": [],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Build: the broken-light-curve guards nd and dg change nothing under B (P 48.11%, background 174/79 unchanged; 61 unphysical design events already ignored by OAE).",
+   "why": "",
+   "explanation": "",
+   "technical": "the broken-light-curve guards nd and dg change nothing under B (P 48.11%, background 174/79 unchanged; 61 unphysical design events already ignored by OAE). Safe physics guards, no gain. research/stage3/rs032/ND-DG-RULE-2026-11-14.md.",
+   "ids": [
+    "T31/T32 priced"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:10",
+   "kind": "log",
+   "type": "build",
+   "node": "1.6",
+   "also": [],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Build: it holds 57% of real and 51% of upside-down tier-1 background and 59 of the 95 real excess, but holding it costs 40 planets (P 48.1% to 44.6%, fast binaries) and fails the paired control in one bin.",
+   "why": "",
+   "explanation": "",
+   "technical": "it holds 57% of real and 51% of upside-down tier-1 background and 59 of the 95 real excess, but holding it costs 40 planets (P 48.1% to 44.6%, fast binaries) and fails the paired control in one bin. Cut by cause, not by box length. research/stage3/rs032/T35-BOX-RULE-2026-11-14.md.",
+   "ids": [
+    "T35 decided: keep the 3 h box"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:22",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.1",
+   "also": [
+    "1.6"
+   ],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Codex job: second key on RS-024 agrees; OAE adopted as a fairness fix.",
+   "why": "",
+   "explanation": "",
+   "technical": "second key on RS-024 agrees; OAE adopted as a fairness fix. Branch astra/009-dominated.",
+   "ids": [
+    "Codex 009"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:23",
+   "kind": "log",
+   "type": "research",
+   "node": "1.1",
+   "also": [
+    "1.6"
+   ],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Research: root cause of \"dominated\": sign-asymmetric binary light, missed eclipses veto before they are labelled; Kepler Chases, LEO-Vetter, mono-cbp.",
+   "why": "",
+   "explanation": "",
+   "technical": "root cause of \"dominated\": sign-asymmetric binary light, missed eclipses veto before they are labelled; Kepler Chases, LEO-Vetter, mono-cbp. research/stage3/rs024/DOMINATED-RESEARCH-2026-11-14.md",
+   "ids": [
+    "RS-024"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:24",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.1",
+   "also": [
+    "3.2"
+   ],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Codex job: three dominated fixes all failed; T109 second key with scope corrections.",
+   "why": "",
+   "explanation": "",
+   "technical": "three dominated fixes all failed; T109 second key with scope corrections. Branch astra/008-after-006.",
+   "ids": [
+    "Codex 008"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:25",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.1",
+   "also": [],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Codex job: never delivered; replaced by 008 at 09:20 before Codex read it.",
+   "why": "",
+   "explanation": "",
+   "technical": "never delivered; replaced by 008 at 09:20 before Codex read it. research/astra/inbox/007-night-14-nov.md",
+   "ids": [
+    "Codex 007"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:26",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.2",
+   "also": [
+    "1.4",
+    "1.5",
+    "2.2"
+   ],
+   "date": "2026-11-14",
+   "when": "2026-11-14T00:00",
+   "status": "done",
+   "plain": "Codex job: planet-level P 0.48, FIX FIRST (two keys).",
+   "why": "",
+   "explanation": "",
+   "technical": "planet-level P 0.48, FIX FIRST (two keys). Branch astra/006-branch-one.",
+   "ids": [
+    "Codex 006"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:27",
+   "kind": "log",
+   "type": "research",
+   "node": "3.3",
+   "also": [],
+   "date": "2026-11-13",
+   "when": "2026-11-13T00:00",
+   "status": "done",
+   "plain": "Research: Rabtsevich comparison, are we over-engineering.",
+   "why": "",
+   "explanation": "",
+   "technical": "Rabtsevich comparison, are we over-engineering. research/stage3/rabtsevich-compare-2026-11-13.md",
+   "ids": [
+    "RS-023"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  }
+ ],
+ "days": [
+  {
+   "date": "2026-10-19",
+   "diary": "field-notes/2026-10-19/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-20",
+   "diary": "field-notes/2026-10-20/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-21",
+   "diary": "field-notes/2026-10-21/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-23",
+   "diary": "field-notes/2026-10-23/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-24",
+   "diary": "field-notes/2026-10-24/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-27",
+   "diary": "field-notes/2026-10-27/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-28",
+   "diary": "field-notes/2026-10-28/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-29",
+   "diary": "field-notes/2026-10-29/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-30",
+   "diary": "field-notes/2026-10-30/",
+   "leaves": []
+  },
+  {
+   "date": "2026-10-31",
+   "diary": "field-notes/2026-10-31/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-02",
+   "diary": "field-notes/2026-11-02/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-03",
+   "diary": "field-notes/2026-11-03/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-04",
+   "diary": "field-notes/2026-11-04/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-10",
+   "diary": "field-notes/2026-11-10/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-11",
+   "diary": "field-notes/2026-11-11/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-13",
+   "diary": null,
+   "leaves": [
+    "l:27"
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "diary": "field-notes/2026-11-14/",
+   "leaves": [
+    "l:4",
+    "l:9",
+    "l:10",
+    "l:22",
+    "l:23",
+    "l:24",
+    "l:25",
+    "l:26",
+    "d:2026-11-14-1530-codex-010-mask-timing",
+    "d:2026-11-14-1605-drop-box-idea",
+    "d:2026-11-14-1615-star-data-not-private",
+    "d:2026-11-14-1634-fable-brief",
+    "d:2026-11-14-1635-codex-011-brief",
+    "d:2026-11-14-1635-fix94-decision-rule",
+    "d:2026-11-14-1637-known-planets-oae",
+    "d:2026-11-14-1904-codex-011-and-rs027",
+    "d:2026-11-14-1920-sector4-pointing-shift",
+    "d:2026-11-14-1922-too-deep-guard",
+    "d:2026-11-14-1933-twin-transit-rejected",
+    "d:2026-11-14-1935-book-2117",
+    "d:2026-11-14-1939-moment-flag-rejected",
+    "d:2026-11-14-1943-known-spacecraft-events",
+    "d:2026-11-14-2109-fix86-87-statistics-tools",
+    "d:2026-11-14-2116-fix95-bench-and-combined",
+    "d:2026-11-14-2125-fix91-92-bench",
+    "d:2026-11-14-2127-codex-012-and-rs030",
+    "d:2026-11-14-2141-codex-013-brief",
+    "d:2026-11-14-2214-codex-013-result",
+    "d:2026-11-14-2218-fix95-adopted",
+    "d:2026-11-14-2244-rs031-dumps",
+    "d:2026-11-14-2306-rs032-wobble",
+    "d:2026-11-14-2308-t52-run-inputs",
+    "d:2026-11-14-2309-t130-map",
+    "d:2026-11-14-2318-nd-dg-priced",
+    "d:2026-11-14-2329-t35-box",
+    "d:2026-11-14-2333-rs033-pointing",
+    "d:2026-11-14-2347-codex-014-part1"
+   ]
+  },
+  {
+   "date": "2026-11-15",
+   "diary": null,
+   "leaves": [
+    "l:1",
+    "l:2",
+    "l:3",
+    "d:2026-11-15-0002-codex-014-part2",
+    "d:2026-11-15-0008-fix83-test-runner",
+    "d:2026-11-15-0013-fix84-closed",
+    "d:2026-11-15-0137-codex014-part3-key",
+    "d:2026-11-15-0139-fix96-radius-check",
+    "d:2026-11-15-0415-rs035-how-to-teach",
+    "d:2026-11-15-0429-twinlight-app"
+   ]
+  }
+ ],
+ "phases": [
+  {
+   "id": "start",
+   "from": "2026-10-19",
+   "title": "Learning the sky and the first tools",
+   "plain": "The project starts. What is known, where the gap is, our first light curves and our first planet-finding tool, Vesper."
+  },
+  {
+   "id": "sealed",
+   "from": "2026-10-29",
+   "title": "The first sealed searches",
+   "plain": "G2 and G3, searches run once under rules written in advance. Both found no planet, and both taught us where the tool was weak."
+  },
+  {
+   "id": "audit",
+   "from": "2026-11-10",
+   "title": "The audit and Petrova",
+   "plain": "An outside audit found the eclipse mask could hide planets. The tool was rebuilt and frozen as Petrova, then searched the old lists again."
+  },
+  {
+   "id": "bench",
+   "from": "2026-11-12",
+   "title": "The bench and the fix rounds",
+   "plain": "Codex joins. Every proposed fix is measured on 2,000 planted planets, with fake ones counted too, before it may enter the tool."
+  },
+  {
+   "id": "book3",
+   "from": "2026-11-15",
+   "title": "Learning first",
+   "plain": "The hunt pauses so you can learn everything it rests on. The Tree and a new textbook are built."
+  }
+ ]
+}

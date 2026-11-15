@@ -1,0 +1,1 @@
+This folder is the frozen Book 2.12.0 (built 15 Nov 2026 before the Book 3.0 redesign). publish_book.ps1 copies it to /v2/ on the live site after all checks. Never edit it; the source is the git tag book-2-final.

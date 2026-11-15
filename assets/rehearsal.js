@@ -198,6 +198,7 @@
     return e;
   }
   function mount(el) {
+    if (root.SSEyesFlow.resume(el, "rehearsal")) return;
     if (el.dataset.ready) return; el.dataset.ready = "1";
     const doc = root.document, deckUrl = el.dataset.deck;
     let store;
@@ -205,10 +206,16 @@
     store.recoverOpen();
     if (root.SSEyesCloud && root.SSEyes) { try { root.SSEyesCloud.attach(store); } catch (e) { /* the page still works without the cloud */ } }
     const box = mk("div", { class: "ss-rh" }); el.replaceChildren(box);
+    let homePosition = null;
+    let playing = false;
     const say = (msg) => box.replaceChildren(mk("p", {}, msg));
     fetch(deckUrl).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((deck) => start(deck)).catch(() => say("The rehearsal deck could not be loaded. Reload the page; if you are offline, open this page once while online first."));
 
     function start(deck) {
+      const flow = root.SSEyesFlow(box);
+      flow.keep(el, "rehearsal", () => !playing, () => {
+        if (root.SSEyesCloud && root.SSEyes) root.SSEyesCloud.attach(store);
+      });
       const results = () => {
         const p = passLine(store.rounds()), sec = mk("div", { class: "ss-rh__results" });
         sec.append(mk("h3", {}, "Where you stand"), ...p.lines.map((l) => mk("p", {}, l)));
@@ -220,11 +227,15 @@
         return sec;
       };
       function home() {
+        playing = false;
         const idx = nextSession(store.rounds()), btn = mk("button", { type: "button", class: "ss-rh__go" }, `Start session ${idx + 1} of ${SESSIONS} (20 items)`);
-        btn.addEventListener("click", () => play(idx));
+        btn.addEventListener("click", () => { homePosition = { ...flow.remember(), focus: btn }; play(idx); });
         box.replaceChildren(mk("p", { class: "ss-rh__lead" }, "Each item is a stretch of real light with at most one thing hidden in it. Say what you think it is, lock your answer, then see the truth. About 30% of the items hide a fake planet."), btn, results());
+        flow.reveal();
+        if (homePosition) { homePosition.focus = btn; flow.move(btn, homePosition); }
       }
       function play(idx) {
+        playing = true;
         const items = orderSession(deck.sessions[idx], Math.random), round = store.startRound({ n: items.length, session: idx });
         let i = 0;
         function item() {
@@ -263,14 +274,18 @@
             mk("div", { class: "ss-rh__panel", html: svgP3(it) }), mk("p", { class: "ss-rh__cap" }, "Panel 3: where the event falls in the binary's orbit (shaded: eclipse zones). More evidence panels come in a later version."),
             grid, confRow, lock, out, next);
           const first = box.querySelector(".ss-rh__a"); if (first) first.focus({ preventScroll: true });
+          flow.reveal(); flow.move(box.firstElementChild);
         }
         function done() {
           store.finishRound(round.id);
+          playing = false;
           const s = summaryOf(round.a), sc = mk("div", { class: "ss-rh__results" });
           sc.append(mk("h3", {}, `Session ${idx + 1} finished`), mk("p", {}, `Right class: ${s.right} of ${s.n}.`), mk("p", {}, `Fake planets found: ${s.planetsHit} of ${s.planets} (clear ${s.clearHit} of ${s.clear}, near the limit ${s.nearHit} of ${s.near}).`),
             mk("p", {}, `Not-planets called planet-like: ${s.othersCalledPlanet} of ${s.others}.`));
           const again = mk("button", { type: "button", class: "ss-rh__go" }, "Back to the start"); again.addEventListener("click", home);
-          box.replaceChildren(sc, again, results());
+          sc.insertBefore(again, sc.children[2]);
+          box.replaceChildren(sc, results());
+          flow.reveal(); flow.move(sc.querySelector("h3"));
         }
         item();
       }

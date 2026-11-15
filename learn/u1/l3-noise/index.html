@@ -1,0 +1,1754 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/learn/u1/l3-noise/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon-64.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.3 Noise: the spread of the points - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../../assets/shape.css">
+    
+      <link rel="stylesheet" href="../../../assets/book3.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <meta name="theme-color" content="#070c19">
+  <link rel="apple-touch-icon" href="../../../assets/icon-180.png">
+  <link rel="icon" type="image/png" href="../../../assets/favicon-64.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  
+  <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../../../assets/learn.css">
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#noise-the-spread-of-the-points" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <div id="ss-splash" aria-hidden="true"><div class="ss-sp-in"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="ss-sp-bgx" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#13213f"/><stop offset=".65" stop-color="#091127"/><stop offset="1" stop-color="#050913"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sa" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ff"/><stop offset=".75" stop-color="#9fd9ff" stop-opacity=".55"/><stop offset="1" stop-color="#9fd9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f4fbff"/><stop offset=".42" stop-color="#7ad7ea"/><stop offset=".75" stop-color="#7ad7ea" stop-opacity=".45"/><stop offset="1" stop-color="#7ad7ea" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect class="ss-logo-bg" width="512" height="512" rx="112" fill="url(#ss-sp-bgx)"/>
+  <g class="ss-logo-orbit" fill="none" stroke="#b9e9f4" stroke-width="7" stroke-linecap="round" opacity=".9">
+    <path d="M78 300 A178 96 -14 0 1 434 212" opacity=".35"/>
+    <path d="M434 212 A178 96 -14 0 1 78 300"/>
+  </g>
+  <circle class="ss-logo-a" cx="214" cy="262" r="96" fill="url(#ss-sp-sa)"/>
+  <circle cx="214" cy="262" r="46" fill="#ffffff"/>
+  <circle class="ss-logo-b" cx="322" cy="226" r="62" fill="url(#ss-sp-sb)"/>
+  <circle cx="322" cy="226" r="27" fill="#e6f8fc"/>
+  <circle class="ss-logo-p" cx="431" cy="213" r="13" fill="#b9adff"/>
+</svg>
+<div class="ss-sp-name">Second Sun</div></div></div>
+  
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.3 Noise: the spread of the points
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tree
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Learning
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../shelf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Shelf
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shelf
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shelf
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shelf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Shelf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training deck
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-spread-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the spread comes from
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#averaging-beats-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Averaging beats noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-few-sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In a few sentences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p class="tw-kicker" data-lesson="1.3">Unit 1 · A star&#x27;s light on a graph · Lesson 1.3 · 14 min</p>
+
+<h1 id="noise-the-spread-of-the-points">Noise: the spread of the points<a class="headerlink" href="#noise-the-spread-of-the-points" title="Permanent link">&para;</a></h1>
+<p>One quiet day of our star pair, every 2-minute point. Nothing passes in front of anything here.</p>
+<div class="tw-plot" data-src="u1-quiet-day"></div>
+
+<p class="tw-plot__ask">If nothing is happening, why are the points not all on one line? Read the highest and the lowest point.</p>
+
+<h2 id="where-the-spread-comes-from">Where the spread comes from<a class="headerlink" href="#where-the-spread-comes-from" title="Permanent link">&para;</a></h2>
+<p>Every measurement has a little error in it. Light arrives as single particles, photons, and in any 2 minutes a few more or a few fewer land on the camera, just by chance. The camera adds its own small errors. The spacecraft wobbles very slightly. The stars themselves flicker a little. All of this together is called <strong>noise</strong>.</p>
+<aside class="tw-mn">
+<p><strong>Noise.</strong> Changes in the measured light that are not the signal we are looking for.</p>
+</aside>
+<p>To compare noise between stars we need one number for "how spread out are the points". The usual one is the <strong>standard deviation</strong>, written <span class="arithmatex">\(\sigma\)</span> (the Greek letter sigma). In words: how far, on a typical day, a point lies from the average.</p>
+<aside class="tw-mn">
+<p><strong>Standard deviation (<span class="arithmatex">\(\sigma\)</span>).</strong> The typical distance of the points from their average. About two thirds of points lie within one <span class="arithmatex">\(\sigma\)</span> of it.</p>
+</aside>
+<p>The recipe has four steps. Find the average. Subtract it from every point. Square those differences (so minus and plus both count, and big misses count extra). Average the squares, then take the square root to get back to the original units:</p>
+<div class="arithmatex">\[ \sigma = \sqrt{ \frac{ (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \dots + (x_N - \bar{x})^2 }{ N } } \]</div>
+<aside class="tw-mn">
+<p><strong><span class="arithmatex">\(\bar{x}\)</span>.</strong> Read "x bar": the average of the values. <span class="arithmatex">\(N\)</span> is how many values there are. Some books divide by <span class="arithmatex">\(N - 1\)</span> instead of <span class="arithmatex">\(N\)</span>; for many points the difference is tiny.</p>
+</aside>
+<div class="admonition example">
+<p class="admonition-title">Worked example: five points</p>
+<p>Five points of a <a href="../../../glossary/#light-curve">light curve</a>, as <span class="arithmatex">\(F / F_{\text{normal}}\)</span>: 1.0010, 0.9990, 1.0005, 0.9995, 1.0000.</p>
+<p><strong>Step 1. Average.</strong> They add up to 5.0000, so <span class="arithmatex">\(\bar{x} = 1.0000\)</span>.</p>
+<p><strong>Step 2. Differences.</strong> <span class="arithmatex">\(+0.0010, -0.0010, +0.0005, -0.0005, 0\)</span>.</p>
+<p><strong>Step 3. Squares.</strong> <span class="arithmatex">\(0.000001, 0.000001, 0.00000025, 0.00000025, 0\)</span>. Their sum is <span class="arithmatex">\(0.0000025\)</span>.</p>
+<p><strong>Step 4. Average, then square root.</strong> <span class="arithmatex">\(0.0000025 / 5 = 0.0000005\)</span>, and <span class="arithmatex">\(\sqrt{0.0000005} = 0.000707\)</span>.</p>
+<p>So <span class="arithmatex">\(\sigma = 0.000707\)</span>, which is 707 <a href="../../../glossary/#ppm">ppm</a>.</p>
+</div>
+<p>For the quiet day in the plot above, our script does the same sum over all 720 points and gets <span class="arithmatex">\(\sigma \approx 930\)</span> ppm. A single point can easily be 930 ppm off, by chance alone. Compare that with the dips from the last lesson: an Earth-sized planet around a star like these makes a dip far under 100 ppm. In one point, it would be lost.</p>
+<h2 id="averaging-beats-noise">Averaging beats noise<a class="headerlink" href="#averaging-beats-noise" title="Permanent link">&para;</a></h2>
+<p>Here is the way out. If the errors are random, they partly cancel when you average several points: some are too high, some too low. Average <span class="arithmatex">\(N\)</span> points and the noise of the average shrinks by the square root of <span class="arithmatex">\(N\)</span>:</p>
+<div class="arithmatex">\[ \sigma_{\text{average}} = \frac{\sigma}{\sqrt{N}} \]</div>
+<aside class="tw-mn">
+<p><strong>Why a square root?</strong> Random errors add up more slowly than the points do. Four points do not cancel four times the noise, only twice: <span class="arithmatex">\(\sqrt{4} = 2\)</span>.</p>
+</aside>
+<p>Look at the same day again, now with every 15 points (30 minutes) averaged into one:</p>
+<div class="tw-plot" data-src="u1-quiet-day-30"></div>
+
+<p class="tw-plot__ask">How much tighter is this than the plot at the top? Compare the highest and lowest points.</p>
+
+<div class="admonition example">
+<p class="admonition-title">Worked example: what averaging should give</p>
+<p><strong>Step 1.</strong> Noise of one 2-minute point: about 930 ppm.</p>
+<p><strong>Step 2.</strong> A 30-minute average holds <span class="arithmatex">\(N = 15\)</span> points, and <span class="arithmatex">\(\sqrt{15} = 3.87\)</span>.</p>
+<p><strong>Step 3.</strong> Expected noise of the average: <span class="arithmatex">\(930 / 3.87 = 240\)</span> ppm.</p>
+<p>Our script measured the real 30-minute averages of this day: 362 ppm. Bigger than the 240 the rule promised.</p>
+</div>
+<p>Why bigger? Because not all of the noise is random from one point to the next. Across this day the light drifts slowly by a few hundred ppm: the stars and the spacecraft change gently over hours. Averaging 15 neighbouring points cannot cancel a drift that all 15 share. When our script first removes a straight-line drift, the 30-minute noise falls to 266 ppm, close to what the rule predicts (230 ppm after the same removal).</p>
+<aside class="tw-mn">
+<p><strong>White and <a href="../../../glossary/#red-noise">red noise</a>.</strong> Random point-to-point noise is called <a href="../../../glossary/#white-noise">white noise</a>. Slow, shared wobbles are called red noise. Averaging cleans the first and barely touches the second.</p>
+</aside>
+<p>That leftover slow part has a name: <strong>red noise</strong>. It was one of the reasons early planet searches from the ground found fewer planets than simple counts predicted, and it is why, in Unit 5, our search first removes slow changes from the light before it looks for dips.</p>
+<div class="admonition question">
+<p class="admonition-title">Your turn, half done: one hour</p>
+<p>One hour of 2-minute points holds <span class="arithmatex">\(N = 30\)</span> points, and <span class="arithmatex">\(\sqrt{30} = 5.48\)</span>. Finish it: with 930 ppm per point, what noise does the rule predict for a one-hour average?</p>
+</div>
+<div class="tw-prob" data-answer="170" data-hints="{&quot;31&quot;:&quot;Divide by the square root of 30, not by 30.&quot;,&quot;27900&quot;:&quot;Averaging makes noise smaller, not bigger: divide.&quot;}" data-tol="0.02" data-unit="ppm" data-why="930 / 5.48 = 170 ppm, if the noise were all white.">
+<p><strong>Your turn.</strong> The rule's prediction for a one-hour average, in ppm:</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(930 / \sqrt{30} = 930 / 5.48 = 170\)</span> ppm.</p>
+<p>The rule: <strong>noise of an average is <span class="arithmatex">\(\sigma / \sqrt{N}\)</span></strong>, but only for the random part. The real one-hour noise of this day would come out higher, because of the slow drift.</p>
+</details>
+</div>
+<h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
+<p>Every light curve scatters, even when nothing happens; we measure the scatter with the standard deviation <span class="arithmatex">\(\sigma\)</span>. Averaging <span class="arithmatex">\(N\)</span> points shrinks random noise by <span class="arithmatex">\(\sqrt{N}\)</span>, which is how tiny dips become visible. Slow, shared wobbles (red noise) do not average away, so they must be removed first.</p>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="200" data-hints="{&quot;40&quot;:&quot;Divide by the square root of 25 (that is 5), not by 25.&quot;,&quot;1000&quot;:&quot;Averaging helps: divide by the square root of N.&quot;}" data-tol="0.01" data-unit="ppm" data-why="The square root of 25 is 5, and 1,000 / 5 = 200 ppm.">
+<p><strong>1.</strong> The noise of one point is 1,000 ppm. What is the noise of an average of 25 points, if the noise is all random?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(\sqrt{25} = 5\)</span>, so <span class="arithmatex">\(1{,}000 / 5 = 200\)</span> ppm.</p>
+</details>
+</div>
+<div class="tw-prob" data-abs="0" data-answer="16" data-hints="{&quot;4&quot;:&quot;Averaging 4 points only halves the noise. You need it four times smaller.&quot;,&quot;8&quot;:&quot;Noise falls with the square root: to divide it by 4 you need 4 squared points.&quot;}" data-why="To shrink noise 4 times you need the square root of N to be 4, so N = 16.">
+<p><strong>2.</strong> How many points must you average to bring 1,200 ppm of random noise down to 300 ppm?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>You need the noise 4 times smaller (<span class="arithmatex">\(1{,}200 / 300 = 4\)</span>). Noise falls as <span class="arithmatex">\(\sqrt{N}\)</span>, so <span class="arithmatex">\(\sqrt{N} = 4\)</span> and <span class="arithmatex">\(N = 4^2 = 16\)</span> points.</p>
+<p>Notice the price: halving the noise costs four times the points. That is why faint signals need so much data.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="1414|1633" data-tol="0.02" data-unit="ppm" data-why="Average 1.000; squares of the differences 0.000004, 0.000004, 0, 0; their average 0.000002; square root 0.001414 = 1,414 ppm.">
+<p><strong>3.</strong> Four points: 0.998, 1.002, 1.000, 1.000. What is their standard deviation, in ppm? (Divide by <span class="arithmatex">\(N\)</span>.)</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Average: <span class="arithmatex">\(4.000 / 4 = 1.000\)</span>. Differences: <span class="arithmatex">\(-0.002, +0.002, 0, 0\)</span>. Squares: <span class="arithmatex">\(0.000004, 0.000004, 0, 0\)</span>, sum <span class="arithmatex">\(0.000008\)</span>. Divide by 4: <span class="arithmatex">\(0.000002\)</span>. Square root: <span class="arithmatex">\(0.001414\)</span>, which is 1,414 ppm.</p>
+<p>(Dividing by <span class="arithmatex">\(N - 1 = 3\)</span> instead gives 1,633 ppm. Both are accepted here.)</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="red" data-why="Slow, shared wobbles are red noise; averaging neighbouring points cannot cancel them.">
+<p><strong>4.</strong> A light curve drifts slowly up and down over several hours. Averaging neighbouring points barely reduces it. In one word, what colour of noise is it?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><strong>Red.</strong> Red noise is slow and shared by neighbouring points, so averaging them together cannot cancel it. White noise changes randomly from one point to the next, and averaging does cancel it.</p>
+</details>
+</div>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Noise numbers: one quiet day (720 points) of TIC 172900988, TESS sector 44, 2-minute light curve; measured by our script <code>book/tools/lesson_plots.py</code> and a check script run on 15 Nov 2026 (930 ppm per point; 362 ppm for 30-minute averages, 266 ppm after removing a straight line).</li>
+<li>Red noise and planet searches: Pont, Zucker and Queloz 2006, "The effect of red noise on planetary transit detection" (<a href="https://arxiv.org/abs/astro-ph/0608597">arXiv astro-ph/0608597</a>): survey yield predictions "assume uncorrelated noise", and red noise effects "cannot be neglected in typical ground-based surveys".</li>
+</ul>
+<nav aria-label="Lessons" class="tw-pn">
+<p><a class="tw-prev" href="../l2-percent-and-ppm/" rel="prev"><small>Previous</small> 1.2 Percent and parts per million</a></p>
+<p><a class="tw-next" href="../../"><small>Back to</small> Twinlight home</a></p>
+</nav>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 3.0.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/eyes-flow.js"></script>
+      
+        <script src="../../../assets/eyes-core.js"></script>
+      
+        <script src="../../../assets/eyes-strength.js"></script>
+      
+        <script src="../../../assets/eyes-hard.js"></script>
+      
+        <script src="../../../assets/eyes-feedback.js"></script>
+      
+        <script src="../../../assets/eyes-cloud.js"></script>
+      
+        <script src="../../../assets/rehearsal.js"></script>
+      
+        <script src="../../../assets/demos.js"></script>
+      
+        <script src="../../../assets/watch.js"></script>
+      
+        <script src="../../../assets/book3.js"></script>
+      
+    
+  <script src="../../../assets/book.js" data-sw="../../../sw.js"></script>
+  
+  <script defer src="../../../assets/katex/katex.min.js"></script>
+  <script defer src="../../../assets/katex/auto-render.min.js"></script>
+  <script defer src="../../../assets/learn.js"></script>
+  
+
+  </body>
+</html>

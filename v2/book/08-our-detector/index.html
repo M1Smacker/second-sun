@@ -1,0 +1,3360 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/book/08-our-detector/">
+      
+      
+        <link rel="prev" href="../07-noise-and-statistics/">
+      
+      
+        <link rel="next" href="../09-fake-planets/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>8. Our detector - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../assets/shape.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <meta name="theme-color" content="#0c1018">
+  <link rel="apple-touch-icon" href="../../assets/icon-180.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-our-detector-finding-a-dip-in-the-noise" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.9 8.9-1.7 1-4-6.9 1.7-1zm-12.1-1 3 5.2 6.1-3.5-3-5.2zm1.6 4.8-2-3.5-4.3 2.5 2 3.5zm-9.3 1.9 1 1.7 2.6-1.5-1-1.7zm10-.6-.3-.4-4.3 2.5.3.4c.2.3.5.6.8.8L7 22h2l1.4-4.3h.1L12 22h2l-1.9-5.6c.5-.7.5-1.6 0-2.4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8. Our detector
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../start/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Read
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../progress/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hunt
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/for-astronomers/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.9 8.9-1.7 1-4-6.9 1.7-1zm-12.1-1 3 5.2 6.1-3.5-3-5.2zm1.6 4.8-2-3.5-4.3 2.5 2 3.5zm-9.3 1.9 1 1.7 2.6-1.5-1-1.7zm10-.6-.3-.4-4.3 2.5.3.4c.2.3.5.6.8.8L7 22h2l1.4-4.3h.1L12 22h2l-1.9-5.6c.5-.7.5-1.6 0-2.4"/></svg>
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../start/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Read
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Read
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The learning track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/how-to-read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to read this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/story-so-far/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The story so far
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/first-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The first real search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/journey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the project unfolded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 · The sky and the data
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_7" id="__nav_1_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 · The sky and the data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-stars-names-missions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Stars, names and missions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-light-curves/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Light curves
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-our-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Our data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 · Two suns
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_8" id="__nav_1_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 · Two suns
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-two-suns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Two suns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-wandering-transits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Wandering transits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-orbits-three-body/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Orbits and the three-body problem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 · Finding dips
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_9" id="__nav_1_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 · Finding dips
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-noise-and-statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Noise and statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Our detector
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Our detector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-the-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 The intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-the-scientific-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 The scientific meaning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-the-technical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 The technical explanation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-our-implementation-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Our implementation (the code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-worked-example-toi-1338-sector-98" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Worked example: TOI-1338, sector 98
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.5 Worked example: TOI-1338, sector 98">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-good-is-it-three-honest-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How good is it? Three honest tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-fourth-test-can-we-clean-up-the-fakes-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fourth test: can we clean up the fakes automatically?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-fifth-test-the-same-dip-in-a-second-independent-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fifth test: the same dip in a second, independent product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-seventh-test-every-star-every-sector-the-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: every star, every sector (the audit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-eighth-test-a-first-trial-search-on-50-stars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An eighth test: a first trial search on 50 stars
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A sixth test: fake planets that move like real ones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: does the quality filter, or the kind of flux, matter?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags-tiers-and-frozen-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags, tiers and frozen settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86-what-this-lets-us-conclude-and-what-it-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 What this lets us conclude, and what it doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87-check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 Check your understanding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-fake-planets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Fake planets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 · Is it real?
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_10" id="__nav_1_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 · Is it real?
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-vetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Vetting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-pixels-and-neighbours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Pixels and neighbours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part5/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 · The professionals' tool
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_11" id="__nav_1_11_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 · The professionals' tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-stanley/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. STANLEY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../parts/part6/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 · How the project runs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_12" id="__nav_1_12_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 · How the project runs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-your-workshop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Your workshop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-credit-and-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Credit and publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-mistakes-as-lessons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Our mistakes, as lessons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hunt
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hunt
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Field notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Field notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-the-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 The intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-the-scientific-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 The scientific meaning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-the-technical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 The technical explanation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-our-implementation-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Our implementation (the code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-worked-example-toi-1338-sector-98" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Worked example: TOI-1338, sector 98
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.5 Worked example: TOI-1338, sector 98">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-good-is-it-three-honest-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How good is it? Three honest tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-fourth-test-can-we-clean-up-the-fakes-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fourth test: can we clean up the fakes automatically?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-fifth-test-the-same-dip-in-a-second-independent-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fifth test: the same dip in a second, independent product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-seventh-test-every-star-every-sector-the-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: every star, every sector (the audit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-eighth-test-a-first-trial-search-on-50-stars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An eighth test: a first trial search on 50 stars
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-sixth-test-fake-planets-that-move-like-real-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A sixth test: fake planets that move like real ones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A seventh test: does the quality filter, or the kind of flux, matter?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags-tiers-and-frozen-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags, tiers and frozen settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86-what-this-lets-us-conclude-and-what-it-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 What this lets us conclude, and what it doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87-check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 Check your understanding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../start/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Read
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../parts/part3/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Part 3 · Finding dips
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<nav class="ss-rail" aria-label="Where you are and the learning track"><div class="ss-rail__in"><p class="ss-rail__lab">Where you are</p><p class="ss-rail__here"><b>Chapter 8</b> · Our detector<small>Level 3 · step 5 of 15 on the track</small></p><p class="ss-rail__lab">The track: 7 levels, in learning order</p><ol class="ss-rail__track"><li><a class="ss-rail__lv" href="../../learn/#l0"><span class="tag">L0</span>What a light curve is</a><em>Chapters <a href="../../book/01-stars-names-missions/">1</a>, <a href="../../book/02-light-curves/">2</a>, <a href="../../book/03-our-data/">3</a></em></li><li><a class="ss-rail__lv" href="../../learn/#l1"><span class="tag">L1</span>How big is the dip?</a><em>The Level 1 lesson</em></li><li><a class="ss-rail__lv" href="../../learn/#l2"><span class="tag">L2</span>From dip depth back to size</a><em>Parts of chapters 2 and 11</em></li><li class="cur"><a class="ss-rail__lv" href="../../learn/#l3"><span class="tag">L3</span>Bright stars, faint stars, noise</a><ul><li><a href="../../book/07-noise-and-statistics/">7 Noise and statistics</a></li><li><a href="../../book/08-our-detector/" aria-current="page">8 Our detector</a></li></ul></li><li><a class="ss-rail__lv" href="../../learn/#l4"><span class="tag">L4</span>Orbits, and why our dips wander</a><em>Chapters <a href="../../book/04-two-suns/">4</a>, <a href="../../book/05-wandering-transits/">5</a>, <a href="../../book/06-orbits-three-body/">6</a></em></li><li><a class="ss-rail__lv" href="../../learn/#l5"><span class="tag">L5</span>The fakes</a><em>Chapters <a href="../../book/09-fake-planets/">9</a>, <a href="../../book/10-vetting/">10</a></em></li><li><a class="ss-rail__lv" href="../../learn/#l6"><span class="tag">L6</span>Two-key vetting</a><em>Chapters <a href="../../book/11-pixels-and-neighbours/">11</a>, <a href="../../book/12-stanley/">12</a></em></li><li><a class="ss-rail__lv" href="../../learn/#after"><span class="tag">+</span>Running the project</a><em>Chapters <a href="../../book/13-your-workshop/">13</a>, <a href="../../book/14-credit-and-publishing/">14</a>, <a href="../../book/15-mistakes-as-lessons/">15</a></em></li></ol><p class="ss-rail__lab">The 15 chapters, by fixed number</p><div class="ss-rail__nums"><a href="../../book/01-stars-names-missions/" title="1. Stars, names and missions">1</a><a href="../../book/02-light-curves/" title="2. Light curves">2</a><a href="../../book/03-our-data/" title="3. Our data">3</a><a href="../../book/04-two-suns/" title="4. Two suns">4</a><a href="../../book/05-wandering-transits/" title="5. Wandering transits">5</a><a href="../../book/06-orbits-three-body/" title="6. Orbits and the three-body problem">6</a><a href="../../book/07-noise-and-statistics/" title="7. Noise and statistics">7</a><a href="../../book/08-our-detector/" title="8. Our detector" aria-current="page">8</a><a href="../../book/09-fake-planets/" title="9. Fake planets">9</a><a href="../../book/10-vetting/" title="10. Vetting">10</a><a href="../../book/11-pixels-and-neighbours/" title="11. Pixels and neighbours">11</a><a href="../../book/12-stanley/" title="12. STANLEY">12</a><a href="../../book/13-your-workshop/" title="13. Your workshop">13</a><a href="../../book/14-credit-and-publishing/" title="14. Credit and publishing">14</a><a href="../../book/15-mistakes-as-lessons/" title="15. Our mistakes, as lessons">15</a></div><p class="ss-rail__small">Numbers are topics and never change. The track decides which to read next, so 7 comes before 4.</p><p class="ss-rail__lab">In this chapter</p><ol class="ss-rail__toc"></ol></div></nav>
+
+<nav class="ss-strip" aria-label="Where you are on the learning path"><p><a href="../../">Map</a> · <a href="../../learn/#l3">Level 3: Bright stars, faint stars, noise</a> · Step 5 of 15 on your path · Chapter 8, Part 3</p><ol><li class=""><a data-ch="1" href="../../book/01-stars-names-missions/" aria-label="Chapter 1: Stars, names and missions"></a></li><li class=""><a data-ch="2" href="../../book/02-light-curves/" aria-label="Chapter 2: Light curves"></a></li><li class=""><a data-ch="3" href="../../book/03-our-data/" aria-label="Chapter 3: Our data"></a></li><li class="ss-gap"><a data-ch="7" href="../../book/07-noise-and-statistics/" aria-label="Chapter 7: Noise and statistics"></a></li><li class=""><a data-ch="8" href="../../book/08-our-detector/" aria-label="Chapter 8: Our detector" aria-current="page"></a></li><li class="ss-gap"><a data-ch="4" href="../../book/04-two-suns/" aria-label="Chapter 4: Two suns"></a></li><li class=""><a data-ch="5" href="../../book/05-wandering-transits/" aria-label="Chapter 5: Wandering transits"></a></li><li class=""><a data-ch="6" href="../../book/06-orbits-three-body/" aria-label="Chapter 6: Orbits and the three-body problem"></a></li><li class="ss-gap"><a data-ch="9" href="../../book/09-fake-planets/" aria-label="Chapter 9: Fake planets"></a></li><li class=""><a data-ch="10" href="../../book/10-vetting/" aria-label="Chapter 10: Vetting"></a></li><li class="ss-gap"><a data-ch="11" href="../../book/11-pixels-and-neighbours/" aria-label="Chapter 11: Pixels and neighbours"></a></li><li class=""><a data-ch="12" href="../../book/12-stanley/" aria-label="Chapter 12: STANLEY"></a></li><li class="ss-gap"><a data-ch="13" href="../../book/13-your-workshop/" aria-label="Chapter 13: Your workshop"></a></li><li class=""><a data-ch="14" href="../../book/14-credit-and-publishing/" aria-label="Chapter 14: Credit and publishing"></a></li><li class=""><a data-ch="15" href="../../book/15-mistakes-as-lessons/" aria-label="Chapter 15: Our mistakes, as lessons"></a></li></ol></nav>
+
+<h1 id="8-our-detector-finding-a-dip-in-the-noise">8. Our detector: finding a dip in the noise<a class="headerlink" href="#8-our-detector-finding-a-dip-in-the-noise" title="Permanent link">&para;</a></h1>
+<p class="ss-meta">Chapter 8 · about 30 min · Maths: averages, square roots, ratios · Code: <code>pipeline/detect_v2.py</code></p>
+
+<div class="admonition warning">
+<p class="admonition-title">Correction, 10 Nov 2026</p>
+<p>An audit found that our fake-planet tests added the fake dips after the step that hides eclipses, or used a mask built from clean light. A real planet's dip is already in the light when that step runs, and the step can delete it. With the fakes put in first, the old search lost 4 to 6 of every 10 strong dips, and the loss grows as the binary gets slower (most lost dips are in 5 to 14 day binaries, because most of our data are there). So every "found X percent", "smallest planet" and "floor" number on this page is an upper limit. "No excess of real dips over noise" is not changed. <a href="../../field-notes/2026-11-10/">The full story</a>.</p>
+</div>
+<div class="ss-listen" hidden role="group" aria-label="Read this chapter aloud"><button type="button" data-say="play">Listen</button><button type="button" data-say="pause" hidden>Pause</button><button type="button" data-say="stop" hidden>Stop</button><label>Speed <select data-say-rate><option value="0.85">Slow</option><option value="1" selected>Normal</option><option value="1.2">Fast</option></select></label><span>Uses the voice on your own device.</span></div>
+
+<figure class="ss-dg"><svg viewBox="0 0 420 150" role="img" aria-label="Slide a box along the light curve; the score peaks at the dip."><title>Slide a box along the light curve; the score peaks at the dip.</title><path d="M20 50 L178.0 50 L180.0 64 L240.0 64 L242.0 50 L400 50" class="l"/><rect x="170" y="36" width="80" height="44" rx="3" class="dipbox"/><text x="210" y="98" text-anchor="middle" class="sm">sliding box</text><line x1="20" y1="130" x2="400" y2="130" class="g"/><path d="M20 130 L150 130 L210 106 L270 130 L400 130" class="a"/><text x="30" y="118" text-anchor="start" class="sm">score</text></svg><figcaption>Slide a box along the light curve; the score peaks at the dip.</figcaption></figure>
+
+<div class="admonition abstract">
+<p class="admonition-title">1-minute summary</p>
+<ul>
+<li><strong>What:</strong> how our program scans a light curve and flags dips, with honest tests of how well it works.</li>
+<li><strong>Why:</strong> this is the heart of the hunt, and a search that finds nothing only means something if we know what it can see.</li>
+<li><strong>You will be able to:</strong> explain what the detector finds, what it misses, and why.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">The story</p>
+<p>A 2024 paper had predicted that TOI-1338 b would cross on 16 December 2025. Our detector found a dip that same night, about an hour later than predicted <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-011" title="VERIFIED · Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test · checked 2026-10-20" data-cid="F-011" data-claim="Wang and Liu (2024) predicted a TOI-1338 b transit on 2025-12-16 at 02:13 UTC lasting 6.31 hours; our search found it on that night, about one hour later" data-src="Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test" data-checked="2026-10-20">VERIFIED</a>. Across all 8 sectors with a known crossing, though, it found the planet in only 4 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-014" title="VERIFIED · Second Sun overnight test (research/overnight-science/report.md) · checked 2026-10-20" data-cid="F-014" data-claim="Our detector v2 found the known planet TOI-1338 b in 4 of the 8 sectors with data at the transit; missed transits had SNR 3.7 to 6.5" data-src="Second Sun overnight test (research/overnight-science/report.md)" data-checked="2026-10-20">VERIFIED</a>. Half is an honest score, more honest than a perfect run on easy data. This chapter is about how the detector works, and about the other half it missed.</p>
+</div>
+<div class="admonition plain">
+<p class="admonition-title">In plain words</p>
+<p>This program scans a <a href="../../glossary/#light-curve">light curve</a> and points at dips that might be planets. It finds the known planet TOI-1338 b in half the <a href="../../glossary/#sector">sectors</a> where it crossed <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-014" title="VERIFIED · Second Sun overnight test (research/overnight-science/report.md) · checked 2026-10-20" data-cid="F-014" data-claim="Our detector v2 found the known planet TOI-1338 b in 4 of the 8 sectors with data at the transit; missed transits had SNR 3.7 to 6.5" data-src="Second Sun overnight test (research/overnight-science/report.md)" data-checked="2026-10-20">VERIFIED</a>, and it catches fake planets about 6 Earth sizes and up <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-015" title="LIKELY · Second Sun overnight injection test · checked 2026-10-20" data-cid="F-015" data-claim="On TOI-1338 sector 98, detector v2 finds injected 6.4-hour transits of 6 Earth radii 5 times in 7 and of 7 Earth radii every time; 5 Earth radii and smaller are missed (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun overnight injection test" data-checked="2026-10-20">LIKELY</a>.</p>
+</div>
+<p><strong>What this chapter answers:</strong> how does our search decide "this might be a planet", and how good is it?</p>
+<h2 id="81-the-intuition">8.1 The intuition<a class="headerlink" href="#81-the-intuition" title="Permanent link">&para;</a></h2>
+<p>You're listening for a quiet whistle in a noisy room. A single loud clap could fool you, so you don't react to one instant. Instead you ask: "is it consistently a bit different for a few seconds?" A long, steady change is easier to pick out than a single blip, even if it's quiet.</p>
+<p>A <a href="../../glossary/#transit">transit</a> is that steady change: a small dip lasting hours. Our detector averages the light over a few hours at a time and asks whether any stretch is unusually dim compared with how much stretches normally wobble.</p>
+<h2 id="82-the-scientific-meaning">8.2 The scientific meaning<a class="headerlink" href="#82-the-scientific-meaning" title="Permanent link">&para;</a></h2>
+<p>The method is a <strong><a href="../../glossary/#matched-filter">matched filter</a></strong> with a <strong>box</strong> shape: we slide a box-shaped template of a given length along the data and measure how dim each stretch is. The key number is the <strong>signal-to-noise ratio (<a href="../../glossary/#snr">SNR</a>)</strong>:</p>
+<div class="ss-eq" data-eq="Eq. 8.1 · signal-to-noise ratio">
+<p>SNR = (how much dimmer this stretch is) ÷ (how much stretches of this length normally vary)</p>
+</div>
+<p>An SNR of 7 means "seven times bigger than a normal wobble". We use 7 as the bar, close to NASA's 7.1 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-017" title="VERIFIED · Guerrero et al. 2021, TOI catalogue (arXiv:2103.12538, full text opened 6 Nov 2026): TCEs need &#x27;a Multiple Event Statistic (MES) in excess of 7.1, a passing grade on a series of transit consistency tests, and at least two transits&#x27; | Twicken et al. 2018 (arXiv:1803.04526, full text) for the 7.1 sigma threshold, chosen to give about one statistical false alarm over the four-year Kepler search | the earlier wording said &#x27;flags a planet&#x27;; narrowed to the threshold crossing event · checked 2026-11-06" data-cid="F-017" data-claim="NASA&#x27;s SPOC pipeline for TESS only designates a threshold crossing event (the first step toward a candidate) for a signal with at least two transits and a detection statistic (MES) above 7.1" data-src="Guerrero et al. 2021, TOI catalogue (arXiv:2103.12538, full text opened 6 Nov 2026): TCEs need &#x27;a Multiple Event Statistic (MES) in excess of 7.1, a passing grade on a series of transit consistency tests, and at least two transits&#x27; | Twicken et al. 2018 (arXiv:1803.04526, full text) for the 7.1 sigma threshold, chosen to give about one statistical false alarm over the four-year Kepler search | the earlier wording said &#x27;flags a planet&#x27;; narrowed to the threshold crossing event" data-checked="2026-11-06">VERIFIED</a>. But a bar only means something if we <strong>measure</strong> how often noise alone crosses it. That's why we also run the search on flipped data (section 8.5).</p>
+<h2 id="83-the-technical-explanation">8.3 The technical explanation<a class="headerlink" href="#83-the-technical-explanation" title="Permanent link">&para;</a></h2>
+<p>The steps, with every symbol:</p>
+<ol>
+<li><strong>Mask the eclipses.</strong> The stars eclipse each other every binary period <em>P</em><sub>bin</sub>. We use the known <em>P</em><sub>bin</sub> (14.6084 days for TOI-1338) and find where in that cycle the deep eclipse falls in each sector. Data within 1.5 eclipse-lengths of either eclipse is set aside. A star with more than one catalogue period (two of ours have) gets every period masked, one after the other.</li>
+<li><strong>Flatten (detrend).</strong> Stars and the spacecraft cause slow drifts. We fit a smooth curve with a moving window of <strong>2 days</strong> (a "biweight", which ignores outliers) and divide it out. The window must be much longer than a transit, or the flattening eats the dip. v1 used 1 day, which was too short for 6-hour dips.</li>
+<li><strong>Bin.</strong> Average the 2-minute points into <strong>10-minute bins</strong>. When the data itself is spaced wider (30 minutes in <a href="../../glossary/#tess">TESS</a>'s first two years and in <a href="../../glossary/#kepler">Kepler</a>), each bin is one data point wide instead.</li>
+<li><strong>Slide boxes.</strong> For each length <em>D</em> in 3, 4, 5, 6.5, 8, 10, 12 and 15 hours, compute the average brightness <em>m</em> of every <em>D</em>-long stretch.</li>
+<li><strong>Score.</strong> For each length, SNR = (<em>median</em> − <em>m</em>) ÷ <em>σ</em><sub>D</sub>, where <em>σ</em><sub>D</sub> is the <strong><a href="../../glossary/#robust-spread">robust spread</a> of all the box averages of that length</strong> (1.4826 × the median absolute deviation, a version of the standard deviation that isn't thrown off by a few odd values).</li>
+<li><strong>Keep peaks</strong> with SNR ≥ 7 and merge overlapping ones into one event.</li>
+</ol>
+<p>Why step 5 measures the spread from the box averages themselves: if the noise were purely random ("white"), averaging <em>N</em> points would shrink it by √<em>N</em>. Real data has slow wiggles ("<a href="../../glossary/#red-noise">red noise</a>") that don't average away. Measuring the spread of real box averages includes those wiggles, so the SNR stays honest.</p>
+<h2 id="84-our-implementation-the-code">8.4 Our implementation (the code)<a class="headerlink" href="#84-our-implementation-the-code" title="Permanent link">&para;</a></h2>
+<p>All of this is in <code>pipeline/detect_v2.py</code>, about 130 lines. The important functions:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Input</th>
+<th>Output</th>
+<th>What can go wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>load(path)</code></td>
+<td>a SPOC or QLP light-curve file</td>
+<td>time <code>t</code>, flux <code>f</code>, number of gaps filled (and, if asked, which column it used)</td>
+<td>missing PDCSAP data (filled from SAP); QLP needs SPOC's good stretches</td>
+</tr>
+<tr>
+<td><code>eclipse_mask(t, f, P, ...)</code></td>
+<td>data + binary period and eclipse lengths</td>
+<td>which points to keep</td>
+<td>wrong period or eclipse lengths leave eclipse edges in</td>
+</tr>
+<tr>
+<td><code>detrend(t, f, window_d=2.0)</code></td>
+<td>kept data</td>
+<td>flattened flux</td>
+<td>gaps create edge effects (Figure 8.2)</td>
+</tr>
+<tr>
+<td><code>box_scores(bt, bf, dur_h)</code></td>
+<td>10-min bins, one length</td>
+<td>box centres, SNR, box averages</td>
+<td>too few bins → no score</td>
+</tr>
+<tr>
+<td><code>find_events(t, f, thr=7)</code></td>
+<td>kept data</td>
+<td>list of events (time, length, SNR, depth)</td>
+<td>noise bumps above 7 (false alarms)</td>
+</tr>
+</tbody>
+</table>
+<p>Running <code>python detect_v2.py</code> runs a <strong>self-check</strong>: 27 days of pure random noise must give no event, and a hidden 6-hour, 700 <a href="../../glossary/#ppm">ppm</a> dip must be found at the right time. Both pass (VERIFIED, ran on 2026-10-20).</p>
+<h2 id="85-worked-example-toi-1338-sector-98">8.5 Worked example: TOI-1338, sector 98<a class="headerlink" href="#85-worked-example-toi-1338-sector-98" title="Permanent link">&para;</a></h2>
+<figure>
+<p><img alt="TOI-1338 sector 98 light curve: deep eclipses every 14.6 days, and the planet transit marked near day 4025.6" loading="lazy" src="../img/fig4-1-s98-raw.png" width="100%" /></p>
+<figcaption>Figure 8.1. The raw light curve. The black streaks are the stars eclipsing each other (masked before searching). The amber band is TOI-1338 b's transit on 16 Dec 2025. Data: NASA TESS via MAST.</figcaption>
+</figure>
+<figure>
+<p><img alt="Top: flattened brightness in 10-minute bins. Bottom: box SNR for 6.5-hour boxes, crossing the threshold of 7 only at the planet transit" loading="lazy" src="../img/fig4-2-s98-snr.png" width="100%" /></p>
+<figcaption>Figure 8.2. After masking and flattening (top), the 6.5-hour box score (bottom) crosses 7 only at the planet. Look at the sharp swings beside gaps (near days 4024.5 and 4038.5): edges of gaps cause fake signals, one of our known weaknesses.</figcaption>
+</figure>
+<p>The search finds the transit with SNR <strong>9.0</strong>, <a href="../../glossary/#depth">depth</a> about <strong>2,100 ppm</strong>, about <strong>1.1 hours</strong> after Wang and Liu's predicted time <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-011" title="VERIFIED · Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test · checked 2026-10-20" data-cid="F-011" data-claim="Wang and Liu (2024) predicted a TOI-1338 b transit on 2025-12-16 at 02:13 UTC lasting 6.31 hours; our search found it on that night, about one hour later" data-src="Wang &amp; Liu 2024 Table 3; Second Sun burn 1 and overnight v2 test" data-checked="2026-10-20">VERIFIED</a>.</p>
+<h3 id="how-good-is-it-three-honest-tests">How good is it? Three honest tests<a class="headerlink" href="#how-good-is-it-three-honest-tests" title="Permanent link">&para;</a></h3>
+<p><strong>1. Re-finding the known planet.</strong> TOI-1338 b crossed in 8 sectors where we have data at the right moment. v2 finds it in <strong>4</strong> <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-014" title="VERIFIED · Second Sun overnight test (research/overnight-science/report.md) · checked 2026-10-20" data-cid="F-014" data-claim="Our detector v2 found the known planet TOI-1338 b in 4 of the 8 sectors with data at the transit; missed transits had SNR 3.7 to 6.5" data-src="Second Sun overnight test (research/overnight-science/report.md)" data-checked="2026-10-20">VERIFIED</a>. In the 4 it misses, the dip is only 3.7 to 6.5 times the noise: below our bar.</p>
+<p><strong>2. Fake planets.</strong> We hid computer-made transits of known sizes in sector 98 and ran the search <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-015" title="LIKELY · Second Sun overnight injection test · checked 2026-10-20" data-cid="F-015" data-claim="On TOI-1338 sector 98, detector v2 finds injected 6.4-hour transits of 6 Earth radii 5 times in 7 and of 7 Earth radii every time; 5 Earth radii and smaller are missed (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun overnight injection test" data-checked="2026-10-20">LIKELY</a>:</p>
+<figure>
+<p><img alt="Bar chart: v1 finds nothing below 7 Earth radii; v2 finds 6 Earth radii 5 times in 7 and everything at 7 and 8" loading="lazy" src="../img/fig4-3-injection.png" width="100%" /></p>
+<figcaption>Figure 8.3. Fake planets found, by size. v2 (amber) reaches about 6 Earth radii; neither version finds 5 or smaller in this star.</figcaption>
+</figure>
+<p><strong>3. <a href="../../glossary/#false-alarm">False alarms</a>.</strong> Turn the light curve upside down (2 − flux). Now any real dip becomes a bump, so anything the search finds is <strong>noise or spacecraft effects</strong>. At SNR 7, v2 still finds <strong>6 fake events in 10 sectors</strong>, some as strong as SNR 12.6 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-016" title="VERIFIED · Second Sun overnight false-alarm test · checked 2026-10-20" data-cid="F-016" data-claim="Run on upside-down (flipped) TOI-1338 light curves, detector v2 at SNR 7 still finds 6 fake dips in 10 sectors, with peaks up to SNR 12.6" data-src="Second Sun overnight false-alarm test" data-checked="2026-10-20">VERIFIED</a>. That's why we can't just lower the bar.</p>
+<h3 id="a-fourth-test-can-we-clean-up-the-fakes-automatically">A fourth test: can we clean up the fakes automatically?<a class="headerlink" href="#a-fourth-test-can-we-clean-up-the-fakes-automatically" title="Permanent link">&para;</a></h3>
+<p>Many fake dips sit next to a <strong>data gap</strong> (where the spacecraft paused) or a <strong><a href="../../glossary/#momentum-dump">momentum dump</a></strong> (a short thruster firing that jolts the pointing). So I tried rejecting any dip close to one. It removed 4 of the 6 fakes, but it also threw away <strong>2 of the 4 real crossings</strong> of TOI-1338 b: one sat 0.17 days from a thruster firing, the other 0.09 days from a gap. On this star, real and fake dips sit at the same kinds of distances, so no cut-off separates them.</p>
+<p>So the rule became gentler. Closeness to a gap or a firing is now a <strong>warning <a href="../../glossary/#flag">flag</a></strong> shown to a human, not an automatic rejection. Only a dip that also appears in the flipped data is thrown out. Result: all 4 real crossings kept, and 4 of the 6 fakes carry a warning (<code>pipeline/veto_test.py</code>, VERIFIED). The lesson: with one dip at a time, you can't clean this data without losing planets. You need several dips that fit <strong>one orbit</strong>.</p>
+<h3 id="a-fifth-test-the-same-dip-in-a-second-independent-product">A fifth test: the same dip in a second, independent product<a class="headerlink" href="#a-fifth-test-the-same-dip-in-a-second-independent-product" title="Permanent link">&para;</a></h3>
+<p>Half of your G1 stars only have <strong><a href="../../glossary/#qlp">QLP</a></strong> light curves (made by MIT from TESS's full-frame pictures, Chapter 3). So I ran the search on QLP's version of sector 98.</p>
+<ul>
+<li><strong>First try: a mess.</strong> QLP's raw light had fake dips up to <strong>44 times the noise</strong>, and QLP's own cleaned version shrank the planet's 2,400 ppm dip to about 700 ppm (its cleaning eats long dips). The planet was missed both ways.</li>
+<li><strong>The clue:</strong> every strong fake sat inside stretches of time that NASA's <a href="../../glossary/#spoc">SPOC</a> pipeline <strong>throws away</strong> (<a href="../../glossary/#scattered-light">scattered light</a> that comes back at the same point in each TESS orbit). QLP keeps those stretches.</li>
+<li><strong>The fix:</strong> use QLP's flux that keeps long dips (<code>sys_rm_flux</code>) and keep only SPOC's good stretches. Result: <strong>one event, the planet</strong>, at SNR 10.1 and 2,275 ppm, within about 9 minutes of where SPOC put it. Fakes dropped from 9 to 2.</li>
+</ul>
+<p>That's rule C8 from Chapter 10 in action: the same dip, at the same time, in two products made by different teams. VERIFIED for this one sector; borrowing SPOC's good stretches for stars that have no SPOC file is still untested.</p>
+<p><strong>Found later by an outside review (23 October):</strong> two holes this test could not see. Before sector 56, QLP has no <code>sys_rm_flux</code>, and the loader quietly took the cleaned column that eats long dips; and data spaced 30 minutes apart filled only one 10-minute bin in three, so every box failed the coverage rule and the search returned <strong>nothing</strong>, with no error. Both are fixed, with checks that hide a dip at five spacings and in our real files (<code>pipeline/test_detect_v2_paths.py</code>, VERIFIED). Old QLP sectors now keep their dips, and across 650 comparisons their raw light is only about 1.2 times noisier than SPOC's (I first took one bad Kepler-16 sector, six times noisier, as typical). The lesson: a search that silently finds nothing looks exactly like a quiet star.</p>
+<h3 id="a-seventh-test-every-star-every-sector-the-audit">A seventh test: every star, every sector (the audit)<a class="headerlink" href="#a-seventh-test-every-star-every-sector-the-audit" title="Permanent link">&para;</a></h3>
+<p>Before searching anything, we ran the detector over all 8,100 light-curve files of all 549 stars, hiding one standard dip (8 hours, 0.3% deep) in each star-sector and checking that it came back. Nothing in it is a search.</p>
+<ul>
+<li><strong>Noise:</strong> the box-averaged noise is a median of <strong>2.5 times</strong> what a perfectly quiet camera would give (quartiles 1.7 and 4.0). The first seven stars said 1.8; they were brighter than most.</li>
+<li><strong>What it means for planet size:</strong> in one 6.5-hour crossing, the smallest planet we could see is below 10 Earth radii for 143 of the 549 stars and below 15 for 269. For the other 239 stars no sector gets below 15, which is bigger than any known two-sun planet (the largest is about 12). The hidden dip came back in 73% of sectors for stars brighter than <a href="../../glossary/#magnitude">magnitude</a> 11, but in only 8% at magnitude 12 to 13.</li>
+<li><strong>False alarms:</strong> upside down, the search made 869 fake events at SNR 7 (0.17 per star-sector). 41% of them fell at moments when three or more other stars also showed one, which points to the spacecraft; the same-moment filter flags those for a person. About 520 fakes would still be left at our bar of 7.</li>
+</ul>
+<p>These are VERIFIED on the audit files (<code>research/audit-2026-10-23/summary.txt</code>), with one standard dip rather than realistic wandering crossings, so they are best cases.</p>
+<h3 id="an-eighth-test-a-first-trial-search-on-50-stars">An eighth test: a first trial search on 50 stars<a class="headerlink" href="#an-eighth-test-a-first-trial-search-on-50-stars" title="Permanent link">&para;</a></h3>
+<p>We then ran the whole detector, for the first time, on 50 real stars (the 5 known planet hosts plus 45 spread by brightness), looking at the real light and at the upside-down light, in every data product (Chapter 3).</p>
+<ul>
+<li><strong>Fewer real dips than fake ones:</strong> 0.08 real events per star-sector against 0.18 upside-down, so the upside-down count is a high estimate of false alarms.</li>
+<li><strong>Four filters, each doing a different job:</strong> a flag near gaps and thruster firings (two thirds of events sit there; flagged, not deleted), a flag when other stars dip at the same moment, a check that a second data product shows the same dip (keeps 91% of strong dips, removes about half the false alarms), and a check that the event is not on the star's own eclipse (it caught two of five leads on missed eclipses). Together they cut 36 real events to 4.</li>
+<li><strong>Projected to all 549 stars:</strong> about 60 events for a person, plus a lower <a href="../../glossary/#tier">tier</a> of about 350 flagged ones. Three leads survived; they are not <a href="../../glossary/#candidate">candidates</a>, and the stars and times stay on this computer (Chapter 14).</li>
+</ul>
+<p>Everything here is a count; VERIFIED in <code>research/stage2-2026-10-23/README.md</code>.</p>
+<h3 id="a-sixth-test-fake-planets-that-move-like-real-ones">A sixth test: fake planets that move like real ones<a class="headerlink" href="#a-sixth-test-fake-planets-that-move-like-real-ones" title="Permanent link">&para;</a></h3>
+<p>Test 2 had a weakness: its fake planets crossed on a perfect schedule, always lasting 6.4 hours. A real planet around two suns doesn't do that (Chapter 5). So I used <strong><a href="../../glossary/#stanley">STANLEY</a></strong>'s own fake-planet maker, which works out each crossing with a real three-body orbit calculation. First, two bugs in STANLEY itself had to be found and worked around:</p>
+<ul>
+<li>It checked its planned crossings against the data <strong>before</strong> adding them, and kept only the ones that already showed a dip. With no dip there yet, it kept none. So for hours it made "fake planets" with zero crossings.</li>
+<li>A number was passed as a list of one item, which newer Python maths libraries refuse.</li>
+</ul>
+<p>Then 6 fake planets (4, 6 and 8 Earth radii, orbits of 130 and 200 days) went into all 40 sectors of TOI-1338, giving <strong>33 crossings</strong> that last anywhere from 6.8 to 15.3 hours <a class="ss-chip ss-chip--likely" href="../../claims/#claim-f-029" title="LIKELY · Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py) · checked 2026-10-20" data-cid="F-029" data-claim="Injecting 6 circumbinary planets (33 transits, 6.8 to 15.3 h long, timed by STANLEY&#x27;s N-body code) into 40 TESS sectors of TOI-1338: our search found 0 of 10 at 4 Earth radii, 8 of 10 at 6, 10 of 10 at 8; the 2-day detrend kept 90-100% of depth; 3 of 33 transits fell inside the eclipse mask (upper limit: measured before the 10 Nov 2026 eclipse-mask correction)" data-src="Second Sun injection-recovery run 2026-10-20 (pipeline/stanley/inject_cbp.py, pipeline/recover_cbp.py)" data-checked="2026-10-20">LIKELY</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Planet size</th>
+<th>Dip depth</th>
+<th>Crossings found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 Earth radii</td>
+<td>850 ppm</td>
+<td>0 of 10</td>
+</tr>
+<tr>
+<td>6 Earth radii</td>
+<td>1,900 ppm</td>
+<td>8 of 10</td>
+</tr>
+<tr>
+<td>8 Earth radii</td>
+<td>3,400 ppm</td>
+<td>10 of 10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Good news:</strong> our 2-day flattening kept about <strong>90 to 100%</strong> of every dip's depth, even the 15-hour ones. So the cleaning step isn't eating realistic, long, irregular crossings.</li>
+<li><strong>Hidden loss:</strong> 3 of the 33 crossings landed <strong>inside the binary's eclipses</strong>, which we cut out before searching. Those planets were lost before the search even looked. That's about 1 crossing in 11.</li>
+<li><strong>Same floor as before:</strong> about 6 Earth radii, now measured with realistic crossings. No false alarms appeared.</li>
+</ul>
+<p>Limits (honest): only 33 crossings, one star, one orbit angle per planet, and STANLEY never makes crossings of the <strong>smaller</strong> star. A proper sensitivity map needs hundreds of fake planets.</p>
+<h3 id="a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter">A seventh test: does the quality filter, or the kind of flux, matter?<a class="headerlink" href="#a-seventh-test-does-the-quality-filter-or-the-kind-of-flux-matter" title="Permanent link">&para;</a></h3>
+<p>Our search throws away every measurement NASA flags as possibly bad (the <strong>HARD</strong> filter). Two published crossings of TOI-1338 b, in sectors 30 and 62, fall where that leaves <strong>no data at all</strong>. So we asked: would a milder filter (<strong>DEFAULT</strong>) let us see them?</p>
+<p>There was a catch, found by reading the files first: in every one of those restored stretches NASA's cleaned flux (<a href="../../glossary/#pdcsap-and-sap">PDCSAP</a>) is blank, and only the raw flux (SAP) exists. So the test needed three versions, changing one thing at a time:</p>
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th>Flux</th>
+<th>Filter</th>
+<th>Compares</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A0</td>
+<td>cleaned (PDCSAP)</td>
+<td>HARD</td>
+<td>our baseline, rerun and matched exactly to the saved results</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>raw (SAP)</td>
+<td>HARD</td>
+<td>A0 vs A1: the flux alone</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>raw (SAP)</td>
+<td>DEFAULT</td>
+<td>A1 vs A2: the filter alone</td>
+</tr>
+</tbody>
+</table>
+<p>The rules for reading the result were written down before anything ran (<code>experiments/quality_mask/SPEC.md</code>). Results, all on this one star:</p>
+<ul>
+<li><strong>The milder filter finds both missing crossings.</strong> In sectors 62 (a measured time) and 30 (only a prediction), an event appears within 0.3 days of the published time, at 12.1 and 10.5 times the noise <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-056" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b · checked 2026-10-20" data-cid="F-056" data-claim="With SAP flux and the DEFAULT mask (arm A2) the detector finds an event within 0.3 d of the published time in both sectors where HARD leaves no cadences: S62 (measured time; SNR 12.11, offset -0.25 h) and S30 (prediction only; SNR 10.45, offset +1.34 h). Every cadence in both events is a restored one" data-src="Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b" data-checked="2026-10-20">VERIFIED</a>.</li>
+<li><strong>But it costs sensitivity everywhere else.</strong> Transits that don't touch the restored data got weaker by a median of 0.5 noise units, up to 2.2. Fake 6-Earth-radius planets went from 2 found of 7 to 0 of 7, and 7-Earth-radius ones from 7 of 7 to 3 of 7 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-057" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (A1 vs A2) · checked 2026-10-20" data-cid="F-057" data-claim="Restoring cadences lowers the SNR of transits that contain none of them: median -0.54 over 7 known transits (range -2.20 to +0.15; S98 10.01 to 7.81, S10 10.77 to 8.89). S98 injections: 6 Earth radii recovered 2 of 7 (A1) vs 0 of 7 (A2); 7 Earth radii 7 of 7 vs 3 of 7. Restored cadences are noisier (2-minute flattened scatter 2,508 to 3,404 ppm vs 2,055 to 2,593 retained) and 2.0 to 8.2 times brighter in background" data-src="Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (A1 vs A2)" data-checked="2026-10-20">VERIFIED</a>. Restored data is noisier and has up to 8 times the background light.</li>
+<li><strong>False alarms: undecided.</strong> In upside-down data, events containing restored data came at about 6.8 per 100 days against about 1 per 100 days without, but with so few events the ranges overlap, so the rule we set in advance was not triggered. "Not triggered" is <strong>not</strong> the same as "safe" <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-058" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b · checked 2026-10-20" data-cid="F-058" data-claim="Flipped-data events (SNR 7 or more): SAP + HARD 2 in 193 days (1.04 per 100 days, 95% interval 0.13 to 3.75); SAP + DEFAULT 6 in 252 days, of which 4 contain restored cadences (6.78 per 100 days of restored exposure, 1.85 to 17.36) and 2 do not (1.04 per 100 days). The intervals overlap, so the pre-registered adverse rule was not triggered: inconclusive. The baseline (PDCSAP + HARD) had 6. In four restored stretches of S98, injected 8 Earth-radius planets were found in 3 (SNR 9.0 to 9.5) and 6 Earth-radius planets in 0" data-src="Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b" data-checked="2026-10-20">VERIFIED</a>.</li>
+<li><strong>A surprise about the flux, not the filter.</strong> With the same <a href="../../glossary/#cadence">cadences</a>, raw SAP flux found the published crossing in 7 of 8 sectors; our cleaned PDCSAP baseline found 4 <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-054" title="VERIFIED · Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (arm A1 vs A0) · checked 2026-10-20" data-cid="F-054" data-claim="On TOI-1338 with the same HARD-retained cadences, SAP flux recovered the published transit (event within 0.3 d, SNR 7.17 to 13.08) in 7 of the 8 sectors that have data at the transit (S6, S10, S27, S34, S37, S65, S98; not S68), where PDCSAP (our baseline) recovered 4 (S10, S65, S68, S98)" data-src="Second Sun quality-mask experiment, official run 20261020T215121Z_e40982b (arm A1 vs A0)" data-checked="2026-10-20">VERIFIED</a>. A follow-up check (not planned in advance, so weaker evidence) showed the transit depth is the same in both. What differs is the detector's noise estimate: in sectors 6, 34 and 37 it is 2 to 3 times larger in the cleaned flux <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-055" title="VERIFIED · Second Sun post-hoc diagnostics, experiments/quality_mask/post_hoc/, 2026-10-20 · checked 2026-10-20" data-cid="F-055" data-claim="Post-hoc (not pre-registered): at the published times the transit depth is about the same in SAP and PDCSAP (about 1,870 to 2,420 ppm in S6, S10, S27, S34, S37, S65, S98), but the detector&#x27;s own noise estimate (the spread of box averages) is 2 to 3 times larger in PDCSAP in S6 (599 vs 204 ppm), S34 (423 vs 213) and S37 (564 vs 305). The cause is not known; S68 differs (SAP depth 902 vs PDCSAP 1,518 ppm)" data-src="Second Sun post-hoc diagnostics, experiments/quality_mask/post_hoc/, 2026-10-20" data-checked="2026-10-20">VERIFIED</a>. <strong>Why is not known.</strong></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">What this does to earlier numbers</p>
+<p>The "mostly the data" conclusion below was drawn from the cleaned flux only. On this star, part of the limit comes from how noisy the cleaned flux looks to our detector. Nothing is changed in the production detector: this is one star, two new crossings (one of them a prediction), and a few injections. The next steps are in <code>RESUME.md</code>.</p>
+</div>
+<h3 id="flags-tiers-and-frozen-settings">Flags, tiers and frozen settings<a class="headerlink" href="#flags-tiers-and-frozen-settings" title="Permanent link">&para;</a></h3>
+<p>After the real search we sort every dip and never delete one. A <strong>flag</strong> is a reason to doubt a dip:</p>
+<ul>
+<li><strong>Gap or momentum dump:</strong> close to a hole in the data or a thruster firing.</li>
+<li><strong>Burst (until version 6):</strong> upside-down dips on three or more other stars within 0.1 days, which means the telescope and not the stars. It asked the <a href="../../glossary/#control">control</a>'s question of the real dips, so it removed more upside-down events than real ones.</li>
+<li><strong><a href="../../glossary/#common-moment">Common moment</a> (version 7, replaces Burst):</strong> three or more other stars on the same camera have an event of either kind within 0.1 days. A dip and its upside-down mirror image get the same question about the same stars, so the control is treated like the data.</li>
+<li><strong>Matched upside-down:</strong> an upside-down dip at the same moment.</li>
+<li><strong><a href="../../glossary/#eclipse-overlap">Eclipse overlap</a>:</strong> the dip falls inside one of the two stars' own eclipses. How long is an eclipse? From the stars' size and orbit (about the orbit time divided by pi, times the two radii over the distance between the stars), or from a measured width where a catalogue has one (40 of our stars).</li>
+<li><strong><a href="../../glossary/#repeater">Repeater</a>:</strong> three or more dips in one sector. A planet around two stars must orbit beyond a <a href="../../glossary/#stability-limit">stability limit</a> of about 3.7 binary periods <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-068" title="VERIFIED · Holman and Wiegert 1999 equation 3 (text read 3 Nov 2026 on ar5iv): a_c = 2.39 and a period ratio 3.69 for e = 0 and equal masses; ratios 5.57 to 98 from our table of NASA Exoplanet Archive periods (vigil-research/v_b4_period_ratios.py) · checked 2026-11-03" data-cid="F-068" data-claim="A planet around a binary must orbit beyond a critical distance of about 2.4 binary separations for equal masses and circular orbits, which is about 3.7 binary periods (our own conversion of the Holman and Wiegert fit). The six known circumbinary hosts in our list have planets at 5.6 to 98 binary periods" data-src="Holman and Wiegert 1999 equation 3 (text read 3 Nov 2026 on ar5iv): a_c = 2.39 and a period ratio 3.69 for e = 0 and equal masses; ratios 5.57 to 98 from our table of NASA Exoplanet Archive periods (vigil-research/v_b4_period_ratios.py)" data-checked="2026-11-03">VERIFIED</a>, so with binaries over 5 days it needs at least about 15 days per lap and only two transits fit in a 27-day sector.</li>
+<li><strong>Flat-baseline (step) test:</strong> a transit is a box, so the light just before and just after it is normal. If either side is off by more than half the dip's depth, or has no data, the dip is a ramp, a cliff or the edge of the data.</li>
+<li><strong><a href="../../glossary/#orbit-start-ramp">Orbit-start ramp</a>:</strong> within 1 day after data resumes, where TESS is settling and scattered light is strongest. The price is about 14% of the time <a class="ss-chip ss-chip--verified" href="../../claims/#claim-f-064" title="VERIFIED · Second Sun completeness harness (research/stage3/step_retention.txt) · checked 2026-10-28" data-cid="F-064" data-claim="The orbit-start ramp flag marks every dip within 1 day after data resumes; on 160 random star-sectors that covers 14.2% of the data points on average" data-src="Second Sun completeness harness (research/stage3/step_retention.txt)" data-checked="2026-10-28">VERIFIED</a>.</li>
+<li><strong><a href="../../glossary/#dominated">Dominated</a>:</strong> the strongest upside-down dip in the same light curve is at least as strong. A fair local contest with no setting to tune.</li>
+</ul>
+<p><strong>Tiers</strong> sort what is left. Tier 1A: the same dip shows in a second data product. 1L: weakly. 1B: no second product exists, so it cannot be checked. Tier 2: flagged, kept but doubted. Tier 3: a second product disagrees. Candidates could only come from tier 1.</p>
+<p><strong><a href="../../glossary/#frozen-settings">Frozen settings</a>.</strong> Before we read any result we write every setting and a fingerprint (a hash) of every code and data file into a file, and the run refuses to start if anything has changed. Each version gets a new fingerprint, so we always know which rules made which numbers and cannot quietly tune the rules to the answer. Scientists call it pre-registering. When we froze the version for a third star list on 3 November 2026 the freeze refused: two more code files than we expected had changed. We proved the change was inert by re-running old results through the new code (300 of 300 star-sectors equal in each of three tests) before we froze (CONFIRMED, see the <a href="../../field-notes/2026-11-03/">field note</a>).</p>
+<h2 id="86-what-this-lets-us-conclude-and-what-it-doesnt">8.6 What this lets us conclude, and what it doesn't<a class="headerlink" href="#86-what-this-lets-us-conclude-and-what-it-doesnt" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>We can conclude:</strong> the code works as designed (self-check), it finds a real planet transit when the transit is strong enough, and for a star like TOI-1338 its single-sector floor is about <strong>6 Earth radii</strong>.</li>
+<li><strong>We can't conclude:</strong> that "nothing found" means "no planet". It means "nothing bigger than about 6 Earths crossed in this sector", and only for stars this bright or brighter.</li>
+<li><strong>The limit is partly the data.</strong> The planet's missed dips are weak in the cleaned flux, and spacecraft effects make bumps as strong as real dips. But the seventh test shows that, for the same cadences, the raw flux gave the detector a quieter noise estimate in several sectors, so "mostly the data" was too strong.</li>
+<li><strong>What came next:</strong> the gap and thruster rules became warning flags (test 4); fake planets that move like real ones were tested (test 6, and <a href="../09-fake-planets/">Chapter 9</a>); and the stacked search, STANLEY, was run on TOI-1338 (<a href="../12-stanley/">Chapter 12</a>). Smarter <a href="../../glossary/#quality-flag">quality flags</a> and a pixel tool are still to build.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Not a discovery</p>
+<p>TOI-1338 b has been known since 2020. Everything in this chapter is a test of our tools on a known planet.</p>
+</div>
+<h2 id="87-check-your-understanding">8.7 Check your understanding<a class="headerlink" href="#87-check-your-understanding" title="Permanent link">&para;</a></h2>
+<p>The questions for this chapter are on the <a href="../../parts/part3/review/">Part 3 review page</a>.</p>
+<nav class="ss-end" aria-label="Finish this chapter"><button type="button" class="ss-read-btn" data-ch="8" aria-pressed="false">Mark as read</button><div class="ss-pager" data-path="track"><a rel="prev" href="../../book/07-noise-and-statistics/"><small>Previous</small><b>7. Noise and statistics</b></a><a rel="next" href="../../book/04-two-suns/"><small>Next</small><b>4. Two suns</b><em>Level 4: Orbits, and why our dips wander</em></a></div><p class="ss-partend">That is the end of the reading for Level 3. <a href="../../learn/#l3">Check yourself and see what comes next</a></p><p class="ss-partend">The field note that taught this: <a href="../../field-notes/2026-10-20/">20 October 2026</a></p></nav>
+
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>In the <a href="../../claims/">claims register</a>: F-011, F-014 to F-017. Full test report: <code>research/overnight-science/report.md</code>. Code: <code>pipeline/detect_v2.py</code>, <code>pipeline/accept_v2.py</code>, <code>pipeline/diag_v2.py</code>, <code>pipeline/book_figures.py</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 2.12.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/eyes-core.js"></script>
+      
+        <script src="../../assets/eyes-strength.js"></script>
+      
+        <script src="../../assets/eyes-hard.js"></script>
+      
+        <script src="../../assets/eyes-feedback.js"></script>
+      
+        <script src="../../assets/eyes-cloud.js"></script>
+      
+        <script src="../../assets/rehearsal.js"></script>
+      
+        <script src="../../assets/demos.js"></script>
+      
+        <script src="../../assets/watch.js"></script>
+      
+    
+  <script src="../../assets/book.js" data-sw="../../sw.js"></script>
+
+  </body>
+</html>
