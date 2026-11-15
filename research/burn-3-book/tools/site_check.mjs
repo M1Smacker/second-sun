@@ -1393,6 +1393,11 @@ async function repairsTest() {
       await load();
       const position = await page.locator(".sst-bar").evaluate(e => getComputedStyle(e).position);
       check(`M-03/${width}`, position === "static" || position === "relative", position);
+      // FIX 100 CX2-05: a fresh load of a deep link opens the node AND selects its branch (it used to leave branch 1 selected).
+      await load("?deep=1#n=4.1");
+      const deep = await page.evaluate(() => ({ sheet: !!document.querySelector(".sst-sheet"), chosen: document.querySelector('.ssta-phcard[aria-expanded="true"]')?.dataset.pb }));
+      check(`CX2-05/deep-branch/${width}`, deep.sheet && deep.chosen === "4", deep);
+      await load();
       const search = page.locator(".sst-search input");
       await search.fill("zzzzunmatchable"); await search.press("Enter"); await page.waitForTimeout(500);
       check(`M-17/empty/${width}`, await page.getByText("No matches", { exact: true }).isVisible(), "unmatched query");
@@ -1581,6 +1586,13 @@ async function repairsTest() {
     await tour.locator('.md-header label[for="__drawer"]').click();
     check("M-23/menu", await tour.locator('.md-sidebar--primary a[href*="learn"]').first().isVisible(), "menu opens after tour");
     await tourCtx.close();
+    // FIX 100 CX2-07: a confidence chip on Claims must answer a tap 22 px above and below its centre (44 px), via its ::after area.
+    await page.setViewportSize({ width: 390, height: 844 }); await page.goto(base + "claims/"); await page.waitForTimeout(400);
+    const chip = await page.evaluate(() => { const c = [...document.querySelectorAll("a.ss-chip")].find((e) => e.getClientRects().length && e.getBoundingClientRect().top > 80); if (!c) return { none: true };
+      c.scrollIntoView({ block: "center" }); const r = c.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+      const at = (dy) => { const h = document.elementFromPoint(x, y + dy); return !!h && (h === c || c.contains(h)); };
+      return { h: Math.round(r.height), up: at(-21.5), down: at(21.5) }; });
+    check(`CX2-07/chip-44/390`, chip.up && chip.down, chip);
     check("script-errors", out.scriptErrors.length === 0, out.scriptErrors);
     out.pass = out.fails.length === 0;
     return out;

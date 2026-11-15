@@ -224,7 +224,9 @@
   function leafBody(l){return `${l.why?`<h4>Why it matters</h4><p>${esc(l.why)}</p>`:""}${l.explanation?`<p>${esc(l.explanation)}</p>`:""}${l.technical?`<p>${esc(l.technical)}</p>`:""}${(l.links||[]).map(link=>`<div class="ssta-links"><a href="${esc(link.url)}">Read more &#8594;</a></div>`).join("")}`;}
   function openNode(id){if(id!=="goal"&&!nodes[id])return;showCard(nodeHTML(id),"n:"+id);}
   function openLeaf(id){const l=leaves[id];if(l)showCard(`<p class="ssta-crumb">${esc(l.node)} / ${esc(fmt(l.date))}</p><h2>${esc(l.plain)}</h2>${leafBody(l)}<div class="ssta-links"><a href="#n=${esc(l.node)}" data-node="${esc(l.node)}">Back to ${esc(nodes[l.node]?.title)}</a></div>`,"l:"+id);}
-  function restore(key){restoring=true;try{if(key.startsWith("n:"))openNode(key.slice(2));else if(key.startsWith("l:"))openLeaf(key.slice(2));}finally{restoring=false;}}
+  // FIX 100 CX2-05 (Codex 021): a link to a node or leaf also selects its branch, so closing the phone sheet shows that branch's rows.
+  function restore(key){const id=key.slice(2),node=key[0]==="n"?id:leaves[id]?.node,br=node&&node.includes(".")?node.split(".")[0]:null;if(br&&br!==chosen&&nodes[br]){chosen=br;render();}
+    restoring=true;try{if(key.startsWith("n:"))openNode(key.slice(2));else if(key.startsWith("l:"))openLeaf(key.slice(2));}finally{restoring=false;}}
   // FIX 100 CX2-02 (Codex 021): the PC panel is docked to the screen, below the header, over its own reserved column, so the whole
   // panel and its Close button stay visible however far the page is scrolled (sticky let it run off the bottom or slide under the header).
   function dock(card) {
