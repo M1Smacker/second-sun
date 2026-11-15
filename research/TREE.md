@@ -44,6 +44,8 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ---
 
 ## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
+- **T160b and Codex 020** (15 Nov, node 4.1; RUNNING): Tree design A, ChatGPT mockup A built into the book (golden vine, cards both sides, side panel, no zoom; M-33 wheel fix). Prototype `research/tree/design-a/`; brief `research/astra/inbox/020-tree-design-a.md`. Publish only after Ahmed sees the look.
+- **Codex 019** (15 Nov, node 4.1; DONE, merged at noon): 22 Tree, tour and Twinlight bugs from the Book 3 audit (FIX 99), each with a check that failed before; Claude's release gates rerun on the merge. `research/astra/inbox/019-fix-tree-tour-twinlight.md`
 - **RS-035** (Claude, 15 Nov, node 4.1): how to teach this: worked then faded examples, typed recall problems with specific feedback, data first (concreteness fading), plots only where they answer a question; lesson template and 7-unit outline. `research/stage3/rs035/HOW-TO-TEACH-THIS-2026-11-15.md`
 - **Codex 018** (15 Nov, node 4.1; DONE, merged 6:58 am; numbers all reproduced, several explanations corrected in 3.2.1): independent fact-check of Twinlight lessons 1.4, 2.1, 2.2 and a learn mode that covers every live lesson. `research/astra/inbox/018-twinlight-check-2.md`
 - **Codex 017** (15 Nov, node 4.1; DONE, merged 6:32 am; found real lesson errors, all fixed in 3.1.0): independent fact-check of Twinlight lessons 1.1 to 1.3 (numbers re-derived from the FITS without our script) and a `learn` browser test mode. `research/astra/inbox/017-twinlight-check.md`
