@@ -11,7 +11,7 @@
   const phone = matchMedia("(max-width: 44.9375em)").matches;
   const steps = [
     { sel: null, title: "Welcome back", text: "Everything Second Sun is doing now grows on one map: the Tree. Four quick steps, then it is yours." },
-    { sel: ".sst-item, .sst-node", title: "Branches", text: "Each branch is one part of the work: the hunt, the data, the checks, the book. Tap one to see what it is, why it matters and what happened to it." },
+    { sel: ".ssta-phcard, .ssta-br-h", title: "Branches", text: "Each branch is one part of the work: the hunt, the data, the checks, the book. Tap one to see what it is, why it matters and what happened to it." },
     { sel: ".sst-seg", title: "Mission and Journey", text: "Mission shows the work as it stands. Journey shows the same story along time, day by day." },
     { sel: '.md-header label[for="__drawer"], .md-tabs__link[href*="learn"]', title: "Learning", text: (phone ? "After closing this tour, open the menu at the top left and choose Learning. " : "") + "Twinlight, your new textbook, lives there: real light first, then the idea, then problems you solve yourself. Your place and notes stay on this device." },
   ];
