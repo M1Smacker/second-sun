@@ -1,7 +1,7 @@
 // Release gates for the book (Claude, 15 Nov 2026, after the Book 3 audit found 32 bugs that every older check missed).
 // These test what a READER does, not what the code intends: tap the menu, read in both themes, scroll the Tree, meet the tour.
 // Chrome over CDP, no packages. Tests run as a normal browser (navigator.webdriver hidden) so first-visit UI is exercised.
-// Usage: node release_gates.mjs <base-url> [--pages=all|quick] [--mutate=menu|contrast|overflow|sticky|tour] [--out=file.json]
+// Usage: node release_gates.mjs <base-url> [--pages=all|quick] [--mutate=menu|contrast|overflow|sticky|tour] [--out=file.json] [--chrome-no-sandbox=1]
 //   --mutate breaks the page on purpose: the matching gate MUST fail (proof that the gate can fail).
 // Exit 1 if any gate fails. Prints one JSON line {pass, gates:{...}, failures:[...]}.
 import { spawn } from "node:child_process";
@@ -26,7 +26,9 @@ const MUT = {
 async function launch() {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), "ss-gates-"));
   const port = 9600 + Math.floor(Math.random() * 300);
-  const proc = spawn(CHROME, ["--headless=new", `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "--mute-audio", "about:blank"], { stdio: "ignore" });
+  // --chrome-no-sandbox=1: for restricted runners (Codex's sandbox exits 13 without it; Codex 020 proposal, 15 Nov 2026). Never needed on Ahmed's PC.
+  const extra = opt["chrome-no-sandbox"] === "1" ? ["--no-sandbox", "--disable-gpu"] : [];
+  const proc = spawn(CHROME, ["--headless=new", ...extra, `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "--mute-audio", "about:blank"], { stdio: "ignore" });
   let target;
   for (let i = 0; i < 120 && !target; i++) { await sleep(150); try { target = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find((t) => t.type === "page"); } catch {} }
   if (!target) throw new Error("chrome did not start");
