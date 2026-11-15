@@ -111,7 +111,7 @@
 }
 
 /* breadcrumb links (Material): at least 24 px tall */
-.md-path__link { display: inline-flex; align-items: center; min-height: var(--ss-tap); margin: -10px 0; padding: 0 7px; }   /* 44 px target, no change to the page rhythm */
+.md-path__link { display: inline-flex; align-items: center; justify-content: center; min-height: var(--ss-tap); min-width: var(--ss-tap); margin: -10px 0; padding: 0 7px; }   /* 44 px target, no change to the page rhythm */
 /* the map is full width on phones, so its tap targets stay as large as they can be */
 @media (max-width: 36em) {
   [dir] .md-typeset .ss-sky-wrap { margin-left: -0.8rem; margin-right: -0.8rem; }
