@@ -11,7 +11,7 @@ The runner NEVER hangs unseen. It exits (so the background task wakes Claude) on
   REFUSED  a check before the start failed (lock held, dirty worktree, brief missing, codex.exe not found).
 A heartbeat line is printed every 10 minutes. Everything Codex prints goes to data\\astra\\<NNN>\\exec-<n>.log.
 Usage:
-  python codex_run.py 015 research/astra/inbox/015-drop-tests.md astra/015-drop-tests [--hours 2] [--idle 25] [--model gpt-6.1-sol] [--effort medium]
+  python codex_run.py 015 research/astra/inbox/015-drop-tests.md astra/015-drop-tests [--hours 2] [--idle 25] [--model gpt-6-astra] [--effort medium]
   python codex_run.py --test          (tiny job on a scratch branch: proves model, sandbox and a commit; deletes the branch after)"""
 import argparse, datetime as dt, json, os, pathlib, re, subprocess, sys, time
 
@@ -123,7 +123,7 @@ def main():
     a = argparse.ArgumentParser()
     a.add_argument("num", nargs="?"); a.add_argument("brief", nargs="?"); a.add_argument("branch", nargs="?")
     a.add_argument("--hours", type=float, default=2); a.add_argument("--idle", type=float, default=25)
-    a.add_argument("--model", default="gpt-6.1-sol"); a.add_argument("--effort", default="medium")
+    a.add_argument("--model", default="gpt-6-astra"); a.add_argument("--effort", default="medium")  # model: 15 Nov 2026, Astra for big jobs (023 to 025 ran on Sol by mistake)
     a.add_argument("--retries", type=int, default=2); a.add_argument("--test", action="store_true"); a.add_argument("--stalltest", action="store_true")
     o = a.parse_args()
     if o.stalltest:

@@ -1,6 +1,6 @@
 # Fable brief, big run (Claude, 15 Nov 2026; for Monday 16 Nov evening; replaces FABLE-BRIEF-2026-11-16.md, which stays as background)
 
-**Who you work for.** Ahmed runs Second Sun: a search for planets around two suns (circumbinary planets) in TESS light, with our own filter, Petrova. Claude (Opus) does most of the work; Codex (GPT-6-Astra) is the second key. Your access ends at the weekly reset, **Tue 17 Nov 01:00 Kuwait**: finish by about **23:30 Monday**.
+**Who you work for.** Ahmed runs Second Sun: a search for planets around two suns (circumbinary planets) in TESS light, with our own filter, Petrova. Claude (Opus) does most of the work; Codex is the second key (jobs 023 to 025 ran on GPT-6.1-Sol at high effort, not GPT-6-Astra: a runner default Claude missed; say so in F3 when comparing models). Your access ends at the weekly reset, **Tue 17 Nov 01:00 Kuwait**: finish by about **23:30 Monday**.
 
 **What Ahmed wants from you (his words, 15 Nov):** "a real groundbreaking breakthrough": a bug that lets us find more planets, or a change that raises our chance of finding one a lot. "If we don't get one, it's fine." And: learn HOW you and Astra work, and keep it as one method skill for every Claude and Codex model.
 

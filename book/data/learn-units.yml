@@ -20,7 +20,7 @@ units:
   - n: 3
     title: Light itself
     lessons:
-      - {title: "What light is: waves, colours, the spectrum"}
+      - {file: u3/l1-what-light-is.md, title: "What light is: waves, colours, the spectrum", minutes: 15}
       - {title: "Hot things glow: why stars have colours"}
       - {title: "Fingerprints: spectral lines and atoms"}
       - {title: "Doppler: weighing stars, finding planets by their wobble"}
