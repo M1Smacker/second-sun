@@ -119,7 +119,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 **3.4 Going public later.** *Weight 1.* *Status: PARKED.* T108 playbook; T149 is our upside-down result new.
 
 ## 4. Tools and book
-**4.1 Book and learning.** *Weight 5.* *Status: ACTIVE: Book 3.0 and the learning rebuild (15 Nov 2026; the hunt is paused until a learning milestone).* T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign; FIX 73 to 76 chips, Back button, voice, formulas.
+**4.1 Book and learning.** *Weight 5.* *Status: ACTIVE: Book 3.0 and the learning rebuild (15 Nov 2026; the hunt is paused until a learning milestone).* T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign; FIX 97 (lab 9 example star is a blind G1 star; re-point before the G1 re-search); FIX 73 to 76 chips, Back button, voice, formulas.
 
 **4.2 Search window and control room.** *Weight 2.* *Status: WAITS: after G1 or Census (Ahmed).* T159 control room on Netlify (plan `research/stage3/CONTROL-ROOM-PLAN.md`); T51, T53, T50; FIX 77 exporter label.
 
