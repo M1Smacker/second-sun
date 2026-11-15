@@ -1,0 +1,50 @@
+{
+  "audit_all.py": {
+    "source_sha256_lf": "41c16467a1ed44e39535e8ad33f520efc62875634eaf889df4a6b4d72a777d51",
+    "copy_sha256_lf": "86d6a688bf844a8f706b9d27df555ce751fa2c3858bd256ab5f1695a0b86ce9d"
+  },
+  "audit_paths.py": {
+    "source_sha256_lf": "af2569c17760100918fac1a164740518a49d1439da935a066b5c981bbdbb18d3",
+    "copy_sha256_lf": "af2569c17760100918fac1a164740518a49d1439da935a066b5c981bbdbb18d3"
+  },
+  "common_time.py": {
+    "source_sha256_lf": "edd7c2b11a1b2d0612ee4d3402b4da43601f04d1a64b1c2f65f58807e44c2f91",
+    "copy_sha256_lf": "edd7c2b11a1b2d0612ee4d3402b4da43601f04d1a64b1c2f65f58807e44c2f91"
+  },
+  "dataset.py": {
+    "source_sha256_lf": "c1c0a1f565edee750c8b34b77ca2fc7492b615dff67cf332e5ab1cf5eb5d3c7c",
+    "copy_sha256_lf": "f82df0eb0218651dc4592f0280b0f341478f5d52937ba97b203acc304a77451d"
+  },
+  "detect_v2.py": {
+    "source_sha256_lf": "9efd69d36f40401e58fbd4df2b60fc5883960fa6a45e2afe48c0e74f7e545409",
+    "copy_sha256_lf": "9efd69d36f40401e58fbd4df2b60fc5883960fa6a45e2afe48c0e74f7e545409"
+  },
+  "petrova_mask.py": {
+    "source_sha256_lf": "c22861511b674e65496da12cdc986fb9239e9f5735f40f1182c021be4b266c9c",
+    "copy_sha256_lf": "c22861511b674e65496da12cdc986fb9239e9f5735f40f1182c021be4b266c9c"
+  },
+  "sap_twin.py": {
+    "source_sha256_lf": "b9619e07dc8d442664baf7e27e92d167f1c095a36b152886095bc05db24179dc",
+    "copy_sha256_lf": "b9619e07dc8d442664baf7e27e92d167f1c095a36b152886095bc05db24179dc"
+  },
+  "stage2_search.py": {
+    "source_sha256_lf": "7ad1a86cad405e3aa59f5de28e1bad745f3e5107cb7fc85ea2e2c8c99b57140c",
+    "copy_sha256_lf": "68b37f76e377615173b3a128d3db1d0a19a6435092946b6ae68ee1a156ccae81"
+  },
+  "stage3.py": {
+    "source_sha256_lf": "f6da7b1eb7b3aa0d3929aed6c3a0099df068277c864f35bc10bf6751dc5dd9d2",
+    "copy_sha256_lf": "f6da7b1eb7b3aa0d3929aed6c3a0099df068277c864f35bc10bf6751dc5dd9d2"
+  },
+  "stage3_core.py": {
+    "source_sha256_lf": "358d85bce874cbfd0ac654288b1c93a5aa1e77b9fd6d991453f127821deeb100",
+    "copy_sha256_lf": "358d85bce874cbfd0ac654288b1c93a5aa1e77b9fd6d991453f127821deeb100"
+  },
+  "stage3_report.py": {
+    "source_sha256_lf": "8bfc1d6ef2b8ab92f6761a1e0cd63296008760978abdb0c534219e5286f300d3",
+    "copy_sha256_lf": "b2f2bffca699aa46e584abd2349778269eb8ff567919e55535521434140ae8b2"
+  },
+  "vopts.py": {
+    "source_sha256_lf": "9ec8e5b707a0201ec96dc225756025729e4bc6005eb48bd09f024b5f3a85837d",
+    "copy_sha256_lf": "9ec8e5b707a0201ec96dc225756025729e4bc6005eb48bd09f024b5f3a85837d"
+  }
+}
