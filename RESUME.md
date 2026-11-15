@@ -1,3 +1,8 @@
+## LATEST (15 Nov 2026, 11:20 pm Kuwait): EVERYTHING PAUSED, Ahmed travelling
+- Ahmed: family emergency in Pakistan (grandmother unwell); flight 10 am 16 Nov, away one to two weeks. 'Everything else paused.' He may use Remote Control from his phone.
+- Paused: Fable big run (will NOT run Monday; Fable access ends at the 17 Nov 1 am reset; plan and brief stay ready in research/fable-method/), Codex 025 review and merge (job finishes by itself about 12:30 am; do not merge or start anything until Ahmed says), all lessons and fixes.
+- Advice given: keep PC awake (no sleep), pause Windows updates, back up his study files first, family member can press power; Claude cannot restart Remote Control after a reboot.
+
 ## LATEST (15 Nov 2026, 10 pm Kuwait): Book 3.6.0 (lesson 3.1) publishing; Codex model slip found; CPU answer
 - Ahmed (9:51 pm): speed up 025 to 70% CPU if it is Python, leave it if it is Codex; write one lesson and stop; explain the Tree and the book layout (no Tree changes yet: he finds Book 3 navigation confusing, Book 2's side panel was easier).
 - CPU: 025's heavy work is Python (025_run.py supervisor, ThreadPoolExecutor max_workers=2 and NUMBA_NUM_THREADS=2 fixed at launch; CPU 40%). Not changed mid-run (killing Codex's workers would break its supervised run). Future briefs: 4 workers x 2 threads (about 70%).
