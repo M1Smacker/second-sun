@@ -71,7 +71,7 @@ Answer each before moving on. They build the idea one step at a time.
 !!! question "Your turn, half done: star 2"
     Step 1: \(1.3124^2 = 1.7224\). Step 2: \(5983 / 5772 = 1.0366\). Finish: raise 1.0366 to the fourth power, then multiply.
 
-<div class="tw-prob" data-answer="1.99" data-tol="0.02" data-unit="Suns" data-hints='{"1.79":"That uses the temperature squared. Square it twice: the fourth power.","1.15":"That is only the temperature part. Multiply by 1.7224 for the area."}' data-why="1.0366 to the fourth is 1.1545; times 1.7224 gives 1.99 Suns." markdown>
+<div class="tw-prob" data-answer="1.99" data-tol="0.02" data-unit="Suns" data-hints='{"1.85":"That uses the temperature squared. Square it twice: the fourth power.","1.15":"That is only the temperature part. Multiply by 1.7224 for the area."}' data-why="1.0366 to the fourth is 1.1545; times 1.7224 gives 1.99 Suns." markdown>
 **Your turn.** Star 2's luminosity, in Suns:
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>

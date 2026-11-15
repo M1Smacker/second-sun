@@ -13,7 +13,7 @@ The planet's second crossing, the one from lessons 1.4 and 2.2. This time, think
 
 ## One point of light, two stars inside it
 
-TESS cannot see our two stars apart. They are only about 0.19 AU from each other, and from Earth that is far smaller than anything a telescope can separate. So every point on our light curve is the light of **both** stars added together.
+TESS cannot see our two stars apart. They are only about 0.19 AU from each other, which from Earth spans less than a thousandth of an **arcsecond**, while one TESS pixel is 21 arcseconds wide. (Only the sharpest instruments on Earth, which combine several telescopes, reach that fine; TESS is nowhere near.) So every point on our light curve is the light of **both** stars added together.
 
 When the planet crosses star 2, it blocks part of star 2's light only. Star 1 keeps shining as if nothing happened. The dip is real, but it is measured against the light of both stars, so it looks shallower. Astronomers call this **dilution**: the dip is watered down by light that the planet never touched.
 
@@ -21,9 +21,19 @@ When the planet crosses star 2, it blocks part of star 2's light only. Star 1 ke
 **Dilution.** Extra light from another star (a partner, or an unrelated star in the same pixels) that makes a dip look shallower than it really is.
 </aside>
 
+<aside class="tw-mn" markdown>
+**Arcsecond.** A tiny angle: 1/3,600 of a degree. The full Moon is about 1,800 arcseconds across.
+</aside>
+
 The rule is one multiplication. If the crossed star gives a fraction \(s\) of all the light we receive:
 
-\[ \text{seen depth} = \left( \frac{R_p}{R_\star} \right)^2 \times s \]
+\[ \text{seen depth} = s \times (\text{fraction of the crossed star's light blocked}) \]
+
+When the planet is fully in front of the star, and we treat the star's disc as evenly bright, that blocked fraction is the area ratio from lesson 1.2, so
+
+\[ \text{seen depth} \approx \left( \frac{R_p}{R_\star} \right)^2 \times s \]
+
+(While the planet is still sliding on or off the edge it blocks less, and a real star's disc is a little darker at its edge than at its centre, so this is roughly the depth at the dip's middle.)
 
 <aside class="tw-mn" markdown>
 **The share \(s\).** The crossed star's light divided by the total: 1 if it shines alone, \(\tfrac12\) for two identical twins.
@@ -54,7 +64,7 @@ The rule is one multiplication. If the crossed star gives a fraction \(s\) of al
 
     **Step 4. Seen depth.** \(6{,}176 \times 0.463 = 2{,}860\) ppm.
 
-    Lesson 1.4 measured 2,655 ppm. The simple rule gets within about 8%. The rest is detail this lesson leaves out: a star's disc is darker at its edge than at its centre, our measured average includes some points at the dip's edges, and TESS sees red light, where the two stars' shares are slightly different from their shares of all light (lesson 2.3 counted all colours).
+    Lesson 1.4 measured 2,655 ppm. The simple rule gets within about 8%, and that is about as close as it can be: the planet's size is known to within about 4%, which alone moves the predicted depth by about 8%. We have not measured what makes up the rest. Possible contributors: the star's disc is darker at its edge than at its centre (which can push the depth either way, depending on where the planet crosses), our 12-point average includes some points near the dip's edges, and TESS sees red light, where the two stars' shares differ slightly from their shares of all light (lesson 2.3 counted all colours).
 
 !!! question "Your turn, half done: forgetting the partner"
     Suppose nobody knew star 1 was there. We see 2,655 ppm and think star 2 shines alone. Step 1: \(\sqrt{0.002655} = 0.05153\), so the planet looks 0.05153 times as wide as star 2. Finish: star 2 is 143.16 Earth radii wide; how many Earth radii would we give the planet?
@@ -64,7 +74,7 @@ The rule is one multiplication. If the crossed star gives a fraction \(s\) of al
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(0.05153 \times 143.16 = 7.38\) Earth radii: a planet between Neptune (3.9) and Saturn (9.4) in size. Correct for dilution first (divide the depth by 0.463: 5,736 ppm, ratio 0.0757) and it becomes 10.8 Earth radii, close to the paper's 11.25.
+\(0.05153 \times 143.16 = 7.38\) Earth radii: a planet between Neptune (3.9) and Saturn (9.4) in size. Correct for dilution first (divide the depth by 0.463: 5,734 ppm, ratio 0.0757) and it becomes 10.8 Earth radii, close to the paper's 11.25.
 
 The rule: **divide the seen depth by the share before you work out the planet's size.** Forget dilution and every planet looks too small.
 
@@ -83,7 +93,7 @@ That is why every candidate dip gets the pixel and neighbour checks in Unit 7: i
 
 ## In a few sentences
 
-When two stars share one point of light, a planet crossing one of them makes a dip diluted by the other's light: seen depth = \((R_p/R_\star)^2 \times s\), with \(s\) the crossed star's share. Star 2 gives 46% of our pair's light, which turns a 6,176 ppm dip into about 2,860. Forget dilution and planets look too small; an unseen faint eclipsing binary in the same pixels can, diluted, look just like a planet.
+When two stars share one point of light, a planet crossing one of them makes a dip diluted by the other's light: seen depth = \(s\) times the fraction of the crossed star's light that is blocked, roughly \((R_p/R_\star)^2 \times s\), with \(s\) the crossed star's share. Star 2 gives 46% of our pair's light, which turns a 6,176 ppm dip into about 2,860. Forget dilution and planets look too small; an unseen faint eclipsing binary in the same pixels can, diluted, look just like a planet.
 
 ## Problems
 
@@ -131,6 +141,6 @@ Each twin gives \(s = 0.5\). Undiluted depth \(= 2{,}000 / 0.5 = 4{,}000\) ppm.
 
 - Planet and star radii: Kostov et al. 2021 ([arXiv 2105.08614](https://arxiv.org/abs/2105.08614)), abstract; the planet first crossed the primary star, then 5 days later the secondary (the crossing in this lesson's plot). Contamination 0.000453 from the paper's table, quoting the TESS Input Catalog (read 15 Nov 2026).
 - 1 Sun radius = 109.08 Earth radii (IAU nominal values).
-- TESS pixels are about 21 arcseconds across: Ricker et al. 2015, the TESS mission paper ([arXiv 1406.0151](https://arxiv.org/abs/1406.0151)); to be confirmed by the fact-check.
+- TESS pixels are about 21 arcseconds across: Ricker et al. 2015, the TESS mission paper ([arXiv 1406.0151](https://arxiv.org/abs/1406.0151)), table 1: one pixel is 0.35 by 0.35 arcminutes (checked by Codex 022).
 - Dilution and blends as false positives: any vetting guide; for the TESS case see the TESS mission paper above. Neptune 3.9 and Saturn 9.4 Earth radii: NASA planetary fact sheets (equatorial radii, rounded).
 - The 2,860 ppm prediction, its 8% gap and the 7.38 and 10.8 Earth-radii figures are our own arithmetic from the paper's numbers (15 Nov 2026).

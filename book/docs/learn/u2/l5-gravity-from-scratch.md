@@ -5,11 +5,11 @@ title: "2.5 Gravity from scratch"
 
 # Gravity from scratch
 
-The two stars' clock from lesson 2.1: an eclipse every 19.7 days, again and again.
+The two stars' clock from lesson 2.1: the deeper eclipse comes back every 19.7 days, again and again.
 
 <div class="tw-plot" data-src="u2-four-sectors"></div>
 
-<p class="tw-plot__ask">These stars are about 3 billion years old and have kept this beat the whole time. Nothing pushes them. What keeps them going round, and what sets the 19.7 days?</p>
+<p class="tw-plot__ask">Nothing pushes these stars along, yet they keep going round. What keeps them moving, and what sets the 19.7 days?</p>
 
 ## Falling, and missing
 
@@ -36,7 +36,7 @@ The pull on each kilogram of a planet, at distance \(r\) from a star of mass \(M
 where \(G\) is Newton's gravitational constant, the same everywhere in the universe. For the Sun, the product \(GM\) is measured very precisely: \(1.3271 \times 10^{20}\) in metres cubed per second squared.
 
 <aside class="tw-mn" markdown>
-**\(G\).** Newton's constant, \(6.674 \times 10^{-11}\) in SI units. Tiny: gravity is by far the weakest force, and only matters because stars and planets are so massive.
+**\(G\).** Newton's constant, \(6.674 \times 10^{-11}\) in SI units (the standard system of metres, kilograms and seconds; here m³ per kg per s²). Tiny: gravity is by far the weakest force, and only matters because stars and planets are so massive.
 </aside>
 
 ## Think it through
@@ -91,7 +91,7 @@ Now the period. One trip round the circle is a distance \(2\pi r\), done at spee
 
 \[ P^2 = \frac{4\pi^2 r^2}{v^2} = \frac{4\pi^2 r^2}{G M / r} = \frac{4\pi^2}{G}\,\frac{r^3}{M} \]
 
-That is Kepler's third law: \(P^2\) grows with \(r^3\) and shrinks with \(M\). The only extra piece is the constant \(4\pi^2 / G\). Measure \(P\) in years, \(r\) in AU and \(M\) in Suns, and that constant becomes exactly 1, because those units are defined by the Earth's own orbit. That is why lesson 2.1 could write simply \(P^2 = a^3/M\).
+That is Kepler's third law: \(P^2\) grows with \(r^3\) and shrinks with \(M\). The only extra piece is the constant \(4\pi^2 / G\). Measure \(P\) in years, \(r\) in AU and \(M\) in Suns, and that constant comes out as 1.00004: one, to better than a hundredth of a percent. That is no coincidence: the year and the AU are the Earth's own period and orbit size, and the Earth's mass is tiny next to the Sun's, so Kepler's law in these units must give about 1 for the Earth. That is why lesson 2.1 could write simply \(P^2 = a^3/M\).
 
 The same law, read backwards, is how astronomers **weigh** things. Measure an orbit's size and period, and the mass inside it follows. The discovery paper weighed our two stars to better than 0.1% this way, from their eclipses and their measured speeds.
 
@@ -145,6 +145,6 @@ An orbit is falling while moving sideways fast enough to keep missing. Gravity p
 
 - \(GM\) of the Sun \(1.32712 \times 10^{20}\) m³/s² and of the Earth \(3.986004 \times 10^{14}\) m³/s²: IAU 2015 Resolution B3 nominal values; 1 AU = 149,597,870,700 m (IAU 2012 Resolution B2). \(G = 6.674 \times 10^{-11}\) (CODATA).
 - Kepler's third law, 1619 (Harmonices Mundi); Newton's cannon and law of gravitation, Principia (1687). Any history of astronomy, for example OpenStax Astronomy 2e, chapter 3 "Orbits and Gravity" ([the book](https://openstax.org/details/books/astronomy-2e), CC BY-NC-SA 4.0).
-- The stars' age (3.1 billion years) and masses (to better than 0.1%): Kostov et al. 2021 ([arXiv 2105.08614](https://arxiv.org/abs/2105.08614)).
+- The stars' masses (to better than 0.1%): Kostov et al. 2021 ([arXiv 2105.08614](https://arxiv.org/abs/2105.08614)).
 - Space station altitude about 400 km, gravity there about 90% of the surface value (\((6371/6771)^2 = 0.885\)): our arithmetic; the station's real height varies, roughly 400 to 420 km.
-- All speeds and periods in this lesson: our own arithmetic (15 Nov 2026).
+- All speeds and periods in this lesson: our own arithmetic (15 Nov 2026), checked independently by Codex 022. The constant \(4\pi^2 / G\) in years, AU and Suns: 1.00004 with a Julian year and the IAU AU and solar GM (Codex 022, JPL constants).
