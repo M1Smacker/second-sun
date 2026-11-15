@@ -42,7 +42,7 @@ bad = []
 inbound = set()
 for f, p in pages.items():
     rel = f.relative_to(SITE).as_posix()
-    if rel == "404.html":      # its links are absolute to the live site path (/second-sun/), by design
+    if rel.split("/")[-1] == "404.html":      # root and v2 404 pages (FIX 99 M-25): links are absolute to the live site path (/second-sun/), by design
         continue
     here = urljoin(BASE, rel[:-len("index.html")] if rel.endswith("index.html") else rel)
     for ref in p.refs:
@@ -66,7 +66,7 @@ for f, p in pages.items():
 REDIRECT = re.compile(r'<meta name="ss-redirect"')          # Book 3.0 redirect pages at old addresses: reached by old links, not by ours
 for f in pages:
     rel = f.relative_to(SITE).as_posix()
-    if f not in inbound and rel not in ("index.html", "404.html") and not REDIRECT.search(f.read_text(encoding="utf-8")):
+    if f not in inbound and rel != "index.html" and rel.split("/")[-1] != "404.html" and not REDIRECT.search(f.read_text(encoding="utf-8")):
         bad.append(f"{rel}: orphan page (nothing links to it)")
 for f in sorted((SITE / "book").glob("[0-9][0-9]-*/index.html")):
     t = f.read_text(encoding="utf-8")
