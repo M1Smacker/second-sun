@@ -55,5 +55,43 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 - A drop with bad data: the builder refuses with a plain message; nothing broken reaches the site.
 - Weekly near 38%: stop new building, finish testing and publish what is done.
 
+## Safeguards: expect the worst (added 3:20 am, before the go)
+
+### Nothing may hang unseen
+- Every background process I start has a hard time limit and exits by itself; none runs open-ended. Each one writes a heartbeat line, and its exit is what wakes me.
+- **Codex runner watchdog:** per job a wall-clock limit (2 h default, set per brief) and an idle limit (no new log output and no new file change in its folder for 25 min). On either: it stops ONLY the process tree it started (by its own process id), writes STALL or TIMEOUT with the last log lines, and exits so I wake. I then read the log and either restart once with a narrower brief or do the piece myself.
+- Codex runs with approvals off (non-interactive, `approval_policy=never`) so it can never sit waiting for a click; sandbox `workspace-write` so it cannot write outside its folder.
+- Before each start: no other Codex process is using `D:\second-sun-astra` (lock file plus a process check); the worktree is clean and on the expected branch. After each job: branch, commits and `git status` checked; uncommitted leftovers reported, never silently kept.
+- The Codex executable path is looked up fresh at every start (`Get-AppxPackage *Codex*`), because the app can update itself overnight and move the path.
+- **Codex usage limit:** detected from its output. If a reset time is given, the runner waits until 1 minute after it, then restarts the job (at most twice); if no time is given, it retries every 30 min up to 3 h, then gives up and wakes me. While Codex waits, I keep building my own parts.
+- A first test call proves the model id (GPT-6.1 Sol, medium), the sandbox and a commit on a scratch branch before any real job. If the model id is refused, fall back to Codex's default model and say so in the morning.
+
+### My own limits
+- A wake script runs from the start for 1 minute after each 5-hour reset (next: 6:31 am Kuwait). If my limit cuts a turn, its exit restarts me; I resume from the plan log and RESUME.
+- Commit and push small and often (every finished piece), so a cut-off loses minutes, not hours.
+- Weekly: stop new building at 38%, finish tests and publish what works. Ahmed's other Claude use shares the meter; outside jumps are noted, not blamed on me.
+- Keep-awake requested from the app so Windows does not sleep. If the PC still sleeps or restarts, nothing can resume: the morning report says so plainly.
+- Network down: Codex and downloads wait and retry; offline work (code, tests, writing) continues.
+
+### Checkpoint publishes (so the morning shows real progress even if the night breaks)
+- Publish after each big phase that passes every check: (1) the look plus the Shelf and redirects, (2) the Tree, (3) the learning app with the first lessons, (4) the final audit. Each publish is the full `publish_book.ps1 -Test`; a failed check stops the push and I fix forward.
+
+### Book edge cases
+- **Deleted pages:** every link to Quests, Progress and the Story-so-far set is found and repointed; old addresses get small static redirect pages (no new plugin install); the strict build must pass.
+- **Old cached book on his phone:** the offline cache version is bumped; the update path from 2.x to 3.0 is tested with the existing update test (`run_update_test.ps1`) on a local copy, so his home-screen app updates cleanly and never mixes old and new files.
+- **Eyes stays safe:** its answers and cloud saving (`eyes-cloud.js`) are not changed in behaviour; only layout, folding, scroll and transitions. Tested only on a local server; the live Eyes page is never clicked.
+- **Publish tests** that name deleted pages are updated to the new pages, never just removed; new tests cover the Tree, the reader and the redirects.
+- **iPhone Safari and the home-screen app:** no browser Back button there, so an in-app Back everywhere; voices load late, so the voice picker waits for them; viewport height and safe areas handled; reduced motion respected; slow phones get lighter motion.
+- **Tree:** the builder never crashes the publish on a bad drop or a malformed TREE.md line: it refuses with a plain message and the publish stops before anything broken goes live. Tested with 1,000 fake drops for speed on a phone.
+- **Plots:** the plot generator refuses any fence A/B or sealed-run star; only design stars.
+- **Formulas:** KaTeX files served from our own assets (download logged); pages still readable if they fail to load.
+- **Backup:** the 2.x book kept at /v2/ and tagged; size checked against the site limit before it goes live.
+- **Lessons:** every fact checked against a source while writing; anything not verified is marked in the draft and never published as fact; Codex fact-checks each lesson.
+
+### Morning
+- The report is short and plain, opens like a friend saying welcome back (Ahmed asked for a real change, not a rule), says what is live with links, what is not done, what broke and was fixed, Codex jobs and their outcome, and usage.
+
 ## Log
 - 3:05 am plan written.
+- 3:11 am Tree rounds added.
+- 3:20 am safeguards added; WAITING FOR AHMED'S GO (nothing started).
