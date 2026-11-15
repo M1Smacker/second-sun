@@ -42,17 +42,24 @@
     D.leaves.forEach((l) => { leaves[l.id] = l; });
     const last = S.get("sst-last-visit");
     if (last) D.leaves.forEach((l) => { if ((l.when || "") > last) newIds.add(l.id); });
-    setTimeout(() => S.set("sst-last-visit", D.generated), 4000);
     const stat = host.querySelector(".sst-static");
     if (stat) stat.hidden = true;
     host.classList.add("sst");
     host.insertAdjacentHTML("afterbegin", bar());
     wireBar();
     render(true);
-    WIDE.addEventListener("change", () => render(false));
+    WIDE.addEventListener("change", () => {
+      const key = openState && openState.key;
+      removeCard(true); render(false);
+      if (key) restoreCard(key);
+    });
+    addEventListener("resize", () => { const stage = host.querySelector(".sst-stage"); if (stage) stage._resize(); placeCard(); });
     const m = /^#n=([\d.]+)$/.exec(location.hash);
     if (m && nodes[m[1]]) setTimeout(() => openNode(m[1]), reduce ? 0 : 900);
-    addEventListener("popstate", () => { if (openState) closeCard(true); });
+    addEventListener("popstate", () => {
+      removeCard(true);
+      if (history.state && history.state.sst) restoreCard(history.state.sst);
+    });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && openState) closeCard(false); });
   }
 
@@ -66,8 +73,9 @@
       <label class="sst-search"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m11 11 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         <input type="search" placeholder="Search the Tree" aria-label="Search the Tree" autocomplete="off" enterkeyhint="search"></label>
       ${n ? `<button type="button" class="sst-new" aria-pressed="false" title="Work added since your last visit"><b>${n}</b> new</button>` : ""}
+      ${n ? '<button type="button" class="sst-read" hidden>Mark updates read</button>' : ""}
       ${D.now ? `<p class="sst-now"><b>Now:</b> ${esc(D.now)}</p>` : ""}
-    </div><div class="sst-view"></div>`;
+    </div><p class="sst-results" role="status" hidden>No matches</p><div class="sst-view"></div>`;
   }
   function wireBar() {
     const seg = host.querySelector(".sst-seg"), pill = seg.querySelector("i");
@@ -83,10 +91,24 @@
     input.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { query = input.value.trim().toLowerCase(); applyFilter(); }, 120); });
     input.addEventListener("keydown", (e) => {
       if (e.key === "Escape") { input.value = ""; query = ""; applyFilter(); }
-      if (e.key === "Enter") { e.preventDefault(); const first = host.querySelector("[data-node]:not(.is-dim), [data-leaf]:not(.is-dim)"); if (first) focusOn(first); }
+      if (e.key === "Enter") {
+        e.preventDefault(); clearTimeout(t); query = input.value.trim().toLowerCase(); applyFilter();
+        const m = matches();
+        const first = [...host.querySelectorAll("button[data-node], .sst-node, [data-leaf]")].find(e => e.dataset.node !== "goal" && (!m || (e.dataset.leaf ? m.ln.has(e.dataset.leaf) : m.nn.has(e.dataset.node))));
+        if (first) focusOn(first);
+      }
     });
     const nb = host.querySelector(".sst-new");
-    if (nb) nb.addEventListener("click", () => { showNew = !showNew; nb.setAttribute("aria-pressed", String(showNew)); applyFilter(); });
+    if (nb) nb.addEventListener("click", () => {
+      showNew = !showNew; nb.setAttribute("aria-pressed", String(showNew));
+      host.querySelector(".sst-read").hidden = !showNew; applyFilter();
+    });
+    const markRead = host.querySelector(".sst-read");
+    if (markRead) markRead.addEventListener("click", () => {
+      S.set("sst-last-visit", D.generated); newIds.clear(); showNew = false;
+      nb.remove(); markRead.remove(); host.querySelectorAll(".is-new").forEach(e => e.classList.remove("is-new")); applyFilter();
+    });
+    if (!S.get("sst-last-visit")) S.set("sst-last-visit", D.generated);
   }
 
   /* ---------- which things match the search or the 'new' filter ---------- */
@@ -103,6 +125,7 @@
   }
   function applyFilter() {
     const m = matches();
+    host.querySelector(".sst-results").hidden = !m || !!(m.nn.size || m.ln.size);
     host.querySelectorAll("[data-node]").forEach((e) => e.classList.toggle("is-dim", !!m && !m.nn.has(e.dataset.node) && e.dataset.node !== "goal"));
     host.querySelectorAll("[data-leaf]").forEach((e) => e.classList.toggle("is-dim", !!m && !m.ln.has(e.dataset.leaf)));
     host.querySelectorAll("[data-vine]").forEach((e) => e.classList.toggle("is-dim", !!m && !m.nn.has(e.dataset.vine)));
@@ -111,6 +134,7 @@
 
   function render(grow) {
     const v = host.querySelector(".sst-view");
+    const oldStage = v.querySelector(".sst-stage"); if (oldStage) oldStage._dispose();
     v.innerHTML = "";
     host.classList.toggle("sst-grow", !!grow && !reduce);
     if (view === "journey") journey(v); else if (WIDE.matches) canvas(v); else list(v);
@@ -137,7 +161,7 @@
     const L = layout(), P = L.pos;
     const stage = document.createElement("div");
     stage.className = "sst-stage"; stage.tabIndex = 0;
-    stage.setAttribute("aria-label", "The project tree. Drag to move, scroll or pinch to zoom, arrow keys move, plus and minus zoom, 0 fits.");
+    stage.setAttribute("aria-label", "The project tree. Drag to move, scroll or pinch to zoom, arrow keys move, plus and minus zoom, 0 resets the view.");
     v.appendChild(stage);
     const top = () => stage.getBoundingClientRect().top + scrollY;
     const size = () => { stage.style.height = Math.max(420, innerHeight - (stage.getBoundingClientRect().top)) + "px"; };
@@ -182,6 +206,17 @@
       const t = el("text", { x: tx, y: y + (sub ? h / 2 - 1 : h / 2 + 5), "text-anchor": n ? "start" : "middle" }, g);
       t.textContent = title;
       if (sub) { const s = el("text", { x: tx, y: y + h / 2 + 15, class: "sst-sub", "text-anchor": n ? "start" : "middle" }, g); s.textContent = sub; }
+      // Measure using the actual font, then shorten only the canvas label. The dialog and accessible name keep the full title.
+      const fitText = () => g.querySelectorAll("text").forEach(label => {
+        const full = label === t ? title : sub, available = n ? w - 46 : w - 24;
+        label.textContent = full;
+        if (label.getComputedTextLength() <= available) return;
+        let shortened = full;
+        while (shortened.length && label.getComputedTextLength() > available) {
+          shortened = shortened.slice(0, -1); label.textContent = shortened.trimEnd() + "…";
+        }
+      });
+      fitText(); document.fonts.ready.then(() => { if (g.isConnected) fitText(); });
       if (n && (n.history || []).some((i) => newIds.has(i))) g.classList.add("is-new");
       return g;
     };
@@ -193,15 +228,18 @@
         const C = P[c], n = nodes[c];
         nodeEl(c, C.x + 16, C.y - LH / 2, LW, LH, n.title, `${n.id} · ${STATUS_WORD[n.status].toLowerCase()}`, "", 700 + i * 60 + j * 70);
         const hist = n.history || [];
-        const shown = hist.slice(0, 6);
+        // One latest-event shortcut leaves room for a distinct 44 px target. The branch card lists the complete history.
+        const shown = hist.slice(0, 1);
         shown.forEach((lid, k) => {
           const a = -0.9 + k * 0.36, r = 30;
           const lx = C.x + 16 + LW + 16 + Math.cos(a) * r * 0.9 + k * 6, ly = C.y + Math.sin(a) * r * 0.6;
           el("path", { d: `M${C.x + 16 + LW},${C.y} Q${C.x + 16 + LW + 8},${ly} ${lx},${ly}`, class: "sst-vine", "stroke-width": 1, "data-vine": c, opacity: ".5" }, twigs);
-          const dot = el("circle", { cx: lx, cy: ly, r: 5, class: "sst-leaf" + (k > 2 ? " is-old" : "") + (newIds.has(lid) ? " is-new" : ""), tabindex: "0", role: "button", "data-leaf": lid, "aria-label": leaves[lid] ? leaves[lid].plain : "leaf" }, nodeLayer);
+          const dot = el("g", { class: "sst-leaf" + (k > 2 ? " is-old" : "") + (newIds.has(lid) ? " is-new" : ""), tabindex: "0", role: "button", "data-leaf": lid, "aria-label": leaves[lid] ? leaves[lid].plain : "leaf" }, nodeLayer);
+          el("circle", { cx: lx, cy: ly, r: 25, class: "sst-leaf-hit" }, dot);
+          el("circle", { cx: lx, cy: ly, r: 5, class: "sst-leaf-dot" }, dot);
           dot.style.setProperty("--d", 1100 + i * 60 + j * 70 + k * 50 + "ms");
         });
-        if (hist.length > 6) { const m = el("text", { x: C.x + 16 + LW + 64, y: C.y + 22, class: "sst-more" }, nodeLayer); m.textContent = "+" + (hist.length - 6); }
+        if (hist.length > 1) { const m = el("text", { x: C.x + 16 + LW + 64, y: C.y + 22, class: "sst-more" }, nodeLayer); m.textContent = "+" + (hist.length - 1); }
       });
     });
     host.querySelectorAll(".sst-grow .sst-node, .sst-grow .sst-leaf").forEach(() => {});
@@ -224,20 +262,21 @@
       const k = Math.min(KMAX, Math.max(KMIN, G.k * factor)); const f = k / G.k;
       G.x = px - (px - G.x) * f; G.y = py - (py - G.y) * f; G.k = k; vel.x = vel.y = 0; kick();
     };
-    const fit = (instant, readable) => {
+    const fit = (instant) => {
       const r = stage.getBoundingClientRect(), pad = 30;
       let k = Math.min((r.width - pad * 2) / L.W, (r.height - pad * 2) / L.H, 1.1);
-      const kMin = 44 / LH;                                   // FIX 98: the first view keeps every branch at least 44 px tall (readable text, real tap size)
-      if (readable && k < kMin) {
-        k = kMin;                                              // too big to fit: centre across, root at the bottom; "0" or the fit button still shows it all
+      const kMin = 1;                                         // The shortest branch is 44 px, including after Fit.
+      if (k < kMin) {
+        k = kMin;                                              // Keep readable branches, centre across and put the root at the bottom.
         G.k = k; G.x = (r.width - L.W * k) / 2; G.y = r.height - L.H * k - pad;
       } else { G.k = k; G.x = (r.width - L.W * k) / 2; G.y = (r.height - L.H * k) / 2 + 6; }
       if (instant) { T.x = G.x; T.y = G.y; T.k = G.k; apply(); } else kick();
     };
     stage._fit = fit; stage._goTo = (wx, wy, k) => { const r = stage.getBoundingClientRect(); G.k = k || Math.max(G.k, 1); G.x = r.width / 2 - wx * G.k; G.y = r.height / 2 - wy * G.k; vel.x = vel.y = 0; kick(); };
     stage._pos = P;
-    fit(true, true);
-    addEventListener("resize", () => { size(); fit(false, true); });
+    fit(true);
+    stage._resize = () => { size(); apply(); };
+    stage._dispose = () => cancelAnimationFrame(raf);
     stage.addEventListener("wheel", (e) => {
       e.preventDefault();
       const r = stage.getBoundingClientRect();
@@ -298,11 +337,11 @@
     });
     const zb = document.createElement("div");
     zb.className = "sst-zoom";
-    zb.innerHTML = '<button type="button" data-z="in" aria-label="Zoom in">+</button><button type="button" data-z="out" aria-label="Zoom out">&minus;</button><button type="button" data-z="fit" aria-label="Fit the whole tree">&#8982;</button>';
+    zb.innerHTML = '<button type="button" data-z="in" aria-label="Zoom in">+</button><button type="button" data-z="out" aria-label="Zoom out">&minus;</button><button type="button" data-z="fit" aria-label="Reset tree view">&#8982;</button>';
     zb.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; const r = stage.getBoundingClientRect(); if (b.dataset.z === "fit") fit(false); else zoomAt(r.width / 2, r.height / 2, b.dataset.z === "in" ? 1.35 : 0.74); });
     zb.addEventListener("pointerdown", (e) => e.stopPropagation());
     stage.appendChild(zb);
-    const hint = document.createElement("div"); hint.className = "sst-hint"; hint.textContent = "Drag to move · scroll or pinch to zoom · tap a branch";
+    const hint = document.createElement("div"); hint.className = "sst-hint"; hint.textContent = "Branches extend outside this view. Drag to explore the whole tree; scroll or pinch to zoom.";
     stage.appendChild(hint);
   }
 
@@ -398,7 +437,7 @@
   function showCard(html, anchor, key) {
     const replacing = !!openState;
     if (openState) removeCard(true);
-    const asSheet = !WIDE.matches;
+    const asSheet = !WIDE.matches, back = document.activeElement;
     const card = document.createElement("div");
     card.className = (asSheet ? "sst-sheet sst" : "sst-card") + " sst-pop";
     card.setAttribute("role", "dialog"); card.setAttribute("aria-modal", asSheet ? "true" : "false");
@@ -406,8 +445,27 @@
     let scrim = null;
     if (asSheet) { scrim = document.createElement("div"); scrim.className = "sst-scrim"; document.body.appendChild(scrim); scrim.addEventListener("click", () => closeCard(false)); document.body.appendChild(card); }
     else { (view === "mission" ? host.querySelector(".sst-stage") || host : host).appendChild(card); }
-    openState = { card, scrim, anchor: asSheet ? null : anchor, key, back: document.activeElement };
-    if (!replacing) history.pushState({ sst: 1 }, "");
+    let restore = null;
+    if (asSheet) {
+      const y = scrollY, style = document.body.getAttribute("style");
+      const inerted = [...document.body.children].filter(e => e !== card && e !== scrim && !e.inert);
+      inerted.forEach(e => e.inert = true);
+      Object.assign(document.body.style, { position: "fixed", top: `-${y}px`, width: "100%" });
+      restore = () => {
+        inerted.forEach(e => e.inert = false);
+        if (style == null) document.body.removeAttribute("style"); else document.body.setAttribute("style", style);
+        scrollTo(0, y);
+      };
+      card.addEventListener("keydown", e => {
+        if (e.key !== "Tab") return;
+        const items = [...card.querySelectorAll('button,a[href],input')].filter(e => !e.disabled && e.getClientRects().length);
+        if (e.shiftKey && document.activeElement === items[0]) { e.preventDefault(); items.at(-1).focus(); }
+        else if (!e.shiftKey && document.activeElement === items.at(-1)) { e.preventDefault(); items[0].focus(); }
+      });
+    }
+    openState = { card, scrim, anchor: asSheet ? null : anchor, key, back, restore };
+    if (replacing || history.state?.sst) history.replaceState({ ...history.state, sst: key }, "");
+    else history.pushState({ ...history.state, sst: key }, "");
     placeCard();
     card.querySelector(".sst-x").addEventListener("click", () => closeCard(false));
     card.addEventListener("click", (e) => {
@@ -421,11 +479,14 @@
       }
     });
     if (asSheet) sheetDrag(card);
-    setTimeout(() => { const f = card.querySelector(".sst-x"); if (f) f.focus({ preventScroll: true }); }, 30);
+    setTimeout(() => { const f = card.querySelector(".sst-x"); if (card.isConnected && openState?.card === card) f.focus({ preventScroll: true }); }, 30);
   }
   function placeCard() {
-    if (!openState || !openState.anchor || !openState.card.isConnected) return;
-    const card = openState.card, a = openState.anchor.getBoundingClientRect(), box = card.parentElement.getBoundingClientRect();
+    if (!openState || openState.card.classList.contains("sst-sheet") || !openState.card.isConnected) return;
+    const card = openState.card;
+    card.style.maxHeight = Math.max(44, innerHeight - 24) + "px";
+    if (!openState.anchor) { card.style.left = "16px"; card.style.top = "12px"; return; }
+    const a = openState.anchor.getBoundingClientRect(), box = { left: 0, top: 0, width: innerWidth, height: innerHeight };
     const cw = card.offsetWidth, ch = card.offsetHeight;
     let x = a.right - box.left + 14, y = a.top - box.top - 8, ox = "0%";
     if (x + cw > box.width - 12) { x = a.left - box.left - cw - 14; ox = "100%"; }
@@ -435,13 +496,20 @@
   }
   function removeCard(instant) {
     const st = openState; openState = null; if (!st) return;
+    st.card.inert = true;
+    if (st.restore) st.restore();
+    if (st.back && st.back.focus && document.contains(st.back)) st.back.focus({ preventScroll: true });
     const kill = () => { st.card.remove(); if (st.scrim) st.scrim.remove(); };
     if (instant || reduce) return kill();
     st.card.classList.add("is-leaving"); if (st.scrim) st.scrim.classList.add("is-leaving");
     setTimeout(kill, 280);
-    if (st.back && st.back.focus && document.contains(st.back)) st.back.focus({ preventScroll: true });
   }
   function closeCard(fromPop) { if (!openState) return; removeCard(false); if (!fromPop) history.back(); }
+  function restoreCard(key) {
+    if (typeof key !== "string") return;                       // Older releases stored only a boolean marker.
+    const id = key.slice(2);
+    if (key.startsWith("n:")) openNode(id); else if (key.startsWith("l:")) openLeaf(id);
+  }
   function sheetDrag(card) {
     let y0 = null, dy = 0;
     card.addEventListener("touchstart", (e) => { if (card.scrollTop > 0) return; y0 = e.touches[0].clientY; dy = 0; card.style.transition = "none"; }, { passive: true });

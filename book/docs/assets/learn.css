@@ -66,7 +66,7 @@ html.tw-hide .tw-edge { display: block; }
 .tw-tools { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 5; display: flex; gap: 4px; padding: 4px; border-radius: 999px;
   background: color-mix(in srgb, var(--ss-raised) 86%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--ss-line);
   box-shadow: 0 8px 28px rgba(0, 0, 0, .28); animation: tw-rise 420ms var(--ss-e-out) both 200ms; }
-.tw-tools button, .tw-tools a { font: 600 14px var(--ss-head); color: var(--ss-text); background: transparent; border: 0; border-radius: 999px; padding: 0 14px; min-height: 40px; display: inline-flex; align-items: center; cursor: pointer; text-decoration: none; }
+.tw-tools button, .tw-tools a { font: 600 14px var(--ss-head); color: var(--ss-text); background: transparent; border: 0; border-radius: 999px; padding: 0 14px; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; cursor: pointer; text-decoration: none; }
 .tw-tools button:hover, .tw-tools a:hover { background: color-mix(in srgb, var(--ss-accent) 14%, transparent); }
 @keyframes tw-rise { from { opacity: 0; transform: translateY(12px); } }
 @media (max-width: 44.9375rem) { .tw-tools { left: 50%; right: auto; transform: translateX(-50%); animation: none; } }
@@ -143,7 +143,7 @@ html.tw-hide .tw-edge { display: block; }
 .tw-units { display: grid; gap: .7rem; }
 @media (min-width: 50rem) { .tw-units { grid-template-columns: 1fr 1fr; } }
 .tw-unit { border: 1px solid var(--ss-line); border-radius: 16px; padding: .8rem 1rem .5rem; background: var(--ss-surface); animation: tw-rise 520ms var(--ss-e-out) both; }
-.tw-unit.is-soon { opacity: .62; }
+.tw-unit.is-soon { opacity: 1; }
 .tw-unit header { display: flex; gap: .8rem; align-items: center; font-family: var(--ss-head); }
 .tw-unit header small { display: block; color: var(--ss-text-3); }
 .tw-unit__n { flex: none; width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; font: 600 15px var(--ss-head); color: var(--ss-on-accent); background: var(--ss-accent); }
@@ -179,3 +179,7 @@ html.tw-hide .tw-edge { display: block; }
 /* KaTeX keeps an invisible MathML copy for screen readers; a long display formula made it widen the phone page by 12 px (Codex 017). Keep it 1 px wide. */
 .md-typeset .katex .katex-mathml { width: 1px; height: 1px; overflow: hidden; }
 .md-typeset .katex-display { position: relative; }
+
+.md-typeset .tw-pn a { min-width: 44px; min-height: 44px; }
+.tw-x { min-width: 44px; min-height: 44px; }
+.md-typeset .tw-pn small, .tw-unit header small, .md-typeset .tw-unit li.is-soon, .tw-toc li.is-soon, .tw-toc li.is-soon small { color: var(--ss-text-2); opacity: 1; }
