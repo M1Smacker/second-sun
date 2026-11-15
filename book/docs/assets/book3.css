@@ -63,7 +63,10 @@
 .ss-reveal.is-in { opacity: 1; transform: none; }
 
 /* ---------- Calm marks: evidence chips and glossary words no longer shout (FIX 73) ---------- */
-.md-typeset a.ss-chip { font-size: 14px; opacity: .6; border-color: color-mix(in srgb, var(--ss-line) 80%, transparent); padding: 0 4px; }
+/* FIX 99 M-16, M-21: calm by colour, not by opacity (opacity .6 gave 3.3:1 in daylight); 44 px tap area */
+.md-typeset a.ss-chip { font-size: 14px; color: var(--ss-text-3); border-color: color-mix(in srgb, var(--ss-text-3) 55%, transparent); padding: 0 4px; }
+.md-typeset a.ss-chip--verified { color: var(--ss-text-2); }
+.md-typeset a.ss-chip::after { inset: -14px -4px; }
 .md-typeset a.ss-chip:hover { opacity: 1; }
 .md-typeset a.ss-gl, .md-typeset a[data-gloss] { color: inherit; text-decoration: underline dotted color-mix(in srgb, var(--ss-text-3) 70%, transparent); text-underline-offset: 3px; background: none; }
 
@@ -102,7 +105,8 @@ html[data-splash="quick"] #ss-splash .ss-sp-in { animation: ss3-name 300ms var(-
   .md-typeset table.ss-cards { border: 0; background: none; box-shadow: none; }
   .md-typeset table.ss-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .md-typeset table.ss-cards tr { margin: 0 0 12px; padding: 10px 14px; border: 1px solid var(--ss-line); border-radius: 12px; background: color-mix(in srgb, var(--ss-surface) 85%, transparent); }
-  .md-typeset table.ss-cards td { border: 0; padding: 5px 0; display: grid; grid-template-columns: minmax(84px, 38%) 1fr; gap: 10px; }
+  .md-typeset table.ss-cards td { border: 0; padding: 5px 0; display: grid; grid-template-columns: minmax(84px, 38%) minmax(0, 1fr); gap: 10px; overflow-wrap: anywhere; }   /* FIX 99 M-10: minmax(0, 1fr) so a long cell cannot widen the page (Claims was 362 px on a 320 px phone) */
+  .md-typeset table.ss-cards td > * { min-width: 0; }
   .md-typeset table.ss-cards td::before { content: attr(data-label); font: 600 12px/1.5 var(--ss-head); letter-spacing: .04em; text-transform: uppercase; color: var(--ss-text-3); }
   .md-typeset table.ss-cards td:first-child { font-weight: 600; }
   .md-typeset table.ss-cards td[data-label=""] { grid-template-columns: 1fr; }
@@ -131,3 +135,6 @@ body:has(#ss-tree) .md-content__inner > h1 { position: absolute; width: 1px; hei
 body:has(#ss-tree) .md-main__inner { margin-top: 0; }
 body:has(#ss-tree) .md-content { max-width: none; }
 body:has(#ss-tree) .md-grid { max-width: none; }
+
+/* FIX 99 M-21: two code colours were just under 4.5:1 on the light code background */
+[data-md-color-scheme="default"] { --md-code-hl-constant-color: #5640c0; --md-code-hl-string-color: #17663f; }

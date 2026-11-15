@@ -93,6 +93,10 @@ Step "3d. The frozen Book 2 (tag book-2-final) goes to /v2/ unchanged (Ahmed, 15
 if (-not (Test-Path "$src\book\archive-v2\index.html")) { throw "book/archive-v2 is missing: the frozen Book 2 must be published at /v2/." }
 Copy-Item -Recurse -Force "$src\book\archive-v2" "$build\v2"
 Write-Host "ok: Book 2 copied to /v2/ ($((Get-ChildItem "$build\v2" -Recurse -File).Count) files)"
+# FIX 99 M-25: the frozen Book 2 offline worker expects a 404.html that the archive never had; add a plain one beside it (the archive itself stays byte-exact)
+if (-not (Test-Path "$build\v2\404.html")) {
+    Set-Content -Encoding utf8 "$build\v2\404.html" '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Not found - Book 2 (frozen)</title><style>body{font:17px/1.6 system-ui,sans-serif;margin:0 auto;max-width:36rem;padding:32px 16px;background:#070c19;color:#eef3fc}a{color:#7ad7ea}</style></head><body><h1>Page not found</h1><p>This page is not in the frozen Book 2.</p><p><a href="/second-sun/v2/">Book 2 home</a> &middot; <a href="/second-sun/">The current book</a></p></body></html>'
+}
 Step "3b. Every link and anchor in the built site resolves; every chapter has the template"
 Run "$live\.venv-docs\Scripts\python.exe" "$src\book\tools\check_site.py" $build
 
@@ -128,6 +132,14 @@ if ($Test) {
             }
             if (-not $ok) { throw "browser test '$m' failed twice. Refusing to publish." }
             Write-Host "$m : pass$(if ($try -gt 2) { ' (after a retry)' } elseif ($try -eq 3) { '' })"
+        }
+        # 4b2. Release gates (FIX 99, 15 Nov 2026): what a READER does, every page, phone to PC, both themes, Chrome and WebKit:
+        # menu taps, header and text contrast, overflow against the real width, no transparent pinned blocks, the tour and the splash.
+        # Book 3.2.1 passed every check above and still trapped Ahmed on his phone; these gates fail on that build (data/astra/gates).
+        foreach ($g in "release_gates.mjs", "webkit_gates.mjs") {
+            $o = (& node "$tools\$g" "http://127.0.0.1:8490/" 2>&1 | Out-String)
+            if ($LASTEXITCODE -ne 0) { Write-Host $o.Substring(0, [Math]::Min(3000, $o.Length)) -ForegroundColor Yellow; throw "release gate '$g' failed. Refusing to publish." }
+            Write-Host "$g : pass"
         }
     }
     finally { Stop-Process -Id $srv.Id -Force -ErrorAction SilentlyContinue }

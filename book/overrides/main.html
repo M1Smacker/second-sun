@@ -11,7 +11,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   {# Book 3.0 opening: full logo on the first open of the day, a quick fade on other opens, nothing between pages of one visit.
      Never in automated test browsers (navigator.webdriver), so publish tests are never covered. CSS ends it on its own. #}
-  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  {# FIX 99 N-01 (15 Nov 2026): with reduced motion the splash had no animation to end it and blocked every tap for up to 3.2 s; skip it then. #}
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
   {% if page and page.url and page.url.startswith('learn/') %}
   {# Twinlight, the learning app: formulas from our own KaTeX copy, the app's own styles #}
   <link rel="stylesheet" href="{{ 'assets/katex/katex.min.css' | url }}">

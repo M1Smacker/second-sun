@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{# FIX 99 M-28 (15 Nov 2026): the "not found" page offers a way back into the book. #}
+{% block content %}
+  <h1>Page not found</h1>
+  <p>This page does not exist. It may have moved when the book became Book 3.</p>
+  <p class="ss-404-links">
+    <a href="{{ config.site_url }}">The Tree</a> ·
+    <a href="{{ config.site_url }}learn/">Twinlight</a> ·
+    <a href="{{ config.site_url }}shelf/">The Shelf</a> ·
+    <a href="{{ config.site_url }}v2/">Book 2 (frozen)</a>
+  </p>
+{% endblock %}

@@ -56,9 +56,19 @@
         g.beginPath(); g.arc(s.x, (s.y - sy * s.sp + h) % h, s.r, 0, 6.283); g.fill();
       }
     }
-    size(); addEventListener("resize", () => { cancelAnimationFrame(raf); size(); raf = requestAnimationFrame(frame); });
-    document.addEventListener("visibilitychange", () => { cancelAnimationFrame(raf); if (!document.hidden) { last = 0; raf = requestAnimationFrame(frame); } });
-    raf = requestAnimationFrame(frame);
+    // FIX 99 M-24: draw only while the sky can be seen (night scheme, page visible); a height-only resize (a phone's
+    // toolbar sliding away while you scroll) just stretches the canvas instead of throwing every star away.
+    const shown = () => !document.hidden && document.body.getAttribute("data-md-color-scheme") !== "default";
+    const run = () => { cancelAnimationFrame(raf); raf = 0; if (shown()) { last = 0; raf = requestAnimationFrame(frame); } };
+    size();
+    addEventListener("resize", () => {
+      if (Math.abs(innerWidth - w) < 2) { h = innerHeight; cv.height = h * dpr; cv.style.height = h + "px"; g.setTransform(dpr, 0, 0, dpr, 0, 0); stars.forEach((s) => { if (s.y > h) s.y = Math.random() * h; }); }
+      else size();
+      run();
+    });
+    document.addEventListener("visibilitychange", run);
+    new MutationObserver(run).observe(document.body, { attributes: true, attributeFilter: ["data-md-color-scheme"] });
+    run();
   }
 
   /* 3. Phone tables become cards: each cell carries its column name; PC keeps the table (CSS does the switch). */

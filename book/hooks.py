@@ -319,7 +319,7 @@ def gloss_patterns():
     if "gloss" not in DATA:
         text = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
         pats = []
-        for term in re.findall(r"^### ([^\n]+)", text, re.M):
+        for term in re.findall(r"^#{2,3} ([^\n]+)", text, re.M):   # FIX 99 M-29: glossary terms are h2 now (no h1 to h3 skip)
             slug = slugify(term.strip(), "-")
             if slug in ALIAS:
                 alts = ALIAS[slug]
@@ -431,7 +431,7 @@ def glossary_terms():
     from markdown.extensions.toc import slugify
     text = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
     out = {}
-    for m in re.finditer(r"^### ([^\n]+)\n+(.+?)(?=\n### |\Z)", text, re.S | re.M):
+    for m in re.finditer(r"^#{2,3} ([^\n]+)\n+(.+?)(?=\n#{2,3} |\Z)", text, re.S | re.M):
         body = re.sub(r"\{\{claim:[^}]+\}\}", "", re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", m.group(2)))
         out[slugify(m.group(1).strip(), "-")] = [m.group(1).strip(), " ".join(body.split()).replace("*", "").replace("`", "")]
     return out
