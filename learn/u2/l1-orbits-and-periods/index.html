@@ -1,0 +1,1753 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/learn/u2/l1-orbits-and-periods/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon-64.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2.1 Orbits and periods - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../../assets/shape.css">
+    
+      <link rel="stylesheet" href="../../../assets/book3.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <meta name="theme-color" content="#070c19">
+  <link rel="apple-touch-icon" href="../../../assets/icon-180.png">
+  <link rel="icon" type="image/png" href="../../../assets/favicon-64.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  
+  <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../../../assets/learn.css">
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#orbits-and-periods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <div id="ss-splash" aria-hidden="true"><div class="ss-sp-in"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="ss-sp-bgx" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#13213f"/><stop offset=".65" stop-color="#091127"/><stop offset="1" stop-color="#050913"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sa" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ff"/><stop offset=".75" stop-color="#9fd9ff" stop-opacity=".55"/><stop offset="1" stop-color="#9fd9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f4fbff"/><stop offset=".42" stop-color="#7ad7ea"/><stop offset=".75" stop-color="#7ad7ea" stop-opacity=".45"/><stop offset="1" stop-color="#7ad7ea" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect class="ss-logo-bg" width="512" height="512" rx="112" fill="url(#ss-sp-bgx)"/>
+  <g class="ss-logo-orbit" fill="none" stroke="#b9e9f4" stroke-width="7" stroke-linecap="round" opacity=".9">
+    <path d="M78 300 A178 96 -14 0 1 434 212" opacity=".35"/>
+    <path d="M434 212 A178 96 -14 0 1 78 300"/>
+  </g>
+  <circle class="ss-logo-a" cx="214" cy="262" r="96" fill="url(#ss-sp-sa)"/>
+  <circle cx="214" cy="262" r="46" fill="#ffffff"/>
+  <circle class="ss-logo-b" cx="322" cy="226" r="62" fill="url(#ss-sp-sb)"/>
+  <circle cx="322" cy="226" r="27" fill="#e6f8fc"/>
+  <circle class="ss-logo-p" cx="431" cy="213" r="13" fill="#b9adff"/>
+</svg>
+<div class="ss-sp-name">Second Sun</div></div></div>
+  
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.1 Orbits and periods
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tree
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Learning
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../shelf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Shelf
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shelf
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shelf
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shelf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Shelf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training deck
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-clock-in-the-sky" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A clock in the sky
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-far-apart-are-the-stars-keplers-third-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How far apart are the stars? Kepler's third law
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-few-sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In a few sentences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p class="tw-kicker" data-lesson="2.1">Unit 2 · What makes a dip · Lesson 2.1 · 15 min</p>
+
+<h1 id="orbits-and-periods">Orbits and periods<a class="headerlink" href="#orbits-and-periods" title="Permanent link">&para;</a></h1>
+<p>Same two stars, now watched for four <a href="../../../glossary/#tess">TESS</a> <a href="../../../glossary/#sector">sectors</a> in a row: about 106 days.</p>
+<div class="tw-plot" data-src="u2-four-sectors"></div>
+
+<p class="tw-plot__ask">Count the deep drops. Some reach about minus 43%, some only about minus 35%. Do the two kinds take turns?</p>
+
+<h2 id="a-clock-in-the-sky">A clock in the sky<a class="headerlink" href="#a-clock-in-the-sky" title="Permanent link">&para;</a></h2>
+<p>The drops come back again and again, and they come in two kinds. The deeper ones (about 45% at their 2-minute bottom) happen when one star passes in front of the other; the shallower ones (about 36%) when it is the other way round. Astronomers call the deeper kind the <strong>primary eclipse</strong> and the shallower kind the <strong><a href="../../../glossary/#secondary-eclipse">secondary eclipse</a></strong>.</p>
+<aside class="tw-mn">
+<p><strong>Primary and secondary eclipse.</strong> The deeper and the shallower of the two eclipses that a pair of stars makes in each orbit.</p>
+</aside>
+<p>The time from one primary eclipse to the next is the time the stars take to go once round each other: the <strong>period</strong>, written <span class="arithmatex">\(P\)</span>. Every orbit, the same lineup repeats, so a period is the most exact clock a star pair can give you.</p>
+<aside class="tw-mn">
+<p><strong>Period (<span class="arithmatex">\(P\)</span>).</strong> The time for one full orbit. Here, the time from one primary eclipse to the next.</p>
+</aside>
+<p>Look closely and you will notice that not every orbit shows both eclipses. Our script finds the middles of five primary eclipses, at days 2507.395, 2527.053, 2546.710, 2586.028 and 2605.685 on the TESS clock. The one that should come between 2546.710 and 2586.028, near day 2566.4, fell in a gap in the data (a 2.8-day pause while TESS sent its data home). One secondary eclipse is lost the same way. Gaps like these are why a single planet crossing can be missed even when the telescope is looking at the right star.</p>
+<div class="admonition example">
+<p class="admonition-title">Worked example: measuring the period</p>
+<p><strong>Step 1. Take the first and the last primary eclipse.</strong> Days 2507.395 and 2605.685.</p>
+<p><strong>Step 2. Subtract.</strong> <span class="arithmatex">\(2605.685 - 2507.395 = 98.290\)</span> days.</p>
+<p><strong>Step 3. Count the orbits in between.</strong> The gaps between neighbours are about 19.7, 19.7, 39.3 and 19.7 days. The 39.3 is two orbits (the missing eclipse), so the total is <span class="arithmatex">\(1 + 1 + 2 + 1 = 5\)</span> orbits.</p>
+<p><strong>Step 4. Divide.</strong> <span class="arithmatex">\(P = 98.290 / 5 = 19.658\)</span> days.</p>
+<p>Why not just subtract two neighbours? Each eclipse time has a small error. Spreading that error over five orbits makes the period five times more exact. The discovery paper gives 19.7 days, the same value rounded.</p>
+</div>
+<h2 id="how-far-apart-are-the-stars-keplers-third-law">How far apart are the stars? Kepler's third law<a class="headerlink" href="#how-far-apart-are-the-stars-keplers-third-law" title="Permanent link">&para;</a></h2>
+<p>About 400 years ago Johannes <a href="../../../glossary/#kepler">Kepler</a> found a rule linking how long an orbit takes to how big it is. In the form astronomers use for stars:</p>
+<div class="arithmatex">\[ P^2 = \frac{a^3}{M} \]</div>
+<aside class="tw-mn">
+<p><strong>Kepler's third law.</strong> In these units: period in years, size in astronomical units, mass in Suns. It works for planets around the Sun, for two stars, and for a planet around two stars.</p>
+</aside>
+<p>Here <span class="arithmatex">\(P\)</span> is the period in years, <span class="arithmatex">\(M\)</span> is the total mass of everything inside the orbit in Suns, and <span class="arithmatex">\(a\)</span> is the size of the orbit in <strong>astronomical units</strong> (AU): 1 AU is the distance from the Earth to the Sun, about 150 million km. For an oval orbit, <span class="arithmatex">\(a\)</span> is half of its long axis, the average of the closest and the farthest distance.</p>
+<aside class="tw-mn">
+<p><strong>Astronomical unit (AU).</strong> The Earth's average distance from the Sun, about 150 million km. A ruler for orbits.</p>
+</aside>
+<p>Check it on the Earth: <span class="arithmatex">\(P = 1\)</span> year and <span class="arithmatex">\(M = 1\)</span> Sun, so <span class="arithmatex">\(a^3 = 1\)</span> and <span class="arithmatex">\(a = 1\)</span> AU. Right.</p>
+<p>We want <span class="arithmatex">\(a\)</span>, so we turn the law around: multiply both sides by <span class="arithmatex">\(M\)</span> and take the <strong>cube root</strong>, the number that multiplied by itself three times gives what is under the root (the cube root of 8 is 2, because <span class="arithmatex">\(2 \times 2 \times 2 = 8\)</span>):</p>
+<div class="arithmatex">\[ a = \sqrt[3]{M P^2} \]</div>
+<div class="admonition example">
+<p class="admonition-title">Worked example: the two stars of TIC 172900988</p>
+<p>The discovery paper gives the stars' masses: 1.238 and 1.202 Suns, so <span class="arithmatex">\(M = 2.440\)</span>.</p>
+<p><strong>Step 1. Period in years.</strong> <span class="arithmatex">\(19.658 / 365.25 = 0.05382\)</span> years.</p>
+<p><strong>Step 2. Square it.</strong> <span class="arithmatex">\(0.05382^2 = 0.002897\)</span>.</p>
+<p><strong>Step 3. Times the mass.</strong> <span class="arithmatex">\(2.440 \times 0.002897 = 0.007069\)</span>.</p>
+<p><strong>Step 4. Cube root.</strong> <span class="arithmatex">\(\sqrt[3]{0.007069} = 0.192\)</span> AU.</p>
+<p>The two stars sit about 0.19 AU apart: half of Mercury's distance from the Sun. That is about 41 times the width of the Sun, while each star is only about 1.4 times as wide as the Sun. Close, but far from touching.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Your turn, half done: the planet's orbit</p>
+<p>The planet goes round both stars once in about 200 days (the paper allows six values between 189 and 204). It feels the pull of both stars together, so <span class="arithmatex">\(M = 2.440\)</span> again. Step 1: <span class="arithmatex">\(200 / 365.25 = 0.5476\)</span> years. Step 2: <span class="arithmatex">\(0.5476^2 = 0.2998\)</span>. Finish steps 3 and 4.</p>
+</div>
+<div class="tw-prob" data-answer="0.90" data-hints="{&quot;0.73&quot;:&quot;That is a cubed. Take the cube root as the last step.&quot;,&quot;0.67&quot;:&quot;Did you leave out the mass? Multiply by 2.440 first.&quot;}" data-tol="0.02" data-unit="AU" data-why="2.440 times 0.2998 = 0.7316, and its cube root is 0.90 AU.">
+<p><strong>Your turn.</strong> The size of the planet's orbit, in AU:</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Step 3: <span class="arithmatex">\(2.440 \times 0.2998 = 0.7316\)</span>. Step 4: <span class="arithmatex">\(\sqrt[3]{0.7316} = 0.90\)</span> AU.</p>
+<p>The rule: <strong><span class="arithmatex">\(a = \sqrt[3]{M P^2}\)</span>, with <span class="arithmatex">\(P\)</span> in years and <span class="arithmatex">\(M\)</span> the total mass inside the orbit.</strong> The planet circles both stars at about 0.9 AU, almost five times farther out than the stars are from each other. That is no accident: Unit 3 shows why a planet cannot orbit two suns too closely.</p>
+</details>
+</div>
+<h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
+<p>A pair of stars makes two eclipses each orbit, a deeper primary and a shallower secondary; the time between two primaries is the period. Measure it across many orbits to make it exact; gaps in the data can hide whole eclipses. Kepler's third law, <span class="arithmatex">\(P^2 = a^3 / M\)</span>, turns a period and a mass into the size of an orbit.</p>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="20" data-hints="{&quot;60&quot;:&quot;That is the time for all three orbits. Divide by the number of orbits.&quot;,&quot;15&quot;:&quot;From the first to the fourth eclipse is 3 orbits, not 4.&quot;}" data-tol="0.005" data-unit="days" data-why="From the 1st to the 4th eclipse is 3 orbits: 60 / 3 = 20 days.">
+<p><strong>1.</strong> A star pair's first primary eclipse is at day 100.0 and its fourth at day 160.0, with none missing between. What is the period?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>From the first to the fourth eclipse there are 3 orbits (1 to 2, 2 to 3, 3 to 4). <span class="arithmatex">\(160.0 - 100.0 = 60.0\)</span> days, and <span class="arithmatex">\(60.0 / 3 = 20.0\)</span> days.</p>
+</details>
+</div>
+<div class="tw-prob" data-abs="0.01" data-answer="2625.343" data-hints="{&quot;2615.514&quot;:&quot;That is half a period later: the secondary eclipse would come around then, not the next primary (and for this oval orbit, not even exactly halfway).&quot;}" data-why="2605.685 + 19.658 = 2625.343.">
+<p><strong>2.</strong> The last primary eclipse in the plot is at day 2605.685 and the period is 19.658 days. When is the next primary eclipse, on the TESS clock?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(2605.685 + 19.658 = 2625.343\)</span>. Predicting eclipses like this is how astronomers plan observations, and how our search masks eclipses out of the light before looking for planets.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="8" data-hints="{&quot;64&quot;:&quot;64 is P squared. Take the square root.&quot;,&quot;4&quot;:&quot;Square root of 64, not of 16.&quot;}" data-tol="0.01" data-unit="years" data-why="P squared = 4 cubed / 1 = 64, so P = 8 years.">
+<p><strong>3.</strong> A planet orbits a star of 1 Sun mass at 4 AU. How long is its year?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(P^2 = a^3 / M = 4^3 / 1 = 64\)</span>, so <span class="arithmatex">\(P = \sqrt{64} = 8\)</span> years. (Jupiter, at 5.2 AU, takes about 12 years.)</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="0.70" data-hints="{&quot;0.35&quot;:&quot;That is a cubed. Take the cube root.&quot;,&quot;0.63&quot;:&quot;That is the period in years. Square it, multiply by the mass, then take the cube root.&quot;}" data-tol="0.02" data-unit="AU" data-why="P = 229 / 365.25 = 0.627 years; P squared = 0.393; times 0.89 = 0.350; cube root 0.70 AU.">
+<p><strong>4.</strong> Kepler-16 b, the first planet found crossing two suns, orbits stars of 0.69 and 0.20 Sun masses every 229 days. How big is its orbit, in AU?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(M = 0.69 + 0.20 = 0.89\)</span>. <span class="arithmatex">\(P = 229 / 365.25 = 0.627\)</span> years, <span class="arithmatex">\(P^2 = 0.393\)</span>. <span class="arithmatex">\(M P^2 = 0.89 \times 0.393 = 0.350\)</span>. Cube root: <span class="arithmatex">\(a = 0.70\)</span> AU, about the distance of Venus from the Sun.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="2.83" data-hints="{&quot;8&quot;:&quot;The period changes with the square root of the mass, not the mass itself.&quot;,&quot;64&quot;:&quot;Inverted: more mass makes the orbit faster, so the period is shorter.&quot;}" data-tol="0.02" data-why="P squared = a cubed / M; with a fixed, 8 times the mass gives 1/8 of P squared, so P is the square root of 8 = 2.83 times shorter.">
+<p><strong>5.</strong> Two orbits have the same size <span class="arithmatex">\(a\)</span>, but one goes round 8 times more mass. How many times shorter is its period?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>With <span class="arithmatex">\(a\)</span> fixed, <span class="arithmatex">\(P^2\)</span> is proportional to <span class="arithmatex">\(1 / M\)</span>. Eight times the mass makes <span class="arithmatex">\(P^2\)</span> eight times smaller, so <span class="arithmatex">\(P\)</span> is <span class="arithmatex">\(\sqrt{8} = 2.83\)</span> times smaller. More mass pulls harder, so the same orbit is travelled faster.</p>
+</details>
+</div>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Eclipse times and the period: TESS sectors 44 to 47, 2-minute light curves of TIC 172900988 (MAST); middles of the eclipses (halfway through the time below 90% of normal) and the fitted period 19.658 days measured by our scripts on 15 Nov 2026 (<code>book/tools/lesson_plots.py</code> and a check script). Both missing eclipses (days 2566.4 and 2538.9) fall in mid-sector data gaps.</li>
+<li>Masses, period and planet periods: Kostov et al. 2021 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>): "P = 19.7 days", M1 = 1.2384 and M2 = 1.2019 solar masses, planet period "188.8, 190.4, 194.0, 199.0, 200.4, or 204.1 days".</li>
+<li>Kepler-16: Doyle et al. 2011 (<a href="https://arxiv.org/abs/1109.3432">arXiv 1109.3432</a>): stars "20% and 69% as massive as the sun", planet on "a nearly circular 229-day orbit".</li>
+</ul>
+<nav aria-label="Lessons" class="tw-pn">
+<p><a class="tw-prev" href="../../u1/l4-what-a-dip-looks-like/" rel="prev"><small>Previous</small> 1.4 What a dip looks like</a></p>
+<p><a class="tw-next" href="../l2-how-long-a-dip-lasts/" rel="next"><small>Next</small> 2.2 How long a dip lasts</a></p>
+</nav>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 3.2.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/eyes-flow.js"></script>
+      
+        <script src="../../../assets/eyes-core.js"></script>
+      
+        <script src="../../../assets/eyes-strength.js"></script>
+      
+        <script src="../../../assets/eyes-hard.js"></script>
+      
+        <script src="../../../assets/eyes-feedback.js"></script>
+      
+        <script src="../../../assets/eyes-cloud.js"></script>
+      
+        <script src="../../../assets/rehearsal.js"></script>
+      
+        <script src="../../../assets/demos.js"></script>
+      
+        <script src="../../../assets/watch.js"></script>
+      
+        <script src="../../../assets/book3.js"></script>
+      
+    
+  <script src="../../../assets/book.js" data-sw="../../../sw.js"></script>
+  
+  <script defer src="../../../assets/katex/katex.min.js"></script>
+  <script defer src="../../../assets/katex/auto-render.min.js"></script>
+  <script defer src="../../../assets/learn.js"></script>
+  
+
+  </body>
+</html>
