@@ -1,3 +1,7 @@
+## LATEST (15 Nov 2026, 4:05 am Kuwait): BOOK 3.0 OVERNIGHT BUILD (Opus 5.5 MEDIUM; weekly 26% to 33%, cap 60%; Ahmed asleep since about 3:20 am)
+Ahmed (2 to 3:19 am): hunt paused so he can learn (HUNT-PAUSED.md); 20 question rounds -> research/stage3/REDESIGN-DECISIONS-2026-11-15.md; plan research/stage3/BOOK3-BUILD-PLAN-2026-11-15.md (READ ITS LOG FIRST: exact phase state and next steps). Go given 3:19 am. Codex runs headless via research/astra/tools/codex_run.py (GPT-6.1 Sol medium). Morning: greet him like a friend coming back; short plain report with links; say what is live, what is not, slips (Codex read a skills file outside its paths and ran Chrome outside its allowlist; my own slips: backslash escapes in two edits, caught and fixed).
+Done so far: phase 0 setup, phase 1 look + menu + migration, phase 2 Drop builder, phase 3 Tree page (first version), Codex 015 merged. Not yet published (checkpoint publish 1 waits for the browser-test migration).
+
 ## LATEST (15 Nov 2026, 1:38 am Kuwait): CODEX 014 DONE, PART 3 KEYED (Opus 5.5 MEDIUM; weekly 24% to 25%, 5-hour reset 1:30 am, cap 30%)
 Ahmed (12:16 am): start on your own after the reset; is Codex suitable for my work; Codex status. Answered: watcher wakes me; reviews stay mine (first key), plain code jobs could go to Codex (asked him yes/not now: NO ANSWER YET).
 - Watcher restarted twice (old one would have false-stalled at 12:46 am because Codex's progress file only updates per phase). Codex commits: 855ec633 (1:01 am, injections), 7d2e6a3c (1:31 am, final report).
