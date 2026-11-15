@@ -12,7 +12,7 @@ units:
     title: What makes a dip
     lessons:
       - {file: u2/l1-orbits-and-periods.md, title: "Orbits and periods", minutes: 15}
-      - {title: "How long a dip lasts"}
+      - {file: u2/l2-how-long-a-dip-lasts.md, title: "How long a dip lasts", minutes: 14}
       - {title: "Why stars differ"}
       - {title: "Light from two stars at once"}
   - n: 3
