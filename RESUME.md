@@ -1,3 +1,9 @@
+## LATEST (15 Nov 2026, 7:05 pm Kuwait): RS-038 done; 3-point task list offered, NOT run
+- Ahmed (6:54 pm): second, different research round with full papers; then real tasks costing about 3 weekly points to reach 67% today; do not run them until he says.
+- RS-038 `research/stage3/rs038/KEEP-PLANETS-THROUGH-VETTING-2026-11-15.md`: blanket dump hold (0.25 d after to 0.5 d before bit-32 cadences) covers 20% of Sector 1 to 26 data, 7.5% later; mono-cbp's cross-star check costs a few per cent of planted transits; TOI-1338 b team used per-pixel jitter tests; all 443 checked SPOC/TESS-SPOC files have centroid columns; TOI-1338 b lost 3 crossings to a stray-light quality cut in mono-cbp; published per-transit efficiency 0.41 to 0.61 for our depths. F4 in Fable's brief strengthened.
+- Meter 64% weekly at 7:00 pm. Codex 024 still running.
+- WAITING: Ahmed's pick from the task list (dump-hold bench test, quality-bit audit, release-notes check, Unit 3 lesson).
+
 ## LATEST (15 Nov 2026, 6:50 pm Kuwait): RS-037 done; F4 added to Fable's brief
 - Ahmed approved RS-037 (Opus 5.5 medium). Result `research/stage3/rs037/MULTI-CROSSING-2026-11-15.md`: adding up crossings alone adds only 2 to 4 points of P. Missed planets: 11.6 points detected at SNR 7+ but held at tier 2 by guard flags (dump 55, step 49, gap edge 34, ramp 33, repeater 32 of 123); 13.8 points with crossings never scored (mask, windows, load); 22.4 too faint. Realistic ceiling of every lever about 0.71 to 0.74, so the 0.75 bar is at the edge.
 - New ideas measured: orbit vouching (a 2nd crossing scoring 4+ exists for 5.6 of the 11.6 points); cross-star time veto (dump false alarms coincide across stars about 2x as often as planted dips: helps, not clean alone).
