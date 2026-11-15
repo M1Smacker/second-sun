@@ -1,0 +1,1773 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/learn/u1/l4-what-a-dip-looks-like/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon-64.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.4 What a dip looks like - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../../assets/shape.css">
+    
+      <link rel="stylesheet" href="../../../assets/book3.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <meta name="theme-color" content="#070c19">
+  <link rel="apple-touch-icon" href="../../../assets/icon-180.png">
+  <link rel="icon" type="image/png" href="../../../assets/favicon-64.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  
+  <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../../../assets/learn.css">
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-a-dip-looks-like" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <div id="ss-splash" aria-hidden="true"><div class="ss-sp-in"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="ss-sp-bgx" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#13213f"/><stop offset=".65" stop-color="#091127"/><stop offset="1" stop-color="#050913"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sa" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ff"/><stop offset=".75" stop-color="#9fd9ff" stop-opacity=".55"/><stop offset="1" stop-color="#9fd9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f4fbff"/><stop offset=".42" stop-color="#7ad7ea"/><stop offset=".75" stop-color="#7ad7ea" stop-opacity=".45"/><stop offset="1" stop-color="#7ad7ea" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect class="ss-logo-bg" width="512" height="512" rx="112" fill="url(#ss-sp-bgx)"/>
+  <g class="ss-logo-orbit" fill="none" stroke="#b9e9f4" stroke-width="7" stroke-linecap="round" opacity=".9">
+    <path d="M78 300 A178 96 -14 0 1 434 212" opacity=".35"/>
+    <path d="M434 212 A178 96 -14 0 1 78 300"/>
+  </g>
+  <circle class="ss-logo-a" cx="214" cy="262" r="96" fill="url(#ss-sp-sa)"/>
+  <circle cx="214" cy="262" r="46" fill="#ffffff"/>
+  <circle class="ss-logo-b" cx="322" cy="226" r="62" fill="url(#ss-sp-sb)"/>
+  <circle cx="322" cy="226" r="27" fill="#e6f8fc"/>
+  <circle class="ss-logo-p" cx="431" cy="213" r="13" fill="#b9adff"/>
+</svg>
+<div class="ss-sp-name">Second Sun</div></div></div>
+  
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.4 What a dip looks like
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tree
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Learning
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../shelf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Shelf
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shelf
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shelf
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shelf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Shelf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training deck
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-shape-of-a-planets-dip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shape of a planet's dip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-a-dip-through-the-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seeing a dip through the noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-other-crossing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The other crossing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-few-sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In a few sentences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p class="tw-kicker" data-lesson="1.4">Unit 1 · A star&#x27;s light on a graph · Lesson 1.4 · 15 min</p>
+
+<h1 id="what-a-dip-looks-like">What a dip looks like<a class="headerlink" href="#what-a-dip-looks-like" title="Permanent link">&para;</a></h1>
+<p>This is the moment the whole project is about. Below is the planet around <a href="../../../glossary/#tic">TIC</a> 172900988, caught by <a href="../../../glossary/#tess">TESS</a> in <a href="../../../glossary/#sector">sector</a> 21 (January and February 2020) as it crossed in front of one of its two suns.</p>
+<div class="tw-plot" data-src="u1-planet-b"></div>
+
+<p class="tw-plot__ask">Find the dip. Read its lowest points. How long, in hours, does the light stay low?</p>
+
+<h2 id="the-shape-of-a-planets-dip">The shape of a planet's dip<a class="headerlink" href="#the-shape-of-a-planets-dip" title="Permanent link">&para;</a></h2>
+<p>Lesson 1.2 said a planet blocks the fraction <span class="arithmatex">\((R_p / R_\star)^2\)</span> of its star's light. That is the <a href="../../../glossary/#depth">depth</a> at the deepest part. But the planet does not jump onto the star's face. It slides on, crosses, and slides off, and each part leaves its mark on the light:</p>
+<figure class="tw-diagram">
+<svg viewBox="0 0 640 210" role="img" aria-label="The shape of a transit: the light is flat, slopes down while the planet moves onto the star, stays flat while it is fully in front, slopes back up as it leaves.">
+  <line x1="40" y1="60" x2="620" y2="60" class="tw-d-axis"/>
+  <polyline points="40,60 210,60 250,140 410,140 450,60 620,60" class="tw-d-line"/>
+  <text x="218" y="118" text-anchor="end" class="tw-d-txt">ingress</text>
+  <text x="330" y="184" text-anchor="middle" class="tw-d-txt">flat bottom</text>
+  <text x="444" y="118" text-anchor="start" class="tw-d-txt">egress</text>
+  <text x="125" y="44" text-anchor="middle" class="tw-d-txt">normal light</text>
+  <line x1="600" y1="60" x2="600" y2="140" class="tw-d-dim"/>
+  <text x="612" y="178" text-anchor="end" class="tw-d-txt">depth</text>
+</svg>
+<figcaption>A planet's dip, drawn clean. Real dips are rounder at the corners, because a star's edge is a little darker than its centre.</figcaption>
+</figure>
+
+<p><strong>Ingress</strong> is the slope down: the planet's disc is only partly in front of the star. Once the whole disc is in front, the light stays at its lowest level: the <strong>flat bottom</strong>. <strong>Egress</strong> is the slope back up as the planet leaves. Because a planet is small next to its star, ingress and egress are short and the flat bottom is long. That box-like shape, with short sloping sides, is the signature of a small body crossing a big one.</p>
+<aside class="tw-mn">
+<p><strong>Ingress and egress.</strong> The start and the end of a crossing, while the planet's disc is only partly in front of the star. Both are Latin: "going in" and "going out".</p>
+</aside>
+<p>Now go back to the eclipse in lesson 1.1. Its bottom is a point, not a flat line: our script finds only 2 of its 10-minute points within 1 percentage point of the lowest one. Two stars of nearly the same size never fit one inside the other, so the hidden part grows and shrinks without ever staying still. A <strong>V shape</strong> usually means two stars; a <strong>U or box shape</strong> with a flat bottom usually means something much smaller than its star. Planet searches use this difference all the time to throw out eclipsing stars that pretend to be planets.</p>
+<aside class="tw-mn">
+<p><strong>V or U.</strong> A rule of thumb, not a law: a planet that only grazes the edge of its star also makes a V. Unit 5 shows how searches handle that.</p>
+</aside>
+<h2 id="seeing-a-dip-through-the-noise">Seeing a dip through the noise<a class="headerlink" href="#seeing-a-dip-through-the-noise" title="Permanent link">&para;</a></h2>
+<p>Look at the plot again. The points outside the dip scatter by a few hundred <a href="../../../glossary/#ppm">ppm</a>: our script measures a spread of <span class="arithmatex">\(\sigma = 305\)</span> ppm per 30-minute point. A single point 600 ppm low would mean nothing. Yet the dip is plain to see. Why?</p>
+<p>Because it is not one low point. It is many low points in a row. Lesson 1.3 showed that averaging <span class="arithmatex">\(N\)</span> points shrinks random noise to <span class="arithmatex">\(\sigma / \sqrt{N}\)</span>. The dip is a stretch of points that all sit low together, and their average is far below normal, with very little noise left. Astronomers compare the two with one number, the <strong>signal-to-noise ratio</strong>:</p>
+<div class="arithmatex">\[ \text{SNR} = \frac{\text{depth}}{\sigma / \sqrt{N}} \]</div>
+<aside class="tw-mn">
+<p><strong>Signal-to-noise ratio (<a href="../../../glossary/#snr">SNR</a>).</strong> How many times bigger a signal is than the noise left after averaging. Searches usually ask for about 7 or more before they look twice.</p>
+</aside>
+<p>where depth is the average drop of the points inside the dip, <span class="arithmatex">\(\sigma\)</span> is the noise of one point, and <span class="arithmatex">\(N\)</span> is how many points the dip holds.</p>
+<div class="admonition example">
+<p class="admonition-title">Worked example: how clear is the planet's dip?</p>
+<p>Our script measured this dip (the second one in sector 21) from its 12 points within 3.6 hours of the middle.</p>
+<p><strong>Step 1. Depth.</strong> Their average is 2,655 ppm below normal.</p>
+<p><strong>Step 2. Noise of one point.</strong> Outside the dip, <span class="arithmatex">\(\sigma = 305\)</span> ppm.</p>
+<p><strong>Step 3. Noise of the average of 12 points.</strong> <span class="arithmatex">\(\sqrt{12} = 3.46\)</span>, so <span class="arithmatex">\(305 / 3.46 = 88\)</span> ppm.</p>
+<p><strong>Step 4. Divide.</strong> <span class="arithmatex">\(\text{SNR} = 2{,}655 / 88 = 30\)</span>.</p>
+<p>The dip is 30 times bigger than the noise left in its average. That is a strong signal: no honest search would miss it. Yet notice: that same planet in a single point would be lost in the noise. All of the power comes from <span class="arithmatex">\(\sqrt{N}\)</span>.</p>
+</div>
+<p>The depth also matches lesson 1.2. There we worked out 5,560 ppm for this planet in front of the larger star if the other star were not there, and said the second star's light would roughly halve it. 2,000 to 3,000 ppm is what TESS saw.</p>
+<h2 id="the-other-crossing">The other crossing<a class="headerlink" href="#the-other-crossing" title="Permanent link">&para;</a></h2>
+<p>Five days earlier the same planet crossed the other star. Here it is:</p>
+<div class="tw-plot" data-src="u1-planet-a"></div>
+
+<p class="tw-plot__ask">Is this dip deeper or shallower than the first plot? Does its bottom look flat?</p>
+
+<p>Two dips, 4.9 days apart, from one planet crossing two different suns. With one star, a planet's dips repeat like a clock, every orbit. Around two suns that clock breaks: the stars move while the planet goes round, so the planet meets them at different places each time. The dips change their spacing, their depth and their length. That is what makes planets around two suns so hard to find, and so precious when found. Unit 3 is all about it.</p>
+<div class="admonition question">
+<p class="admonition-title">Your turn, half done: the first crossing</p>
+<p>In the first crossing our script finds a depth of about 1,900 ppm over 14 points. Take the same noise as before, 305 ppm per point. Step 1: <span class="arithmatex">\(\sqrt{14} = 3.74\)</span>. Finish the other steps and type the SNR.</p>
+</div>
+<div class="tw-prob" data-answer="23.3" data-hints="{&quot;6.2&quot;:&quot;You divided the depth by the noise of one point. Divide by the noise of the average: 305 / 3.74 first.&quot;,&quot;0.04&quot;:&quot;Upside down: depth on top, noise below.&quot;}" data-tol="0.05" data-why="305 / 3.74 = 81.6 ppm; 1,900 / 81.6 = 23.3.">
+<p><strong>Your turn.</strong> SNR of the first crossing:</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Step 2: noise of the average, <span class="arithmatex">\(305 / 3.74 = 81.6\)</span> ppm. Step 3: <span class="arithmatex">\(\text{SNR} = 1{,}900 / 81.6 = 23.3\)</span>.</p>
+<p>The rule: <strong>SNR is depth over the noise of the average, <span class="arithmatex">\(\sigma / \sqrt{N}\)</span>.</strong> Still far above 7: a clear detection.</p>
+</details>
+</div>
+<h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
+<p>A planet's dip has a short slope down (ingress), a flat bottom and a short slope up (egress); two stars eclipsing each other usually make a V instead. A dip is seen through noise because many low points in a row average down the noise: the signal-to-noise ratio, depth over <span class="arithmatex">\(\sigma / \sqrt{N}\)</span>, says how clear it is. Around two suns, a planet's dips do not repeat like a clock, which is why they are hard to find.</p>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="20" data-hints="{&quot;5&quot;:&quot;Divide by the noise of the average (400 / 4 = 100), not by the noise of one point.&quot;,&quot;80&quot;:&quot;Divide by the square root of 16, which is 4.&quot;}" data-tol="0.02" data-why="400 / 4 = 100 ppm, and 2,000 / 100 = 20.">
+<p><strong>1.</strong> A dip is 2,000 ppm deep and holds 16 points. The noise of one point is 400 ppm. What is its SNR?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Noise of the average: <span class="arithmatex">\(400 / \sqrt{16} = 400 / 4 = 100\)</span> ppm. SNR: <span class="arithmatex">\(2{,}000 / 100 = 20\)</span>.</p>
+</details>
+</div>
+<div class="tw-prob" data-abs="0" data-answer="12" data-hints="{&quot;180&quot;:&quot;That is minutes over points. One point every 30 minutes means 2 points per hour.&quot;,&quot;3&quot;:&quot;Two points per hour, for 6 hours.&quot;}" data-why="6 hours has 360 minutes, and 360 / 30 = 12.">
+<p><strong>2.</strong> A dip lasts 6 hours. The <a href="../../../glossary/#light-curve">light curve</a> has one point every 30 minutes. How many points fall inside the dip?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(6 \times 60 = 360\)</span> minutes, and <span class="arithmatex">\(360 / 30 = 12\)</span> points.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="7.09" data-hints="{&quot;0.05&quot;:&quot;That is the planet compared with the star. Multiply by the star size in Earth widths.&quot;,&quot;0.0025&quot;:&quot;That is the depth as a fraction. Take its square root first.&quot;}" data-tol="0.03" data-unit="Earth widths" data-why="The square root of 0.0025 is 0.05; the star is 1.3 times 109.08 = 141.8 Earths wide; 0.05 times 141.8 = 7.09.">
+<p><strong>3.</strong> A dip is 2,500 ppm deep. The star is 1.3 times as wide as the Sun, and no second star dilutes the light. How many times wider than the Earth is the planet?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Run lesson 1.2 backwards. Depth as a fraction: <span class="arithmatex">\(2{,}500 / 1{,}000{,}000 = 0.0025\)</span>. Since depth is <span class="arithmatex">\((R_p / R_\star)^2\)</span>, the ratio is its square root: <span class="arithmatex">\(\sqrt{0.0025} = 0.05\)</span>. The star is <span class="arithmatex">\(1.3 \times 109.08 = 141.8\)</span> Earths wide, so the planet is <span class="arithmatex">\(0.05 \times 141.8 = 7.09\)</span> Earths wide: between Neptune (3.9 Earths) and Saturn (9.4 Earths) in size.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="700" data-hints="{&quot;7&quot;:&quot;SNR = depth / noise, so depth = SNR times noise.&quot;,&quot;70&quot;:&quot;Use the noise of the average, 100 ppm, times 7.&quot;}" data-tol="0.01" data-unit="ppm" data-why="Depth = SNR times the noise of the average = 7 times 100 = 700 ppm.">
+<p><strong>4.</strong> A search only looks twice at dips with SNR of 7 or more. For one star, the noise of the average over a dip's length is 100 ppm. What is the shallowest dip the search will notice?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(\text{SNR} = \text{depth} / \text{noise}\)</span>, so <span class="arithmatex">\(\text{depth} = \text{SNR} \times \text{noise} = 7 \times 100 = 700\)</span> ppm. Anything shallower is lost, however real it is. Measuring exactly what a search can and cannot see is a whole part of this project (Unit 5).</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="ingress" data-why="Ingress is the slope down at the start of a crossing; egress is the slope back up.">
+<p><strong>5.</strong> In one word: what is the short slope down at the start of a planet's dip called?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><strong>Ingress</strong>, while the planet's disc moves onto the star. The slope up at the end is <strong>egress</strong>.</p>
+</details>
+</div>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The planet's dips: TESS sector 21, QLP full-frame light curve of TIC 172900988 (30-minute points), from MAST; times, depths and noise measured by our scripts on 15 Nov 2026 (<code>book/tools/lesson_plots.py</code> and a check script): dips at day 1883.39 and 1888.31 on the TESS clock, 4.9 days apart; 305 ppm per point outside the second dip.</li>
+<li>The system: Kostov et al. 2021 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>): "During Sector 21, the planet TIC 172900988b transited the primary star and then 5 days later it transited the secondary star."</li>
+<li>Transit shape (ingress, egress, flat bottom, darker star edges): Winn 2010, "Transits and Occultations" (<a href="https://arxiv.org/abs/1001.2010">arXiv 1001.2010</a>).</li>
+</ul>
+<nav aria-label="Lessons" class="tw-pn">
+<p><a class="tw-prev" href="../l3-noise/" rel="prev"><small>Previous</small> 1.3 Noise: the spread of the points</a></p>
+<p><a class="tw-next" href="../../"><small>Back to</small> Twinlight home</a></p>
+</nav>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 3.1.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/eyes-flow.js"></script>
+      
+        <script src="../../../assets/eyes-core.js"></script>
+      
+        <script src="../../../assets/eyes-strength.js"></script>
+      
+        <script src="../../../assets/eyes-hard.js"></script>
+      
+        <script src="../../../assets/eyes-feedback.js"></script>
+      
+        <script src="../../../assets/eyes-cloud.js"></script>
+      
+        <script src="../../../assets/rehearsal.js"></script>
+      
+        <script src="../../../assets/demos.js"></script>
+      
+        <script src="../../../assets/watch.js"></script>
+      
+        <script src="../../../assets/book3.js"></script>
+      
+    
+  <script src="../../../assets/book.js" data-sw="../../../sw.js"></script>
+  
+  <script defer src="../../../assets/katex/katex.min.js"></script>
+  <script defer src="../../../assets/katex/auto-render.min.js"></script>
+  <script defer src="../../../assets/learn.js"></script>
+  
+
+  </body>
+</html>

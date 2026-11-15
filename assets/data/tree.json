@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T04:34",
+ "generated": "2026-11-15T06:36",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -332,9 +332,9 @@
    "status_text": "ACTIVE: Book 3.0 and the learning rebuild (15 Nov 2026; the hunt is paused until a learning milestone).",
    "detail": "T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign; FIX 97 (lab 9 example star is a blind G1 star; re-point before the G1 re-search); FIX 73 to 76 chips, Back button, voice, formulas.",
    "history": [
+    "d:2026-11-15-0635-twinlight-factcheck",
     "d:2026-11-15-0429-twinlight-app",
     "d:2026-11-15-0415-rs035-how-to-teach",
-    "l:1",
     "l:2",
     "d:2026-11-14-1935-book-2117",
     "d:2026-11-14-1634-fable-brief",
@@ -385,6 +385,41 @@
   }
  ],
  "leaves": [
+  {
+   "id": "d:2026-11-15-0635-twinlight-factcheck",
+   "file": "2026-11-15-0635-twinlight-factcheck.md",
+   "kind": "drop",
+   "type": "fix",
+   "node": "4.1",
+   "when": "2026-11-15T06:35",
+   "date": "2026-11-15",
+   "status": "done",
+   "by": "Claude",
+   "label": "CONFIRMED",
+   "plain": "Codex re-measured every number in the first three lessons from the raw light and found real mistakes (medians used where the lesson teaches averages, a few claims too strong); all are fixed and the numbers now agree to the ppm.",
+   "why": "The lessons you learn from have now been checked by a second pair of eyes, number by number, before you read them.",
+   "explanation": "",
+   "technical": "",
+   "ids": [
+    "Codex 017 (independent check of the first lessons)"
+   ],
+   "links": [
+    {
+     "path": "research/astra/reports/017-report.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/research/astra/reports/017-report.md"
+    },
+    {
+     "path": "book/docs/learn/u1/l3-noise.md",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/docs/learn/u1/l3-noise.md"
+    },
+    {
+     "path": "book/tools/lesson_plots.py",
+     "url": "https://github.com/M1Smacker/second-sun/blob/main/book/tools/lesson_plots.py"
+    }
+   ],
+   "supersedes": [],
+   "superseded": false
+  },
   {
    "id": "d:2026-11-15-0429-twinlight-app",
    "file": "2026-11-15-0429-twinlight-app.md",
@@ -630,27 +665,6 @@
    ],
    "supersedes": [],
    "superseded": false
-  },
-  {
-   "id": "l:1",
-   "kind": "log",
-   "type": "codex job",
-   "node": "4.1",
-   "also": [],
-   "date": "2026-11-15",
-   "when": "2026-11-15T00:00",
-   "status": "done",
-   "plain": "Codex job: independent fact-check of Twinlight lessons 1.1 to 1.3 (numbers re-derived from the FITS without our script) and a learn browser test mode.",
-   "why": "",
-   "explanation": "",
-   "technical": "independent fact-check of Twinlight lessons 1.1 to 1.3 (numbers re-derived from the FITS without our script) and a learn browser test mode. research/astra/inbox/017-twinlight-check.md",
-   "ids": [
-    "Codex 017"
-   ],
-   "links": [],
-   "superseded": false,
-   "by": "Codex",
-   "label": null
   },
   {
    "id": "l:2",
@@ -2026,7 +2040,6 @@
    "date": "2026-11-15",
    "diary": null,
    "leaves": [
-    "l:1",
     "l:2",
     "l:3",
     "d:2026-11-15-0002-codex-014-part2",
@@ -2035,7 +2048,8 @@
     "d:2026-11-15-0137-codex014-part3-key",
     "d:2026-11-15-0139-fix96-radius-check",
     "d:2026-11-15-0415-rs035-how-to-teach",
-    "d:2026-11-15-0429-twinlight-app"
+    "d:2026-11-15-0429-twinlight-app",
+    "d:2026-11-15-0635-twinlight-factcheck"
    ]
   }
  ],

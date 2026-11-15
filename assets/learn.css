@@ -166,3 +166,16 @@ html.tw-hide .tw-edge { display: block; }
   .tw-tools, .tw-continue, .tw-stats, .tw-unit, .tw-pill, .tw-flash, .tw-prob.is-wrong .tw-fb { animation: none !important; }
 }
 @media print { .tw-tools, .tw-bar, .tw-answer, .tw-pill { display: none !important; } }
+
+/* lesson diagrams (inline SVG; text sized in SVG units so it stays near 14 px or more on a phone) */
+.tw-diagram { margin: 1.4rem auto; max-width: 560px; text-align: left; }
+.tw-diagram svg { width: 100%; height: auto; display: block; }
+.tw-d-axis { stroke: var(--ss-line); stroke-width: 2; stroke-dasharray: 6 6; }
+.tw-d-line { fill: none; stroke: var(--ss-accent); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+.tw-d-dim { stroke: var(--ss-violet); stroke-width: 3; }
+.tw-d-txt { fill: var(--ss-text-2); font: 500 26px var(--ss-head); }
+.md-typeset .tw-diagram figcaption { font-family: var(--ss-head); font-size: 14.5px; color: var(--ss-text-3); text-align: left; max-width: none; }
+
+/* KaTeX keeps an invisible MathML copy for screen readers; a long display formula made it widen the phone page by 12 px (Codex 017). Keep it 1 px wide. */
+.md-typeset .katex .katex-mathml { width: 1px; height: 1px; overflow: hidden; }
+.md-typeset .katex-display { position: relative; }

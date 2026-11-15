@@ -1551,10 +1551,10 @@
 <p class="tw-kicker" data-lesson="1.3">Unit 1 · A star&#x27;s light on a graph · Lesson 1.3 · 14 min</p>
 
 <h1 id="noise-the-spread-of-the-points">Noise: the spread of the points<a class="headerlink" href="#noise-the-spread-of-the-points" title="Permanent link">&para;</a></h1>
-<p>One quiet day of our star pair, every 2-minute point. Nothing passes in front of anything here.</p>
+<p>One quiet day of our star pair, every 2-minute point. No eclipse happens on this day.</p>
 <div class="tw-plot" data-src="u1-quiet-day"></div>
 
-<p class="tw-plot__ask">If nothing is happening, why are the points not all on one line? Read the highest and the lowest point.</p>
+<p class="tw-plot__ask">If no eclipse is happening, why are the points not all on one line? Read the highest and the lowest point.</p>
 
 <h2 id="where-the-spread-comes-from">Where the spread comes from<a class="headerlink" href="#where-the-spread-comes-from" title="Permanent link">&para;</a></h2>
 <p>Every measurement has a little error in it. Light arrives as single particles, photons, and in any 2 minutes a few more or a few fewer land on the camera, just by chance. The camera adds its own small errors. The spacecraft wobbles very slightly. The stars themselves flicker a little. All of this together is called <strong>noise</strong>.</p>
@@ -1563,7 +1563,7 @@
 </aside>
 <p>To compare noise between stars we need one number for "how spread out are the points". The usual one is the <strong>standard deviation</strong>, written <span class="arithmatex">\(\sigma\)</span> (the Greek letter sigma). In words: how far, on a typical day, a point lies from the average.</p>
 <aside class="tw-mn">
-<p><strong>Standard deviation (<span class="arithmatex">\(\sigma\)</span>).</strong> The typical distance of the points from their average. About two thirds of points lie within one <span class="arithmatex">\(\sigma\)</span> of it.</p>
+<p><strong>Standard deviation (<span class="arithmatex">\(\sigma\)</span>).</strong> Roughly, the typical distance of the points from their average. For the bell-shaped noise most measurements have, about two thirds of the points lie within one <span class="arithmatex">\(\sigma\)</span> of it.</p>
 </aside>
 <p>The recipe has four steps. Find the average. Subtract it from every point. Square those differences (so minus and plus both count, and big misses count extra). Average the squares, then take the square root to get back to the original units:</p>
 <div class="arithmatex">\[ \sigma = \sqrt{ \frac{ (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \dots + (x_N - \bar{x})^2 }{ N } } \]</div>
@@ -1574,14 +1574,14 @@
 <p class="admonition-title">Worked example: five points</p>
 <p>Five points of a <a href="../../../glossary/#light-curve">light curve</a>, as <span class="arithmatex">\(F / F_{\text{normal}}\)</span>: 1.0010, 0.9990, 1.0005, 0.9995, 1.0000.</p>
 <p><strong>Step 1. Average.</strong> They add up to 5.0000, so <span class="arithmatex">\(\bar{x} = 1.0000\)</span>.</p>
-<p><strong>Step 2. Differences.</strong> <span class="arithmatex">\(+0.0010, -0.0010, +0.0005, -0.0005, 0\)</span>.</p>
-<p><strong>Step 3. Squares.</strong> <span class="arithmatex">\(0.000001, 0.000001, 0.00000025, 0.00000025, 0\)</span>. Their sum is <span class="arithmatex">\(0.0000025\)</span>.</p>
+<p><strong>Step 2. Differences.</strong> +0.0010, -0.0010, +0.0005, -0.0005 and 0.</p>
+<p><strong>Step 3. Squares.</strong> 0.000001, 0.000001, 0.00000025, 0.00000025 and 0. Their sum is 0.0000025.</p>
 <p><strong>Step 4. Average, then square root.</strong> <span class="arithmatex">\(0.0000025 / 5 = 0.0000005\)</span>, and <span class="arithmatex">\(\sqrt{0.0000005} = 0.000707\)</span>.</p>
 <p>So <span class="arithmatex">\(\sigma = 0.000707\)</span>, which is 707 <a href="../../../glossary/#ppm">ppm</a>.</p>
 </div>
-<p>For the quiet day in the plot above, our script does the same sum over all 720 points and gets <span class="arithmatex">\(\sigma \approx 930\)</span> ppm. A single point can easily be 930 ppm off, by chance alone. Compare that with the dips from the last lesson: an Earth-sized planet around a star like these makes a dip far under 100 ppm. In one point, it would be lost.</p>
+<p>For the quiet day in the plot above, our script does the same sum over all 720 points and gets <span class="arithmatex">\(\sigma \approx 930\)</span> ppm. (A slow drift across the day, which you will meet below, is part of that number.) A single point can easily be 930 ppm off. Compare that with the dips from the last lesson: an Earth-sized planet around a star like these makes a dip far under 100 ppm. In one point, it would be lost.</p>
 <h2 id="averaging-beats-noise">Averaging beats noise<a class="headerlink" href="#averaging-beats-noise" title="Permanent link">&para;</a></h2>
-<p>Here is the way out. If the errors are random, they partly cancel when you average several points: some are too high, some too low. Average <span class="arithmatex">\(N\)</span> points and the noise of the average shrinks by the square root of <span class="arithmatex">\(N\)</span>:</p>
+<p>Here is the way out. If the errors are random and independent (each point's error has nothing to do with its neighbours'), they partly cancel when you average several points: some are too high, some too low. Average <span class="arithmatex">\(N\)</span> points and the noise of the average shrinks by the square root of <span class="arithmatex">\(N\)</span>:</p>
 <div class="arithmatex">\[ \sigma_{\text{average}} = \frac{\sigma}{\sqrt{N}} \]</div>
 <aside class="tw-mn">
 <p><strong>Why a square root?</strong> Random errors add up more slowly than the points do. Four points do not cancel four times the noise, only twice: <span class="arithmatex">\(\sqrt{4} = 2\)</span>.</p>
@@ -1596,13 +1596,13 @@
 <p><strong>Step 1.</strong> Noise of one 2-minute point: about 930 ppm.</p>
 <p><strong>Step 2.</strong> A 30-minute average holds <span class="arithmatex">\(N = 15\)</span> points, and <span class="arithmatex">\(\sqrt{15} = 3.87\)</span>.</p>
 <p><strong>Step 3.</strong> Expected noise of the average: <span class="arithmatex">\(930 / 3.87 = 240\)</span> ppm.</p>
-<p>Our script measured the real 30-minute averages of this day: 362 ppm. Bigger than the 240 the rule promised.</p>
+<p>Our script measured the real 30-minute averages of this day: 357 ppm. Bigger than the 240 the rule promised.</p>
 </div>
-<p>Why bigger? Because not all of the noise is random from one point to the next. Across this day the light drifts slowly by a few hundred ppm: the stars and the spacecraft change gently over hours. Averaging 15 neighbouring points cannot cancel a drift that all 15 share. When our script first removes a straight-line drift, the 30-minute noise falls to 266 ppm, close to what the rule predicts (230 ppm after the same removal).</p>
+<p>Why bigger? Because not all of the change is independent from one point to the next. Across this day the light drifts slowly, by about 940 ppm from start to end, almost a tenth of a percent. Averaging 15 neighbouring points cannot cancel a drift that all 15 share. Watch what happens when our script first removes a straight-line drift from the day: the 30-minute averages then scatter by 233 ppm, and the rule, applied to the same drift-free points, predicts 231 ppm. Once the shared drift is gone, averaging works exactly as promised.</p>
 <aside class="tw-mn">
-<p><strong>White and <a href="../../../glossary/#red-noise">red noise</a>.</strong> Random point-to-point noise is called <a href="../../../glossary/#white-noise">white noise</a>. Slow, shared wobbles are called red noise. Averaging cleans the first and barely touches the second.</p>
+<p><strong>White and <a href="../../../glossary/#red-noise">red noise</a>.</strong> Noise that changes independently from point to point is called <a href="../../../glossary/#white-noise">white noise</a>. Slow wobbles shared by neighbouring points are called red noise. Averaging cleans the first quickly and the second only slowly.</p>
 </aside>
-<p>That leftover slow part has a name: <strong>red noise</strong>. It was one of the reasons early planet searches from the ground found fewer planets than simple counts predicted, and it is why, in Unit 5, our search first removes slow changes from the light before it looks for dips.</p>
+<p>That slow, shared part has a name: <strong>red noise</strong>. What causes this day's drift (the stars themselves, the spacecraft, or both) we have not measured. Red noise was one of the reasons early planet searches from the ground found fewer planets than simple counts predicted, and it is why, in Unit 5, our search first takes slow changes out of the light before it looks for dips.</p>
 <div class="admonition question">
 <p class="admonition-title">Your turn, half done: one hour</p>
 <p>One hour of 2-minute points holds <span class="arithmatex">\(N = 30\)</span> points, and <span class="arithmatex">\(\sqrt{30} = 5.48\)</span>. Finish it: with 930 ppm per point, what noise does the rule predict for a one-hour average?</p>
@@ -1612,11 +1612,11 @@
 <details class="tw-sol">
 <summary>Worked solution</summary>
 <p><span class="arithmatex">\(930 / \sqrt{30} = 930 / 5.48 = 170\)</span> ppm.</p>
-<p>The rule: <strong>noise of an average is <span class="arithmatex">\(\sigma / \sqrt{N}\)</span></strong>, but only for the random part. The real one-hour noise of this day would come out higher, because of the slow drift.</p>
+<p>The rule: <strong>noise of an average is <span class="arithmatex">\(\sigma / \sqrt{N}\)</span></strong>, but only for independent noise. Our script finds the real one-hour averages of this day scatter by about 320 ppm, far above 170, because of the slow drift.</p>
 </details>
 </div>
 <h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
-<p>Every light curve scatters, even when nothing happens; we measure the scatter with the standard deviation <span class="arithmatex">\(\sigma\)</span>. Averaging <span class="arithmatex">\(N\)</span> points shrinks random noise by <span class="arithmatex">\(\sqrt{N}\)</span>, which is how tiny dips become visible. Slow, shared wobbles (red noise) do not average away, so they must be removed first.</p>
+<p>Every light curve scatters, even when nothing happens; we measure the scatter with the standard deviation <span class="arithmatex">\(\sigma\)</span>. Averaging <span class="arithmatex">\(N\)</span> points shrinks independent noise by <span class="arithmatex">\(\sqrt{N}\)</span>, which is how tiny dips become visible. Slow, shared wobbles (red noise) average away only slowly, so searches usually take them out first.</p>
 <h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
 <div class="tw-prob" data-answer="200" data-hints="{&quot;40&quot;:&quot;Divide by the square root of 25 (that is 5), not by 25.&quot;,&quot;1000&quot;:&quot;Averaging helps: divide by the square root of N.&quot;}" data-tol="0.01" data-unit="ppm" data-why="The square root of 25 is 5, and 1,000 / 5 = 200 ppm.">
 <p><strong>1.</strong> The noise of one point is 1,000 ppm. What is the noise of an average of 25 points, if the noise is all random?</p>
@@ -1633,29 +1633,29 @@
 <p>Notice the price: halving the noise costs four times the points. That is why faint signals need so much data.</p>
 </details>
 </div>
-<div class="tw-prob" data-answer="1414|1633" data-tol="0.02" data-unit="ppm" data-why="Average 1.000; squares of the differences 0.000004, 0.000004, 0, 0; their average 0.000002; square root 0.001414 = 1,414 ppm.">
+<div class="tw-prob" data-answer="1414" data-hints="{&quot;1633&quot;:&quot;You divided by N minus 1. This problem divides by N, as the formula above does.&quot;}" data-tol="0.02" data-unit="ppm" data-why="Average 1.000; squares of the differences 0.000004, 0.000004, 0, 0; their average 0.000002; square root 0.001414 = 1,414 ppm.">
 <p><strong>3.</strong> Four points: 0.998, 1.002, 1.000, 1.000. What is their standard deviation, in ppm? (Divide by <span class="arithmatex">\(N\)</span>.)</p>
 <details class="tw-sol">
 <summary>Worked solution</summary>
-<p>Average: <span class="arithmatex">\(4.000 / 4 = 1.000\)</span>. Differences: <span class="arithmatex">\(-0.002, +0.002, 0, 0\)</span>. Squares: <span class="arithmatex">\(0.000004, 0.000004, 0, 0\)</span>, sum <span class="arithmatex">\(0.000008\)</span>. Divide by 4: <span class="arithmatex">\(0.000002\)</span>. Square root: <span class="arithmatex">\(0.001414\)</span>, which is 1,414 ppm.</p>
-<p>(Dividing by <span class="arithmatex">\(N - 1 = 3\)</span> instead gives 1,633 ppm. Both are accepted here.)</p>
+<p>Average: <span class="arithmatex">\(4.000 / 4 = 1.000\)</span>. Differences: -0.002, +0.002, 0 and 0. Squares: 0.000004, 0.000004, 0 and 0, sum 0.000008. Divide by 4: <span class="arithmatex">\(0.000002\)</span>. Square root: <span class="arithmatex">\(0.001414\)</span>, which is 1,414 ppm.</p>
+<p>(Dividing by <span class="arithmatex">\(N - 1 = 3\)</span> instead gives 1,633 ppm. That version is used when the points are a sample and you want to estimate the spread of everything they came from; with only four points the two differ a lot, with hundreds hardly at all.)</p>
 </details>
 </div>
 <div class="tw-prob" data-answer="red" data-why="Slow, shared wobbles are red noise; averaging neighbouring points cannot cancel them.">
 <p><strong>4.</strong> A light curve drifts slowly up and down over several hours. Averaging neighbouring points barely reduces it. In one word, what colour of noise is it?</p>
 <details class="tw-sol">
 <summary>Worked solution</summary>
-<p><strong>Red.</strong> Red noise is slow and shared by neighbouring points, so averaging them together cannot cancel it. White noise changes randomly from one point to the next, and averaging does cancel it.</p>
+<p><strong>Red.</strong> Red noise is slow and shared by neighbouring points, so averaging them together hardly cancels it; only averages over much longer stretches, or taking the slow change out, help. White noise changes independently from one point to the next, and averaging cancels it quickly.</p>
 </details>
 </div>
 <h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Noise numbers: one quiet day (720 points) of TIC 172900988, TESS sector 44, 2-minute light curve; measured by our script <code>book/tools/lesson_plots.py</code> and a check script run on 15 Nov 2026 (930 ppm per point; 362 ppm for 30-minute averages, 266 ppm after removing a straight line).</li>
+<li>Noise numbers: one quiet day (720 points) of TIC 172900988, TESS sector 44, 2-minute light curve; measured by our script <code>book/tools/lesson_plots.py</code> and a check script run on 15 Nov 2026 (930 ppm per point; 357 ppm for 30-minute averages; drift about 940 ppm across the day; 233 ppm for 30-minute averages after removing a straight line, against 231 ppm predicted; 320 ppm for one-hour averages). Every number re-derived independently by Codex (brief 017, 15 Nov 2026), which also caught that the first version of this lesson averaged with medians while comparing against the rule for plain averages.</li>
 <li>Red noise and planet searches: Pont, Zucker and Queloz 2006, "The effect of red noise on planetary transit detection" (<a href="https://arxiv.org/abs/astro-ph/0608597">arXiv astro-ph/0608597</a>): survey yield predictions "assume uncorrelated noise", and red noise effects "cannot be neglected in typical ground-based surveys".</li>
 </ul>
 <nav aria-label="Lessons" class="tw-pn">
 <p><a class="tw-prev" href="../l2-percent-and-ppm/" rel="prev"><small>Previous</small> 1.2 Percent and parts per million</a></p>
-<p><a class="tw-next" href="../../"><small>Back to</small> Twinlight home</a></p>
+<p><a class="tw-next" href="../l4-what-a-dip-looks-like/" rel="next"><small>Next</small> 1.4 What a dip looks like</a></p>
 </nav>
 
 
@@ -1697,7 +1697,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.0.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.1.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
