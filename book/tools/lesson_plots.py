@@ -56,15 +56,16 @@ def binned(t, f, minutes):
     return np.array(tt), np.array(ff)
 
 
-def write(name, tic, sector, t, f, title, note, unit="percent"):
+def write(name, tic, sector, t, f, title, note, unit="percent", source=None):
     rel = f / np.median(f)
-    y = (rel - 1) * 100 if unit == "percent" else rel
-    doc = {"tic": tic, "sector": sector, "title": title, "note": note, "x": "Time (days, TESS clock)", "y": "Brightness change (%)" if unit == "percent" else "Brightness (1 = normal)",
+    y = {"percent": (rel - 1) * 100, "ppm": (rel - 1) * 1e6}.get(unit, rel)
+    ylab = {"percent": "Brightness change (%)", "ppm": "Brightness change (ppm)"}.get(unit, "Brightness (1 = normal)")
+    doc = {"tic": tic, "sector": sector, "title": title, "note": note, "x": "Time (days, TESS clock)", "y": ylab,
            "unit": unit, "t": [round(v, 4) for v in t], "f": [round(v, 4) for v in y],
-           "source": f"TESS sector {sector}, SPOC 2-minute light curve (PDCSAP), quality flags removed; MAST"}
+           "source": source or f"TESS sector {sector}, SPOC 2-minute light curve (PDCSAP), quality flags removed; MAST"}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"{name}.json").write_text(json.dumps(doc, separators=(",", ":")), encoding="utf-8")
-    print(f"{name}: {len(t)} points, {min(y):.3f} to {max(y):.3f}")
+    print(f"{name}: {len(t)} points, {min(y):.4g} to {max(y):.4g} {unit}")
 
 
 if __name__ == "__main__":
@@ -91,3 +92,23 @@ if __name__ == "__main__":
     tq, fq = binned(t[m], f[m], 30)
     write("u1-quiet-day-30", tic, s, tq, fq / np.median(fq) * np.median(f[m]), "The same day, 30-minute averages",
           "Each point averages 15 of the 2-minute points.")
+
+    # the planet itself (lesson 1.4): sector 21, QLP full-frame light (30 min). The two dips sit 4.9 days apart, as Kostov et al. 2021 describe
+    # ("transited the primary star and then 5 days later it transited the secondary star"); times found by our own scan, 15 Nov 2026.
+    from scipy.ndimage import median_filter
+    src = ROOT / "data" / "known" / "172900988" / "hlsp_qlp_tess_ffi_s0021-0000000172900988_tess_v01_llc.fits"
+    guard(tic)
+    with fits.open(src) as h:
+        assert int(h[0].header["TICID"]) == tic
+        d = h[1].data
+        t2, f2, q2 = np.asarray(d["TIME"], float), np.asarray(d["SAP_FLUX"], float), d["QUALITY"]
+    ok = np.isfinite(t2) & np.isfinite(f2) & (q2 == 0)
+    t2, f2 = t2[ok], f2[ok]
+    for name, c in (("u1-planet-a", 1883.39), ("u1-planet-b", 1888.31)):
+        m = np.abs(t2 - c) < 1.0
+        tt, ff = t2[m], f2[m] / np.median(f2[m])
+        oot = np.abs(tt - c) > 0.35
+        trend = np.interp(tt, tt[oot], median_filter(ff[oot], size=25, mode="nearest"))
+        write(name, tic, 21, tt, ff / trend, "The planet crossing a star" + (" (first time)" if name.endswith("a") else ", 4.9 days later"),
+              "Each point is 30 minutes. Slow changes are divided out, as in lesson 1.3.", unit="ppm",
+              source="TESS sector 21, QLP full-frame light curve (30-minute), quality flags removed, slow changes divided out with the dip masked; MAST")

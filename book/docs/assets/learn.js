@@ -98,7 +98,7 @@
       xs.forEach((v, k) => { const dd = Math.abs(v - want); if (dd < best) { best = dd; i = k; } });
       cross.setAttribute("x1", X(xs[i])); cross.setAttribute("x2", X(xs[i]));
       dot.setAttribute("cx", X(xs[i])); dot.setAttribute("cy", Y(d.f[i]));
-      read.textContent = `Day ${xs[i].toFixed(2)}: brightness ${d.f[i] >= 0 ? "+" : ""}${d.f[i].toFixed(2)}${d.unit === "percent" ? "%" : ""} from normal.`;
+      read.textContent = `Day ${xs[i].toFixed(2)}: brightness ${d.f[i] >= 0 ? "+" : ""}${d.unit === "ppm" ? Math.round(d.f[i]) : d.f[i].toFixed(2)}${d.unit === "percent" ? "%" : d.unit === "ppm" ? " ppm" : ""} from normal.`;
     };
     svg.addEventListener("pointermove", at); svg.addEventListener("pointerdown", at);
   };
