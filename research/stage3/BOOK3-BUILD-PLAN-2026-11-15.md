@@ -55,7 +55,7 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 - A drop with bad data: the builder refuses with a plain message; nothing broken reaches the site.
 - Weekly near 38%: stop new building, finish testing and publish what is done.
 
-## Safeguards: expect the worst (added 3:20 am, before the go)
+## Safeguards: expect the worst (added 3:13 am, before the go)
 
 ### Nothing may hang unseen
 - Every background process I start has a hard time limit and exits by itself; none runs open-ended. Each one writes a heartbeat line, and its exit is what wakes me.
@@ -94,4 +94,4 @@ Every page at 375 px and 1440 px; every button, transition, return-to-place, off
 ## Log
 - 3:05 am plan written.
 - 3:11 am Tree rounds added.
-- 3:20 am safeguards added; WAITING FOR AHMED'S GO (nothing started).
+- 3:13 am safeguards added; WAITING FOR AHMED'S GO (nothing started).
