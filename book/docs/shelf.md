@@ -15,5 +15,6 @@
 <a class="ss3-shelf__item" href="../reference/reading-list/" data-reveal><span>Reading list</span><small>Papers and books worth your time</small></a>
 <a class="ss3-shelf__item" href="../versions/" data-reveal><span>Versions</span><small>What changed, and when</small></a>
 <a class="ss3-shelf__item" href="../v2/" data-reveal><span>Book 2 (frozen)</span><small>The book as it was on 14 Nov 2026, kept as a backup</small></a>
+<a class="ss3-shelf__item" href="../?tour=1" data-reveal><span>Show the tour again</span><small>The four-step welcome on the Tree</small></a>
 
 </div>

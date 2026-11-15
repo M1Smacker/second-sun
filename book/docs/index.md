@@ -10,3 +10,4 @@ title: Second Sun
 <!-- ss:tree-static -->
 </div>
 <script src="assets/tree.js" defer></script>
+<script src="assets/tour.js" defer></script>
