@@ -1,5 +1,5 @@
-## LATEST (15 Nov 2026, 6:50 am Kuwait): BOOK 3.0 OVERNIGHT, MORNING STATE (Opus 5.5 MEDIUM; weekly about 40%, cap 60%; 5-hour reset 6:30 am, now low)
-- **Live:** Book 3.0.0 (4:40 am), 3.1.0 (about 6:45 am, lessons corrected after Codex 017 + lesson 1.4); 3.2.0 publishing now (task bflac60za, log data/astra/publish-3.2.0.log): lessons 2.1 orbits and periods, 2.2 how long a dip lasts, guided tour (`book/docs/assets/tour.js`, Shelf "Show the tour again"), answer-checker tolerance fix.
+## LATEST (15 Nov 2026, 6:43 am Kuwait): BOOK 3.0 OVERNIGHT, MORNING STATE (Opus 5.5 MEDIUM; weekly about 40%, cap 60%; 5-hour reset 6:30 am, now low)
+- **Live:** Book 3.0.0 (4:40 am), 3.1.0 (about 6:38 am, lessons corrected after Codex 017 + lesson 1.4); 3.2.0 publishing now (task bflac60za, log data/astra/publish-3.2.0.log): lessons 2.1 orbits and periods, 2.2 how long a dip lasts, guided tour (`book/docs/assets/tour.js`, Shelf "Show the tour again"), answer-checker tolerance fix.
 - **Codex 017 merged** (43871e80; fence check benign): real lesson errors found (medians against a mean rule; pair's light; bell-shaped noise; drift size; too-strong claims; 12 px phone overflow from an unbreakable inline formula), all fixed (b7e9bdbb); learn browser mode added (239 checks pass).
 - **Codex 018 running** (task bvpsr7ln1, branch astra/018-twinlight-check-2): fact-check of 1.4, 2.1, 2.2; learn mode for every lesson + 20%-off answers must fail.
 - **Filed:** FIX 97 (lab 9 fence A star), FIX 98 (Tree branch size while zooming, flaky test once).
