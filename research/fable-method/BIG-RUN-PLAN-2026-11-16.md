@@ -50,3 +50,11 @@ Tree rule 1 (a Petrova change counts only if the bench shows more planets withou
 1. Start Astra A1 tonight (yes, recommended) or wait for Monday.
 2. Fable effort: high (recommended; real areas cost 1 to 2 points, so high fits) or medium.
 3. Fable start: when Ahmed says go Monday evening, or at a fixed time Claude starts it.
+
+## Refinements after Claude's safety review (15 Nov, 6:05 pm)
+1. Winner's curse: choosing the best of eight combinations on one bench inflates its P; F1 must confirm on a fresh-seed planet bench before calling GO (in the Fable brief).
+2. F0 pre-mortem: Fable names the ways this run could fake a breakthrough before judging.
+3. Per-task meter caps for Fable (F0+F1 8, F2 10, F3 4, report 2) so one task cannot starve the others.
+4. Fable is told where Astra's benches and reproduce lines are, so it measures instead of rebuilding.
+5. Fable proposes, never freezes; freeze needs Ahmed and two keys.
+6. Tuesday: Opus runs the held-out task with the new skill loaded, as the 14 Nov plan says, to test whether the skill changes anything measurable.
