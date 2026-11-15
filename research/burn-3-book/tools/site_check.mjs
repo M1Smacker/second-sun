@@ -1417,6 +1417,18 @@ async function repairsTest() {
       await page.goBack(); await page.waitForTimeout(350);
       await page.goForward(); await page.waitForTimeout(350);
       check(`M-13/${width}`, await page.locator(".sst-sheet").count() === 1, "Back then Forward");
+      // FIX 100 CX2-06: dragging the sheet down 200 px from its top closes it (native touch through CDP; Chrome only).
+      if (engine === "chromium" && await page.locator(".sst-sheet").count()) {
+        const cdp = await page.context().newCDPSession(page);
+        await cdp.send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
+        const g = await page.locator(".sst-sheet").boundingBox(), x = g.x + g.width / 2, y = g.y + 20;
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x, y }] });
+        for (let k = 1; k <= 10; k++) await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x, y: y + k * 20 }] });
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+        await page.waitForTimeout(450);
+        check(`CX2-06/swipe-close/${width}`, await page.locator(".sst-sheet").count() === 0, "drag 200 px down from the top");
+        await cdp.send("Emulation.setTouchEmulationEnabled", { enabled: false }); await cdp.detach();
+      }
       if (!await page.locator(".sst-sheet").count()) await page.locator(".sst-item").first().click();
       await page.setViewportSize({ width: 1280, height: 800 }); await page.waitForTimeout(450);
       check(`M-14/${width}`, await page.locator(".sst-sheet").count() === 0 && await page.locator(".sst-card").count() === 1, "phone to PC");

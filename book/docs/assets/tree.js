@@ -268,6 +268,12 @@
         else document.body.setAttribute("style", bodyStyle);
         scrollTo(0, pageY);
       };
+      // FIX 100 CX2-06 (Codex 021): swipe the sheet down from its top to close it, as before design A (more than 110 px closes).
+      let y0 = null, dy = 0;
+      card.addEventListener("touchstart", e => { if (card.scrollTop > 0) return; y0 = e.touches[0].clientY; dy = 0; card.style.transition = "none"; }, { passive: true });
+      card.addEventListener("touchmove", e => { if (y0 == null) return; dy = Math.max(0, e.touches[0].clientY - y0); card.style.transform = `translateY(${dy}px)`; }, { passive: true });
+      card.addEventListener("touchend", () => { if (y0 == null) return; card.style.transition = ""; if (dy > 110) closeCard(); else card.style.transform = ""; y0 = null; });
+      card.addEventListener("touchcancel", () => { card.style.transition = ""; card.style.transform = ""; y0 = null; });
       card.addEventListener("keydown", event => {
         if (event.key !== "Tab") return;
         const items = [...card.querySelectorAll("button,a[href]")].filter(element => element.getClientRects().length);
