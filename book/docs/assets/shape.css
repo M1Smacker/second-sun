@@ -311,6 +311,16 @@ textarea.ss-eyes__input { width: 100%; padding: 8px 10px; }
 .ss-rh button:disabled { opacity: .5; cursor: default; }
 .ss-rh button:focus-visible { outline: 3px solid var(--ss-text); outline-offset: 2px; }
 .ss-rh__out { margin-top: 10px; }
+.ss-eyes, .ss-rh { overflow-anchor: none; }
+.ss-eyes__finish-actions { margin: 8px 0 12px; }
+.md-typeset details.ss-eyes-help > summary { font-size: .8rem; }
+@keyframes ss-eyes-help-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ss-eyes-help[open] > div { animation: ss-eyes-help-open 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+}
 .ss-rh__out:not(:empty) { border: 2px solid var(--ss-line); border-left-width: 8px; border-radius: var(--ss-radius); padding: 10px 14px; background: var(--ss-surface); }
 .ss-rh__out--right:not(:empty) { border-color: var(--ss-accent); }
 .ss-rh__out--wrong:not(:empty) { border-style: double; border-left-style: solid; border-color: var(--ss-text); }

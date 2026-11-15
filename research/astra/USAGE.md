@@ -40,3 +40,7 @@ Write PREDICTED before you start (from the brief and earlier rows), ACTUAL from 
 
 | 2026-11-13 23:01 +03:00 | 005 START | GPT-6.1 Sol, effort unverified | Weekly predicted 1/3/5/4/1 for 0/A/B/C/report, caps 1/4/7/6/2 | 54% five-hour / 55% weekly, total ceiling 75% | Run mode | Parallelize independent saved replay and preregistered diagnostic measurement within machine cap. |
 | 2026-11-13 23:16 +03:00 | 005 complete, pre-report snapshot | GPT-6.1 Sol, effort unverified | Weekly predicted 1/3/5/4/1, cap 20 total | 54 to 71% five-hour, 55 to 58% weekly, approximately +3 weekly. Parallel parts not individually attributable. | Run mode | Restore SAP suffix from saved group role and verify event parity before interpretation. |
+
+| 2026-11-15 | 015 START | Codex, runtime model and effort unverified; brief specifies neither | Predicted 25 five-hour points / 5 weekly points | Meter unavailable in headless runner | One session | Verify finish visibility and saved return positions with synthetic browser fixtures. |
+
+| 2026-11-15 03:56 +0300 | 015 PARTIAL | Codex, runtime model and effort unverified | Predicted 25 five-hour / 5 weekly | Actual unavailable, headless runner has no meter | 115 required Node checks, contrast and 41 DOM simulation checks pass | Separate DOM state evidence from browser layout evidence. |
