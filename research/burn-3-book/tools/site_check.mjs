@@ -211,7 +211,8 @@ async function offlineTest() {
     }
     console.log("RETIRED offline slider: the Book 2 dip-depth demo has no Book 3 page. Offline Tree interaction is checked instead.");
     await goto(b, base);
-    out.treeReady = await waitFor(b, `document.querySelectorAll(".sst-node").length >= 20`);
+    // Tree design A (3.4.0): rows and branch cards, not the old canvas nodes. Four branches (PC cards or phone cards) and at least four rows.
+    out.treeReady = await waitFor(b, `document.querySelectorAll(".ssta-row").length >= 4 && document.querySelectorAll("[data-branch], .ssta-phcard").length >= 4`);
     out.treeOffline = await b.evaluate(`(() => { document.querySelector('[data-view="journey"]').click(); return document.querySelectorAll(".sst-phase").length > 0 && document.querySelectorAll(".sst-day").length > 0; })()`);
     out.search = await b.evaluate(`(async () => {
       const i = document.querySelector(".md-search__input"); i.focus(); i.value = "depth";
