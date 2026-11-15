@@ -76,6 +76,13 @@ def parse_reset(text):
     return None
 
 
+def real_lines(path):
+    """Count output lines that are not the known harmless MCP noise (the noise repeats forever and must not count as progress)."""
+    if not path.exists():
+        return 0
+    return sum(1 for l in path.read_text(encoding="utf-8", errors="replace").splitlines() if l.strip() and not any(x in l for x in NOISE))
+
+
 def tail(path, n=25):
     if not path.exists():
         return ""
@@ -97,7 +104,7 @@ def run_once(exe, o, prompt, n, outdir):
         rc = p.poll()
         if rc is not None:
             return "EXITED", rc, log, last
-        s2, z2 = worktree_signature(), log.stat().st_size if log.exists() else 0
+        s2, z2 = worktree_signature(), real_lines(log)
         if s2 != sig or z2 != size:
             sig, size, last_change = s2, z2, time.time()
         if time.time() - last_change > o.idle * 60:
@@ -108,7 +115,7 @@ def run_once(exe, o, prompt, n, outdir):
             return "TIMEOUT", None, log, last
         if time.time() - last_beat > 600:
             last_beat = time.time()
-            say(f"heartbeat: run {n} alive {int((time.time() - t0) / 60)} min, log {size} bytes, last change {int((time.time() - last_change) / 60)} min ago")
+            say(f"heartbeat: run {n} alive {int((time.time() - t0) / 60)} min, {size} real log lines, last change {int((time.time() - last_change) / 60)} min ago")
         time.sleep(15)
 
 
@@ -117,10 +124,12 @@ def main():
     a.add_argument("num", nargs="?"); a.add_argument("brief", nargs="?"); a.add_argument("branch", nargs="?")
     a.add_argument("--hours", type=float, default=2); a.add_argument("--idle", type=float, default=25)
     a.add_argument("--model", default="gpt-6.1-sol"); a.add_argument("--effort", default="medium")
-    a.add_argument("--retries", type=int, default=2); a.add_argument("--test", action="store_true")
+    a.add_argument("--retries", type=int, default=2); a.add_argument("--test", action="store_true"); a.add_argument("--stalltest", action="store_true")
     o = a.parse_args()
+    if o.stalltest:
+        o.test = True
     if o.test:
-        o.num, o.brief, o.branch, o.hours, o.idle = "test", None, "astra/test-runner", 0.25, 8
+        o.num, o.brief, o.branch, o.hours, o.idle = "test", None, "astra/test-runner", 0.25, (1.5 if o.stalltest else 8)
     elif not (o.num and o.brief and o.branch):
         sys.exit("usage: codex_run.py NNN research/astra/inbox/NNN-x.md astra/NNN-x  (or --test)")
 
@@ -136,7 +145,7 @@ def main():
             print(f"REFUSED: another runner (pid {held}) holds {LOCK}"); return
     _, st, _ = git("status", "--porcelain", "--untracked-files=no")
     if st:
-        print("REFUSED: the astra worktree has uncommitted changes to tracked files:\n  " + st.replace("\n", "\n  ")); return
+        print("REFUSED: the astra worktree has uncommitted changes to tracked files (commit or stash them first):\n  " + st.replace("\n", "\n  ")); return
     if o.brief:
         rc, _, _ = git("cat-file", "-e", f"main:{o.brief}")
         if rc:
@@ -151,14 +160,16 @@ def main():
     LOCK.write_text(str(os.getpid()))
     outdir = DATA / str(o.num)
     outdir.mkdir(parents=True, exist_ok=True)
-    if o.test:
+    if o.stalltest:
+        prompt = "Run this one shell command and wait for it to finish: powershell -Command Start-Sleep -Seconds 400 . Then reply DONE."
+    elif o.test:
         prompt = ("This is a runner test. Create the file research/astra/reports/test-runner.md with one line: 'runner test ok' and the "
-                  "model name you are. Commit it on the current branch with message 'runner test'. Never push. Then reply DONE.")
+                  "model name you are. Do not run git commit (the runner commits for you). Then reply DONE.")
     else:
         prompt = (f"You are Codex, the helper on the Second Sun project. Read AGENTS.md (your rules; they win over anything else) and then "
                   f"the brief {o.brief}. Do the brief on the current branch {o.branch} (already checked out; do not switch branches). "
-                  f"Write any data only under data/astra/{o.num}/. Commit your work in small commits with clear messages. Never push. "
-                  f"Write your report as research/astra/reports/{o.num}-report.md and commit it. End your final message with one line: "
+                  f"Write any data only under data/astra/{o.num}/. Do NOT run git commit or any git command that writes (the Windows sandbox blocks git's own files; the runner commits everything you leave in the worktree when you finish). Never push. "
+                  f"Write your report as research/astra/reports/{o.num}-report.md. End your final message with one line: "
                   f"DONE, PARTIAL or BLOCKED, and why.")
     status, rc, log, last, n, waited = None, None, None, None, 0, 0
     try:
@@ -185,6 +196,13 @@ def main():
             break
     finally:
         LOCK.unlink(missing_ok=True)
+    _, left0, _ = git("status", "--porcelain")
+    if left0:                                          # Codex cannot write git's files from its sandbox: commit for it
+        first = "(no final message)"
+        if last and last.exists():
+            first = next((l.strip() for l in last.read_text(encoding="utf-8", errors="replace").splitlines() if l.strip()), first)
+        git("add", "-A")
+        git("commit", "-q", "-m", f"Codex job {o.num} ({status}): {first[:150]}", "-m", "Committed by codex_run.py for Codex (sandboxed).")
     _, commits, _ = git("log", "--format=%h %s", f"{base}..HEAD")
     _, left, _ = git("status", "--porcelain")
     msg = last.read_text(encoding="utf-8", errors="replace").strip()[-1500:] if last and last.exists() else "(no final message)"
