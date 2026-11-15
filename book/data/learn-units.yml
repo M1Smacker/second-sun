@@ -1,4 +1,5 @@
 # Twinlight: the units and lessons (Claude, 15 Nov 2026; order from RS-035, data first).
+# RS-036 (15 Nov 2026): 47 lessons in 11 units; Units 1 to 7 are the core for the Keystone exam, 8 to 11 the universe track.
 # A lesson listed here with a file is live; one without a file shows as "coming". hooks.py builds docs/assets/data/learn.json from this on every build.
 units:
   - n: 1
@@ -13,35 +14,71 @@ units:
     lessons:
       - {file: u2/l1-orbits-and-periods.md, title: "Orbits and periods", minutes: 15}
       - {file: u2/l2-how-long-a-dip-lasts.md, title: "How long a dip lasts", minutes: 14}
-      - {title: "Why stars differ"}
-      - {title: "Light from two stars at once"}
+      - {file: u2/l3-why-stars-differ.md, title: "Why stars differ", minutes: 15}
+      - {file: u2/l4-light-from-two-stars.md, title: "Light from two stars at once", minutes: 15}
+      - {file: u2/l5-gravity-from-scratch.md, title: "Gravity from scratch", minutes: 18}
   - n: 3
+    title: Light itself
+    lessons:
+      - {title: "What light is: waves, colours, the spectrum"}
+      - {title: "Hot things glow: why stars have colours"}
+      - {title: "Fingerprints: spectral lines and atoms"}
+      - {title: "Doppler: weighing stars, finding planets by their wobble"}
+  - n: 4
     title: Two suns
     lessons:
       - {title: "Eclipsing binaries"}
-      - {title: "How two stars orbit"}
+      - {title: "How two stars orbit each other"}
+      - {title: "Measuring stars from their eclipses"}
       - {title: "Planets around two suns"}
-      - {title: "Why they are rare and hard to find"}
-  - n: 4
+      - {title: "The stability limit, and why they are rare"}
+  - n: 5
     title: The telescope and the data
     lessons:
+      - {title: "Telescopes: collecting light"}
       - {title: "How TESS watches the sky"}
       - {title: "From pixels to light curves"}
       - {title: "What goes wrong"}
-  - n: 5
+  - n: 6
     title: Finding dips with a computer
     lessons:
       - {title: "Smoothing out slow changes"}
       - {title: "Searching with boxes"}
-      - {title: "False alarms and the upside-down test"}
+      - {title: "False alarms and looking everywhere"}
+      - {title: "The upside-down test"}
       - {title: "Hiding fake planets"}
-  - n: 6
+  - n: 7
     title: Proving it
     lessons:
       - {title: "What a clean null means"}
       - {title: "Blind runs and rules written first"}
-      - {title: "From a dip to a claim"}
-  - n: 7
-    title: Beyond the project
+      - {title: "Vetting a dip: pixels and neighbours"}
+      - {title: "Lead, candidate, claim: the two keys"}
+  - n: 8
+    title: Our Sun and the lives of stars
     lessons:
-      - {title: "Gravity, light and stars"}
+      - {title: "The Sun, an ordinary star up close"}
+      - {title: "What powers the Sun"}
+      - {title: "The star census: the HR diagram"}
+      - {title: "How stars and planets are born"}
+      - {title: "How stars die"}
+  - n: 9
+    title: Distances, the galaxy, black holes
+    lessons:
+      - {title: "Parallax: measuring distance with Earth's orbit"}
+      - {title: "Standard candles: Leavitt's Cepheids"}
+      - {title: "The Milky Way"}
+      - {title: "Black holes and curved spacetime"}
+  - n: 10
+    title: The universe
+    lessons:
+      - {title: "Galaxies"}
+      - {title: "The expanding universe"}
+      - {title: "The Big Bang and the oldest light"}
+      - {title: "Dark matter and dark energy"}
+  - n: 11
+    title: Other worlds and life
+    lessons:
+      - {title: "The planets we know"}
+      - {title: "The habitable zone"}
+      - {title: "Looking for life"}

@@ -48,7 +48,7 @@ So \(1\% = 10{,}000\) ppm, and the Earth's dip across the Sun is \(0.0000840 \ti
 
     **Step 4. Into ppm.** \(0.00556 \times 1{,}000{,}000 = 5{,}560\) ppm, which is 0.56%.
 
-    In the real system the second star adds its light too, so the planet's dip is diluted: it shows up at roughly half that depth. Unit 3 explains dilution properly. Compare even the undiluted 0.56% with the eclipse's 45%: the planet's dip is about 80 times smaller, and the real, diluted one smaller still.
+    In the real system the second star adds its light too, so the planet's dip is diluted: it shows up at roughly half that depth. Lesson 2.4 explains dilution properly. Compare even the undiluted 0.56% with the eclipse's 45%: the planet's dip is about 80 times smaller, and the real, diluted one smaller still.
 
 !!! question "Your turn, half done: Jupiter across the Sun"
     Jupiter is 11.21 Earths wide; the Sun is 109.08. Step 1: \(11.21 / 109.08 = 0.1028\). Steps 2 and 3 are yours: square the ratio and turn it into ppm.
@@ -73,7 +73,7 @@ Now look again at the quiet day at the top of this lesson. No eclipse happens on
 
 ## In a few sentences
 
-A planet blocks the fraction \((R_p / R_\star)^2\) of its star's light. For planets that fraction is tiny, so we write it in parts per million: 1% is 10,000 ppm. Jupiter across the Sun is about 10,600 ppm, the Earth only 84 ppm. (All of this is for a planet in front of one star whose light we see alone; around two stars the depth is diluted, as Unit 3 shows.)
+A planet blocks the fraction \((R_p / R_\star)^2\) of its star's light. For planets that fraction is tiny, so we write it in parts per million: 1% is 10,000 ppm. Jupiter across the Sun is about 10,600 ppm, the Earth only 84 ppm. (All of this is for a planet in front of one star whose light we see alone; around two stars the depth is diluted, as lesson 2.4 shows.)
 
 ## Problems
 

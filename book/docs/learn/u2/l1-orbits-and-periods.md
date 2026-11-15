@@ -83,7 +83,7 @@ We want \(a\), so we turn the law around: multiply both sides by \(M\) and take 
 
 Step 3: \(2.440 \times 0.2998 = 0.7316\). Step 4: \(\sqrt[3]{0.7316} = 0.90\) AU.
 
-The rule: **\(a = \sqrt[3]{M P^2}\), with \(P\) in years and \(M\) the total mass inside the orbit.** The planet circles both stars at about 0.9 AU, almost five times farther out than the stars are from each other. That is no accident: Unit 3 shows why a planet cannot orbit two suns too closely.
+The rule: **\(a = \sqrt[3]{M P^2}\), with \(P\) in years and \(M\) the total mass inside the orbit.** The planet circles both stars at about 0.9 AU, almost five times farther out than the stars are from each other. That is no accident: Unit 4 shows why a planet cannot orbit two suns too closely.
 
 </details>
 </div>

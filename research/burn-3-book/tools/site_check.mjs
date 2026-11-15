@@ -1037,7 +1037,7 @@ async function learnTest() {
       await goto(b, base + "learn/");
       await b.evaluate('Object.keys(localStorage).filter(k=>k.startsWith("tw-")).forEach(k=>localStorage.removeItem(k))');
       await goto(b, base + "learn/");
-      ok(await waitFor(b, 'document.querySelectorAll(".tw-unit").length === 7'), `${width}: seven unit cards`);
+      ok(await waitFor(b, `document.querySelectorAll(".tw-unit").length === ${manifest.units.length}`), `${width}: one card per unit (${manifest.units.length})`);
       view.home = await b.evaluate('({continue:!!document.querySelector(".tw-continue"),stats:document.querySelectorAll(".tw-stats>div").length,units:document.querySelectorAll(".tw-unit").length})');
       ok(view.home.continue && view.home.stats === 3, `${width}: Continue and three stats`);
       view.home.text = await measure();

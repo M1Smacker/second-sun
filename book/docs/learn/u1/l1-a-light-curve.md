@@ -68,7 +68,7 @@ That is the scale on the plot: 0 means normal, minus 10 means 10% fainter than n
 
 Step 2: \(0.642 - 1 = -0.358\). Step 3: \(-0.358 \times 100 = -35.8\%\).
 
-The rule behind it: **compare with normal, then turn the difference into percent.** The answer is negative because light was blocked. This eclipse is shallower than the first (36% against 45%). Why the two differ is a question for Unit 3: it depends on which star is hidden and how squarely the two line up.
+The rule behind it: **compare with normal, then turn the difference into percent.** The answer is negative because light was blocked. This eclipse is shallower than the first (36% against 45%). Why the two differ is the subject of lesson 2.3: it depends on which star is hidden and how squarely the two line up.
 
 </details>
 </div>
@@ -128,7 +128,7 @@ A day has \(24 \times 60 = 1{,}440\) minutes. One point every 2 minutes gives \(
 
 \(2519.27 - 2507.40 = 11.87\) days.
 
-Here is a puzzle to keep: the stars take 19.7 days to go round, so you might expect the two eclipses to be half of that, 9.85 days, apart. They are not. The orbit is not a circle but a stretched oval, so one half of it is travelled faster than the other (how uneven the gap looks also depends on the angle we see the oval from). Unit 3 shows how astronomers read that from this one gap.
+Here is a puzzle to keep: the stars take 19.7 days to go round, so you might expect the two eclipses to be half of that, 9.85 days, apart. They are not. The orbit is not a circle but a stretched oval, so one half of it is travelled faster than the other (how uneven the gap looks also depends on the angle we see the oval from). Unit 4 shows how astronomers read that from this one gap.
 
 </details>
 </div>

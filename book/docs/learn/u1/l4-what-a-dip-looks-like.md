@@ -38,7 +38,7 @@ Lesson 1.2 said a planet blocks the fraction \((R_p / R_\star)^2\) of its star's
 Now go back to the eclipse in lesson 1.1. Its bottom is a point, not a flat line: our script finds only 2 of its 10-minute points within 1 percentage point of the lowest one. When two stars of nearly the same size eclipse, one can cover the other completely only for a moment, if at all, so the hidden part grows and shrinks almost without staying still. A **V shape** usually means two stars; a **U or box shape** with a flat bottom usually means something much smaller than its star. Planet searches use this difference all the time to throw out eclipsing stars that pretend to be planets.
 
 <aside class="tw-mn" markdown>
-**V or U.** A rule of thumb, not a law: a planet that only grazes the edge of its star also makes a V. Unit 5 shows how searches handle that.
+**V or U.** A rule of thumb, not a law: a planet that only grazes the edge of its star also makes a V. Unit 6 shows how searches handle that.
 </aside>
 
 ## Seeing a dip through the noise
@@ -78,7 +78,7 @@ Five days earlier the same planet crossed the other star. Here it is:
 
 <p class="tw-plot__ask">Is this dip deeper or shallower than the first plot? Does its bottom look flat?</p>
 
-Two dips, 4.9 days apart, from one planet crossing two different suns. With one star, a planet's dips repeat like a clock, every orbit. Around two suns that clock breaks: the stars move while the planet goes round, so the planet meets them at different places each time. The dips change their spacing, their depth and their length. That is what makes planets around two suns so hard to find, and so precious when found. Unit 3 is all about it.
+Two dips, 4.9 days apart, from one planet crossing two different suns. With one star, a planet's dips repeat like a clock, every orbit. Around two suns that clock breaks: the stars move while the planet goes round, so the planet meets them at different places each time. The dips change their spacing, their depth and their length. That is what makes planets around two suns so hard to find, and so precious when found. Unit 4 is all about it.
 
 !!! question "Your turn, half done: the first crossing"
     In the first crossing our script finds a depth of about 1,900 ppm over 14 points. Take the same noise as before, 305 ppm per point. Step 1: \(\sqrt{14} = 3.74\). Finish the other steps and type the SNR.
@@ -136,7 +136,7 @@ Run lesson 1.2 backwards. Depth as a fraction: \(2{,}500 / 1{,}000{,}000 = 0.002
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(\text{SNR} = \text{depth} / \text{noise}\), so \(\text{depth} = \text{SNR} \times \text{noise} = 7 \times 100 = 700\) ppm. Shallower dips mostly slip under the bar, though noise can push a real dip a little above or below it. Measuring exactly what a search can and cannot see is a whole part of this project (Unit 5).
+\(\text{SNR} = \text{depth} / \text{noise}\), so \(\text{depth} = \text{SNR} \times \text{noise} = 7 \times 100 = 700\) ppm. Shallower dips mostly slip under the bar, though noise can push a real dip a little above or below it. Measuring exactly what a search can and cannot see is a whole part of this project (Unit 6).
 
 </details>
 </div>

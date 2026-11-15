@@ -79,7 +79,7 @@ Why bigger? Because not all of the change is independent from one point to the n
 **White and red noise.** Noise that changes independently from point to point is called white noise. Slow wobbles shared by neighbouring points are called red noise. Averaging cleans the first quickly and the second only slowly.
 </aside>
 
-That slow, shared part has a name: **red noise**. What causes this day's drift (the stars themselves, the spacecraft, or both) we have not measured. Red noise was one of the reasons early planet searches from the ground found fewer planets than simple counts predicted, and it is why, in Unit 5, our search first takes slow changes out of the light before it looks for dips.
+That slow, shared part has a name: **red noise**. What causes this day's drift (the stars themselves, the spacecraft, or both) we have not measured. Red noise was one of the reasons early planet searches from the ground found fewer planets than simple counts predicted, and it is why, in Unit 6, our search first takes slow changes out of the light before it looks for dips.
 
 !!! question "Your turn, half done: one hour"
     One hour of 2-minute points holds \(N = 30\) points, and \(\sqrt{30} = 5.48\). Finish it: with 930 ppm per point, what noise does the rule predict for a one-hour average?
