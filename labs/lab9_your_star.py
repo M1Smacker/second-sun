@@ -6,6 +6,10 @@ import numpy as np, lightkurve as lk, matplotlib; matplotlib.use("Agg"); import 
 sys.path.insert(0, str(_env.ROOT / "pipeline"))
 from detect_v2 import load, eclipse_mask_auto, find_events, systematics, veto
 
+# FIX 97 (15 Nov 2026): every star this lab accepts comes from targets/g1_targets.csv, and all of G1 is sealed (fence A: no search,
+# plot or mask on its light before the G1 re-search). So the lab cannot run at all until it is rewritten around a published system
+# (TIC 172900988, light already in data/known/). The frozen Book 2 copy of the page keeps the old text as a record.
+sys.exit("REFUSED (FIX 97): this lab only takes G1 stars, and G1 is sealed until its one-shot search. It will be rewritten around a published system.")
 tic = int(sys.argv[1]) if len(sys.argv) > 1 else 48507019
 nmax = int(sys.argv[2]) if len(sys.argv) > 2 else 3
 rows = [r for r in csv.DictReader(l for l in open(_env.ROOT / "targets/g1_targets.csv") if not l.startswith("#")) if int(r["tic"]) == tic]

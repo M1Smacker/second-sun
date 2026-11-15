@@ -75,7 +75,7 @@ The website where astronomers share follow-up information on TESS planet candida
 A "detection" caused by noise or spacecraft effects instead of a real dip. We count them by searching upside-down data.
 
 ## FITS
-The standard file format of astronomy since 1981: a header of labels plus tables or images. Every TESS file is FITS. See [Lab 2](labs/lab2-get-the-data.md).
+The standard file format of astronomy since 1981: a header of labels plus tables or images. Every TESS file is FITS. See [Lab 2](../v2/labs/lab2-get-the-data/).
 
 ## Flag
 A reason to doubt a dip. We flag and sort dips, we never delete them. See [Chapter 8](../v2/book/08-our-detector/).
@@ -117,13 +117,13 @@ Noise that is not the same upwards and downwards: flares and glitches jump up mo
 Astronomy's brightness scale, where bigger numbers are fainter. 5 magnitudes is a factor of 100. See [Chapter 1](../v2/book/01-stars-names-missions/).
 
 ## MAST
-The Mikulski Archive for Space Telescopes: NASA's public archive holding all TESS and Kepler data. See [Lab 1](labs/lab1-name-to-number.md).
+The Mikulski Archive for Space Telescopes: NASA's public archive holding all TESS and Kepler data. See [Lab 1](../v2/labs/lab1-name-to-number/).
 
 ## Matched filter
 Sliding a template shaped like the signal you want (for us, a box-shaped dip) along the data and scoring how well each stretch matches.
 
 ## Momentum dump
-A short thruster firing that TESS uses every few days to stay pointed. It jolts the camera and can fake a dip; it's flagged in the data (quality bit 32). See [Lab 2](labs/lab2-get-the-data.md).
+A short thruster firing that TESS uses every few days to stay pointed. It jolts the camera and can fake a dip; it's flagged in the data (quality bit 32). See [Lab 2](../v2/labs/lab2-get-the-data/).
 
 ## N-body simulation
 A computer calculation that moves several objects (like two stars and a planet) step by step under each other's gravity. STANLEY uses one to predict when a two-star planet crosses.
@@ -153,7 +153,7 @@ The slow turning of a planet's orbit around a pair of stars. It makes transits s
 MIT's Quick-Look Pipeline: makes light curves from full-frame images for a huge number of stars. All 549 G1 stars have QLP data. See [Chapter 3](../v2/book/03-our-data/).
 
 ## Quality flag
-A number stored with each measurement that warns about problems (thruster firing, scattered light...). 0 means fine. See [Lab 2](labs/lab2-get-the-data.md).
+A number stored with each measurement that warns about problems (thruster firing, scattered light...). 0 means fine. See [Lab 2](../v2/labs/lab2-get-the-data/).
 
 ## RA and Dec
 The sky's longitude (Right Ascension) and latitude (Declination). Every star's address. See [Chapter 1](../v2/book/01-stars-names-missions/).
@@ -207,7 +207,7 @@ TESS Object of Interest: a signal NASA's team thinks might be a planet. TOI-1338
 A planet passing in front of its star as seen from Earth, which makes a small dip in the light curve.
 
 ## Virtual environment
-A private copy of Python with its own toolkits, kept inside a project folder so it doesn't clash with anything else. Ours is `D:\second-sun\.venv`. See [Lab 0](labs/lab0-workbench.md).
+A private copy of Python with its own toolkits, kept inside a project folder so it doesn't clash with anything else. Ours is `D:\second-sun\.venv`. See [Lab 0](../v2/labs/lab0-workbench/).
 
 ## White noise
 Random wobble where each measurement is independent. Averaging N measurements shrinks it by √N. See [Chapter 7](../v2/book/07-noise-and-statistics/).
