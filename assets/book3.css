@@ -52,7 +52,7 @@
 ::view-transition-new(root) { animation: ss3-enter var(--ss-t3) var(--ss-e-out) both; }
 @keyframes ss3-leave { to { opacity: 0; transform: translateY(-6px) scale(.995); } }
 @keyframes ss3-enter { from { opacity: 0; transform: translateY(10px); } }
-.md-content__inner { animation: ss3-enter var(--ss-t3) var(--ss-e-out) both; }
+.md-content__inner { animation: ss3-enter var(--ss-t3) var(--ss-e-out) backwards; }   /* backwards, not both: a held end transform (WebKit keeps an identity matrix) turned fixed panels inside into page-scrolling ones (FIX 100 CX2-02) */
 .md-typeset details { transition: background-color var(--ss-t2) var(--ss-e-out), border-color var(--ss-t2) var(--ss-e-out); }
 .md-typeset details[open] > :not(summary) { animation: ss3-unfold var(--ss-t2) var(--ss-e-out) both; }
 @keyframes ss3-unfold { from { opacity: 0; transform: translateY(-4px); } }

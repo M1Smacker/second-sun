@@ -225,6 +225,18 @@
   function openNode(id){if(id!=="goal"&&!nodes[id])return;showCard(nodeHTML(id),"n:"+id);}
   function openLeaf(id){const l=leaves[id];if(l)showCard(`<p class="ssta-crumb">${esc(l.node)} / ${esc(fmt(l.date))}</p><h2>${esc(l.plain)}</h2>${leafBody(l)}<div class="ssta-links"><a href="#n=${esc(l.node)}" data-node="${esc(l.node)}">Back to ${esc(nodes[l.node]?.title)}</a></div>`,"l:"+id);}
   function restore(key){restoring=true;try{if(key.startsWith("n:"))openNode(key.slice(2));else if(key.startsWith("l:"))openLeaf(key.slice(2));}finally{restoring=false;}}
+  // FIX 100 CX2-02 (Codex 021): the PC panel is docked to the screen, below the header, over its own reserved column, so the whole
+  // panel and its Close button stay visible however far the page is scrolled (sticky let it run off the bottom or slide under the header).
+  function dock(card) {
+    const slot = host.querySelector(".ssta-detail-slot");
+    if (!slot || !card || !card.isConnected || !card.classList.contains("ssta-pc-detail")) return;
+    // Clear the header and, while it shows (at the top of the page), the menu tabs bar under it (WebKit hit it, 15 Nov 2026).
+    const bars = [document.querySelector(".md-header"), document.querySelector(".md-tabs")].filter((e) => e && !e.hidden && e.getClientRects().length);
+    const r = slot.getBoundingClientRect(), top = Math.round(Math.max(0, ...bars.map((e) => e.getBoundingClientRect().bottom)) + 16);
+    Object.assign(card.style, { position: "fixed", top: top + "px", left: Math.round(r.left) + "px", width: Math.round(r.width) + "px", maxHeight: (innerHeight - top - 16) + "px", marginTop: "0" });
+  }
+  addEventListener("scroll", () => { if (openState && openState.card) dock(openState.card); }, { passive: true });
+  addEventListener("resize", () => { if (openState && openState.card) dock(openState.card); });
   function showCard(html, key) {
     const replacing = !!openState;
     if (!replacing) returnFocus = document.activeElement;
@@ -267,6 +279,7 @@
       });
     } else {
       host.querySelector(".ssta-detail-slot").append(card);
+      dock(card);
       // Older WebKit builds need an explicit fallback for scroll chaining.
       if (!CSS.supports("overscroll-behavior-y", "contain")) {
         card.dataset.wheelContain = "manual";

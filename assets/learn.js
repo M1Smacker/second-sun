@@ -94,22 +94,23 @@
     let d;
     try { d = await fetch(new URL(`assets/data/lessons/${box.dataset.src}.json`, BASE)).then((r) => r.json()); } catch (e) { return; }
     const W = Math.max(280, Math.round(box.clientWidth - 30)), H = Math.round(Math.min(320, Math.max(220, W * 0.56))), L = 54, R = 12, T = 14, B = 40;   // one SVG unit = one screen pixel, so text stays at its real size
-    const t0 = d.t[0], xs = d.t.map((t) => t - t0);
-    const xmax = xs[xs.length - 1] || 1, lo = Math.min(...d.f), hi = Math.max(...d.f), pad = (hi - lo) * 0.08 || 0.1;
+    // Light curves count days from the first point; other plots (a spectrum, a response curve) set xabs, xlab, read and star (RS-036 course).
+    const t0 = d.xabs ? 0 : d.t[0], xs = d.t.map((t) => t - t0), xmin = d.xabs ? Math.min(...xs) : 0;
+    const xmax = (d.xabs ? Math.max(...xs) : xs[xs.length - 1]) || 1, lo = Math.min(...d.f), hi = Math.max(...d.f), pad = (hi - lo) * 0.08 || 0.1;
     const y0 = lo - pad, y1 = hi + pad;
-    const X = (x) => L + (x / xmax) * (W - L - R), Y = (y) => T + (1 - (y - y0) / (y1 - y0)) * (H - T - B);
+    const X = (x) => L + ((x - xmin) / (xmax - xmin || 1)) * (W - L - R), Y = (y) => T + (1 - (y - y0) / (y1 - y0)) * (H - T - B);
     const nice = (span) => { const p = Math.pow(10, Math.floor(Math.log10(span / 4))); return [1, 2, 5, 10].map((m) => m * p).find((s) => span / s <= 6); };
-    const ys = nice(y1 - y0), xsStep = nice(xmax);
+    const ys = nice(y1 - y0), xsStep = nice(xmax - xmin);
     let g = "";
     for (let v = Math.ceil(y0 / ys) * ys; v <= y1; v += ys) g += `<line class="tw-plot__grid" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="tw-plot__tick" x="${L - 8}" y="${Y(v) + 4}" text-anchor="end">${+v.toFixed(3)}</text>`;
-    for (let v = 0; v <= xmax + 1e-9; v += xsStep) g += `<text class="tw-plot__tick" x="${X(v)}" y="${H - B + 18}" text-anchor="middle">${+v.toFixed(2)}</text>`;
+    for (let v = Math.ceil(xmin / xsStep - 1e-9) * xsStep; v <= xmax + 1e-9; v += xsStep) g += `<text class="tw-plot__tick" x="${X(v)}" y="${H - B + 18}" text-anchor="middle">${+v.toFixed(2)}</text>`;
     const pts = xs.map((x, i) => `<circle cx="${X(x).toFixed(1)}" cy="${Y(d.f[i]).toFixed(1)}" r="1.9"/>`).join("");
     box.innerHTML = `<figure class="tw-plot__fig"><figcaption><strong>${esc(d.title)}</strong> ${esc(d.note)}</figcaption>
       <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(d.title)}: ${esc(d.y)} against ${esc(d.x)}">${g}
-      <text class="tw-plot__lab" x="${(L + W - R) / 2}" y="${H - 4}" text-anchor="middle">Days since the first point</text>
+      <text class="tw-plot__lab" x="${(L + W - R) / 2}" y="${H - 4}" text-anchor="middle">${esc(d.xlab || "Days since the first point")}</text>
       <text class="tw-plot__lab" transform="translate(13 ${(T + H - B) / 2}) rotate(-90)" text-anchor="middle">${esc(d.y)}</text>
       <g class="tw-plot__pts">${pts}</g><line class="tw-plot__cross" y1="${T}" y2="${H - B}" x1="-9" x2="-9"/><circle class="tw-plot__dot" r="5" cx="-9" cy="-9"/></svg>
-      <p class="tw-plot__read" aria-live="polite">Touch or hover the plot to read a point.</p><p class="tw-plot__src">${esc(d.source)}. Star: TIC ${d.tic}, a published two-sun planet system.</p></figure>`;
+      <p class="tw-plot__read" aria-live="polite">Touch or hover the plot to read a point.</p><p class="tw-plot__src">${esc(d.source)}.${d.star === undefined ? ` Star: TIC ${d.tic}, a published two-sun planet system.` : d.star ? " " + esc(d.star) : ""}</p></figure>`;
     const svg = $("svg", box), cross = $(".tw-plot__cross", box), dot = $(".tw-plot__dot", box), read = $(".tw-plot__read", box);
     const at = (ev) => {
       const r = svg.getBoundingClientRect(), x = ((ev.clientX - r.left) / r.width) * W;
@@ -118,7 +119,7 @@
       xs.forEach((v, k) => { const dd = Math.abs(v - want); if (dd < best) { best = dd; i = k; } });
       cross.setAttribute("x1", X(xs[i])); cross.setAttribute("x2", X(xs[i]));
       dot.setAttribute("cx", X(xs[i])); dot.setAttribute("cy", Y(d.f[i]));
-      read.textContent = `Day ${xs[i].toFixed(2)}: brightness ${d.f[i] >= 0 ? "+" : ""}${d.unit === "ppm" ? Math.round(d.f[i]) : d.f[i].toFixed(2)}${d.unit === "percent" ? "%" : d.unit === "ppm" ? " ppm" : ""} from normal.`;
+      read.textContent = d.read ? `${d.read.x} ${+xs[i].toFixed(2)} ${d.read.xu}: ${d.read.y} ${+d.f[i].toFixed(3)}${d.read.yu}` : `Day ${xs[i].toFixed(2)}: brightness ${d.f[i] >= 0 ? "+" : ""}${d.unit === "ppm" ? Math.round(d.f[i]) : d.f[i].toFixed(2)}${d.unit === "percent" ? "%" : d.unit === "ppm" ? " ppm" : ""} from normal.`;
     };
     svg.addEventListener("pointermove", at); svg.addEventListener("pointerdown", at);
   };
