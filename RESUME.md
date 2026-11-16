@@ -1,3 +1,9 @@
+## LATEST (16 Nov 2026, 11:58 am Kuwait): Fable main run done, extra tasks running
+- Fable (local_c397c5cd) finished F0 to F4, F3 method file and FABLE-REPORT-BIG-RUN.md (commits 22c85052, 5dc538f8, a809a178), then extras X6, X10, X3, X2 (d5326f65, 6d3dc1fb, 4264b70e). Not pushed yet; Claude reviews then pushes.
+- Headline (Fable, NOT yet fresh-seed confirmed): depth cap + R2 (dump hold by shape + gap-edge hold released) + mask timing M2 gives P 52.49% on possible planets, +4.08 points [+2.71, +5.56] over B, background 172 real / 66 upside-down (B 174 / 79). R1 (also releasing the ramp hold) +4.65 but real alarms 193 > 174: fails the rule written first. X2 orbit vouching rejected (16 upside-down promotions vs limit 2).
+- 11:57 am: Fable sent on to X1 (fresh-seed check of the proposal), then X7, X8, X9, X4, X5, X11. Weekly 88%, 5-hour 46% (resets 4:30 pm).
+- Codex 025 bench still running. Lessons and 026 wait for Fable.
+
 ## LATEST (16 Nov 2026, 9:55 am Kuwait): Fable restarted; new stop lines 95% / 98%
 - Ahmed (9:51 am, travelling): Fable stops at 95% weekly; ALL work stops at 98% (he keeps the last 2 points). Never sit idle; if the 5-hour bar fills, wake 1 minute after its reset and continue.
 - The first Fable session (local_6e4c467a) was stopped by a safety filter (reasoning_extraction) at 9:48 am after reading the brief, before any work. Brief reworded (work log = lab notebook of actions and results; F3 = procedure file from both logs), commit ef0b04af. Restarted as session local_c397c5cd-64d0-4034-a3c5-72073bc44d9e (fable-run-2, Fable 5.2 high), running since 9:54 am.
