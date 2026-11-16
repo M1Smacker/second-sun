@@ -2,7 +2,7 @@
 - Weekly 95% at 2:56 pm (Fable's stop line); 5-hour 94% (resets 4:30 pm; one-shot wake 4:31 pm set). Claude's own budget: 95 to 98%.
 - X1 fresh-seed (seed 2026111601, 1,250 new planets): proposal depth cap + R2 + M2 gains +3.94 points [+2.18, +6.04] on possible planets; P 56.1% [51.6, 60.5]. CONFIRMED under the rule written 11:36 am. Still far from 0.75.
 - Extras done: X1, X2 (rejected), X3, X4 (shorter detrend window: detection 64 to 71% at 1.6x alarms, not adopted), X6, X7, X8, X10. Not done: X5, X9, X11.
-- Main pushed to origin (14c953db). Codex 026 (M4) running since 2:43 pm.
+- Main pushed to origin (14c953db). Codex 026 run 2 (astra/026b-fix101-m4, d5f3b884) PARTIAL: census done (G2 class B 1,289 star-sectors, G3 none), M4 holds a planted three-crossing planet in the synthetic control; its background bench died at exit. Run 3 launched 3:17 pm on astra/026c-fix101-m4-bench (task bgcb9pdte), bench in the foreground.
 - Open decision for Ahmed: Fable proposes a dated bar file defining reference planets physically (at most 2 Jupiter radii); freeze of Petrova 1.1 needs his yes and two keys.
 - Next: 4:31 pm wake: full read of Fable's files, Tree, phone report to Ahmed; 026 review when done; stop at 98%.
 
