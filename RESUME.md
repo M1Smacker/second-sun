@@ -1,3 +1,9 @@
+## LATEST (16 Nov 2026, 2:37 pm Kuwait): 025 merged, 026 rewritten and launched
+- Codex 025 finished 2:34 pm; report rendered, committed on branch (c2d5ea1c), fence-checked (3 FENCE B hits = one read-only file listing of data/astra/005, no light opened; no frozen files changed) and merged into main (e7cda3fb). Verdict: load losses traced (14 of 21 stray-light bit 4096); admitting bit 4096 FAILS (upside-down 79 to 172, P 48.11 to 45.24). Review notes in ASTRA-REVIEW-2026-11-16.md, Tree updated (171096ba).
+- Fable F1 section 6 said brief 026 repeated M1/M2 and its residue control could not fail; brief rewritten to build mask design M4 + C96 fallback radius + controls (a) to (d) (b5f1dd09). Launched 2:36 pm: gpt-6-astra high, 4 h, background task bowzplopb, log data/astra/026/exec-1.log, branch astra/026-fix101-mask-drift.
+- Fable: waiting on its X1 fresh-seed run (8 workers); weekly 93% at 2:26 pm.
+- Not pushed yet (Fable's commits await Claude's read). Next: when Fable stops at 95%, review its files, push; lessons 3.2/3.3 up to 98%; report to Ahmed; 026 merge when it ends (fence_check first).
+
 ## LATEST (16 Nov 2026, 11:58 am Kuwait): Fable main run done, extra tasks running
 - Fable (local_c397c5cd) finished F0 to F4, F3 method file and FABLE-REPORT-BIG-RUN.md (commits 22c85052, 5dc538f8, a809a178), then extras X6, X10, X3, X2 (d5326f65, 6d3dc1fb, 4264b70e). Not pushed yet; Claude reviews then pushes.
 - Headline (Fable, NOT yet fresh-seed confirmed): depth cap + R2 (dump hold by shape + gap-edge hold released) + mask timing M2 gives P 52.49% on possible planets, +4.08 points [+2.71, +5.56] over B, background 172 real / 66 upside-down (B 174 / 79). R1 (also releasing the ramp hold) +4.65 but real alarms 193 > 174: fails the rule written first. X2 orbit vouching rejected (16 upside-down promotions vs limit 2).
