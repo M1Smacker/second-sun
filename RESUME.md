@@ -1,3 +1,11 @@
+## LATEST (16 Nov 2026, 9:55 am Kuwait): Fable restarted; new stop lines 95% / 98%
+- Ahmed (9:51 am, travelling): Fable stops at 95% weekly; ALL work stops at 98% (he keeps the last 2 points). Never sit idle; if the 5-hour bar fills, wake 1 minute after its reset and continue.
+- The first Fable session (local_6e4c467a) was stopped by a safety filter (reasoning_extraction) at 9:48 am after reading the brief, before any work. Brief reworded (work log = lab notebook of actions and results; F3 = procedure file from both logs), commit ef0b04af. Restarted as session local_c397c5cd-64d0-4034-a3c5-72073bc44d9e (fable-run-2, Fable 5.2 high), running since 9:54 am.
+- Meters 9:52 am: weekly 72%, 5-hour 28% (resets 11:30 am Kuwait); weekly resets 1:00 am Tue 17 Nov.
+- Timers in this session: one-shot 11:31 am (after 5-hour reset); watchdog every 2 h at :17.
+- Codex 025 bench running (4 workers, expected finish about 12:40 pm); then render 025_report.py, review, fence_check, merge.
+- Next: merge 025; when Fable ends, review its files, push, launch Codex 026; then lessons 3.2, 3.3 and more while under 98%; final report to Ahmed.
+
 ## LATEST (16 Nov 2026, 9:50 am Kuwait): Ahmed at the airport; A, B, audit done; FABLE RUNNING
 - Ahmed (9:33 am, boarding to Pakistan via Abu Dhabi, unreachable): order A (025) and B (FIX 101 to Codex), then a full audit of Fable's brief, then the Fable run with a hard stop at 95% weekly, then lessons 3.2 and 3.3 if points remain, then stop. Remote desktop (Chrome Remote Desktop) works for him.
 - A: 025's bench was cut at 2:14 am by the PC restart (6,033 of 7,253 G2 groups); half-written files removed, 025_run.py set to 4 workers (results unaffected), resumed 9:38 am (background bub8gkbgs). Review and merge when done.
