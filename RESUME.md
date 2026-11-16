@@ -2,7 +2,7 @@
 - Ahmed (9:51 am, travelling): Fable stops at 95% weekly; ALL work stops at 98% (he keeps the last 2 points). Never sit idle; if the 5-hour bar fills, wake 1 minute after its reset and continue.
 - The first Fable session (local_6e4c467a) was stopped by a safety filter (reasoning_extraction) at 9:48 am after reading the brief, before any work. Brief reworded (work log = lab notebook of actions and results; F3 = procedure file from both logs), commit ef0b04af. Restarted as session local_c397c5cd-64d0-4034-a3c5-72073bc44d9e (fable-run-2, Fable 5.2 high), running since 9:54 am.
 - Meters 9:52 am: weekly 72%, 5-hour 28% (resets 11:30 am Kuwait); weekly resets 1:00 am Tue 17 Nov.
-- Timers in this session: one-shot 11:31 am (after 5-hour reset); watchdog every 2 h at :17.
+- Timers in this session: one-shot 11:31 am (after 5-hour reset); watchdog every 30 min at :13 and :43 (Ahmed 9:56 am; app and PC stay on).
 - Codex 025 bench running (4 workers, expected finish about 12:40 pm); then render 025_report.py, review, fence_check, merge.
 - Next: merge 025; when Fable ends, review its files, push, launch Codex 026; then lessons 3.2, 3.3 and more while under 98%; final report to Ahmed.
 
