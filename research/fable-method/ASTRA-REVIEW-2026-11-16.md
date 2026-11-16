@@ -13,3 +13,11 @@
 - Coverage: subtraction applied to 2,200 of 9,729 star-sectors; 6,232 had fewer than three binary cycles.
 - Fence check since 18:05: fence ids only in RESUME text Codex read; search-code runs are the bench runs briefed; no frozen files changed; no forbidden commands.
 - For Fable: the 10 extra detections that stay below tier 1 point to the same tier-2 holds (RS-037: dump, step, ramp, repeater); subtraction plus a better tier rule could add a few short-binary planets, but alone it is not a lever.
+
+## Codex 025, load losses (Claude, 16 Nov 2:36 pm; merged e7cda3fb)
+- Ran on GPT-6.1-Sol (runner default); the bench was cut by a PC restart at 2:14 am and resumed by Claude at 9:38 am with 4 workers (results unaffected); finished 2:34 pm.
+- Root cause CONFIRMED: of 21 T156 load losses, 14 are the stray-light quality bit 4096 alone, 1 is 128+4096, 3 are the QLP late-sector bit 1073741824; 0 are FIX 101 cases.
+- Candidate (admit bit 4096) FAILS its preregistered rule: centre support restored 12 of 21 and identity holds on 50 star-sectors, but R falls 34.21 to 31.52, P 48.11 to 45.24, and upside-down background rises 79 to 172 (real 174 to 254). Stray-light cadences are noisy: admitting them adds alarms and loses planets elsewhere. Not a lever as built.
+- Across all 2,000 T156 draws, first losses: quality exclusion 148, other eclipse or repeat mask 118, archive gap 99, catalogue drift mask 94 (FIX 101 pool, Codex 026), no safe windows 50, neighbour intersection 42.
+- Note to check: this report's B+C96 row shows P 43.44 (from 48.11), while Codex 014 part 3 said the depth cap costs 0 of 264 planted dips. Fable's X10 uses the cap in its proposal; the denominators differ (all 1,098 trials here vs possible planets in X10). Claude checks this before any freeze.
+- Fence check since 15 Nov 9:10 pm: 3 FENCE B hits, all one read-only file listing of data/astra/005; no star light opened, no frozen files changed, no forbidden commands.
