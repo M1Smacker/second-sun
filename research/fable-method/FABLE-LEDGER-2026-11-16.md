@@ -6,3 +6,5 @@
 | 9:58 am | F0 and F1 measured part done | 75 | 48 | 6 | 14 calls so far |
 | 10:57 am | F1 written and committed, F2 census done, F4 scoring done | 80 | 87 | 15 | context 291K |
 | 11:06 am | F4 file committed, F2 prototype running; 5-HOUR BAR FULL, stopped | 82 | 100 | 18 | resume after 11:30 am |
+| 11:33 am | after reset: F2 file, F3 method file written | 83 | 4 | 20 | context 346K |
+| 11:35 am | report written; X6 scoring running | about 84 | | | |
