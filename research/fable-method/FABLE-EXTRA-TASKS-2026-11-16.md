@@ -18,5 +18,5 @@ Aim: raise P (planet-level recovery, adopted set B 48.11%) as far as the evidenc
 - **X10. The combined candidate.** Everything that passed (F1 set, X2, X6 to X9, 025 stray-light if safe, a slot for FIX 101) measured together on the planet bench and T156, with intervals, real and upside-down background, and a fresh-seed confirmation. This is the Petrova 1.1 proposal number. File: `X10-COMBINED.md`.
 - **X11 onward (open).** After X10, pick the next lever with the largest measured ceiling per meter point, write one line why in the log, run it, repeat until 95%.
 
-**Order (biggest expected gain first):** X1, X6, X2, X7, X8, X9, X4, X3, X10, X5, then X11 onward. X10 may move earlier if three or more parts have passed.
+**Order (Ahmed 10:12 am: the biggest P gain first):** X6 first (guard-flag pool, 11.6 points, the largest measured pool with a direct lever; if F4 already built a passing release rule, go straight to X7), then X7, X8, X9, X2, X4, X1 (fresh-seed check of whatever passed), X3, X10, X5, then X11 onward. X10 may move earlier if three or more parts have passed.
 **If Fable's 95% arrives with tasks open,** Claude continues the open one itself from the work log between 95% and 98%.
