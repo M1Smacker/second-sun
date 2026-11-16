@@ -1,3 +1,8 @@
+## LATEST (16 Nov 2026, 6:52 pm Kuwait): weekly 97%, parked until the 1 am weekly reset
+- Weekly all-models 97% at 6:51 pm (stop line 98%, Ahmed keeps the last 2 points). 30-minute watchdog cancelled to save meter; one-shot wake at 1:03 am Tue 17 Nov (after the weekly reset) will: review Codex 026 (run 3, branch astra/026c-fix101-m4-bench, task bgcb9pdte; waits for Codex's own limit until about 7:37 pm, then runs; fence_check first), write lessons 3.2 and 3.3 and publish, send Ahmed a phone summary.
+- Ahmed's phone report sent 6:45 pm (Fable +3.9 fresh-seed confirmed, P 56% on possible planets, 0.75 far; decisions pending: physical bar file, Petrova 1.1 freeze).
+- If Codex 026 ends before 1 am it simply waits on disk; nothing else is open.
+
 ## LATEST (16 Nov 2026, 4:42 pm Kuwait): Fable run reviewed; Tree Now updated; Book 3.6.1 publishing
 - Weekly 95% at 4:31 pm (5-hour 0% after the 4:30 pm reset). Claude's slice 95 to 98%.
 - Fable report read (FABLE-REPORT-BIG-RUN.md): no F-01-size bug; bench has two faults (130 of 1,098 test planets physically impossible; quality-mask losses invisible to P); candidate cap + R2 + M2 confirmed fresh-seed +3.94 [+2.18, +6.04], P 56.1% on possible planets; realistic 1.1 to 1.2 at about 0.52 to 0.58; 0.75 needs the too-faint pool (X4: detrend window 3 x box lifts detection 64 to 71% at 1.6x alarms, bench needed). Note: Fable's session ran its last part on Opus (model switched); X1 and X4 write-ups say so.
