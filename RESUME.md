@@ -1,3 +1,7 @@
+## LATEST (16 Nov 2026, 7:50 pm Kuwait): Codex 026 finished: M4 REJECTED; merged
+- Codex 026 run 3 (branch astra/026c-fix101-m4-bench, commit 62306250) DONE: M4 fails, planet recovery 48.11 to 42.51, upside-down 79 to 80, controls failed. Fence check: 0 fence A, 3 fence B text-only hits (a read of our own reports), no search code, no frozen files; merged into main. So "class B stays blanked" (about 1.4 points lost) stays the safe answer for FIX 101 / 94; M2 (in Fable's candidate) is the only mask change with a confirmed fresh-seed gain.
+- Claude's full read of the 026 report and the Tree/ASTRA-REVIEW notes are NOT done yet (weekly 97%, stop line 98%): do them at the 1:03 am wake-up after the weekly reset, together with lessons 3.2 and 3.3 and a phone note to Ahmed.
+
 ## LATEST (16 Nov 2026, 6:52 pm Kuwait): weekly 97%, parked until the 1 am weekly reset
 - Weekly all-models 97% at 6:51 pm (stop line 98%, Ahmed keeps the last 2 points). 30-minute watchdog cancelled to save meter; one-shot wake at 1:03 am Tue 17 Nov (after the weekly reset) will: review Codex 026 (run 3, branch astra/026c-fix101-m4-bench, task bgcb9pdte; waits for Codex's own limit until about 7:37 pm, then runs; fence_check first), write lessons 3.2 and 3.3 and publish, send Ahmed a phone summary.
 - Ahmed's phone report sent 6:45 pm (Fable +3.9 fresh-seed confirmed, P 56% on possible planets, 0.75 far; decisions pending: physical bar file, Petrova 1.1 freeze).
