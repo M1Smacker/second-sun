@@ -1,3 +1,10 @@
+## LATEST (16 Nov 2026, 9:50 am Kuwait): Ahmed at the airport; A, B, audit done; FABLE RUNNING
+- Ahmed (9:33 am, boarding to Pakistan via Abu Dhabi, unreachable): order A (025) and B (FIX 101 to Codex), then a full audit of Fable's brief, then the Fable run with a hard stop at 95% weekly, then lessons 3.2 and 3.3 if points remain, then stop. Remote desktop (Chrome Remote Desktop) works for him.
+- A: 025's bench was cut at 2:14 am by the PC restart (6,033 of 7,253 G2 groups); half-written files removed, 025_run.py set to 4 workers (results unaffected), resumed 9:38 am (background bub8gkbgs). Review and merge when done.
+- B: brief `research/astra/inbox/026-fix101-mask-drift.md` (GPT-6-Astra; V1 cap at width, V2 0.25 d, V3 refit-centred; residue control). Launch AFTER Fable (CPU).
+- Audit: Fable brief fixed (stop 94%, caps 8/7/4/3/1.5, starts today, 0.75 bar before F1, FIX 101 left to Codex 026, F2 aimed at the about 600 unnamed crossings, git explicit-path rule, CPU 6 workers, 025 status). Plan file has a 'changed since' note.
+- Fable session `local_6e4c467a-4f56-47e7-a2b0-4800798f3065` (fable-big-run), claude-fable-5-2 high, started 9:48 am. Weekly 70% at 9:30 am. Fable access ends 1 am 17 Nov.
+
 ## LATEST (15 Nov 2026, 11:20 pm Kuwait): EVERYTHING PAUSED, Ahmed travelling
 - Ahmed: family emergency in Pakistan (grandmother unwell); flight 10 am 16 Nov, away one to two weeks. 'Everything else paused.' He may use Remote Control from his phone.
 - Codex 025 ended 11:45 pm (not reviewed, not merged, per the pause): traced all 21 load losses; the stray-light (bit 4096) prototype restores loaded data in 15 of 21; Codex says its final report still needs one render command after the bench. Review when Ahmed resumes.
