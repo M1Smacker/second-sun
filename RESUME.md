@@ -4,6 +4,7 @@
 - Meters 9:52 am: weekly 72%, 5-hour 28% (resets 11:30 am Kuwait); weekly resets 1:00 am Tue 17 Nov.
 - Timers in this session: one-shot 11:31 am (after 5-hour reset); watchdog every 30 min at :13 and :43 (Ahmed 9:56 am; app and PC stay on).
 - Codex 025 bench running (4 workers, expected finish about 12:40 pm); then render 025_report.py, review, fence_check, merge.
+- Ahmed 10:09 am: if Fable finishes under 95%, feed it extra tasks from research/fable-method/FABLE-EXTRA-TASKS-2026-11-16.md (X1 to X5) until 95%.
 - Next: merge 025; when Fable ends, review its files, push, launch Codex 026; then lessons 3.2, 3.3 and more while under 98%; final report to Ahmed.
 
 ## LATEST (16 Nov 2026, 9:50 am Kuwait): Ahmed at the airport; A, B, audit done; FABLE RUNNING
