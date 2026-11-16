@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T16:32",
+ "generated": "2026-11-17T01:12",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -22,7 +22,7 @@
    "title": "repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, stage3_core.py 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags)"
   }
  },
- "now": "16 Nov 2026, 4:35 pm: Fable's big run is done. Best candidate for Petrova 1.1 (depth cap + two guard holds released + mask timing M2) confirmed on fresh planets: +3.9 points, P 56% on planets that can exist (52 to 60), fewer false alarms. 0.75 still far; biggest pool left is slow wiggles after detrending. Codex 025 merged (stray-light fix fails); Codex 026 (mask M4) waits for Codex's limit. Ahmed decides: new bar file, freeze.",
+ "now": "16 Nov 2026, 4:35 pm: Fable's big run is done. Best candidate for Petrova 1.1 (depth cap + two guard holds released + mask timing M2) confirmed on fresh planets: +3.9 points, P 56% on planets that can exist (52 to 60), fewer false alarms. 0.75 still far; biggest pool left is slow wiggles after detrending. Codex 025 merged (stray-light fix fails); Codex 026 (mask M4) is done and M4 fails (P 48.11 to 42.51), so the mask answer is M2 inside the candidate or class B stays blanked. Ahmed decides: new bar file, freeze.",
  "nodes": [
   {
    "id": "1",
@@ -492,10 +492,10 @@
    "date": "2026-11-16",
    "when": "2026-11-16T00:00",
    "status": "done",
-   "plain": "Codex job: build mask design M4 (class B never blanked, leftover-eclipse check), C96 fallback radius, controls (a) to (d).",
+   "plain": "Codex job: built mask design M4 (class B never blanked, leftover-eclipse check), C96 fallback radius, controls (a) to (d).",
    "why": "",
    "explanation": "",
-   "technical": "build mask design M4 (class B never blanked, leftover-eclipse check), C96 fallback radius, controls (a) to (d). research/astra/inbox/026-fix101-mask-drift.md",
+   "technical": "built mask design M4 (class B never blanked, leftover-eclipse check), C96 fallback radius, controls (a) to (d). M4 REJECTED: P 48.11 to 42.51 (-5.60, 95% -8.55 to -2.83), upside-down 79 to 80, R 34.21 to 31.92; controls (b), (c), (d) fail (small samples, so they are weak; the planet loss is the strong reason). C96 fallback radius also not worth it (-0.4). Safe answer: class B stays blanked (about 1.4 points) or M2 inside Fable's confirmed candidate. Claude's review in research/fable-method/ASTRA-REVIEW-2026-11-16.md; report research/astra/reports/026-report.md; brief research/astra/inbox/026-fix101-mask-drift.md",
    "ids": [
     "Codex 026"
    ],
@@ -992,10 +992,10 @@
    "date": "2026-11-15",
    "when": "2026-11-15T00:00",
    "status": "done",
-   "plain": "Fix: the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of binaries in recent sectors; about 1.7 points of P (up to 6.4).",
+   "plain": "Fix: ; next step is Ahmed's freeze decision: class B stays blanked, or M2 inside the confirmed candidate): the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of binaries in recent sectors; about 1.7 points",
    "why": "",
    "explanation": "",
-   "technical": "the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of binaries in recent sectors; about 1.7 points of P (up to 6.4). research/stage3/FIX-QUEUE.md",
+   "technical": "; next step is Ahmed's freeze decision: class B stays blanked, or M2 inside the confirmed candidate): the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of binaries in recent sectors; about 1.7 points of P (up to 6.4). research/stage3/FIX-QUEUE.md",
    "ids": [
     "FIX 101"
    ],
