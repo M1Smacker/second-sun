@@ -41,3 +41,9 @@ Start 73% weekly at 9:54 am. F0 and F1: 73 to about 78. F2 and F4 (run together)
 
 ## Extra tasks (after this report)
 X6 (a combined release rule for the guard flags, preregistered in `WORK-LOG-X6.md`) is scoring as this is written; its result is added below when it lands.
+
+## Addendum, 2:31 pm (written by Claude Opus; Fable's model was switched while the last jobs ran)
+- **X1 fresh-seed check: CONFIRMED.** Proposal cap + R2 + M2: +3.94 points (+2.18 to +6.04) on new planets that can exist, P 56.1% (51.6 to 60.5), alarms 172 / 66 against 174 / 79. `X1-FRESH-SEED.md`.
+- Extra files: X2 (vouching rejected), X3 (stray-light candidate likely unsafe), X6 (release rule R2), X7, X8, X10 (combined candidate).
+- X4 (too-faint pool): ceiling logged in `WORK-LOG-X4.md`: most of the pool is slow wiggles left by detrending, not photon noise (up to about 15 points of detection). The detrending prototype run (`data/fable/f2/x4_chain.sh`) was still running at the 95% stop; its file is not written.
+- Not done: X5, X9, X11. Stopped at 93 to 95% weekly as briefed.
