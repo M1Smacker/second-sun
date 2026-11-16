@@ -3,3 +3,6 @@
 | Time | Task | Weekly % | 5-hour % | Fable % | Note |
 |---|---|---|---|---|---|
 | 9:54 am | start, before reading | 73 | 34 | 2 | context 94K |
+| 9:58 am | F0 and F1 measured part done | 75 | 48 | 6 | 14 calls so far |
+| 10:57 am | F1 written and committed, F2 census done, F4 scoring done | 80 | 87 | 15 | context 291K |
+| 11:06 am | F4 file committed, F2 prototype running; 5-HOUR BAR FULL, stopped | 82 | 100 | 18 | resume after 11:30 am |
