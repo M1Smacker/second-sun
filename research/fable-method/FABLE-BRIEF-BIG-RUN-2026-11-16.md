@@ -4,12 +4,12 @@
 
 **Who you work for.** Ahmed runs Second Sun: a search for planets around two suns (circumbinary planets) in TESS light, with our own filter, Petrova. Claude (Opus) does most of the work; Codex is the second key (jobs 023 to 025 ran on GPT-6.1-Sol at high effort, not GPT-6-Astra: a runner default Claude missed; say so in F3 when comparing models). Your access ends at the weekly reset, **Tue 17 Nov 01:00 Kuwait**: finish by about **00:15 Tuesday** at the latest.
 
-**What Ahmed wants from you (his words, 15 Nov):** "a real groundbreaking breakthrough": a bug that lets us find more planets, or a change that raises our chance of finding one a lot. "If we don't get one, it's fine." And: learn HOW you and Astra work, and keep it as one method skill for every Claude and Codex model.
+**What Ahmed wants from you (his words, 15 Nov):** "a real groundbreaking breakthrough": a bug that lets us find more planets, or a change that raises our chance of finding one a lot. "If we don't get one, it's fine." And: turn the steps that worked on this project (yours and Codex's, from the written work logs) into one reusable procedure file for Second Sun tasks.
 
 ## Budget and meters (hard rules; last time helpers and a resume wasted 14 points)
 - **No helpers or subagents. No reading of chat history or old transcripts.** Read files directly, as named below.
 - Read `get_usage` before and after each task; write each in `research/usage-ledger.md` and in `research/fable-method/FABLE-LEDGER-2026-11-16.md`.
-- **Stop all work when the weekly all-models bar reaches 94%** (Ahmed's limit is 95%; Claude needs the last point to report to him), save, and write the report. The bar was 70% at 9:30 am.
+- **Stop all work when the weekly all-models bar reaches 95%** (Ahmed, 16 Nov 9:51 am; Claude finishes up to 98% and Ahmed keeps the last 2 points), save, and write the report. If the 5-hour bar fills, stop cleanly with state saved in your work log; Claude restarts you after the reset. The bar was 70% at 9:30 am.
 - Machine time is free: long scripts in the background, never poll. You have the CPU: up to 6 workers with NUMBA_NUM_THREADS=2 (Codex is idle during your run; 025's finishing bench may use 4 workers until about midday).
 
 ## Read first (about 50 KB)
@@ -21,14 +21,14 @@
 ## Rules (CLAUDE.md wins)
 Never edit frozen `pipeline/` files; never touch fence A or fence B stars; no G1, sealed or one-shot data; never push or publish; nothing outward. Label findings CONFIRMED, LIKELY, UNCERTAIN, NOT TESTED. Tree rule 1: a Petrova change counts only if the bench shows more planets without more upside-down alarms (fairness amendment allowed). Plain English, no en or em dashes, explain every id.
 
-## The work log (half of the product)
-For each task keep `research/fable-method/WORK-LOG-F<n>.md` WHILE you work: what you looked at first and why; what you deliberately did not read or do; the check that could have proven you wrong, and whether you ran it; when you stopped reading and started testing; each decision (options, evidence, choice); where you changed your mind and why. Steps, choices and evidence only.
+## The work log (a lab notebook)
+For each task keep `research/fable-method/WORK-LOG-F<n>.md` as you go, like a lab notebook: files read, scripts written and run, their results, the falsification check you ran (or chose not to run, and why), and each decision with the evidence for it, plus any decision you later reversed and the result that reversed it. Record actions, results and decisions only.
 
 ## F0 (10 minutes, before F1): pre-mortem
 Write `research/fable-method/F0-PREMORTEM.md`: the three most likely ways this run could produce a FALSE breakthrough (a P that looks better than it is, against the 0.75 bar below or against the old 0.50 mark), and the check that would catch each. Known one to start from: **picking the best of eight combinations on the same planet bench that scores them inflates its P (winner's curse)**; with P near 0.50 and an interval of about plus or minus 0.04, that bias can decide GO.
 
 ## Per-task meter caps (weekly bar points; stop the task at its cap and write what is left)
-F0 and F1 together 8; F2 7; F4 4; F3 3; reserve 1.5 for your report (total about 23.5 of the 24 points from 70% to 94%). Order: F0, F1, F2, F4, F3. Never start a task with less than its cap left before 94%; if one runs short, cut its depth, not F3 (the skill is half the product).
+F0 and F1 together 8; F2 7; F4 4; F3 3; reserve 1.5 for your report (total about 23.5 of the 23 points from 72% to 95%; trim F2 by 0.5 if needed). Order: F0, F1, F2, F4, F3. Never start a task with less than its cap left before 95%; if one runs short, cut its depth, not F3.
 
 ## Where the benches are
 Astra's harness copies, scripts and data are under `D:\second-sun-astra\data\astra\0NN\` and named in each report's reproduce section (006 planet bench, 013 and 014 background and deep bench, 023 matrix). Run them as they are, or copy them under `data\fable\`; never edit `pipeline/`. Read the report's reproduce lines before writing new code.
@@ -56,8 +56,8 @@ On 10 Nov your audit found the bug that mattered most: the eclipse mask deleted 
 
 **F4 evidence from RS-038 (read `research/stage3/rs038/KEEP-PLANETS-THROUGH-VETTING-2026-11-15.md` first):** our dump hold covers about 20% of Year 1 to 2 data and 7.5% later; mono-cbp's cross-star check costs only a few per cent of planted transits; the TOI-1338 b team separated jitter fakes with per-pixel tests; all 443 checked SPOC and TESS-SPOC files carry star-position columns. Test first: replace the blanket dump hold with our existing cross-star flag plus a centroid-excursion jitter test (a planted dip is lost only if the real data at that time shows jitter), on both arms; second, a narrower pre-dump window if the TESS release notes support it. Also check whether stray-light or other quality bits remove planted crossings (part of the never-scored pool).
 
-## F3: the method skill, from both models
-Write `research/fable-method/second-sun-method/SKILL.md` from your logs (F1, F2) AND Astra's logs (`023-worklog.md`, `024-worklog.md`, `025-worklog.md`): an ordered procedure for a hard Second Sun task; decision rules ("if X, do Y before Z"); stop signs; two or three worked examples quoted from the logs; a short section on where you and Astra worked differently and which way served better, with evidence. Frontmatter like the auditor skill (name, a description saying when to load it). It must work for any Claude model and for Codex models. Do not repeat the auditor skill; point to it. Do NOT open `research/fable-method/HELD-OUT-TASK.md` (Claude uses it to test the skill afterwards).
+## F3: the procedure file, from both sets of logs
+Write `research/fable-method/second-sun-method/SKILL.md` from the written work logs (yours for F1 and F2, and Codex's `023-worklog.md`, `024-worklog.md`, `025-worklog.md`): an ordered procedure for a hard Second Sun task; project rules ("if X, do Y before Z"); stop signs; two or three worked examples quoted from the logs; a short section comparing the steps the two logs record and which order of steps gave better results, with evidence. Frontmatter like the auditor skill (name, a description saying when to load it). It must work for any Claude model and for Codex models. Do not repeat the auditor skill; point to it. Do NOT open `research/fable-method/HELD-OUT-TASK.md` (Claude uses it to test the skill afterwards).
 
 ## Done means
 F4 file `research/fable-method/F4-VETTING-VOUCHING.md`; F1 verdict file `research/fable-method/F1-PETROVA-1.1-VERDICT.md`; F2 file `research/fable-method/F2-SILENT-LOSSES.md` (plus any prototype under `data\fable\`); the skill; the work logs; the ledger rows; `research/fable-method/FABLE-REPORT-BIG-RUN.md` (what was done, what is unfinished, the single most important thing for Ahmed). Commit on main with explicit paths only (`git add <your files>`, never `git add -A` or `.`: Claude works in the same folder and commits its own files the same way); do not push (Claude pushes after reading). Do not edit `RESUME.md`, `research/TREE.md` or the book: Claude keeps those.
