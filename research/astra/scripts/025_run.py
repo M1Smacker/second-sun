@@ -15,7 +15,7 @@ def main():
     now = datetime.now(timezone(timedelta(hours=3)))
     progress = dict(status='running', started=now.isoformat(),
                     expected_finish=(now + timedelta(hours=3)).isoformat(),
-                    workers=2, completed=[], task='025 bit-4096 candidate')
+                    workers=4, completed=[], task='025 bit-4096 candidate')
 
     def save():
         pending = OUT / 'progress.pending.json'
@@ -43,7 +43,7 @@ def main():
             [('025_verify.py',)],
         ]
         for tasks in stages:
-            with ThreadPoolExecutor(max_workers=2) as pool:
+            with ThreadPoolExecutor(max_workers=4) as pool:
                 for name in pool.map(run, tasks):
                     progress['completed'].append(name)
                     save()
