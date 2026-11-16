@@ -93,7 +93,7 @@ An electron in an atom can sit only on certain rungs, so an atom takes in only p
 
 ## Problems
 
-<div class="tw-prob" data-answer="h-beta|hbeta|h beta|beta|h-b|hb|hβ|h-β|h β" data-hints='{"h-alpha":"H-alpha is the red line at 656 nm. This dip is at 486 nm, the next one.","halpha":"H-alpha is the red line at 656 nm. This dip is at 486 nm, the next one.","alpha":"Alpha is the red line at 656 nm. This dip is at 486 nm, the next one.","h-gamma":"H-gamma is the next one, at 434 nm. 486 nm comes before it.","gamma":"Gamma is the next one, at 434 nm. 486 nm comes before it."}' data-why="The n = 4 line is at 486 nm: H-beta, the second Balmer line after H-alpha at 656 nm." markdown>
+<div class="tw-prob" data-answer="h-beta|hbeta|h beta|beta|h-b|hb" data-hints='{"h-alpha":"H-alpha is the red line at 656 nm. This dip is at 486 nm, the next one.","halpha":"H-alpha is the red line at 656 nm. This dip is at 486 nm, the next one.","alpha":"Alpha is the red line at 656 nm. This dip is at 486 nm, the next one.","h-gamma":"H-gamma is the next one, at 434 nm. 486 nm comes before it.","gamma":"Gamma is the next one, at 434 nm. 486 nm comes before it."}' data-why="The n = 4 line is at 486 nm: H-beta, the second Balmer line after H-alpha at 656 nm." markdown>
 **1.** Touch the plot near 486 nm. Which Balmer line is that dip? (H-alpha, H-beta, H-gamma, and so on.)
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
