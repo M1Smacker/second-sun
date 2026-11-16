@@ -1,3 +1,11 @@
+## LATEST (16 Nov 2026, 4:42 pm Kuwait): Fable run reviewed; Tree Now updated; Book 3.6.1 publishing
+- Weekly 95% at 4:31 pm (5-hour 0% after the 4:30 pm reset). Claude's slice 95 to 98%.
+- Fable report read (FABLE-REPORT-BIG-RUN.md): no F-01-size bug; bench has two faults (130 of 1,098 test planets physically impossible; quality-mask losses invisible to P); candidate cap + R2 + M2 confirmed fresh-seed +3.94 [+2.18, +6.04], P 56.1% on possible planets; realistic 1.1 to 1.2 at about 0.52 to 0.58; 0.75 needs the too-faint pool (X4: detrend window 3 x box lifts detection 64 to 71% at 1.6x alarms, bench needed). Note: Fable's session ran its last part on Opus (model switched); X1 and X4 write-ups say so.
+- Decisions for Ahmed: (1) new physical bar file (Fable recommends yes); (2) dump-shape rule trade; (3) freeze rule also limits new real events (recommended yes); (4) Petrova 1.1 freeze needs his yes and two keys.
+- Codex 026 run 3 waits for Codex's usage limit (until about 7:37 pm), then continues on astra/026c-fix101-m4-bench (task bgcb9pdte).
+- Tree Now line updated, Book 3.6.1 (acb60d91), publish_book.ps1 -Test running (bgl2yttie).
+- Next: confirm live page, send Ahmed the phone report; lessons skipped unless weekly stays under 97%; 026 review when it ends; all work stops at 98%.
+
 ## LATEST (16 Nov 2026, 2:57 pm Kuwait): Fable reached 95%; fresh-seed CONFIRMED; main pushed
 - Weekly 95% at 2:56 pm (Fable's stop line); 5-hour 94% (resets 4:30 pm; one-shot wake 4:31 pm set). Claude's own budget: 95 to 98%.
 - X1 fresh-seed (seed 2026111601, 1,250 new planets): proposal depth cap + R2 + M2 gains +3.94 points [+2.18, +6.04] on possible planets; P 56.1% [51.6, 60.5]. CONFIRMED under the rule written 11:36 am. Still far from 0.75.
