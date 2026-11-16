@@ -8,3 +8,5 @@
 | 11:06 am | F4 file committed, F2 prototype running; 5-HOUR BAR FULL, stopped | 82 | 100 | 18 | resume after 11:30 am |
 | 11:33 am | after reset: F2 file, F3 method file written | 83 | 4 | 20 | context 346K |
 | 11:35 am | report written; X6 scoring running | about 84 | | | |
+| 11:43 am | X6, X10 written; X2 and fresh bench started | 86 | 27 | 26 | |
+| 12:01 pm | X2, X3, X7, X8 written; fresh bench restarted on 8 workers; chain launched | 90 | 61 | 35 | context 445K, about 0.22 points per call |
