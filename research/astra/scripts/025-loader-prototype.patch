@@ -1,0 +1,31 @@
+--- bench-before/detect_v2.py
++++ bench-after/detect_v2.py
+@@ -41,7 +41,7 @@
+     (B2, same review). Both QLP columns must be paired with good_windows() from SPOC files: raw QLP is dominated by
+     scattered light outside them (fake bumps up to SNR 38.7 on TOI-1338 S98), see research/overnight-science/report.md §9.
+     info=True also returns a dict: product, sector, column, cadence_min, needs_windows (so a result row can record it)."""
+-    lc = lk.read(path, quality_bitmask="hard")
++    lc = __import__("025_loader").read(lk, path)  # bench-only bit-4096 candidate
+     t = lc.time.value
+     cols = {c.lower() for c in lc.columns}
+     sap = np.asarray(lc.sap_flux.value, float)
+--- bench-before/sap_twin.py
++++ bench-after/sap_twin.py
+@@ -24,7 +24,7 @@
+ 
+ def load_sap(path, info=False):
+     """Same call signature and return as detect_v2.load: (time, flux, n_filled[, meta]). Hard quality mask, finite SAP cadences only, nothing filled."""
+-    lc = lk.read(path, quality_bitmask="hard")
++    lc = __import__("025_loader").read(lk, path)  # bench-only bit-4096 candidate
+     t = lc.time.value
+     sap = np.asarray(lc.sap_flux.value, float)
+     ok = np.isfinite(t) & np.isfinite(sap)
+@@ -39,7 +39,7 @@
+ def load_pdc(path, info=False):
+     """Same call signature and return as detect_v2.load. PDCSAP flux as PDC delivered it: hard quality mask, finite PDCSAP cadences only, nothing filled. detect_v2.load fills the cadences PDC dropped
+     from locally scaled SAP, which puts the SAP systematics back into the very curve the v7 check judges SAP-only dips by; this loader leaves those cadences out, so a dip there is 'not measurable'."""
+-    lc = lk.read(path, quality_bitmask="hard")
++    lc = __import__("025_loader").read(lk, path)  # bench-only bit-4096 candidate
+     t = lc.time.value
+     pdc = np.asarray(lc.pdcsap_flux.value, float)
+     ok = np.isfinite(t) & np.isfinite(pdc)
