@@ -103,7 +103,8 @@ Started 17 Nov 2026 (Ahmed's order): before every task get_usage (weekly, 5-hour
 | When | Task | Weekly / 5-hour before | Predicted | Weekly / 5-hour after | Actual | Ratio | Lesson |
 |---|---|---|---|---|---|---|---|
 | 17 Nov 5:36 to 5:39 pm | X5 path to 0.75: read Fable files, rule-4 scripts on saved outputs, one page | 6 / 12 | 1.5 | 6 / 16 | about 0.7 (weekly did not tick; 5-hour +4 at about 6 per weekly point) | 0.45 | Reading saved outputs is cheap: one script on stored JSON plus a page costs under 1 point even at Extra effort. Predict re-scoring work at 0.5 to 0.8, not by the hour. |
-| 17 Nov 5:40 pm | X11 lever 1: combined rule-4-safe releases (prereg, harness copy, 5 scorer runs in background, write-up) | 6 / 16 | 1.0 | | | | |
+| 17 Nov 5:40 to 5:57 pm | X11 lever 1 (prereg, harness copy, 10 scorer runs, write-up) plus lever 2 (c1a loss attribution, unplanned, run while lever 1 scored) | 6 / 16 | 1.0 (lever 2 not predicted) | 8 / 28 | about 1.6 (weekly 6 to 8 is shared with the main session; 5-hour +12 at about 6 per weekly point gives 2.0, my share about 1.6) | 1.6 | Waiting on background jobs in many short turns (stop-hook nudges, monitors) costs context every turn; and an unplanned second lever doubled the task. Predict per lever 0.7 to 0.8, plus 0.3 for waiting turns. |
+| 17 Nov 5:58 pm | X11 close: lever choice, commit, final report | 8 / 28 | 0.3 | | | | |
 
 ### Sonnet 5.5 Extra and Fable
 Sonnet rows are in the main ledger above (calibration sections). Fable: first rows on Mon 16 Nov.
