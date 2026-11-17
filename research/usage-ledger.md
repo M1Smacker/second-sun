@@ -97,6 +97,14 @@ Weekly points; the 5-hour meter is the finer ruler (about 8 five-hour points per
 | 15 Nov 1:38 to 1:39 am | FIX 96 radius check: rule first, MAST + Gaia DR3 query (138 stars, 24 KB), crash on own bug fixed, margin check, write-up, filing | 0.3 | 25 to 25 | about 5 to 8 | 27 to 31% | about 0.3 | 1.0 |
 **Rates so far:** a full research stint with web reading 1.5 to 2; a Codex report check with fence check about 0.3 to 0.5.
 
+### Opus 5.5 Extra
+Started 17 Nov 2026 (Ahmed's order): before every task get_usage (weekly, 5-hour) and a predicted weekly points; after it the actual, ratio actual over predicted, one lesson. Stop line 13% weekly (job cap 15%). Predictions start from the Opus 5.5 high rates above (about 1 point per hour of code, bench runs and write-ups; scripts on stored data 0.2 to 0.4).
+
+| When | Task | Weekly / 5-hour before | Predicted | Weekly / 5-hour after | Actual | Ratio | Lesson |
+|---|---|---|---|---|---|---|---|
+| 17 Nov 5:36 to 5:39 pm | X5 path to 0.75: read Fable files, rule-4 scripts on saved outputs, one page | 6 / 12 | 1.5 | 6 / 16 | about 0.7 (weekly did not tick; 5-hour +4 at about 6 per weekly point) | 0.45 | Reading saved outputs is cheap: one script on stored JSON plus a page costs under 1 point even at Extra effort. Predict re-scoring work at 0.5 to 0.8, not by the hour. |
+| 17 Nov 5:40 pm | X11 lever 1: combined rule-4-safe releases (prereg, harness copy, 5 scorer runs in background, write-up) | 6 / 16 | 1.0 | | | | |
+
 ### Sonnet 5.5 Extra and Fable
 Sonnet rows are in the main ledger above (calibration sections). Fable: first rows on Mon 16 Nov.
 
