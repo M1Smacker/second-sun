@@ -19,7 +19,7 @@ Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**,
 Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST** under `research/stage3/G1-PLANET-BAR.md` (GO needs 0.50); no bin under 0.20. Check: `research/stage3/006-check/P-CHECK-2026-11-14.md`.
 
 ## ACTIVE path now
-1. **17 Nov 2026, 8:45 pm: Fable's leftover jobs are done. New rule: a freeze may not add many real alarms with no upside-down twin; that sinks Fable's candidate (mask timing M2 and the dump rule both fail it). Best safe change, C3 (two more holds released): +2.7 points, but only +1.6 on fresh planets, under the +2.0 bar, so nothing freezes yet. Orbit search (X9) adds 0 planets. P stays 48%; 0.75 is far. Ahmed decides: lower the bar or not.**
+1. **18 Nov 2026, 1:30 am: ON HOLD. Ahmed paused Second Sun to rest; nothing is running and nothing is deleted. Petrova 1.0 stays frozen, set B (P 48%) is the working rules, no new version froze (best safe change C3 +1.6 on fresh planets, under the +2.0 bar). Three hunts found no excess. Exact state: `research/stage3/ON-HOLD-2026-11-18.md`.**
 2. **Active: Book 3.0 and the learning rebuild (node 4.1).** The Tree page, the learning app and the first lessons; plan `research/stage3/BOOK3-BUILD-PLAN-2026-11-15.md`, decisions `research/stage3/REDESIGN-DECISIONS-2026-11-15.md`.
 
 **Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS). **Update 14 Nov 2026, 10:18 pm: adopted set (not frozen) = repeater rule b + FIX 91 + OAE (Codex 009) + known spacecraft events flag FIX 95 (Ahmed's yes, two keys: RS-029, Codex 013). On it: P 48.11%, T156 reference R 34.21%, background 174 real / 79 upside-down. DS held for Fable (frees mostly pre-dump real events the upside-down meter cannot see).**
@@ -44,6 +44,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ---
 
 ## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
+- **Codex 029** (18 Nov, node 1; NOTICE, no job): project on hold; Codex told to start nothing and leave its worktree as it is. `research/astra/inbox/029-project-on-hold.md`
 - **Codex 021** (DONE 3:03 pm, merged, 7 bugs filed as FIX 100; 15 Nov, node 4.1; RUNNING from 2:14 pm): independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see. `research/astra/inbox/021-audit-book-3-4.md`
 - **T161** (15 Nov, node 4.1; DONE 1:51 pm, ships in 3.4.0): load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos. Build queue.
 - **T160b and Codex 020** (15 Nov, node 4.1; DONE, merged 2:12 pm, Book 3.4.0): Tree design A, ChatGPT mockup A built into the book (golden vine, cards both sides, side panel, no zoom; M-33 wheel fix). Prototype `research/tree/design-a/`; brief `research/astra/inbox/020-tree-design-a.md`. Publish only after Ahmed sees the look.

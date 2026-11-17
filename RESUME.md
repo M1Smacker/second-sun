@@ -1,3 +1,11 @@
+## LATEST (18 Nov 2026, 1:35 am Kuwait): SECOND SUN ON HOLD, preserved exactly as it stopped
+- Ahmed, about 1:27 am: put the project on hold, everything written down exactly as it left; do only the tasks Claude named before closing; he will come back someday. Before that (1:20 am) he asked Claude's honest take on scrapping: Claude said close it properly, do not scrap; the realistic result is a clean but weak null.
+- Close tasks done: (1) freeze decision recorded: Petrova 1.0 stays frozen, set B is the working rules (P 48.1%), no Petrova 1.1 (C3 +1.56 fresh, under +2.0; bar not lowered); (2) the null so far written: G2 sealed, G3, Re-search 1 all no excess, sensitivity limits, about 1 to 3 planets expected at Kepler's rate (estimate), first key only; (3) in the book: field note 18 Nov 2026, Book 3.8.0.
+- Files: `research/stage3/ON-HOLD-2026-11-18.md` (the full state record: running nothing, where everything is, meters, 7 decisions waiting, next science steps, how to resume), `COMING-BACK.md` (new top section), `book/docs/field-notes/2026-11-18.md`, Tree Now line and Codex 029 notice line (`research/astra/inbox/029-project-on-hold.md`, no job). Memory `project_on_hold_nov2026.md`; sync_kit run.
+- Checked running state at 1:27 am: no crons, scheduled tasks all disabled, no Python jobs, codex.exe processes are the desktop app servers only, linked sessions idle, astra worktree clean on astra/028-orbit-search.
+- Meters: Claude weekly 11% (cap 15%), 5-hour 8%. Codex weekly 65% (17 Nov 8:42 pm).
+- Next: nothing until Ahmed says he is back. Then: the ten minute walk through, then his +2.0 bar decision.
+
 ## LATEST (17 Nov 2026, 9:55 pm Kuwait): explained the whole day to Ahmed in plain words
 - Ahmed thought "Fable's candidate" meant a planet; it meant a filter recipe (proposed Petrova 1.1). Told him plainly no planet was found; memory saved: say "recipe", never "candidate", for filter settings.
 - Waiting on Ahmed: keep or lower the +2.0 fresh-bench freeze bar for C3 (Claude recommends keep). Nothing running.
