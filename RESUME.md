@@ -1,3 +1,10 @@
+## LATEST (17 Nov 2026, 5:40 pm Kuwait): X5 + X11 (Opus 5.5 Extra, nested session) and X9 (Codex 028) started in parallel
+- Ahmed 5:28 to 5:34 pm: approved X5, X9, X11; Opus Extra in a nested session does X5 then X11; Codex does X9; Claude weekly cap 15% for all Claude sessions together (5% at 5:21 pm), no cap for Codex; Claude stops when the work is done. Each Claude/Codex session predicts its weekly use before every task and logs actual and the miss after (Opus: new `### Opus 5.5 Extra` table in research/usage-ledger.md; Codex: research/astra/USAGE.md per AGENTS.md section 7).
+- Ahmed delegated the freeze question; Claude chose YES: the freeze rule limits new real alarms (F1 rule 4: new real minus 2.3 x new upside-down at most 5 against B). Consequence: Fable's candidate cap + R2 + M2 cannot freeze as is (K2 alone 11.0).
+- Briefs: `research/fable-method/OPUS-BRIEF-X5-X11-2026-11-17.md` (Opus stops at 13% weekly, 2 workers x 1 thread, no RESUME/Tree/book edits), `research/astra/inbox/028-orbit-search.md` (3 workers x 2 threads, branch astra/028-orbit-search). Tree log lines added; tree_check passes.
+- Codex meter at 3 am: 5-hour 58%, weekly 55%.
+- Next: main session watches both, reads meters, reviews and fence-checks 028 before merge, checks Opus's numbers by an independent script, reports both to Ahmed.
+
 ## LATEST (17 Nov 2026, 5:21 pm Kuwait): status check, nothing running
 - Ahmed asked where we are (exhausted, keep it simple). Told him: c1a failed and is closed; the freeze question (limit new real alarms?) decides whether Petrova 1.1 can freeze as is; P still 48.1%.
 - Fable session (fable-run-2, local_c397c5cd) stopped saying X5, X9 wait on a 93 to 95% weekly bar; that reading predates the reset. Meter at 5:21 pm: weekly 5%, 5-hour 7%. Fable NOT restarted (Ahmed: leave Fable alone; X5/X9/X11 need his yes). Its c1a item is already done by Codex 027 (fails).
