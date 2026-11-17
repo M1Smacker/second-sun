@@ -1,3 +1,7 @@
+## LATEST (17 Nov 2026, 9:55 pm Kuwait): explained the whole day to Ahmed in plain words
+- Ahmed thought "Fable's candidate" meant a planet; it meant a filter recipe (proposed Petrova 1.1). Told him plainly no planet was found; memory saved: say "recipe", never "candidate", for filter settings.
+- Waiting on Ahmed: keep or lower the +2.0 fresh-bench freeze bar for C3 (Claude recommends keep). Nothing running.
+
 ## LATEST (17 Nov 2026, 8:45 pm Kuwait): Fable's leftovers DONE: X5, X11 (Opus Extra) and X9 (Codex 028); nothing freezable
 - Plain line: found nothing that can be frozen. X9 orbit-consistent search (Codex 028, merged b67ea0e1): 0 planets added in all four configurations. My check: all 63 planted planets above the null floor 14.76 are ones B already finds; of 573 B misses only 21 form any 3+ crossing set, best 13.5, under the noise maximum 13.76; ceiling under 1 point. Closed as a lever.
 - Opus X5/X11 (earlier block): C3 = cap + ramp + gap-edge released, +2.66 choosing, +1.56 fresh, fails F1 rule 2 (+2.0 fresh). Fable's cap + R2 + M2 fails the new-real-alarm rule. P stays 48.1% (adopted B).
