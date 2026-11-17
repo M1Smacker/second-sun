@@ -53,3 +53,6 @@ Readings:
 
 ## Plan change
 X11 starts with lever 1 = combined rule-4-safe releases (cheap: Fable's scorer, minutes of machine time), then lever 2 = flag attribution of c1a's lost dips if the meter allows.
+
+## Addendum, 6:02 pm (after X11 lever 1)
+T156 reference R is now measured (`opus-x11/x11_lever1.txt`): cap + dominated released gives R 32.06 against B's 34.21, so it FAILS rule (d); the X5 "best single passing candidate" is therefore none. The candidate that passes every preregistered rule is C3 = cap + ramp + gap edge released (`X11-SAFE-RELEASES.md`): +2.66 on the 968, fresh +1.56, 173 / 73, rule 4 excess 3.0, R 34.81.
