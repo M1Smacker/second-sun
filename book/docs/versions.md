@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 3.7.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
+| The book | 3.7.1 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
 | Learning (Twinlight) | 1.2 (lessons 1.1 to 2.2) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -113,6 +113,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
 | 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
+| 3.7.1 | 17 Nov | Tree "Now" line: Fable's leftover jobs done (X5, X11 by Opus; X9 orbit search by Codex adds 0 planets); the new-real-alarm rule sinks Fable's candidate; best safe change C3 is +1.6 on fresh planets, under the +2.0 bar |
 | 3.7.0 | 17 Nov | Unit 3 grows: lesson 3.2 "Hot things glow" (blackbody glow, Wien's law, why red dwarfs peak inside TESS's band, two glow plots drawn from Planck's law) and lesson 3.3 "Fingerprints" (the electron ladder, hydrogen's Balmer lines predicted by a formula and matched to a real star's spectrum within 0.05 nm) |
 | 3.6.1 | 16 Nov | Tree "Now" line: Fable's big run done (Petrova 1.1 candidate +3.9 points confirmed on fresh planets), Codex 025 merged, 026 running |
 | 3.6.0 | 15 Nov | Unit 3 opens: lesson 3.1 "What light is": waves, wavelength and frequency (c = lambda f), the spectrum from radio to gamma rays, and the real TESS response curve (which colours TESS's camera counts, best near 720 nm, blind below about 580 nm), with why TESS was built to see red |
