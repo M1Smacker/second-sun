@@ -1,0 +1,33 @@
+
+== lost at tier 1 with c1a: 133 trials. Holding run = c1a
+  flag flipmatch     105   78.9%
+  flag repeater       25   18.8%
+  flag step           17   12.8%
+  flag dominated       4    3.0%
+  flag gap_dump        2    1.5%
+  flag dump-text       2    1.5%
+  flag burst           1    0.8%
+  combinations:
+     78  flipmatch
+     18  flipmatch+repeater
+     10  step
+      7  no stored hold (tier 1A)
+      4  no SNR7 event
+      4  flipmatch+step
+      3  repeater
+      2  flipmatch+repeater+step
+      2  dump-text+gap_dump
+      1  dominated+repeater
+      1  dominated+flipmatch
+      1  dominated+flipmatch+repeater
+
+== gained at tier 1 with c1a: 71 trials. Holding run = B
+  combinations:
+     71  no SNR7 event
+
+planets file keys: ['campaign', 'bench', 'mode', 'configs', 'rows', 'background', 'candidates', 'identity_mismatches', 'floor'] candidates type: list 10363
+
+flipmatch-held lost dips: 105; with a flip event within 1 d: 105
+offset of nearest flip event, in units of the dip length: quantiles 10/50/90 of |off| [0.58 0.78 1.04]
+depth of that flip event / dip depth: quantiles 10/50/90 [0.18 0.36 0.64]
+flip SNR not stored here; flip events per held dip, median 2.0
