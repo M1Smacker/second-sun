@@ -1,8 +1,8 @@
-**Partial: the orbit search is implemented and the full batch is running; no scientific pass or fail is available yet.**
+**Fails: 0 of 4 orbit configurations passes all five rules.**
 
 # 028 Orbit-consistent search
 
-Requested GPT-6-Astra high; runtime model/effort independently unverified. Branch astra/028-orbit-search, no git writes or commits. Tree nodes 1.1 and 1.3.
+Requested GPT-6-Astra high; runtime model/effort independently unverified. Branch astra/028-orbit-search. No commits or git writes. Tree nodes 1.1 and 1.3.
 
 ## Pass rule recorded BEFORE scoring
 
@@ -26,39 +26,143 @@ Null calibration: before any injected orbit scoring, take the maximum best-stack
 
 Optional M2: skipped if the new SNR-4 candidate bank would require a second complete mask replay; existing SNR-7 mask replays alone do not price weak stacks. Fresh-seed confirmation is conditional on passing all five rules.
 
-## Usage
 
-Predicted 60 five-hour / 10 weekly points; meter unavailable. Actual and ratio cannot be measured from tool-call counts or elapsed time.
+## Findings, CONFIRMED as computed
 
-## Completed evidence at handoff
+This is producer verification, not independent review. Bootstrap intervals quantify host sampling variability within this restricted experiment. The score is an empirically calibrated ranking statistic, not a Gaussian significance.
 
-1. CONFIRMED, archived baseline recount: B P 48.10503091%, T156 reference R 34.20700630%, background 174 real / 79 upside-down; K2 all-planet P 45.83487382%, reference R 32.92115986%, background 158 / 63. Evidence: 028_inventory.py and data/astra/028/inventory.json. This is a recount of saved outcomes, not a new raw baseline scoring run. The refreshed inventory will additionally assert the possible-planet K2 result; that assertion was not observed at this handoff.
-2. CONFIRMED, multiplicity inventory: all 1,098 reference planets have capture files; 474 have at least three scored crossing centres. Of 573 B misses, 143 have at least three. This is a necessary-condition ceiling on possible gains, not a soft-held classification. Per-bin totals and missing counts are in inventory.json. The old RS-037 summary joined only 1,075; this inventory uses the exact journal glob and trial membership of 027.
-3. CONFIRMED, runtime synthetic geometry: eight checks, including independent forward coordinate roots, duration derivatives, translation invariance, two-event exclusion and duplicate exclusion. Deliberately bypassing orbit timing changes a synthetic null from zero to one accepted set. Evidence: 028_checks.py, checks.json. This does not substitute for the requested mutation on untouched design light, which is queued.
-4. CONFIRMED, file guard: twelve private source-copy hashes checked; three forbidden access events rejected; allowed write and copied mask self-test passed. Byte identity is not semantic correctness. All copies and machine outputs are under data/astra/028; frozen files untouched.
-5. CONFIRMED, small real-light preflight: first two design sectors in each campaign, six product groups, eight candidates, all eight below SNR 7; lower-threshold generation and null scorer completed. Evidence: 028_preflight.py and preflight.json. High-threshold candidate equality was asserted but is uninformative in this sample because it contains no high-threshold candidates. The separate 25-sector-per-campaign raw identity check is part of the full batch and has not yet been observed. Static syntax parsing passed for sixteen new Python scripts; static parsing does not establish runtime correctness of unexercised branches.
+| Configuration | P all 1,098 %, 95% | P possible 968 %, 95% | T156 R %, 95% | Real / upside-down |
+|---|---:|---:|---:|---:|
+| B | 48.105 [43.91, 52.15] | 48.404 [43.89, 52.74] | 34.207 [27.03, 40.75] | 174 / 79 |
+| K2 | 45.835 [41.35, 50.18] | 51.018 [46.36, 55.40] | 32.921 [25.60, 39.71] | 158 / 63 |
+| B+A | 48.105 [43.91, 52.15] | 48.404 [43.89, 52.74] | 34.207 [27.03, 40.75] | 174 / 79 |
+| B+A+B | 48.105 [43.91, 52.15] | 48.404 [43.89, 52.74] | 34.207 [27.03, 40.75] | 174 / 79 |
+| K2+A | 45.835 [41.35, 50.18] | 51.018 [46.36, 55.40] | 32.921 [25.60, 39.71] | 158 / 63 |
+| K2+A+B | 45.835 [41.35, 50.18] | 51.018 [46.36, 55.40] | 32.921 [25.60, 39.71] | 158 / 63 |
 
-## Running batch and resumption
+| Population | Configuration | Paired gain vs matching base, points (95%) |
+|---|---|---:|
+| fixed1098 | B+A | +0.000 [+0.000, +0.000] |
+| fixed1098 | B+A+B | +0.000 [+0.000, +0.000] |
+| fixed1098 | K2+A | +0.000 [+0.000, +0.000] |
+| fixed1098 | K2+A+B | +0.000 [+0.000, +0.000] |
+| possible968 | B+A | +0.000 [+0.000, +0.000] |
+| possible968 | B+A+B | +0.000 [+0.000, +0.000] |
+| possible968 | K2+A | +0.000 [+0.000, +0.000] |
+| possible968 | K2+A+B | +0.000 [+0.000, +0.000] |
+| T156reference | B+A | +0.000 [+0.000, +0.000] |
+| T156reference | B+A+B | +0.000 [+0.000, +0.000] |
+| T156reference | K2+A | +0.000 [+0.000, +0.000] |
+| T156reference | K2+A+B | +0.000 [+0.000, +0.000] |
 
-Launched 2026-11-17 17:55:11 Kuwait, clock read with Get-Date. Supervisor PID 2332. Estimate only: 2026-11-17 23:55:11 Kuwait. Three existing Python processes were present before launch; the batch uses at most three compute workers, each with NUMBA_NUM_THREADS=2. Its supervisor only coordinates workers and prints a heartbeat every five minutes.
+## Null calibration
 
-Command: `D:/second-sun/.venv/Scripts/python.exe -I -B research/astra/scripts/028_run.py all` from the worktree. Do not launch a duplicate while this supervisor is alive. Checkpoints, source fingerprints, private logs and progress.json are under data/astra/028. After a failed or interrupted terminal state, the same command resumes completed work and refuses changed source fingerprints. No package installation or external write was performed.
+Both campaigns and arms: 1408 host-arms, 20118 pair-anchored templates, 152 distinct sets before the floor. Best null score 13.760762; floor 14.760762. Zero sets above the floor. The floor was written to calibration.json before injected orbit scoring. Missing-epoch host-arms excluded from orbit fits: 2.
 
-Execution order: raw orbit-off identity, complete SNR-4 untouched candidate bank, full null orbit search on both arms/campaigns and mutation, freeze the floor, raw planet injections and orbit scoring, T156 injections and scoring, bootstrap summary, terminal verification, report rendering. The report renderer replaces this checkpoint only after verification. A passing initial variant stops with `needs_fresh_seed`; fresh-seed replay is not yet implemented. An insensitive real-null mutation stops with `needs_null_mutation_review`. Neither state is full completion.
+Mutation removing orbit timing: 152 to 3296 sets. Sensitive: True. Synthetic independent forward-root test also rejected two-event sets and duplicate crossings.
 
-The engineering point: trying more orbits gives noise more chances to look convincing. Calibration therefore uses the best score over the entire declared blind search, not scores at the known planted times. Selecting the floor above the same null sample's maximum guarantees zero additions on that sample; it does not establish the future false-alarm rate.
+Same-sample background adds zero A or B events by construction. This is training calibration, not independent evidence of zero future false alarms. There are zero new real events requiring dump or eclipse blind-spot checks against either matching base. Background splits by brightness, product and era are saved in summary.json; all additions in each split are zero.
+
+| Campaign | Arm | Bin | Hosts | Hosts with sets | Sets before floor | Sets per host |
+|---|---|---:|---:|---:|---:|---:|
+| g2 | real | 1 | 146 | 5 | 94 | 0.6438 |
+| g2 | real | 2 | 88 | 1 | 2 | 0.0227 |
+| g2 | real | 3 | 97 | 1 | 3 | 0.0309 |
+| g2 | real | 4 | 42 | 0 | 0 | 0.0000 |
+| g2 | real | 5 | 47 | 1 | 2 | 0.0426 |
+| g2 | flip | 1 | 146 | 3 | 18 | 0.1233 |
+| g2 | flip | 2 | 88 | 2 | 16 | 0.1818 |
+| g2 | flip | 3 | 97 | 0 | 0 | 0.0000 |
+| g2 | flip | 4 | 42 | 0 | 0 | 0.0000 |
+| g2 | flip | 5 | 47 | 1 | 3 | 0.0638 |
+| g3 | real | 1 | 119 | 0 | 0 | 0.0000 |
+| g3 | real | 2 | 88 | 1 | 10 | 0.1136 |
+| g3 | real | 3 | 54 | 0 | 0 | 0.0000 |
+| g3 | real | 4 | 19 | 0 | 0 | 0.0000 |
+| g3 | real | 5 | 4 | 0 | 0 | 0.0000 |
+| g3 | flip | 1 | 119 | 2 | 3 | 0.0252 |
+| g3 | flip | 2 | 88 | 1 | 1 | 0.0114 |
+| g3 | flip | 3 | 54 | 0 | 0 | 0.0000 |
+| g3 | flip | 4 | 19 | 0 | 0 | 0.0000 |
+| g3 | flip | 5 | 4 | 0 | 0 | 0.0000 |
+
+## Rules against the matching base
+
+| Configuration | a: possible gain, 95% points | b: real / upside-down | c: both-population controls | d: R vs base % | e: new-real excess | Verdict |
+|---|---|---|---|---|---|---|
+| B+A | +0.000 [+0.000, +0.000], False | 174 / 79, True | True | 34.207 vs 34.207, True | 0.0, True | FAIL |
+| B+A+B | +0.000 [+0.000, +0.000], False | 174 / 79, True | True | 34.207 vs 34.207, True | 0.0, True | FAIL |
+| K2+A | +0.000 [+0.000, +0.000], False | 158 / 63, True | True | 32.921 vs 32.921, True | 0.0, True | FAIL |
+| K2+A+B | +0.000 [+0.000, +0.000], False | 158 / 63, True | True | 32.921 vs 32.921, True | 0.0, True | FAIL |
+
+## Paired changes, counts and controls
+
+| Population | Configuration | Bin | n | Dip gained / lost | Bump gained / lost | Dip-minus-bump 99%, points |
+|---|---|---:|---:|---:|---:|---|
+| fixed1098 | B+A | 1 | 242 | 0 / 0 | 0 / 0 | [-4.206, 5.530] |
+| fixed1098 | B+A | 2 | 229 | 0 / 0 | 1 / 0 | [-4.098, 4.464] |
+| fixed1098 | B+A | 3 | 221 | 0 / 0 | 0 / 0 | [-7.917, 3.861] |
+| fixed1098 | B+A | 4 | 187 | 0 / 0 | 0 / 0 | [-1.724, 14.943] |
+| fixed1098 | B+A | 5 | 219 | 0 / 0 | 0 / 0 | [-3.141, 5.051] |
+| fixed1098 | B+A+B | 1 | 242 | 0 / 0 | 0 / 0 | [-4.206, 5.530] |
+| fixed1098 | B+A+B | 2 | 229 | 0 / 0 | 1 / 0 | [-4.098, 4.464] |
+| fixed1098 | B+A+B | 3 | 221 | 0 / 0 | 0 / 0 | [-7.917, 3.861] |
+| fixed1098 | B+A+B | 4 | 187 | 0 / 0 | 0 / 0 | [-1.724, 14.943] |
+| fixed1098 | B+A+B | 5 | 219 | 0 / 0 | 0 / 0 | [-3.141, 5.051] |
+| fixed1098 | K2+A | 1 | 242 | 0 / 0 | 0 / 0 | [-5.286, 3.434] |
+| fixed1098 | K2+A | 2 | 229 | 0 / 0 | 1 / 0 | [-1.527, 7.595] |
+| fixed1098 | K2+A | 3 | 221 | 0 / 0 | 0 / 0 | [-7.692, 4.546] |
+| fixed1098 | K2+A | 4 | 187 | 0 / 0 | 0 / 0 | [-0.578, 13.846] |
+| fixed1098 | K2+A | 5 | 219 | 0 / 0 | 0 / 0 | [-2.484, 7.054] |
+| fixed1098 | K2+A+B | 1 | 242 | 0 / 0 | 0 / 0 | [-5.286, 3.434] |
+| fixed1098 | K2+A+B | 2 | 229 | 0 / 0 | 1 / 0 | [-1.527, 7.595] |
+| fixed1098 | K2+A+B | 3 | 221 | 0 / 0 | 0 / 0 | [-7.692, 4.546] |
+| fixed1098 | K2+A+B | 4 | 187 | 0 / 0 | 0 / 0 | [-0.578, 13.846] |
+| fixed1098 | K2+A+B | 5 | 219 | 0 / 0 | 0 / 0 | [-2.484, 7.054] |
+| possible968 | B+A | 1 | 210 | 0 / 0 | 0 / 0 | [-4.878, 5.505] |
+| possible968 | B+A | 2 | 198 | 0 / 0 | 1 / 0 | [-3.871, 5.381] |
+| possible968 | B+A | 3 | 202 | 0 / 0 | 0 / 0 | [-7.853, 4.348] |
+| possible968 | B+A | 4 | 167 | 0 / 0 | 0 / 0 | [-3.521, 13.131] |
+| possible968 | B+A | 5 | 191 | 0 / 0 | 0 / 0 | [-2.791, 6.111] |
+| possible968 | B+A+B | 1 | 210 | 0 / 0 | 0 / 0 | [-4.878, 5.505] |
+| possible968 | B+A+B | 2 | 198 | 0 / 0 | 1 / 0 | [-3.871, 5.381] |
+| possible968 | B+A+B | 3 | 202 | 0 / 0 | 0 / 0 | [-7.853, 4.348] |
+| possible968 | B+A+B | 4 | 167 | 0 / 0 | 0 / 0 | [-3.521, 13.131] |
+| possible968 | B+A+B | 5 | 191 | 0 / 0 | 0 / 0 | [-2.791, 6.111] |
+| possible968 | K2+A | 1 | 210 | 0 / 0 | 0 / 0 | [-6.135, 3.830] |
+| possible968 | K2+A | 2 | 198 | 0 / 0 | 1 / 0 | [-2.186, 6.915] |
+| possible968 | K2+A | 3 | 202 | 0 / 0 | 0 / 0 | [-8.411, 4.762] |
+| possible968 | K2+A | 4 | 167 | 0 / 0 | 0 / 0 | [-1.639, 13.971] |
+| possible968 | K2+A | 5 | 191 | 0 / 0 | 0 / 0 | [-3.087, 7.870] |
+| possible968 | K2+A+B | 1 | 210 | 0 / 0 | 0 / 0 | [-6.135, 3.830] |
+| possible968 | K2+A+B | 2 | 198 | 0 / 0 | 1 / 0 | [-2.186, 6.915] |
+| possible968 | K2+A+B | 3 | 202 | 0 / 0 | 0 / 0 | [-8.411, 4.762] |
+| possible968 | K2+A+B | 4 | 167 | 0 / 0 | 0 / 0 | [-1.639, 13.971] |
+| possible968 | K2+A+B | 5 | 191 | 0 / 0 | 0 / 0 | [-3.087, 7.870] |
+
+## Multiplicity and limitations
+
+Capture inventory joins all 1098 observed planets. 474 have at least three scored crossings at their own template times. Among B misses, 143 of 573 do. This is a necessary multiplicity ceiling, not proof they are soft-held or orbit-search eligible.
+
+Restricting further to detected but unrecovered planets: B has 49 with three scored crossings out of 165; K2 has 64 out of 190. This includes novelty exclusions, so it is not an exact count of soft-held planets.
 
 ## What I did NOT check
 
-NOT TESTED at this handoff: complete null calibration; real-null mutation sensitivity; full injected planet and T156 orbit results; confidence intervals for the new configurations; rules (a) to (e); final background additions and their dump/eclipse screens; terminal full-bank coverage; fresh seed. No fresh scientific result is inferred from process launch or elapsed time. No M2 low-threshold replay, eccentric or inclined orbits, secondary transits, different mass ratios, periods outside 4 to 8 binary periods, candidates below SNR 4, independent null-validation set, G1 or sealed data.
+Eccentric or mutually inclined orbits, secondary-star transits, true stellar mass ratios, N-body dynamics, periods outside 4 to 8 binary periods, candidates below SNR 4, continuum completeness between pair-anchored templates, independent null validation, pixel-level evidence or G1. M2 was skipped because its SNR-7 replays do not supply the lower-threshold candidate bank. No frozen filter was changed.
+
+Fresh-seed confirmation was not triggered because no variant passed all five rules.
+
+## Verification
+
+Terminal runtime verification: {"background_groups": 14835, "baseline_trial_identity": 3098, "completed_workers": 20, "independent_rates": 24, "static_parse": 16}. The historical B and K2 baseline outcomes are copied by identity and independently recounted, not a new from-scratch baseline fit. Raw zero-injection identity is checked on 25 design sectors in each campaign. Hashes establish source byte identity only.
 
 ## STOP SIGNS hit
 
-The brief's foreground requirement conflicts with AGENTS.md section 4 rule 10, "Long runs go in the background with a log file", and section 7, "Never poll a long run". The brief explicitly says AGENTS wins. I followed the permitted background-and-end-turn route; no healthy full-batch logs or progress have been polled. This leaves the task PARTIAL. The full-chain runtime paths beyond the preflight remain unverified, so a failed supervisor must be diagnosed before its checkpoints are treated as results.
+No scientific fence breach identified. The foreground request conflicts with the explicit AGENTS background/no-polling rule; the latter was followed. Runtime results are usable only after terminal verification, never from checkpoints.
 
 ## QUEUE PROPOSALS
 
-None yet. Nodes 1.1 and 1.3 await the experiment's verified result. Do not infer an adoption proposal from this implementation.
+Tree nodes 1.1 and 1.3: Claude should review this restricted-orbit experiment and its same-sample calibration before any adoption. No production change proposed by this report.
 
 ## IDEAS
 
@@ -66,10 +170,14 @@ None beyond the requested experiment.
 
 ## Disagreements with Claude
 
-None. The saved planted-time scores cannot be used as a blind-search null; the new raw replay addresses that limitation.
+None. A failed restricted search does not reject orbit searches in general.
 
 ## Questions for Ahmed
 
-None. This headless run needs no human decision at this stage.
+None.
 
-Next: Claude reviews the terminal report and verification after the batch finishes, to assess the measured result; review usage is unmeasured and requires Claude.
+## Usage
+
+Predicted 60 five-hour / 10 weekly points. Actual meter unavailable in the headless runner, so actual/predicted ratio is unavailable. Lesson: candidate-score coverage must be audited before promising reuse of an injected-time cache.
+
+Next: Claude reviews the report and private verification output before deciding whether this experiment warrants more work; review usage is unmeasured.
