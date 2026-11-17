@@ -4,6 +4,7 @@
 - Files: `research/stage3/ON-HOLD-2026-11-18.md` (the full state record: running nothing, where everything is, meters, 7 decisions waiting, next science steps, how to resume), `COMING-BACK.md` (new top section), `book/docs/field-notes/2026-11-18.md`, Tree Now line and Codex 029 notice line (`research/astra/inbox/029-project-on-hold.md`, no job). Memory `project_on_hold_nov2026.md`; sync_kit run.
 - Checked running state at 1:27 am: no crons, scheduled tasks all disabled, no Python jobs, codex.exe processes are the desktop app servers only, linked sessions idle, astra worktree clean on astra/028-orbit-search.
 - Meters: Claude weekly 11% (cap 15%), 5-hour 8%. Codex weekly 65% (17 Nov 8:42 pm).
+- Book 3.8.0 published (gh-pages f3138700) and confirmed live at 1:57 am (new field note returns 200 with "Book 3.8.0"). Final meter weekly 11%, 5-hour 12%.
 - Next: nothing until Ahmed says he is back. Then: the ten minute walk through, then his +2.0 bar decision.
 
 ## LATEST (17 Nov 2026, 9:55 pm Kuwait): explained the whole day to Ahmed in plain words
