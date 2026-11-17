@@ -59,6 +59,25 @@ def worktree_signature():
     return head + "|" + st
 
 
+def data_signature(outdir, depth=2):
+    """Latest file change time and file count in the job's own data folder, two levels deep (17 Nov 2026: Codex 027 was stopped as STALL
+    after 60 min while its replay workers were still writing logs and progress files there, because only Codex's own log and the worktree counted)."""
+    newest, count = 0.0, 0
+    base = len(pathlib.Path(outdir).parts)
+    for root, dirs, files in os.walk(outdir):
+        if len(pathlib.Path(root).parts) - base >= depth:
+            dirs[:] = []
+        for f in files:
+            if f.startswith("exec-") or f.startswith("last-message-"):
+                continue
+            try:
+                newest = max(newest, os.stat(os.path.join(root, f)).st_mtime)
+                count += 1
+            except OSError:
+                pass
+    return f"{newest:.0f}|{count}"
+
+
 def parse_reset(text):
     """Return seconds to wait if Codex named a reset time or a delay, else None."""
     m = re.search(r"try again (?:in|after)\s+(?:(\d+)\s*h\w*)?\s*(?:(\d+)\s*m\w*)?", text, re.I)
@@ -99,12 +118,12 @@ def run_once(exe, o, prompt, n, outdir):
         p = subprocess.Popen(cmd, stdout=fh, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, cwd=str(ASTRA))
     say(f"started Codex run {n} (pid {p.pid}, model {o.model} {o.effort}); log {log}")
     t0 = last_change = last_beat = time.time()
-    sig, size = worktree_signature(), 0
+    sig, size = worktree_signature() + "|" + data_signature(outdir), 0
     while True:
         rc = p.poll()
         if rc is not None:
             return "EXITED", rc, log, last
-        s2, z2 = worktree_signature(), real_lines(log)
+        s2, z2 = worktree_signature() + "|" + data_signature(outdir), real_lines(log)
         if s2 != sig or z2 != size:
             sig, size, last_change = s2, z2, time.time()
         if time.time() - last_change > o.idle * 60:
