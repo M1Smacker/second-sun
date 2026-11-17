@@ -110,6 +110,7 @@ Sonnet rows are in the main ledger above (calibration sections). Fable: first ro
 | 27 Oct, morning | Ahmed's Eyes review: cloud pull (26 rounds), 2 analysis scripts, 3 code files read, F4 plan section, field note item 10, commit, full publish gate | +39K | 2 to 4 | 13 to 13 | about 0.3 point (5-hour ruler 0.25, context ruler 0.37); no estimate written beforehand, my gut would have said 0.5 to 1, so about 0.4 of gut |
 
 ## Open rows (fill in as they happen)
+- 17 Nov 5:20 to 5:36 pm (main session, Opus 5.5, not predicted: status replies then two briefs, Tree, RESUME, launches of Codex 028 and the Opus X5/X11 session): weekly 5 to 6%, 5-hour 7 to 12%. About 1 weekly point; context 117K to 167K. Lesson: writing two briefs plus launches costs about 1 point at this context size.
 | When | Task | Estimate | Weekly before | 5-hour before | Context tokens before | After | Actual |
 |---|---|---|---|---|---|---|---|
 | 27 Oct, after compaction (Ahmed: "build it", no Artifact edit; cap 20%) | F4 step 3 remainder: Eyes layout for PC (curve height by aspect ratio, answers in one row that wraps, feedback with a reason, Next bar with reserved space), new browser test at 1366x650, 1024x768, 683 and 390, gate, field note | 1.0 to 1.8 (gut 3 to 4, times 0.4; reading the Eyes regions is the main cost) | 17 | 35 | 125K | 18 weekly, 40 five-hour, 212K | about 0.7 (5-hour ruler 0.6, context ruler 0.83), ratio 0.5 of the mid estimate. Reading was small this time (only the Eyes regions, about 25K); the gate and 3 test runs were cheap |
