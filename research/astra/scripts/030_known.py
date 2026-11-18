@@ -29,9 +29,9 @@ def main():
                                 for sec, (t, s) in constants[group].items())
         counts['total'] = counts['OBS'] + counts['PRED']
         result[name] = counts
-    assert result['B']['total'] == 6, 'TOI-1338 B must reproduce six of thirteen'
     result['n_transits'] = 13
-    result['pass'] = result['N1']['total'] >= 6
+    result['pass'] = None  # Rule (g) requires the separate full T109 path.
+    result['note'] = 'design background holds 2 of 13 sectors'
     result['scope'] = 'Full design-background tier context; matching windows from existing T109 specification, nine observed plus four forecast epochs'
     (OUT / 'known.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result))

@@ -154,6 +154,7 @@ def main():
         flags = Counter(k for e in rejected for k, v in e['holds'][0].items() if k != 'tier' and v)
         held[arm] = dict(new_detections=len(new_candidates), not_tier1=len(rejected), flags=dict(flags))
     known = json.loads((H.OUT / 'known.json').read_text(encoding='utf-8'))
+    assert known['pass'] is not None, 'Rule (g) requires the amended full T109-path result before a final verdict'
     fresh = metrics['fresh_possible']
     checks = json.loads((H.OUT / 'notch-checks.json').read_text(encoding='utf-8'))
     identity = [json.loads((H.OUT / f'generated-{c}/progress-background-0-identity.json').read_text(encoding='utf-8')) for c in ('g2', 'g3')]
