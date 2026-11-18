@@ -22,3 +22,8 @@ Each brief follows the F1 freeze-test style: rules written before any result, th
 
 ## The scoreboard upgrade (small, first)
 Every bench run reports, besides P: per-crossing tier-1 rate (A7), alarms at thresholds 7, 7.5, 8, 8.5, 9, 10 on both arms, and the witness-coincident count. Freeze decisions then compare recipes at equal alarms, not at one fixed threshold.
+
+## Price of Brief W (Claude, 18 Nov 2026, 10:06 am; CONFIRMED as counted from the Astra 006 planet-bench group files)
+- Our planet bench touches about 1,150 distinct sector-camera-CCD combinations (one odd sector value seen, so about 1,150 is approximate).
+- Witness stars at 100 per CCD-sector: about 115,000 FFI light curves, about 200 GB at 1.8 MB each (200 per CCD-sector: 406 GB). Processed and deleted as we go, the disk need is small; at the 3 files per second measured from the public AWS bucket (Census note, 4 Nov) it is about 11 hours of download for 100 per CCD-sector.
+- Over 20 GB, so it needs Ahmed's yes (standing rule from 19 Oct 2026), even though Second Sun downloads are otherwise free. A first slice (10 sectors, about 1,000 files, about 2 GB) can test the meter before the full pull.
