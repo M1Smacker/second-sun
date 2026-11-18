@@ -1,3 +1,8 @@
+## LATEST (18 Nov 2026, 8:45 am Kuwait): still ON HOLD; P 75 research PLANNED only (RS-039)
+- Ahmed (morning, fresh): asked if the tool can still be improved, my take on restarting with one focus (P to 75+, months OK), and a research plan; run nothing.
+- Plan saved: `research/stage3/P75-RESEARCH-PLAN-2026-11-18.md` (7 questions; Part A own data 1.5, Part B sources 3, Part C synthesis 1; cap 6 weekly points; fits after the 23 Nov reset unless he raises this week's 15% cap). Not started; not on the Tree until he says go.
+- Next: his go (and model choice) for RS-039, or nothing.
+
 ## LATEST (18 Nov 2026, 1:35 am Kuwait): SECOND SUN ON HOLD, preserved exactly as it stopped
 - Ahmed, about 1:27 am: put the project on hold, everything written down exactly as it left; do only the tasks Claude named before closing; he will come back someday. Before that (1:20 am) he asked Claude's honest take on scrapping: Claude said close it properly, do not scrap; the realistic result is a clean but weak null.
 - Close tasks done: (1) freeze decision recorded: Petrova 1.0 stays frozen, set B is the working rules (P 48.1%), no Petrova 1.1 (C3 +1.56 fresh, under +2.0; bar not lowered); (2) the null so far written: G2 sealed, G3, Re-search 1 all no excess, sensitivity limits, about 1 to 3 planets expected at Kepler's rate (estimate), first key only; (3) in the book: field note 18 Nov 2026, Book 3.8.0.
