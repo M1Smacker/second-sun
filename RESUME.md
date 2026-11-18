@@ -1,3 +1,9 @@
+## LATEST (18 Nov 2026, 1:20 pm Kuwait): Codex 030 part 1 merged; threshold 6.5 locked; 030b continuation running
+- 030 resumed run (Claude) ended 1:14 pm at its TOI-1338 b gate: brief rule (g) assumed B's 6 of 13 from the T109 path, but the design background holds only sectors 10 and 93 of TOI-1338 (Claude's brief error). Threshold chosen by the written rule: 6.5 (tier-1 untouched 165 real / 77 upside-down; 4.5 to 6 over the 174 / 79 limits), so the tier-level gain will be smaller than RS-039's detection-level +7.4.
+- Fence check clean for 030 (0 frozen, 0 fence ids); 030 part 1 merged (d1eb9c32). Amendment written before any planet score: rule (g) on the T109 path, nothing else changes (`research/astra/inbox/030b-notch-continue.md`).
+- Codex continuation running as num 030 on branch astra/030c-notch-continue since 1:17 pm (first launch as 030b stopped after 1 min: wrong data folder). Background task bt9wp3h8q.
+- Next: when it ends: verify, fence check, read report, independent recount of P and alarms, merge, plain verdict to Ahmed.
+
 ## LATEST (18 Nov 2026, 12:31 pm Kuwait): W0 witness slice DONE: cross-star meter does not work as designed; no 200 GB pull
 - Plain line: found something useful (a no). Bystanders' dip-only excess is per star (10% most active stars carry 58%), only 2% sits in cross-star pile-ups; our target events: 0 of 50 at pile-ups. So the full 200 GB download is NOT justified. The second meter must be per star (binary phase of events, event concentration, the star's other sectors), needs no download, NOT TESTED. Bonus: near dumps the notch shows no dip excess on bystanders (5 vs 9), frozen 26 vs 17 (LIKELY, small numbers). Record: brief W section "W0 RESULT" in `research/stage3/rs039/DRAFT-BENCH-BRIEFS.md`.
 - Codex 030 resumed run alive (8 python processes, writing background files at 12:30 pm), stage "untouched N1 background".
