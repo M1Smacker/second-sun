@@ -2,7 +2,7 @@
 - Heavy phases finished 4:18 pm (far sooner than the 5 am estimate); summary stopped by design on rule (g).
 - Claude's independent recount (`research/stage3/rs039/RECOUNT-030-2026-11-18.md`, scripts data/rs039/recount_030*.py): B reproduced (48.40). Choosing bench +2.94; fresh bench +2.09 (95% +0.12 to +4.15) PASS barely; alarms 165/77 PASS; dip-vs-bump PASS; rule 4 -37.2 PASS; T156 R 34.21 to 31.65 FAIL. (g) waits on Codex. Earlier "fresh +10.1" void (paired different planets).
 - Exploratory why: notch gains on 3 to 9 h dips, loses on 9 h+ and deepest. Idea filed on the Tree: duration-aware notch (new design, new preregistration).
-- 030c merged (94bd840e, fence CLEAN). Brief 030d written; Codex relaunch at 4:37 pm (cron) for rule (g) on the T109 path, summary, verify, finish. Verdict to Ahmed now; final after Codex's key.
+- 030c merged (94bd840e, fence CLEAN). Brief 030d written; Codex relaunch at 4:37 pm (cron) for rule (g) on the T109 path, summary, verify, finish. Verdict to Ahmed now; final after Codex's key. Codex 030d launched 4:37 pm (task bk4ahjb4q).
 
 ## LATEST (18 Nov 2026, 1:20 pm Kuwait): Codex 030 part 1 merged; threshold 6.5 locked; 030b continuation running
 - 030 resumed run (Claude) ended 1:14 pm at its TOI-1338 b gate: brief rule (g) assumed B's 6 of 13 from the T109 path, but the design background holds only sectors 10 and 93 of TOI-1338 (Claude's brief error). Threshold chosen by the written rule: 6.5 (tier-1 untouched 165 real / 77 upside-down; 4.5 to 6 over the 174 / 79 limits), so the tier-level gain will be smaller than RS-039's detection-level +7.4.
