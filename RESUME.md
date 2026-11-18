@@ -1,3 +1,9 @@
+## LATEST (18 Nov 2026, 10:00 am Kuwait): RS-039 RUNNING (P 75 research, Ahmed's go 9:09 am, Opus 5.5 high, cap 25% weekly)
+- Ahmed 9:09 am: research stronger and broader, 5 weekly points or more, hours; new weekly cap 25%; start it. Project otherwise still on hold (no Codex jobs, hunts or freezes).
+- Done so far: plan strengthened (`research/stage3/P75-RESEARCH-PLAN-2026-11-18.md`); own-data A1 ceiling (perfect detector 84 to 85 on possible planets), A2 noise (red factor 3 for weak crossings), A3 loss table, A4 bench realism (fair), A5 value of P, A7 per-crossing tier-1 rate 36% (field best about 60%); sources B1 to B8 read (wotan, STANLEY, Oddo 2026b, notch, PLATO, TPS, DR25, PHT, LEO, FM2016, NotPlaNET, QLP DRN 004). Findings draft `research/stage3/rs039/P75-RESEARCH-2026-11-18.md`, raw notes `NOTES-RAW.md`, draft Codex briefs `DRAFT-BENCH-BRIEFS.md`.
+- Experiments on 160 design stars (planted dips and untouched light only): A6 done (prewhitening no help; my local-noise version invalid; detrend depth loss small); A8 notch statistic and A10 per-orbit noise running (logs in data/rs039).
+- Next: read A8 and A10, finish verdict, ranked levers and roadmap, ledger, Tree, report to Ahmed.
+
 ## LATEST (18 Nov 2026, 8:45 am Kuwait): still ON HOLD; P 75 research PLANNED only (RS-039)
 - Ahmed (morning, fresh): asked if the tool can still be improved, my take on restarting with one focus (P to 75+, months OK), and a research plan; run nothing.
 - Plan saved: `research/stage3/P75-RESEARCH-PLAN-2026-11-18.md` (7 questions; Part A own data 1.5, Part B sources 3, Part C synthesis 1; cap 6 weekly points; fits after the 23 Nov reset unless he raises this week's 15% cap). Not started; not on the Tree until he says go.
