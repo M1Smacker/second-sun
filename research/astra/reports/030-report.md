@@ -1,68 +1,146 @@
-**Plain verdict: PARTIAL. The amended design-background count runs successfully; the remaining bench and full T109 gate were not run in this continuation.**
+**Plain verdict: six rules pass; rule (f) fails. N1 does not qualify under the written rules.**
 
-# 030 lower-flank notch continuation
+# 030 lower-flank notch tier bench
 
-Codex, GPT-6-Astra; effort not independently verified in this continuation. Brief specifies neither. Branch `astra/030c-notch-continue`, unchanged. No git writes or commits. Tree nodes 1.3, 1.5 and 1.6.
+Codex, runtime model and effort not independently verified for this continuation. Brief specifies neither. Branch astra/030d-notch-finish. No git writes or commits. Tree nodes 1.3, 1.5 and 1.6.
 
 ## Findings
 
-1. CONFIRMED: amended `030_known.py` now records both design-background counts and the exact note "design background holds 2 of 13 sectors". Runtime result: B 1 match, N1 2 matches. These are design-background results, not the full T109 rule (g) test. Evidence: `data/astra/030/known.json`.
+CONFIRMED as computed: chosen detection threshold 6.5, selected only by the prewritten alarm limits. No filter was frozen or published.
 
-2. CONFIRMED: threshold remains 6.5. Saved alarm curves select it as the lowest eligible threshold. These counts were read from the completed prior run, not regenerated in this continuation.
+| Threshold | Real tier 1 | Upside-down tier 1 |
+|---:|---:|---:|
+| 4.5 | 353 | 239 |
+| 5 | 270 | 169 |
+| 5.5 | 222 | 116 |
+| 6 | 182 | 89 |
+| 6.5 | 165 | 77 |
+| 7 | 144 | 71 |
 
-| Threshold | Real tier 1 | Upside-down tier 1 | Eligible |
-|---:|---:|---:|---|
-| 4.5 | 353 | 239 | False |
-| 5 | 270 | 169 | False |
-| 5.5 | 222 | 116 | False |
-| 6 | 182 | 89 | False |
-| 6.5 | 165 | 77 | True |
-| 7 | 144 | 71 | True |
+| Population | n | B % | N1 % | Paired gain, points (95%) |
+|---|---:|---:|---:|---:|
+| choosing_all | 1098 | 48.105 | 49.942 | +1.837 [-0.309, +4.012] |
+| choosing_possible | 968 | 48.404 | 51.343 | +2.939 [+0.748, +5.215] |
+| fresh_all | 1064 | 51.827 | 53.772 | +1.945 [+0.178, +3.753] |
+| fresh_possible | 941 | 52.182 | 54.276 | +2.094 [+0.161, +4.105] |
+| T156_all | 2000 | 24.950 | 24.900 | -0.050 [-1.181, +1.061] |
+| T156_reference | 222 | 34.207 | 31.653 | -2.554 [-6.274, +0.986] |
+| T156_reference_possible | 203 | 34.782 | 32.940 | -1.841 [-5.709, +1.956] |
 
-3. CONFIRMED: rule (g) is explicitly unknown (`pass: null`) in the design-only output. `030_summary.py` refuses to turn unknown evidence into a final PASS or FAIL. A focused runtime check rejected None and accepted both boolean outcomes. This is a producer guard check, not full-summary execution or independent review.
+P gives each of the five binary-period bins equal weight. A whole-star bootstrap keeps all planted planets on the same host together when resampling, avoiding falsely narrow intervals. There are 10,000 draws with seed 2026111830. Fable X1 seed is 2026111601.
 
-4. CONFIRMED: the source lock changed only for the two files below. Old and new SHA-256 values are preserved in `data/astra/030/030b-source-amendment.json`. Existing completion markers were preserved. The chosen threshold, seeds and rules (a) to (f) were not changed.
-
-| File | Old SHA-256 | New SHA-256 |
+| Gate | Number or evidence | Outcome |
 |---|---|---|
-| 030_known.py | `c3d949d68674cb47c066e3d0bfcf1302ce916396dbc7987c7b5a0a1b99eb6274` | `51a71919f392cfb0f0918d742b2bd021c07c500a636c01b7de59284043d95001` |
-| 030_summary.py | `94ae929e70c450d3015422ba258eef30825cb2bab8e8fc6478ab4bade62f3c30` | `e05df7e08746b68e4f8017ca2d7ccec270992a0aacb1cc74d5417ea8ac9d7d7e` |
+| (a): Fresh gain at least 2 points and lower 95% bound above zero | +2.094 points, 95% [+0.161, +4.105] | PASS |
+| (b): Both untouched alarm budgets | 165 real <= 174; 77 upside-down <= 79 | PASS |
+| (c): Dip/bump 99% interval contains zero in all possible-planet bins | 10 of 10 choosing/fresh period-bin intervals include zero | PASS |
+| (d): Off-switch and unchanged preprocessing checks | 50 off-switch sector replays; saved N1 preprocessing comparisons; source checks | PASS |
+| (e): New real minus 2.3 times new upside-down at most 5 | 64 - 2.3 x 44 = -37.2 <= 5 | PASS |
+| (f): Reference T156 R does not fall | B 34.207% to N1 31.653% | FAIL |
+| (g): TOI-1338 b at least six of thirteen | B 6/13; N1 7/13 | PASS |
 
-## Written gates and current evidence
+CONFIRMED: new alarms against B are 64 real and 44 upside-down; rule 4 excess is -37.2. Matching uses the existing bench tolerance, not exact event identity.
 
-| Gate | Number or evidence | Status |
-|---|---|---|
-| (a) Fresh gain at least 2 points, lower 95% bound above zero | Fresh replay not completed here | NOT TESTED |
-| (b) Untouched alarms at most 174 / 79 | Saved chosen result 165 / 77 | PASS on saved counts |
-| (c) Dip/bump 99% interval contains zero in every required bin | Paired scoring pending | NOT TESTED |
-| (d) Off-switch identity and N1-only changes | Earlier checks and baseline records exist; not rerun here | NOT REVERIFIED |
-| (e) New real minus 2.3 times new upside-down at most 5 | Final comparison pending | NOT TESTED |
-| (f) T156 R at least B 34.207% | N1 T156 pending | NOT TESTED |
-| (g) Full T109 TOI-1338 b at least 6 of 13 | Design-only counts cannot judge this gate | NOT TESTED |
+CONFIRMED: TOI-1338 b is 7 of 13 under N1, versus 6 under B. The denominator includes nine observed and four forecast epochs from T109.
 
-Flags holding new detections, choosing/fresh P, paired intervals and per-crossing rates remain pending. No overall scientific verdict is supported.
+Rule (g) uses the amended T109/Q5 sector-local context. B matches the historical six successful windows individually, with 10 of 10 O0 flag identities. N1 gives four observed-window and three forecast-window matches. Both versions assess all 13 windows; one has no stored data, as in historical Q5. The 19 existing N1 raw-light group replays cover the other 12 windows and were reused, then re-tiered at 6.5. No heavy phase was rerun. Design-background counts remain separately in known.json: B 1, N1 2. They are not rule (g).
 
-## Checks actually performed
+## Per-crossing and paired-control counts
 
-Ran `030_known.py` with the required interpreter, parsed both changed Python files, tested the summary evidence guard, checked the updated source-lock equality, and compared every frozen-file hash against `frozen-before.json`. `git diff --check` passed. Evidence: `data/astra/030/030b-checks.json`. Hash equality establishes byte identity only. Earlier 030 synthetic and baseline verification is recorded in the saved artifacts and original worklog; those suites were not rerun here.
+| Population | Period bin | Planets | Dip/bump planets | Crossings | Dip/bump crossings | Planet dip-minus-bump 99%, points | Control |
+|---|---|---:|---:|---:|---:|---:|---|
+| choosing_possible | 5 to 10 | 210 | 99/101 | 1757 | 248/249 | [-7.247, +5.702] | PASS |
+| choosing_possible | 10 to 14 | 198 | 92/93 | 1084 | 242/242 | [-5.000, +3.743] | PASS |
+| choosing_possible | 14 to 20 | 202 | 99/98 | 951 | 239/253 | [-3.030, +3.792] | PASS |
+| choosing_possible | 20 to 27.4 | 167 | 83/81 | 478 | 158/155 | [-5.797, +8.772] | PASS |
+| choosing_possible | 27.4 and up | 191 | 123/123 | 588 | 258/263 | [-5.073, +5.294] | PASS |
 
-## Remaining work and checkpoint
+choosing_possible pooled per-crossing tier-1 rate: 23.569%.
 
-No long job was launched in this continuation. `progress.json` remains at the prior failed checkpoint; its old known-count failure message describes the pre-amendment code. Completed markers remain available. Before parallel replay, rerun `030_layout.py` to pre-create shared directories and check process load. Then resume the authorized three-worker foreground `030_run.py`.
+| Population | Period bin | Planets | Dip/bump planets | Crossings | Dip/bump crossings | Planet dip-minus-bump 99%, points | Control |
+|---|---|---:|---:|---:|---:|---:|---|
+| fresh_possible | 5 to 10 | 217 | 93/92 | 1662 | 240/234 | [-4.412, +5.310] | PASS |
+| fresh_possible | 10 to 14 | 203 | 96/99 | 1177 | 299/286 | [-7.212, +4.500] | PASS |
+| fresh_possible | 14 to 20 | 187 | 102/104 | 816 | 269/284 | [-7.653, +4.762] | PASS |
+| fresh_possible | 20 to 27.4 | 153 | 100/93 | 554 | 219/217 | [-1.399, +10.280] | PASS |
+| fresh_possible | 27.4 and up | 181 | 111/107 | 589 | 227/224 | [-2.339, +8.383] | PASS |
 
-The full T109/Q5 N1 implementation is still required after the bench phases. It must use the published system and all 13 crossing windows, reproduce B 6 of 13 on that path, and evaluate N1 at fixed 6.5. Wire its separate result into the summary while retaining design-background counts separately, update source-lock provenance before resuming, then run summary, verification and `030_finish.py`. The current summary deliberately stops until that full-path result is wired in. `030_finish.py` also still needs its branch and known-path wording updated before the final report is generated.
+fresh_possible pooled per-crossing tier-1 rate: 26.136%.
+
+## Flags holding new untouched detections
+
+Counts overlap; they are not additive causes.
+
+real: 571 new detections, 535 below tier 1. c5 43, common 14, dominated 103, dump 60, ecl_overlap 87, flipmatch 1, gap_edge 48, known 8, orbit_lock 66, p1_veto 58, ramp 55, repeater 40, step 325.
+
+flip: 330 new detections, 305 below tier 1. c5 19, common 18, dominated 58, dump 58, ecl_overlap 21, flipmatch 1, gap_edge 26, known 9, orbit_lock 5, p1_veto 8, ramp 34, step 247.
+
+## Background by brightness, product, era and period
+
+```json
+{
+  "period_bin:2:flip": 10,
+  "brightness:<11:flip": 28,
+  "product:SPOC:flip": 22,
+  "era:56-93:flip": 38,
+  "period_bin:2:real": 48,
+  "brightness:<11:real": 74,
+  "product:SPOC:real": 37,
+  "era:56-93:real": 67,
+  "period_bin:1:real": 23,
+  "product:QLP:real": 74,
+  "era:27-55:real": 39,
+  "period_bin:1:flip": 19,
+  "brightness:11-12:flip": 15,
+  "product:TESS-SPOC:real": 43,
+  "product:TESS-SPOC-SAP:real": 5,
+  "period_bin:0:real": 31,
+  "brightness:12-14:real": 55,
+  "era:1-26:real": 47,
+  "period_bin:4:flip": 15,
+  "era:1-26:flip": 16,
+  "era:94+:real": 12,
+  "brightness:11-12:real": 36,
+  "period_bin:4:real": 43,
+  "period_bin:0:flip": 24,
+  "product:SPOC-SAP:flip": 4,
+  "product:SPOC-SAP:real": 6,
+  "era:94+:flip": 6,
+  "product:QLP:flip": 25,
+  "era:27-55:flip": 17,
+  "period_bin:3:real": 20,
+  "brightness:12-14:flip": 34,
+  "product:TESS-SPOC:flip": 25,
+  "period_bin:3:flip": 9,
+  "product:TESS-SPOC-SAP:flip": 1
+}
+```
+
+## Verification and evidence
+
+CONFIRMED: full saved-outcome B scoring matches both arms trial by trial, including P 48.105% / 48.404%, R 34.207%, and alarms 174 / 79. Independent 030_recount.py joins archived outcomes to raw injection journals without importing the pipeline. Raw off-switch event identity covers 50 untouched star-sectors. N1 untouched preprocessing metadata is checked against B for every regenerated group.
+
+N1 reference parity and a separate direct-window oracle cover 27 cadence/duration cases. Deliberate wrong-flank, threshold-context and one-arm-budget mutations are rejected. Three mirror boundary checks, 15 candidate-nesting checks, zero-scale handling, source hashes, worker completion and population assertions also ran. These are producer checks, not independent review.
+
+Evidence: data/astra/030/summary.json, verification.json, notch-checks.json, baseline-check.json, independent-recount.json, known.json, chosen.json and worker logs. This continuation ran 030_t109.py, 030_summary.py, 030_verify.py and 030_finish.py with the required interpreter and -I -B. Do not restart 030_run.py. Frozen source files were not edited.
+
+030d verification independently recounts the saved final T109 tiers, checks the historical B windows, checks 38 input hashes, checks all saved worker completion records, and validates the summary populations and threshold rule. A mutation removing N1 tier-1 hits from the private scored rows is rejected; restoration passes. Earlier raw identity and synthetic checks are saved evidence, not rerun here. Hash equality proves byte identity only. Claude independently recounted the bench in research/stage3/rs039/RECOUNT-030-2026-11-18.md; point estimates and gate verdicts agree. His fresh 95% interval is +0.12 to +4.15; the prescribed 030 bootstrap gives +0.161 to +4.105. The interval difference does not change rule (a). That recount does not independently review the new T109 implementation.
+
+Source amendment: only 030_finish.py and 030_verify.py changed among the locked existing scripts; 030_t109.py was added. Full old/new SHA-256 maps are in data/astra/030/030d-source-amendment.json. The scoring, generation, threshold selection and summary sources remain unchanged from the 030b lock. The prior report is preserved privately as 030d-prior-report.md. Earlier 030b amendment provenance remains in 030b-source-amendment.json.
+
+The preserved design-background note says two of thirteen sectors. It must not be read as raw-input coverage: the archive and N1 replays cover twelve crossing sectors. The amended sector-local test and full campaign background use different event contexts.
 
 ## What I did NOT check
 
-No remaining planet, fresh or T156 replay; no full T109 N1 run; no full summary, verification or finish run. No fresh source research, download, fenced-star experiment, sky search, independent review, freeze, book edit or publication. Existing shared folder completeness was not checked again.
+No fenced-star searches, witness-star meter, sky search, new downloads, frozen release, book edits or publication. No independent reviewer has assessed this implementation. The benchmark does not establish sensitivity for all planets in the sky. Per-crossing rates are pooled within the reported populations; alarms have brightness/product/era splits, while planet P uses the specified period-bin weighting.
 
 ## STOP SIGNS hit
 
-AGENTS.md section 7 says to stop near 80% of the five-hour bar. The first meter read in this continuation was already 87% five-hour / 79% weekly. It was read late, after initial source inspection. This continuation therefore saved a safe correction and stopped before the long replay. The original nine-versus-ten grid wording remains resolved by retaining the actual nine-length frozen grid. No new scientific tuning occurred.
+No scientific gate was relaxed. Rule (f) fails, so N1 does not qualify for adoption under this brief. An initial 030d availability assertion demanded stored data in every window; historical Q5 explicitly includes one missing window. That implementation assertion was corrected to preserve the historical missing outcome before B or N1 was scored. B then reproduced 6/13 before N1 was evaluated. The earlier 030b meter stop and nine-versus-ten grid wording are preserved in the prior report; the actual nine-length grid was retained.
 
 ## QUEUE PROPOSALS
 
-None. Node 1.3 continuation remains unfinished.
+None. This is the requested node 1.3 bench, not a filter adoption.
 
 ## IDEAS
 
@@ -70,14 +148,14 @@ None outside the brief.
 
 ## Disagreements with Claude
 
-None. The 030b amendment resolves the former scope mismatch.
+None on the completed verdict. The source uses nine grid lengths despite the original brief saying ten. No scientific decision was silently changed.
 
 ## Questions for Ahmed
 
-None; the remaining work is already authorized.
+None.
 
 ## Usage
 
-Continuation checkpoint prediction: 3 five-hour / 1 weekly point, logged late after initial reads and the two-line correction. First observed 87% / 79%; latest observed 92% / 80%. These rounded account-wide readings do not isolate this task. Original full-task prediction was 60 five-hour / 10 weekly points. Lesson: read the meter before implementation files, and distinguish missing evidence from a failed scientific gate.
+030d predicted 35 five-hour points / 6 weekly points. Latest observed actual: 3% to 28% five-hour (+25); 81% to 85% weekly (+4); weekly actual/predicted about 0.67. Account-wide rounded meter, measured before final handoff. Earlier 030 and 030b usage rows remain separate. Lesson: reproduce the historical context and missing-data outcomes before judging a known-system gate.
 
-Next: Codex resumes the already-authorized 030b work after the five-hour allowance resets, to finish the remaining replay and full T109 test; remaining machine and usage cost are unmeasured, no new permission needed.
+Next: Claude reviews the report and producer checks before any adoption decision; review cost unmeasured, Claude required.
