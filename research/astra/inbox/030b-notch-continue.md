@@ -15,4 +15,4 @@ The design background holds TOI-1338 (TIC 260128333) in only sectors 10 and 93 (
 2. Run the remaining phases (planets, fresh, T156, summary, verify) and `030_finish.py`, in the foreground, 3 workers x NUMBA_NUM_THREADS=2. Pre-create shared folders first (the 028 race).
 3. Rule (g) on the T109 path: run TOI-1338 b with N1 at 6.5 the way T109/Q5 did for B (`research/stage3/t109/`, RS-025 Q5), report N1's tier-1 count of 13.
 4. Report: every pass rule with its number and PASS or FAIL, flag counts for new detections, alarm curves, per-crossing rate. Counts only.
-Branch `astra/030b-notch-continue`; data stays in `data/astra/030/`; usage prediction and actual in `research/astra/USAGE.md`.
+Branch `astra/030c-notch-continue` (030b was stopped by Claude after one minute: its runner gave write access to data/astra/030b, not 030); data stays in `data/astra/030/`; usage prediction and actual in `research/astra/USAGE.md`.
