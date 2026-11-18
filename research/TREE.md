@@ -44,6 +44,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ---
 
 ## Research and Codex log (every stint and brief, with its node; newest first; tree_check enforces it from 13 Nov 2026)
+- **RS-039** (Claude, 18 Nov, node 1; RUNNING from 9:15 am, Opus 5.5 high, cap 5 to 8 weekly points, stop 25%): can Petrova reach P 75? Ceiling, photon floor, loss table, bench realism, value of P, and eight source areas (depth-keeping detrending, eclipse-model subtraction, red-noise SNR, photometry, DR25 meters, one vetting score, professional completeness, multi-crossing detection). Plan `research/stage3/P75-RESEARCH-PLAN-2026-11-18.md`
 - **Codex 029** (18 Nov, node 1; NOTICE, no job): project on hold; Codex told to start nothing and leave its worktree as it is. `research/astra/inbox/029-project-on-hold.md`
 - **Codex 021** (DONE 3:03 pm, merged, 7 bugs filed as FIX 100; 15 Nov, node 4.1; RUNNING from 2:14 pm): independent read-only audit of Book 3.4 with the new Tree, regression of the 32 fixed bugs, and what the release gates cannot see. `research/astra/inbox/021-audit-book-3-4.md`
 - **T161** (15 Nov, node 4.1; DONE 1:51 pm, ships in 3.4.0): load Eyes, rehearsal, demo and Search window scripts only on their own pages (about 200 KB on every page now); four dead Book 2 demos. Build queue.

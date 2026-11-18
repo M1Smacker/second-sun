@@ -1,33 +1,37 @@
-# Research plan: can Petrova reach P 75? (RS-039, PLANNED, not started; 18 Nov 2026, 8:45 am)
+# RS-039: can Petrova reach P 75? Strong, broad version (18 Nov 2026; plan 8:45 am, strengthened and STARTED 9:15 am)
 
-Ahmed, 18 Nov 2026 morning: "Plan the research only ... we gotta not let the limit of our tool stop us. Improve our chances of finding a planet with our tool." He is considering a restart whose only focus is P to 75+, even if it takes months. Nothing here runs until he says go. Follows `research/RESEARCH-BLUEPRINT.md`.
+Ahmed, 18 Nov 2026, 9:09 am: make the research "stronger and broader", using **5 weekly points or more**, taking hours. **New weekly cap 25%** (it does not have to be reached). Model: **Opus 5.5 high**. After improving the plan, start. Project otherwise stays on hold: research only, no Codex jobs, no hunts, no freezes.
 
-## Starting facts (our own files, CONFIRMED as computed unless marked)
-- P today: 48.1% on all 1,098 planted planets, 48.4% on the 968 possible ones (set B).
-- RS-037: if every pool we know of were closed with today's design, the total would be about 71 to 74 (LIKELY). So 75 is at the edge of the CURRENT design. Getting there means raising the ceiling itself, not just tuning the tier rules again.
-- Fable X4: under ideal white noise, 78.9% of planets have a crossing at SNR 7 or more (today 64.1%). A single-crossing SNR-7 search cannot go above about 79 on this bench.
-- Measured pools still open (points of P, approximate): too faint because of slow wiggles about +11 (X5); never-scored crossings about 9 to 10 (RS-037); detected but held about 12 (RS-037); multi-crossing stacking 2 to 4 (028 says under 1 for its design).
-- Blocked by our false-alarm meter, not by physics: dump-by-shape and mask timing M2 (several points) fail rule 4, because the upside-down twin cannot see dip-only artefacts.
+Follows `research/RESEARCH-BLUEPRINT.md`. **Cap written before the start: at least 5 weekly points, target about 8, hard stop at 25% weekly (meter 12% at 9:09 am).** Findings file: `research/stage3/rs039/P75-RESEARCH-2026-11-18.md`. Scripts in `data/rs039/`.
 
-## Questions, each tied to a decision
-1. **What is the true ceiling on this bench?** Own data: for every planted planet, the best SNR its crossings could reach at the photon or white-noise limit, and how many crossings the TESS data hold. *Decision:* is 75 reachable on all 1,098, only on the 968, or not at all? Is the goal "75" or "X% of the ceiling"?
-2. **Where are the 52 lost points today, in one table?** Own data, one fresh accounting on set B: lost at load, outside windows, under the mask, never scored, too faint, and detected but held (by which flag). *Decision:* the order of work.
-3. **Can the noise be lowered at the source?** Literature plus our pixels. Ideas: our own photometry from the pixels (TGLC, which uses Gaia to separate neighbours; eleanor); subtracting a model of the binary's eclipses instead of masking them; detrending that follows the wiggles (wotan methods, Gaussian processes, Martin and Fabrycky's variable window); a noise estimate that changes over time inside the SNR. *Decision:* which noise lever gets the first bench test.
-4. **Can a second false-alarm meter unlock the rule-4 levers?** Dip-only artefacts (momentum dumps, scattered light, eclipse leftovers) are invisible to the upside-down twin. Ideas: the same dip at the same moment in many stars (cross-star check); pixel and centroid jitter; Kepler DR25's scrambled light curves next to its inverted ones (Thompson 2018, Coughlin). *Decision:* whether DS and M2 can come back honestly.
-5. **Can one score replace the hard holds?** Ideas: Kepler's Robovetter, LEO-vetter, ExoMiner-style scores, tuned on planted planets against inverted and scrambled light rather than a list of yes/no flags. *Decision:* is a tier-rule rebuild worth the "detected but held" pool (about 12 points)?
-6. **What do professionals reach?** Injection and recovery in published TESS and Kepler circumbinary searches (Kostov and colleagues on TOI-1338 and TIC 172900988; Martin and Fabrycky STANLEY; the mono-cbp work; BEBOP for context). *Decision:* is 75 a fair target or above the field's own level?
-7. **Is P the best lever for finding a planet?** Expected planets scale roughly with P times the stars searched (LIKELY). Compare "P 48 to 65 on 1,200 stars" with "P 48 on 1,200 plus 1,400 Census stars". *Decision:* P only, or P first and then more stars.
+## What is already known (do not redo; build on it)
+- P 48.1% (1,098 planted planets), 48.4% (968 possible), set B.
+- RS-037: missed planets: 11.6 points detected but held at tier 2, 13.8 never scored, 22.4 too faint. Ceiling of every known lever about 71 to 74.
+- Fable X4: planets with a crossing at SNR 7+: today 64.1; white-noise bound 78.9; full-depth bound 71.5; both 83.5. For weak crossings the search noise is 2.59 times the bin scatter; median depth kept 0.76.
+- RS-016, RS-024 to RS-038, Fable F1 to F4 and X1 to X11 covered: eclipse masks, dumps, vetting flags, cross-star checks (mono-cbp), jitter, tier rules, c1a, the orbit search.
+- **Not yet studied anywhere in the project:** (1) the photon-noise ceiling (how far our light sits above what TESS physically allows); (2) detrending methods that keep transit depth (fitting the trend and the dip together); (3) a red-noise-aware SNR; (4) our own pixel photometry or other light-curve products for our stars; (5) the Kepler DR25 machinery (inverted and scrambled light, Skye, Robovetter scores) as a model for our meters and tiers; (6) machine-learning vetting for single transits; (7) whether our test planets look like real circumbinary planets; (8) what P buys in expected planets compared with searching more stars.
 
-## Order, size and cap (cheapest first)
-- **Part A, own data (Q1, Q2, Q7): about 1.5 weekly points.** Scripts on saved bench outputs (Astra 006, 023, 027, X4). No new runs of the search.
-- **Part B, primary sources (Q3 to Q6): about 3 weekly points.** arXiv abstract and HTML pages only; exact sentences pulled out; labels.
-- **Part C, synthesis: about 1 weekly point.** A ranked list of levers, each with a measured or sourced ceiling, a cost, and a draft bench brief (Codex runs the heavy tests later).
-- **Total cap: 6 weekly points, written before the start.** This week's cap is 15% and 11% is used, so it fits after the weekly reset (Mon 23 Nov, about 1 am) unless Ahmed raises the cap.
-- Model: Ahmed's choice. Opus 5.5 high fits judgement work; reading can go cheaper.
+## Part A: our own data (scripts that could contradict me)
+- **A1 Ceiling, per planet.** From Fable's X4 rows (per-crossing SNR, depth kept, red-noise factor, bin scatter): what fraction of planets could pass SNR 7 with (a) full depth, (b) white noise, (c) both, (d) stacking all crossings. *Decision:* is 75 reachable on this bench at all, and by which kind of change?
+- **A2 Photon floor.** Our bin scatter against a TESS noise model for each star's brightness (the constants come from a primary source). *Decision:* is the noise in the light products (better photometry would help), or in what is left after detrending (better detrending helps)?
+- **A3 Loss table.** One table of the 52 lost points on set B, from saved outputs (023, RS-037, X4, X6, X7, F2). *Decision:* the order of work.
+- **A4 Bench realism.** Depth, duration and period of our test planets against the known transiting circumbinary planets. *Decision:* does P weight the planets that matter?
+- **A5 Value of P.** Expected visible planets as P and the number of stars change. *Decision:* P alone, or P then more stars (Census).
 
-## What would change the plan
-- If Q1 shows a ceiling under 75 on the 968 possible planets, the goal is restated before any building.
-- If Q6 shows that professionals reach well under 75 for similar depths, 75 is kept only as a stretch goal.
+## Part B: primary sources (arXiv abstract and HTML pages; exact sentences; labels)
+- **B1 Detrending that keeps depth:** wotan's benchmark (Hippke 2019), the notch filter (Rizzuto 2017), Gaussian-process detrending, Martin and Fabrycky's variable window, fitting the trend with a transit model.
+- **B2 Binary light:** subtracting an eclipse model or phase template instead of masking eclipses (Kepler circumbinary searches, the TOI-1338 and TIC 172900988 papers, Windemuth 2019).
+- **B3 Red-noise SNR:** Pont, Zucker and Queloz 2006, the beta factor, time-local noise, TLS and BLS false-alarm calibration.
+- **B4 Photometry:** TGLC (Han and Brandt), eleanor, QLP precision papers, the TESS noise model (Sullivan 2015, Vanderspek), 200 s FFIs.
+- **B5 False-alarm meters:** Kepler DR25 inverted and scrambled light and Skye (Thompson 2018, Coughlin 2017, Christiansen), cross-star and pixel tests for TESS.
+- **B6 One vetting score:** Robovetter design and its completeness/reliability trade, LEO-vetter, ExoMiner and Astronet-Triage on TESS, machine learning for single transits.
+- **B7 Professional completeness:** what mono-cbp, STANLEY, Windemuth, Kostov's searches and Planet Hunters TESS recover in their own injection tests.
+- **B8 Detection beyond one crossing:** CB-BLS (Ofir), QATS-style and photodynamical searches; when stacking pays once the noise is lower.
+
+## Part C: synthesis
+- A ranked list of levers, each with a ceiling (measured or sourced), a cost, a risk to false alarms and how our meters would see it.
+- A roadmap to 75 (or to the true ceiling) in phases with checkpoints every couple of weeks, and a stop-or-rethink rule.
+- Draft bench briefs for the top three levers (Codex runs them later, only on Ahmed's go).
 
 ## Rules that stay
-Planted planets only (no tuning on real events); the upside-down twin stays; a fresh bench confirms every gain; rules 2 and 4 are not lowered without Ahmed's yes; two keys before any freeze.
+No tuning on real events; the upside-down twin stays; every gain is confirmed on a fresh bench; rules 2 and 4 are not lowered without Ahmed's yes; two keys before any freeze; no Codex job, hunt or freeze during this research.
