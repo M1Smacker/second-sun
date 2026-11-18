@@ -2,7 +2,7 @@
 - Codex 030d finished 4:45 pm (b072b778): rules a, b, c, d, e, g pass; f fails (T156 reference R 34.207 to 31.653; Codex interval -6.3 to +1.0). TOI-1338 b on the T109 path: B 6/13 reproduced, N1 7/13. Fresh possible +2.09 (Codex 95% +0.16 to +4.11; Claude +0.12 to +4.15). Every shared number matches Claude's recount.
 - Fence check: NEEDS A LOOK = 3 Codex actions running search code (030_t109, summary, verify), all asked for by the brief; 0 fence ids, 0 frozen files. Merged (b0c3b0ec); note: Claude chained the merge before reading the verdict, then checked; the look cleared.
 - Verdict stands as filed: N1 is NOT Petrova 2.0. Idea on the Tree: duration-aware notch (notch for short dips, frozen box for long), new preregistered bench, waits for Ahmed's go.
-- Tree Now line and field note part three; Book 3.8.2.
+- Tree Now line and field note part three; Book 3.8.2 published and confirmed live 5:11 pm. Waiting on Ahmed: go for the duration-aware notch design (about 1 point, nothing run).
 
 ## LATEST (18 Nov 2026, 4:24 pm Kuwait): 030 heavy run done; Claude's recount: notch at 6.5 FAILS rule (f)
 - Heavy phases finished 4:18 pm (far sooner than the 5 am estimate); summary stopped by design on rule (g).
