@@ -1,3 +1,10 @@
+## LATEST (18 Nov 2026, 12:05 pm Kuwait): Codex 030 resumed by Claude; witness slice W0 downloaded and being searched; Book 3.8.1 live
+- Ahmed 11:28 am: "Sure, launch it. I'm ready, I agree with you" (launch 030; keep witness files).
+- Codex 030: Codex built the bench, reproduced B exactly (P 48.105, 174/79, T156 R 34.207), then its session ended 11:51 am and its foreground chain died. Claude marked progress.json failed (interruption recorded) and resumed `030_run.py` (then `030_finish.py`) at 11:52 am from D:\second-sun-astra; Codex's own estimate up to 16 h (finish by about 4 am, unmeasured). Background task b6nm4juw7.
+- W0 witness slice: 1,000 bystander SPOC 2-minute light curves (sectors 24, 40, 41, 52, 57, 58, 63, 75, 83, 98; 2 CCDs each; 50 stars per CCD), 2.18 GB, 0 failures, kept in data/witness/w0 (downloads.csv). Search running (`data/witness/w0_search.py`), meter rules fixed before results (`w0_meter.py`).
+- Book 3.8.1 published and confirmed live 11:55 am (restart Now line; field note part two).
+- Next: read W0 meter result; when 030 ends verify, fence-check, read report, recount, merge, verdict to Ahmed.
+
 ## LATEST (18 Nov 2026, 11:25 am Kuwait): Second Sun RESTARTED, P is the only focus
 - Ahmed 11:23 am: "Yes. Restart second sun with P as the only focus." He asked what the 200 GB witness download is (answered: bystander-star light curves from NASA's archive / AWS copy, a second false-alarm meter for telescope-made dips; streaming in chunks works; Claude recommends keeping the files because each new detector must re-search them; he has 400 GB free and 6 TB of disks coming). Name of the goal version: Petrova 2.0 (new detector, results not directly comparable).
 - Codex 030 brief written (`research/astra/inbox/030-notch-tier-bench.md`): tier-level bench of the notch, threshold by a written alarm-budget rule, F1 pass rules. NOT launched: waits for his go. Tree Now line updated; hold record superseded by the restart.
