@@ -1,3 +1,8 @@
+## LATEST (18 Nov 2026, 11:25 am Kuwait): Second Sun RESTARTED, P is the only focus
+- Ahmed 11:23 am: "Yes. Restart second sun with P as the only focus." He asked what the 200 GB witness download is (answered: bystander-star light curves from NASA's archive / AWS copy, a second false-alarm meter for telescope-made dips; streaming in chunks works; Claude recommends keeping the files because each new detector must re-search them; he has 400 GB free and 6 TB of disks coming). Name of the goal version: Petrova 2.0 (new detector, results not directly comparable).
+- Codex 030 brief written (`research/astra/inbox/030-notch-tier-bench.md`): tier-level bench of the notch, threshold by a written alarm-budget rule, F1 pass rules. NOT launched: waits for his go. Tree Now line updated; hold record superseded by the restart.
+- Waiting on Ahmed: go for Codex 030; keep or delete the witness files later.
+
 ## LATEST (18 Nov 2026, 11:20 am Kuwait): RS-039 DONE: the tool is NOT at its limit; best lead = lower-flank notch
 - Ahmed 9:09 am: stronger, broader research, at least 5 weekly points, cap 25%, Opus 5.5 high. Used about 5 (weekly 12% to 17%). Project otherwise still on hold.
 - Plain line: found something. A perfect detector on today's data reaches about 84 (P today 48.4). A "lower-flank notch" statistic (each dip judged against the quieter of its two sides, after a 5-day detrend) detects +7.4 points more planted crossings (star 95% +4.0 to +11.1) and +11.4 more test planets at EQUAL false alarms on both arms, halves alarms at equal detection, and passes the dip-against-bump control in every bin (gap -0.1). Detection level only, 160 design stars; tier level untested.
