@@ -1,3 +1,8 @@
+## LATEST (18 Nov 2026, 12:31 pm Kuwait): W0 witness slice DONE: cross-star meter does not work as designed; no 200 GB pull
+- Plain line: found something useful (a no). Bystanders' dip-only excess is per star (10% most active stars carry 58%), only 2% sits in cross-star pile-ups; our target events: 0 of 50 at pile-ups. So the full 200 GB download is NOT justified. The second meter must be per star (binary phase of events, event concentration, the star's other sectors), needs no download, NOT TESTED. Bonus: near dumps the notch shows no dip excess on bystanders (5 vs 9), frozen 26 vs 17 (LIKELY, small numbers). Record: brief W section "W0 RESULT" in `research/stage3/rs039/DRAFT-BENCH-BRIEFS.md`.
+- Codex 030 resumed run alive (8 python processes, writing background files at 12:30 pm), stage "untouched N1 background".
+- Next: 030 result, verify, merge, verdict to Ahmed; then design the per-star meter.
+
 ## LATEST (18 Nov 2026, 12:05 pm Kuwait): Codex 030 resumed by Claude; witness slice W0 downloaded and being searched; Book 3.8.1 live
 - Ahmed 11:28 am: "Sure, launch it. I'm ready, I agree with you" (launch 030; keep witness files).
 - Codex 030: Codex built the bench, reproduced B exactly (P 48.105, 174/79, T156 R 34.207), then its session ended 11:51 am and its foreground chain died. Claude marked progress.json failed (interruption recorded) and resumed `030_run.py` (then `030_finish.py`) at 11:52 am from D:\second-sun-astra; Codex's own estimate up to 16 h (finish by about 4 am, unmeasured). Background task b6nm4juw7.
