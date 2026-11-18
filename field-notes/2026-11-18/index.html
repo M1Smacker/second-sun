@@ -731,6 +731,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#later-the-same-morning-the-tool-is-not-at-its-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Later the same morning: the tool is not at its limit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-yourself-second-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check yourself (second part)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1663,6 +1685,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#later-the-same-morning-the-tool-is-not-at-its-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Later the same morning: the tool is not at its limit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-yourself-second-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check yourself (second part)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1809,6 +1853,25 @@
 <li>Why is "found nothing" not the same as "no planets"? (The search catches only some of the planets that are there. If it would have missed most of them, silence says little.)</li>
 <li>Why was C3 not frozen, even though it helped? (The bar of +2.0 on fresh planets was written first. +1.6 is under it, and moving the bar after seeing the result would make the rule mean nothing.)</li>
 </ol>
+<h2 id="later-the-same-morning-the-tool-is-not-at-its-limit">Later the same morning: the tool is not at its limit<a class="headerlink" href="#later-the-same-morning-the-tool-is-not-at-its-limit" title="Permanent link">&para;</a></h2>
+<p>Ahmed asked one hard question: was "the tool is reaching its limit" really true? A two-hour research stint said no, and Second Sun restarted at 11:23 am with one focus: raise P, the share of test planets we recover (today 48 in 100), toward 75.</p>
+<div class="admonition plain">
+<p class="admonition-title">In plain words</p>
+<p>Most planets we miss are not too small for TESS. They hide under slow wobbles in the light that our cleaning step leaves behind. A new way of judging each dip, against the quieter of the two stretches of light beside it, catches about 7 more test dips in 100 without any extra false alarms.</p>
+</div>
+<p>What we measured, on 160 test stars with planted planets:</p>
+<ol>
+<li><strong>The ceiling.</strong> A perfect detector on today's data would see about 84 of 100 test planets. So 75 is possible, but only if almost nothing else is lost.</li>
+<li><strong>Where the noise is.</strong> For faint dips the search's noise is about three times what pure random noise would be. It is not star pulsations (removing them made things worse) and it is not mainly at data gaps.</li>
+<li><strong>The new score.</strong> A "notch" judges a dip against its own sides. Our first version was unfair: a bump beside the dip lifted the baseline, so the upside-down copy suddenly showed two and a half times more alarms. Using the lower of the two sides fixed it. At equal false alarms it found 74 of 100 planted dips instead of 66, and it found planted bumps on the upside-down copy just as often as dips (the fairness check).</li>
+<li><strong>Next.</strong> Codex now runs the new score through all of our filter rules. Later we add a second false-alarm meter: hundreds of ordinary bystander stars on the same camera chip, because when many unrelated stars dip at the same moment, the telescope made the dip.</li>
+</ol>
+<p>New word: <strong>notch</strong>, a dip score measured against the light just before and after the dip, instead of against the whole sector.</p>
+<h2 id="check-yourself-second-part">Check yourself (second part)<a class="headerlink" href="#check-yourself-second-part" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Why did the first notch fail the fairness test? (A bump beside a box raised the baseline, so the box looked like a dip; upside-down light has many bumps, real light few.)</li>
+<li>Why do we need bystander stars? (The telescope's own wobble only ever makes dips, so the upside-down copy cannot see it; many stars dipping at once can.)</li>
+</ol>
 
 
 
@@ -1844,7 +1907,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.8.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.8.1 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
