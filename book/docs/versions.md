@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 3.8.1 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
+| The book | 3.8.2 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
 | Learning (Twinlight) | 1.2 (lessons 1.1 to 2.2) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -113,6 +113,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
 | 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
+| 3.8.2 | 18 Nov | Recap: the notch test is done and does not pass (T156 fell from 34 to 32; fresh planets +2.1; fewer false alarms); the 18 Nov field note gains a third part |
 | 3.8.1 | 18 Nov | Restart: Tree "Now" line says Second Sun restarted with P as the only focus; the 18 Nov field note gains a second part (the tool is not at its limit; the fair notch score; bystander stars as a second false-alarm meter) |
 | 3.8.0 | 18 Nov | Second Sun on hold: new field note "Second Sun pauses" with the null so far (three hunts, no excess, what the silence means); Tree "Now" line says the project is paused and preserved |
 | 3.7.1 | 17 Nov | Tree "Now" line: Fable's leftover jobs done (X5, X11 by Opus; X9 orbit search by Codex adds 0 planets); the new-real-alarm rule sinks Fable's candidate; best safe change C3 is +1.6 on fresh planets, under the +2.0 bar |
