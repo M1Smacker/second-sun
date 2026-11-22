@@ -1,3 +1,7 @@
+## LATEST (23 Nov 2026, 2:43 am Kuwait): D1 bench running detached; 031d merged
+- Codex 031d (2:37 to 2:41 am) coded the 031c exclusion (empty selected product dropped before records, so B, N1 and D1 lose the same draws; mutation check included), restarted the bench detached (pid 2732, 3 workers, allowance up to 24 h; progress data\astra\031\progress.json), handed back PARTIAL as designed. Fence CLEAN, merged. Codex meter 12% 5-hour, 17% weekly.
+- When progress.json is terminal: recount_031.py first key, read 031-report, plain verdict, Tree, field note, publish.
+
 ## LATEST (23 Nov 2026, 2:42 am Kuwait): FIX 80 failure log
 - publish_book.ps1 now keeps every failed browser-test attempt in full in research/burn-3-book/browser-test-failures.log (there was no publish log, and the 700-character printout could cut the worst-note dump). Parse check 0 errors, append tested on a fake failure. FIX 80 stays open until a real failure is logged.
 
