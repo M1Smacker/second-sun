@@ -2,6 +2,7 @@
 - RS-040 S0 done (7cc71852): one learned score in place of the soft holds gains +0.5 P real, +3.4 upside-down (unfair), alarms not held: NO-GO, brief S parked. FIX 92 priced: at most +0.3 P for 62 real alarms. Centroid route already closed by RS-032 (14 Nov). Held pool closed with today's evidence; work goes to detection. Record research/stage3/rs040/S0-RESULT-2026-11-22.md.
 - RS-040 A12 running since 9:51 pm (task b06cqiwe9; data/rs039/a12-g2/g3.jsonl): detection-level test on RS-039's 160 design stars of a per-box window 3 x box length (w3) and a notch on a 5 x box window (w3notch), against frozen and the notch, at equal alarms on both arms. Rules: research/stage3/rs040/a12_window.py and a12_summary.py (copies; data/ is gitignored, so the copies were committed at 9:53 pm, unchanged since run start; lesson added to the auditor skill, kit synced).
 - Codex 031 (D1) running since 9:34 pm.
+- Book 3.9.0 (field note 22 Nov) published and confirmed live 10:22 pm.
 - Next: A12 summary (lead for the next Codex bench if it beats the notch by 2+ points at equal alarms); D1 close-out when Codex ends; field note and book at the end of the night.
 ## LATEST (22 Nov 2026, 9:39 pm Kuwait): GO from Ahmed; Codex 031 (D1) running; RS-040 S0 one-score test running
 - Ahmed 9:30 pm: "Go. Keep track of codex and yours usage ... Opus 5.5 high ... you can research too ... every permission required or necessary if it means to improve Second Sun." Cap 80% weekly. (Safety rules still stand: two keys plus his yes before any outward claim; never click the live Eyes page.)
