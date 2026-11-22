@@ -1,3 +1,7 @@
+## LATEST (22 Nov 2026, 11:02 pm Kuwait): Codex 031c blocked by its own 5-hour meter (88%); relaunch scheduled 2:37 am
+- Codex 031c stopped without changes (AGENTS stop-near-80%); merged 94555967 (fence CLEAN). Codex 5-hour window resets 2:34 am 23 Nov. Claude cron e63a96f6 relaunches 031c at 2:37 am on branch astra/031d-duration-notch-resume (session-only cron; if this session is gone, relaunch by hand with the same brief).
+- A13 running (task b504zup7y).
+
 ## LATEST (22 Nov 2026, 10:58 pm Kuwait): Codex 031b stopped as briefed; amendment 031c; D1 resumed
 - 031b (merged bdb58e7b, fence clean): 2 of 2,000 new T156 draws (seed 2026112202, G2, 5 to 10 d bin) load no times; 003 had no rule (it raises on empty spans; all 2,000 original draws were fine).
 - Amendment 031c (d6005776), written before any new-bench score: such draws excluded from both B and D1 (new T156 = 1,998 draws); same rule for the new fresh bench if met. Codex 031c launched 10:57 pm (task b16faff6p, branch astra/031c-duration-notch-resume).
