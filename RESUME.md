@@ -1,3 +1,12 @@
+## LATEST (22 Nov 2026, 11:24 pm Kuwait): A13 NO; TGLC pilot NO; W1 windows sized; P re-estimate 51 to 55
+- Ahmed 11:07 pm: keep working on your own, use the usage (do not wait to be told).
+- RS-041 W1: the 316 T156 outside-window dips: 61 true gaps, 125 quality-masked (stray light; 025 failed under B), 44 trim-only (ramp zone), 18 majority-window; agrees with Fable F2. Idea filed: stray light under the notch.
+- RS-040 A13: notch with box fallback loses 1.7 at equal alarms (gap-side alarms). NO.
+- RS-042: T1 QLP 94+ (QLP's own TGLC) looks 0.8 x noise; T2 same-star pilot: MAST TGLC for old sectors 0.97 x our QLP (n 13) = not a lever now. Download: 30 files, 1.6 MB, data\tglc_pilot (downloads.csv).
+- P re-estimate (research/stage3/rs041/P75-REESTIMATE-2026-11-22.md): known levers give P about 51 to 55; RS-039 stop-or-rethink rule likely applies after D1 (fork for Ahmed: expensive levers vs Census with the best tool).
+- Claude weekly 41% (cap 80%). Codex 031c relaunch at 2:37 am (cron e63a96f6).
+- Next: prepare Claude's independent D1 recount script; D1 verdict when the bench ends.
+
 ## LATEST (22 Nov 2026, 11:02 pm Kuwait): Codex 031c blocked by its own 5-hour meter (88%); relaunch scheduled 2:37 am
 - Codex 031c stopped without changes (AGENTS stop-near-80%); merged 94555967 (fence CLEAN). Codex 5-hour window resets 2:34 am 23 Nov. Claude cron e63a96f6 relaunches 031c at 2:37 am on branch astra/031d-duration-notch-resume (session-only cron; if this session is gone, relaunch by hand with the same brief).
 - A13 running (task b504zup7y).
