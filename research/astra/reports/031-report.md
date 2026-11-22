@@ -1,4 +1,31 @@
-﻿**Plain verdict: 2 new draws have empty raw spans. BLOCKED: the original bench has no replacement rule, so 031b requires stopping.**
+**Plain verdict: BLOCKED in 031c by the usage stop. The exclusion is authorized but has not been implemented or run.**
+
+## 031c checkpoint, 22 November 2026, 22:58 Kuwait
+
+Codex, runtime model and effort unverified. Branch confirmed: `astra/031c-duration-notch-resume`. Tree nodes 1.3, 1.5 and 1.6. No git writes, branch switches or commits.
+
+**CONFIRMED: authority is resolved.** Brief `031c-duration-notch-resume.md` supersedes the policy blocker in the historical 031b report below. It authorizes excluding empty selected-product draws from B, N1 and D1 in the records step and reporting exclusions by campaign and bin. Its expected new T156 population is 1,998, an authorized target count, not a newly measured completed-record count.
+
+**CONFIRMED: usage prevents continuation.** The first observed current-session meter was 88% five-hour and 14% weekly, after initial reads. AGENTS.md section 7 requires stopping near 80% five-hour. The meter's reset timestamp converts to **23 November 2026, 02:34:14 Kuwait**. No source edit, source-lock update or supervisor restart was made. This is a usage stop, not a scientific failure or a request for another sampling rule.
+
+**CONFIRMED: checkpoint inspection.** `progress.json` reports the prior failed records stage. The G3 records completion marker and earlier checks remain present. No data file or marker was changed. Read-only SHA256 checks returned:
+
+| File | Old and current SHA256, unchanged |
+|---|---|
+| `031_records.py` | `1fbe3918b1608816ce76bff51ab4607dd40d7948cf3e29ba6adb13b7df9254b0` |
+| `run-source-hashes.json` | `e6b201917023d674f44a1d78b1d8156fafdd81888e00dea9d35912d1f39c66de` |
+
+Hash equality establishes unchanged bytes for these two files only. It is not semantic verification or independent review. Keeping completed markers lets the supervisor skip completed phases when it resumes.
+
+**NOT TESTED in 031c:** exclusion implementation, new records totals, fresh-bench exclusions, resumed scoring, rules (a) to (g), duration bands, holding flags, per-crossing rates and choosing-bench unscored-notch counts. No runtime tests ran. Earlier evidence below remains historical. The earlier queue proposal for an authorized rule is resolved by 031c. No new queue proposals, ideas, disagreements or questions for Ahmed.
+
+Usage: predicted 2 five-hour / 1 weekly points for this safe checkpoint from the first observed 88% / 14%; close-out observation is in USAGE.md. Lesson: inspect the meter before implementation files.
+
+Next: Claude relaunches brief 031c after the five-hour reset to implement and test the authorized exclusion and resume the bench; Claude required, continuation usage unmeasured.
+
+## Historical 031b report, policy blocker superseded by 031c
+
+**Plain verdict: 2 new draws have empty raw spans. BLOCKED: the original bench has no replacement rule, so 031b requires stopping.**
 
 # 031 duration-aware notch D1, continuation report
 
