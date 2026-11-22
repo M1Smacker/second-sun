@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T21:56",
+ "generated": "2026-11-22T23:25",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -22,7 +22,7 @@
    "title": "repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, stage3_core.py 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags)"
   }
  },
- "now": "22 Nov 2026, 9:49 pm: back at work, cap 80%. Codex is running D1: the notch for short dips, the old score for long ones, judged on brand-new test planets. Claude tested one learned score for held planets: no (gains 0.5, unfair). Goal stays P 75, Petrova 2.0.",
+ "now": "22 Nov 2026, 11:28 pm: Codex restarts the D1 test at 2:37 am (its limit). Tonight: the notch's real gain is about 3 in 100, not 8 (a counting slip of 18 Nov), and four more ideas did not help. Honest estimate: 51 to 55, not 75. Next: D1 verdict, then a choice for Ahmed.",
  "nodes": [
   {
    "id": "1",
@@ -112,17 +112,17 @@
    "status_text": "NEXT (first after Codex's report).",
    "detail": "Loss: 53 of 222 Saturn-like; 158 of 439 strong (6,000 ppm or more). The biggest and most fixable.",
    "history": [
-    "l:16",
-    "l:24",
-    "l:15",
-    "l:25",
+    "l:22",
+    "l:30",
+    "l:21",
+    "l:31",
     "d:2026-11-14-2125-fix91-92-bench",
     "d:2026-11-14-1933-twin-transit-rejected",
     "d:2026-11-14-1637-known-planets-oae",
-    "l:51",
-    "l:52",
-    "l:53",
-    "l:54"
+    "l:57",
+    "l:58",
+    "l:59",
+    "l:60"
    ]
   },
   {
@@ -142,10 +142,12 @@
    "status_text": "NEXT (second).",
    "detail": "Loss: 45 + 7 of 222.",
    "history": [
+    "l:6",
+    "l:7",
+    "l:25",
     "l:19",
-    "l:13",
-    "l:20",
-    "l:55"
+    "l:26",
+    "l:61"
    ]
   },
   {
@@ -165,7 +167,8 @@
    "status_text": "ACTIVE. c1a (shorter detrending) TESTED at tier level on 17 Nov 2026 and FAILED (Codex 027): the detector finds more injected single dips (863 to 986 of 2,000) but fewer pass tier 1 (499 to 437), on both arms alike, and untouched upside-down alarms rise 79 to 111. Which flag holds the extra dips is NOT attributed; the too-faint pool is still open.",
    "detail": "Loss: 41 of 222 (570 of 2,000 over all depths, mostly shallow); Fable X4: the too-faint pool (22 points of P) is mostly slow wiggles left by the 2-day detrending.",
    "history": [
-    "l:18"
+    "l:9",
+    "l:24"
    ]
   },
   {
@@ -186,14 +189,14 @@
    "detail": "Loss: 15 of 222 on T156; planet bench: up to about 64 of 408 never-found planets (RS-025). FIX 24 G2 ephemeris for the eclipse flags; FIX 94 timing padding blanks light curves.",
    "history": [
     "d:2026-11-15-0002-codex-014-part2",
-    "l:15",
+    "l:21",
     "d:2026-11-14-2127-codex-012-and-rs030",
     "d:2026-11-14-1904-codex-011-and-rs027",
     "d:2026-11-14-1635-codex-011-brief",
     "d:2026-11-14-1635-fix94-decision-rule",
     "d:2026-11-14-1530-codex-010-mask-timing",
-    "l:33",
-    "l:55"
+    "l:39",
+    "l:61"
    ]
   },
   {
@@ -210,10 +213,10 @@
    "status_text": "NEXT after 1.1.",
    "detail": "R 0.13 (6 of 48). Codex 003: the loss is BEFORE detection (19 of 48 give no event, 40%, against 13% in other bins); flags are not the cause (6 of 48). Binary variability or residual structure upsetting the detrending is LIKELY, not shown. T161 diagnosis (build queue).",
    "history": [
-    "l:24",
-    "l:14",
-    "l:25",
-    "l:55"
+    "l:30",
+    "l:20",
+    "l:31",
+    "l:61"
    ]
   },
   {
@@ -232,7 +235,7 @@
    "history": [
     "d:2026-11-15-0139-fix96-radius-check",
     "d:2026-11-15-0137-codex014-part3-key",
-    "l:15",
+    "l:21",
     "d:2026-11-14-2347-codex-014-part1",
     "d:2026-11-14-2333-rs033-pointing",
     "d:2026-11-14-2329-t35-box",
@@ -247,10 +250,10 @@
     "d:2026-11-14-1939-moment-flag-rejected",
     "d:2026-11-14-1922-too-deep-guard",
     "d:2026-11-14-1920-sector4-pointing-shift",
-    "l:38",
-    "l:39",
-    "l:51",
-    "l:52"
+    "l:44",
+    "l:45",
+    "l:57",
+    "l:58"
    ]
   },
   {
@@ -297,7 +300,7 @@
    "status_text": "WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.",
    "detail": "T37b (a fresh-set test) folds into this.",
    "history": [
-    "l:55"
+    "l:61"
    ]
   },
   {
@@ -364,10 +367,10 @@
    "detail": "FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T165 the G1 runner (not built: waits for the Petrova 1.1 freeze and the G1 preregistration; pins the G1 manifest hash for FIX 70); T130 number-to-file audit; T52 settings read from the run.",
    "history": [
     "d:2026-11-15-0008-fix83-test-runner",
-    "l:29",
+    "l:35",
     "d:2026-11-14-2309-t130-map",
     "d:2026-11-14-2308-t52-run-inputs",
-    "l:53"
+    "l:59"
    ]
   },
   {
@@ -384,7 +387,7 @@
    "status_text": "PARKED until a lead exists.",
    "detail": "FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven: after 26 Nov 2026 Claude checks the Sector 110 result and tells Ahmed plainly either way; note his candidate is a single-star planet, not circumbinary). T162 exploratory lane for sub-bar events (IDEA, RS-023; PARKED until after G1, then decided with a rule written first, Ahmed agreed 14 Nov).",
    "history": [
-    "l:56"
+    "l:62"
    ]
   },
   {
@@ -401,8 +404,8 @@
    "status_text": "PARKED.",
    "detail": "T108 playbook; T149 is our upside-down result new.",
    "history": [
-    "l:9",
-    "l:10"
+    "l:15",
+    "l:16"
    ]
   },
   {
@@ -422,19 +425,19 @@
     "d:2026-11-15-0635-twinlight-factcheck",
     "d:2026-11-15-0429-twinlight-app",
     "d:2026-11-15-0415-rs035-how-to-teach",
-    "l:8",
-    "l:9",
-    "l:10",
-    "l:11",
-    "l:12",
-    "l:29",
-    "l:31",
+    "l:14",
+    "l:15",
+    "l:16",
+    "l:17",
+    "l:18",
+    "l:35",
+    "l:37",
     "d:2026-11-14-1935-book-2117",
     "d:2026-11-14-1634-fable-brief",
     "d:2026-11-14-1615-star-data-not-private",
     "d:2026-11-14-1605-drop-box-idea",
-    "l:26",
-    "l:27"
+    "l:32",
+    "l:33"
    ]
   },
   {
@@ -481,13 +484,76 @@
    "status_text": "PARKED.",
    "detail": "T59d, T59e, T59g, T110.",
    "history": [
-    "l:32"
+    "l:38"
    ]
   }
  ],
  "leaves": [
   {
-   "id": "l:16",
+   "id": "l:6",
+   "kind": "log",
+   "type": "research",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Research: 61 in true gaps, 125 dropped by quality bits (stray light; 025 failed under B), 44 only trimmed (ramp zone), 18 majority-window (F2 lever).",
+   "why": "",
+   "explanation": "",
+   "technical": "61 in true gaps, 125 dropped by quality bits (stray light; 025 failed under B), 44 only trimmed (ramp zone), 18 majority-window (F2 lever). Agrees with Fable F2. research/stage3/rs041/W1-RESULT-2026-11-22.md.",
+   "ids": [
+    "RS-041 W1: the 316 T156 dips outside the windows"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:7",
+   "kind": "log",
+   "type": "note",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Note: 025 failed admitting bit 4096 under the box score; the notch makes about a quarter of its upside-down alarms.",
+   "why": "",
+   "explanation": "",
+   "technical": "025 failed admitting bit 4096 under the box score; the notch makes about a quarter of its upside-down alarms. About 1 point of P at most; waits behind D1 and A13.",
+   "ids": [
+    "Idea: stray-light cadences under the notch"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:9",
+   "kind": "log",
+   "type": "research",
+   "node": "1.3",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Research: QLP from Sector 94 (its own TGLC) looks 0.8 x the noise (T1, LIKELY, star mix possible), but the MAST TGLC light for older sectors is NOT quieter than our QLP on the same star-sectors (T2: 0.97, n 13).",
+   "why": "",
+   "explanation": "",
+   "technical": "QLP from Sector 94 (its own TGLC) looks 0.8 x the noise (T1, LIKELY, star mix possible), but the MAST TGLC light for older sectors is NOT quieter than our QLP on the same star-sectors (T2: 0.97, n 13). Not a lever now; waits for QLP's announced full reprocessing. research/stage3/rs042/T1-RESULT-2026-11-22.md.",
+   "ids": [
+    "RS-042 T1 and T2: better photometry"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:22",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -508,7 +574,7 @@
    "label": null
   },
   {
-   "id": "l:18",
+   "id": "l:24",
    "kind": "log",
    "type": "codex job",
    "node": "1.3",
@@ -529,7 +595,7 @@
    "label": null
   },
   {
-   "id": "l:19",
+   "id": "l:25",
    "kind": "log",
    "type": "codex job",
    "node": "1.2",
@@ -550,7 +616,7 @@
    "label": null
   },
   {
-   "id": "l:24",
+   "id": "l:30",
    "kind": "log",
    "type": "note",
    "node": "1.1",
@@ -854,7 +920,7 @@
    "superseded": false
   },
   {
-   "id": "l:8",
+   "id": "l:14",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -875,7 +941,7 @@
    "label": null
   },
   {
-   "id": "l:9",
+   "id": "l:15",
    "kind": "log",
    "type": "build",
    "node": "4.1",
@@ -898,7 +964,7 @@
    "label": null
   },
   {
-   "id": "l:10",
+   "id": "l:16",
    "kind": "log",
    "type": "build",
    "node": "4.1",
@@ -921,7 +987,7 @@
    "label": null
   },
   {
-   "id": "l:11",
+   "id": "l:17",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -942,7 +1008,7 @@
    "label": null
   },
   {
-   "id": "l:12",
+   "id": "l:18",
    "kind": "log",
    "type": "research",
    "node": "4.1",
@@ -963,7 +1029,7 @@
    "label": null
   },
   {
-   "id": "l:13",
+   "id": "l:19",
    "kind": "log",
    "type": "codex job",
    "node": "1.2",
@@ -984,7 +1050,7 @@
    "label": null
   },
   {
-   "id": "l:14",
+   "id": "l:20",
    "kind": "log",
    "type": "codex job",
    "node": "1.5",
@@ -1005,7 +1071,7 @@
    "label": null
   },
   {
-   "id": "l:15",
+   "id": "l:21",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -1029,7 +1095,7 @@
    "label": null
   },
   {
-   "id": "l:20",
+   "id": "l:26",
    "kind": "log",
    "type": "fix",
    "node": "1.2",
@@ -1050,7 +1116,7 @@
    "label": null
   },
   {
-   "id": "l:25",
+   "id": "l:31",
    "kind": "log",
    "type": "note",
    "node": "1.1",
@@ -1073,7 +1139,7 @@
    "label": null
   },
   {
-   "id": "l:29",
+   "id": "l:35",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -1096,7 +1162,7 @@
    "label": null
   },
   {
-   "id": "l:31",
+   "id": "l:37",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -1117,7 +1183,7 @@
    "label": null
   },
   {
-   "id": "l:32",
+   "id": "l:38",
    "kind": "log",
    "type": "codex job",
    "node": "4.4",
@@ -2140,7 +2206,7 @@
    "superseded": true
   },
   {
-   "id": "l:33",
+   "id": "l:39",
    "kind": "log",
    "type": "research",
    "node": "1.4",
@@ -2161,7 +2227,7 @@
    "label": null
   },
   {
-   "id": "l:38",
+   "id": "l:44",
    "kind": "log",
    "type": "build",
    "node": "1.6",
@@ -2182,7 +2248,7 @@
    "label": null
   },
   {
-   "id": "l:39",
+   "id": "l:45",
    "kind": "log",
    "type": "build",
    "node": "1.6",
@@ -2203,7 +2269,7 @@
    "label": null
   },
   {
-   "id": "l:51",
+   "id": "l:57",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -2226,7 +2292,7 @@
    "label": null
   },
   {
-   "id": "l:52",
+   "id": "l:58",
    "kind": "log",
    "type": "research",
    "node": "1.1",
@@ -2249,7 +2315,7 @@
    "label": null
   },
   {
-   "id": "l:53",
+   "id": "l:59",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -2272,7 +2338,7 @@
    "label": null
   },
   {
-   "id": "l:54",
+   "id": "l:60",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -2293,7 +2359,7 @@
    "label": null
   },
   {
-   "id": "l:55",
+   "id": "l:61",
    "kind": "log",
    "type": "codex job",
    "node": "1.2",
@@ -2318,7 +2384,7 @@
    "label": null
   },
   {
-   "id": "l:56",
+   "id": "l:62",
    "kind": "log",
    "type": "research",
    "node": "3.3",
@@ -2339,7 +2405,7 @@
    "label": null
   },
   {
-   "id": "l:26",
+   "id": "l:32",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -2360,7 +2426,7 @@
    "label": null
   },
   {
-   "id": "l:27",
+   "id": "l:33",
    "kind": "log",
    "type": "build",
    "node": "4.1",
@@ -2461,21 +2527,21 @@
    "date": "2026-11-13",
    "diary": null,
    "leaves": [
-    "l:56"
+    "l:62"
    ]
   },
   {
    "date": "2026-11-14",
    "diary": "field-notes/2026-11-14/",
    "leaves": [
-    "l:33",
-    "l:38",
     "l:39",
-    "l:51",
-    "l:52",
-    "l:53",
-    "l:54",
-    "l:55",
+    "l:44",
+    "l:45",
+    "l:57",
+    "l:58",
+    "l:59",
+    "l:60",
+    "l:61",
     "d:2026-11-14-1530-codex-010-mask-timing",
     "d:2026-11-14-1605-drop-box-idea",
     "d:2026-11-14-1615-star-data-not-private",
@@ -2511,19 +2577,19 @@
    "date": "2026-11-15",
    "diary": null,
    "leaves": [
-    "l:8",
-    "l:9",
-    "l:10",
-    "l:11",
-    "l:12",
-    "l:13",
     "l:14",
     "l:15",
+    "l:16",
+    "l:17",
+    "l:18",
+    "l:19",
     "l:20",
-    "l:25",
-    "l:29",
+    "l:21",
+    "l:26",
     "l:31",
-    "l:32",
+    "l:35",
+    "l:37",
+    "l:38",
     "d:2026-11-15-0002-codex-014-part2",
     "d:2026-11-15-0008-fix83-test-runner",
     "d:2026-11-15-0013-fix84-closed",
@@ -2538,16 +2604,16 @@
    "date": "2026-11-16",
    "diary": null,
    "leaves": [
-    "l:19",
-    "l:24"
+    "l:25",
+    "l:30"
    ]
   },
   {
    "date": "2026-11-17",
    "diary": null,
    "leaves": [
-    "l:16",
-    "l:18"
+    "l:22",
+    "l:24"
    ]
   },
   {
@@ -2558,7 +2624,11 @@
   {
    "date": "2026-11-22",
    "diary": "field-notes/2026-11-22/",
-   "leaves": []
+   "leaves": [
+    "l:6",
+    "l:7",
+    "l:9"
+   ]
   }
  ],
  "phases": [
