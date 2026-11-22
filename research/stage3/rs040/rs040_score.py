@@ -32,6 +32,7 @@ def tb(s):
 
 
 def prep(df):
+    # 22 Nov 9:47 pm: first run crashed before any result (5 background events carry snr = inf); snr capped at 1e4, nothing else changed
     df = df.copy()
     for c in SOFT + HARD:
         df[c] = tb(df[c]) if c in df else False
@@ -39,7 +40,7 @@ def prep(df):
     soft_only = (df.tier.astype(str) == "2") & ~hard
     df["eligible"] = df.tier.astype(str).isin(T1) | soft_only
     lift = lambda c: pd.to_numeric(df[c], errors="coerce").abs().fillna(2).clip(upper=2)
-    X = pd.DataFrame(dict(lsnr=np.log10(pd.to_numeric(df.snr).clip(lower=1)), ldep=np.log10(pd.to_numeric(df.depth_ppm).abs().clip(lower=10)),
+    X = pd.DataFrame(dict(lsnr=np.log10(pd.to_numeric(df.snr).clip(lower=1, upper=1e4)), ldep=np.log10(pd.to_numeric(df.depth_ppm).abs().clip(lower=10)),
                           dur=pd.to_numeric(df.dur_h), lpre=lift("lift_pre"), lpost=lift("lift_post"),
                           cov=np.minimum(pd.to_numeric(df.cover_pre, errors="coerce").fillna(0), pd.to_numeric(df.cover_post, errors="coerce").fillna(0)),
                           ramp=pd.to_numeric(df.ramp_d, errors="coerce").fillna(3).clip(upper=3),
