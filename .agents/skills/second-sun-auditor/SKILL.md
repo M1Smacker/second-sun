@@ -110,3 +110,4 @@ Any model may ADD a lesson when a new mistake is caught: one line in section 6 o
 
 - (10 Nov 2026, Fable audit ledger) Never resume a large session after a long pause: re-reading a 400K context uncached cost about 4 weekly points before any work. Save state to a file, start a fresh session, read the state file.
 - (14 Nov 2026, Codex 013 fence check) Spacecraft-wide quantities (momentum dump times, QUALITY bits) are still read from a DESIGN star's file, never a fence A or B star's: opening a fenced file is a fence breach even when nothing is searched. `research/stage3/t109/t109_tic172900988_tier.py` did it once; fixed the same night (same 29 dump times).
+- (22 Nov 2026, RS-040 A12) `data\` is gitignored: a preregistered script saved there is NOT time-stamped by a commit. Keep preregistered scripts under `research\` (or commit a copy there) BEFORE launching the run.
