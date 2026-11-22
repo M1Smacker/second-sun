@@ -72,3 +72,4 @@ abtsevich_zenodo | zenodo.org | RS-007 research; each logged in research/downloa
 | 2026-11-22 22:49 | Claude | Codex 031 bench stopped 22:45 (empty raw span in new T156 draw); part 1 merged; Codex 031b relaunched (task bg5yzw6ni); Claude A13 running (task b504zup7y) | running |
 | 2026-11-22 22:57 | Claude | Codex 031b stopped as briefed (2 empty-span new T156 draws, G2, no 003 rule); merged bdb58e7b; amendment 031c (exclude from both sides, written before any new-bench score) d6005776; Codex 031c launched (task b16faff6p) | running |
 | 2026-11-22 23:02 | Claude | Codex 031c blocked (Codex 5-hour 88%); relaunch cron e63a96f6 at 02:37 23 Nov | waiting |
+| 2026-11-23 02:37 | Claude | Codex 031c relaunched by cron after the 02:34 5-hour reset (prior reading 95% was pre-reset; weekly 15%); branch astra/031d-duration-notch-resume, task be00y1694, log data\astra\031\exec-1.log | running |

@@ -1,3 +1,9 @@
+## LATEST (23 Nov 2026, 2:37 am Kuwait): Codex D1 bench relaunched
+- Cron e63a96f6 fired; Codex 5-hour window reset 2:34 am (last reading 95% was pre-reset), weekly 15%. Worktree clean, no lock.
+- Running: codex_run.py 031 with brief 031c on branch astra/031d-duration-notch-resume (task be00y1694, log data\astra\031\exec-1.log, up to 12 h).
+- When it ends: fence_check, merge, research/stage3/rs040/recount_031.py (first key), plain verdict, Tree Now line, field note, publish.
+- Waiting: Ahmed's fork answer (Census with Gaia DR4 vs keep chasing 75); D2 waits for the D1 verdict.
+
 ## LATEST (22 Nov 2026, 11:57 pm Kuwait): A14 window rules: majority NO; one-neighbour a small lead likely blocked by rule (e)
 - research/stage3/rs040/A14-RESULT-2026-11-22.md. QLP real/upside-down alarm ratio about 11 at the notch's threshold.
 - Waiting: D1 relaunch 2:37 am; Ahmed's fork answer.
