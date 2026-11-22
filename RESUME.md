@@ -1,7 +1,7 @@
 ## LATEST (22 Nov 2026, 11:27 pm Kuwait): RS-043 Gaia DR4; fork question put to Ahmed
 - RS-043: Gaia DR4 still 2 Dec 2026 (ESA release page); vari_eclipsing_binary about 2.39M EBs with periods (419 MB) = the post-Sector-26 EB list Census lacked; may also sharpen mask ephemerides. research/stage3/rs043/.
 - Question to Ahmed (11:25 pm): after D1, freeze the best tool and go to Census with Gaia DR4 (Claude's lean), or keep chasing 75 with expensive levers first. Waits for his answer.
-- Running: Book 3.9.1 publish and live check (task bkizaes07); Codex 031c relaunch cron at 2:37 am.
+- Book 3.9.1 published and confirmed live 11:49 pm. Codex 031c relaunch cron at 2:37 am.
 
 ## LATEST (22 Nov 2026, 11:24 pm Kuwait): A13 NO; TGLC pilot NO; W1 windows sized; P re-estimate 51 to 55
 - Ahmed 11:07 pm: keep working on your own, use the usage (do not wait to be told).
