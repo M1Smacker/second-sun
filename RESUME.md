@@ -1,3 +1,6 @@
+## LATEST (23 Nov 2026, 2:42 am Kuwait): FIX 80 failure log
+- publish_book.ps1 now keeps every failed browser-test attempt in full in research/burn-3-book/browser-test-failures.log (there was no publish log, and the 700-character printout could cut the worst-note dump). Parse check 0 errors, append tested on a fake failure. FIX 80 stays open until a real failure is logged.
+
 ## LATEST (23 Nov 2026, 2:37 am Kuwait): Codex D1 bench relaunched
 - Cron e63a96f6 fired; Codex 5-hour window reset 2:34 am (last reading 95% was pre-reset), weekly 15%. Worktree clean, no lock.
 - Running: codex_run.py 031 with brief 031c on branch astra/031d-duration-notch-resume (task be00y1694, log data\astra\031\exec-1.log, up to 12 h).

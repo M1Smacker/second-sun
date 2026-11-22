@@ -128,7 +128,11 @@ if ($Test) {
             $ok = $false
             for ($try = 1; $try -le 2 -and -not $ok; $try++) {
                 $o = (& node "$tools\site_check.mjs" $m "http://127.0.0.1:8490/" "--site=$build" 2>&1 | Out-String)
-                if ($LASTEXITCODE -eq 0) { $ok = $true } else { Write-Host "$m attempt $try FAILED: $($o.Substring(0, [Math]::Min(700, $o.Length)))" -ForegroundColor Yellow }
+                if ($LASTEXITCODE -eq 0) { $ok = $true } else {
+                    Write-Host "$m attempt $try FAILED: $($o.Substring(0, [Math]::Min(700, $o.Length)))" -ForegroundColor Yellow
+                    # FIX 80 (23 Nov 2026): the full failure text (with the worst-note dump) is kept on disk, since no publish log existed.
+                    [IO.File]::AppendAllText("$PSScriptRoot\..\browser-test-failures.log", "=== $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') $m attempt $try`n$o`n", (New-Object Text.UTF8Encoding $false))
+                }
             }
             if (-not $ok) { throw "browser test '$m' failed twice. Refusing to publish." }
             Write-Host "$m : pass$(if ($try -gt 2) { ' (after a retry)' } elseif ($try -eq 3) { '' })"
