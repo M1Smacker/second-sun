@@ -2,7 +2,7 @@ site_name: Second Sun
 site_description: A beginner's hunt for planets in public NASA TESS data.
 # ASSUMPTION: repo name "second-sun" under M1Smacker. Change if the repo is named differently.
 site_url: https://m1smacker.github.io/second-sun/
-copyright: Book 3.8.2 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+copyright: Book 3.9.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
 
 theme:
   name: material
@@ -55,6 +55,7 @@ nav:
       - "Diary":
           - field-notes/index.md
           - "18 Nov 2026": field-notes/2026-11-18.md
+          - "22 Nov 2026": field-notes/2026-11-22.md
           - "14 Nov 2026": field-notes/2026-11-14.md
           - "11 Nov 2026": field-notes/2026-11-11.md
           - "10 Nov 2026": field-notes/2026-11-10.md

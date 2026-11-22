@@ -1,4 +1,4 @@
-﻿# The Tree: everything Second Sun is doing, in one map
+# The Tree: everything Second Sun is doing, in one map
 
 **Started 13 Nov 2026 (Ahmed's decision, question round after the T156 result).** Every bug, fix, study, build and idea hangs under exactly ONE node here. The fix and build queues are storage, grouped by these same node numbers. **Nothing is filed without a node**, and `research/tree/tree_check.py` fails if an item has no place. Only the ACTIVE path is worked on; NEXT waits its turn; WAITS names what it waits for; PARKED sleeps until a node above wakes it.
 

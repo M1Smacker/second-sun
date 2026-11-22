@@ -1,4 +1,4 @@
-﻿# Research sessions: numbered, one line each (started 3 Nov 2026)
+# Research sessions: numbered, one line each (started 3 Nov 2026)
 
 Why: Ahmed asked (3 Nov 2026) that every research stint gets a number and a short summary of what was searched, so it is easy to find and to plan the open questions. Method: `research/RESEARCH-BLUEPRINT.md` (applies automatically). Usage costs also go in `research/usage-ledger.md`.
 

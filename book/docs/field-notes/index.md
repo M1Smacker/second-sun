@@ -25,4 +25,5 @@ Each note has the same parts: **in plain words** · **what we did and why** · *
 | [10 November 2026](2026-11-10.md) | Our eclipse mask was deleting planets and our tests could not see it: what the audit found, how we measured it, and what every floor number in the book now means |
 | [11 November 2026](2026-11-11.md) | We searched the hidden light again, found nothing, and learned how to read a null |
 | [14 November 2026](2026-11-14.md) | The spacecraft's own hiccups make fake dips, and a fairness check that only sees bumps cannot catch them |
+| [22 November 2026](2026-11-22.md) | Back to work: one learned score for held-back planets does not help; the work moves to fainter dips |
 | [18 November 2026](2026-11-18.md) | Second Sun pauses, then restarts the same morning: what our empty searches mean, and a fairer dip score that catches more test planets |
