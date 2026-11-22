@@ -1,6 +1,6 @@
 """Prepare fixed old/new draw journals and raw-time observability, before search."""
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict
 import importlib
 import json
 import os
@@ -97,6 +97,7 @@ def main(campaign):
     newfresh = [fresh_record(r) for r in fresh['trials'] if r['campaign']==campaign]
     t156 = json.loads((H.OUT/'T156-new/design.json').read_text(encoding='utf-8'))
     newt156 = []
+    excluded = Counter()
     for r in t156['trials']:
         if r['campaign'] != campaign:
             continue
@@ -106,7 +107,11 @@ def main(campaign):
         product = bestmap.get((star,sec))
         m = next((m for m in primary['meta'] if m.get('product')==product),primary['meta'][0])
         t = times(star,m)
-        assert len(t), 'Empty raw span in new T156 draw'
+        # Amendment 031c: exclude the same empty selected product for every recipe.
+        if not len(t):
+            excluded[r['bin']] += 1
+            raw.clear()
+            continue
         center = float(t.min()+r['phase_fraction']*(t.max()-t.min()))
         cameras = {e['camera'] for _,g in groups[star,sec] for e in g['events']}
         cameras.update(m['camera'] for m in primary['meta'] if 'camera' in m)
@@ -125,6 +130,10 @@ def main(campaign):
         assert rows and len(rows)==len({r['trial'] for r in rows})
         (H.OUT/'records'/f'{phase}-{campaign}.json').write_text(json.dumps(rows),encoding='utf-8')
         counts[phase] = dict(total=len(rows),observable=sum(bool(r.get('observed')) for r in rows) if not phase.startswith('T156') else len(rows))
+    counts['T156_new']['empty_span_excluded_by_bin'] = [excluded[b] for b in range(5)]
+    # Fresh draws with no loaded times already have observed=[] and are omitted
+    # by layout, generation and scoring, just like any other unobserved planet.
+    counts['fresh_new']['unobserved_excluded_by_bin'] = [sum(r['bin']==b and not r['observed'] for r in newfresh) for b in range(5)]
     (H.OUT/'records'/f'{campaign}-complete.json').write_text(json.dumps(counts,indent=2),encoding='utf-8')
     print(campaign,json.dumps(counts),flush=True)
 
