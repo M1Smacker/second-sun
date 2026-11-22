@@ -55,3 +55,7 @@ None.
 Predicted 60 five-hour points / 10 weekly points. Initial meter 1% / 0%; latest observed at 21:51 Kuwait 53% / 8%, approximately +52 five-hour and +8 weekly points. Weekly actual/predicted ratio about 0.8 at handoff. Account-wide rounded values. Lesson: duration routing must also select the diagnostic detrend, not only the detection score.
 
 Next: Codex resumes after terminal completion or failure to review the saved outcome; no polling while healthy, expected small review usage but unmeasured, Ahmed or Claude must trigger the continuation.
+
+## Automatic terminal checkpoint
+
+PARTIAL: supervisor stopped in fixed draw observability and historical replay validation. 031_records-g2 failed; private terminal log available. No settings changed. See private progress.json and the named terminal log before any resume.
