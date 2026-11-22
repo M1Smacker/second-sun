@@ -1,3 +1,9 @@
+## LATEST (22 Nov 2026, 10:58 pm Kuwait): Codex 031b stopped as briefed; amendment 031c; D1 resumed
+- 031b (merged bdb58e7b, fence clean): 2 of 2,000 new T156 draws (seed 2026112202, G2, 5 to 10 d bin) load no times; 003 had no rule (it raises on empty spans; all 2,000 original draws were fine).
+- Amendment 031c (d6005776), written before any new-bench score: such draws excluded from both B and D1 (new T156 = 1,998 draws); same rule for the new fresh bench if met. Codex 031c launched 10:57 pm (task b16faff6p, branch astra/031c-duration-notch-resume).
+- A13 still running (task b504zup7y).
+- Next: A13 summary; D1 verdict when the bench ends (likely many hours), then recount, merge, verdict to Ahmed.
+
 ## LATEST (22 Nov 2026, 10:51 pm Kuwait): A12 no lead + correction to RS-039; A13 running; Codex 031 stopped on a setup assert, merged part 1, relaunched as 031b
 - A12 (research/stage3/rs040/A12-RESULT-2026-11-22.md): 3 x box window ties or loses to the notch at equal alarms. CORRECTION: RS-039's notch +7.7 counted only scorable crossings; over all crossings +2.9 (110 of 1,427 have no notch score, mostly next to gaps). RS-039 file marked superseded in part.
 - A13 running (task b504zup7y, rules committed first): notch with fallback to the box score (minus 2) where the notch has no score.
