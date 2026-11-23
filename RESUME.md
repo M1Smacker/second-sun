@@ -1,3 +1,14 @@
+## LATEST (23 Nov 2026, 11:23 am Kuwait): Ahmed back, angry at the idle night; four jobs running, two lessons, Census check
+- Ahmed 10:43 am: 'Why does build queue needs my go? ... you know what needs to be done.' Rule changed in CLAUDE.md and memory (feedback_never_idle_build_queue_free): the build queue needs no go; spend the cap before each reset.
+- Census C1/C2 (research/stage3/census_gaia/C1-C2-RESULT-2026-11-23.md): Gaia EB rows say WHO not WHEN; DR3 period = TESS for 2.6% of TTC known EBs over 5 d (published ratio), 56% for bright Prsa stars; time convention ref + phase x P, BTJD = ref minus 1802.5. Census ephemerides must come from our own TESS fit.
+- Codex 032 (eclipse times v3, FIX 94; brief research/astra/inbox/032-eclipse-times-v3.md): handed back 11:03 am, Part A running detached on 60 new seed-2026112316 controls (data/astra/032/progress.json, expected about 12:28 pm). Then: fence, merge, run 034 (fact-check lessons) BEFORE launching Part B (a new Codex job off main would delete 032 scripts under running workers until 032 is merged).
+- Codex 033 D2 preregistered (inbox/033-d2-cap-and-budget.md) before any D1 result; launches after the 031 D1 bench ends.
+- D1 bench (031) still running detached (pid 2732), stage fresh_new at 8:50 am.
+- Book 3.10.0 (lesson 3.4 Doppler, 51 Peg Lick RVs: P 4.230799 d, K 55.50 m/s, m sin i 0.462 MJ; FIX 102 plot touch fix, new learn check, mutation red) publishing; 3.11.0 (lesson 4.1 Eclipsing binaries, depths 43.5/35.8%, secondary at 0.6043, exact e cos w 0.149) committed, publish next. Both lessons fact-check pending (Codex 034).
+- Download: 51 Peg Lick RVs 18 KB, data/learn-sources/lick-51peg-rv (downloads.csv).
+- Hourly watchdog cron 50b0d0dc at :17 (session-only).
+- Usage: weekly 48% at 11:22 (cap 80%, reset 1 am Tue); 5-hour 27%, resets 1:50 pm.
+
 ## LATEST (23 Nov 2026, 2:43 am Kuwait): D1 bench running detached; 031d merged
 - Codex 031d (2:37 to 2:41 am) coded the 031c exclusion (empty selected product dropped before records, so B, N1 and D1 lose the same draws; mutation check included), restarted the bench detached (pid 2732, 3 workers, allowance up to 24 h; progress data\astra\031\progress.json), handed back PARTIAL as designed. Fence CLEAN, merged. Codex meter 12% 5-hour, 17% weekly.
 - When progress.json is terminal: recount_031.py first key, read 031-report, plain verdict, Tree, field note, publish.
