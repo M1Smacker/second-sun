@@ -1,3 +1,10 @@
+## LATEST (23 Nov 2026, 12:01 pm Kuwait): SAFE STOP, Ahmed shutting the PC; restart list
+- Ahmed 11:58 am: 'stop everything safely as i wanna shut my pc for some time. ask me questions later when i tell u to ask me.' Direction answer: BOTH IN PARALLEL (Census build by Claude while Codex keeps testing P ideas). Eclipse-v3 question NOT answered: ask only when he says.
+- Stopped: D1 bench 031 (killed 12:00 pm mid 'fresh_new raw paired replay'; data/astra/031 keeps 22 scored files and the generated trials; note STOPPED-BY-CLAUDE-2026-11-23.txt; progress.json left saying running). Book 3.11.0 publish killed before push (live = 3.10.0, confirmed 11:41 am). Preview server and hourly cron 50b0d0dc deleted.
+- Codex 034 (fact-check lessons 3.4, 4.1, 4.2, 4.4): PARTIAL at Codex's 80% 5-hour meter, 5 confirmed issues in research/astra/reports/034-report.md on branch astra/034-factcheck-3-4-4-1 (NOT merged, fence check not run yet).
+- RESTART ORDER: (1) fence_check, merge 034, fix the 5 lesson issues; (2) publish 3.11.0 (publish_book.ps1 -Test) and confirm live; (3) resume the 031 D1 bench via a short Codex brief (continue from checkpoints); (4) 033 D2 after D1; (5) Census pipeline build in parallel (Ahmed: both in parallel); (6) ask the eclipse-v3 Part B question only when Ahmed says to ask.
+- Usage at stop: Claude weekly about 50% (cap 80%, reset Tue 1 am); Codex weekly about 25%.
+
 ## LATEST (23 Nov 2026, 11:44 am Kuwait): 032b FAIL on coverage; 034 fact-check running; 3.10.0 live, 3.11.0 publishing
 - Codex 032b (merged b9e369c1): affected G2 usable 70/90 (needed 72) so Part B barred; usable fits predict the held-out sector 67/70; G3 fresh and seen controls pass all; catalogue agrees with the light on only 8/76 affected tracks. FORK for Ahmed: new prereg Part B with v3 where usable, judged by F1 bench only (Claude leans yes: the F1 bench itself guards against false gain).
 - Codex 034 (fact-check lessons 3.4, 4.1, 4.2, 4.4) launched 11:42 am, branch astra/034-factcheck-3-4-4-1.
