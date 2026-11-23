@@ -1,3 +1,7 @@
+## LATEST (23 Nov 2026, 11:35 am Kuwait): book preview recipe (T55), lesson 4.2, field note
+- Preview: build to scratch (mkdocs build --strict -d), serve with research/burn-3-book/tools/serve.mjs on 8491 (launch.json 'book-static'), run site_check from the scratch folder. Never mkdocs serve in the pane (FIX 69).
+- Lesson 4.2 (separation 0.106 to 0.278 AU; omega 70.6 deg from our eclipse lengths 2.74 h / 7.27 h) and field note 23 Nov committed into 3.11.0 (learn test 1518 checks, 0 fails). 3.10.0 publish running since 11:08.
+
 ## LATEST (23 Nov 2026, 11:23 am Kuwait): Ahmed back, angry at the idle night; four jobs running, two lessons, Census check
 - Ahmed 10:43 am: 'Why does build queue needs my go? ... you know what needs to be done.' Rule changed in CLAUDE.md and memory (feedback_never_idle_build_queue_free): the build queue needs no go; spend the cap before each reset.
 - Census C1/C2 (research/stage3/census_gaia/C1-C2-RESULT-2026-11-23.md): Gaia EB rows say WHO not WHEN; DR3 period = TESS for 2.6% of TTC known EBs over 5 d (published ratio), 56% for bright Prsa stars; time convention ref + phase x P, BTJD = ref minus 1802.5. Census ephemerides must come from our own TESS fit.
