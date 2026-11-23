@@ -30,7 +30,7 @@ units:
       - {file: u4/l1-eclipsing-binaries.md, title: "Eclipsing binaries", minutes: 16}
       - {file: u4/l2-how-two-stars-orbit.md, title: "How two stars orbit each other", minutes: 15}
       - {title: "Measuring stars from their eclipses"}
-      - {title: "Planets around two suns"}
+      - {file: u4/l4-planets-around-two-suns.md, title: "Planets around two suns", minutes: 15}
       - {title: "The stability limit, and why they are rare"}
   - n: 5
     title: The telescope and the data
