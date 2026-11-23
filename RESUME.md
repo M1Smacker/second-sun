@@ -1,3 +1,9 @@
+## LATEST (23 Nov 2026, 11:44 am Kuwait): 032b FAIL on coverage; 034 fact-check running; 3.10.0 live, 3.11.0 publishing
+- Codex 032b (merged b9e369c1): affected G2 usable 70/90 (needed 72) so Part B barred; usable fits predict the held-out sector 67/70; G3 fresh and seen controls pass all; catalogue agrees with the light on only 8/76 affected tracks. FORK for Ahmed: new prereg Part B with v3 where usable, judged by F1 bench only (Claude leans yes: the F1 bench itself guards against false gain).
+- Codex 034 (fact-check lessons 3.4, 4.1, 4.2, 4.4) launched 11:42 am, branch astra/034-factcheck-3-4-4-1.
+- Book 3.10.0 confirmed live 11:41 am (lesson 3.4). 3.11.0 (lessons 4.1, 4.2, 4.4, field note 23 Nov) publishing (task bdn968lse).
+- D1 (031) still running; 033 D2 launches after it.
+
 ## LATEST (23 Nov 2026, 11:35 am Kuwait): book preview recipe (T55), lesson 4.2, field note
 - Preview: build to scratch (mkdocs build --strict -d), serve with research/burn-3-book/tools/serve.mjs on 8491 (launch.json 'book-static'), run site_check from the scratch folder. Never mkdocs serve in the pane (FIX 69).
 - Lesson 4.2 (separation 0.106 to 0.278 AU; omega 70.6 deg from our eclipse lengths 2.74 h / 7.27 h) and field note 23 Nov committed into 3.11.0 (learn test 1518 checks, 0 fails). 3.10.0 publish running since 11:08.
