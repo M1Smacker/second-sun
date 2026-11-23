@@ -19,7 +19,7 @@ Where the 222 Saturn-like test planets stop: found but held below tier 1 **53**,
 Planet level (Codex 006, two keys, 14 Nov): **P = 0.48 (0.44 to 0.52), FIX FIRST** under `research/stage3/G1-PLANET-BAR.md` (GO needs 0.50); no bin under 0.20. Check: `research/stage3/006-check/P-CHECK-2026-11-14.md`.
 
 ## ACTIVE path now
-1. **22 Nov 2026, 11:28 pm: Codex restarts the D1 test at 2:37 am (its limit). Tonight: the notch's real gain is about 3 in 100, not 8 (a counting slip of 18 Nov), and four more ideas did not help. Honest estimate: 51 to 55, not 75. Next: D1 verdict, then a choice for Ahmed.**
+1. **23 Nov 2026, 11:08 am: four jobs at once. D1 test (Codex) on its last part; eclipse timing v3 (Codex 032) measuring 60 new control stars; D2 written down before any D1 result (Codex 033 runs after D1); Gaia binary lists checked: they say which stars, not when they eclipse. New lesson 3.4 Doppler. Next: D1 verdict.**
 2. **Active: Book 3.0 and the learning rebuild (node 4.1).** The Tree page, the learning app and the first lessons; plan `research/stage3/BOOK3-BUILD-PLAN-2026-11-15.md`, decisions `research/stage3/REDESIGN-DECISIONS-2026-11-15.md`.
 
 **Bench so far:** Petrova 1.0.0 R 27.5% [20.7, 33.7]. **Baseline now (repeater rule b plus FIX 91, adopted, not frozen): R 33.3% [25.9, 40.1]**, background real 176, upside-down 83 (Codex 005 part 0, all three gates PASS). **Update 14 Nov 2026, 10:18 pm: adopted set (not frozen) = repeater rule b + FIX 91 + OAE (Codex 009) + known spacecraft events flag FIX 95 (Ahmed's yes, two keys: RS-029, Codex 013). On it: P 48.11%, T156 reference R 34.21%, background 174 real / 79 upside-down. DS held for Fable (frees mostly pre-dump real events the upside-down meter cannot see).**

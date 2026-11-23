@@ -1067,6 +1067,10 @@ async function learnTest() {
         if (lesson.id === "1.1") ok(info.plots.length === 2 && info.plots.every(plot=>plot.points>100), `${width} ${page}: both introductory plots exceed 100 points`);
         if (lesson.id === "1.2") ok(info.plots.length === 1 && info.plots[0].points>100, `${width} ${page}: percent plot exceeds 100 points`);
         if (lesson.id === "1.3") ok(info.plots.length === 2 && info.plots.every(plot=>plot.source === "u1-quiet-day-30" ? plot.points>=48 : plot.points>100), `${width} ${page}: both noise plots retain their point counts`);
+        // FIX 102 (23 Nov 2026): a touch at a quarter and three quarters across each plot must land the crosshair on a point within 4% of
+        // the plot width of the touch. Plots whose x-axis does not start at 0 (spectra) failed this on the old code (486 nm read as 380 nm).
+        info.touch = await b.evaluate(`[...document.querySelectorAll(".tw-plot")].map(box=>{const svg=box.querySelector("svg"),vb=svg.viewBox.baseVal,r=svg.getBoundingClientRect(),L=54,R=12;return [0.25,0.75].map(q=>{const xpx=L+q*(vb.width-L-R);svg.dispatchEvent(new PointerEvent("pointermove",{clientX:r.left+xpx/vb.width*r.width,clientY:r.top+r.height/2,bubbles:true}));return +(Math.abs(+box.querySelector(".tw-plot__cross").getAttribute("x1")-xpx)/(vb.width-L-R)).toFixed(3);});})`);
+        ok(info.touch.flat().every(e => e <= 0.04), `${width} ${page}: touch reads the point under the finger ${JSON.stringify(info.touch)}`);
         info.text = await measure();
         ok(!info.text.small.length && info.text.overflow <= 0, `${width} ${page}: text floor or horizontal overflow`);
         const problems = await b.evaluate('[...document.querySelectorAll(".tw-prob")].map(p=>({answers:p.dataset.answer.split("|"),hints:JSON.parse(p.dataset.hints||"{}") }))');

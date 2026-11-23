@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T15:06",
+ "generated": "2026-11-23T10:56",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -22,7 +22,7 @@
    "title": "repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, stage3_core.py 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags)"
   }
  },
- "now": "15 Nov 2026, 3 pm: Book 3.5.0: the learning course is planned at 47 lessons in 11 units (RS-036) and Unit 2 is complete (new lessons 2.3 to 2.5); 3.4.0 brought the new Tree and sky-blue light mode. The hunt stays paused while Ahmed learns (HUNT-PAUSED.md).",
+ "now": "22 Nov 2026, 11:28 pm: Codex restarts the D1 test at 2:37 am (its limit). Tonight: the notch's real gain is about 3 in 100, not 8 (a counting slip of 18 Nov), and four more ideas did not help. Honest estimate: 51 to 55, not 75. Next: D1 verdict, then a choice for Ahmed.",
  "nodes": [
   {
    "id": "1",
@@ -112,13 +112,17 @@
    "status_text": "NEXT (first after Codex's report).",
    "detail": "Loss: 53 of 222 Saturn-like; 158 of 439 strong (6,000 ppm or more). The biggest and most fixable.",
    "history": [
+    "l:26",
+    "l:34",
+    "l:25",
+    "l:35",
     "d:2026-11-14-2125-fix91-92-bench",
     "d:2026-11-14-1933-twin-transit-rejected",
     "d:2026-11-14-1637-known-planets-oae",
-    "l:30",
-    "l:31",
-    "l:32",
-    "l:33"
+    "l:61",
+    "l:62",
+    "l:63",
+    "l:64"
    ]
   },
   {
@@ -138,7 +142,13 @@
    "status_text": "NEXT (second).",
    "detail": "Loss: 45 + 7 of 222.",
    "history": [
-    "l:34"
+    "l:6",
+    "l:10",
+    "l:11",
+    "l:29",
+    "l:23",
+    "l:30",
+    "l:65"
    ]
   },
   {
@@ -154,10 +164,13 @@
    },
    "lesson": null,
    "weight": 4,
-   "status": "WAITS",
-   "status_text": "WAITS (after 1.1 and 1.5).",
-   "detail": "Loss: 41 of 222 (570 of 2,000 over all depths, mostly shallow).",
-   "history": []
+   "status": "ACTIVE",
+   "status_text": "ACTIVE. c1a (shorter detrending) TESTED at tier level on 17 Nov 2026 and FAILED (Codex 027): the detector finds more injected single dips (863 to 986 of 2,000) but fewer pass tier 1 (499 to 437), on both arms alike, and untouched upside-down alarms rise 79 to 111. Which flag holds the extra dips is NOT attributed; the too-faint pool is still open.",
+   "detail": "Loss: 41 of 222 (570 of 2,000 over all depths, mostly shallow); Fable X4: the too-faint pool (22 points of P) is mostly slow wiggles left by the 2-day detrending.",
+   "history": [
+    "l:13",
+    "l:28"
+   ]
   },
   {
    "id": "1.4",
@@ -176,14 +189,16 @@
    "status_text": "ACTIVE (FIX 94, Codex 010).",
    "detail": "Loss: 15 of 222 on T156; planet bench: up to about 64 of 408 never-found planets (RS-025). FIX 24 G2 ephemeris for the eclipse flags; FIX 94 timing padding blanks light curves.",
    "history": [
+    "l:7",
     "d:2026-11-15-0002-codex-014-part2",
+    "l:25",
     "d:2026-11-14-2127-codex-012-and-rs030",
     "d:2026-11-14-1904-codex-011-and-rs027",
     "d:2026-11-14-1635-codex-011-brief",
     "d:2026-11-14-1635-fix94-decision-rule",
     "d:2026-11-14-1530-codex-010-mask-timing",
-    "l:12",
-    "l:34"
+    "l:43",
+    "l:65"
    ]
   },
   {
@@ -200,7 +215,10 @@
    "status_text": "NEXT after 1.1.",
    "detail": "R 0.13 (6 of 48). Codex 003: the loss is BEFORE detection (19 of 48 give no event, 40%, against 13% in other bins); flags are not the cause (6 of 48). Binary variability or residual structure upsetting the detrending is LIKELY, not shown. T161 diagnosis (build queue).",
    "history": [
-    "l:34"
+    "l:34",
+    "l:24",
+    "l:35",
+    "l:65"
    ]
   },
   {
@@ -219,6 +237,7 @@
    "history": [
     "d:2026-11-15-0139-fix96-radius-check",
     "d:2026-11-15-0137-codex014-part3-key",
+    "l:25",
     "d:2026-11-14-2347-codex-014-part1",
     "d:2026-11-14-2333-rs033-pointing",
     "d:2026-11-14-2329-t35-box",
@@ -233,10 +252,10 @@
     "d:2026-11-14-1939-moment-flag-rejected",
     "d:2026-11-14-1922-too-deep-guard",
     "d:2026-11-14-1920-sector4-pointing-shift",
-    "l:17",
-    "l:18",
-    "l:30",
-    "l:31"
+    "l:48",
+    "l:49",
+    "l:61",
+    "l:62"
    ]
   },
   {
@@ -283,7 +302,7 @@
    "status_text": "WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.",
    "detail": "T37b (a fresh-set test) folds into this.",
    "history": [
-    "l:34"
+    "l:65"
    ]
   },
   {
@@ -350,10 +369,10 @@
    "detail": "FIX 89 amendment times; FIX 83 tests that pass after skip; FIX 85 file encodings; T128 and T142 run record; T165 the G1 runner (not built: waits for the Petrova 1.1 freeze and the G1 preregistration; pins the G1 manifest hash for FIX 70); T130 number-to-file audit; T52 settings read from the run.",
    "history": [
     "d:2026-11-15-0008-fix83-test-runner",
-    "l:8",
+    "l:39",
     "d:2026-11-14-2309-t130-map",
     "d:2026-11-14-2308-t52-run-inputs",
-    "l:32"
+    "l:63"
    ]
   },
   {
@@ -370,7 +389,7 @@
    "status_text": "PARKED until a lead exists.",
    "detail": "FIX 27 eclipse-timing second key; T46 to T49 lead cards; T106 and T141 linkers; T125 to T127 follow-up, second implementation, novelty; T60 Rabtsevich follow-up (date-driven: after 26 Nov 2026 Claude checks the Sector 110 result and tells Ahmed plainly either way; note his candidate is a single-star planet, not circumbinary). T162 exploratory lane for sub-bar events (IDEA, RS-023; PARKED until after G1, then decided with a rule written first, Ahmed agreed 14 Nov).",
    "history": [
-    "l:35"
+    "l:66"
    ]
   },
   {
@@ -387,8 +406,8 @@
    "status_text": "PARKED.",
    "detail": "T108 playbook; T149 is our upside-down result new.",
    "history": [
-    "l:1",
-    "l:2"
+    "l:19",
+    "l:20"
    ]
   },
   {
@@ -408,19 +427,19 @@
     "d:2026-11-15-0635-twinlight-factcheck",
     "d:2026-11-15-0429-twinlight-app",
     "d:2026-11-15-0415-rs035-how-to-teach",
-    "l:0",
-    "l:1",
-    "l:2",
-    "l:3",
-    "l:4",
-    "l:8",
-    "l:10",
+    "l:18",
+    "l:19",
+    "l:20",
+    "l:21",
+    "l:22",
+    "l:39",
+    "l:41",
     "d:2026-11-14-1935-book-2117",
     "d:2026-11-14-1634-fable-brief",
     "d:2026-11-14-1615-star-data-not-private",
     "d:2026-11-14-1605-drop-box-idea",
-    "l:5",
-    "l:6"
+    "l:36",
+    "l:37"
    ]
   },
   {
@@ -467,11 +486,202 @@
    "status_text": "PARKED.",
    "detail": "T59d, T59e, T59g, T110.",
    "history": [
-    "l:11"
+    "l:42"
    ]
   }
  ],
  "leaves": [
+  {
+   "id": "l:7",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.4",
+   "also": [],
+   "date": "2026-11-23",
+   "when": "2026-11-23T00:00",
+   "status": "done",
+   "plain": "Codex job: honest error model (extra scatter to reduced chi-square 1, usable = robust scatter under 0.1 width), new seed-2026112316 controls, pass A1 usable 80%, A2 agreement 90% within a quarter width, A3 trap 30/30; then (only if A passes) the V3 ma",
+   "why": "",
+   "explanation": "",
+   "technical": "honest error model (extra scatter to reduced chi-square 1, usable = robust scatter under 0.1 width), new seed-2026112316 controls, pass A1 usable 80%, A2 agreement 90% within a quarter width, A3 trap 30/30; then (only if A passes) the V3 mask with own ephemerides on new benches, F1 rules. research/astra/inbox/032-eclipse-times-v3.md.",
+   "ids": [
+    "Codex 032 eclipse times v3"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:6",
+   "kind": "log",
+   "type": "research",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Research: majority NO (upside-down 5 x in added light); one-neighbour passes the detection rule (1,503 skipped days, 0.38 detected) but rule (e) likely blocks added QLP light (real/upside-down about 11 on QLP).",
+   "why": "",
+   "explanation": "",
+   "technical": "majority NO (upside-down 5 x in added light); one-neighbour passes the detection rule (1,503 skipped days, 0.38 detected) but rule (e) likely blocks added QLP light (real/upside-down about 11 on QLP). Count it inside the next Codex bench. research/stage3/rs040/A14-RESULT-2026-11-22.md.",
+   "ids": [
+    "RS-040 A14: window rules at detection level"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:10",
+   "kind": "log",
+   "type": "research",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Research: 61 in true gaps, 125 dropped by quality bits (stray light; 025 failed under B), 44 only trimmed (ramp zone), 18 majority-window (F2 lever).",
+   "why": "",
+   "explanation": "",
+   "technical": "61 in true gaps, 125 dropped by quality bits (stray light; 025 failed under B), 44 only trimmed (ramp zone), 18 majority-window (F2 lever). Agrees with Fable F2. research/stage3/rs041/W1-RESULT-2026-11-22.md.",
+   "ids": [
+    "RS-041 W1: the 316 T156 dips outside the windows"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:11",
+   "kind": "log",
+   "type": "note",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Note: 025 failed admitting bit 4096 under the box score; the notch makes about a quarter of its upside-down alarms.",
+   "why": "",
+   "explanation": "",
+   "technical": "025 failed admitting bit 4096 under the box score; the notch makes about a quarter of its upside-down alarms. About 1 point of P at most; waits behind D1 and A13.",
+   "ids": [
+    "Idea: stray-light cadences under the notch"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:13",
+   "kind": "log",
+   "type": "research",
+   "node": "1.3",
+   "also": [],
+   "date": "2026-11-22",
+   "when": "2026-11-22T00:00",
+   "status": "done",
+   "plain": "Research: QLP from Sector 94 (its own TGLC) looks 0.8 x the noise (T1, LIKELY, star mix possible), but the MAST TGLC light for older sectors is NOT quieter than our QLP on the same star-sectors (T2: 0.97, n 13).",
+   "why": "",
+   "explanation": "",
+   "technical": "QLP from Sector 94 (its own TGLC) looks 0.8 x the noise (T1, LIKELY, star mix possible), but the MAST TGLC light for older sectors is NOT quieter than our QLP on the same star-sectors (T2: 0.97, n 13). Not a lever now; waits for QLP's announced full reprocessing. research/stage3/rs042/T1-RESULT-2026-11-22.md.",
+   "ids": [
+    "RS-042 T1 and T2: better photometry"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:26",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.1",
+   "also": [],
+   "date": "2026-11-17",
+   "when": "2026-11-17T00:00",
+   "status": "done",
+   "plain": "Codex job: Fable's X9, an orbit-consistent multi-crossing search (3 or more crossings that one circumbinary orbit can explain; promotion and stacking scored separately; null calibration over all trial orbits first).",
+   "why": "",
+   "explanation": "",
+   "technical": "Fable's X9, an orbit-consistent multi-crossing search (3 or more crossings that one circumbinary orbit can explain; promotion and stacking scored separately; null calibration over all trial orbits first). Brief research/astra/inbox/028-orbit-search.md.",
+   "ids": [
+    "Codex 028"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:28",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.3",
+   "also": [],
+   "date": "2026-11-17",
+   "when": "2026-11-17T00:00",
+   "status": "done",
+   "plain": "Codex job: tier-level bench of the detrending switch c1a (window 3 x box length) on B and on B + depth cap + R2, with a preregistered pass rule, an equal-alarm analysis on a split of the design stars, and fresh-seed confirmation if it passes.",
+   "why": "",
+   "explanation": "",
+   "technical": "tier-level bench of the detrending switch c1a (window 3 x box length) on B and on B + depth cap + R2, with a preregistered pass rule, an equal-alarm analysis on a split of the design stars, and fresh-seed confirmation if it passes. Fable's X4 found +7.2 points of detection at detector level; the tier rules were untested. Result: B + c1a P 48.11 to 45.32 (-2.79, 95% -5.58 to -0.06), T156 reference R 34.21 to 21.90, upside-down background 79 to 111 and real 174 to 186; K2 + c1a possible-planet P 51.02 to 48.53 (-2.49), R 32.92 to 22.05, 63 to 98 upside-down. Rules (a), (b), (d) fail, (c) and (e) pass; equal-alarm analysis not authorized. research/astra/inbox/027-c1a-tier-bench.md",
+   "ids": [
+    "Codex 027"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:29",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-16",
+   "when": "2026-11-16T00:00",
+   "status": "done",
+   "plain": "Codex job: built mask design M4 (class B never blanked, leftover-eclipse check), C96 fallback radius, controls (a) to (d).",
+   "why": "",
+   "explanation": "",
+   "technical": "built mask design M4 (class B never blanked, leftover-eclipse check), C96 fallback radius, controls (a) to (d). M4 REJECTED: P 48.11 to 42.51 (-5.60, 95% -8.55 to -2.83), upside-down 79 to 80, R 34.21 to 31.92; controls (b), (c), (d) fail (small samples, so they are weak; the planet loss is the strong reason). C96 fallback radius also not worth it (-0.4). Safe answer: class B stays blanked (about 1.4 points) or M2 inside Fable's confirmed candidate. Claude's review in research/fable-method/ASTRA-REVIEW-2026-11-16.md; report research/astra/reports/026-report.md; brief research/astra/inbox/026-fix101-mask-drift.md",
+   "ids": [
+    "Codex 026"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:34",
+   "kind": "log",
+   "type": "note",
+   "node": "1.1",
+   "also": [
+    "1.5"
+   ],
+   "date": "2026-11-16",
+   "when": "2026-11-16T00:00",
+   "status": "done",
+   "plain": "Note: F0 to F4, method file, extras X1 to X4, X6 to X8, X10.",
+   "why": "",
+   "explanation": "",
+   "technical": "F0 to F4, method file, extras X1 to X4, X6 to X8, X10. Proposal cap + R2 + M2: fresh-seed +3.94 [+2.18, +6.04], P 56.1% on possible planets; X2 vouching rejected; X4 detrend window 3 x box lifts detection 64 to 71% at 1.6x alarms (bench needed). Decisions for Ahmed: physical bar file, freeze. research/fable-method/FABLE-REPORT-BIG-RUN.md",
+   "ids": [
+    "Fable big run"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
   {
    "id": "d:2026-11-15-0635-twinlight-factcheck",
    "file": "2026-11-15-0635-twinlight-factcheck.md",
@@ -754,7 +964,7 @@
    "superseded": false
   },
   {
-   "id": "l:0",
+   "id": "l:18",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -775,7 +985,7 @@
    "label": null
   },
   {
-   "id": "l:1",
+   "id": "l:19",
    "kind": "log",
    "type": "build",
    "node": "4.1",
@@ -798,7 +1008,7 @@
    "label": null
   },
   {
-   "id": "l:2",
+   "id": "l:20",
    "kind": "log",
    "type": "build",
    "node": "4.1",
@@ -821,7 +1031,7 @@
    "label": null
   },
   {
-   "id": "l:3",
+   "id": "l:21",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -842,7 +1052,7 @@
    "label": null
   },
   {
-   "id": "l:4",
+   "id": "l:22",
    "kind": "log",
    "type": "research",
    "node": "4.1",
@@ -863,7 +1073,117 @@
    "label": null
   },
   {
-   "id": "l:8",
+   "id": "l:23",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: load losses traced (14 of 21 stray-light bit 4096); admitting bit 4096 FAILS (upside-down 79 to 172, P 48.1 to 45.2).",
+   "why": "",
+   "explanation": "",
+   "technical": "load losses traced (14 of 21 stray-light bit 4096); admitting bit 4096 FAILS (upside-down 79 to 172, P 48.1 to 45.2). research/astra/inbox/025-load-losses.md",
+   "ids": [
+    "Codex 025"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:24",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.5",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: .",
+   "why": "",
+   "explanation": "",
+   "technical": ".",
+   "ids": [
+    "Codex 024"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:25",
+   "kind": "log",
+   "type": "codex job",
+   "node": "1.1",
+   "also": [
+    "1.4",
+    "1.6"
+   ],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Codex job: the full candidate matrix for Petrova 1.1 (B, C96, DS, M1, M2 in eight combinations) with a GO-candidate pass rule written first.",
+   "why": "",
+   "explanation": "",
+   "technical": "the full candidate matrix for Petrova 1.1 (B, C96, DS, M1, M2 in eight combinations) with a GO-candidate pass rule written first. research/astra/inbox/023-candidate-matrix.md",
+   "ids": [
+    "Codex 023"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Codex",
+   "label": null
+  },
+  {
+   "id": "l:30",
+   "kind": "log",
+   "type": "fix",
+   "node": "1.2",
+   "also": [],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Fix: ; next step is Ahmed's freeze decision: class B stays blanked, or M2 inside the confirmed candidate): the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of binaries in recent sectors; about 1.7 points",
+   "why": "",
+   "explanation": "",
+   "technical": "; next step is Ahmed's freeze decision: class B stays blanked, or M2 inside the confirmed candidate): the eclipse mask's catalogue drift term blows windows up to the whole orbit for 13% to 18% of binaries in recent sectors; about 1.7 points of P (up to 6.4). research/stage3/FIX-QUEUE.md",
+   "ids": [
+    "FIX 101"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:35",
+   "kind": "log",
+   "type": "note",
+   "node": "1.1",
+   "also": [
+    "1.5"
+   ],
+   "date": "2026-11-15",
+   "when": "2026-11-15T00:00",
+   "status": "done",
+   "plain": "Note: Astra A1 candidate matrix, A2 short-binary light subtraction, A3 load losses; Fable F1 Petrova 1.1 decision, F2 second silent-loss hunt, F3 method skill from both models; weekly 65 to 95%.",
+   "why": "",
+   "explanation": "",
+   "technical": "Astra A1 candidate matrix, A2 short-binary light subtraction, A3 load losses; Fable F1 Petrova 1.1 decision, F2 second silent-loss hunt, F3 method skill from both models; weekly 65 to 95%. research/fable-method/BIG-RUN-PLAN-2026-11-16.md",
+   "ids": [
+    "Big run plan"
+   ],
+   "links": [],
+   "superseded": false,
+   "by": "Claude",
+   "label": null
+  },
+  {
+   "id": "l:39",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -886,7 +1206,7 @@
    "label": null
   },
   {
-   "id": "l:10",
+   "id": "l:41",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -907,7 +1227,7 @@
    "label": null
   },
   {
-   "id": "l:11",
+   "id": "l:42",
    "kind": "log",
    "type": "codex job",
    "node": "4.4",
@@ -1930,7 +2250,7 @@
    "superseded": true
   },
   {
-   "id": "l:12",
+   "id": "l:43",
    "kind": "log",
    "type": "research",
    "node": "1.4",
@@ -1951,7 +2271,7 @@
    "label": null
   },
   {
-   "id": "l:17",
+   "id": "l:48",
    "kind": "log",
    "type": "build",
    "node": "1.6",
@@ -1972,7 +2292,7 @@
    "label": null
   },
   {
-   "id": "l:18",
+   "id": "l:49",
    "kind": "log",
    "type": "build",
    "node": "1.6",
@@ -1993,7 +2313,7 @@
    "label": null
   },
   {
-   "id": "l:30",
+   "id": "l:61",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -2016,7 +2336,7 @@
    "label": null
   },
   {
-   "id": "l:31",
+   "id": "l:62",
    "kind": "log",
    "type": "research",
    "node": "1.1",
@@ -2039,7 +2359,7 @@
    "label": null
   },
   {
-   "id": "l:32",
+   "id": "l:63",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -2062,7 +2382,7 @@
    "label": null
   },
   {
-   "id": "l:33",
+   "id": "l:64",
    "kind": "log",
    "type": "codex job",
    "node": "1.1",
@@ -2083,7 +2403,7 @@
    "label": null
   },
   {
-   "id": "l:34",
+   "id": "l:65",
    "kind": "log",
    "type": "codex job",
    "node": "1.2",
@@ -2108,7 +2428,7 @@
    "label": null
   },
   {
-   "id": "l:35",
+   "id": "l:66",
    "kind": "log",
    "type": "research",
    "node": "3.3",
@@ -2129,7 +2449,7 @@
    "label": null
   },
   {
-   "id": "l:5",
+   "id": "l:36",
    "kind": "log",
    "type": "codex job",
    "node": "4.1",
@@ -2150,7 +2470,7 @@
    "label": null
   },
   {
-   "id": "l:6",
+   "id": "l:37",
    "kind": "log",
    "type": "build",
    "node": "4.1",
@@ -2251,21 +2571,21 @@
    "date": "2026-11-13",
    "diary": null,
    "leaves": [
-    "l:35"
+    "l:66"
    ]
   },
   {
    "date": "2026-11-14",
    "diary": "field-notes/2026-11-14/",
    "leaves": [
-    "l:12",
-    "l:17",
-    "l:18",
-    "l:30",
-    "l:31",
-    "l:32",
-    "l:33",
-    "l:34",
+    "l:43",
+    "l:48",
+    "l:49",
+    "l:61",
+    "l:62",
+    "l:63",
+    "l:64",
+    "l:65",
     "d:2026-11-14-1530-codex-010-mask-timing",
     "d:2026-11-14-1605-drop-box-idea",
     "d:2026-11-14-1615-star-data-not-private",
@@ -2301,14 +2621,19 @@
    "date": "2026-11-15",
    "diary": null,
    "leaves": [
-    "l:0",
-    "l:1",
-    "l:2",
-    "l:3",
-    "l:4",
-    "l:8",
-    "l:10",
-    "l:11",
+    "l:18",
+    "l:19",
+    "l:20",
+    "l:21",
+    "l:22",
+    "l:23",
+    "l:24",
+    "l:25",
+    "l:30",
+    "l:35",
+    "l:39",
+    "l:41",
+    "l:42",
     "d:2026-11-15-0002-codex-014-part2",
     "d:2026-11-15-0008-fix83-test-runner",
     "d:2026-11-15-0013-fix84-closed",
@@ -2317,6 +2642,44 @@
     "d:2026-11-15-0415-rs035-how-to-teach",
     "d:2026-11-15-0429-twinlight-app",
     "d:2026-11-15-0635-twinlight-factcheck"
+   ]
+  },
+  {
+   "date": "2026-11-16",
+   "diary": null,
+   "leaves": [
+    "l:29",
+    "l:34"
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "diary": null,
+   "leaves": [
+    "l:26",
+    "l:28"
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "diary": "field-notes/2026-11-18/",
+   "leaves": []
+  },
+  {
+   "date": "2026-11-22",
+   "diary": "field-notes/2026-11-22/",
+   "leaves": [
+    "l:6",
+    "l:10",
+    "l:11",
+    "l:13"
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "diary": null,
+   "leaves": [
+    "l:7"
    ]
   }
  ],

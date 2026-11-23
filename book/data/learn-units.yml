@@ -23,7 +23,7 @@ units:
       - {file: u3/l1-what-light-is.md, title: "What light is: waves, colours, the spectrum", minutes: 15}
       - {file: u3/l2-hot-things-glow.md, title: "Hot things glow: why stars have colours", minutes: 15}
       - {file: u3/l3-fingerprints.md, title: "Fingerprints: spectral lines and atoms", minutes: 16}
-      - {title: "Doppler: weighing stars, finding planets by their wobble"}
+      - {file: u3/l4-doppler.md, title: "Doppler: weighing stars, finding planets by their wobble", minutes: 16}
   - n: 4
     title: Two suns
     lessons:
