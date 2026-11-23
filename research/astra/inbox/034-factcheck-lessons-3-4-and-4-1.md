@@ -6,6 +6,8 @@ Written by Claude, 23 Nov 2026, 11:24 am Kuwait. GO: Ahmed, 22 Nov 9:30 pm and 2
 - `book/docs/learn/u3/l4-doppler.md` and its plot script `book/tools/lesson_plots_u3c.py` (data `data/learn-sources/lick-51peg-rv/`, 354 Lick velocities of 51 Peg, Fischer et al. 2014, VizieR J/ApJS/210/5).
 - `book/docs/learn/u4/l1-eclipsing-binaries.md` and `book/tools/lesson_plots_u4.py` (TIC 172900988, TESS sectors 44 to 47 SPOC light in `data/known/172900988/`; Kostov et al. 2021, arXiv 2105.08614).
 
+- **Added 23 Nov 11:43 am:** `book/docs/learn/u4/l2-how-two-stars-orbit.md` (script `book/tools/lesson_plots_u4b.py`: omega 70.6 degrees from e cos(omega) = 0.149 and the sign from eclipse lengths 2.74 h and 7.27 h; separation 0.106 to 0.278 AU) and `book/docs/learn/u4/l4-planets-around-two-suns.md` (relative-speed reading of the 0.4 d and 0.27 d dips; dilution depth; the Doyle et al. 2011 citation). Check these the same way, including whether the omega sign argument is sound and whether its convention matches the separation plot.
+
 ## Check (each with the evidence named)
 1. Every number in both lessons: recompute it (problems, worked examples, hints, `data-why`, answers and tolerances; would a correct answer be rejected or a common wrong one accepted?).
 2. Physics: Doppler formula and signs; centre of mass rule and the Jupiter and Earth examples; the m sin i formula and its assumptions; minimum mass; the iodine-cell sentence; the 1995 discovery and the 2019 Nobel sentence; whether "51 Pegasi b has never been seen to transit" is still true (primary source).
