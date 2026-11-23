@@ -163,6 +163,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 ## 4. Tools and book
 **4.1 Book and learning.** *Weight 5.* *Status: ACTIVE: Book 3.0 and the learning rebuild (15 Nov 2026; the hunt is paused until a learning milestone).* T160 the Tree as the home page (design rounds first); T131 to T134 learning space, dashboard, Keystone; T113 to T116 rehearsal and spaced re-ask; T57a to T58b chapter checks; T146 Engine Room; T147 one key name; T59c F4 redesign REMOVED (Ahmed, 15 Nov 2026: Book 3 is the redesign we wanted); FIX 97 (lab 9 example star is a blind G1 star; re-point before the G1 re-search); FIX 98 (Tree branches under 44 px while the canvas zooms to fit; flaky test); FIX 99 (Book 3 audit, 32 bugs, phone menu dead on the Tree and Twinlight, light header unreadable; waits for Ahmed's go); FIX 73 to 76 chips, Back button, voice, formulas.
 
+- **Codex 034 fact-check of lessons 3.4 and 4.1** (23 Nov, node 4.1; WAITS for 032 Part A to finish, then runs before 032 Part B): both lessons live with the fact-check pending. `research/astra/inbox/034-factcheck-lessons-3-4-and-4-1.md`.
 - **FIX 102** (23 Nov, node 4.1; FIXED in Book 3.10.0): touching a lesson plot whose axis does not start at 0 read the wrong point (486 nm read as 380 nm on lesson 3.3); new learn check, mutation red. Lesson 3.4 Doppler added the same day.
 
 **4.2 Search window and control room.** *Weight 2.* *Status: WAITS: after G1 or Census (Ahmed).* T159 control room on Netlify (plan `research/stage3/CONTROL-ROOM-PLAN.md`); T51, T53, T50; FIX 77 exporter label.
