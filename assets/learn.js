@@ -114,7 +114,7 @@
     const svg = $("svg", box), cross = $(".tw-plot__cross", box), dot = $(".tw-plot__dot", box), read = $(".tw-plot__read", box);
     const at = (ev) => {
       const r = svg.getBoundingClientRect(), x = ((ev.clientX - r.left) / r.width) * W;
-      const want = ((x - L) / (W - L - R)) * xmax;
+      const want = xmin + ((x - L) / (W - L - R)) * (xmax - xmin);   // FIX 102 (23 Nov 2026): the axis starts at xmin, not 0 (spectrum plots read the wrong point)
       let i = 0, best = Infinity;
       xs.forEach((v, k) => { const dd = Math.abs(v - want); if (dd < best) { best = dd; i = k; } });
       cross.setAttribute("x1", X(xs[i])); cross.setAttribute("x2", X(xs[i]));
