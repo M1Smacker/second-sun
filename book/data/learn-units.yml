@@ -27,7 +27,7 @@ units:
   - n: 4
     title: Two suns
     lessons:
-      - {title: "Eclipsing binaries"}
+      - {file: u4/l1-eclipsing-binaries.md, title: "Eclipsing binaries", minutes: 16}
       - {title: "How two stars orbit each other"}
       - {title: "Measuring stars from their eclipses"}
       - {title: "Planets around two suns"}

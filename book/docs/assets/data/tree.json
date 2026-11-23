@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23T10:56",
+ "generated": "2026-11-23T11:13",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -22,7 +22,7 @@
    "title": "repeater flag (Codex 003 reference-band price: on 17 of the 53, clearing it alone frees 13; it counts every same-kind event in the sector, not repeats of one source, stage3_core.py 21, 272, 284); FIX 91 opposite-sign flag on the real arm only (frees 0 in the reference band, a correctness fix); T34 step check (on 18 of the 53 but clearing it alone frees 1: it overlaps other flags)"
   }
  },
- "now": "22 Nov 2026, 11:28 pm: Codex restarts the D1 test at 2:37 am (its limit). Tonight: the notch's real gain is about 3 in 100, not 8 (a counting slip of 18 Nov), and four more ideas did not help. Honest estimate: 51 to 55, not 75. Next: D1 verdict, then a choice for Ahmed.",
+ "now": "23 Nov 2026, 11:08 am: four jobs at once. D1 test (Codex) on its last part; eclipse timing v3 (Codex 032) measuring 60 new control stars; D2 written down before any D1 result (Codex 033 runs after D1); Gaia binary lists checked: they say which stars, not when they eclipse. New lesson 3.4 Doppler. Next: D1 verdict.",
  "nodes": [
   {
    "id": "1",
