@@ -35,7 +35,7 @@ units:
   - n: 5
     title: The telescope and the data
     lessons:
-      - {title: "Telescopes: collecting light"}
+      - {file: u5/l1-telescopes-collecting-light.md, title: "Telescopes: collecting light", minutes: 14}
       - {file: u5/l2-how-tess-watches.md, title: "How TESS watches the sky", minutes: 14}
       - {file: u5/l3-pixels-to-light-curves.md, title: "From pixels to light curves", minutes: 14}
       - {file: u5/l4-what-goes-wrong.md, title: "What goes wrong", minutes: 13}
