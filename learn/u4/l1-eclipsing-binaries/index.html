@@ -1,0 +1,1870 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's hunt for planets in public NASA TESS data.">
+      
+      
+      
+        <link rel="canonical" href="https://m1smacker.github.io/second-sun/learn/u4/l1-eclipsing-binaries/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon-64.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4.1 Eclipsing binaries - Second Sun</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../../assets/observatory.css">
+    
+      <link rel="stylesheet" href="../../../assets/shape.css">
+    
+      <link rel="stylesheet" href="../../../assets/book3.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <meta name="theme-color" content="#070c19">
+  <link rel="apple-touch-icon" href="../../../assets/icon-180.png">
+  <link rel="icon" type="image/png" href="../../../assets/favicon-64.png">
+  <meta name="apple-mobile-web-app-title" content="Second Sun">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  
+  <script>try{if(!navigator.webdriver&&!sessionStorage.getItem("ss-open")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("ss-open","1");var d=new Date().toISOString().slice(0,10),m=localStorage.getItem("ss-splash-day")===d?"quick":"full";localStorage.setItem("ss-splash-day",d);document.documentElement.setAttribute("data-splash",m)}}catch(e){}</script>
+  
+  
+  <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../../../assets/learn.css">
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eclipsing-binaries" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <div id="ss-splash" aria-hidden="true"><div class="ss-sp-in"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="ss-sp-bgx" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#13213f"/><stop offset=".65" stop-color="#091127"/><stop offset="1" stop-color="#050913"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sa" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ff"/><stop offset=".75" stop-color="#9fd9ff" stop-opacity=".55"/><stop offset="1" stop-color="#9fd9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ss-sp-sb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f4fbff"/><stop offset=".42" stop-color="#7ad7ea"/><stop offset=".75" stop-color="#7ad7ea" stop-opacity=".45"/><stop offset="1" stop-color="#7ad7ea" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect class="ss-logo-bg" width="512" height="512" rx="112" fill="url(#ss-sp-bgx)"/>
+  <g class="ss-logo-orbit" fill="none" stroke="#b9e9f4" stroke-width="7" stroke-linecap="round" opacity=".9">
+    <path d="M78 300 A178 96 -14 0 1 434 212" opacity=".35"/>
+    <path d="M434 212 A178 96 -14 0 1 78 300"/>
+  </g>
+  <circle class="ss-logo-a" cx="214" cy="262" r="96" fill="url(#ss-sp-sa)"/>
+  <circle cx="214" cy="262" r="46" fill="#ffffff"/>
+  <circle class="ss-logo-b" cx="322" cy="226" r="62" fill="url(#ss-sp-sb)"/>
+  <circle cx="322" cy="226" r="27" fill="#e6f8fc"/>
+  <circle class="ss-logo-p" cx="431" cy="213" r="13" fill="#b9adff"/>
+</svg>
+<div class="ss-sp-name">Second Sun</div></div></div>
+  
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Second Sun" class="md-header__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Second Sun
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.1 Eclipsing binaries
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Daylight reading"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Daylight reading" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Back to night"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Back to night" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tree
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Learning
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../shelf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Shelf
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Second Sun" class="md-nav__button md-logo" aria-label="Second Sun" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Second Sun
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shelf
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shelf
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shelf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Shelf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../field-notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Nov 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../field-notes/2026-10-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Oct 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training deck
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training deck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../eyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eyes mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rehearsal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehearsal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../watch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../candidates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candidates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts (claims register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/for-astronomers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For astronomers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prior-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prior work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/reading-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#two-stars-taking-turns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two stars taking turns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-deep-an-eclipse-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How deep an eclipse is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#think-it-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Think it through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-the-two-eclipses-differ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why the two eclipses differ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-the-second-eclipse-is-late" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why the second eclipse is late
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-for-second-sun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters for Second Sun
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-few-sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In a few sentences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p class="tw-kicker" data-lesson="4.1">Unit 4 · Two suns · Lesson 4.1 · 16 min</p>
+
+<h1 id="eclipsing-binaries">Eclipsing binaries<a class="headerlink" href="#eclipsing-binaries" title="Permanent link">&para;</a></h1>
+<p>Unit 1 opened with this star's light and its deep drops. Here are four <a href="../../../glossary/#tess">TESS</a> <a href="../../../glossary/#sector">sectors</a> of it, about five orbits, laid on top of each other by folding them on the pair's period, 19.66 days.</p>
+<div class="tw-plot" data-src="u4-eb-folded"></div>
+
+<p class="tw-plot__ask">Two dips per orbit, not one, and they are not the same depth. And the second one is not halfway round. Before reading on, guess: what makes two dips, and what could push the second one late?</p>
+
+<h2 id="two-stars-taking-turns">Two stars taking turns<a class="headerlink" href="#two-stars-taking-turns" title="Permanent link">&para;</a></h2>
+<p><a href="../../../glossary/#tic">TIC</a> 172900988 is two stars, a little larger and hotter than the Sun, circling each other every 19.66 days. We happen to see their orbit almost edge-on, so once per orbit the first star passes in front of the second, and once per orbit the second passes in front of the first. Each passage blocks some light: an <strong>eclipse</strong>. So an orbit gives two eclipses.</p>
+<aside class="tw-mn">
+<p><strong><a href="../../../glossary/#eclipsing-binary">Eclipsing binary</a>.</strong> Two stars orbiting each other, seen so nearly edge-on that they take turns passing in front of each other. Most binaries are tilted and never eclipse; we only see eclipses when the orbit lines up with us.</p>
+</aside>
+<p>The deeper one is called the <strong>primary eclipse</strong>, the shallower the <strong><a href="../../../glossary/#secondary-eclipse">secondary eclipse</a></strong>. On this plot the primary is at day 0 and removes 43.5% of the light; the secondary, at day 11.88, removes 35.8%.</p>
+<h2 id="how-deep-an-eclipse-is">How deep an eclipse is<a class="headerlink" href="#how-deep-an-eclipse-is" title="Permanent link">&para;</a></h2>
+<p>TESS sees the two stars as one point, so an eclipse removes the light of whatever part of the back star is covered. Lesson 2.3 measured the two stars' light: the first gives 2.31 Suns, the second 1.99, together 4.30. If the front star covers a share <span class="arithmatex">\(s\)</span> of the back star's disc, and the back star's surface is evenly bright:</p>
+<div class="arithmatex">\[ \text{depth} = s \times \frac{L_{\text{back}}}{L_1 + L_2} \]</div>
+<aside class="tw-mn">
+<p><strong>Limb darkening (a correction we ignore here).</strong> A real star's disc is a little darker at its edge than at its centre, so covering the middle blocks more light than covering the edge. Our rule treats the disc as evenly bright, which is good enough to read the plot.</p>
+</aside>
+<h2 id="think-it-through">Think it through<a class="headerlink" href="#think-it-through" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="46.3|46" data-hints="{&quot;53.7&quot;:&quot;That is star 1 left over. When star 2 is fully covered, the missing light is star 2: 1.99 out of 4.30.&quot;,&quot;0.463&quot;:&quot;That is the share. Give it in percent: multiply by 100.&quot;}" data-tol="0.02" data-unit="percent" data-why="1.99 / 4.30 = 0.463, so 46.3% of the light.">
+<p><strong>a.</strong> Star 1 is the bigger one (1.38 Sun radii against 1.31), so it can hide star 2 completely. What is the deepest that eclipse could be, in percent?</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Worked example: depth from the share covered</p>
+<p>Two identical stars, each giving half the light. The front one covers 60% of the back one's disc.</p>
+<p><strong>Step 1. The back star's share of the light.</strong> <span class="arithmatex">\(L_{\text{back}} / (L_1 + L_2) = 1/2\)</span>.</p>
+<p><strong>Step 2. Multiply by the share covered.</strong> <span class="arithmatex">\(0.60 \times 0.5 = 0.30\)</span>.</p>
+<p><strong>Step 3.</strong> The eclipse is <strong>30%</strong> deep. Covering more of the disc, or covering the brighter star, makes it deeper.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Your turn, half done: our two stars</p>
+<p>Star 2 passes in front of star 1 and covers 80% of its disc. Step 1: star 1's share of the light is <span class="arithmatex">\(2.31 / 4.30 = 0.537\)</span>. Finish: how deep is the eclipse?</p>
+</div>
+<div class="tw-prob" data-answer="43|43.0" data-hints="{&quot;0.43&quot;:&quot;That is the share. Give it in percent.&quot;,&quot;37&quot;:&quot;You used star 2. Star 1 is the one being covered: 2.31 out of 4.30.&quot;}" data-tol="0.02" data-unit="percent" data-why="0.80 x 0.537 = 0.430, so 43% deep: close to the primary eclipse on the plot.">
+<p><strong>Your turn.</strong> The <a href="../../../glossary/#depth">depth</a>, in percent:</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\(0.80 \times 0.537 = 0.430\)</span>, so <strong>43%</strong>. The real primary eclipse is 43.5% deep, so star 2 covers roughly 80% of star 1 at that moment.</p>
+<p>The rule: <strong>depth = share covered <span class="arithmatex">\(\times\)</span> the back star's share of the light</strong>.</p>
+</details>
+</div>
+<h2 id="why-the-two-eclipses-differ">Why the two eclipses differ<a class="headerlink" href="#why-the-two-eclipses-differ" title="Permanent link">&para;</a></h2>
+<p>The two stars are almost the same temperature (6,050 K and 5,983 K in Kostov et al. 2021), so square metre for square metre they shine almost equally: <span class="arithmatex">\((6050 / 5983)^{4} = 1.05\)</span>, only 5% apart. That cannot turn 35.8% into 43.5%. The difference comes from <strong>how much</strong> of the back star is covered, and that comes from the shape of the orbit.</p>
+<h2 id="why-the-second-eclipse-is-late">Why the second eclipse is late<a class="headerlink" href="#why-the-second-eclipse-is-late" title="Permanent link">&para;</a></h2>
+<p>In a circular orbit the stars move at a steady speed, so the second eclipse comes exactly half an orbit after the first: day 9.83 here. It comes at day 11.88 instead, 60.4% of the way round.</p>
+<p>The orbit is <strong>stretched</strong>. Its eccentricity is 0.448 (lesson 2.1 found the distance between the stars swinging from about 0.11 to 0.28 AU). The stars move fast when they are close together and slowly when they are far apart, as <a href="../../../glossary/#kepler">Kepler</a>'s second law says (equal areas in equal times). The two eclipses happen at two fixed points of the orbit, the two moments when the stars line up with us, and the time from one to the other depends on whether that stretch of the orbit is a near, fast part or a far, slow part. Here one stretch takes 11.88 days and the other only 7.78.</p>
+<p>The same stretch changes the depths. At one eclipse the stars are closer together than at the other, so seen from Earth they overlap differently: one passes more squarely across the other's face.</p>
+<aside class="tw-mn">
+<p><strong>Eccentricity <span class="arithmatex">\(e\)</span>.</strong> How stretched an orbit is: 0 for a circle, close to 1 for a long thin ellipse. Earth's is 0.017; this pair's is 0.448.</p>
+</aside>
+<p>A rule of thumb from the timing alone: the shift away from half an orbit, as a share of the orbit, is about <span class="arithmatex">\(\frac{2}{\pi}\, e\cos\omega\)</span>, where <span class="arithmatex">\(\omega\)</span> is the angle saying which way the stretched orbit points. Here the shift is <span class="arithmatex">\(0.604 - 0.5 = 0.104\)</span>, so <span class="arithmatex">\(e\cos\omega \approx 0.104 \times \pi / 2 = 0.16\)</span>. Our exact calculation with Kepler's equation gives 0.15. The timing therefore says the orbit is stretched by <strong>at least</strong> 0.15; the full 0.448 also needs the eclipses' lengths and, in the paper, the planet's own pull.</p>
+<h2 id="why-this-matters-for-second-sun">Why this matters for Second Sun<a class="headerlink" href="#why-this-matters-for-second-sun" title="Permanent link">&para;</a></h2>
+<p>Every star on our hunt lists is a pair like this one. Their eclipses are 100 times deeper than a planet's dip, so the search must hide them first, using a table of when each eclipse happens. When that table's times are wrong, the hiding windows slide off the real eclipses or swell to cover the whole sector, and planets are lost (this week's eclipse-timing work, FIX 94, measures those times from TESS's own eclipses, exactly as this lesson did). A planet around such a pair circles both stars, outside this 19.66-day dance.</p>
+<h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
+<p>An eclipsing binary is a pair of stars seen nearly edge-on, so each orbit brings two eclipses: the primary (deeper) and the secondary. An eclipse's depth is the share of the back star covered times that star's share of the total light. For TIC 172900988 the eclipses are 43.5% and 35.8% deep; the stars are nearly equally hot, so the difference comes from how much they overlap. The secondary comes 11.88 days after the primary, not 9.83, because the orbit is stretched (e = 0.448), and the timing alone shows a stretch of at least 0.15.</p>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<div class="tw-prob" data-answer="11.88|11.9" data-tol="0.01" data-unit="days" data-why="The shallower dip sits at day 11.88 of the 19.66-day orbit.">
+<p><strong>1.</strong> Touch the plot. On which day of the orbit does the shallower (secondary) eclipse fall?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Day <strong>11.88</strong>. The next primary comes at day 19.66, 7.78 days later.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="9.83" data-hints="{&quot;19.66&quot;:&quot;That is a full orbit. A circular orbit puts the second eclipse halfway round.&quot;}" data-tol="0.01" data-unit="days" data-why="Half of 19.66 days is 9.83 days.">
+<p><strong>2.</strong> If the orbit were a circle, on which day would the secondary eclipse fall?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Halfway round: <span class="arithmatex">\(19.66 / 2 = 9.83\)</span> days. The real one is 2.05 days later than that.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="35.8|36" data-hints="{&quot;64.2&quot;:&quot;That is the light left over at the bottom. The depth is the light missing: 1 minus 0.642.&quot;}" data-tol="0.03" data-unit="percent" data-why="The bottom of the secondary eclipse sits near 0.642 of normal, so 35.8% of the light is missing.">
+<p><strong>3.</strong> Touch the bottom of the secondary eclipse. How deep is it, in percent?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>The bottom is near 0.642 of normal brightness, so <strong>35.8%</strong> of the light is gone.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="1.05|1.045" data-hints="{&quot;1.011&quot;:&quot;That is the temperature ratio. The glow per square metre goes as the fourth power: 1.011 x 1.011 x 1.011 x 1.011.&quot;}" data-tol="0.02" data-why="(6050 / 5983)^4 = 1.0112^4 = 1.045.">
+<p><strong>4.</strong> Star 1 is at 6,050 K and star 2 at 5,983 K. How many times brighter is each square metre of star 1? (Use the <span class="arithmatex">\(T^4\)</span> rule of lesson 2.3.)</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p><span class="arithmatex">\((6050 / 5983)^{4} = 1.0112^{4} = 1.045\)</span>: only about 5% brighter. Far too little to explain eclipses of 43.5% and 35.8%; the overlap must differ.</p>
+</details>
+</div>
+<div class="tw-prob" data-answer="0.16|0.164" data-hints="{&quot;0.104&quot;:&quot;That is the shift itself. The rule says shift = (2/pi) x e cos(omega), so multiply the shift by pi/2.&quot;,&quot;0.066&quot;:&quot;Multiply by pi/2, do not multiply by 2/pi.&quot;}" data-tol="0.05" data-why="0.104 x pi / 2 = 0.163.">
+<p><strong>5.</strong> Another pair has its secondary eclipse at 0.604 of the orbit too. Using the rule of thumb, what is <span class="arithmatex">\(e\cos\omega\)</span>?</p>
+<details class="tw-sol">
+<summary>Worked solution</summary>
+<p>Shift <span class="arithmatex">\(= 0.604 - 0.5 = 0.104\)</span>; <span class="arithmatex">\(e\cos\omega \approx 0.104 \times \pi / 2 = 0.163\)</span>. The rule of thumb is best for nearly round orbits. The timing alone cannot give an exact answer: the exact value also depends on the stretch <span class="arithmatex">\(e\)</span>. (For our own pair, with its measured <span class="arithmatex">\(e = 0.448\)</span>, it came out at 0.149.)</p>
+</details>
+</div>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The light: TESS sectors 44 to 47, SPOC 2-minute light curves of TIC 172900988 (PDCSAP flux, quality flags removed), from MAST, as in lessons 1.1 and 2.1.</li>
+<li>The system: Kostov et al. 2021, "TIC 172900988: A Transiting Circumbinary Planet Detected in One Sector of TESS Data", AJ 162, 234 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>, abstract and HTML tables read 23 Nov 2026): binary period 19.658173 d (Table 5), eccentricity 0.4479 (Table 6), star radii 1.384 and 1.312 Sun radii (Table 5), temperatures 6,050 and 5,983 K (Table 3); TESS-only eclipse depths "about 40% and 35%" (section 2.1).</li>
+<li>Our checks, <code>book/tools/lesson_plots_u4.py</code> (23 Nov 2026): 5 primary and 4 secondary eclipses; median depths 43.5% and 35.8%; secondary at 0.6043 of the orbit (11.879 d); with e = 0.4479 the exact edge-on timing (Kepler's equation) reproduces that separation at e cos(omega) = 0.149, the first-order rule gives 0.164. A failure of the depth or timing check stops the plot.</li>
+<li>The first-order timing rule (the secondary's shift from half an orbit is about (2/pi) e cos(omega) for a nearly edge-on orbit): the standard result found in eclipsing-binary texts, for example Kallrath and Milone, "Eclipsing Binary Stars: Modeling and Analysis" (Springer). Eclipses, primary and secondary, and Kepler's second law: OpenStax Astronomy 2e, chapters 3 and 18 (<a href="https://openstax.org/details/books/astronomy-2e">the book</a>, CC BY-NC-SA 4.0), in our own words.</li>
+<li>Earth's eccentricity 0.0167: NASA Earth fact sheet (<a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html">nssdc.gsfc.nasa.gov</a>).</li>
+</ul>
+<nav aria-label="Lessons" class="tw-pn">
+<p><a class="tw-prev" href="../../u3/l4-doppler/" rel="prev"><small>Previous</small> 3.4 Doppler: weighing stars, finding planets by their wobble</a></p>
+<p><a class="tw-next" href="../l2-how-two-stars-orbit/" rel="next"><small>Next</small> 4.2 How two stars orbit each other</a></p>
+</nav>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Book 3.11.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/book3.js"></script>
+      
+    
+  
+  
+  
+  <script src="../../../assets/book.js" data-sw="../../../sw.js"></script>
+  
+  <script defer src="../../../assets/katex/katex.min.js"></script>
+  <script defer src="../../../assets/katex/auto-render.min.js"></script>
+  <script defer src="../../../assets/learn.js"></script>
+  
+
+  </body>
+</html>
