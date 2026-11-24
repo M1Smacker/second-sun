@@ -134,7 +134,7 @@ The bottom is near 0.642 of normal brightness, so **35.8%** of the light is gone
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-Shift \(= 0.604 - 0.5 = 0.104\); \(e\cos\omega \approx 0.104 \times \pi / 2 = 0.163\). The rule of thumb is best for nearly round orbits; for this pair the exact answer is 0.15.
+Shift \(= 0.604 - 0.5 = 0.104\); \(e\cos\omega \approx 0.104 \times \pi / 2 = 0.163\). The rule of thumb is best for nearly round orbits. The timing alone cannot give an exact answer: the exact value also depends on the stretch \(e\). (For our own pair, with its measured \(e = 0.448\), it came out at 0.149.)
 
 </details>
 </div>

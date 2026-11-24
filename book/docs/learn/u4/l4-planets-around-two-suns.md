@@ -25,9 +25,11 @@ The planet takes a long time to cross the pair: while it passes, the stars below
 
 ## Why the two dips have different lengths
 
-A dip lasts as long as the planet takes to cross the star's disc, and what matters is the **relative** speed: the planet's speed minus the star's speed in the same direction. If the star moves the same way as the planet, the planet overtakes it slowly and the dip is long; if the star moves the other way, they pass quickly and the dip is short.
+A dip lasts as long as the planet takes to cross the star's disc, and what matters is the **relative** speed: how fast the planet and the star move past each other across our line of sight. If the star moves the same way as the planet, the planet overtakes it slowly and the dip is long; if the star moves the other way, they pass quickly and the dip is short.
 
-\[ T \approx \frac{\text{chord across the star}}{v_{\text{planet}} - v_{\text{star}}} \]
+\[ T \approx \frac{\text{chord across the star}}{\lvert v_{\text{planet}} - v_{\text{star}} \rvert} \]
+
+The bars mean "the size of": a speed is never negative. Here \(v\) is each body's sideways motion as we see it, and we treat both speeds as steady during the short crossing.
 
 <aside class="tw-mn" markdown>
 **Chord.** The length of the planet's path across the star's disc: the full diameter \(2R_\star\) for a crossing through the middle, shorter for one near the edge.
@@ -60,7 +62,7 @@ The planet moves at about \(2\pi \times 0.9\) AU in 200 days, about 49 km/s. The
 
 \(0.27 \times 86{,}400 = 23{,}328\) s, and \(1.83 \times 10^{6} / 23{,}328 = 78\) km/s.
 
-The planet passed the second star at up to 78 km/s and the first at up to 56 km/s, with the planet itself moving at about 49 km/s. If both crossings went near the middle of the stars, star 2 was moving against the planet at the second crossing and star 1 almost with it at the first. We do not know the chords, so this is a reading of the numbers, not a measurement.
+The planet passed the second star at up to 78 km/s and the first at up to 56 km/s, with the planet itself moving at about 49 km/s. Both are faster than the planet's own 49 km/s, so if both crossings went near the middle of the stars, both stars were moving against the planet: star 1 slowly (about 7 km/s, since 49 + 7 = 56) and star 2 faster (about 29 km/s, since 49 + 29 = 78). We do not know the chords, so this is a reading of the numbers in a simple model, not a measurement.
 
 The rule: **dip length = chord / relative speed**.
 

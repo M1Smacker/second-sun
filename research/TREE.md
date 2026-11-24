@@ -167,6 +167,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 
 - **Codex 034 fact-check of lessons 3.4 and 4.1** (23 Nov, node 4.1; WAITS for 032 Part A to finish, then runs before 032 Part B): both lessons live with the fact-check pending. `research/astra/inbox/034-factcheck-lessons-3-4-and-4-1.md`.
 - **FIX 102** (23 Nov, node 4.1; FIXED in Book 3.10.0): touching a lesson plot whose axis does not start at 0 read the wrong point (486 nm read as 380 nm on lesson 3.3); new learn check, mutation red. Lesson 3.4 Doppler added the same day.
+- **FIX 103** (24 Nov, node 4.1; FIXED in Book 3.11.0): five teaching errors Codex 034 found in lessons 4.1, 4.2, 4.4 (average distance, average speed, duration sign, star direction, exact e cos omega); re-derived by Claude's own script first.
 
 **4.2 Search window and control room.** *Weight 2.* *Status: WAITS: after G1 or Census (Ahmed).* T159 control room on Netlify (plan `research/stage3/CONTROL-ROOM-PLAN.md`); T51, T53, T50; FIX 77 exporter label.
 

@@ -15,12 +15,12 @@ Lesson 4.1 found that this pair's orbit is stretched, because its second eclipse
 
 With a planet and a star, lesson 3.4 found that both circle their shared centre of mass, and the heavy star barely moves. With two stars of almost the same mass, both move almost equally. Each star traces its own stretched oval around the balance point, always on opposite sides of it, like the two ends of a see-saw that also spins.
 
-The balance rule from lesson 3.4, \(M_1 v_1 = M_2 v_2\), also fixes the size of each star's oval. If the two stars are a distance \(a\) apart on average, star 1's oval is a share of it set by the **other** star's mass:
+The balance rule from lesson 3.4, \(M_1 v_1 = M_2 v_2\), also fixes the size of each star's oval. If the two stars' orbit has semi-major axis \(a\), star 1's oval is a share of it set by the **other** star's mass:
 
 \[ a_1 = a \times \frac{M_2}{M_1 + M_2}, \qquad a_2 = a \times \frac{M_1}{M_1 + M_2} \]
 
 <aside class="tw-mn" markdown>
-**Semi-major axis \(a\).** Half the long width of an orbit's oval: the stars' average distance apart. Lesson 2.1 found 0.192 AU for this pair from Kepler's third law, using the two stars' total mass.
+**Semi-major axis \(a\).** Half the long width of an orbit's oval. It is also exactly halfway between the stars' nearest and farthest distances. (It is not their average over time: they spend longer far apart, so that average is about 10% bigger here, 0.211 AU.) Lesson 2.1 found 0.192 AU for this pair from Kepler's third law, using the two stars' total mass.
 </aside>
 
 ## Fast when close, slow when far
@@ -40,7 +40,7 @@ Kepler's second law says a line joining the two stars sweeps out equal areas in 
 </div>
 
 !!! example "Worked example: each star's share of the orbit"
-    Star 1 has 1.2384 Suns of mass, star 2 has 1.2019, and their average distance apart is 0.192 AU.
+    Star 1 has 1.2384 Suns of mass, star 2 has 1.2019, and their orbit's semi-major axis is 0.192 AU.
 
     **Step 1. Total mass.** \(1.2384 + 1.2019 = 2.4403\) Suns.
 
@@ -51,14 +51,14 @@ Kepler's second law says a line joining the two stars sweeps out equal areas in 
 !!! question "Your turn, half done: star 2"
     Star 2's share is set by star 1's mass: \(1.2384 / 2.4403 = 0.5075\). Finish: the size of star 2's oval, in AU.
 
-<div class="tw-prob" data-answer="0.0974|0.097" data-tol="0.02" data-unit="AU" data-hints='{"0.0945":"That is star 1. Star 2 uses star 1 mass on top: 0.5075 of 0.192 AU.","0.5075":"That is the share. Multiply by the 0.192 AU average distance."}' data-why="0.192 x 0.5075 = 0.0974 AU; the two ovals add up to 0.192 AU." markdown>
+<div class="tw-prob" data-answer="0.0974|0.097" data-tol="0.02" data-unit="AU" data-hints='{"0.0945":"That is star 1. Star 2 uses star 1 mass on top: 0.5075 of 0.192 AU.","0.5075":"That is the share. Multiply by the 0.192 AU semi-major axis."}' data-why="0.192 x 0.5075 = 0.0974 AU; the two ovals add up to 0.192 AU." markdown>
 **Your turn.** Star 2's oval, in AU:
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(a_2 = 0.192 \times 0.5075 = 0.0974\) AU. Check: \(0.0945 + 0.0974 = 0.192\) AU, the distance between them. The balance point sits almost exactly halfway, a hair closer to the heavier star.
+\(a_2 = 0.192 \times 0.5075 = 0.0974\) AU. Check: \(0.0945 + 0.0974 = 0.192\) AU, the semi-major axis of their orbit. The balance point sits almost exactly halfway, a hair closer to the heavier star.
 
-The rule: **each star's oval is the distance apart times the other star's share of the mass**.
+The rule: **each star's oval is the orbit's semi-major axis times the other star's share of the mass**.
 
 </details>
 </div>
@@ -69,7 +69,7 @@ The plot is drawn from Kepler's laws, with the paper's period, stretch and masse
 
 Touch the plot at day 0: the stars are only 0.108 AU apart during the primary eclipse, sweeping past each other at about 170 km/s. At day 11.88, the secondary eclipse, they are 0.266 AU apart and much slower. Closer stars also line up differently from where we stand, so at the primary eclipse one passes more squarely across the other: that is why the primary is deeper (lesson 4.1).
 
-The average relative speed is \(2\pi a / P\): \(2\pi \times 0.192\) AU in 19.66 days, about 106 km/s. At periastron it reaches about 172 km/s, at apastron it falls to about 66 km/s. Each star carries about half of that. A spectrograph (lesson 3.4) would see each star's lines swing by tens of kilometres per second: about a thousand times 51 Pegasi's wobble.
+A quick speed scale is \(2\pi a / P\), the speed on a circle of radius \(a\): \(2\pi \times 0.192\) AU in 19.66 days, about 106 km/s. The true average over the orbit is a little lower, about 101 km/s, because an oval's way round is shorter than that circle's. At periastron it reaches about 172 km/s, at apastron it falls to about 66 km/s. Each star carries about half of that. A spectrograph (lesson 3.4) would see each star's lines swing by tens of kilometres per second: about a thousand times 51 Pegasi's wobble.
 
 ## Why this matters for Second Sun
 
@@ -77,7 +77,7 @@ A planet around this pair circles both stars at about 0.9 AU (lesson 2.1's plane
 
 ## In a few sentences
 
-Two stars orbit their shared centre of mass; each traces an oval whose size is the stars' distance apart times the other star's share of the mass, so this near-equal pair swings on ovals of 0.0945 and 0.0974 AU. By Kepler's second law they move fastest when closest: distance times speed is equal at the nearest and farthest points, so 0.106 AU and 0.278 AU mean a 2.62 times change in speed. The primary eclipse happens near the nearest point (short, 2.7 hours), the secondary near the farthest (long, 7.3 hours).
+Two stars orbit their shared centre of mass; each traces an oval whose size is the orbit's semi-major axis times the other star's share of the mass, so this near-equal pair swings on ovals of 0.0945 and 0.0974 AU. By Kepler's second law they move fastest when closest: distance times speed is equal at the nearest and farthest points, so 0.106 AU and 0.278 AU mean a 2.62 times change in speed. The primary eclipse happens near the nearest point (short, 2.7 hours), the secondary near the farthest (long, 7.3 hours).
 
 ## Problems
 
