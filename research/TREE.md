@@ -149,6 +149,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 - **T139 EB lists merged** (24 Nov, T139; DONE 11:13 pm, Claude): 24,902 stars from Prsa, TTC 3 and 4, CALNet; G2 rule reproduces 895 of 895; only 582 bright unsearched P over 5 d with epoch and width (21 over 10 d); CALNet 8,814 have no period, so our own period fit is the Census critical path. File 
 esearch/stage3/census_union/T139-UNION-RESULT-2026-11-24.md.
 - **Codex 035 Census period finder** (24 Nov, T139; QUEUED after 034b): find a binary's period from its own TESS light, alias check from 032, preregistered on 150 known stars outside fences A and B (85% within 0.1%).
+- **RS-046 Census size for the fork** (24 Nov, T139; DONE 11:25 pm): about 600 bright slow binaries searchable today; 3,000 to 5,000 plausible after 035 and T152; by RS-039 A5, 3,000 stars at today's P beats P 75 on 1,400. Feeds the post-D1 fork; decides nothing alone. `research/stage3/rs046/`.
 
 **2.2 G1: the last unseen list (552 rows, one shot).** *Weight 5.* *Status: WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.* T37b (a fresh-set test) folds into this.
 
