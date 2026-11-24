@@ -5,7 +5,9 @@
 - New: codex_run.py CODEX_WORKTREE env var; second worktree D:\second-sun-astra2 (data junction to D:\second-sun\data). Codex jobs run there while the bench owns the first.
 - Codex 034b DONE (merged 11:26 pm): all checks agree; 5 issues fixed as FIX 104 (grader fractions + step 2j test; 4 qualifications). Codex 035 Census period finder RUNNING in astra2 from 11:29 pm (task b502bbstv). Brief 036 (fact-check 4.3, 4.5) queued after 035.
 - Census T139 part 1 DONE: research/stage3/census_union (24,902 stars; 582 bright unsearched P>5 with times; CALNet 8,814 no period; Gaia join ready for DR4; G5 pool about two thirds truly slow). RS-046: 600 searchable today, 3,000 to 5,000 plausible after 035 + T152 (UNCERTAIN).
-- Book: 3.12.0 (lesson 4.3, field note 24 Nov) publish started 11:20 pm; 3.13.0 committed (lesson 4.5, Unit 4 complete, FIX 104) to publish right after.
+- Book: 3.12.0 (lesson 4.3, field note 24 Nov) publish started 11:20 pm; 3.13.0 committed (lessons 4.5, 5.2, 5.3, 5.4; Unit 4 complete; FIX 104) to publish right after. Each new lesson has a plot script whose checks can fail (u4c, u4d, u5b, u5c, u5d). Codex 036 (launches after 035b, from 1:58 am) fact-checks 4.3, 4.5, 5.2, 5.3, 5.4.
+- Codex 035 PARTIAL (merged): finder draft 0.146% off on synthetic (gate 0.1%); 035b written (stage 2 from 032 eclipse times, truth counts first, downloads up to 2 GB). Timed launcher task bzmpjlwnj: 035b at 1:58 am then 036.
+- TIC cross-match of Gaia slow pool: test batch of 500 running (task bjfttuq7n, MAST, slow); script research/stage3/census_union/gaia_tic_xmatch.py; download to data\census_tic_xmatch (tell Ahmed).
 - Next: confirm 3.12.0 live, publish 3.13.0; when D1 ends run recount_031.py (first key), plain verdict; then 033 D2; at 14% present everything to Ahmed.
 # LATEST (24 Nov 2026, 9:37 pm Kuwait): FIX 103 lesson fixes, 3.11.0 publishing
 
