@@ -40,3 +40,16 @@ CALNet periods we do know (Gaia DR3, 1,559 stars) have median 0.89 d and only 11
 1. The catalogue part of the Census is small (about 580 bright, mostly short-period stars). The big part needs our own period from TESS light.
 2. Eclipse timer v3 (Codex 032) times eclipses when a period is known; it does not find periods. **Next Census build: a period finder for one star's TESS light (box search on eclipses, then v3's half-period check), tested on the Prsa and TTC stars where the answer is known.** Size: a Codex brief, after 034b.
 3. On 2 Dec, Gaia DR4 rows join through the same merge (`source = gaia_dr4`) and C2 is rerun on them before any DR4 period is trusted.
+
+## Part 1b: Gaia DR3 joined (24 Nov 2026, 11:23 pm; script `gaia_join.py`, ready for DR4 on 2 Dec)
+Test input: our Gaia DR3 slow pool (188,407 eclipsing binaries with Gaia period over 5 d, `data/ffi_door_2026-11-08/gaia_pool_p5.csv`), positions moved to J2000 (DR3 epoch 2016.0), matched within 3 arcsec.
+
+| Result | Number | Label |
+|---|---|---|
+| Union stars matched to a Gaia slow-pool row | 619 | CONFIRMED |
+| ...Gaia period same as the TESS catalogue / double / half / other | 170 / 61 / 4 / 374 | CONFIRMED |
+| Of matched rows, true (catalogue) period over 5 d | 55% overall, 68.5% at G 13.5 or brighter (333 stars) | CONFIRMED |
+| Gaia slow-pool binaries in NONE of our lists, G 13.5 or brighter | 5,382 (2,500 with Gaia P over 10 d) | CONFIRMED count |
+| ...of those, truly slower than 5 d, if they behave like the matched ones | about 3,700 | UNCERTAIN (matched stars may differ from unmatched) |
+
+**What it changes:** Gaia's own slow list, used only as WHO, is likely the Census's largest pool: more truly slow bright binaries than CALNet's whole list. They have no TIC ids yet (a TIC cross-match is needed), and most are probably not 2-minute targets, so they need full-frame light (T152, the FFI door, where coverage was only 22.7% for one product: NOT TESTED for this pool). On 2 Dec: run `gaia_join.py` on DR4 rows after checking DR4's reference epoch and rerunning C1 on its conventions.
