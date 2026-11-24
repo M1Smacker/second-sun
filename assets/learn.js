@@ -127,7 +127,14 @@
   /* ---------- problems: typed answer, instant check, a specific hint, the worked solution ---------- */
   const num = (s, unit = "") => {
     let t = String(s).trim().toLowerCase().replace(/\u2212/g, "-");
-    const parts = /^([+\-]?[\d.,]+(?:\s*[×x]\s*10\^?[+\-]?\d+|e[+\-]?\d+)?)(?:\s*(.*))?$/.exec(t);
+    // FIX 104 (24 Nov 2026, Codex 034b F5): a plain fraction such as 1/2 or 3 / 4, digits only, never evaluated as code.
+    const frac = /^([+\-]?\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)(?:\s+(.*))?$/.exec(t);
+    if (frac) {
+      const fs = (frac[3] || "").trim(), fe = unit.toLowerCase();
+      if (fs && fs !== fe) return null;
+      return +frac[2] ? +frac[1] / +frac[2] : null;
+    }
+    const parts =/^([+\-]?[\d.,]+(?:\s*[×x]\s*10\^?[+\-]?\d+|e[+\-]?\d+)?)(?:\s*(.*))?$/.exec(t);
     if (!parts) return null;
     const aliases = { percent: ["percent", "%"], days: ["days", "day", "d"], hours: ["hours", "hour", "h"], years: ["years", "year", "yr"], points: ["points", "point"] };
     const suffix = (parts[2] || "").trim(), expected = unit.toLowerCase();
@@ -142,7 +149,7 @@
   const same = (given, want, tol, abs, unit) => {
     const a = num(given, unit), b = num(want);
     if (a != null && b != null) return Math.abs(a - b) <= Math.max(abs || 0, Math.abs(b) * tol);
-    return String(given).trim().toLowerCase().replace(/[.\s]+$/g, "") === String(want).trim().toLowerCase();
+    return String(given).trim().toLowerCase().replace(/[.!\s]+$/g, "") === String(want).trim().toLowerCase();
   };
   const dueKey = "tw-due";
   const due = () => get(dueKey, []);

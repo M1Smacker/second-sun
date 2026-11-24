@@ -1728,7 +1728,7 @@
 </aside>
 <p>The deeper one is called the <strong>primary eclipse</strong>, the shallower the <strong><a href="../../../glossary/#secondary-eclipse">secondary eclipse</a></strong>. On this plot the primary is at day 0 and removes 43.5% of the light; the secondary, at day 11.88, removes 35.8%.</p>
 <h2 id="how-deep-an-eclipse-is">How deep an eclipse is<a class="headerlink" href="#how-deep-an-eclipse-is" title="Permanent link">&para;</a></h2>
-<p>TESS sees the two stars as one point, so an eclipse removes the light of whatever part of the back star is covered. Lesson 2.3 measured the two stars' light: the first gives 2.31 Suns, the second 1.99, together 4.30. If the front star covers a share <span class="arithmatex">\(s\)</span> of the back star's disc, and the back star's surface is evenly bright:</p>
+<p>TESS sees the two stars as one point, so an eclipse removes the light of whatever part of the back star is covered. Lesson 2.3 measured the two stars' light: the first gives 2.31 Suns, the second 1.99, together 4.30. (Those are totals over all colours; TESS sees only red and near-infrared light, 600 to 1,000 nm. For two stars this close in temperature the shares come out almost the same: 0.536 for the first star in TESS's band against 0.537.) If the front star covers a share <span class="arithmatex">\(s\)</span> of the back star's disc, and the back star's surface is evenly bright:</p>
 <div class="arithmatex">\[ \text{depth} = s \times \frac{L_{\text{back}}}{L_1 + L_2} \]</div>
 <aside class="tw-mn">
 <p><strong>Limb darkening (a correction we ignore here).</strong> A real star's disc is a little darker at its edge than at its centre, so covering the middle blocks more light than covering the edge. Our rule treats the disc as evenly bright, which is good enough to read the plot.</p>
@@ -1757,7 +1757,7 @@
 </details>
 </div>
 <h2 id="why-the-two-eclipses-differ">Why the two eclipses differ<a class="headerlink" href="#why-the-two-eclipses-differ" title="Permanent link">&para;</a></h2>
-<p>The two stars are almost the same temperature (6,050 K and 5,983 K in Kostov et al. 2021), so square metre for square metre they shine almost equally: <span class="arithmatex">\((6050 / 5983)^{4} = 1.05\)</span>, only 5% apart. That cannot turn 35.8% into 43.5%. The difference comes from <strong>how much</strong> of the back star is covered, and that comes from the shape of the orbit.</p>
+<p>The two stars are almost the same temperature (6,050 K and 5,983 K in Kostov et al. 2021), so square metre for square metre they shine almost equally: <span class="arithmatex">\((6050 / 5983)^{4} = 1.05\)</span>, only 5% apart (4% in TESS's band). That cannot turn 35.8% into 43.5%. The difference comes from <strong>how much</strong> of the back star is covered, and that comes from the shape of the orbit.</p>
 <h2 id="why-the-second-eclipse-is-late">Why the second eclipse is late<a class="headerlink" href="#why-the-second-eclipse-is-late" title="Permanent link">&para;</a></h2>
 <p>In a circular orbit the stars move at a steady speed, so the second eclipse comes exactly half an orbit after the first: day 9.83 here. It comes at day 11.88 instead, 60.4% of the way round.</p>
 <p>The orbit is <strong>stretched</strong>. Its eccentricity is 0.448 (lesson 2.1 found the distance between the stars swinging from about 0.11 to 0.28 AU). The stars move fast when they are close together and slowly when they are far apart, as <a href="../../../glossary/#kepler">Kepler</a>'s second law says (equal areas in equal times). The two eclipses happen at two fixed points of the orbit, the two moments when the stars line up with us, and the time from one to the other depends on whether that stretch of the orbit is a near, fast part or a far, slow part. Here one stretch takes 11.88 days and the other only 7.78.</p>
@@ -1765,7 +1765,7 @@
 <aside class="tw-mn">
 <p><strong>Eccentricity <span class="arithmatex">\(e\)</span>.</strong> How stretched an orbit is: 0 for a circle, close to 1 for a long thin ellipse. Earth's is 0.017; this pair's is 0.448.</p>
 </aside>
-<p>A rule of thumb from the timing alone: the shift away from half an orbit, as a share of the orbit, is about <span class="arithmatex">\(\frac{2}{\pi}\, e\cos\omega\)</span>, where <span class="arithmatex">\(\omega\)</span> is the angle saying which way the stretched orbit points. Here the shift is <span class="arithmatex">\(0.604 - 0.5 = 0.104\)</span>, so <span class="arithmatex">\(e\cos\omega \approx 0.104 \times \pi / 2 = 0.16\)</span>. Our exact calculation with Kepler's equation gives 0.15. The timing therefore says the orbit is stretched by <strong>at least</strong> 0.15; the full 0.448 also needs the eclipses' lengths and, in the paper, the planet's own pull.</p>
+<p>A rule of thumb from the timing alone: the shift away from half an orbit, as a share of the orbit, is about <span class="arithmatex">\(\frac{2}{\pi}\, e\cos\omega\)</span>, where <span class="arithmatex">\(\omega\)</span> is the angle saying which way the stretched orbit points. Here the shift is <span class="arithmatex">\(0.604 - 0.5 = 0.104\)</span>, so <span class="arithmatex">\(e\cos\omega \approx 0.104 \times \pi / 2 = 0.16\)</span>. Our exact calculation with Kepler's equation, for an exactly edge-on orbit, gives 0.15. The timing therefore says the orbit is stretched by <strong>at least</strong> 0.15; the full 0.448 also needs the eclipses' lengths and, in the paper, the planet's own pull.</p>
 <h2 id="why-this-matters-for-second-sun">Why this matters for Second Sun<a class="headerlink" href="#why-this-matters-for-second-sun" title="Permanent link">&para;</a></h2>
 <p>Every star on our hunt lists is a pair like this one. Their eclipses are 100 times deeper than a planet's dip, so the search must hide them first, using a table of when each eclipse happens. When that table's times are wrong, the hiding windows slide off the real eclipses or swell to cover the whole sector, and planets are lost (this week's eclipse-timing work, FIX 94, measures those times from TESS's own eclipses, exactly as this lesson did). A planet around such a pair circles both stars, outside this 19.66-day dance.</p>
 <h2 id="in-a-few-sentences">In a few sentences<a class="headerlink" href="#in-a-few-sentences" title="Permanent link">&para;</a></h2>
@@ -1810,6 +1810,7 @@
 <ul>
 <li>The light: TESS sectors 44 to 47, SPOC 2-minute light curves of TIC 172900988 (PDCSAP flux, quality flags removed), from MAST, as in lessons 1.1 and 2.1.</li>
 <li>The system: Kostov et al. 2021, "TIC 172900988: A Transiting Circumbinary Planet Detected in One Sector of TESS Data", AJ 162, 234 (<a href="https://arxiv.org/abs/2105.08614">arXiv 2105.08614</a>, abstract and HTML tables read 23 Nov 2026): binary period 19.658173 d (Table 5), eccentricity 0.4479 (Table 6), star radii 1.384 and 1.312 Sun radii (Table 5), temperatures 6,050 and 5,983 K (Table 3); TESS-only eclipse depths "about 40% and 35%" (section 2.1).</li>
+<li>The timing rule of thumb: Winn 2010, "Transits and Occultations", equation 33, first order in e (<a href="https://arxiv.org/abs/1001.2010">arXiv 1001.2010</a>); at this pair's tilt the correction is 16 seconds (Codex 034b).</li>
 <li>Our checks, <code>book/tools/lesson_plots_u4.py</code> (23 Nov 2026): 5 primary and 4 secondary eclipses; median depths 43.5% and 35.8%; secondary at 0.6043 of the orbit (11.879 d); with e = 0.4479 the exact edge-on timing (Kepler's equation) reproduces that separation at e cos(omega) = 0.149, the first-order rule gives 0.164. A failure of the depth or timing check stops the plot.</li>
 <li>The first-order timing rule (the secondary's shift from half an orbit is about (2/pi) e cos(omega) for a nearly edge-on orbit): the standard result found in eclipsing-binary texts, for example Kallrath and Milone, "Eclipsing Binary Stars: Modeling and Analysis" (Springer). Eclipses, primary and secondary, and Kepler's second law: OpenStax Astronomy 2e, chapters 3 and 18 (<a href="https://openstax.org/details/books/astronomy-2e">the book</a>, CC BY-NC-SA 4.0), in our own words.</li>
 <li>Earth's eccentricity 0.0167: NASA Earth fact sheet (<a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html">nssdc.gsfc.nasa.gov</a>).</li>
@@ -1858,7 +1859,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Book 3.12.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
+      Book 3.14.0 · Text CC BY 4.0, code MIT. Work in progress, not announced.
     </div>
   
   
