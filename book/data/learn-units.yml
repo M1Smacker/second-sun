@@ -42,7 +42,7 @@ units:
   - n: 6
     title: Finding dips with a computer
     lessons:
-      - {title: "Smoothing out slow changes"}
+      - {file: u6/l1-smoothing-slow-changes.md, title: "Smoothing out slow changes", minutes: 13}
       - {title: "Searching with boxes"}
       - {title: "False alarms and looking everywhere"}
       - {title: "The upside-down test"}

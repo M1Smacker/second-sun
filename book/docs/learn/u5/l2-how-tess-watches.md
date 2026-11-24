@@ -23,7 +23,7 @@ TESS looks at red and near-infrared light, 600 to 1,000 nm (lesson 3.1's spectru
 
 ## The hole in the middle
 
-TESS's orbit takes 13.7 days, and it brings TESS closest to Earth once per orbit. There it points its antenna home and sends down everything it has stored: twice per sector. On the plot, the raw time stamps stop for 1.39 days. TESS also marks some measurements next to the gap as unreliable, and when those are left out, as in every lesson plot, the hole grows to 2.74 days. The sending itself takes only a few hours; we have not checked every reason the gap is longer.
+TESS's orbit takes 13.7 days, and it brings TESS closest to Earth once per orbit. There it points its antenna home and sends down everything it has stored: twice per sector. On the plot, the raw time stamps stop for 1.39 days. TESS also marks some measurements next to the gap as unreliable, and when those are left out, as in every lesson plot, the hole grows to 2.74 days. The sending itself takes only a few hours; we have not checked every reason the gap is longer. And a hole can swallow exactly what you are looking for: in this sector, our star's deeper eclipse (43.5%) was due at day 13.65, inside the hole, so the two drops you see are both the shallower kind.
 
 ## Think it through
 
