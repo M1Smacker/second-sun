@@ -38,7 +38,7 @@ units:
       - {title: "Telescopes: collecting light"}
       - {file: u5/l2-how-tess-watches.md, title: "How TESS watches the sky", minutes: 14}
       - {file: u5/l3-pixels-to-light-curves.md, title: "From pixels to light curves", minutes: 14}
-      - {title: "What goes wrong"}
+      - {file: u5/l4-what-goes-wrong.md, title: "What goes wrong", minutes: 13}
   - n: 6
     title: Finding dips with a computer
     lessons:
