@@ -172,9 +172,10 @@ esearch/stage3/census_union/T139-UNION-RESULT-2026-11-24.md.
 - **Codex 034 fact-check of lessons 3.4 and 4.1** (23 Nov, node 4.1; WAITS for 032 Part A to finish, then runs before 032 Part B): both lessons live with the fact-check pending. `research/astra/inbox/034-factcheck-lessons-3-4-and-4-1.md`.
 - **FIX 102** (23 Nov, node 4.1; FIXED in Book 3.10.0): touching a lesson plot whose axis does not start at 0 read the wrong point (486 nm read as 380 nm on lesson 3.3); new learn check, mutation red. Lesson 3.4 Doppler added the same day.
 - **FIX 103** (24 Nov, node 4.1; FIXED in Book 3.11.0): five teaching errors Codex 034 found in lessons 4.1, 4.2, 4.4 (average distance, average speed, duration sign, star direction, exact e cos omega); re-derived by Claude's own script first.
-- **Codex 034b finish lesson fact-check** (24 Nov, node 4.1; DONE 11:24 pm, merged): all six groups done; depths 43.500/35.776%, separation 11.88048 d, Lick refit, omega and the separation plot all agree; 5 issues fixed as FIX 104 (Book 3.12.1).
-- **FIX 104** (24 Nov, node 4.1; FIXED in Book 3.12.1): grader accepts fractions; four lesson qualifications from Codex 034b; publish step 2j.
+- **Codex 034b finish lesson fact-check** (24 Nov, node 4.1; DONE 11:24 pm, merged): all six groups done; depths 43.500/35.776%, separation 11.88048 d, Lick refit, omega and the separation plot all agree; 5 issues fixed as FIX 104 (Book 3.13.0).
+- **FIX 104** (24 Nov, node 4.1; FIXED in Book 3.13.0): grader accepts fractions; four lesson qualifications from Codex 034b; publish step 2j.
 - **Lesson 4.3 Measuring stars from their eclipses** (24 Nov, node 4.1; Book 3.12.0): trapezoid lengths 5.37 and 13.25 h at 169 and 68.6 km/s give R1 + R2 at least 2.35 Sun radii from both eclipses (agree to 0.2%, so nearly edge-on; paper 89.42 deg, 2.70 Sun radii; ours 87%, likely limb-darkened contacts, NOT TESTED). Paper omega 69.6 deg confirms lesson 4.2's 70.6 within 1 deg. Needs an outside fact-check after 034b.
+- **Lesson 4.5 The stability limit, and why they are rare** (24 Nov, node 4.1; Book 3.13.0; Unit 4 complete): Holman and Wiegert 1999 edge 3.516 x a_bin, a/a_crit 1.335 and P_crit 129.6 d reproduce Kostov's 1.34 and 129.7 (script checks); Martin 2015 (none under 7 d), Armstrong 2014 (10%, +18/-6.5). Needs an outside fact-check with 4.3.
 
 **4.2 Search window and control room.** *Weight 2.* *Status: WAITS: after G1 or Census (Ahmed).* T159 control room on Netlify (plan `research/stage3/CONTROL-ROOM-PLAN.md`); T51, T53, T50; FIX 77 exporter label.
 

@@ -31,7 +31,7 @@ units:
       - {file: u4/l2-how-two-stars-orbit.md, title: "How two stars orbit each other", minutes: 15}
       - {file: u4/l3-measuring-stars.md, title: "Measuring stars from their eclipses", minutes: 15}
       - {file: u4/l4-planets-around-two-suns.md, title: "Planets around two suns", minutes: 15}
-      - {title: "The stability limit, and why they are rare"}
+      - {file: u4/l5-stability-and-rarity.md, title: "The stability limit, and why they are rare", minutes: 15}
   - n: 5
     title: The telescope and the data
     lessons:
