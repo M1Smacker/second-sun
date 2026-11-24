@@ -24,3 +24,6 @@ For comparison, RS-039 A5: raising P from 48 to 75 on 1,400 stars gives about 50
 ## What it changes
 1. It strengthens Claude's lean for the fork, (b), and names its real cost: Codex 035 (period finder), T152 (FFI light path), a TIC cross-match for the Gaia pool, then gates (a) to (c) on samples of each new source (spec note rule 4).
 2. It does not decide the fork. D1's result, and Ahmed's word, still come first. Nothing is started on the strength of this note beyond 035, which serves both branches.
+
+## Update 25 Nov 2026, 1:11 am: TIC cross-match done (`census_union/gaia_tic_xmatch.py`, `data/census_tic_xmatch/`, MAST TIC v8.2, 2.65 MB)
+Of the 5,382 bright Gaia slow-pool binaries in none of our lists: **5,192 (96.5%) have a TIC id** (42 Gaia ids map to two TIC rows; 190 unmatched, likely DR2/DR3 id changes, NOT TESTED), and **only 96 (1.8%) were 2-minute targets in any sector from 27 on**. CONFIRMED: the G5 pool is full-frame-only in practice, as assumed above. Its Census value therefore rests on T152 (the full-frame path) and on how well Petrova searches 30-, 10- and 3.3-minute light: NOT TESTED.
