@@ -1,3 +1,9 @@
+# LATEST (24 Nov 2026, 9:37 pm Kuwait): FIX 103 lesson fixes, 3.11.0 publishing
+
+- Ahmed back 24 Nov 9:25 pm; weekly cap now 10% (meter 5% at 9:36 pm, resets Tue 1 Dec 1 am). He asked for a plain explanation (given), then: "fix the 5 lesson mistakes and publish and afterwards plan how you are gonna hit the 10% weekly cap today".
+- Merged astra/034 (fence CLEAN). Re-derived the 5 findings with my own script (time-avg separation 0.211 AU vs a 0.192; mean speed 100.7 vs 2 pi a/P 106.3; star speeds -6.7 and -29.3 km/s). Fixed lessons 4.1 (problem 5), 4.2 (semi-major axis wording, speed scale), 4.4 (abs relative speed, star direction). FIX 103 in FIX-QUEUE and Tree; versions row 3.11.0 updated; tree_check passes. Commit b15147ea pushed.
+- publish_book.ps1 -Test started 9:36 pm (log in scratchpad publish311.log). Fact-check-pending labels stay: Codex 034 checks are partial (6 groups left).
+- Next: confirm 3.11.0 live; give Ahmed the 10% plan (D1 resume via Codex, recount, D2, Census build by Claude, Codex 034b finish fact-check); start only on his go.
 ## LATEST (23 Nov 2026, 12:01 pm Kuwait): SAFE STOP, Ahmed shutting the PC; restart list
 - Ahmed 11:58 am: 'stop everything safely as i wanna shut my pc for some time. ask me questions later when i tell u to ask me.' Direction answer: BOTH IN PARALLEL (Census build by Claude while Codex keeps testing P ideas). Eclipse-v3 question NOT answered: ask only when he says.
 - Stopped: D1 bench 031 (killed 12:00 pm mid 'fresh_new raw paired replay'; data/astra/031 keeps 22 scored files and the generated trials; note STOPPED-BY-CLAUDE-2026-11-23.txt; progress.json left saying running). Book 3.11.0 publish killed before push (live = 3.10.0, confirmed 11:41 am). Preview server and hourly cron 50b0d0dc deleted.
