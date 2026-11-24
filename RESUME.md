@@ -1,3 +1,12 @@
+# LATEST (24 Nov 2026, 11:33 pm Kuwait): 14% day in progress
+
+- Ahmed 11:05 pm: cap today 14%, never idle, keep working beside machine and Codex time, present everything at the end (Opus 5.5 high). Memory feedback_cap_is_a_target.md.
+- D1 bench (031) RESUMED 11:06 pm: progress.json marked failed with stop note, 031_run.py relaunched detached (supervisor pid 19520), stage fresh_new; log data\astra\031\resume-2.log. SLIP 11:07: switching D:\second-sun-astra off its branch rewrote 14 locked 031 scripts (and 13 tracked data\rs037 files via the junction) with CRLF; restored LF bytes, lock hash matches. Never switch that worktree while the bench runs.
+- New: codex_run.py CODEX_WORKTREE env var; second worktree D:\second-sun-astra2 (data junction to D:\second-sun\data). Codex jobs run there while the bench owns the first.
+- Codex 034b DONE (merged 11:26 pm): all checks agree; 5 issues fixed as FIX 104 (grader fractions + step 2j test; 4 qualifications). Codex 035 Census period finder RUNNING in astra2 from 11:29 pm (task b502bbstv). Brief 036 (fact-check 4.3, 4.5) queued after 035.
+- Census T139 part 1 DONE: research/stage3/census_union (24,902 stars; 582 bright unsearched P>5 with times; CALNet 8,814 no period; Gaia join ready for DR4; G5 pool about two thirds truly slow). RS-046: 600 searchable today, 3,000 to 5,000 plausible after 035 + T152 (UNCERTAIN).
+- Book: 3.12.0 (lesson 4.3, field note 24 Nov) publish started 11:20 pm; 3.13.0 committed (lesson 4.5, Unit 4 complete, FIX 104) to publish right after.
+- Next: confirm 3.12.0 live, publish 3.13.0; when D1 ends run recount_031.py (first key), plain verdict; then 033 D2; at 14% present everything to Ahmed.
 # LATEST (24 Nov 2026, 9:37 pm Kuwait): FIX 103 lesson fixes, 3.11.0 publishing
 
 - Ahmed back 24 Nov 9:25 pm; weekly cap now 10% (meter 5% at 9:36 pm, resets Tue 1 Dec 1 am). He asked for a plain explanation (given), then: "fix the 5 lesson mistakes and publish and afterwards plan how you are gonna hit the 10% weekly cap today".
