@@ -56,7 +56,7 @@ For 2.55 million electrons: \(1/\sqrt{2{,}550{,}000} = 0.000627\), or 627 ppm. T
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-\(159 / 114 = 1.39\). The extra comes from other noise sources; the usual suspects are the sky background's own photons (lesson 5.3 subtracted its level, not its wobble), the detector and the spacecraft's small pointing jitter. We have not split them. On the plot the ratio stays near 1.4 from 2 minutes to 4 hours: the spread shrinks exactly as photon noise does, just 1.4 times larger.
+\(159 / 114 = 1.39\). The extra comes from other noise sources; the usual suspects are the sky background's own photons (lesson 5.3 subtracted its level, not its wobble), the detector and the spacecraft's small pointing jitter. We have not split them. On the plot the ratio stays near 1.4 from 2 minutes to 2 hours: the spread shrinks exactly as photon noise does, just 1.4 times larger. (Beyond about 2 hours too few blocks fit in one sector to measure the spread well.)
 
 The rule: **noise shrinks as the square root of the light collected; average 4 times longer, and it halves**.
 
@@ -69,7 +69,7 @@ A planet's dip around our star might be 3,000 ppm (lesson 4.4): easy against 159
 
 ## In a few sentences
 
-A telescope collects light in proportion to the area of its opening; TESS's cameras are 10.5 cm across. Light comes as separate particles, so a count of \(N\) wobbles by \(\sqrt{N}\): our star gives 2.55 million electrons per 2 minutes, a photon limit of 627 ppm, and averaging over an hour brings it to 114 ppm. TESS's real spread for this star is 1.4 times that limit at every time scale: 159 ppm in an hour.
+A telescope collects light in proportion to the area of its opening; TESS's cameras are 10.5 cm across. Light comes as separate particles, so a count of \(N\) wobbles by \(\sqrt{N}\): our star gives 2.55 million electrons per 2 minutes, a photon limit of 627 ppm, and averaging over an hour brings it to 114 ppm. TESS's real spread for this star is about 1.4 times that limit from 2 minutes to 2 hours: 159 ppm in an hour.
 
 ## Problems
 
@@ -88,7 +88,7 @@ A telescope collects light in proportion to the area of its opening; TESS's came
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
 
-By \(\sqrt{4} = 2\): it halves. The plot shows it: 858 ppm at 2 minutes, 389 at 10, 159 at 60.
+By \(\sqrt{4} = 2\): it halves. The plot shows it: 858 ppm at 2 minutes, 432 at 8, 223 at 32.
 
 </details>
 </div>
@@ -106,5 +106,5 @@ By \(\sqrt{4} = 2\): it halves. The plot shows it: 858 ppm at 2 minutes, 389 at 
 ## Sources
 
 - TESS's cameras: NASA HEASARC, TESS Telescope Information ([page](https://heasarc.gsfc.nasa.gov/docs/tess/telescope_information.html), read 24 Nov 2026): "a 10.5 cm diameter entrance pupil and a focal ratio f/1.4", seven lenses, four 2048 x 2048 CCDs per camera operated at -75 degrees C.
-- Our measurements (`book/tools/lesson_plots_u5a.py`, 24 Nov 2026): TESS sector 46 SPOC 2-minute light of TIC 172900988 (MAST), outside the eclipses, quality flags removed, a 12-hour running median divided out: 21,213 electrons per second, photon limit 627 ppm per 2 minutes, measured 858 ppm (2 minutes) to 77 ppm (4 hours), 1.35 to 1.41 times the limit; the file's own 1-hour noise figure (CDPP) is 195 ppm. The script stops if the scatter is below the photon limit or far from the file's own figure.
+- Our measurements (`book/tools/lesson_plots_u5a.py`, 24 Nov 2026): TESS sector 46 SPOC 2-minute light of TIC 172900988 (MAST), outside the eclipses, quality flags removed, a 12-hour running median divided out: 21,213 electrons per second, photon limit 627 ppm per 2 minutes, measured 858 ppm (2 minutes) to 113 ppm (2 hours), 1.37 to 1.43 times the limit (159 ppm at exactly 1 hour, 1.39 times); the file's own 1-hour noise figure (CDPP) is 195 ppm. The script stops if the scatter is below the photon limit or far from the file's own figure.
 - Our noise against the photon floor across our stars: `research/stage3/rs041/P75-REESTIMATE-2026-11-22.md` (1.6 to 1.9 times at Tmag 9 to 11, 2 to 3 times at 12 to 13). An Earth-size planet dims a Sun-like star by about 84 ppm: \((6{,}371 / 695{,}700)^2\).

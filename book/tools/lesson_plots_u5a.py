@@ -33,7 +33,7 @@ print(f'scatter before removing slow changes {raw_std:.0f} ppm (the star varies 
 N = np.median(sap) * 120.0
 photon = 1e6 / np.sqrt(N)
 print(f"Tmag {h0.get('TESSMAG')}; median SAP {np.median(sap):.0f} e/s; electrons per 2 minutes {N:.3g}; photon limit {photon:.0f} ppm per 2 minutes")
-mins = [2, 4, 10, 20, 30, 60, 120, 240]
+mins = list(range(2, 242, 6))   # dense and even, so touching the plot reads the point under the finger (site_check learn)
 meas = []
 for m in mins:
     k = m // 2
@@ -41,11 +41,12 @@ for m in mins:
     idx = np.digitize(t, edges)
     v = [f[idx == i].mean() for i in np.unique(idx) if (idx == i).sum() == k]
     meas.append(float(np.std(v) * 1e6))
-for m, s in zip(mins, meas):
+for m, s in [(m, s) for m, s in zip(mins, meas) if m in (2, 8, 20, 32, 62, 122, 242, 236)]:
     print(f"  {m:4d} min: measured {s:6.0f} ppm; photon limit {photon / np.sqrt(m / 2):6.0f} ppm; ratio {s / (photon / np.sqrt(m / 2)):.2f}")
 print("file CDPP 1 hour:", h1.get("CDPP1_0"))
 if meas[0] < photon: sys.exit("check failed: scatter below the photon limit")
-if not 0.5 < meas[mins.index(60)] / h1["CDPP1_0"] < 2: sys.exit("check failed: 1-hour scatter far from the file's CDPP")
+m60 = meas[min(range(len(mins)), key=lambda i: abs(mins[i] - 60))]
+if not 0.5 < m60 / h1["CDPP1_0"] < 2: sys.exit("check failed: 1-hour scatter far from the file's CDPP")
 doc = {"tic": TIC, "sector": 46, "title": "Averaging longer, the scatter shrinks",
        "note": "The spread of our star's brightness outside the eclipses, after its own slow changes are divided out, when the 2-minute measurements are averaged in longer and longer blocks.",
        "x": "Averaging time (minutes)", "y": "Scatter (ppm)", "unit": "ppm", "xabs": True,

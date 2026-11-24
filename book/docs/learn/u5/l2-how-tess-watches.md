@@ -43,7 +43,7 @@ TESS's orbit takes 13.7 days, and it brings TESS closest to Earth once per orbit
 !!! question "Your turn, half done: would a dip be missed?"
     A planet's dip lasts 8 hours and could fall at any moment of the sector. The hole covers 11% of it. Step 1: the share of moments that land in the hole is 0.11. Finish: out of 100 such dips, about how many would fall in the hole?
 
-<div class="tw-prob" data-answer="11|10.5" data-tol="0.15" data-hints='{"0.11":"That is the share. Out of 100 dips: multiply by 100.","89":"That is the dips TESS sees. The question asks how many fall in the hole."}' data-why="0.11 x 100 = 11 (a few more if dips that only touch the hole's edges count as lost)." markdown>
+<div class="tw-prob" data-answer="11" data-tol="0.1" data-hints='{"0.11":"That is the share. Out of 100 dips: multiply by 100.","89":"That is the dips TESS sees. The question asks how many fall in the hole."}' data-why="0.11 x 100 = 11 (a few more if dips that only touch the hole's edges count as lost)." markdown>
 **Your turn.** Dips lost in the hole, out of 100:
 
 <details class="tw-sol" markdown><summary>Worked solution</summary>
