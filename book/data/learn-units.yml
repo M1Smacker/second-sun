@@ -29,7 +29,7 @@ units:
     lessons:
       - {file: u4/l1-eclipsing-binaries.md, title: "Eclipsing binaries", minutes: 16}
       - {file: u4/l2-how-two-stars-orbit.md, title: "How two stars orbit each other", minutes: 15}
-      - {title: "Measuring stars from their eclipses"}
+      - {file: u4/l3-measuring-stars.md, title: "Measuring stars from their eclipses", minutes: 15}
       - {file: u4/l4-planets-around-two-suns.md, title: "Planets around two suns", minutes: 15}
       - {title: "The stability limit, and why they are rare"}
   - n: 5

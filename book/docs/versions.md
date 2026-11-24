@@ -6,7 +6,7 @@ A version number says which exact rules or pages a result, a score or a progress
 |---|---|---|---|
 | Petrova, the search (called Vesper until 11 Nov 2026) | 1.0.0 | Vesper 0.8.1 stays as the old reference; 0.7.1 for the study; 0.8.0 on the sealed G2 stars (scored 30 Oct) | every result depends on its exact rules |
 | The G2 test (lists, rules, scorecard) | rules 1.1, scorecard 1.0 | the lock of 29 Oct | the rules were written before the results |
-| The book | 3.11.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
+| The book | 3.12.0 | 2.12.0, kept whole at /v2/ | it changes often and you read it daily |
 | Learning (Twinlight) | 1.2 (lessons 1.1 to 2.2) | the old track 1.11, kept at /v2/ | a lesson marked read means what the lesson contained that day |
 | Eyes mode | 1.3 | 1.3 | scores are compared over time |
 
@@ -113,6 +113,7 @@ The rehearsal (step three of the ladder, 2 Nov 2026) is a separate page with its
 | 2.11.5 | 14 Nov | Home recap: the planet-level test (0.48 of planets reach the top list, just under the 0.50 bar) and the two real known planets |
 | 2.11.7 | 14 Nov | Evening recap: the eclipse-mask result and the next step (own eclipse times, Fable on Monday) |
 | 2.11.8 | 14 Nov | Night recap: known spacecraft events plus the dump-shape rule bring the planet score to 0.4998 with no extra upside-down alarms |
+| 3.12.0 | 24 Nov | Twinlight lesson 4.3 Measuring stars from their eclipses: both eclipses of our two-sun pair, hour by hour, give the same minimum size (2.35 Sun radii), which shows the orbit is almost exactly edge-on (checked against Kostov et al. 2021: 2.70 Sun radii, 89.42 degrees). Field note 24 Nov: every public eclipsing-binary list merged. |
 | 3.11.0 | 23 Nov | Twinlight Unit 4 opens: lesson 4.1 Eclipsing binaries, on our published two-sun system folded over four sectors (two eclipses 43.5% and 35.8% deep, the second 11.88 days after the first because the orbit is stretched; checked against Kostov et al. 2021); lesson 4.2 How two stars orbit each other (the distance between the stars through one orbit, 0.106 to 0.278 AU, with the orbit direction read from our own eclipse lengths); lesson 4.4 Planets around two suns (why the two sector-21 dips differ in length, and why our search judges single dips); field note 23 Nov. Before release, the five teaching errors an outside check found in 4.1, 4.2 and 4.4 were corrected (FIX 103). |
 | 3.10.0 | 23 Nov | Twinlight lesson 3.4 Doppler, with 354 real Lick speed measurements of 51 Pegasi (period, swing and planet mass checked against the published orbit). Touching a plot whose axis does not start at zero (spectra) now reads the point under your finger (FIX 102); a new browser check guards it |
 | 3.9.1 | 22 Nov | Field note 22 Nov, second part: the notch's 18 Nov gain corrected (2.9, not 7.7), three more noes, new estimate 51 to 55 |
