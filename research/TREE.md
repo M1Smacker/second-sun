@@ -176,6 +176,7 @@ esearch/stage3/census_union/T139-UNION-RESULT-2026-11-24.md.
 - **FIX 104** (24 Nov, node 4.1; FIXED in Book 3.13.0): grader accepts fractions; four lesson qualifications from Codex 034b; publish step 2j.
 - **Lesson 4.3 Measuring stars from their eclipses** (24 Nov, node 4.1; Book 3.12.0): trapezoid lengths 5.37 and 13.25 h at 169 and 68.6 km/s give R1 + R2 at least 2.35 Sun radii from both eclipses (agree to 0.2%, so nearly edge-on; paper 89.42 deg, 2.70 Sun radii; ours 87%, likely limb-darkened contacts, NOT TESTED). Paper omega 69.6 deg confirms lesson 4.2's 70.6 within 1 deg. Needs an outside fact-check after 034b.
 - **Lesson 4.5 The stability limit, and why they are rare** (24 Nov, node 4.1; Book 3.13.0; Unit 4 complete): Holman and Wiegert 1999 edge 3.516 x a_bin, a/a_crit 1.335 and P_crit 129.6 d reproduce Kostov's 1.34 and 129.7 (script checks); Martin 2015 (none under 7 d), Armstrong 2014 (10%, +18/-6.5). Needs an outside fact-check with 4.3.
+- **Codex 036 fact-check lessons 4.3 and 4.5** (24 Nov, node 4.1; QUEUED after 035): numbers, grader, the eclipse-chord physics, limb darkening as the 12% cause, Holman and Wiegert's coefficients and validity range.
 
 **4.2 Search window and control room.** *Weight 2.* *Status: WAITS: after G1 or Census (Ahmed).* T159 control room on Netlify (plan `research/stage3/CONTROL-ROOM-PLAN.md`); T51, T53, T50; FIX 77 exporter label.
 
