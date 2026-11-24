@@ -15,7 +15,10 @@ Usage:
   python codex_run.py --test          (tiny job on a scratch branch: proves model, sandbox and a commit; deletes the branch after)"""
 import argparse, datetime as dt, json, os, pathlib, re, subprocess, sys, time
 
-ASTRA = pathlib.Path(r"D:\second-sun-astra")
+# CODEX_WORKTREE (24 Nov 2026): a second worktree for a Codex job while a bench runs from D:\second-sun-astra and must not
+# have its branch switched (a switch rewrote 14 locked 031 scripts with CRLF bytes on 24 Nov 2026, 11:07 pm).
+ASTRA = pathlib.Path(os.environ.get("CODEX_WORKTREE", r"D:\second-sun-astra"))
+DEFAULT_ASTRA = pathlib.Path(r"D:\second-sun-astra")
 MAIN = pathlib.Path(r"D:\second-sun")
 DATA = MAIN / "data" / "astra"
 LOCK = ASTRA / ".codex_run.lock"
@@ -190,6 +193,9 @@ def main():
                   f"Write any data only under data/astra/{o.num}/. Do NOT run git commit or any git command that writes (the Windows sandbox blocks git's own files; the runner commits everything you leave in the worktree when you finish). Never push. "
                   f"Write your report as research/astra/reports/{o.num}-report.md. End your final message with one line: "
                   f"DONE, PARTIAL or BLOCKED, and why.")
+        if ASTRA != DEFAULT_ASTRA:
+            prompt += (f" NOTE: this run uses the second worktree {ASTRA} because a bench is running from D:\\second-sun-astra. "
+                       f"Treat {ASTRA} exactly as AGENTS.md treats D:\\second-sun-astra (your folder, same rules); do not touch D:\\second-sun-astra.")
     status, rc, log, last, n, waited = None, None, None, None, 0, 0
     try:
         while True:
