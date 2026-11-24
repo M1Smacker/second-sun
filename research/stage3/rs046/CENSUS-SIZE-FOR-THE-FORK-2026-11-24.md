@@ -15,6 +15,8 @@
 Overlaps between CALNet and the Gaia pool are already removed (the Gaia count excludes every union star). A realistic Census, after losses to gates, crowding and FFI coverage (only 22.7% of star-sectors had both FFI products on 8 Nov), is lower: **about 3,000 to 5,000** (my judgement, UNCERTAIN).
 
 ## What that is worth (RS-039 A5's arithmetic, extended)
+The transit-geometry factor (T138) is already inside these numbers: A5 rests on the 8 Nov recount of `CENSUS-WORTH-2026-11-04.md`, which uses Horizon R0 Amendment 4's transit chance (`census_step1/census_worth2.py`).
+
 RS-039 A5 (LIKELY, Kepler-like prior, today's completeness): 1,400 stars give a 36% to 52% chance of at least one planet; 3,000 give 59% to 76%. Treating planets as rare events spread evenly over stars (Poisson), the 3,000-star anchor gives a per-star rate of 0.00030 to 0.00048, so **5,000 stars would give about 77% to 91%**. That assumes full-frame stars are searched as well as 2-minute ones; they are not (30- and 10-minute cadence, more noise), so the true value is lower. **UNCERTAIN; NOT TESTED** on FFI light.
 
 For comparison, RS-039 A5: raising P from 48 to 75 on 1,400 stars gives about 50% to 68%. Going from 1,400 to 3,000 stars at today's P (59% to 76%) is worth more, and the star builds (period finder, FFI path) are concrete, while the P levers past about 55 are not (P75-REESTIMATE).

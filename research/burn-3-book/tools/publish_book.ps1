@@ -84,6 +84,9 @@ Run node "$src\book\tools\test_eyes_feedback.mjs"
 Step "2i. Rehearsal (rung 3): statistics, pass line, locked answers, cloud document shape, no leak in the pictures, deck integrity"
 Run node "$src\book\tools\test_rehearsal.mjs"
 
+Step "2j. Twinlight answer grader: fractions, units, thousands commas, words; nothing evaluated as code (FIX 104)"
+Run node "$src\book\tools\test_learn_grader.mjs"
+
 Step "3. Strict build into $build"
 Push-Location "$src\book"
 Run $mkdocs build --strict -d $build

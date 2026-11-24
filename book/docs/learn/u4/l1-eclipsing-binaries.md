@@ -23,7 +23,7 @@ The deeper one is called the **primary eclipse**, the shallower the **secondary 
 
 ## How deep an eclipse is
 
-TESS sees the two stars as one point, so an eclipse removes the light of whatever part of the back star is covered. Lesson 2.3 measured the two stars' light: the first gives 2.31 Suns, the second 1.99, together 4.30. If the front star covers a share \(s\) of the back star's disc, and the back star's surface is evenly bright:
+TESS sees the two stars as one point, so an eclipse removes the light of whatever part of the back star is covered. Lesson 2.3 measured the two stars' light: the first gives 2.31 Suns, the second 1.99, together 4.30. (Those are totals over all colours; TESS sees only red and near-infrared light, 600 to 1,000 nm. For two stars this close in temperature the shares come out almost the same: 0.536 for the first star in TESS's band against 0.537.) If the front star covers a share \(s\) of the back star's disc, and the back star's surface is evenly bright:
 
 \[ \text{depth} = s \times \frac{L_{\text{back}}}{L_1 + L_2} \]
 
@@ -63,7 +63,7 @@ The rule: **depth = share covered \(\times\) the back star's share of the light*
 
 ## Why the two eclipses differ
 
-The two stars are almost the same temperature (6,050 K and 5,983 K in Kostov et al. 2021), so square metre for square metre they shine almost equally: \((6050 / 5983)^{4} = 1.05\), only 5% apart. That cannot turn 35.8% into 43.5%. The difference comes from **how much** of the back star is covered, and that comes from the shape of the orbit.
+The two stars are almost the same temperature (6,050 K and 5,983 K in Kostov et al. 2021), so square metre for square metre they shine almost equally: \((6050 / 5983)^{4} = 1.05\), only 5% apart (4% in TESS's band). That cannot turn 35.8% into 43.5%. The difference comes from **how much** of the back star is covered, and that comes from the shape of the orbit.
 
 ## Why the second eclipse is late
 
@@ -77,7 +77,7 @@ The same stretch changes the depths. At one eclipse the stars are closer togethe
 **Eccentricity \(e\).** How stretched an orbit is: 0 for a circle, close to 1 for a long thin ellipse. Earth's is 0.017; this pair's is 0.448.
 </aside>
 
-A rule of thumb from the timing alone: the shift away from half an orbit, as a share of the orbit, is about \(\frac{2}{\pi}\, e\cos\omega\), where \(\omega\) is the angle saying which way the stretched orbit points. Here the shift is \(0.604 - 0.5 = 0.104\), so \(e\cos\omega \approx 0.104 \times \pi / 2 = 0.16\). Our exact calculation with Kepler's equation gives 0.15. The timing therefore says the orbit is stretched by **at least** 0.15; the full 0.448 also needs the eclipses' lengths and, in the paper, the planet's own pull.
+A rule of thumb from the timing alone: the shift away from half an orbit, as a share of the orbit, is about \(\frac{2}{\pi}\, e\cos\omega\), where \(\omega\) is the angle saying which way the stretched orbit points. Here the shift is \(0.604 - 0.5 = 0.104\), so \(e\cos\omega \approx 0.104 \times \pi / 2 = 0.16\). Our exact calculation with Kepler's equation, for an exactly edge-on orbit, gives 0.15. The timing therefore says the orbit is stretched by **at least** 0.15; the full 0.448 also needs the eclipses' lengths and, in the paper, the planet's own pull.
 
 ## Why this matters for Second Sun
 
@@ -143,6 +143,7 @@ Shift \(= 0.604 - 0.5 = 0.104\); \(e\cos\omega \approx 0.104 \times \pi / 2 = 0.
 
 - The light: TESS sectors 44 to 47, SPOC 2-minute light curves of TIC 172900988 (PDCSAP flux, quality flags removed), from MAST, as in lessons 1.1 and 2.1.
 - The system: Kostov et al. 2021, "TIC 172900988: A Transiting Circumbinary Planet Detected in One Sector of TESS Data", AJ 162, 234 ([arXiv 2105.08614](https://arxiv.org/abs/2105.08614), abstract and HTML tables read 23 Nov 2026): binary period 19.658173 d (Table 5), eccentricity 0.4479 (Table 6), star radii 1.384 and 1.312 Sun radii (Table 5), temperatures 6,050 and 5,983 K (Table 3); TESS-only eclipse depths "about 40% and 35%" (section 2.1).
+- The timing rule of thumb: Winn 2010, "Transits and Occultations", equation 33, first order in e ([arXiv 1001.2010](https://arxiv.org/abs/1001.2010)); at this pair's tilt the correction is 16 seconds (Codex 034b).
 - Our checks, `book/tools/lesson_plots_u4.py` (23 Nov 2026): 5 primary and 4 secondary eclipses; median depths 43.5% and 35.8%; secondary at 0.6043 of the orbit (11.879 d); with e = 0.4479 the exact edge-on timing (Kepler's equation) reproduces that separation at e cos(omega) = 0.149, the first-order rule gives 0.164. A failure of the depth or timing check stops the plot.
 - The first-order timing rule (the secondary's shift from half an orbit is about (2/pi) e cos(omega) for a nearly edge-on orbit): the standard result found in eclipsing-binary texts, for example Kallrath and Milone, "Eclipsing Binary Stars: Modeling and Analysis" (Springer). Eclipses, primary and secondary, and Kepler's second law: OpenStax Astronomy 2e, chapters 3 and 18 ([the book](https://openstax.org/details/books/astronomy-2e), CC BY-NC-SA 4.0), in our own words.
 - Earth's eccentricity 0.0167: NASA Earth fact sheet ([nssdc.gsfc.nasa.gov](https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)).

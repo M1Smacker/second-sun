@@ -101,7 +101,7 @@ Michel Mayor and Didier Queloz found 51 Pegasi b this way in 1995, with a spectr
 
 ## Why this matters for Second Sun
 
-A transit, our kind of signal, gives a planet's **size** (lesson 1.4) but not its mass. A Doppler wobble gives its **mass** (or a minimum) but not its size. Together they give its density: rock, water or gas. For eclipsing binaries, Doppler measured on both stars gives both stars' masses, which Unit 4 uses. TESS records only brightness, so it cannot see a wobble. A dip we find someday would need a spectrograph's speeds before anyone could call it a planet with a known mass.
+A transit, our kind of signal, gives a planet's **size** (lesson 1.4) but not its mass. A Doppler wobble gives its **mass** (or a minimum) but not its size. Together they give its density: rock, water or gas. For eclipsing binaries, Doppler measured on both stars gives both stars' masses, which Unit 4 uses. TESS records only brightness, so it cannot see a wobble. A single dip we find someday would not give the planet's mass on its own. Spectrograph speeds are the usual route; around a binary there is a second one: a planet's pull shifts the binary's eclipse times a little, and modelling those shifts can weigh it too (Doyle et al. 2011 did this for Kepler-16).
 
 ## In a few sentences
 

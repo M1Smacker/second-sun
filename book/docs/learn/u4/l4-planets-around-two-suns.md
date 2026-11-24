@@ -50,7 +50,7 @@ The planet moves at about \(2\pi \times 0.9\) AU in 200 days, about 49 km/s. The
 
     **Step 2. The time in seconds.** \(0.4 \times 86{,}400 = 34{,}560\) s.
 
-    **Step 3. The relative speed.** \(1.93 \times 10^{6} / 34{,}560 = 56\) km/s. A crossing off the middle has a shorter chord, so this is the **largest** relative speed the dip allows.
+    **Step 3. The relative speed.** \(1.93 \times 10^{6} / 34{,}560 = 56\) km/s. A crossing off the middle has a shorter chord, so this is the **largest** relative speed the dip allows, treating the planet as a small point moving at a steady speed. (Counting the planet's own size, the path from first to last touch is \(2(R_\star + R_p)\) and the limit rises to about 60 km/s. The paper gives the lengths only roughly, about 0.4 days, so we keep the simple version.)
 
 !!! question "Your turn, half done: the second star"
     The second dip lasts about 0.27 days; star 2's radius is 1.312 Suns. Step 1: \(2 \times 1.312 \times 696{,}000 = 1.83 \times 10^{6}\) km. Finish: the largest relative speed, in km/s.
@@ -81,7 +81,7 @@ The planet's radius is about 11.25 Earth radii, about 0.103 Sun radii (Kostov et
 
 ## In a few sentences
 
-A circumbinary planet circles both stars of a pair, far outside their own orbit, while the stars swing round each other underneath. Its dips last chord divided by relative speed, so they change length as the stars move with or against it: 0.4 and 0.27 days for TIC 172900988, meaning relative speeds of at most 56 and 78 km/s for a planet moving at 49 km/s. The dips do not repeat like a clock, which is why our search judges single dips instead of folding on a period.
+A circumbinary planet circles both stars of a pair, far outside their own orbit, while the stars swing round each other underneath. Its dips last chord divided by relative speed, so they change length as the stars move with or against it: 0.4 and 0.27 days for TIC 172900988, meaning relative speeds of at most about 56 and 78 km/s (treating the planet as a point) for a planet moving at 49 km/s. The dips do not repeat like a clock, which is why our search judges single dips instead of folding on a period.
 
 ## Problems
 

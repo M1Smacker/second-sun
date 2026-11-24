@@ -3,7 +3,9 @@
 The distance between the two stars of TIC 172900988 through one orbit, drawn from Kepler's laws with the paper's values (Kostov et al.
 2021: P = 19.658173 d, e = 0.4479, masses 1.2384 and 1.2019 Suns) and the orbit's orientation omega found from OUR light:
   - e cos(omega) = 0.149 from the eclipse timing (lesson 4.1's script), so sin(omega) = +-0.943;
-  - the sign from the two eclipses' lengths: the stars move slower where they are farther apart, so the eclipse that happens at the
+  - the sign from the two eclipses' lengths (valid HERE because both eclipses are deep and the orbit is nearly edge-on, so the two paths
+    are nearly equal: Codex 034b F4 showed a grazing tilt such as 87.35 degrees can reverse the length order, so this guard is NOT a
+    general direction test; lesson 4.3 measures the equal paths): the stars move slower where they are farther apart, so the eclipse that happens at the
     wider separation lasts longer. The size of the ratio also depends on how squarely the stars cross at each eclipse (impact
     parameter), so we use ONLY which eclipse is longer, measured on the folded 2-minute light, never the ratio's value.
 Checks (a failure stops the plot): the separation at the start of the orbit average equals the lesson 2.1 semi-major axis 0.192 AU within
