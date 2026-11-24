@@ -1,3 +1,14 @@
+# LATEST (25 Nov 2026, 1:29 am Kuwait): SAFE STOP for the night (Ahmed: sleep, PC off). RESTART ORDER BELOW.
+
+Nothing is running. All work committed and pushed. Live book: 3.14.0 (confirmed 12:43 am).
+
+## Restart order (do these in order when Ahmed is back; no fork needs him except where marked)
+1. **Resume D1** (main science, only the last phase left): from D:\second-sun-astra (branch astra/034-factcheck-3-4-4-1; NEVER switch it while the bench runs; 031 source lock verified matching at the stop):
+   `Start-Process D:\second-sun\.venv\Scripts\python.exe -ArgumentList '-I','-B','D:\second-sun-astra\research\astra\scripts\031_run.py' -WorkingDirectory D:\second-sun-astra -WindowStyle Hidden`
+   It skips the 98 completed phases and restarts T156_new. Start a watcher on data\astra\031\progress.json. When it ends: `research/stage3/rs040/recount_031.py` (first key), plain verdict to Ahmed, then brief/launch 033 D2 in D:\second-sun-astra after the bench is done.
+2. **Codex in the second worktree** (D:\second-sun-astra2, clean; set env CODEX_WORKTREE=D:\second-sun-astra2): `codex_run.py 035b research/astra/inbox/035b-period-finder-continue.md astra/035b-period-finder-continue --hours 6 --idle 45 --effort high --retries 3`, then the same for 036 (`036-factcheck-lessons-4-3-and-4-5.md`, branch astra/036-factcheck-4-3-4-5). Check the Codex 5-hour meter first (was 81% at 11:39 pm, reset 1:55 am). Fence_check and merge each; fix any lesson findings; publish.
+3. **Then (Ahmed's fork, ask only with the D1 verdict):** P levers vs Census at scale (RS-046: 600 searchable now, 3,000 to 5,000 after 035b + T152; G5 pool is full-frame-only: 96 of 5,192 have 2-minute light).
+4. Small: eclipse-v3 Part B question waits until Ahmed says "ask"; Gaia DR4 on 2 Dec: run research/stage3/census_union/gaia_join.py after checking DR4's epoch and rerunning C1.
 # LATEST (24 Nov 2026, 11:57 pm Kuwait): 14% day, presented to Ahmed; overnight jobs running
 
 - Weekly meter 11% at 11:56 pm (cap today 14%); overnight wake-ups use the rest.
