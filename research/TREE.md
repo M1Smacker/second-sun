@@ -146,6 +146,8 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 - T136 Census plan; T139 public EB lists first; T138 transit probability in Horizon; T140 Horizon against the professionals; T148 PLATO count; T152 second FFI product; T153 Gaia DR4 refresh (DR4 due 2 Dec 2026).
 - **RS-043 Gaia DR4 for Census** (22 Nov, T153; DONE 11:27 pm): DR4 still dated 2 Dec 2026; `vari_eclipsing_binary` about 2.39 million eclipsing binaries with periods and models (419 MB) = the post-Sector-26 list Census lacks; DR4 periods may also sharpen mask ephemerides (node 1.4). Waits for Ahmed's fork after D1. `research/stage3/rs043/GAIA-DR4-FOR-CENSUS-2026-11-22.md`.
 - **Census builder C1/C2** (23 Nov, T153; DONE 10:47 am): Gaia EB rows say WHO, not WHEN. Gaia DR3 period equals TESS for 2.6% of TTC known EBs over 5 d (published ratio; our match 5%), 56% for bright Prsa stars; when it agrees the eclipse lands within half a width 63%. Time convention confirmed (ref + phase x P; BTJD = ref minus 1802.5). Census takes ephemerides from our own TESS fit; alias resolution is the next build (node 1.4). `research/stage3/census_gaia/C1-C2-RESULT-2026-11-23.md`.
+- **T139 EB lists merged** (24 Nov, T139; DONE 11:13 pm, Claude): 24,902 stars from Prsa, TTC 3 and 4, CALNet; G2 rule reproduces 895 of 895; only 582 bright unsearched P over 5 d with epoch and width (21 over 10 d); CALNet 8,814 have no period, so our own period fit is the Census critical path. File esearch/stage3/census_union/T139-UNION-RESULT-2026-11-24.md.
+- **Codex 035 Census period finder** (24 Nov, T139; QUEUED after 034b): find a binary's period from its own TESS light, alias check from 032, preregistered on 150 known stars outside fences A and B (85% within 0.1%).
 
 **2.2 G1: the last unseen list (552 rows, one shot).** *Weight 5.* *Status: WAITS: FIX FIRST verdict, then Amendment 4 and a frozen Petrova version that passes the bar.* T37b (a fresh-set test) folds into this.
 
@@ -168,6 +170,7 @@ Dropped 12 (T37b, T36, T50, T101, T117, T118, T121, T122, T123, T124, T140, T148
 - **Codex 034 fact-check of lessons 3.4 and 4.1** (23 Nov, node 4.1; WAITS for 032 Part A to finish, then runs before 032 Part B): both lessons live with the fact-check pending. `research/astra/inbox/034-factcheck-lessons-3-4-and-4-1.md`.
 - **FIX 102** (23 Nov, node 4.1; FIXED in Book 3.10.0): touching a lesson plot whose axis does not start at 0 read the wrong point (486 nm read as 380 nm on lesson 3.3); new learn check, mutation red. Lesson 3.4 Doppler added the same day.
 - **FIX 103** (24 Nov, node 4.1; FIXED in Book 3.11.0): five teaching errors Codex 034 found in lessons 4.1, 4.2, 4.4 (average distance, average speed, duration sign, star direction, exact e cos omega); re-derived by Claude's own script first.
+- **Codex 034b finish lesson fact-check** (24 Nov, node 4.1; RUNNING 11:09 pm in second worktree): grading tolerances, raw eclipse depths, timing-rule source, Lick refit, caveats, fence audit.
 
 **4.2 Search window and control room.** *Weight 2.* *Status: WAITS: after G1 or Census (Ahmed).* T159 control room on Netlify (plan `research/stage3/CONTROL-ROOM-PLAN.md`); T51, T53, T50; FIX 77 exporter label.
 
