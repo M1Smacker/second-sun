@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T21:36",
+ "generated": "2026-11-24T23:21",
  "goal": {
   "title": "Find a planet around two suns",
   "plain": "The whole project in one line. We search NASA's TESS light for a planet that circles two stars at once. Finding one is a win, and so is proving, with measured numbers, that none was there to find.",
@@ -2681,6 +2681,11 @@
    "leaves": [
     "l:9"
    ]
+  },
+  {
+   "date": "2026-11-24",
+   "diary": "field-notes/2026-11-24/",
+   "leaves": []
   }
  ],
  "phases": [
